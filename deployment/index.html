@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="th"
+  data-ds="landometer"
+  data-ds-version="0.8.6"
+  data-build-card-version="0.8.6"
+  data-manifest-version="pending_0.8.6_generation"
+  data-token-schema-version="6"
+  data-ds-profile="designsystem.adoption"
+  data-profile="designsystem.adoption"
+  data-delivery-mode="internal_demo"
+  data-delivery="internal_demo"
+  data-evidence-status="source_limited"
+  data-visibility="public_repository"
+  data-indexable="false"
+  data-theme="light"
+  data-theme-preference="auto"
+  data-machine-validation="pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F6F7F3">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="description" content="Stakeholder decision demo for a bounded Landometer Design System v0.8.6 pilot across product, design, development, and marketing.">
+  <title>Landometer Design System v0.8.6 — Adoption Decision Demo</title>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      root.classList.add('has-js');
+      let choice = 'auto';
+      try {
+        const stored = localStorage.getItem('landometer-theme');
+        if (stored === 'light' || stored === 'dark' || stored === 'auto') choice = stored;
+      } catch (_) {}
+      const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.themePreference = choice;
+      root.dataset.theme = choice === 'auto' ? (dark ? 'dark' : 'light') : choice;
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeMeta) themeMeta.setAttribute('content', root.dataset.theme === 'dark' ? '#11191D' : '#F6F7F3');
+
+      let locale = 'th';
+      const urlLocale = new URL(window.location.href).searchParams.get('lang');
+      if (urlLocale === 'th' || urlLocale === 'en') locale = urlLocale;
+      else {
+        try {
+          const storedLocale = localStorage.getItem('landometer-locale');
+          if (storedLocale === 'th' || storedLocale === 'en') locale = storedLocale;
+          else if ((navigator.languages || [navigator.language || 'th']).some(value => String(value).toLowerCase().startsWith('en'))) locale = 'en';
+        } catch (_) {
+          if ((navigator.languages || [navigator.language || 'th']).some(value => String(value).toLowerCase().startsWith('en'))) locale = 'en';
+        }
+      }
+      root.dataset.locale = locale;
+      root.lang = locale;
+    })();
+  </script>
+  <style>
+    @font-face {
+      font-family: "Arvo";
+      src: url("assets/fonts/arvo-latin-700-normal.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Thai Looped";
+      src: url("assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0E00-0E7F;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Thai Looped";
+      src: url("assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-thai-400-normal.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0E00-0E7F;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-latin-400-normal.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-thai-600-normal.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0E00-0E7F;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-latin-600-normal.woff2") format("woff2");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+
+    :root {
+      --brand-blue: #1D4497;
+      --brand-beige: #F2F1DF;
+      --energy-sky: #59D2FE;
+      --energy-mint: #0AD69C;
+      --energy-coral: #FF5A5F;
+      --energy-yellow: #FFBC1F;
+      --canvas: #F6F7F3;
+      --canvas-alt: #EEF1EE;
+      --card: #FCFCFA;
+      --raised: #FFFFFF;
+      --soft: #E5E9E6;
+      --blue-tint: #E2E9ED;
+      --beige-tint: #F2F1DF;
+      --text: #182327;
+      --text-secondary: #5F635A;
+      --metadata: #686354;
+      --muted: #8B877A;
+      --border: #C9D0CB;
+      --border-strong: #7D877F;
+      --accent: #176B82;
+      --focus: #176B82;
+      --success-fill: #E2F4E5;
+      --success-ink: #126B49;
+      --warning-fill: #FFF1D1;
+      --warning-ink: #795300;
+      --danger-fill: #FCE5DF;
+      --danger-ink: #B43A3A;
+      --info-fill: #E8EEF0;
+      --info-ink: #176B82;
+      --pending-fill: #F3EEDB;
+      --pending-ink: #686354;
+      --assisted-fill: #DFF3F1;
+      --assisted-ink: #176C67;
+      --closing: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
+      --elevation-xs: 0 1px 2px rgba(30, 34, 48, .08);
+      --elevation-sm: 0 4px 12px rgba(30, 34, 48, .10);
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --gutter: clamp(16px, 3vw, 32px);
+      --reading: 760px;
+      --container: 1120px;
+      --wide: 1280px;
+      --ease-enter: cubic-bezier(.16, 1, .3, 1);
+      color-scheme: light;
+      font-synthesis: none;
+    }
+
+    html[data-theme="dark"] {
+      --canvas: #11191D;
+      --canvas-alt: #172126;
+      --card: #20292D;
+      --raised: #293337;
+      --soft: #2B3534;
+      --blue-tint: #18333E;
+      --beige-tint: #2C2A22;
+      --text: #F1F4EF;
+      --text-secondary: #C4CECA;
+      --metadata: #A6B5B1;
+      --muted: #8D9D99;
+      --border: #46524F;
+      --border-strong: #7C8A84;
+      --accent: #68C4E2;
+      --focus: #68C4E2;
+      --success-fill: #17362D;
+      --success-ink: #72E8C4;
+      --warning-fill: #3B2E16;
+      --warning-ink: #F5C15C;
+      --danger-fill: #3A1F21;
+      --danger-ink: #FF7C72;
+      --info-fill: #18333E;
+      --info-ink: #68C4E2;
+      --pending-fill: #2C2A22;
+      --pending-ink: #D8CFB2;
+      --assisted-fill: #163331;
+      --assisted-ink: #79D9D1;
+      --closing: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
+      color-scheme: dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html:not([data-theme]) {
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: var(--canvas); }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--text);
+      font-family: "Bai Jamjuree", system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      transition: background-color 200ms cubic-bezier(.2, 0, 0, 1), color 200ms cubic-bezier(.2, 0, 0, 1);
+    }
+    [hidden] { display: none !important; }
+    html[data-locale="en"] [data-locale="th"] { display: none !important; }
+    html[data-locale="en"] [data-locale="en"][hidden] { display: revert !important; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, select, input { font: inherit; }
+    button, select, summary, a { -webkit-tap-highlight-color: transparent; }
+    button, select, summary { min-height: 44px; }
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      inset: 8px auto auto 8px;
+      transform: translateY(-140%);
+      background: var(--raised);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-weight: 600;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+    .shell { width: min(100%, var(--wide)); margin-inline: auto; padding-inline: var(--gutter); }
+    .reading { width: min(100%, var(--reading)); }
+    .eyebrow, .tech, dt, .status, .signature {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-weight: 700;
+      letter-spacing: .025em;
+    }
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--metadata);
+      font-size: .8125rem;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin: 0; text-wrap: balance; }
+    h1, h2, h3, .thai-heading {
+      font-family: "IBM Plex Sans Thai Looped", "Bai Jamjuree", sans-serif;
+      font-weight: 700;
+    }
+    html[lang="en"] h1,
+    html[lang="en"] h2,
+    html[lang="en"] h3,
+    .en-display {
+      font-family: "Arvo", Georgia, serif;
+      font-weight: 700;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.16; }
+    html[lang="en"] h1 { font-size: clamp(3.25rem, 7vw, 6.5rem); line-height: 1.02; }
+    h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.16; }
+    html[lang="en"] h2 { line-height: 1.08; }
+    h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); line-height: 1.32; }
+    html[lang="en"] h3 { line-height: 1.22; }
+    p { margin: 0; }
+    .lede { font-size: 1.125rem; line-height: 1.6; color: var(--text-secondary); }
+    .small { font-size: .875rem; line-height: 1.45; color: var(--text-secondary); }
+    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; }
+    .section { padding-block: clamp(64px, 9vw, 128px); }
+    .section-head { display: grid; gap: 16px; max-width: var(--reading); margin-bottom: 48px; }
+    .signature {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      color: var(--accent);
+      font-size: .75rem;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .signature::before { content: ""; width: 24px; height: 3px; background: var(--accent); }
+
+    .site-header {
+      position: relative;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--canvas) 94%, transparent);
+    }
+    .header-inner {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 44px;
+      min-height: 44px;
+      border-radius: var(--radius-sm);
+      background: #F2F1DF;
+      padding: 7px 10px;
+    }
+    .brand-link img { width: clamp(132px, 18vw, 188px); height: auto; }
+    .identity-status {
+      margin-top: 2px;
+      color: #5F635A;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: .625rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: .02em;
+    }
+    .header-controls { display: flex; align-items: center; gap: 8px; }
+    .compact-select,
+    .theme-settings > summary {
+      min-width: 84px;
+      color: var(--text);
+      background: var(--raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 8px 12px;
+      cursor: pointer;
+      box-shadow: var(--elevation-xs);
+    }
+    .theme-settings { position: relative; }
+    .theme-settings > summary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      user-select: none;
+    }
+    .theme-settings > summary::-webkit-details-marker { display: none; }
+    .theme-settings > summary::before { content: "◐"; font-size: 1.1rem; line-height: 1; }
+    .theme-current { color: var(--text-secondary); font-size: .875rem; }
+    .theme-panel {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      width: min(230px, calc(100vw - 32px));
+      background: var(--raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--elevation-sm);
+      padding: 12px;
+    }
+    .theme-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 44px;
+      padding-inline: 8px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+    }
+    .theme-option:hover { background: var(--soft); }
+    .theme-option input { width: 18px; height: 18px; accent-color: var(--accent); }
+    .preference-reset {
+      width: 100%;
+      margin-top: 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--canvas-alt);
+      color: var(--text);
+      padding: 8px 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .preference-reset:hover { background: var(--soft); }
+
+    .hero { border-bottom: 1px solid var(--border); background: var(--canvas); }
+    .hero-grid {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 40fr 31fr 29fr;
+      gap: 0;
+      align-items: stretch;
+    }
+    .hero-copy {
+      align-self: center;
+      padding-block: 64px;
+      padding-left: var(--gutter);
+      padding-right: 24px;
+      display: grid;
+      gap: 24px;
+    }
+    .hero-title {
+      color: var(--text);
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+    }
+    html[lang="en"] .hero-title { font-size: clamp(2.5rem, 5.2vw, 4.75rem); }
+    .hero-support { max-width: 34rem; }
+    [data-quiet-field] {
+      min-width: 25%;
+      min-height: 25%;
+      background: var(--beige-tint);
+      border-inline: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+    }
+    .hero-photo {
+      align-self: end;
+      margin: 0;
+      padding: 0 var(--gutter) 32px 24px;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      object-position: center bottom;
+      background: var(--canvas-alt);
+      border-radius: var(--radius-lg);
+    }
+    .hero-photo figcaption { margin-top: 8px; }
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      min-height: 48px;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      background: var(--blue-tint);
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 120ms cubic-bezier(.2, 0, 0, 1), transform 120ms cubic-bezier(.2, 0, 0, 1);
+    }
+    .primary-action:hover,
+    .secondary-action:hover { background: var(--assisted-fill); }
+    .primary-action:active,
+    .secondary-action:active { transform: translateY(2px); }
+
+    .try-section { background: var(--canvas-alt); }
+    .role-bar {
+      display: grid;
+      grid-template-columns: minmax(220px, .65fr) minmax(280px, 1fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+    .field { display: grid; gap: 8px; }
+    .field label { font-weight: 600; }
+    .field select {
+      width: 100%;
+      color: var(--text);
+      background: var(--raised);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+    }
+    .mode-switch {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      padding: 4px;
+      background: var(--soft);
+      border-radius: var(--radius-md);
+      width: min(100%, 420px);
+      justify-self: end;
+    }
+    .mode-button {
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--text-secondary);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .mode-button[aria-pressed="true"] {
+      background: var(--raised);
+      border-color: var(--border);
+      color: var(--text);
+      box-shadow: var(--elevation-xs);
+    }
+    .workbench {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: clip;
+    }
+    .workbench-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      background: var(--raised);
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      min-height: 32px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: var(--pending-fill);
+      color: var(--pending-ink);
+      font-size: .75rem;
+      line-height: 1.35;
+    }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+    .workbench-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+    }
+    .truth-object,
+    .role-proof { padding: clamp(24px, 4vw, 48px); }
+    .truth-object { border-right: 1px solid var(--border); }
+    .object-title { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; margin-bottom: 32px; }
+    .object-title .mono { color: var(--metadata); font-size: .75rem; }
+    .truth-list {
+      display: grid;
+      grid-template-columns: minmax(100px, .45fr) minmax(0, 1fr);
+      margin: 0;
+    }
+    .truth-list > div { display: contents; }
+    .truth-list dt,
+    .truth-list dd {
+      margin: 0;
+      padding-block: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .truth-list dt { color: var(--metadata); font-size: .75rem; padding-right: 16px; }
+    .truth-list dd { color: var(--text); }
+    .role-proof { display: grid; align-content: start; gap: 24px; }
+    .proof-panel { display: grid; gap: 20px; }
+    .proof-line { display: grid; gap: 4px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .proof-label { color: var(--metadata); font-size: .75rem; }
+    .proof-checklist {
+      padding: 16px;
+      border-left: 4px solid var(--accent);
+      background: var(--info-fill);
+      color: var(--info-ink);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    .proof-checklist ul { margin: 8px 0 0; padding-left: 20px; }
+
+    .align-section { background: var(--canvas); }
+    .handoff-object {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      padding: 16px 0;
+      border-block: 1px solid var(--border-strong);
+      margin-bottom: 32px;
+    }
+    .handoff-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-block: 1px solid var(--border);
+    }
+    .handoff-step {
+      position: relative;
+      padding: 32px 24px 32px 0;
+      min-width: 0;
+    }
+    .handoff-step:not(:last-child) { border-right: 1px solid var(--border); margin-right: 24px; }
+    .handoff-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -17px;
+      top: 30px;
+      color: var(--accent);
+      background: var(--canvas);
+      padding: 0 6px;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 700;
+    }
+    .step-index { color: var(--accent); font-size: .75rem; }
+    .handoff-step h3 { margin: 8px 0 16px; }
+    .handoff-step ul { margin: 0; padding-left: 18px; color: var(--text-secondary); }
+    .handoff-release {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 24px;
+      border-block: 1px solid var(--border-strong);
+      background: var(--blue-tint);
+    }
+    .release-stage { padding: 20px; }
+    .release-stage:not(:last-child) { border-right: 1px solid var(--border); }
+    .release-stage strong { display: block; margin-bottom: 4px; }
+    .evidence-gate {
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+    }
+    .evidence-gate summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+    .evidence-gate summary::-webkit-details-marker { display: none; }
+    .evidence-gate summary::after { content: "+"; font-family: "JetBrains Mono", monospace; color: var(--accent); }
+    .evidence-gate[open] summary::after { content: "−"; }
+    .details-body { padding: 0 20px 20px; color: var(--text-secondary); }
+    .details-body strong { color: var(--text); }
+
+    .culture-section { background: var(--beige-tint); }
+    .culture-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
+      gap: clamp(32px, 7vw, 96px);
+      align-items: center;
+    }
+    .culture-photo img {
+      width: min(100%, 466px);
+      height: auto;
+      border-radius: var(--radius-lg);
+    }
+    .culture-copy { display: grid; gap: 24px; }
+    .protected-context {
+      padding-top: 24px;
+      border-top: 1px solid var(--border-strong);
+      color: var(--brand-blue);
+      font-family: "Arvo", Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    html[data-theme="dark"] .protected-context { color: var(--accent); }
+
+    .approval-section {
+      background: var(--closing);
+      color: #FFFFFF;
+    }
+    .approval-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
+      gap: clamp(32px, 7vw, 96px);
+      align-items: start;
+    }
+    .approval-copy {
+      display: grid;
+      gap: 24px;
+      padding: clamp(24px, 4vw, 40px);
+      border-radius: var(--radius-xl);
+      background: #11191D;
+      color: #F1F4EF;
+    }
+    .approval-copy .eyebrow,
+    .approval-copy .lede { color: inherit; opacity: .88; }
+    .approval-section .primary-action {
+      border-color: #68C4E2;
+      color: #F1F4EF;
+      background: #18333E;
+    }
+    .approval-panel {
+      border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+      border-radius: var(--radius-xl);
+      padding: clamp(24px, 4vw, 40px);
+      background: color-mix(in srgb, var(--raised) 90%, transparent);
+      color: var(--text);
+    }
+    .approval-panel h3 { margin-bottom: 16px; }
+    .approval-panel ol { margin: 20px 0 0; padding-left: 20px; }
+    .decision-text { font-weight: 600; font-size: 1.125rem; }
+    .local-effect-note { margin-top: 16px; color: var(--text-secondary); font-size: .875rem; }
+    .static-takeaway {
+      display: grid;
+      gap: 8px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-strong);
+    }
+    .owner-gate {
+      display: grid;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 1px solid color-mix(in srgb, var(--warning-ink) 44%, transparent);
+      border-radius: var(--radius-md);
+      background: var(--warning-fill);
+      color: var(--warning-ink);
+    }
+
+    .release-note {
+      display: grid;
+      gap: 8px;
+      margin-top: 32px;
+      padding: 20px;
+      border-left: 4px solid var(--warning-ink);
+      background: var(--warning-fill);
+      color: var(--warning-ink);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    footer { padding-block: 32px; border-top: 1px solid var(--border); background: var(--canvas); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--metadata); }
+
+    html.motion-ready .reveal-group > * { opacity: 0; transform: translateY(12px); }
+    html.motion-ready .reveal-group.is-visible > * {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 400ms var(--ease-enter), transform 400ms var(--ease-enter);
+    }
+    html.motion-ready .reveal-group.is-visible > *:nth-child(2) { transition-delay: 60ms; }
+    html.motion-ready .reveal-group.is-visible > *:nth-child(3) { transition-delay: 120ms; }
+    html.motion-ready .reveal-group.is-visible > *:nth-child(4) { transition-delay: 180ms; }
+
+    @media (max-width: 899px) {
+      .role-bar { grid-template-columns: 1fr; }
+      .mode-switch { justify-self: stretch; width: 100%; }
+      .workbench-grid { grid-template-columns: 1fr; }
+      .truth-object { border-right: 0; border-bottom: 1px solid var(--border); }
+      .handoff-flow { grid-template-columns: 1fr 1fr; }
+      .handoff-release { grid-template-columns: 1fr; }
+      .release-stage:not(:last-child) { border-right: 0; border-bottom: 1px solid var(--border); }
+      .handoff-step:nth-child(2) { border-right: 0; margin-right: 0; }
+      .handoff-step:nth-child(2)::after { content: none; }
+      .handoff-step:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .culture-grid,
+      .approval-grid { grid-template-columns: 1fr; }
+      .culture-photo img { width: min(75%, 466px); }
+    }
+
+    @media (max-width: 767px) {
+      .hero-grid {
+        min-height: 620px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto minmax(280px, 1fr);
+      }
+      .hero-copy { grid-column: 1 / -1; padding: 48px 0 40px; }
+      [data-quiet-field] { grid-column: 1; grid-row: 2; border: 0; border-right: 1px solid var(--border); }
+      .hero-copy { padding-inline: var(--gutter); }
+      .hero-photo { grid-column: 2; grid-row: 2; padding: 24px var(--gutter) 24px 16px; align-self: center; }
+    }
+
+    @media (max-width: 599px) {
+      .site-header .shell { padding-inline: 12px; }
+      .header-inner { min-height: 68px; gap: 8px; }
+      .brand-link { padding: 6px 8px; }
+      .brand-link img { width: 118px; }
+      .header-controls { gap: 4px; }
+      .compact-select,
+      .theme-settings > summary { min-width: 64px; padding: 7px 9px; }
+      .theme-word { display: none; }
+      .hero-grid {
+        min-height: 620px;
+        grid-template-columns: minmax(0, .62fr) minmax(100px, .38fr);
+        grid-template-rows: minmax(360px, 3fr) minmax(180px, 2fr);
+      }
+      .hero-copy { grid-column: 1; grid-row: 1 / 3; padding: 40px 16px; gap: 20px; }
+      h1, html[lang="en"] h1 { font-size: clamp(2.25rem, 11vw, 2.75rem); line-height: 1.08; }
+      [data-quiet-field] { grid-column: 2; grid-row: 1; border: 0; border-left: 1px solid var(--border); }
+      .hero-photo { grid-column: 2; grid-row: 2; padding: 12px 16px 12px 8px; align-self: center; }
+      .section { padding-block: 64px; }
+      .section-head { margin-bottom: 32px; }
+      .workbench-top { padding: 14px 16px; }
+      .truth-object,
+      .role-proof { padding: 24px 18px; }
+      .truth-list { grid-template-columns: 92px minmax(0, 1fr); }
+      .handoff-flow { grid-template-columns: 1fr; }
+      .handoff-step,
+      .handoff-step:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--border); margin-right: 0; padding-right: 0; }
+      .handoff-step:last-child { border-bottom: 0; }
+      .handoff-step::after { content: none !important; }
+      .culture-photo img { width: 100%; }
+      .approval-panel { padding: 22px 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      html.motion-ready .reveal-group > * { opacity: 1; transform: none; }
+    }
+
+    @media print {
+      :root, html[data-theme="dark"] {
+        --canvas: #FFFFFF;
+        --canvas-alt: #F6F7F3;
+        --card: #FFFFFF;
+        --raised: #FFFFFF;
+        --text: #182327;
+        --text-secondary: #5F635A;
+        --metadata: #686354;
+        --border: #C9D0CB;
+        --accent: #176B82;
+        color-scheme: light;
+      }
+      .site-header, .primary-action, .mode-switch, .theme-settings { display: none !important; }
+      .section { padding-block: 32px; break-inside: avoid; }
+      .approval-section { background: #FFFFFF; color: #182327; }
+      .approval-copy { background: #FFFFFF; color: #182327; padding: 0; }
+      .approval-panel, .proof-checklist { display: block !important; }
+      html.motion-ready .reveal-group > * { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" id="skip-link" href="#main-content">
+    <span data-locale="th">ข้ามไปเนื้อหาหลัก</span>
+    <span data-locale="en" hidden>Skip to main content</span>
+  </a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <nav aria-label="การนำทางหลัก" data-aria-th="การนำทางหลัก" data-aria-en="Primary navigation">
+        <a class="brand-link" id="home-link" href="#hero" aria-label="Landometer — กลับไปจุดเริ่มต้น" data-alt-label-th="Landometer — กลับไปจุดเริ่มต้น" data-alt-label-en="Landometer — return to the start">
+          <img src="assets/images/landometer-logo-banner.png" alt="Landometer" width="3818" height="1048" data-logo-status="candidate">
+          <span class="identity-status">IDENTITY CANDIDATE · DECISION DEMO</span>
+        </a>
+      </nav>
+      <div class="header-controls">
+        <label class="sr-only" for="locale-select">
+          <span data-locale="th">ภาษา</span>
+          <span data-locale="en" hidden>Language</span>
+        </label>
+        <select class="compact-select" id="locale-select" aria-label="ภาษา" data-aria-th="ภาษา" data-aria-en="Language">
+          <option value="th">ไทย</option>
+          <option value="en">English</option>
+        </select>
+        <details class="theme-settings" id="theme-settings">
+          <summary id="theme-summary">
+            <span class="theme-word" data-locale="th">ธีม</span>
+            <span class="theme-word" data-locale="en" hidden>Theme</span>
+            <span class="theme-current">
+              <span data-theme-label="auto"><span data-locale="th">อัตโนมัติ</span><span data-locale="en" hidden>Auto</span></span>
+              <span data-theme-label="light" hidden><span data-locale="th">สว่าง</span><span data-locale="en" hidden>Light</span></span>
+              <span data-theme-label="dark" hidden><span data-locale="th">มืด</span><span data-locale="en" hidden>Dark</span></span>
+            </span>
+          </summary>
+          <div class="theme-panel" role="group" aria-label="การตั้งค่าธีม" data-aria-th="การตั้งค่าธีม" data-aria-en="Theme preference">
+            <label class="theme-option" for="theme-auto">
+              <input id="theme-auto" type="radio" name="theme" value="auto">
+              <span data-locale="th">อัตโนมัติ / รีเซ็ตธีม</span><span data-locale="en" hidden>Auto / reset theme</span>
+            </label>
+            <label class="theme-option" for="theme-light">
+              <input id="theme-light" type="radio" name="theme" value="light">
+              <span data-locale="th">สว่าง</span><span data-locale="en" hidden>Light</span>
+            </label>
+            <label class="theme-option" for="theme-dark">
+              <input id="theme-dark" type="radio" name="theme" value="dark">
+              <span data-locale="th">มืด</span><span data-locale="en" hidden>Dark</span>
+            </label>
+            <button class="preference-reset" id="preference-reset" type="button">
+              <span data-locale="th">คืนค่าธีมและภาษาเริ่มต้น</span><span data-locale="en" hidden>Reset theme and language</span>
+            </button>
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Landometer Design System · v0.8.6</p>
+          <h1 class="hero-title en-display" id="hero-title">Let us cultivate our city.</h1>
+          <p class="lede hero-support">
+            <span data-locale="th">เริ่มจากตัวอย่างการ์ดข้อมูลพื้นที่ในบริบท CityMETER แล้วดูว่างานของคุณช่วยทีมถัดไปตัดสินใจได้ชัดขึ้นอย่างไร</span>
+            <span data-locale="en" hidden>Start with one place-insight fixture in a CityMETER context and see how your work can help the next team decide more clearly.</span>
+          </p>
+          <a class="primary-action" id="start-action" href="#try">
+            <span data-locale="th">เริ่มจากงานของฉัน</span>
+            <span data-locale="en" hidden>Start with my role</span>
+          </a>
+        </div>
+        <div data-quiet-field aria-hidden="true"></div>
+        <figure class="hero-photo">
+          <img src="assets/images/team-hero.jpeg" alt="กลุ่มบุคคลยืนร่วมกันในพื้นที่ทำงาน" width="1477" height="1108" data-alt-th="กลุ่มบุคคลยืนร่วมกันในพื้นที่ทำงาน" data-alt-en="A group of people together in a workplace">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section try-section" id="try" aria-labelledby="try-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <span class="signature">Measure</span>
+          <h2 id="try-title">
+            <span data-locale="th">วัตถุเดิม ความจริงเดิม กลไกที่ชัดขึ้น</span>
+            <span data-locale="en" hidden>Same object. Same truth. Clearer mechanism.</span>
+          </h2>
+          <p class="lede">
+            <span data-locale="th">เลือกบทบาท แล้วเทียบ illustrative risk กับกลไกที่เสนอ ตัวอย่างนี้ใช้สถานะ “ยังไม่มีผลล่าสุด” เพื่อสาธิต guardrail ที่ไม่เติมผลลัพธ์แทนหลักฐาน</span>
+            <span data-locale="en" hidden>Choose a role, then compare an illustrative risk with the proposed mechanism. “No current result” demonstrates a guardrail against filling evidence gaps.</span>
+          </p>
+        </div>
+
+        <div class="role-bar">
+          <div class="field">
+            <label for="role-select">
+              <span data-locale="th">ดูจากบทบาทของฉัน</span>
+              <span data-locale="en" hidden>View through my role</span>
+            </label>
+            <select id="role-select">
+              <option value="product">Product</option>
+              <option value="design">Design</option>
+              <option value="development">Development</option>
+              <option value="marketing">Marketing</option>
+            </select>
+            <p class="small"><span data-locale="th">roster ชั่วคราวตาม brief นี้ · owner/version ระดับองค์กรยังไม่กำหนด</span><span data-locale="en" hidden>Task-scoped roster from this brief · organization owner/version not yet assigned</span></p>
+          </div>
+          <div class="mode-switch" role="group" aria-label="โหมดเปรียบเทียบ" data-aria-th="โหมดเปรียบเทียบ" data-aria-en="Comparison mode">
+            <button class="mode-button" id="mode-baseline" type="button" data-mode-button="baseline" aria-pressed="false">
+              <span data-locale="th">ก่อนใช้กติกากลาง</span><span data-locale="en" hidden>Baseline</span>
+            </button>
+            <button class="mode-button" id="mode-assisted" type="button" data-mode-button="assisted" aria-pressed="true">
+              <span data-locale="th">เมื่อใช้ v0.8.6</span><span data-locale="en" hidden>With v0.8.6</span>
+            </button>
+          </div>
+        </div>
+
+        <article class="workbench reveal" id="workbench" data-mode="assisted" data-role="product" data-object-id="demo.citymeter.place-insight.v1" aria-labelledby="object-heading">
+          <div class="workbench-top">
+            <p class="small">
+              <span data-locale="th">Design-system fixture · ไม่ใช่ข้อมูลหรือพฤติกรรม CityMETER จริง</span>
+              <span data-locale="en" hidden>Design-system fixture · not live CityMETER data or behavior</span>
+            </p>
+            <span class="status">
+              <span data-locale="th">ยังไม่มีผลล่าสุด</span><span data-locale="en" hidden>No current result</span>
+            </span>
+          </div>
+          <div class="workbench-grid">
+            <div class="truth-object" data-truth-invariant="true">
+              <div class="object-title">
+                <h3 id="object-heading">
+                  <span data-locale="th">การ์ดข้อมูลพื้นที่</span><span data-locale="en" hidden>Place-insight card</span>
+                </h3>
+                <span class="mono">demo.citymeter.place-insight.v1</span>
+              </div>
+              <dl class="truth-list">
+                <div>
+                  <dt><span data-locale="th">พื้นที่</span><span data-locale="en" hidden>Area</span></dt>
+                  <dd><span data-locale="th">พื้นที่ตัวอย่าง</span><span data-locale="en" hidden>Example area</span></dd>
+                </div>
+                <div>
+                  <dt><span data-locale="th">ผลล่าสุด</span><span data-locale="en" hidden>Current result</span></dt>
+                  <dd><span data-locale="th">ยังไม่มีผลล่าสุด</span><span data-locale="en" hidden>No current result</span></dd>
+                </div>
+                <div>
+                  <dt><span data-locale="th">แหล่งข้อมูล</span><span data-locale="en" hidden>Source</span></dt>
+                  <dd><span data-locale="th">ยังไม่ได้เชื่อมในงานสาธิตนี้</span><span data-locale="en" hidden>Not connected in this demonstration</span></dd>
+                </div>
+                <div>
+                  <dt><span data-locale="th">ขอบเขต</span><span data-locale="en" hidden>Boundary</span></dt>
+                  <dd><span data-locale="th">ห้ามใช้ตัวอย่างนี้เพื่อตัดสินใจจริง</span><span data-locale="en" hidden>Do not use this specimen for a real decision</span></dd>
+                </div>
+                <div>
+                  <dt><span data-locale="th">คำถามถัดไป</span><span data-locale="en" hidden>Next question</span></dt>
+                  <dd><span data-locale="th">ต้องมีหลักฐานอะไรจึงจะพร้อมให้ทีมถัดไปใช้?</span><span data-locale="en" hidden>What evidence is required before the next team can use it?</span></dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="role-proof">
+              <div class="proof-panel" data-role-panel="product" data-mode-panel="baseline" hidden>
+                <p class="eyebrow">Product · Baseline</p>
+                <p><span data-locale="th">Illustrative risk: หากเกณฑ์ “พร้อมใช้” อยู่ในโน้ตแยก ทีมปลายทางอาจต้องตีความสถานะและข้อจำกัดใหม่ ต้องเก็บ baseline จริงใน pilot</span><span data-locale="en" hidden>Illustrative risk: if “ready” lives in separate notes, downstream teams may reinterpret status and limits. The pilot must observe the real baseline.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">อะไรคือหลักฐานขั้นต่ำของคำว่า complete</span><span data-locale="en" hidden>What evidence makes “complete” true</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">เขียน truth boundary ของ decision flow นี้หนึ่งชุด</span><span data-locale="en" hidden>Write one truth boundary for this decision flow</span></strong></div>
+              </div>
+              <div class="proof-panel" data-role-panel="product" data-mode-panel="assisted">
+                <p class="eyebrow">Product · v0.8.6</p>
+                <p><span data-locale="th">กลไกที่เสนอให้สถานะ แหล่งข้อมูล ขอบเขต และคำถามถัดไปเดินทางกับวัตถุเดียวกัน เพื่อให้ pilot ตรวจว่าทีมถัดไปเดาน้อยลงหรือไม่</span><span data-locale="en" hidden>The proposed mechanism carries status, source, boundary, and next question with one object so the pilot can test whether the next team guesses less.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">นิยามความพร้อมของ decision flow</span><span data-locale="en" hidden>Define readiness for the decision flow</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ยืนยัน source · period · area coverage ที่ต้องมี</span><span data-locale="en" hidden>Confirm required source · period · area coverage</span></strong></div>
+              </div>
+
+              <div class="proof-panel" data-role-panel="design" data-mode-panel="baseline" hidden>
+                <p class="eyebrow">Design · Baseline</p>
+                <p><span data-locale="th">Illustrative risk: หากแต่ละหน้าจอแก้สถานะว่างใหม่ ลำดับข้อมูลและทางไปต่ออาจเปลี่ยนตามคนออกแบบ ต้องสังเกต baseline จริงใน pilot</span><span data-locale="en" hidden>Illustrative risk: if each screen redesigns the empty state, hierarchy and recovery may vary. The pilot must observe the real baseline.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">น้ำหนักข้อมูลและบริบทของงานจริง</span><span data-locale="en" hidden>Information weight and task context</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ระบุ empty, restricted และ recovery state ของ flow</span><span data-locale="en" hidden>Identify empty, restricted, and recovery states</span></strong></div>
+              </div>
+              <div class="proof-panel" data-role-panel="design" data-mode-panel="assisted" hidden>
+                <p class="eyebrow">Design · v0.8.6</p>
+                <p><span data-locale="th">กลไกที่เสนอให้ลำดับความหมาย สถานะ และทางไปต่ออ้างสัญญาเดียวกัน โดยยังให้นักออกแบบตัดสิน composition ตามบริบท</span><span data-locale="en" hidden>The proposed mechanism gives hierarchy, state, and recovery one contract while designers still compose for context.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">composition ที่เหมาะกับผู้ใช้และอุปกรณ์</span><span data-locale="en" hidden>Composition for the user and device</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ใช้ token และ state contract กับหนึ่งการ์ดจริง</span><span data-locale="en" hidden>Apply tokens and the state contract to one real card</span></strong></div>
+              </div>
+
+              <div class="proof-panel" data-role-panel="development" data-mode-panel="baseline" hidden>
+                <p class="eyebrow">Development · Baseline</p>
+                <p><span data-locale="th">Illustrative risk: หากแต่ละหน้าจออนุมานสถานะจากข้อมูลที่ขาด ข้อความ สี และ recovery อาจไม่ตรงกัน ต้องตรวจ baseline จาก code จริง</span><span data-locale="en" hidden>Illustrative risk: if screens infer state from missing data, copy, color, and recovery may diverge. The real code baseline must be inspected.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">โครงสร้างข้อมูลและจุดเชื่อมกับระบบจริง</span><span data-locale="en" hidden>Data model and production integration</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ทำรายการ state ที่ flow เข้าถึงได้จริง</span><span data-locale="en" hidden>List every state the flow can actually enter</span></strong></div>
+              </div>
+              <div class="proof-panel" data-role-panel="development" data-mode-panel="assisted" hidden>
+                <p class="eyebrow">Development · v0.8.6</p>
+                <p><span data-locale="th">กลไกที่เสนอให้ state enum, semantic token, recovery และ test expectation อ้างสัญญาเดียวกัน แล้ววัดใน pilot ว่าลดการตีความซ้ำได้หรือไม่</span><span data-locale="en" hidden>The proposed mechanism gives state enum, semantic token, recovery, and tests one contract; the pilot measures whether reinterpretation falls.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">implementation ที่พอดีกับ codebase</span><span data-locale="en" hidden>Implementation that fits the codebase</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ผูก empty state กับ token และ automated check</span><span data-locale="en" hidden>Bind the empty state to tokens and an automated check</span></strong></div>
+              </div>
+
+              <div class="proof-panel" data-role-panel="marketing" data-mode-panel="baseline" hidden>
+                <p class="eyebrow">Marketing · Baseline</p>
+                <p><span data-locale="th">Illustrative risk: หากข้อความหยิบเฉพาะประโยชน์ แต่สถานะและข้อจำกัดไม่ตามไปด้วย ผู้รับอาจเข้าใจเกินหลักฐาน ต้องเก็บ baseline จริง</span><span data-locale="en" hidden>Illustrative risk: if communication carries the benefit without status or limits, recipients may infer too much. The pilot must observe the baseline.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">ถ้อยคำและช่องทางที่เหมาะกับผู้รับ</span><span data-locale="en" hidden>Message and channel for the recipient</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">จับคู่ claim ทุกข้อกับ status และ limitation</span><span data-locale="en" hidden>Pair every claim with status and limitation</span></strong></div>
+              </div>
+              <div class="proof-panel" data-role-panel="marketing" data-mode-panel="assisted" hidden>
+                <p class="eyebrow">Marketing · v0.8.6</p>
+                <p><span data-locale="th">กลไกที่เสนอให้ประโยชน์ สถานะ และข้อจำกัดอ้าง fixture เดียวกัน แล้วใช้ pilot ตรวจว่าข้อความเฉพาะเจาะจงขึ้นโดยไม่เกินหลักฐานหรือไม่</span><span data-locale="en" hidden>The proposed mechanism ties benefit, status, and limitation to one fixture; the pilot tests whether messaging becomes specific without outrunning evidence.</span></p>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">มุมเล่าเรื่องที่ผู้รับเข้าใจและใช้ต่อได้</span><span data-locale="en" hidden>A story the recipient can understand and use</span></strong></div>
+                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ทดลองหนึ่งข้อความจาก truth contract เดียวกัน</span><span data-locale="en" hidden>Test one message from the same truth contract</span></strong></div>
+              </div>
+
+              <button class="secondary-action" type="button" id="proof-action" aria-expanded="false" aria-controls="proof-checklist">
+                <span data-state-label="closed"><span data-locale="th">ดูสิ่งที่ต้องตรวจต่อ</span><span data-locale="en" hidden>Show the next checks</span></span>
+                <span data-state-label="open" hidden><span data-locale="th">ซ่อนรายการตรวจ</span><span data-locale="en" hidden>Hide the checks</span></span>
+              </button>
+              <div class="proof-checklist" id="proof-checklist" hidden>
+                <strong><span data-locale="th">หลักฐานก่อนเปลี่ยนสถานะเป็นพร้อมใช้</span><span data-locale="en" hidden>Evidence before changing the state to ready</span></strong>
+                <ul>
+                  <li><span data-locale="th">แหล่งข้อมูลและช่วงเวลาที่ตรวจสอบได้</span><span data-locale="en" hidden>Verifiable source and period</span></li>
+                  <li><span data-locale="th">ขอบเขตพื้นที่และกรณีที่ข้อมูลไม่ครอบคลุม</span><span data-locale="en" hidden>Area coverage and gaps</span></li>
+                  <li><span data-locale="th">เจ้าของเกณฑ์ตัดสินความพร้อม</span><span data-locale="en" hidden>Owner of the readiness rule</span></li>
+                  <li><span data-locale="th">accessibility และ recovery check ของสถานะนี้</span><span data-locale="en" hidden>Accessibility and recovery checks for this state</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section align-section" id="align" aria-labelledby="align-title">
+      <div class="shell">
+        <div class="section-head reveal">
+          <span class="signature">Ground</span>
+          <h2 id="align-title">
+            <span data-locale="th">ส่งงานต่อได้ โดยความหมายไม่หลุดระหว่างทีม</span>
+            <span data-locale="en" hidden>Hand work forward without losing meaning.</span>
+          </h2>
+          <p class="lede">
+            <span data-locale="th">ทุกบทบาทรับวัตถุเดียวกัน ไม่ใช่สไลด์คนละชุด สิ่งที่เปลี่ยนคือหน้าที่ของทีม สิ่งที่ห้ามเปลี่ยนคือสถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัด</span>
+            <span data-locale="en" hidden>Every role receives the same object, not a separate interpretation. Responsibility changes; status, source, boundary, and limitation do not.</span>
+          </p>
+        </div>
+
+        <div class="handoff-object reveal">
+          <span class="mono">demo.citymeter.place-insight.v1</span>
+          <span><strong><span data-locale="th">สถานะ:</span><span data-locale="en" hidden>Status:</span></strong> <span data-locale="th">ยังไม่มีผลล่าสุด</span><span data-locale="en" hidden>No current result</span></span>
+          <span><strong><span data-locale="th">แหล่งข้อมูล:</span><span data-locale="en" hidden>Source:</span></strong> <span data-locale="th">ยังไม่เชื่อม</span><span data-locale="en" hidden>Not connected</span></span>
+          <span><strong><span data-locale="th">ข้อจำกัด:</span><span data-locale="en" hidden>Limitation:</span></strong> <span data-locale="th">ห้ามใช้ตัดสินใจจริง</span><span data-locale="en" hidden>Not for real decisions</span></span>
+          <span><strong><span data-locale="th">authoritative state:</span><span data-locale="en" hidden>Authoritative state:</span></strong> <span data-locale="th">สาธิตภายใน</span><span data-locale="en" hidden>Internal fixture</span></span>
+        </div>
+
+        <div class="handoff-flow reveal-group" aria-label="การส่งต่องานข้ามบทบาท" data-aria-th="การส่งต่องานข้ามบทบาท" data-aria-en="Cross-role handoff">
+          <article class="handoff-step">
+            <span class="step-index mono">01 · Marketing</span>
+            <h3><span data-locale="th">ตั้ง claim จาก fixture</span><span data-locale="en" hidden>Draft from the fixture</span></h3>
+            <ul>
+              <li><span data-locale="th">benefit คู่กับ status และ limitation</span><span data-locale="en" hidden>Benefit paired with status and limitation</span></li>
+              <li><span data-locale="th">คำถามของผู้รับ</span><span data-locale="en" hidden>Recipient question</span></li>
+            </ul>
+          </article>
+          <article class="handoff-step">
+            <span class="step-index mono">02 · Product</span>
+            <h3><span data-locale="th">ล็อกเจตนา</span><span data-locale="en" hidden>Lock intent</span></h3>
+            <ul>
+              <li><span data-locale="th">คำถามที่ผู้ใช้ต้องตัดสิน</span><span data-locale="en" hidden>User decision question</span></li>
+              <li><span data-locale="th">เกณฑ์พร้อมใช้และขอบเขตความจริง</span><span data-locale="en" hidden>Readiness and truth boundary</span></li>
+            </ul>
+          </article>
+          <article class="handoff-step">
+            <span class="step-index mono">03 · Design</span>
+            <h3><span data-locale="th">ทำให้สถานะอ่านออก</span><span data-locale="en" hidden>Make state legible</span></h3>
+            <ul>
+              <li><span data-locale="th">ลำดับข้อมูลและทางไปต่อ</span><span data-locale="en" hidden>Hierarchy and next action</span></li>
+              <li><span data-locale="th">theme, locale, focus และ recovery</span><span data-locale="en" hidden>Theme, locale, focus, and recovery</span></li>
+            </ul>
+          </article>
+          <article class="handoff-step">
+            <span class="step-index mono">04 · Development</span>
+            <h3><span data-locale="th">ทำให้กติกาตรวจได้</span><span data-locale="en" hidden>Make rules testable</span></h3>
+            <ul>
+              <li><span data-locale="th">state enum และ semantic token</span><span data-locale="en" hidden>State enum and semantic token</span></li>
+              <li><span data-locale="th">test expectation และ fallback</span><span data-locale="en" hidden>Test expectation and fallback</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="handoff-release" aria-label="ด่านหลักฐาน QA และผู้รับงาน" data-aria-th="ด่านหลักฐาน QA และผู้รับงาน" data-aria-en="Evidence, QA, and recipient gates">
+          <div class="release-stage"><strong>Data / Evidence</strong><span class="small"><span data-locale="th">ตรวจ source · period · area coverage</span><span data-locale="en" hidden>Check source · period · area coverage</span></span></div>
+          <div class="release-stage"><strong>QA</strong><span class="small"><span data-locale="th">ตรวจ state · accessibility · parity</span><span data-locale="en" hidden>Check state · accessibility · parity</span></span></div>
+          <div class="release-stage"><strong><span data-locale="th">ผู้รับงาน</span><span data-locale="en" hidden>Recipient</span></strong><span class="small"><span data-locale="th">เข้าใจวัตถุ ข้อจำกัด และ next action</span><span data-locale="en" hidden>Understand object, limit, and next action</span></span></div>
+        </div>
+
+        <details class="evidence-gate reveal" id="evidence-gate">
+          <summary id="evidence-gate-summary"><span data-locale="th">ถ้าหลักฐานหาย งานจะหยุดตรงไหน?</span><span data-locale="en" hidden>Where does work stop when evidence is missing?</span></summary>
+          <div class="details-body">
+            <p><strong><span data-locale="th">เจ้าของ:</span><span data-locale="en" hidden>Owner:</span></strong> Product ต้องยืนยัน truth boundary. <strong><span data-locale="th">หลักฐานที่ขาด:</span><span data-locale="en" hidden>Blocking evidence:</span></strong> source, period และ area coverage ที่ตรวจสอบได้. Development และ QA ต้องคงสถานะ “ยังไม่มีผลล่าสุด”; Design ต้องแสดง recovery; Marketing ห้ามใช้คำที่สื่อว่ามีผลแล้ว.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section culture-section" id="culture" aria-labelledby="culture-title">
+      <div class="shell culture-grid">
+        <figure class="culture-photo reveal">
+          <img src="assets/images/team-presenting.jpeg" alt="บุคคลนั่งข้างคอมพิวเตอร์และยกมือประกอบการพูด" width="466" height="573" data-alt-th="บุคคลนั่งข้างคอมพิวเตอร์และยกมือประกอบการพูด" data-alt-en="A person seated beside a laptop, gesturing while speaking">
+          <figcaption class="small"><span data-locale="th">ภาพที่ผู้ใช้ส่งมา · ความสัมพันธ์ บทบาท และวันที่ไม่ได้รับการยืนยัน</span><span data-locale="en" hidden>User-supplied photo · affiliation, role, and date are unverified</span></figcaption>
+        </figure>
+        <div class="culture-copy reveal">
+          <span class="signature">Cultivate</span>
+          <h2 id="culture-title"><span data-locale="th">ช่วยทีมถัดไปได้ งานจึงเดินต่อ</span><span data-locale="en" hidden>Work moves when the next team can use it.</span></h2>
+          <p class="lede"><span data-locale="th">เอกสาร onboarding ที่ส่งมาเน้นการเริ่มจากผู้ใช้จริง ส่งงานเร็ว เรียนรู้ไว และทำงานข้ามทีม การใช้ design system อย่างกว้างขวางจึงควรลดการตีความซ้ำ พร้อมรักษาพื้นที่ให้แต่ละบทบาทใช้วิจารณญาณกับงานจริง</span><span data-locale="en" hidden>The supplied onboarding material emphasizes real users, early delivery, fast learning, and cross-team work. Broad design-system adoption should reduce repeated interpretation while preserving each role’s judgment in context.</span></p>
+          <p class="protected-context">Visualize City, Shape Tomorrow.</p>
+          <p class="small"><span data-locale="th">North Star จาก v0.8.6 · แสดงเป็นบริบทองค์กร ไม่ใช่คำรับรองผลลัพธ์ของตัวอย่างนี้</span><span data-locale="en" hidden>North Star from v0.8.6 · corporate context, not an outcome claim for this specimen</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section approval-section" id="approve" aria-labelledby="approve-title">
+      <div class="shell approval-grid">
+        <div class="approval-copy reveal">
+          <p class="eyebrow"><span data-locale="th">ข้อเสนอเพื่อการตัดสินใจ</span><span data-locale="en" hidden>Decision proposal</span></p>
+          <h2 class="en-display" id="approve-title">Measure What Matters. Make It Actionable.</h2>
+          <p class="lede"><span data-locale="th">Gate A: อนุมัติทิศทางให้ v0.8.6 เป็น candidate ภาษากลาง และอนุมัติ pilot หนึ่ง CityMETER decision flow เป็นเวลา 2 สัปดาห์แบบมีเงื่อนไข โดยเริ่มเมื่อ Day-0 gates ครบ ก่อน Gate B จะตัดสิน expand, revise หรือ stop</span><span data-locale="en" hidden>Gate A: approve v0.8.6 as the candidate shared language and conditionally authorize a two-week pilot on one CityMETER decision flow once the Day-0 gates are complete. Gate B then decides expand, revise, or stop.</span></p>
+          <button class="primary-action" type="button" id="approval-action" aria-expanded="false" aria-controls="approval-panel">
+            <span data-locale="th">พิจารณาอนุมัติทิศทาง + pilot 2 สัปดาห์</span>
+            <span data-locale="en" hidden>Consider the direction + a two-week pilot</span>
+          </button>
+        </div>
+        <div class="approval-panel reveal" id="approval-panel" tabindex="-1" hidden>
+          <h3><span data-locale="th">Decision requested</span><span data-locale="en" hidden>Decision requested</span></h3>
+          <p class="decision-text"><span data-locale="th">อนุมัติ Gate A: ให้ v0.8.6 เป็น candidate shared language สำหรับ Product, Design, Development และ Marketing และอนุมัติ pilot CityMETER หนึ่ง decision flow เป็นเวลา 2 สัปดาห์แบบมีเงื่อนไข โดยเริ่มเมื่อ Day-0 gates ครบ; ยังไม่ใช่ broad rollout</span><span data-locale="en" hidden>Approve Gate A: use v0.8.6 as the candidate shared language for Product, Design, Development, and Marketing, and conditionally authorize a two-week CityMETER pilot once the Day-0 gates are complete; this is not broad rollout.</span></p>
+          <ol>
+            <li><span data-locale="th">Product เลือก decision flow และนิยาม truth boundary</span><span data-locale="en" hidden>Product selects the decision flow and defines its truth boundary.</span></li>
+            <li><span data-locale="th">Design และ Development ใช้ token, state และ accessibility contract กับชิ้นงานเดียวกัน</span><span data-locale="en" hidden>Design and Development apply tokens, states, and the accessibility contract to the same work.</span></li>
+            <li><span data-locale="th">Marketing ทดลองหนึ่งข้อความจาก claim/status/limitation เดียวกัน</span><span data-locale="en" hidden>Marketing tests one message from the same claim/status/limitation contract.</span></li>
+            <li><span data-locale="th">Gate B ทบทวนการส่งต่องาน คุณภาพงาน เวลาที่ใช้ และ guardrail หลังครบ 2 สัปดาห์ แล้วเลือก expand, revise หรือ stop โดยไม่ตั้ง baseline หรือ target ที่ไม่มีข้อมูล</span><span data-locale="en" hidden>Gate B reviews handoff quality, task quality, time, and guardrails, then chooses expand, revise, or stop without inventing baselines or targets.</span></li>
+          </ol>
+          <p class="local-effect-note"><span data-locale="th">ปุ่มนี้เปิดข้อเสนอในหน้าเท่านั้น เว็บไซต์ไม่บันทึกหรือส่งผลการอนุมัติ</span><span data-locale="en" hidden>This button only reveals the proposal. The site does not record or transmit approval.</span></p>
+          <div class="owner-gate">
+            <strong><span data-locale="th">เงื่อนไขก่อนเริ่ม pilot</span><span data-locale="en" hidden>Before the pilot starts</span></strong>
+            <span><span data-locale="th">ต้องระบุ executive sponsor, pilot owner, Data/Evidence owner, QA owner และ asset approver; อนุมัติ organization role-registry owner/version; และกำหนดวันเริ่มกับวัน Gate B ที่ Gate A</span><span data-locale="en" hidden>Gate A must name the executive sponsor, pilot owner, Data/Evidence owner, QA owner, and asset approver; approve the organization role-registry owner/version; and set the pilot start and Gate B dates.</span></span>
+          </div>
+          <div class="static-takeaway">
+            <strong><span data-locale="th">Recipe ที่นำไปใช้ได้ใน 2 นาที</span><span data-locale="en" hidden>Two-minute takeaway</span></strong>
+            <span><span data-locale="th">ก่อนส่งต่องาน ให้แนบ object/version · status · source · boundary · limitation · next action ไปกับชิ้นงานเดียวกัน</span><span data-locale="en" hidden>Before handoff, carry object/version · status · source · boundary · limitation · next action with the same work.</span></span>
+            <span class="small"><span data-locale="th">ข้อจำกัด release: fixture ไม่ใช่ live data · machine validation pending · media/identity records ยังไม่ครบ · เผยแพร่ source ใน public repository ตามคำสั่งผู้ใช้ แต่ยังไม่ใช่ adoption หรือ production release</span><span data-locale="en" hidden>Release limits: no live data · machine validation pending · media/identity records incomplete · source is published to the user-designated public repository, but this is not an adoption or production release</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <span>Landometer Design System v0.8.6</span>
+      <span><span data-locale="th">Internal decision demo · 21 กรกฎาคม 2026</span><span data-locale="en" hidden>Internal decision demo · 21 July 2026</span></span>
+    </div>
+  </footer>
+
+  <div class="sr-only" id="status-announcer" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <style>
+      .header-controls, .role-bar, #proof-action, #approval-action { display: none !important; }
+      #proof-checklist, #approval-panel { display: block !important; }
+    </style>
+  </noscript>
+
+  <script type="application/json" id="landometer-build-card">
+  {
+    "buildCardVersion": "0.8.6",
+    "normativeVersion": "0.8.6",
+    "manifestVersion": "pending_0.8.6_generation",
+    "tokenSchemaVersion": "6",
+    "product": "landometer",
+    "profile": "designsystem.adoption",
+    "pageKind": "stakeholder_decision_demo",
+    "pageKindSourceRef": "product-statement.md v0.1 sections 7 and 13",
+    "trigger": "The four task-scoped roles need to decide whether to run a bounded v0.8.6 adoption pilot.",
+    "oneJob": "See how one governed object changes role work, then review the exact Gate A decision.",
+    "firstAha": "The fixture shows no current result, its source gap, decision boundary, and the next evidence check without inventing a value.",
+    "ahaEvidenceCue": "status + source + boundary + limitation on demo.citymeter.place-insight.v1",
+    "primaryAction": "Start with my role; local fragment navigation and focus only.",
+    "nextUsefulAction": "Open the readiness evidence checklist; local disclosure only.",
+    "nextTriggerOrCleanCompletion": "Review Gate A, complete the Day-0 gates, then run the two-week pilot before Gate B chooses expand, revise, or stop.",
+    "dominantObject": "demo.citymeter.place-insight.v1",
+    "cleanCompletion": "The decision proposal and two-minute handoff recipe are visible; approval is recorded outside this site.",
+    "productStatementPath": "private handoff; intentionally excluded from public repository",
+    "proofTrace": ["hero.cultivate", "try.role-fixture", "align.parity", "culture.context", "approve.gate-a"],
+    "proofObjectVersion": "demo.citymeter.place-insight.v1",
+    "channelParityKey": "demo.citymeter.place-insight.v1|source_limited|2026-07-21",
+    "delivery": "internal_demo",
+    "outputType": "webpage",
+    "language": "th",
+    "additionalLanguages": ["en"],
+    "visibility": "public_repository",
+    "indexable": false,
+    "evidenceStatus": "source_limited",
+    "audience": ["Product", "Design", "Development", "Marketing"],
+    "theme": {"mode": "interactive_auto", "support": "dual", "default": "system", "systemDefault": true, "visibleOverride": true, "preferenceKey": "landometer-theme"},
+    "localePreferenceKey": "landometer-locale",
+    "motion": "guided",
+    "network": "reference_ready",
+    "fullLivingReference": false,
+    "adoptionRoleRegistry": {
+      "owner": "current user brief",
+      "version": "task-scope-2026-07-21-v1",
+      "status": "provisional_internal_demo_only",
+      "records": [
+        {"id": "marketing", "label": "Marketing", "oneJob": "pair a benefit with status and limitation", "proofOrRecipeId": "try.marketing", "nextRoleOrRecipient": "product"},
+        {"id": "product", "label": "Product", "oneJob": "define readiness and truth boundary", "proofOrRecipeId": "try.product", "nextRoleOrRecipient": "design"},
+        {"id": "design", "label": "Design", "oneJob": "make hierarchy, state, and recovery legible", "proofOrRecipeId": "try.design", "nextRoleOrRecipient": "development"},
+        {"id": "development", "label": "Development", "oneJob": "make state and token rules testable", "proofOrRecipeId": "try.development", "nextRoleOrRecipient": "data-evidence-and-qa"}
+      ]
+    },
+    "mediaAssets": [
+      {"path": "assets/images/landometer-logo-banner.png", "role": "candidate identity asset", "assetId": "not supplied", "variant": "banner raster extracted from guideline page 4", "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535", "dimensions": "3818x1048", "source": "Brand Visual Guidelines 2025 page 4", "transform": "none; intrinsic ratio preserved", "approvalStatus": "official asset registry record and approver not supplied", "use": "internal decision demo; public repository publication directed by the current user on 2026-07-21; reuse approval not supplied"},
+      {"path": "assets/images/team-hero.jpeg", "role": "opening contextual photograph", "variant": "exact uploaded file", "sha256": "4b52498242f9f30410240aad03ece0610e963be5307bd548d497b1c1901a7b07", "dimensions": "1477x1108", "source": "user-supplied IMG_9244.jpeg", "owner": "not supplied", "creatorCredit": "not supplied", "contextDate": "not supplied", "cropEdit": "no asset edit; CSS object-fit contain", "alt": "A group of people together in a workplace", "displayedCredit": "none because creator was not supplied", "permissionStatus": "public repository publication directed by the current user on 2026-07-21; underlying rights and expiry not supplied", "privacyReview": "no readable private screen content observed", "use": "specified public repository only; broader reuse not cleared"},
+      {"path": "assets/images/team-presenting.jpeg", "role": "culture contextual photograph", "variant": "exact uploaded file", "sha256": "3893f0da6816814bf7bbd0ab1f5635020f06b327e99033bd50cb5beba014f76f", "dimensions": "466x573", "source": "user-supplied IMG_5698.jpeg", "owner": "not supplied", "creatorCredit": "not supplied", "contextDate": "not supplied", "cropEdit": "no asset edit", "alt": "A person seated beside a laptop, gesturing while speaking", "displayedCredit": "none because creator was not supplied", "permissionStatus": "public repository publication directed by the current user on 2026-07-21; underlying rights and expiry not supplied", "privacyReview": "laptop screen content is not visible", "use": "specified public repository only; broader reuse not cleared"}
+    ],
+    "qa": {"controlInventoryPath": "control-inventory.json", "fontManifestPath": "font-assets.manifest.json", "qaEvidencePath": "private handoff; intentionally excluded from public repository", "browserEvidence": "agent_preview_pass_360_768_1280_1440_2026-07-21", "machineValidation": "pending"},
+    "publication": {"authorizedMode": "public_repository", "authorizationSource": "current user instruction 2026-07-21", "repository": "https://github.com/montri-th/Landometer", "repositoryVisibility": "public", "indexingSignal": "noindex", "pagesStatus": "not_yet_verified", "ownerOnlyHostedUrl": "https://landometer-ds-adoption.montri348261.chatgpt.site", "accessScope": "public source repository; decision-demo scope only", "destinationReady": "public_repository_target_confirmed"},
+    "capabilities": {
+      "motionEnhancement": true,
+      "search": false,
+      "share": false,
+      "map": false,
+      "dataVisualization": false,
+      "coCreation": false,
+      "persistence": false,
+      "authentication": false,
+      "authenticationScope": "no application-level authentication; repository source is public by current user instruction",
+      "telemetry": false
+    },
+    "fixtureCapabilities": {"roleSwitch": true, "baselineAssistedSwitch": true, "localDisclosure": true, "externalEffect": false},
+    "machineValidation": "pending"
+  }
+  </script>
+
+  <script type="application/json" id="design-system-coverage">
+  {
+    "normativeVersion": "0.8.6",
+    "scope": "scoped designsystem.adoption decision demo published in the user-designated public source repository",
+    "fullLivingReference": false,
+    "sections": [
+      {"id": "0", "status": "reference-only", "anchor": "#approve", "reason": "release rationale is recorded in the private QA handoff and summarized in the approval scene"},
+      {"id": "1", "status": "rendered", "anchor": "#landometer-build-card", "reason": "Build Card is embedded as machine-readable metadata"},
+      {"id": "2", "status": "rendered", "anchor": "#try", "reason": "decision-quality and truth contract shown"},
+      {"id": "3", "status": "rendered", "anchor": "#hero", "reason": "protected lines, DNA signatures, and voice applied across the route"},
+      {"id": "4", "status": "rendered", "anchor": "#hero", "reason": "Cultivate → Try → Align → Culture → Approve"},
+      {"id": "5", "status": "rendered", "anchor": "#hero", "reason": "identity, colors, type, layout, theme, locale, and motion"},
+      {"id": "6", "status": "rendered", "anchor": "#try", "reason": "controls, states, recovery, and accessibility"},
+      {"id": "7", "status": "rendered", "anchor": "#approve", "reason": "delivery, recovery, and publication boundaries apply; optional chart, map, share, auth, and persistence triggers are not applicable"},
+      {"id": "8", "status": "rendered", "anchor": "#try", "reason": "designsystem.adoption role proof and handoff"},
+      {"id": "9", "status": "reference-only", "anchor": "site-manifest.json", "reason": "manifest and inventory are present; machine package pending"},
+      {"id": "10", "status": "reference-only", "anchor": "#approve", "reason": "QA evidence remains in the private handoff and is intentionally excluded from the public repository"},
+      {"id": "11", "status": "reference-only", "anchor": "#approve", "reason": "legacy regression history remains in the private handoff and does not belong in the public decision path"},
+      {"id": "12", "status": "rendered", "anchor": "#approve", "reason": "bounded approval and release limitations shown"},
+      {"id": "A", "status": "reference-only", "anchor": "#hero", "reason": "only the applicable token, type, layout, and motion subset is implemented"},
+      {"id": "B", "status": "reference-only", "anchor": "#landometer-build-card", "reason": "machineValidation pending"},
+      {"id": "C", "status": "reference-only", "anchor": "#approve", "reason": "release boundary recorded"}
+    ]
+  }
+  </script>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const status = document.getElementById('status-announcer');
+      const localeSelect = document.getElementById('locale-select');
+      const roleSelect = document.getElementById('role-select');
+      const workbench = document.getElementById('workbench');
+      const modeButtons = [...document.querySelectorAll('[data-mode-button]')];
+      const proofAction = document.getElementById('proof-action');
+      const proofChecklist = document.getElementById('proof-checklist');
+      const approvalAction = document.getElementById('approval-action');
+      const approvalPanel = document.getElementById('approval-panel');
+      const preferenceReset = document.getElementById('preference-reset');
+      const themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function browserLocale() {
+        return (navigator.languages || [navigator.language || 'th']).some(value => String(value).toLowerCase().startsWith('en')) ? 'en' : 'th';
+      }
+
+      function resolveLocale() {
+        const fromUrl = new URL(window.location.href).searchParams.get('lang');
+        if (fromUrl === 'th' || fromUrl === 'en') return fromUrl;
+        try {
+          const stored = localStorage.getItem('landometer-locale');
+          if (stored === 'th' || stored === 'en') return stored;
+        } catch (_) {}
+        return browserLocale();
+      }
+
+      function setLocale(locale, persist) {
+        const next = locale === 'en' ? 'en' : 'th';
+        document.querySelectorAll('body [data-locale]').forEach(node => {
+          node.hidden = node.dataset.locale !== next;
+        });
+        document.querySelectorAll('[data-alt-th]').forEach(image => {
+          image.alt = next === 'en' ? image.dataset.altEn : image.dataset.altTh;
+        });
+        document.querySelectorAll('[data-alt-label-th]').forEach(node => {
+          node.setAttribute('aria-label', next === 'en' ? node.dataset.altLabelEn : node.dataset.altLabelTh);
+        });
+        document.querySelectorAll('[data-aria-th]').forEach(node => {
+          node.setAttribute('aria-label', next === 'en' ? node.dataset.ariaEn : node.dataset.ariaTh);
+        });
+        root.lang = next;
+        root.dataset.locale = next;
+        localeSelect.value = next;
+        if (persist) {
+          try { localStorage.setItem('landometer-locale', next); } catch (_) {}
+          const url = new URL(window.location.href);
+          url.searchParams.set('lang', next);
+          history.replaceState({}, '', url);
+        }
+      }
+
+      function actualTheme(choice) {
+        return choice === 'auto' ? (themeQuery.matches ? 'dark' : 'light') : choice;
+      }
+
+      function setTheme(choice, persist) {
+        const next = ['auto', 'light', 'dark'].includes(choice) ? choice : 'auto';
+        root.dataset.themePreference = next;
+        root.dataset.theme = actualTheme(next);
+        document.querySelectorAll('input[name="theme"]').forEach(input => {
+          input.checked = input.value === next;
+        });
+        document.querySelectorAll('[data-theme-label]').forEach(label => {
+          label.hidden = label.dataset.themeLabel !== next;
+        });
+        const color = root.dataset.theme === 'dark' ? '#11191D' : '#F6F7F3';
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', color);
+        if (persist) {
+          try { localStorage.setItem('landometer-theme', next); } catch (_) {}
+        }
+      }
+
+      function announce(th, en) {
+        status.textContent = root.lang === 'en' ? en : th;
+      }
+
+      function updateProof() {
+        const role = roleSelect.value;
+        const mode = modeButtons.find(button => button.getAttribute('aria-pressed') === 'true').dataset.modeButton;
+        workbench.dataset.role = role;
+        workbench.dataset.mode = mode;
+        document.querySelectorAll('[data-role-panel]').forEach(panel => {
+          panel.hidden = !(panel.dataset.rolePanel === role && panel.dataset.modePanel === mode);
+        });
+        announce('อัปเดตตัวอย่างตามบทบาทและวิธีทำงานแล้ว', 'The specimen has been updated for the selected role and mode.');
+      }
+
+      localeSelect.addEventListener('change', event => setLocale(event.target.value, true));
+      document.querySelectorAll('input[name="theme"]').forEach(input => {
+        input.addEventListener('change', event => setTheme(event.target.value, true));
+      });
+      const handleSystemTheme = () => {
+        if (root.dataset.themePreference === 'auto') setTheme('auto', false);
+      };
+      if (typeof themeQuery.addEventListener === 'function') themeQuery.addEventListener('change', handleSystemTheme);
+      else if (typeof themeQuery.addListener === 'function') themeQuery.addListener(handleSystemTheme);
+      preferenceReset.addEventListener('click', () => {
+        try {
+          localStorage.removeItem('landometer-theme');
+          localStorage.removeItem('landometer-locale');
+        } catch (_) {}
+        const url = new URL(window.location.href);
+        url.searchParams.delete('lang');
+        history.replaceState({}, '', url);
+        setTheme('auto', false);
+        setLocale(browserLocale(), false);
+        announce('คืนค่าธีมและภาษาเริ่มต้นแล้ว', 'Theme and language preferences reset.');
+      });
+      roleSelect.addEventListener('change', updateProof);
+      modeButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          modeButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+          updateProof();
+        });
+        button.addEventListener('keydown', event => {
+          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+          event.preventDefault();
+          const step = event.key === 'ArrowRight' ? 1 : -1;
+          const next = modeButtons[(index + step + modeButtons.length) % modeButtons.length];
+          next.click();
+          next.focus();
+        });
+      });
+      proofAction.addEventListener('click', () => {
+        const expanded = proofAction.getAttribute('aria-expanded') === 'true';
+        proofAction.setAttribute('aria-expanded', String(!expanded));
+        proofChecklist.hidden = expanded;
+        proofAction.querySelector('[data-state-label="closed"]').hidden = !expanded;
+        proofAction.querySelector('[data-state-label="open"]').hidden = expanded;
+        announce(expanded ? 'ซ่อนรายการตรวจแล้ว' : 'แสดงรายการตรวจแล้ว', expanded ? 'Checks hidden.' : 'Checks shown.');
+      });
+      approvalAction.addEventListener('click', () => {
+        const expanded = approvalAction.getAttribute('aria-expanded') === 'true';
+        approvalAction.setAttribute('aria-expanded', String(!expanded));
+        approvalPanel.hidden = expanded;
+        if (!expanded) approvalPanel.focus({preventScroll: true});
+        announce(expanded ? 'ปิดข้อเสนออนุมัติแล้ว' : 'เปิดข้อเสนออนุมัติแล้ว', expanded ? 'Decision proposal closed.' : 'Decision proposal opened.');
+      });
+      document.getElementById('start-action').addEventListener('click', () => {
+        window.setTimeout(() => roleSelect.focus({preventScroll: true}), 360);
+      });
+
+      const revealNodes = [...document.querySelectorAll('.reveal-group')];
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {threshold: .12, rootMargin: '0px 0px -10% 0px'});
+        revealNodes.forEach(node => observer.observe(node));
+        root.classList.add('motion-ready');
+      } else {
+        revealNodes.forEach(node => node.classList.add('is-visible'));
+      }
+
+      setLocale(resolveLocale(), false);
+      setTheme(root.dataset.themePreference || 'auto', false);
+      updateProof();
+    })();
+  </script>
+</body>
+</html>

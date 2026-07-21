@@ -5,9 +5,9 @@ Interactive stakeholder demo for deciding whether to run a bounded two-week City
 ## Repository structure
 
 - `deployment/` — static website and packaged local assets
-- `docs/product-statement.md` — decision and product contract
-- `docs/qa-report.md` — release evidence and disclosed limitations
-- `release/landometer-ds-adoption-v0.1.zip` — deployment package with `index.html` at ZIP root
+- `.github/workflows/pages.yml` — publishes only the static deploy root
+
+The Product Statement, detailed QA report, and deployment ZIP remain in the private delivery handoff and are intentionally excluded from this public repository.
 
 ## Release status
 
@@ -27,5 +27,4 @@ Then open `http://localhost:8000`.
 
 ## GitHub Pages
 
-The included workflow publishes only `deployment/`, leaving Product Statement, QA evidence, and the ZIP outside the hosted site. If Pages has not been enabled for this repository, select **GitHub Actions** under **Settings → Pages → Build and deployment → Source**.
-
+The included workflow publishes only `deployment/`. If Pages has not been enabled for this repository, select **GitHub Actions** under **Settings → Pages → Build and deployment → Source**.
