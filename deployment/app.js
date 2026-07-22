@@ -206,7 +206,6 @@
     root.lang = next;
     document.querySelectorAll('[data-l10n-th][data-l10n-en]').forEach(node => {
       node.textContent = node.dataset[next === 'en' ? 'l10nEn' : 'l10nTh'];
-      if (node.hasAttribute('lang')) node.lang = next;
     });
     document.querySelectorAll('[data-l10n-aria-th][data-l10n-aria-en]').forEach(node => {
       node.setAttribute('aria-label', node.dataset[next === 'en' ? 'l10nAriaEn' : 'l10nAriaTh']);
