@@ -75,6 +75,7 @@
       setTimeout(() => root.classList.add('i18n-ready'), 500);
     })();
   </script>
+  <style>:root{font-synthesis:none}</style>
   <noscript><style>html body{visibility:visible!important}</style></noscript>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -140,11 +141,11 @@
   </dialog>
 
   <main id="main">
-    <div data-mode-panel="start" id="start-mode">
-      <section class="hero promoted-scene" id="cultivate" data-source-section="3 4 5 8" data-brand-layer="visual" data-specimen="adoption-opening">
+    <div data-mode-panel="start" data-reference-mode="value-tour" id="start-mode">
+      <section class="hero promoted-scene" id="cultivate" data-source-section="3 4 5 8" data-brand-layer="visual" data-specimen="adoption-opening" data-first-proof>
         <div class="hero-copy">
           <p class="version-line"><span>Landometer Design System</span><span class="mono">v0.8.6</span></p>
-          <h1 lang="th" data-l10n-th="Let us cultivate our city." data-l10n-en="Let us cultivate our city.">Let us cultivate our city.</h1>
+          <h1 lang="en" data-l10n-th="Let us cultivate our city." data-l10n-en="Let us cultivate our city.">Let us cultivate our city.</h1>
           <p class="hero-support" data-l10n-th="เปลี่ยนข้อมูลเมืองให้เป็นงานที่ทีมถัดไปเข้าใจ เชื่อถือ และลงมือทำต่อได้ โดยไม่เปลี่ยนความจริงระหว่างทาง" data-l10n-en="Turn city evidence into work the next team can understand, trust, and act on—without changing its truth along the way.">เปลี่ยนข้อมูลเมืองให้เป็นงานที่ทีมถัดไปเข้าใจ เชื่อถือ และลงมือทำต่อได้ โดยไม่เปลี่ยนความจริงระหว่างทาง</p>
           <div class="hero-actions">
             <a class="button primary" href="#role-path" id="start-role" data-l10n-th="เริ่มจากงานของฉัน" data-l10n-en="Start with my role">เริ่มจากงานของฉัน</a>
@@ -290,11 +291,11 @@
       </section>
     </div>
 
-    <div data-mode-panel="reference" id="reference-mode">
+    <div data-mode-panel="reference" data-reference-mode="full-reference" id="reference-mode">
       <section class="reference-hero" id="reference">
         <div>
           <p class="eyebrow">Landometer DS · Working reference</p>
-          <h1 data-l10n-th="หากฎ สูตร หรือไฟล์ที่ใช้กับงานนี้" data-l10n-en="Find the rule, recipe, or file for this task">หากฎ สูตร หรือไฟล์ที่ใช้กับงานนี้</h1>
+          <h2 data-l10n-th="หากฎ สูตร หรือไฟล์ที่ใช้กับงานนี้" data-l10n-en="Find the rule, recipe, or file for this task">หากฎ สูตร หรือไฟล์ที่ใช้กับงานนี้</h2>
           <p data-l10n-th="ค้นด้วย Rule ID, token, component, product, state หรือสิ่งที่ต้องทำ แล้วเปิด deep link เดิมกลับมาได้" data-l10n-en="Search by rule ID, token, component, product, state, or task, then return through the same deep link.">ค้นด้วย Rule ID, token, component, product, state หรือสิ่งที่ต้องทำ แล้วเปิด deep link เดิมกลับมาได้</p>
         </div>
         <div class="reference-status">
@@ -541,11 +542,11 @@ offline · restricted · permission-denied · retrying · cancelled · conflict<
       </div>
     </div>
 
-    <div data-mode-panel="lab" id="lab-mode">
+    <div data-mode-panel="lab" data-reference-mode="specimen-lab" id="lab-mode">
       <section class="lab-hero">
         <div>
           <p class="eyebrow">Specimen Lab · local state only</p>
-          <h1 data-l10n-th="ลองก่อนนำไปใช้" data-l10n-en="Test before you ship">ลองก่อนนำไปใช้</h1>
+          <h2 data-l10n-th="ลองก่อนนำไปใช้" data-l10n-en="Test before you ship">ลองก่อนนำไปใช้</h2>
           <p data-l10n-th="ทุก specimen เป็น reference fixture ใน browser นี้ ไม่บันทึก ไม่ส่ง ไม่แก้ข้อมูลภายนอก และไม่อ้างว่าเป็น product capability" data-l10n-en="Every specimen is a local browser fixture. It does not save, send, change external data, or claim a live product capability.">ทุก specimen เป็น reference fixture ใน browser นี้ ไม่บันทึก ไม่ส่ง ไม่แก้ข้อมูลภายนอก และไม่อ้างว่าเป็น product capability</p>
         </div>
         <div class="trust-plate"><span class="status-badge info">Reference / QA aid</span><strong>effect: none</strong><span>localStateOnly: true</span></div>
@@ -698,6 +699,8 @@ offline · restricted · permission-denied · retrying · cancelled · conflict<
     "machineValidation":"pending","telemetry":{"enabled":false,"scope":"none"}
   }
   </script>
+
+  <script type="application/json" id="build-metadata">{"artifactKind":"design_system_living_reference","surfaceProfile":"designsystem.adoption","normativeVersion":"0.8.6","delivery":"deployable_public","machineValidation":"pending"}</script>
 
   <script type="application/json" id="design-system-coverage">
   {
