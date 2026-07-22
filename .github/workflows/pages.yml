@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - "deployment/**"
+      - "tools/**"
+      - "skill/**"
+      - "README.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -28,6 +31,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Validate release
+        run: node tools/validate-release.mjs
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

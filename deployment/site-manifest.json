@@ -84,7 +84,7 @@
     "fixtureState": "local browser state only"
   },
   "adoptionRoleRegistry": {
-    "owner": "current user instruction to apply the five practical role acceptance tasks",
+    "owner": "public release brief",
     "version": "working-reference-2026-07-22-v1",
     "status": "implementation roster; formal role-findability study pending",
     "records": [
@@ -159,11 +159,15 @@
       "CSS",
       "JSON",
       "TypeScript",
-      "Build Card YAML",
+      "public-safe Build Card YAML",
       "component recipes",
       "voice recipes",
       "fixture registry",
-      "starter ZIP"
+      "starter ZIP",
+      "Public Specification",
+      "version-pinned AI skill",
+      "checksums",
+      "public release manifest"
     ]
   },
   "assets": [
@@ -171,34 +175,33 @@
       "path": "assets/images/landometer-logo-banner.png",
       "bytes": 184476,
       "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
-      "type": "official logo raster extracted from Brand Visual Guidelines 2025 page 4",
-      "dimensions": "3818x1048",
-      "transform": "none; intrinsic ratio preserved",
-      "approvalBoundary": "asset registry ID and formal permission record remain pending"
+      "usageClass": "site brand identity",
+      "downloadPackageIncluded": false
     },
     {
       "path": "assets/images/team-hero.jpg",
       "bytes": 182387,
       "sha256": "50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb",
-      "type": "photograph derivative",
-      "source": "user-supplied IMG_9244.jpeg",
-      "dimensions": "1200x900",
-      "transform": "resized and metadata stripped; no crop",
-      "displayedUse": "opening team identity; not product proof",
-      "permissionBoundary": "publication directed by user; formal owner/credit/expiry record pending"
+      "usageClass": "site team culture",
+      "downloadPackageIncluded": false
     },
     {
       "path": "assets/images/team-presenting.jpg",
       "bytes": 59568,
       "sha256": "3893f0da6816814bf7bbd0ab1f5635020f06b327e99033bd50cb5beba014f76f",
-      "type": "photograph",
-      "source": "user-supplied IMG_5698.jpeg",
-      "dimensions": "466x573",
-      "transform": "none",
-      "displayedUse": "team-culture evidence only",
-      "permissionBoundary": "publication directed by user; context/date/owner/credit/expiry pending"
+      "usageClass": "site team culture",
+      "downloadPackageIncluded": false
     }
   ],
+  "publicRelease": {
+    "id": "landometer-design-system-v0.8.6-public.1",
+    "normativeSourceSha256": "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604",
+    "publicSpecification": "assets/downloads/landometer-design-system-v0.8.6-public.md",
+    "skillName": "apply-landometer-design-system-v0-8-6",
+    "skillInvocation": "explicit_only",
+    "machineSchemaConformance": "pending",
+    "boundary": "Public implementation projection; internal normative master, internal product profiles, private ledgers/evidence paths, media, font binaries, datasets, credentials, connectors, and deployment authority excluded."
+  },
   "downloads": [
     {
       "path": "assets/downloads/landometer-tokens.css",
@@ -217,8 +220,8 @@
     },
     {
       "path": "assets/downloads/build-card-template.yaml",
-      "bytes": 1972,
-      "sha256": "bb5786d6f96b8ecc9ee88728a1d0163ccbaaf7717ce4eddab2aeb30a4f1021b1"
+      "bytes": 2027,
+      "sha256": "b47ea92aef7f5310b6c97831682ecd574f67c7d23768625a65884366841d84bb"
     },
     {
       "path": "assets/downloads/component-recipes.md",
@@ -237,8 +240,38 @@
     },
     {
       "path": "assets/downloads/landometer-ds-v0.8.6-starter.zip",
-      "bytes": 10203,
-      "sha256": "474ac9bb192c69d7ad71e521be0a3615cc90c46da8549119ca7161cb34a5cee4"
+      "bytes": 10710,
+      "sha256": "c45be2e1e4a0cccf0ac5e139cbfa04668bc726265708033893b7ad15b0c0360a"
+    },
+    {
+      "path": "assets/downloads/landometer-design-system-v0.8.6-public.md",
+      "bytes": 71869,
+      "sha256": "b86bd1a12a7513f27ce80df9f7976e04d90988304b0461e54e1e3e0c426f657d"
+    },
+    {
+      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip",
+      "bytes": 41079,
+      "sha256": "fbb911aea246ee79156a107c16af0ffde74fe995754b23029e7729941177979c"
+    },
+    {
+      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip.sha256",
+      "bytes": 117,
+      "sha256": "55161286a9e14bd840fcb85b85348f6e04bfadd322e08e945160ba91a30cdd5b"
+    },
+    {
+      "path": "assets/downloads/SHA256SUMS.txt",
+      "bytes": 1251,
+      "sha256": "7815dae9e78c9e911184325eb45aac1989508454f5bc003dd9575b520998e284"
+    },
+    {
+      "path": "assets/downloads/landometer-public-release-v0.8.6.json",
+      "bytes": 4260,
+      "sha256": "7d85b2d4c01e81aab5037beb1fa85e3da12e556aa6ca6fe1f16841e488686fa1"
+    },
+    {
+      "path": "assets/downloads/landometer-public-release-v0.8.6-changelog.md",
+      "bytes": 770,
+      "sha256": "b9014184679e03906f706af12a62706f7055c13171c21ed895b8904f1da32f0d"
     }
   ],
   "publication": {

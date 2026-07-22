@@ -1,0 +1,107 @@
+{
+  "release": {
+    "id": "landometer-design-system-v0.8.6-public.1",
+    "designSystemVersion": "0.8.6",
+    "publicPackageRevision": 1,
+    "generated": "2026-07-22",
+    "status": "working-public-implementation-projection",
+    "machineSchemaConformance": "pending",
+    "normativeSourceSha256": "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604",
+    "publicSpecificationSha256": "b86bd1a12a7513f27ce80df9f7976e04d90988304b0461e54e1e3e0c426f657d"
+  },
+  "boundary": {
+    "included": [
+      "shared brand and experience rules",
+      "visual and semantic tokens",
+      "components, states, and accessibility",
+      "product-neutral evidence, map, dataviz, sharing, privacy, and AI boundaries",
+      "public QA",
+      "version-pinned explicit-invocation AI skill"
+    ],
+    "excluded": [
+      "internal normative master",
+      "internal product profiles and business assumptions",
+      "role, permission, exception, telemetry, and release ledgers",
+      "private evidence paths",
+      "logos, photography, font binaries, datasets, credentials, connectors, and deployment workflows"
+    ],
+    "productRule": "Apply product-specific truth only from a current approved Product Brief or Product Statement supplied for that product.",
+    "comparisonRule": "Compare products or cities only under the same schema and release, or state the incompatibility.",
+    "rights": "No standalone open-source or documentation license has been supplied. Downloading does not grant rights to trademarks, logos, photographs, fonts, datasets, product material, or third-party assets."
+  },
+  "skill": {
+    "name": "apply-landometer-design-system-v0-8-6",
+    "invocation": "explicit_only",
+    "networkOrConnectors": false,
+    "publishingOrDeployment": false,
+    "externalEffects": false,
+    "conformanceClaim": "prohibited_while_machine_schema_preflight_pending"
+  },
+  "files": [
+    {
+      "path": "assets/downloads/landometer-design-system-v0.8.6-public.md",
+      "bytes": 71869,
+      "sha256": "b86bd1a12a7513f27ce80df9f7976e04d90988304b0461e54e1e3e0c426f657d"
+    },
+    {
+      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip",
+      "bytes": 41079,
+      "sha256": "fbb911aea246ee79156a107c16af0ffde74fe995754b23029e7729941177979c"
+    },
+    {
+      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip.sha256",
+      "bytes": 117,
+      "sha256": "55161286a9e14bd840fcb85b85348f6e04bfadd322e08e945160ba91a30cdd5b"
+    },
+    {
+      "path": "assets/downloads/landometer-ds-v0.8.6-starter.zip",
+      "bytes": 10710,
+      "sha256": "c45be2e1e4a0cccf0ac5e139cbfa04668bc726265708033893b7ad15b0c0360a"
+    },
+    {
+      "path": "assets/downloads/build-card-template.yaml",
+      "bytes": 2027,
+      "sha256": "b47ea92aef7f5310b6c97831682ecd574f67c7d23768625a65884366841d84bb"
+    },
+    {
+      "path": "assets/downloads/landometer-tokens.css",
+      "bytes": 2504,
+      "sha256": "41c26f57be2d70fb050d1276aa3be7cd5e74c58fccfd34b1d1e9e0704e7be171"
+    },
+    {
+      "path": "assets/downloads/landometer-tokens.json",
+      "bytes": 9165,
+      "sha256": "085193279178089daca95019a34599cc79180dc24b26d873ced3be9b08bd13b2"
+    },
+    {
+      "path": "assets/downloads/landometer-tokens.ts",
+      "bytes": 9207,
+      "sha256": "565d7ca8975610c0a62eb43b9b423450306c7d70fbdaa9366cf8b750505872a6"
+    },
+    {
+      "path": "assets/downloads/component-recipes.md",
+      "bytes": 1128,
+      "sha256": "53a7c6f7ed228485f6394204e7e4ab01b675d776d5724bc3865e4492d17ccb0a"
+    },
+    {
+      "path": "assets/downloads/voice-recipes.md",
+      "bytes": 1076,
+      "sha256": "7eb4f25dbaee234d335646e4f12ee57acadf03d6293e2c7e1169b35167bbe6b3"
+    },
+    {
+      "path": "assets/downloads/reference-fixtures.json",
+      "bytes": 4030,
+      "sha256": "9a12f5fa2184434fbcbcdf694864958d775c81d34bf02115cfa49528de771005"
+    },
+    {
+      "path": "assets/downloads/landometer-public-release-v0.8.6-changelog.md",
+      "bytes": 770,
+      "sha256": "b9014184679e03906f706af12a62706f7055c13171c21ed895b8904f1da32f0d"
+    },
+    {
+      "path": "assets/downloads/README.md",
+      "bytes": 1463,
+      "sha256": "33fbee8727381aa820b36be690eecc4d03b4f6dee9a2a9511f8dd2bbc01bbbaa"
+    }
+  ]
+}

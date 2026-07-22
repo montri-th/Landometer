@@ -28,7 +28,7 @@ const controls = [
   { id: "buildCard.capabilities", selector: "#build-card-form input[type=checkbox]", expectedCount: 9, accessibleName: "Capability name", userJob: "Declare enabled branches", finalState: "validation uses selected capabilities", failureRecovery: "uncheck", browserTest: "conflict cases" },
   { id: "buildCard.generate", selector: "#build-card-form button[type=submit]", expectedCount: 1, accessibleName: "Validate and generate YAML", userJob: "Validate starter Build Card", finalState: "YAML or actionable errors", failureRecovery: "edit fields", browserTest: "valid + invalid" },
   { id: "buildCard.download", selector: "#download-build-card", expectedCount: 1, accessibleName: "Download this YAML", userJob: "Download generated Build Card", finalState: "local file download", failureRecovery: "copy code block / full template", browserTest: "click after valid generate" },
-  { id: "downloads", selector: "a[download]", expectedCount: 11, accessibleName: "File-specific label", userJob: "Obtain implementation asset", finalState: "local file download", failureRecovery: "direct file URL", browserTest: "HEAD/local reference check" },
+  { id: "downloads", selector: "a[download]", expectedCount: 15, accessibleName: "File-specific label", userJob: "Obtain implementation asset, public specification, or version-pinned skill", finalState: "local file download", failureRecovery: "direct file URL and SHA256SUMS", browserTest: "download, hash, and package inspection" },
   { id: "reference.details", selector: "#reference-mode details", expectedCount: 5, accessibleName: "Visible summary", userJob: "Reveal exact contract/evidence", finalState: "detail expanded/collapsed", failureRecovery: "toggle again", browserTest: "keyboard sample + count" },
   { id: "lab.navigation", selector: "#previous-specimen, #specimen-select, #next-specimen", expectedCount: 3, accessibleName: "Previous / specimen / next", userJob: "Move among specimens", finalState: "one active specimen and URL", failureRecovery: "direct selector", browserTest: "previous + next + select" },
   { id: "proof.controls", selector: "#proof-select, #proof-baseline, #proof-assisted, #run-proof, #reset-proof", expectedCount: 5, accessibleName: "Proof-specific label", userJob: "Inspect and run a local proof", finalState: "local receipt or reset", failureRecovery: "reset proof", browserTest: "all ten proofs; six comparisons" },
@@ -92,7 +92,7 @@ const manifest = {
     fixtureState: "local browser state only"
   },
   adoptionRoleRegistry: {
-    owner: "current user instruction to apply the five practical role acceptance tasks",
+    owner: "public release brief",
     version: "working-reference-2026-07-22-v1",
     status: "implementation roster; formal role-findability study pending",
     records: [
@@ -111,14 +111,38 @@ const manifest = {
     scaleLuts: 18,
     chartFamilies: ["sorted horizontal bar", "line", "100% stacked bar", "bullet", "interval"],
     prohibitedCharts: ["pie", "donut", "semi-donut", "circular part-to-whole"],
-    implementationDownloads: ["CSS", "JSON", "TypeScript", "Build Card YAML", "component recipes", "voice recipes", "fixture registry", "starter ZIP"]
+    implementationDownloads: ["CSS", "JSON", "TypeScript", "public-safe Build Card YAML", "component recipes", "voice recipes", "fixture registry", "starter ZIP", "Public Specification", "version-pinned AI skill", "checksums", "public release manifest"]
   },
   assets: [
-    { ...fileRecord("assets/images/landometer-logo-banner.png"), type: "official logo raster extracted from Brand Visual Guidelines 2025 page 4", dimensions: "3818x1048", transform: "none; intrinsic ratio preserved", approvalBoundary: "asset registry ID and formal permission record remain pending" },
-    { ...fileRecord("assets/images/team-hero.jpg"), type: "photograph derivative", source: "user-supplied IMG_9244.jpeg", dimensions: "1200x900", transform: "resized and metadata stripped; no crop", displayedUse: "opening team identity; not product proof", permissionBoundary: "publication directed by user; formal owner/credit/expiry record pending" },
-    { ...fileRecord("assets/images/team-presenting.jpg"), type: "photograph", source: "user-supplied IMG_5698.jpeg", dimensions: "466x573", transform: "none", displayedUse: "team-culture evidence only", permissionBoundary: "publication directed by user; context/date/owner/credit/expiry pending" }
+    { ...fileRecord("assets/images/landometer-logo-banner.png"), usageClass: "site brand identity", downloadPackageIncluded: false },
+    { ...fileRecord("assets/images/team-hero.jpg"), usageClass: "site team culture", downloadPackageIncluded: false },
+    { ...fileRecord("assets/images/team-presenting.jpg"), usageClass: "site team culture", downloadPackageIncluded: false }
   ],
-  downloads: ["assets/downloads/landometer-tokens.css", "assets/downloads/landometer-tokens.json", "assets/downloads/landometer-tokens.ts", "assets/downloads/build-card-template.yaml", "assets/downloads/component-recipes.md", "assets/downloads/voice-recipes.md", "assets/downloads/reference-fixtures.json", "assets/downloads/landometer-ds-v0.8.6-starter.zip"].filter(path => { try { statSync(resolve(deployment, path)); return true; } catch { return false; } }).map(fileRecord),
+  publicRelease: {
+    id: "landometer-design-system-v0.8.6-public.1",
+    normativeSourceSha256: "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604",
+    publicSpecification: "assets/downloads/landometer-design-system-v0.8.6-public.md",
+    skillName: "apply-landometer-design-system-v0-8-6",
+    skillInvocation: "explicit_only",
+    machineSchemaConformance: "pending",
+    boundary: "Public implementation projection; internal normative master, internal product profiles, private ledgers/evidence paths, media, font binaries, datasets, credentials, connectors, and deployment authority excluded."
+  },
+  downloads: [
+    "assets/downloads/landometer-tokens.css",
+    "assets/downloads/landometer-tokens.json",
+    "assets/downloads/landometer-tokens.ts",
+    "assets/downloads/build-card-template.yaml",
+    "assets/downloads/component-recipes.md",
+    "assets/downloads/voice-recipes.md",
+    "assets/downloads/reference-fixtures.json",
+    "assets/downloads/landometer-ds-v0.8.6-starter.zip",
+    "assets/downloads/landometer-design-system-v0.8.6-public.md",
+    "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip",
+    "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip.sha256",
+    "assets/downloads/SHA256SUMS.txt",
+    "assets/downloads/landometer-public-release-v0.8.6.json",
+    "assets/downloads/landometer-public-release-v0.8.6-changelog.md"
+  ].filter(path => { try { statSync(resolve(deployment, path)); return true; } catch { return false; } }).map(fileRecord),
   publication: { repository: "https://github.com/montri-th/Landometer", repositoryVisibility: "public", canonicalUrl: "https://montri-th.github.io/Landometer/", indexingSignal: "noindex", telemetry: "disabled", oldDemoRoute: "/Landometer/adoption-demo/" },
   qa: { controlInventoryPath: "control-inventory.json", coverageManifestPath: "coverage-manifest.json", status: "pending browser and deployment verification", machineValidation: "pending", knownBoundaries: ["generated schema/preflight package pending", "formal photo/logo permission registry pending", "formal five-role findability study pending"] }
 };
@@ -129,6 +153,6 @@ writeFileSync(resolve(deployment, "robots.txt"), "User-agent: *\nDisallow: /\n")
 writeFileSync(resolve(deployment, ".nojekyll"), "");
 
 mkdirSync(resolve(project, "docs"), { recursive: true });
-writeFileSync(resolve(project, "README.md"), `# Landometer Design System v0.8.6 — Living Reference\n\nThe repository root deploys a practical design-system reference at https://montri-th.github.io/Landometer/.\n\n## Structure\n\n- \`deployment/\` — GitHub Pages root\n- \`deployment/adoption-demo/\` — preserved decision-demo derivative\n- \`deployment/assets/downloads/\` — implementation starter files\n- \`tools/\` — deterministic token/scale generation and release checks\n- \`docs/\` — public-safe QA evidence\n\n## Status\n\nProvisional working reference. The generated v0.8.6 schema, preflight, and migration ledger remain pending, so this site does not claim machine schema/preflight conformance. Formal media permission records and the five-role findability study also remain open release gates.\n\n## Run locally\n\n\`\`\`bash\npython3 -m http.server 8000 --directory deployment\n\`\`\`\n\nThen open http://localhost:8000/.\n`);
+writeFileSync(resolve(project, "README.md"), `# Landometer Design System v0.8.6 — Living Reference\n\nThe repository root deploys the working reference at https://montri-th.github.io/Landometer/.\n\n## Structure\n\n- \`deployment/\` — GitHub Pages root\n- \`deployment/assets/downloads/\` — implementation starter, Public Specification, version-pinned AI skill, release manifest, and checksums\n- \`skill/apply-landometer-design-system-v0-8-6/\` — inspectable source for the downloadable skill\n- \`deployment/adoption-demo/\` — preserved legacy decision-demo derivative; not part of the public specification or AI skill\n- \`tools/\` — deterministic generation and release checks\n\n## Public boundary\n\nThe Public Specification is a generated implementation projection, not the internal normative authority. It excludes internal product profiles, private ledgers/evidence paths, media, font binaries, datasets, credentials, connectors, and deployment authority. The downloadable skill is explicit-invocation only and stops before every external action. No standalone open-source/documentation license has been supplied; downloading does not grant rights to trademarks, logos, photography, fonts, datasets, product material, or third-party assets.\n\nGenerated Schema 6/preflight conformance remains pending.\n\n## Validate\n\n\`\`\`bash\nnode tools/validate-release.mjs\n\`\`\`\n\n## Run locally\n\n\`\`\`bash\npython3 -m http.server 8000 --directory deployment\n\`\`\`\n\nThen open http://localhost:8000/.\n`);
 
 console.log(JSON.stringify({ controls: controls.length, sections: coverage.sections.length, requiredExamples: coverage.requiredExamples.length, downloads: manifest.downloads.length }, null, 2));

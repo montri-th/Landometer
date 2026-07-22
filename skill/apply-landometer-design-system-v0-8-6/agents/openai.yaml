@@ -1,0 +1,6 @@
+interface:
+  display_name: "Landometer DS v0.8.6"
+  short_description: "Apply and audit public v0.8.6 rules safely"
+  default_prompt: "Use $apply-landometer-design-system-v0-8-6 to audit this artifact against the bundled public specification without publishing it."
+policy:
+  allow_implicit_invocation: false

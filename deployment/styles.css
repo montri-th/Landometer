@@ -122,6 +122,7 @@ summary::marker{color:var(--interaction-accent)}
 .segmented button[aria-pressed="true"],.segmented button[aria-current="true"]{background:var(--surface-raised);color:var(--interaction-accent);box-shadow:var(--elevation-xs)}
 .segmented.compact{display:flex}.segmented.compact button{flex:1}
 .menu-foot{display:flex;justify-content:space-between;gap:var(--space-4);align-items:center;padding:var(--space-4) var(--space-5);border-top:1px solid var(--border-hairline)}
+.menu-downloads{display:flex;justify-content:flex-end;gap:var(--space-4);align-items:center;flex-wrap:wrap}.menu-downloads a{overflow-wrap:anywhere}
 
 .has-js [data-mode-panel]{display:none}
 .has-js[data-mode="start"] [data-mode-panel="start"],.has-js[data-mode="reference"] [data-mode-panel="reference"],.has-js[data-mode="lab"] [data-mode-panel="lab"]{display:block}

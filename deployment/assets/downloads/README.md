@@ -1,13 +1,20 @@
-# Landometer Design System v0.8.6 starter
+# Landometer Design System v0.8.6 public downloads
 
-These files implement the active authoring subset in Appendix A of the human-readable normative master.
+The release has three separate layers:
 
-- `landometer-tokens.css` — CSS custom properties for the active subset
-- `landometer-tokens.json` — source-labelled token registry
-- `landometer-tokens.ts` — typed constant for application code
-- `build-card-template.yaml` — full starter Build Card
-- `component-recipes.md` — implementation recipes for core components
-- `voice-recipes.md` — approved writing patterns and examples
-- `reference-fixtures.json` — local-only proof and lab fixture registry
+1. **Implementation starter** — tokens, a public-safe Build Card, component and voice recipes, and synthetic fixtures.
+2. **Public Specification** — shared Landometer implementation rules generated from the locked v0.8.6 source fingerprint. It is not the internal normative authority.
+3. **Version-pinned AI skill** — explicit invocation only; no connectors, internal discovery, publishing, deployment, messaging, or external actions.
 
-The generated v0.8.6 schema, manifest schema, preflight, and migration ledger remain pending. These files therefore do not claim machine schema/preflight conformance.
+Files:
+
+- `landometer-design-system-v0.8.6-public.md` — public implementation specification
+- `apply-landometer-design-system-v0.8.6-public.1.zip` — inspectable AI skill package
+- `landometer-ds-v0.8.6-starter.zip` — implementation starter
+- `landometer-tokens.css|json|ts` — canonical active token subset
+- `build-card-template.yaml` — safe defaults: private, source-limited, non-indexable, assets unresolved
+- `component-recipes.md` and `voice-recipes.md` — implementation guidance
+- `reference-fixtures.json` — synthetic, local-only proof fixtures
+- `SHA256SUMS.txt` and `landometer-public-release-v0.8.6.json` — integrity records
+
+The public files do not grant rights to trademarks, logos, photography, fonts, datasets, or product material. No standalone open-source/documentation license has been supplied. Generated Schema 6/preflight conformance remains pending; use does not certify production readiness.

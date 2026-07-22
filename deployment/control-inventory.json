@@ -185,12 +185,12 @@
     {
       "id": "downloads",
       "selector": "a[download]",
-      "expectedCount": 11,
+      "expectedCount": 15,
       "accessibleName": "File-specific label",
-      "userJob": "Obtain implementation asset",
+      "userJob": "Obtain implementation asset, public specification, or version-pinned skill",
       "finalState": "local file download",
-      "failureRecovery": "direct file URL",
-      "browserTest": "HEAD/local reference check"
+      "failureRecovery": "direct file URL and SHA256SUMS",
+      "browserTest": "download, hash, and package inspection"
     },
     {
       "id": "reference.details",
