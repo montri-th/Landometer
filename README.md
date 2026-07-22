@@ -1,30 +1,28 @@
-# Landometer Design System v0.8.6 — Adoption Decision Demo
+# Landometer Design System v0.8.6 — Living Reference
 
-Interactive stakeholder demo for deciding whether to run a bounded two-week CityMETER pilot across Product, Design, Development, and Marketing.
+The repository root deploys a practical design-system reference at https://montri-th.github.io/Landometer/.
 
-## Repository structure
+## Structure
 
-- `deployment/` — static website and packaged local assets
-- `.github/workflows/pages.yml` — publishes only the static deploy root
+- `deployment/` — GitHub Pages root
+- `deployment/adoption-demo/` — preserved decision-demo derivative
+- `deployment/assets/downloads/` — implementation starter files
+- `tools/` — deterministic token/scale generation and release checks
 
-The Product Statement, detailed QA report, and deployment ZIP remain in the private delivery handoff and are intentionally excluded from this public repository.
+## Status
 
-## Release status
-
-`PASS WITH DISCLOSED LIMITATIONS`
-
-This remains an internal decision demo even though its source package is published in this public repository by the current user's instruction. It contains no live CityMETER data, records no approval, and does not establish production readiness or broad design-system adoption. Media ownership/credit/expiry and the official identity registry remain incomplete; publication here does not authorize reuse in another destination.
+Provisional working reference. The generated v0.8.6 schema, preflight, and migration ledger remain pending, so this site does not claim machine schema/preflight conformance. Formal media permission records and the five-role findability study also remain open release gates.
 
 ## Run locally
-
-Serve `deployment/` with any static HTTP server. For example:
 
 ```bash
 python3 -m http.server 8000 --directory deployment
 ```
 
-Then open `http://localhost:8000`.
+Then open http://localhost:8000/.
 
-## GitHub Pages
+## Validate the release
 
-The included workflow publishes only `deployment/`. If Pages has not been enabled for this repository, select **GitHub Actions** under **Settings → Pages → Build and deployment → Source**.
+```bash
+node tools/validate-release.mjs deployment
+```

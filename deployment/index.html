@@ -6,1473 +6,743 @@
   data-manifest-version="pending_0.8.6_generation"
   data-token-schema-version="6"
   data-ds-profile="designsystem.adoption"
-  data-profile="designsystem.adoption"
-  data-delivery-mode="internal_demo"
-  data-delivery="internal_demo"
-  data-evidence-status="source_limited"
-  data-visibility="public_repository"
+  data-delivery-mode="deployable_public"
+  data-evidence-status="provisional"
+  data-visibility="public"
   data-indexable="false"
+  data-machine-validation="pending"
+  data-full-living-reference="true"
   data-theme="light"
-  data-theme-preference="auto"
-  data-machine-validation="pending">
+  data-theme-preference="system"
+  data-locale="th"
+  data-mode="start">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F6F7F3">
   <meta name="robots" content="noindex, nofollow, noarchive">
-  <meta name="description" content="Stakeholder decision demo for a bounded Landometer Design System v0.8.6 pilot across product, design, development, and marketing.">
-  <title>Landometer Design System v0.8.6 — Adoption Decision Demo</title>
+  <meta name="description" content="Landometer Design System v0.8.6 working reference: rules, tokens, components, Build Card, maps, charts, motion, states, and local proof fixtures.">
+  <link rel="canonical" href="https://montri-th.github.io/Landometer/">
+  <link rel="alternate" hreflang="th" href="https://montri-th.github.io/Landometer/?lang=th">
+  <link rel="alternate" hreflang="en" href="https://montri-th.github.io/Landometer/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://montri-th.github.io/Landometer/">
+  <meta property="og:site_name" content="Landometer">
+  <meta property="og:title" content="Landometer Design System v0.8.6 — Living Reference">
+  <meta property="og:description" content="A practical working reference for designing, building, writing, and reviewing Landometer products.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://montri-th.github.io/Landometer/">
+  <meta property="og:image" content="https://montri-th.github.io/Landometer/assets/images/team-hero.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="A group of Landometer team members together in a workplace">
+  <meta property="og:locale" content="th_TH">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Landometer Design System v0.8.6 — Living Reference">
+  <meta name="twitter:description" content="Rules, tokens, components, and live specimens for Landometer work.">
+  <meta name="twitter:image" content="https://montri-th.github.io/Landometer/assets/images/team-hero.jpg">
+  <meta name="twitter:image:alt" content="A group of Landometer team members together in a workplace">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","name":"Landometer Design System v0.8.6 — Living Reference","headline":"Landometer Design System v0.8.6 — Living Reference","description":"A provisional working reference for applying Landometer Design System v0.8.6 rules, tokens, components, and local QA fixtures.","inLanguage":["th","en"],"dateModified":"2026-07-22","version":"0.8.6","url":"https://montri-th.github.io/Landometer/","isAccessibleForFree":true,"learningResourceType":"Design system working reference"}</script>
+  <title>Landometer Design System v0.8.6 — Living Reference</title>
   <script>
     (() => {
       const root = document.documentElement;
       root.classList.add('has-js');
-      let choice = 'auto';
-      try {
-        const stored = localStorage.getItem('landometer-theme');
-        if (stored === 'light' || stored === 'dark' || stored === 'auto') choice = stored;
-      } catch (_) {}
-      const dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      root.dataset.themePreference = choice;
-      root.dataset.theme = choice === 'auto' ? (dark ? 'dark' : 'light') : choice;
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
-      if (themeMeta) themeMeta.setAttribute('content', root.dataset.theme === 'dark' ? '#11191D' : '#F6F7F3');
+      const params = new URL(location.href).searchParams;
+      const mode = params.get('mode');
+      root.dataset.mode = ['start', 'reference', 'lab'].includes(mode) ? mode : 'start';
 
-      let locale = 'th';
-      const urlLocale = new URL(window.location.href).searchParams.get('lang');
-      if (urlLocale === 'th' || urlLocale === 'en') locale = urlLocale;
-      else {
-        try {
-          const storedLocale = localStorage.getItem('landometer-locale');
-          if (storedLocale === 'th' || storedLocale === 'en') locale = storedLocale;
-          else if ((navigator.languages || [navigator.language || 'th']).some(value => String(value).toLowerCase().startsWith('en'))) locale = 'en';
-        } catch (_) {
-          if ((navigator.languages || [navigator.language || 'th']).some(value => String(value).toLowerCase().startsWith('en'))) locale = 'en';
-        }
+      let locale = params.get('lang');
+      if (!['th', 'en'].includes(locale)) {
+        try { locale = localStorage.getItem('landometer-locale'); } catch (_) {}
+      }
+      if (!['th', 'en'].includes(locale)) {
+        locale = (navigator.languages || [navigator.language || 'th']).some(v => String(v).toLowerCase().startsWith('en')) ? 'en' : 'th';
       }
       root.dataset.locale = locale;
       root.lang = locale;
+
+      let preference = 'system';
+      try {
+        const saved = localStorage.getItem('landometer-theme');
+        if (['system', 'light', 'dark'].includes(saved)) preference = saved;
+      } catch (_) {}
+      const systemDark = matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.themePreference = preference;
+      root.dataset.theme = preference === 'system' ? (systemDark ? 'dark' : 'light') : preference;
+      root.style.colorScheme = root.dataset.theme;
+      document.querySelector('meta[name="theme-color"]').content = root.dataset.theme === 'dark' ? '#11191D' : '#F6F7F3';
+      setTimeout(() => root.classList.add('i18n-ready'), 500);
     })();
   </script>
-  <style>
-    @font-face {
-      font-family: "Arvo";
-      src: url("assets/fonts/arvo-latin-700-normal.woff2") format("woff2");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-    @font-face {
-      font-family: "IBM Plex Sans Thai Looped";
-      src: url("assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2") format("woff2");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0E00-0E7F;
-    }
-    @font-face {
-      font-family: "IBM Plex Sans Thai Looped";
-      src: url("assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2") format("woff2");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-    @font-face {
-      font-family: "Bai Jamjuree";
-      src: url("assets/fonts/bai-jamjuree-thai-400-normal.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0E00-0E7F;
-    }
-    @font-face {
-      font-family: "Bai Jamjuree";
-      src: url("assets/fonts/bai-jamjuree-latin-400-normal.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-    @font-face {
-      font-family: "Bai Jamjuree";
-      src: url("assets/fonts/bai-jamjuree-thai-600-normal.woff2") format("woff2");
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0E00-0E7F;
-    }
-    @font-face {
-      font-family: "Bai Jamjuree";
-      src: url("assets/fonts/bai-jamjuree-latin-600-normal.woff2") format("woff2");
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-    @font-face {
-      font-family: "JetBrains Mono";
-      src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
-      font-weight: 500;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-    @font-face {
-      font-family: "JetBrains Mono";
-      src: url("assets/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-
-    :root {
-      --brand-blue: #1D4497;
-      --brand-beige: #F2F1DF;
-      --energy-sky: #59D2FE;
-      --energy-mint: #0AD69C;
-      --energy-coral: #FF5A5F;
-      --energy-yellow: #FFBC1F;
-      --canvas: #F6F7F3;
-      --canvas-alt: #EEF1EE;
-      --card: #FCFCFA;
-      --raised: #FFFFFF;
-      --soft: #E5E9E6;
-      --blue-tint: #E2E9ED;
-      --beige-tint: #F2F1DF;
-      --text: #182327;
-      --text-secondary: #5F635A;
-      --metadata: #686354;
-      --muted: #8B877A;
-      --border: #C9D0CB;
-      --border-strong: #7D877F;
-      --accent: #176B82;
-      --focus: #176B82;
-      --success-fill: #E2F4E5;
-      --success-ink: #126B49;
-      --warning-fill: #FFF1D1;
-      --warning-ink: #795300;
-      --danger-fill: #FCE5DF;
-      --danger-ink: #B43A3A;
-      --info-fill: #E8EEF0;
-      --info-ink: #176B82;
-      --pending-fill: #F3EEDB;
-      --pending-ink: #686354;
-      --assisted-fill: #DFF3F1;
-      --assisted-ink: #176C67;
-      --closing: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
-      --elevation-xs: 0 1px 2px rgba(30, 34, 48, .08);
-      --elevation-sm: 0 4px 12px rgba(30, 34, 48, .10);
-      --radius-xs: 6px;
-      --radius-sm: 10px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
-      --gutter: clamp(16px, 3vw, 32px);
-      --reading: 760px;
-      --container: 1120px;
-      --wide: 1280px;
-      --ease-enter: cubic-bezier(.16, 1, .3, 1);
-      color-scheme: light;
-      font-synthesis: none;
-    }
-
-    html[data-theme="dark"] {
-      --canvas: #11191D;
-      --canvas-alt: #172126;
-      --card: #20292D;
-      --raised: #293337;
-      --soft: #2B3534;
-      --blue-tint: #18333E;
-      --beige-tint: #2C2A22;
-      --text: #F1F4EF;
-      --text-secondary: #C4CECA;
-      --metadata: #A6B5B1;
-      --muted: #8D9D99;
-      --border: #46524F;
-      --border-strong: #7C8A84;
-      --accent: #68C4E2;
-      --focus: #68C4E2;
-      --success-fill: #17362D;
-      --success-ink: #72E8C4;
-      --warning-fill: #3B2E16;
-      --warning-ink: #F5C15C;
-      --danger-fill: #3A1F21;
-      --danger-ink: #FF7C72;
-      --info-fill: #18333E;
-      --info-ink: #68C4E2;
-      --pending-fill: #2C2A22;
-      --pending-ink: #D8CFB2;
-      --assisted-fill: #163331;
-      --assisted-ink: #79D9D1;
-      --closing: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
-      color-scheme: dark;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      html:not([data-theme]) {
-        color-scheme: dark;
-      }
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; background: var(--canvas); }
-    body {
-      margin: 0;
-      background: var(--canvas);
-      color: var(--text);
-      font-family: "Bai Jamjuree", system-ui, sans-serif;
-      font-size: 1rem;
-      line-height: 1.6;
-      overflow-wrap: anywhere;
-      transition: background-color 200ms cubic-bezier(.2, 0, 0, 1), color 200ms cubic-bezier(.2, 0, 0, 1);
-    }
-    [hidden] { display: none !important; }
-    html[data-locale="en"] [data-locale="th"] { display: none !important; }
-    html[data-locale="en"] [data-locale="en"][hidden] { display: revert !important; }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; }
-    button, select, input { font: inherit; }
-    button, select, summary, a { -webkit-tap-highlight-color: transparent; }
-    button, select, summary { min-height: 44px; }
-    :focus-visible {
-      outline: 3px solid var(--focus);
-      outline-offset: 3px;
-    }
-    .skip-link {
-      position: fixed;
-      z-index: 100;
-      inset: 8px auto auto 8px;
-      transform: translateY(-140%);
-      background: var(--raised);
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-sm);
-      padding: 8px 12px;
-      font-weight: 600;
-    }
-    .skip-link:focus { transform: translateY(0); }
-    .sr-only {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-    .shell { width: min(100%, var(--wide)); margin-inline: auto; padding-inline: var(--gutter); }
-    .reading { width: min(100%, var(--reading)); }
-    .eyebrow, .tech, dt, .status, .signature {
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-weight: 700;
-      letter-spacing: .025em;
-    }
-    .eyebrow {
-      margin: 0 0 16px;
-      color: var(--metadata);
-      font-size: .8125rem;
-      line-height: 1.35;
-      text-transform: uppercase;
-    }
-    h1, h2, h3 { margin: 0; text-wrap: balance; }
-    h1, h2, h3, .thai-heading {
-      font-family: "IBM Plex Sans Thai Looped", "Bai Jamjuree", sans-serif;
-      font-weight: 700;
-    }
-    html[lang="en"] h1,
-    html[lang="en"] h2,
-    html[lang="en"] h3,
-    .en-display {
-      font-family: "Arvo", Georgia, serif;
-      font-weight: 700;
-    }
-    h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.16; }
-    html[lang="en"] h1 { font-size: clamp(3.25rem, 7vw, 6.5rem); line-height: 1.02; }
-    h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.16; }
-    html[lang="en"] h2 { line-height: 1.08; }
-    h3 { font-size: clamp(1.35rem, 2vw, 1.75rem); line-height: 1.32; }
-    html[lang="en"] h3 { line-height: 1.22; }
-    p { margin: 0; }
-    .lede { font-size: 1.125rem; line-height: 1.6; color: var(--text-secondary); }
-    .small { font-size: .875rem; line-height: 1.45; color: var(--text-secondary); }
-    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-weight: 500; }
-    .section { padding-block: clamp(64px, 9vw, 128px); }
-    .section-head { display: grid; gap: 16px; max-width: var(--reading); margin-bottom: 48px; }
-    .signature {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      color: var(--accent);
-      font-size: .75rem;
-      line-height: 1.35;
-      text-transform: uppercase;
-    }
-    .signature::before { content: ""; width: 24px; height: 3px; background: var(--accent); }
-
-    .site-header {
-      position: relative;
-      z-index: 20;
-      border-bottom: 1px solid var(--border);
-      background: color-mix(in srgb, var(--canvas) 94%, transparent);
-    }
-    .header-inner {
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .brand-link {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-      min-width: 44px;
-      min-height: 44px;
-      border-radius: var(--radius-sm);
-      background: #F2F1DF;
-      padding: 7px 10px;
-    }
-    .brand-link img { width: clamp(132px, 18vw, 188px); height: auto; }
-    .identity-status {
-      margin-top: 2px;
-      color: #5F635A;
-      font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: .625rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: .02em;
-    }
-    .header-controls { display: flex; align-items: center; gap: 8px; }
-    .compact-select,
-    .theme-settings > summary {
-      min-width: 84px;
-      color: var(--text);
-      background: var(--raised);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 8px 12px;
-      cursor: pointer;
-      box-shadow: var(--elevation-xs);
-    }
-    .theme-settings { position: relative; }
-    .theme-settings > summary {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-      user-select: none;
-    }
-    .theme-settings > summary::-webkit-details-marker { display: none; }
-    .theme-settings > summary::before { content: "◐"; font-size: 1.1rem; line-height: 1; }
-    .theme-current { color: var(--text-secondary); font-size: .875rem; }
-    .theme-panel {
-      position: absolute;
-      right: 0;
-      top: calc(100% + 8px);
-      width: min(230px, calc(100vw - 32px));
-      background: var(--raised);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--elevation-sm);
-      padding: 12px;
-    }
-    .theme-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 44px;
-      padding-inline: 8px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-    }
-    .theme-option:hover { background: var(--soft); }
-    .theme-option input { width: 18px; height: 18px; accent-color: var(--accent); }
-    .preference-reset {
-      width: 100%;
-      margin-top: 8px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      background: var(--canvas-alt);
-      color: var(--text);
-      padding: 8px 10px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .preference-reset:hover { background: var(--soft); }
-
-    .hero { border-bottom: 1px solid var(--border); background: var(--canvas); }
-    .hero-grid {
-      min-height: 650px;
-      display: grid;
-      grid-template-columns: 40fr 31fr 29fr;
-      gap: 0;
-      align-items: stretch;
-    }
-    .hero-copy {
-      align-self: center;
-      padding-block: 64px;
-      padding-left: var(--gutter);
-      padding-right: 24px;
-      display: grid;
-      gap: 24px;
-    }
-    .hero-title {
-      color: var(--text);
-      overflow-wrap: normal;
-      word-break: normal;
-      hyphens: none;
-    }
-    html[lang="en"] .hero-title { font-size: clamp(2.5rem, 5.2vw, 4.75rem); }
-    .hero-support { max-width: 34rem; }
-    [data-quiet-field] {
-      min-width: 25%;
-      min-height: 25%;
-      background: var(--beige-tint);
-      border-inline: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
-    }
-    .hero-photo {
-      align-self: end;
-      margin: 0;
-      padding: 0 var(--gutter) 32px 24px;
-    }
-    .hero-photo img {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 3;
-      object-fit: contain;
-      object-position: center bottom;
-      background: var(--canvas-alt);
-      border-radius: var(--radius-lg);
-    }
-    .hero-photo figcaption { margin-top: 8px; }
-    .primary-action,
-    .secondary-action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      min-height: 48px;
-      border: 2px solid var(--accent);
-      border-radius: var(--radius-md);
-      padding: 10px 16px;
-      background: var(--blue-tint);
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 120ms cubic-bezier(.2, 0, 0, 1), transform 120ms cubic-bezier(.2, 0, 0, 1);
-    }
-    .primary-action:hover,
-    .secondary-action:hover { background: var(--assisted-fill); }
-    .primary-action:active,
-    .secondary-action:active { transform: translateY(2px); }
-
-    .try-section { background: var(--canvas-alt); }
-    .role-bar {
-      display: grid;
-      grid-template-columns: minmax(220px, .65fr) minmax(280px, 1fr);
-      gap: 24px;
-      align-items: end;
-      margin-bottom: 24px;
-    }
-    .field { display: grid; gap: 8px; }
-    .field label { font-weight: 600; }
-    .field select {
-      width: 100%;
-      color: var(--text);
-      background: var(--raised);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-md);
-      padding: 10px 12px;
-    }
-    .mode-switch {
-      display: inline-grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-      padding: 4px;
-      background: var(--soft);
-      border-radius: var(--radius-md);
-      width: min(100%, 420px);
-      justify-self: end;
-    }
-    .mode-button {
-      border: 1px solid transparent;
-      border-radius: var(--radius-sm);
-      background: transparent;
-      color: var(--text-secondary);
-      padding: 8px 12px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-    .mode-button[aria-pressed="true"] {
-      background: var(--raised);
-      border-color: var(--border);
-      color: var(--text);
-      box-shadow: var(--elevation-xs);
-    }
-    .workbench {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      overflow: clip;
-    }
-    .workbench-top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
-      background: var(--raised);
-    }
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      min-height: 32px;
-      border-radius: 999px;
-      padding: 4px 10px;
-      background: var(--pending-fill);
-      color: var(--pending-ink);
-      font-size: .75rem;
-      line-height: 1.35;
-    }
-    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-    .workbench-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
-    }
-    .truth-object,
-    .role-proof { padding: clamp(24px, 4vw, 48px); }
-    .truth-object { border-right: 1px solid var(--border); }
-    .object-title { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; margin-bottom: 32px; }
-    .object-title .mono { color: var(--metadata); font-size: .75rem; }
-    .truth-list {
-      display: grid;
-      grid-template-columns: minmax(100px, .45fr) minmax(0, 1fr);
-      margin: 0;
-    }
-    .truth-list > div { display: contents; }
-    .truth-list dt,
-    .truth-list dd {
-      margin: 0;
-      padding-block: 12px;
-      border-top: 1px solid var(--border);
-    }
-    .truth-list dt { color: var(--metadata); font-size: .75rem; padding-right: 16px; }
-    .truth-list dd { color: var(--text); }
-    .role-proof { display: grid; align-content: start; gap: 24px; }
-    .proof-panel { display: grid; gap: 20px; }
-    .proof-line { display: grid; gap: 4px; padding-top: 12px; border-top: 1px solid var(--border); }
-    .proof-label { color: var(--metadata); font-size: .75rem; }
-    .proof-checklist {
-      padding: 16px;
-      border-left: 4px solid var(--accent);
-      background: var(--info-fill);
-      color: var(--info-ink);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    }
-    .proof-checklist ul { margin: 8px 0 0; padding-left: 20px; }
-
-    .align-section { background: var(--canvas); }
-    .handoff-object {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 20px;
-      padding: 16px 0;
-      border-block: 1px solid var(--border-strong);
-      margin-bottom: 32px;
-    }
-    .handoff-flow {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      border-block: 1px solid var(--border);
-    }
-    .handoff-step {
-      position: relative;
-      padding: 32px 24px 32px 0;
-      min-width: 0;
-    }
-    .handoff-step:not(:last-child) { border-right: 1px solid var(--border); margin-right: 24px; }
-    .handoff-step:not(:last-child)::after {
-      content: "→";
-      position: absolute;
-      right: -17px;
-      top: 30px;
-      color: var(--accent);
-      background: var(--canvas);
-      padding: 0 6px;
-      font-family: "JetBrains Mono", monospace;
-      font-weight: 700;
-    }
-    .step-index { color: var(--accent); font-size: .75rem; }
-    .handoff-step h3 { margin: 8px 0 16px; }
-    .handoff-step ul { margin: 0; padding-left: 18px; color: var(--text-secondary); }
-    .handoff-release {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 24px;
-      border-block: 1px solid var(--border-strong);
-      background: var(--blue-tint);
-    }
-    .release-stage { padding: 20px; }
-    .release-stage:not(:last-child) { border-right: 1px solid var(--border); }
-    .release-stage strong { display: block; margin-bottom: 4px; }
-    .evidence-gate {
-      margin-top: 24px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: var(--card);
-    }
-    .evidence-gate summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 16px 20px;
-      cursor: pointer;
-      font-weight: 600;
-      list-style: none;
-    }
-    .evidence-gate summary::-webkit-details-marker { display: none; }
-    .evidence-gate summary::after { content: "+"; font-family: "JetBrains Mono", monospace; color: var(--accent); }
-    .evidence-gate[open] summary::after { content: "−"; }
-    .details-body { padding: 0 20px 20px; color: var(--text-secondary); }
-    .details-body strong { color: var(--text); }
-
-    .culture-section { background: var(--beige-tint); }
-    .culture-grid {
-      display: grid;
-      grid-template-columns: minmax(260px, .8fr) minmax(0, 1.2fr);
-      gap: clamp(32px, 7vw, 96px);
-      align-items: center;
-    }
-    .culture-photo img {
-      width: min(100%, 466px);
-      height: auto;
-      border-radius: var(--radius-lg);
-    }
-    .culture-copy { display: grid; gap: 24px; }
-    .protected-context {
-      padding-top: 24px;
-      border-top: 1px solid var(--border-strong);
-      color: var(--brand-blue);
-      font-family: "Arvo", Georgia, serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      line-height: 1.15;
-    }
-    html[data-theme="dark"] .protected-context { color: var(--accent); }
-
-    .approval-section {
-      background: var(--closing);
-      color: #FFFFFF;
-    }
-    .approval-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr);
-      gap: clamp(32px, 7vw, 96px);
-      align-items: start;
-    }
-    .approval-copy {
-      display: grid;
-      gap: 24px;
-      padding: clamp(24px, 4vw, 40px);
-      border-radius: var(--radius-xl);
-      background: #11191D;
-      color: #F1F4EF;
-    }
-    .approval-copy .eyebrow,
-    .approval-copy .lede { color: inherit; opacity: .88; }
-    .approval-section .primary-action {
-      border-color: #68C4E2;
-      color: #F1F4EF;
-      background: #18333E;
-    }
-    .approval-panel {
-      border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
-      border-radius: var(--radius-xl);
-      padding: clamp(24px, 4vw, 40px);
-      background: color-mix(in srgb, var(--raised) 90%, transparent);
-      color: var(--text);
-    }
-    .approval-panel h3 { margin-bottom: 16px; }
-    .approval-panel ol { margin: 20px 0 0; padding-left: 20px; }
-    .decision-text { font-weight: 600; font-size: 1.125rem; }
-    .local-effect-note { margin-top: 16px; color: var(--text-secondary); font-size: .875rem; }
-    .static-takeaway {
-      display: grid;
-      gap: 8px;
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-strong);
-    }
-    .owner-gate {
-      display: grid;
-      gap: 6px;
-      margin-top: 20px;
-      padding: 14px 16px;
-      border: 1px solid color-mix(in srgb, var(--warning-ink) 44%, transparent);
-      border-radius: var(--radius-md);
-      background: var(--warning-fill);
-      color: var(--warning-ink);
-    }
-
-    .release-note {
-      display: grid;
-      gap: 8px;
-      margin-top: 32px;
-      padding: 20px;
-      border-left: 4px solid var(--warning-ink);
-      background: var(--warning-fill);
-      color: var(--warning-ink);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-    }
-    footer { padding-block: 32px; border-top: 1px solid var(--border); background: var(--canvas); }
-    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--metadata); }
-
-    html.motion-ready .reveal-group > * { opacity: 0; transform: translateY(12px); }
-    html.motion-ready .reveal-group.is-visible > * {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 400ms var(--ease-enter), transform 400ms var(--ease-enter);
-    }
-    html.motion-ready .reveal-group.is-visible > *:nth-child(2) { transition-delay: 60ms; }
-    html.motion-ready .reveal-group.is-visible > *:nth-child(3) { transition-delay: 120ms; }
-    html.motion-ready .reveal-group.is-visible > *:nth-child(4) { transition-delay: 180ms; }
-
-    @media (max-width: 899px) {
-      .role-bar { grid-template-columns: 1fr; }
-      .mode-switch { justify-self: stretch; width: 100%; }
-      .workbench-grid { grid-template-columns: 1fr; }
-      .truth-object { border-right: 0; border-bottom: 1px solid var(--border); }
-      .handoff-flow { grid-template-columns: 1fr 1fr; }
-      .handoff-release { grid-template-columns: 1fr; }
-      .release-stage:not(:last-child) { border-right: 0; border-bottom: 1px solid var(--border); }
-      .handoff-step:nth-child(2) { border-right: 0; margin-right: 0; }
-      .handoff-step:nth-child(2)::after { content: none; }
-      .handoff-step:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-      .culture-grid,
-      .approval-grid { grid-template-columns: 1fr; }
-      .culture-photo img { width: min(75%, 466px); }
-    }
-
-    @media (max-width: 767px) {
-      .hero-grid {
-        min-height: 620px;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto minmax(280px, 1fr);
-      }
-      .hero-copy { grid-column: 1 / -1; padding: 48px 0 40px; }
-      [data-quiet-field] { grid-column: 1; grid-row: 2; border: 0; border-right: 1px solid var(--border); }
-      .hero-copy { padding-inline: var(--gutter); }
-      .hero-photo { grid-column: 2; grid-row: 2; padding: 24px var(--gutter) 24px 16px; align-self: center; }
-    }
-
-    @media (max-width: 599px) {
-      .site-header .shell { padding-inline: 12px; }
-      .header-inner { min-height: 68px; gap: 8px; }
-      .brand-link { padding: 6px 8px; }
-      .brand-link img { width: 118px; }
-      .header-controls { gap: 4px; }
-      .compact-select,
-      .theme-settings > summary { min-width: 64px; padding: 7px 9px; }
-      .theme-word { display: none; }
-      .hero-grid {
-        min-height: 620px;
-        grid-template-columns: minmax(0, .62fr) minmax(100px, .38fr);
-        grid-template-rows: minmax(360px, 3fr) minmax(180px, 2fr);
-      }
-      .hero-copy { grid-column: 1; grid-row: 1 / 3; padding: 40px 16px; gap: 20px; }
-      h1, html[lang="en"] h1 { font-size: clamp(2.25rem, 11vw, 2.75rem); line-height: 1.08; }
-      [data-quiet-field] { grid-column: 2; grid-row: 1; border: 0; border-left: 1px solid var(--border); }
-      .hero-photo { grid-column: 2; grid-row: 2; padding: 12px 16px 12px 8px; align-self: center; }
-      .section { padding-block: 64px; }
-      .section-head { margin-bottom: 32px; }
-      .workbench-top { padding: 14px 16px; }
-      .truth-object,
-      .role-proof { padding: 24px 18px; }
-      .truth-list { grid-template-columns: 92px minmax(0, 1fr); }
-      .handoff-flow { grid-template-columns: 1fr; }
-      .handoff-step,
-      .handoff-step:nth-child(2) { border-right: 0; border-bottom: 1px solid var(--border); margin-right: 0; padding-right: 0; }
-      .handoff-step:last-child { border-bottom: 0; }
-      .handoff-step::after { content: none !important; }
-      .culture-photo img { width: 100%; }
-      .approval-panel { padding: 22px 18px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-        scroll-behavior: auto !important;
-      }
-      html.motion-ready .reveal-group > * { opacity: 1; transform: none; }
-    }
-
-    @media print {
-      :root, html[data-theme="dark"] {
-        --canvas: #FFFFFF;
-        --canvas-alt: #F6F7F3;
-        --card: #FFFFFF;
-        --raised: #FFFFFF;
-        --text: #182327;
-        --text-secondary: #5F635A;
-        --metadata: #686354;
-        --border: #C9D0CB;
-        --accent: #176B82;
-        color-scheme: light;
-      }
-      .site-header, .primary-action, .mode-switch, .theme-settings { display: none !important; }
-      .section { padding-block: 32px; break-inside: avoid; }
-      .approval-section { background: #FFFFFF; color: #182327; }
-      .approval-copy { background: #FFFFFF; color: #182327; padding: 0; }
-      .approval-panel, .proof-checklist { display: block !important; }
-      html.motion-ready .reveal-group > * { opacity: 1; transform: none; }
-    }
-  </style>
+  <noscript><style>html body{visibility:visible!important}</style></noscript>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="skip-link" id="skip-link" href="#main-content">
-    <span data-locale="th">ข้ามไปเนื้อหาหลัก</span>
-    <span data-locale="en" hidden>Skip to main content</span>
-  </a>
+  <a class="skip-link" href="#main" data-l10n-th="ข้ามไปยังเนื้อหาหลัก" data-l10n-en="Skip to main content">ข้ามไปยังเนื้อหาหลัก</a>
 
-  <header class="site-header">
-    <div class="shell header-inner">
-      <nav aria-label="การนำทางหลัก" data-aria-th="การนำทางหลัก" data-aria-en="Primary navigation">
-        <a class="brand-link" id="home-link" href="#hero" aria-label="Landometer — กลับไปจุดเริ่มต้น" data-alt-label-th="Landometer — กลับไปจุดเริ่มต้น" data-alt-label-en="Landometer — return to the start">
-          <img src="assets/images/landometer-logo-banner.png" alt="Landometer" width="3818" height="1048" data-logo-status="candidate">
-          <span class="identity-status">IDENTITY CANDIDATE · DECISION DEMO</span>
-        </a>
-      </nav>
-      <div class="header-controls">
-        <label class="sr-only" for="locale-select">
-          <span data-locale="th">ภาษา</span>
-          <span data-locale="en" hidden>Language</span>
-        </label>
-        <select class="compact-select" id="locale-select" aria-label="ภาษา" data-aria-th="ภาษา" data-aria-en="Language">
-          <option value="th">ไทย</option>
-          <option value="en">English</option>
-        </select>
-        <details class="theme-settings" id="theme-settings">
-          <summary id="theme-summary">
-            <span class="theme-word" data-locale="th">ธีม</span>
-            <span class="theme-word" data-locale="en" hidden>Theme</span>
-            <span class="theme-current">
-              <span data-theme-label="auto"><span data-locale="th">อัตโนมัติ</span><span data-locale="en" hidden>Auto</span></span>
-              <span data-theme-label="light" hidden><span data-locale="th">สว่าง</span><span data-locale="en" hidden>Light</span></span>
-              <span data-theme-label="dark" hidden><span data-locale="th">มืด</span><span data-locale="en" hidden>Dark</span></span>
-            </span>
-          </summary>
-          <div class="theme-panel" role="group" aria-label="การตั้งค่าธีม" data-aria-th="การตั้งค่าธีม" data-aria-en="Theme preference">
-            <label class="theme-option" for="theme-auto">
-              <input id="theme-auto" type="radio" name="theme" value="auto">
-              <span data-locale="th">อัตโนมัติ / รีเซ็ตธีม</span><span data-locale="en" hidden>Auto / reset theme</span>
-            </label>
-            <label class="theme-option" for="theme-light">
-              <input id="theme-light" type="radio" name="theme" value="light">
-              <span data-locale="th">สว่าง</span><span data-locale="en" hidden>Light</span>
-            </label>
-            <label class="theme-option" for="theme-dark">
-              <input id="theme-dark" type="radio" name="theme" value="dark">
-              <span data-locale="th">มืด</span><span data-locale="en" hidden>Dark</span>
-            </label>
-            <button class="preference-reset" id="preference-reset" type="button">
-              <span data-locale="th">คืนค่าธีมและภาษาเริ่มต้น</span><span data-locale="en" hidden>Reset theme and language</span>
-            </button>
-          </div>
-        </details>
+  <header class="site-header" data-source-section="4">
+    <div class="header-inner">
+      <img class="official-logo" data-logo-status="official" src="assets/images/landometer-logo-banner.png" width="3818" height="1048" alt="Landometer">
+      <div class="header-state" aria-live="polite">
+        <span class="eyebrow">DS 0.8.6</span>
+        <span id="current-mode-label" data-l10n-th="เริ่มต้น" data-l10n-en="Start">เริ่มต้น</span>
       </div>
+      <button class="icon-button menu-button" id="open-menu" type="button" aria-haspopup="dialog" aria-controls="site-menu" data-l10n-aria-th="เปิดเมนู การตั้งค่า ภาษา และธีม" data-l10n-aria-en="Open navigation, settings, language, and theme" aria-label="เปิดเมนู การตั้งค่า ภาษา และธีม">
+        <span aria-hidden="true">☰</span><span class="menu-text" data-l10n-th="เมนู" data-l10n-en="Menu">เมนู</span>
+      </button>
     </div>
   </header>
 
-  <main id="main-content" tabindex="-1">
-    <section class="hero" id="hero" aria-labelledby="hero-title">
-      <div class="hero-grid">
+  <dialog class="site-menu" id="site-menu" aria-labelledby="menu-title">
+    <div class="dialog-head">
+      <div>
+        <p class="eyebrow">Landometer DS · 0.8.6</p>
+        <h2 id="menu-title" data-l10n-th="ไปที่ไหนต่อ" data-l10n-en="Where next">ไปที่ไหนต่อ</h2>
+      </div>
+      <button class="icon-button" id="close-menu" type="button" data-l10n-aria-th="ปิดเมนู" data-l10n-aria-en="Close menu" aria-label="ปิดเมนู">×</button>
+    </div>
+    <nav class="mode-menu" aria-label="Design system modes">
+      <button type="button" data-route-mode="start">
+        <strong data-l10n-th="เริ่มต้น" data-l10n-en="Start">เริ่มต้น</strong>
+        <span data-l10n-th="เข้าใจคุณค่าและเริ่มจากบทบาทของฉัน" data-l10n-en="Understand the value and start from my role">เข้าใจคุณค่าและเริ่มจากบทบาทของฉัน</span>
+      </button>
+      <button type="button" data-route-mode="reference">
+        <strong data-l10n-th="คู่มืออ้างอิง" data-l10n-en="Reference">คู่มืออ้างอิง</strong>
+        <span data-l10n-th="ค้นกฎ token component และสูตรใช้งาน" data-l10n-en="Find rules, tokens, components, and recipes">ค้นกฎ token component และสูตรใช้งาน</span>
+      </button>
+      <button type="button" data-route-mode="lab">
+        <strong data-l10n-th="ห้องทดลอง" data-l10n-en="Lab">ห้องทดลอง</strong>
+        <span data-l10n-th="ลอง theme สถานะ chart map motion และ proof" data-l10n-en="Try themes, states, charts, maps, motion, and proofs">ลอง theme สถานะ chart map motion และ proof</span>
+      </button>
+    </nav>
+    <div class="settings-grid">
+      <fieldset>
+        <legend data-l10n-th="ภาษา" data-l10n-en="Language">ภาษา</legend>
+        <div class="segmented compact" role="group" aria-label="Language">
+          <button type="button" data-locale-choice="th">ไทย</button>
+          <button type="button" data-locale-choice="en">English</button>
+        </div>
+      </fieldset>
+      <fieldset data-theme-matrix data-source-section="5">
+        <legend data-l10n-th="ธีม" data-l10n-en="Theme">ธีม</legend>
+        <div class="segmented compact" role="group" aria-label="Theme">
+          <button type="button" data-theme-choice="system" data-l10n-th="อัตโนมัติ" data-l10n-en="Auto">อัตโนมัติ</button>
+          <button type="button" data-theme-choice="light" data-l10n-th="สว่าง" data-l10n-en="Light">สว่าง</button>
+          <button type="button" data-theme-choice="dark" data-l10n-th="มืด" data-l10n-en="Dark">มืด</button>
+        </div>
+      </fieldset>
+    </div>
+    <div class="menu-foot">
+      <button type="button" class="text-button" id="reset-preferences" data-l10n-th="ล้างค่าภาษาและธีม" data-l10n-en="Reset language and theme">ล้างค่าภาษาและธีม</button>
+      <a href="adoption-demo/" data-l10n-th="ดู Adoption Decision Demo เดิม" data-l10n-en="Open the previous Adoption Decision Demo">ดู Adoption Decision Demo เดิม</a>
+    </div>
+  </dialog>
+
+  <main id="main">
+    <div data-mode-panel="start" id="start-mode">
+      <section class="hero promoted-scene" id="cultivate" data-source-section="3 4 5 8" data-brand-layer="visual" data-specimen="adoption-opening">
         <div class="hero-copy">
-          <p class="eyebrow">Landometer Design System · v0.8.6</p>
-          <h1 class="hero-title en-display" id="hero-title">Let us cultivate our city.</h1>
-          <p class="lede hero-support">
-            <span data-locale="th">เริ่มจากตัวอย่างการ์ดข้อมูลพื้นที่ในบริบท CityMETER แล้วดูว่างานของคุณช่วยทีมถัดไปตัดสินใจได้ชัดขึ้นอย่างไร</span>
-            <span data-locale="en" hidden>Start with one place-insight fixture in a CityMETER context and see how your work can help the next team decide more clearly.</span>
-          </p>
-          <a class="primary-action" id="start-action" href="#try">
-            <span data-locale="th">เริ่มจากงานของฉัน</span>
-            <span data-locale="en" hidden>Start with my role</span>
-          </a>
+          <p class="version-line"><span>Landometer Design System</span><span class="mono">v0.8.6</span></p>
+          <h1 lang="th" data-l10n-th="Let us cultivate our city." data-l10n-en="Let us cultivate our city.">Let us cultivate our city.</h1>
+          <p class="hero-support" data-l10n-th="เปลี่ยนข้อมูลเมืองให้เป็นงานที่ทีมถัดไปเข้าใจ เชื่อถือ และลงมือทำต่อได้ โดยไม่เปลี่ยนความจริงระหว่างทาง" data-l10n-en="Turn city evidence into work the next team can understand, trust, and act on—without changing its truth along the way.">เปลี่ยนข้อมูลเมืองให้เป็นงานที่ทีมถัดไปเข้าใจ เชื่อถือ และลงมือทำต่อได้ โดยไม่เปลี่ยนความจริงระหว่างทาง</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#role-path" id="start-role" data-l10n-th="เริ่มจากงานของฉัน" data-l10n-en="Start with my role">เริ่มจากงานของฉัน</a>
+            <button class="text-button" type="button" data-route-mode="reference" data-l10n-th="เปิดคู่มืออ้างอิง" data-l10n-en="Open reference">เปิดคู่มืออ้างอิง</button>
+          </div>
+          <div class="measure-line" aria-label="Measure, Ground, Cultivate">
+            <span class="measure"></span><span class="ground"></span><span class="cultivate"></span>
+          </div>
         </div>
-        <div data-quiet-field aria-hidden="true"></div>
+        <div class="hero-quiet" data-quiet-field aria-hidden="true"></div>
         <figure class="hero-photo">
-          <img src="assets/images/team-hero.jpeg" alt="กลุ่มบุคคลยืนร่วมกันในพื้นที่ทำงาน" width="1477" height="1108" data-alt-th="กลุ่มบุคคลยืนร่วมกันในพื้นที่ทำงาน" data-alt-en="A group of people together in a workplace">
+          <img src="assets/images/team-hero.jpg" width="1200" height="900" alt="A group of Landometer team members together in a workplace">
+          <figcaption data-l10n-th="ทีม Landometer ในพื้นที่ทำงาน · ภาพที่ผู้ใช้จัดให้ · ไม่ใช้เป็นหลักฐานผลลัพธ์ของผลิตภัณฑ์" data-l10n-en="Landometer team in a workplace · user-supplied image · not product-outcome evidence">ทีม Landometer ในพื้นที่ทำงาน · ภาพที่ผู้ใช้จัดให้ · ไม่ใช้เป็นหลักฐานผลลัพธ์ของผลิตภัณฑ์</figcaption>
         </figure>
-      </div>
-    </section>
+      </section>
 
-    <section class="section try-section" id="try" aria-labelledby="try-title">
-      <div class="shell">
-        <div class="section-head reveal">
-          <span class="signature">Measure</span>
-          <h2 id="try-title">
-            <span data-locale="th">วัตถุเดิม ความจริงเดิม กลไกที่ชัดขึ้น</span>
-            <span data-locale="en" hidden>Same object. Same truth. Clearer mechanism.</span>
-          </h2>
-          <p class="lede">
-            <span data-locale="th">เลือกบทบาท แล้วเทียบ illustrative risk กับกลไกที่เสนอ ตัวอย่างนี้ใช้สถานะ “ยังไม่มีผลล่าสุด” เพื่อสาธิต guardrail ที่ไม่เติมผลลัพธ์แทนหลักฐาน</span>
-            <span data-locale="en" hidden>Choose a role, then compare an illustrative risk with the proposed mechanism. “No current result” demonstrates a guardrail against filling evidence gaps.</span>
-          </p>
+      <section class="brand-trace section-shell" id="brand-foundation" data-source-section="2 3" data-brand-layer="statement">
+        <div class="section-intro">
+          <p class="eyebrow" data-l10n-th="คำมั่นที่ใช้ตรวจคุณภาพงาน" data-l10n-en="The work-quality test">คำมั่นที่ใช้ตรวจคุณภาพงาน</p>
+          <h2>Measure What Matters. Make It Actionable.</h2>
+          <p data-l10n-th="Landometer เชื่อมหลักฐาน บริบทของสถานที่ ความหมาย การตัดสินใจ และการลงมือทำ ไม่ใช่แค่แสดงชั้นข้อมูลบนแผนที่" data-l10n-en="Landometer connects evidence, place context, meaning, decisions, and action—not merely isolated map layers.">Landometer เชื่อมหลักฐาน บริบทของสถานที่ ความหมาย การตัดสินใจ และการลงมือทำ ไม่ใช่แค่แสดงชั้นข้อมูลบนแผนที่</p>
         </div>
-
-        <div class="role-bar">
-          <div class="field">
-            <label for="role-select">
-              <span data-locale="th">ดูจากบทบาทของฉัน</span>
-              <span data-locale="en" hidden>View through my role</span>
-            </label>
-            <select id="role-select">
-              <option value="product">Product</option>
-              <option value="design">Design</option>
-              <option value="development">Development</option>
-              <option value="marketing">Marketing</option>
-            </select>
-            <p class="small"><span data-locale="th">roster ชั่วคราวตาม brief นี้ · owner/version ระดับองค์กรยังไม่กำหนด</span><span data-locale="en" hidden>Task-scoped roster from this brief · organization owner/version not yet assigned</span></p>
-          </div>
-          <div class="mode-switch" role="group" aria-label="โหมดเปรียบเทียบ" data-aria-th="โหมดเปรียบเทียบ" data-aria-en="Comparison mode">
-            <button class="mode-button" id="mode-baseline" type="button" data-mode-button="baseline" aria-pressed="false">
-              <span data-locale="th">ก่อนใช้กติกากลาง</span><span data-locale="en" hidden>Baseline</span>
-            </button>
-            <button class="mode-button" id="mode-assisted" type="button" data-mode-button="assisted" aria-pressed="true">
-              <span data-locale="th">เมื่อใช้ v0.8.6</span><span data-locale="en" hidden>With v0.8.6</span>
-            </button>
+        <div class="brand-who-what" data-brand-layer="dna">
+          <dl>
+            <div><dt>Who</dt><dd data-l10n-th="องค์กรและผู้คนที่ต้องเข้าใจสถานที่ พฤติกรรม ความเสี่ยง โอกาส และความเปลี่ยนแปลงก่อนตัดสินใจ" data-l10n-en="Organizations and people who need to understand place, behavior, risk, opportunity, and change before deciding.">องค์กรและผู้คนที่ต้องเข้าใจสถานที่ พฤติกรรม ความเสี่ยง โอกาส และความเปลี่ยนแปลงก่อนตัดสินใจ</dd></div>
+            <div><dt>What</dt><dd data-l10n-th="เปลี่ยนข้อมูลเมืองที่กระจัดกระจายให้เป็น intelligence ที่ชัด อ้างอิงแหล่งที่มา และนำไปลงมือทำได้" data-l10n-en="Turn fragmented urban information into clear, source-grounded intelligence people can act on.">เปลี่ยนข้อมูลเมืองที่กระจัดกระจายให้เป็น intelligence ที่ชัด อ้างอิงแหล่งที่มา และนำไปลงมือทำได้</dd></div>
+            <div><dt>Which</dt><dd data-l10n-th="ต่างจาก dashboard หรือคำตอบ AI ที่แยกขาด เพราะเชื่อม evidence → decision → action → learning" data-l10n-en="Unlike disconnected dashboards or generic AI answers, connect evidence → decision → action → learning.">ต่างจาก dashboard หรือคำตอบ AI ที่แยกขาด เพราะเชื่อม evidence → decision → action → learning</dd></div>
+            <div><dt>How</dt><dd data-l10n-th="ใช้ข้อมูลเชิงพื้นที่ บริบทมนุษย์ หลักฐานที่มองเห็น ข้อจำกัด และการร่วมมือในวงที่เกี่ยวข้อง" data-l10n-en="Use spatial data, human context, visible evidence and limits, plus relevant-circle coordination.">ใช้ข้อมูลเชิงพื้นที่ บริบทมนุษย์ หลักฐานที่มองเห็น ข้อจำกัด และการร่วมมือในวงที่เกี่ยวข้อง</dd></div>
+          </dl>
+          <div class="dna-row" aria-label="Clear, Grounded, Energetic">
+            <div><strong>Clear</strong><span data-l10n-th="วัตถุชัด คำตรง ขั้นตอนถัดไปชัด" data-l10n-en="Concrete object, plain words, clear next step">วัตถุชัด คำตรง ขั้นตอนถัดไปชัด</span></div>
+            <div><strong>Grounded</strong><span data-l10n-th="แหล่งข้อมูล วันที่ ขอบเขต ข้อจำกัด" data-l10n-en="Source, date, boundary, limitation">แหล่งข้อมูล วันที่ ขอบเขต ข้อจำกัด</span></div>
+            <div><strong>Energetic</strong><span data-l10n-th="พลังมาจากความคืบหน้าที่คนทำต่อได้" data-l10n-en="Energy comes from progress people can continue">พลังมาจากความคืบหน้าที่คนทำต่อได้</span></div>
           </div>
         </div>
+        <div class="value-chain" data-specimen="brand-value-trace" data-source-section="3" data-brand-layer="voice">
+          <span data-l10n-th="วัตถุ" data-l10n-en="Object">วัตถุ</span><b aria-hidden="true">→</b>
+          <span data-l10n-th="หลักฐาน" data-l10n-en="Evidence">หลักฐาน</span><b aria-hidden="true">→</b>
+          <span data-l10n-th="ความหมาย" data-l10n-en="Meaning">ความหมาย</span><b aria-hidden="true">→</b>
+          <span data-l10n-th="การตัดสินใจ" data-l10n-en="Decision">การตัดสินใจ</span><b aria-hidden="true">→</b>
+          <span data-l10n-th="การลงมือทำ" data-l10n-en="Action">การลงมือทำ</span>
+        </div>
+      </section>
 
-        <article class="workbench reveal" id="workbench" data-mode="assisted" data-role="product" data-object-id="demo.citymeter.place-insight.v1" aria-labelledby="object-heading">
-          <div class="workbench-top">
-            <p class="small">
-              <span data-locale="th">Design-system fixture · ไม่ใช่ข้อมูลหรือพฤติกรรม CityMETER จริง</span>
-              <span data-locale="en" hidden>Design-system fixture · not live CityMETER data or behavior</span>
-            </p>
-            <span class="status">
-              <span data-locale="th">ยังไม่มีผลล่าสุด</span><span data-locale="en" hidden>No current result</span>
-            </span>
+      <section class="role-section section-shell promoted-scene" id="role-path" data-source-section="4 8" data-specimen="role-path">
+        <div class="section-intro">
+          <p class="eyebrow" data-l10n-th="ลองกับงานจริงภายใน 30 วินาที" data-l10n-en="Try it on real work in 30 seconds">ลองกับงานจริงภายใน 30 วินาที</p>
+          <h2 data-l10n-th="เลือกบทบาทของคุณ" data-l10n-en="Choose your role">เลือกบทบาทของคุณ</h2>
+          <p data-l10n-th="ทุกบทบาทใช้วัตถุเดียวกัน: การ์ดข้อมูลพื้นที่ของ CityMETER ที่ยังไม่มีผลปัจจุบัน ระบบต้องรักษาสถานะ แหล่งข้อมูล และข้อจำกัดให้ตรงกัน" data-l10n-en="Every role uses the same object: a CityMETER place-insight card with no current result. Status, source, and limitation must remain unchanged.">ทุกบทบาทใช้วัตถุเดียวกัน: การ์ดข้อมูลพื้นที่ของ CityMETER ที่ยังไม่มีผลปัจจุบัน ระบบต้องรักษาสถานะ แหล่งข้อมูล และข้อจำกัดให้ตรงกัน</p>
+        </div>
+        <div class="role-controls">
+          <label for="role-select" data-l10n-th="บทบาท" data-l10n-en="Role">บทบาท</label>
+          <select id="role-select">
+            <option value="design" data-th="Design" data-en="Design">Design</option>
+            <option value="development" data-th="Development" data-en="Development">Development</option>
+            <option value="product" data-th="Product" data-en="Product">Product</option>
+            <option value="marketing" data-th="Marketing" data-en="Marketing">Marketing</option>
+            <option value="review" data-th="Review / QA" data-en="Review / QA">Review / QA</option>
+          </select>
+          <div class="segmented" role="group" aria-label="Comparison view">
+            <button type="button" id="view-baseline" data-role-view="baseline" aria-pressed="false">Baseline</button>
+            <button type="button" id="view-assisted" data-role-view="assisted" aria-pressed="true">Assisted</button>
           </div>
-          <div class="workbench-grid">
-            <div class="truth-object" data-truth-invariant="true">
-              <div class="object-title">
-                <h3 id="object-heading">
-                  <span data-locale="th">การ์ดข้อมูลพื้นที่</span><span data-locale="en" hidden>Place-insight card</span>
-                </h3>
-                <span class="mono">demo.citymeter.place-insight.v1</span>
-              </div>
-              <dl class="truth-list">
-                <div>
-                  <dt><span data-locale="th">พื้นที่</span><span data-locale="en" hidden>Area</span></dt>
-                  <dd><span data-locale="th">พื้นที่ตัวอย่าง</span><span data-locale="en" hidden>Example area</span></dd>
-                </div>
-                <div>
-                  <dt><span data-locale="th">ผลล่าสุด</span><span data-locale="en" hidden>Current result</span></dt>
-                  <dd><span data-locale="th">ยังไม่มีผลล่าสุด</span><span data-locale="en" hidden>No current result</span></dd>
-                </div>
-                <div>
-                  <dt><span data-locale="th">แหล่งข้อมูล</span><span data-locale="en" hidden>Source</span></dt>
-                  <dd><span data-locale="th">ยังไม่ได้เชื่อมในงานสาธิตนี้</span><span data-locale="en" hidden>Not connected in this demonstration</span></dd>
-                </div>
-                <div>
-                  <dt><span data-locale="th">ขอบเขต</span><span data-locale="en" hidden>Boundary</span></dt>
-                  <dd><span data-locale="th">ห้ามใช้ตัวอย่างนี้เพื่อตัดสินใจจริง</span><span data-locale="en" hidden>Do not use this specimen for a real decision</span></dd>
-                </div>
-                <div>
-                  <dt><span data-locale="th">คำถามถัดไป</span><span data-locale="en" hidden>Next question</span></dt>
-                  <dd><span data-locale="th">ต้องมีหลักฐานอะไรจึงจะพร้อมให้ทีมถัดไปใช้?</span><span data-locale="en" hidden>What evidence is required before the next team can use it?</span></dd>
-                </div>
-              </dl>
+        </div>
+        <div class="role-workbench" id="role-workbench" data-source-section="8" data-specimen="cross-team-role-proof">
+          <div class="role-benefit">
+            <p class="eyebrow" id="role-job-label">Design · one job</p>
+            <h3 id="role-title">ทำให้สถานะ ขอบเขต และ recovery อ่านได้ในครั้งเดียว</h3>
+            <p id="role-outcome">ผู้ใช้เห็นว่าไม่มีผลปัจจุบันก่อนกดหรือสรุปอะไรต่อ</p>
+            <button type="button" class="button secondary" id="copy-role-recipe" data-l10n-th="คัดลอกสูตรใช้งาน" data-l10n-en="Copy recipe">คัดลอกสูตรใช้งาน</button>
+            <p class="copy-status" id="role-copy-status" role="status" aria-live="polite"></p>
+          </div>
+          <article class="decision-card assisted-view" id="role-proof-card" data-governed-object="demo.citymeter.place-insight.v1" data-state="empty">
+            <div class="decision-head">
+              <span class="product-label">CityMETER · Reference fixture</span>
+              <span class="status-badge pending" data-l10n-th="ยังไม่มีผลปัจจุบัน" data-l10n-en="No current result">ยังไม่มีผลปัจจุบัน</span>
             </div>
+            <h4 data-l10n-th="ข้อมูลพื้นที่สำหรับการตัดสินใจ" data-l10n-en="Place insight for a decision">ข้อมูลพื้นที่สำหรับการตัดสินใจ</h4>
+            <p class="decision-meaning" data-l10n-th="ยังใช้ตัดสินใจจริงไม่ได้ เพราะแหล่งข้อมูลยังไม่เชื่อมต่อใน reference fixture นี้" data-l10n-en="Not ready for a real decision because the source is not connected in this reference fixture.">ยังใช้ตัดสินใจจริงไม่ได้ เพราะแหล่งข้อมูลยังไม่เชื่อมต่อใน reference fixture นี้</p>
+            <dl class="truth-ledger">
+              <div><dt data-l10n-th="Object" data-l10n-en="Object">Object</dt><dd>demo.citymeter.place-insight.v1</dd></div>
+              <div><dt data-l10n-th="แหล่งข้อมูล" data-l10n-en="Source">แหล่งข้อมูล</dt><dd data-l10n-th="ไม่เชื่อมต่อใน fixture" data-l10n-en="Not connected in fixture">ไม่เชื่อมต่อใน fixture</dd></div>
+              <div><dt data-l10n-th="ข้อจำกัด" data-l10n-en="Limitation">ข้อจำกัด</dt><dd data-l10n-th="ห้ามใช้ตัดสินใจจริง" data-l10n-en="Do not use for a real decision">ห้ามใช้ตัดสินใจจริง</dd></div>
+            </dl>
+            <p class="decision-next" data-l10n-th="ขั้นต่อไป: ตรวจ Source Ledger หรือจบงานโดยไม่สร้างค่าขึ้นมา" data-l10n-en="Next: inspect the Source Ledger or finish without inventing a value.">ขั้นต่อไป: ตรวจ Source Ledger หรือจบงานโดยไม่สร้างค่าขึ้นมา</p>
+          </article>
+        </div>
+        <div class="role-quiet" data-quiet-field aria-hidden="true"></div>
+      </section>
 
-            <div class="role-proof">
-              <div class="proof-panel" data-role-panel="product" data-mode-panel="baseline" hidden>
-                <p class="eyebrow">Product · Baseline</p>
-                <p><span data-locale="th">Illustrative risk: หากเกณฑ์ “พร้อมใช้” อยู่ในโน้ตแยก ทีมปลายทางอาจต้องตีความสถานะและข้อจำกัดใหม่ ต้องเก็บ baseline จริงใน pilot</span><span data-locale="en" hidden>Illustrative risk: if “ready” lives in separate notes, downstream teams may reinterpret status and limits. The pilot must observe the real baseline.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">อะไรคือหลักฐานขั้นต่ำของคำว่า complete</span><span data-locale="en" hidden>What evidence makes “complete” true</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">เขียน truth boundary ของ decision flow นี้หนึ่งชุด</span><span data-locale="en" hidden>Write one truth boundary for this decision flow</span></strong></div>
-              </div>
-              <div class="proof-panel" data-role-panel="product" data-mode-panel="assisted">
-                <p class="eyebrow">Product · v0.8.6</p>
-                <p><span data-locale="th">กลไกที่เสนอให้สถานะ แหล่งข้อมูล ขอบเขต และคำถามถัดไปเดินทางกับวัตถุเดียวกัน เพื่อให้ pilot ตรวจว่าทีมถัดไปเดาน้อยลงหรือไม่</span><span data-locale="en" hidden>The proposed mechanism carries status, source, boundary, and next question with one object so the pilot can test whether the next team guesses less.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">นิยามความพร้อมของ decision flow</span><span data-locale="en" hidden>Define readiness for the decision flow</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ยืนยัน source · period · area coverage ที่ต้องมี</span><span data-locale="en" hidden>Confirm required source · period · area coverage</span></strong></div>
-              </div>
-
-              <div class="proof-panel" data-role-panel="design" data-mode-panel="baseline" hidden>
-                <p class="eyebrow">Design · Baseline</p>
-                <p><span data-locale="th">Illustrative risk: หากแต่ละหน้าจอแก้สถานะว่างใหม่ ลำดับข้อมูลและทางไปต่ออาจเปลี่ยนตามคนออกแบบ ต้องสังเกต baseline จริงใน pilot</span><span data-locale="en" hidden>Illustrative risk: if each screen redesigns the empty state, hierarchy and recovery may vary. The pilot must observe the real baseline.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">น้ำหนักข้อมูลและบริบทของงานจริง</span><span data-locale="en" hidden>Information weight and task context</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ระบุ empty, restricted และ recovery state ของ flow</span><span data-locale="en" hidden>Identify empty, restricted, and recovery states</span></strong></div>
-              </div>
-              <div class="proof-panel" data-role-panel="design" data-mode-panel="assisted" hidden>
-                <p class="eyebrow">Design · v0.8.6</p>
-                <p><span data-locale="th">กลไกที่เสนอให้ลำดับความหมาย สถานะ และทางไปต่ออ้างสัญญาเดียวกัน โดยยังให้นักออกแบบตัดสิน composition ตามบริบท</span><span data-locale="en" hidden>The proposed mechanism gives hierarchy, state, and recovery one contract while designers still compose for context.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">composition ที่เหมาะกับผู้ใช้และอุปกรณ์</span><span data-locale="en" hidden>Composition for the user and device</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ใช้ token และ state contract กับหนึ่งการ์ดจริง</span><span data-locale="en" hidden>Apply tokens and the state contract to one real card</span></strong></div>
-              </div>
-
-              <div class="proof-panel" data-role-panel="development" data-mode-panel="baseline" hidden>
-                <p class="eyebrow">Development · Baseline</p>
-                <p><span data-locale="th">Illustrative risk: หากแต่ละหน้าจออนุมานสถานะจากข้อมูลที่ขาด ข้อความ สี และ recovery อาจไม่ตรงกัน ต้องตรวจ baseline จาก code จริง</span><span data-locale="en" hidden>Illustrative risk: if screens infer state from missing data, copy, color, and recovery may diverge. The real code baseline must be inspected.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">โครงสร้างข้อมูลและจุดเชื่อมกับระบบจริง</span><span data-locale="en" hidden>Data model and production integration</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ทำรายการ state ที่ flow เข้าถึงได้จริง</span><span data-locale="en" hidden>List every state the flow can actually enter</span></strong></div>
-              </div>
-              <div class="proof-panel" data-role-panel="development" data-mode-panel="assisted" hidden>
-                <p class="eyebrow">Development · v0.8.6</p>
-                <p><span data-locale="th">กลไกที่เสนอให้ state enum, semantic token, recovery และ test expectation อ้างสัญญาเดียวกัน แล้ววัดใน pilot ว่าลดการตีความซ้ำได้หรือไม่</span><span data-locale="en" hidden>The proposed mechanism gives state enum, semantic token, recovery, and tests one contract; the pilot measures whether reinterpretation falls.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">implementation ที่พอดีกับ codebase</span><span data-locale="en" hidden>Implementation that fits the codebase</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ผูก empty state กับ token และ automated check</span><span data-locale="en" hidden>Bind the empty state to tokens and an automated check</span></strong></div>
-              </div>
-
-              <div class="proof-panel" data-role-panel="marketing" data-mode-panel="baseline" hidden>
-                <p class="eyebrow">Marketing · Baseline</p>
-                <p><span data-locale="th">Illustrative risk: หากข้อความหยิบเฉพาะประโยชน์ แต่สถานะและข้อจำกัดไม่ตามไปด้วย ผู้รับอาจเข้าใจเกินหลักฐาน ต้องเก็บ baseline จริง</span><span data-locale="en" hidden>Illustrative risk: if communication carries the benefit without status or limits, recipients may infer too much. The pilot must observe the baseline.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">ถ้อยคำและช่องทางที่เหมาะกับผู้รับ</span><span data-locale="en" hidden>Message and channel for the recipient</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">จับคู่ claim ทุกข้อกับ status และ limitation</span><span data-locale="en" hidden>Pair every claim with status and limitation</span></strong></div>
-              </div>
-              <div class="proof-panel" data-role-panel="marketing" data-mode-panel="assisted" hidden>
-                <p class="eyebrow">Marketing · v0.8.6</p>
-                <p><span data-locale="th">กลไกที่เสนอให้ประโยชน์ สถานะ และข้อจำกัดอ้าง fixture เดียวกัน แล้วใช้ pilot ตรวจว่าข้อความเฉพาะเจาะจงขึ้นโดยไม่เกินหลักฐานหรือไม่</span><span data-locale="en" hidden>The proposed mechanism ties benefit, status, and limitation to one fixture; the pilot tests whether messaging becomes specific without outrunning evidence.</span></p>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">งานที่ยังต้องตัดสิน</span><span data-locale="en" hidden>Judgment still required</span></span><strong><span data-locale="th">มุมเล่าเรื่องที่ผู้รับเข้าใจและใช้ต่อได้</span><span data-locale="en" hidden>A story the recipient can understand and use</span></strong></div>
-                <div class="proof-line"><span class="proof-label mono"><span data-locale="th">ก้าวแรก</span><span data-locale="en" hidden>First action</span></span><strong><span data-locale="th">ทดลองหนึ่งข้อความจาก truth contract เดียวกัน</span><span data-locale="en" hidden>Test one message from the same truth contract</span></strong></div>
-              </div>
-
-              <button class="secondary-action" type="button" id="proof-action" aria-expanded="false" aria-controls="proof-checklist">
-                <span data-state-label="closed"><span data-locale="th">ดูสิ่งที่ต้องตรวจต่อ</span><span data-locale="en" hidden>Show the next checks</span></span>
-                <span data-state-label="open" hidden><span data-locale="th">ซ่อนรายการตรวจ</span><span data-locale="en" hidden>Hide the checks</span></span>
-              </button>
-              <div class="proof-checklist" id="proof-checklist" hidden>
-                <strong><span data-locale="th">หลักฐานก่อนเปลี่ยนสถานะเป็นพร้อมใช้</span><span data-locale="en" hidden>Evidence before changing the state to ready</span></strong>
-                <ul>
-                  <li><span data-locale="th">แหล่งข้อมูลและช่วงเวลาที่ตรวจสอบได้</span><span data-locale="en" hidden>Verifiable source and period</span></li>
-                  <li><span data-locale="th">ขอบเขตพื้นที่และกรณีที่ข้อมูลไม่ครอบคลุม</span><span data-locale="en" hidden>Area coverage and gaps</span></li>
-                  <li><span data-locale="th">เจ้าของเกณฑ์ตัดสินความพร้อม</span><span data-locale="en" hidden>Owner of the readiness rule</span></li>
-                  <li><span data-locale="th">accessibility และ recovery check ของสถานะนี้</span><span data-locale="en" hidden>Accessibility and recovery checks for this state</span></li>
-                </ul>
-              </div>
-            </div>
+      <section class="align-section section-shell" id="align" data-source-section="6 8" data-specimen="cross-team-handoff">
+        <div class="section-intro">
+          <p class="eyebrow" data-l10n-th="ความจริงต้องไม่เปลี่ยนระหว่างทีม" data-l10n-en="Truth must survive every handoff">ความจริงต้องไม่เปลี่ยนระหว่างทีม</p>
+          <h2 data-l10n-th="วัตถุเดียวกัน ผ่านทุกบทบาท" data-l10n-en="One object across every role">วัตถุเดียวกัน ผ่านทุกบทบาท</h2>
+        </div>
+        <div class="handoff-layout">
+          <div class="handoff-tabs" role="tablist" aria-label="Cross-team stages">
+            <button role="tab" aria-selected="true" aria-controls="handoff-panel" data-handoff="marketing">Marketing</button>
+            <button role="tab" aria-selected="false" aria-controls="handoff-panel" data-handoff="product" tabindex="-1">Product</button>
+            <button role="tab" aria-selected="false" aria-controls="handoff-panel" data-handoff="design" tabindex="-1">Design</button>
+            <button role="tab" aria-selected="false" aria-controls="handoff-panel" data-handoff="development" tabindex="-1">Development</button>
+            <button role="tab" aria-selected="false" aria-controls="handoff-panel" data-handoff="qa" tabindex="-1">Evidence / QA</button>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section align-section" id="align" aria-labelledby="align-title">
-      <div class="shell">
-        <div class="section-head reveal">
-          <span class="signature">Ground</span>
-          <h2 id="align-title">
-            <span data-locale="th">ส่งงานต่อได้ โดยความหมายไม่หลุดระหว่างทีม</span>
-            <span data-locale="en" hidden>Hand work forward without losing meaning.</span>
-          </h2>
-          <p class="lede">
-            <span data-locale="th">ทุกบทบาทรับวัตถุเดียวกัน ไม่ใช่สไลด์คนละชุด สิ่งที่เปลี่ยนคือหน้าที่ของทีม สิ่งที่ห้ามเปลี่ยนคือสถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัด</span>
-            <span data-locale="en" hidden>Every role receives the same object, not a separate interpretation. Responsibility changes; status, source, boundary, and limitation do not.</span>
-          </p>
-        </div>
-
-        <div class="handoff-object reveal">
-          <span class="mono">demo.citymeter.place-insight.v1</span>
-          <span><strong><span data-locale="th">สถานะ:</span><span data-locale="en" hidden>Status:</span></strong> <span data-locale="th">ยังไม่มีผลล่าสุด</span><span data-locale="en" hidden>No current result</span></span>
-          <span><strong><span data-locale="th">แหล่งข้อมูล:</span><span data-locale="en" hidden>Source:</span></strong> <span data-locale="th">ยังไม่เชื่อม</span><span data-locale="en" hidden>Not connected</span></span>
-          <span><strong><span data-locale="th">ข้อจำกัด:</span><span data-locale="en" hidden>Limitation:</span></strong> <span data-locale="th">ห้ามใช้ตัดสินใจจริง</span><span data-locale="en" hidden>Not for real decisions</span></span>
-          <span><strong><span data-locale="th">authoritative state:</span><span data-locale="en" hidden>Authoritative state:</span></strong> <span data-locale="th">สาธิตภายใน</span><span data-locale="en" hidden>Internal fixture</span></span>
-        </div>
-
-        <div class="handoff-flow reveal-group" aria-label="การส่งต่องานข้ามบทบาท" data-aria-th="การส่งต่องานข้ามบทบาท" data-aria-en="Cross-role handoff">
-          <article class="handoff-step">
-            <span class="step-index mono">01 · Marketing</span>
-            <h3><span data-locale="th">ตั้ง claim จาก fixture</span><span data-locale="en" hidden>Draft from the fixture</span></h3>
-            <ul>
-              <li><span data-locale="th">benefit คู่กับ status และ limitation</span><span data-locale="en" hidden>Benefit paired with status and limitation</span></li>
-              <li><span data-locale="th">คำถามของผู้รับ</span><span data-locale="en" hidden>Recipient question</span></li>
-            </ul>
-          </article>
-          <article class="handoff-step">
-            <span class="step-index mono">02 · Product</span>
-            <h3><span data-locale="th">ล็อกเจตนา</span><span data-locale="en" hidden>Lock intent</span></h3>
-            <ul>
-              <li><span data-locale="th">คำถามที่ผู้ใช้ต้องตัดสิน</span><span data-locale="en" hidden>User decision question</span></li>
-              <li><span data-locale="th">เกณฑ์พร้อมใช้และขอบเขตความจริง</span><span data-locale="en" hidden>Readiness and truth boundary</span></li>
-            </ul>
-          </article>
-          <article class="handoff-step">
-            <span class="step-index mono">03 · Design</span>
-            <h3><span data-locale="th">ทำให้สถานะอ่านออก</span><span data-locale="en" hidden>Make state legible</span></h3>
-            <ul>
-              <li><span data-locale="th">ลำดับข้อมูลและทางไปต่อ</span><span data-locale="en" hidden>Hierarchy and next action</span></li>
-              <li><span data-locale="th">theme, locale, focus และ recovery</span><span data-locale="en" hidden>Theme, locale, focus, and recovery</span></li>
-            </ul>
-          </article>
-          <article class="handoff-step">
-            <span class="step-index mono">04 · Development</span>
-            <h3><span data-locale="th">ทำให้กติกาตรวจได้</span><span data-locale="en" hidden>Make rules testable</span></h3>
-            <ul>
-              <li><span data-locale="th">state enum และ semantic token</span><span data-locale="en" hidden>State enum and semantic token</span></li>
-              <li><span data-locale="th">test expectation และ fallback</span><span data-locale="en" hidden>Test expectation and fallback</span></li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="handoff-release" aria-label="ด่านหลักฐาน QA และผู้รับงาน" data-aria-th="ด่านหลักฐาน QA และผู้รับงาน" data-aria-en="Evidence, QA, and recipient gates">
-          <div class="release-stage"><strong>Data / Evidence</strong><span class="small"><span data-locale="th">ตรวจ source · period · area coverage</span><span data-locale="en" hidden>Check source · period · area coverage</span></span></div>
-          <div class="release-stage"><strong>QA</strong><span class="small"><span data-locale="th">ตรวจ state · accessibility · parity</span><span data-locale="en" hidden>Check state · accessibility · parity</span></span></div>
-          <div class="release-stage"><strong><span data-locale="th">ผู้รับงาน</span><span data-locale="en" hidden>Recipient</span></strong><span class="small"><span data-locale="th">เข้าใจวัตถุ ข้อจำกัด และ next action</span><span data-locale="en" hidden>Understand object, limit, and next action</span></span></div>
-        </div>
-
-        <details class="evidence-gate reveal" id="evidence-gate">
-          <summary id="evidence-gate-summary"><span data-locale="th">ถ้าหลักฐานหาย งานจะหยุดตรงไหน?</span><span data-locale="en" hidden>Where does work stop when evidence is missing?</span></summary>
-          <div class="details-body">
-            <p><strong><span data-locale="th">เจ้าของ:</span><span data-locale="en" hidden>Owner:</span></strong> Product ต้องยืนยัน truth boundary. <strong><span data-locale="th">หลักฐานที่ขาด:</span><span data-locale="en" hidden>Blocking evidence:</span></strong> source, period และ area coverage ที่ตรวจสอบได้. Development และ QA ต้องคงสถานะ “ยังไม่มีผลล่าสุด”; Design ต้องแสดง recovery; Marketing ห้ามใช้คำที่สื่อว่ามีผลแล้ว.</p>
+          <div class="handoff-panel" id="handoff-panel" role="tabpanel" tabindex="0">
+            <p class="eyebrow" id="handoff-role">Marketing</p>
+            <h3 id="handoff-headline">พูดประโยชน์โดยไม่ทำให้สถานะดูพร้อมกว่าความจริง</h3>
+            <p id="handoff-copy">“ข้อมูลพื้นที่นี้ยังไม่มีผลปัจจุบัน ตรวจแหล่งข้อมูลก่อนนำไปใช้ตัดสินใจ”</p>
+            <dl class="parity-strip">
+              <div><dt>Object</dt><dd>demo.citymeter.place-insight.v1</dd></div>
+              <div><dt>Status</dt><dd>empty / source-limited</dd></div>
+              <div><dt>Boundary</dt><dd>reference fixture</dd></div>
+              <div><dt>Allowed use</dt><dd>design-system QA only</dd></div>
+            </dl>
           </div>
-        </details>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <section class="section culture-section" id="culture" aria-labelledby="culture-title">
-      <div class="shell culture-grid">
-        <figure class="culture-photo reveal">
-          <img src="assets/images/team-presenting.jpeg" alt="บุคคลนั่งข้างคอมพิวเตอร์และยกมือประกอบการพูด" width="466" height="573" data-alt-th="บุคคลนั่งข้างคอมพิวเตอร์และยกมือประกอบการพูด" data-alt-en="A person seated beside a laptop, gesturing while speaking">
-          <figcaption class="small"><span data-locale="th">ภาพที่ผู้ใช้ส่งมา · ความสัมพันธ์ บทบาท และวันที่ไม่ได้รับการยืนยัน</span><span data-locale="en" hidden>User-supplied photo · affiliation, role, and date are unverified</span></figcaption>
+      <section class="culture-section section-shell" id="culture" data-source-section="3 5">
+        <figure>
+          <img src="assets/images/team-presenting.jpg" loading="lazy" width="466" height="573" alt="A person seated beside a laptop, gesturing while speaking">
+          <figcaption data-l10n-th="ภาพบุคคลกำลังพูดข้างแล็ปท็อป · บริบทและวันที่ไม่ได้ระบุ · ใช้เป็นหลักฐานบรรยากาศของทีมเท่านั้น" data-l10n-en="A person speaking beside a laptop · context and date not supplied · used only as team-culture evidence">ภาพบุคคลกำลังพูดข้างแล็ปท็อป · บริบทและวันที่ไม่ได้ระบุ · ใช้เป็นหลักฐานบรรยากาศของทีมเท่านั้น</figcaption>
         </figure>
-        <div class="culture-copy reveal">
-          <span class="signature">Cultivate</span>
-          <h2 id="culture-title"><span data-locale="th">ช่วยทีมถัดไปได้ งานจึงเดินต่อ</span><span data-locale="en" hidden>Work moves when the next team can use it.</span></h2>
-          <p class="lede"><span data-locale="th">เอกสาร onboarding ที่ส่งมาเน้นการเริ่มจากผู้ใช้จริง ส่งงานเร็ว เรียนรู้ไว และทำงานข้ามทีม การใช้ design system อย่างกว้างขวางจึงควรลดการตีความซ้ำ พร้อมรักษาพื้นที่ให้แต่ละบทบาทใช้วิจารณญาณกับงานจริง</span><span data-locale="en" hidden>The supplied onboarding material emphasizes real users, early delivery, fast learning, and cross-team work. Broad design-system adoption should reduce repeated interpretation while preserving each role’s judgment in context.</span></p>
-          <p class="protected-context">Visualize City, Shape Tomorrow.</p>
-          <p class="small"><span data-locale="th">North Star จาก v0.8.6 · แสดงเป็นบริบทองค์กร ไม่ใช่คำรับรองผลลัพธ์ของตัวอย่างนี้</span><span data-locale="en" hidden>North Star from v0.8.6 · corporate context, not an outcome claim for this specimen</span></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section approval-section" id="approve" aria-labelledby="approve-title">
-      <div class="shell approval-grid">
-        <div class="approval-copy reveal">
-          <p class="eyebrow"><span data-locale="th">ข้อเสนอเพื่อการตัดสินใจ</span><span data-locale="en" hidden>Decision proposal</span></p>
-          <h2 class="en-display" id="approve-title">Measure What Matters. Make It Actionable.</h2>
-          <p class="lede"><span data-locale="th">Gate A: อนุมัติทิศทางให้ v0.8.6 เป็น candidate ภาษากลาง และอนุมัติ pilot หนึ่ง CityMETER decision flow เป็นเวลา 2 สัปดาห์แบบมีเงื่อนไข โดยเริ่มเมื่อ Day-0 gates ครบ ก่อน Gate B จะตัดสิน expand, revise หรือ stop</span><span data-locale="en" hidden>Gate A: approve v0.8.6 as the candidate shared language and conditionally authorize a two-week pilot on one CityMETER decision flow once the Day-0 gates are complete. Gate B then decides expand, revise, or stop.</span></p>
-          <button class="primary-action" type="button" id="approval-action" aria-expanded="false" aria-controls="approval-panel">
-            <span data-locale="th">พิจารณาอนุมัติทิศทาง + pilot 2 สัปดาห์</span>
-            <span data-locale="en" hidden>Consider the direction + a two-week pilot</span>
-          </button>
-        </div>
-        <div class="approval-panel reveal" id="approval-panel" tabindex="-1" hidden>
-          <h3><span data-locale="th">Decision requested</span><span data-locale="en" hidden>Decision requested</span></h3>
-          <p class="decision-text"><span data-locale="th">อนุมัติ Gate A: ให้ v0.8.6 เป็น candidate shared language สำหรับ Product, Design, Development และ Marketing และอนุมัติ pilot CityMETER หนึ่ง decision flow เป็นเวลา 2 สัปดาห์แบบมีเงื่อนไข โดยเริ่มเมื่อ Day-0 gates ครบ; ยังไม่ใช่ broad rollout</span><span data-locale="en" hidden>Approve Gate A: use v0.8.6 as the candidate shared language for Product, Design, Development, and Marketing, and conditionally authorize a two-week CityMETER pilot once the Day-0 gates are complete; this is not broad rollout.</span></p>
-          <ol>
-            <li><span data-locale="th">Product เลือก decision flow และนิยาม truth boundary</span><span data-locale="en" hidden>Product selects the decision flow and defines its truth boundary.</span></li>
-            <li><span data-locale="th">Design และ Development ใช้ token, state และ accessibility contract กับชิ้นงานเดียวกัน</span><span data-locale="en" hidden>Design and Development apply tokens, states, and the accessibility contract to the same work.</span></li>
-            <li><span data-locale="th">Marketing ทดลองหนึ่งข้อความจาก claim/status/limitation เดียวกัน</span><span data-locale="en" hidden>Marketing tests one message from the same claim/status/limitation contract.</span></li>
-            <li><span data-locale="th">Gate B ทบทวนการส่งต่องาน คุณภาพงาน เวลาที่ใช้ และ guardrail หลังครบ 2 สัปดาห์ แล้วเลือก expand, revise หรือ stop โดยไม่ตั้ง baseline หรือ target ที่ไม่มีข้อมูล</span><span data-locale="en" hidden>Gate B reviews handoff quality, task quality, time, and guardrails, then chooses expand, revise, or stop without inventing baselines or targets.</span></li>
+        <div>
+          <p class="eyebrow" data-l10n-th="วัฒนธรรมที่เกิดผ่านงาน" data-l10n-en="Culture expressed through work">วัฒนธรรมที่เกิดผ่านงาน</p>
+          <h2 data-l10n-th="เริ่มจากผู้ใช้จริง ลองงานจริง แล้วช่วยให้ทีมถัดไปทำต่อ" data-l10n-en="Start with the real user, try real work, then help the next role continue">เริ่มจากผู้ใช้จริง ลองงานจริง แล้วช่วยให้ทีมถัดไปทำต่อ</h2>
+          <ol class="culture-flow">
+            <li data-l10n-th="เห็นวัตถุและข้อจำกัดจริง" data-l10n-en="See the real object and limit">เห็นวัตถุและข้อจำกัดจริง</li>
+            <li data-l10n-th="ปรับชิ้นงาน ไม่แต่งข้อมูล" data-l10n-en="Improve the artifact without inventing data">ปรับชิ้นงาน ไม่แต่งข้อมูล</li>
+            <li data-l10n-th="ส่งต่อความหมายที่ทีมถัดไปตรวจได้" data-l10n-en="Hand off meaning the next role can verify">ส่งต่อความหมายที่ทีมถัดไปตรวจได้</li>
+            <li data-l10n-th="เรียนรู้และปรับรอบถัดไป" data-l10n-en="Learn and improve the next loop">เรียนรู้และปรับรอบถัดไป</li>
           </ol>
-          <p class="local-effect-note"><span data-locale="th">ปุ่มนี้เปิดข้อเสนอในหน้าเท่านั้น เว็บไซต์ไม่บันทึกหรือส่งผลการอนุมัติ</span><span data-locale="en" hidden>This button only reveals the proposal. The site does not record or transmit approval.</span></p>
-          <div class="owner-gate">
-            <strong><span data-locale="th">เงื่อนไขก่อนเริ่ม pilot</span><span data-locale="en" hidden>Before the pilot starts</span></strong>
-            <span><span data-locale="th">ต้องระบุ executive sponsor, pilot owner, Data/Evidence owner, QA owner และ asset approver; อนุมัติ organization role-registry owner/version; และกำหนดวันเริ่มกับวัน Gate B ที่ Gate A</span><span data-locale="en" hidden>Gate A must name the executive sponsor, pilot owner, Data/Evidence owner, QA owner, and asset approver; approve the organization role-registry owner/version; and set the pilot start and Gate B dates.</span></span>
-          </div>
-          <div class="static-takeaway">
-            <strong><span data-locale="th">Recipe ที่นำไปใช้ได้ใน 2 นาที</span><span data-locale="en" hidden>Two-minute takeaway</span></strong>
-            <span><span data-locale="th">ก่อนส่งต่องาน ให้แนบ object/version · status · source · boundary · limitation · next action ไปกับชิ้นงานเดียวกัน</span><span data-locale="en" hidden>Before handoff, carry object/version · status · source · boundary · limitation · next action with the same work.</span></span>
-            <span class="small"><span data-locale="th">ข้อจำกัด release: fixture ไม่ใช่ live data · machine validation pending · media/identity records ยังไม่ครบ · เผยแพร่ source ใน public repository ตามคำสั่งผู้ใช้ แต่ยังไม่ใช่ adoption หรือ production release</span><span data-locale="en" hidden>Release limits: no live data · machine validation pending · media/identity records incomplete · source is published to the user-designated public repository, but this is not an adoption or production release</span></span>
-          </div>
+        </div>
+      </section>
+
+      <section class="closing-scene promoted-scene" id="takeaway" data-source-section="3 8">
+        <div>
+          <p class="eyebrow" data-l10n-th="นำไปใช้กับงานถัดไป" data-l10n-en="Use it in the next task">นำไปใช้กับงานถัดไป</p>
+          <h2 id="active-takeaway">Object → state → evidence → limitation → one next action.</h2>
+          <p data-l10n-th="เปิดกฎที่ตรงกับงาน คัดลอกสูตร แล้วตรวจด้วย specimen ก่อนส่งต่อ" data-l10n-en="Open the rule for the task, copy the recipe, and verify it with a specimen before handoff.">เปิดกฎที่ตรงกับงาน คัดลอกสูตร แล้วตรวจด้วย specimen ก่อนส่งต่อ</p>
+          <button class="button inverse" type="button" data-route-mode="reference" data-l10n-th="เปิดคู่มือที่ใช้ทำงานได้" data-l10n-en="Open the working reference">เปิดคู่มือที่ใช้ทำงานได้</button>
+        </div>
+        <div class="closing-quiet" data-quiet-field aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <div data-mode-panel="reference" id="reference-mode">
+      <section class="reference-hero" id="reference">
+        <div>
+          <p class="eyebrow">Landometer DS · Working reference</p>
+          <h1 data-l10n-th="หากฎ สูตร หรือไฟล์ที่ใช้กับงานนี้" data-l10n-en="Find the rule, recipe, or file for this task">หากฎ สูตร หรือไฟล์ที่ใช้กับงานนี้</h1>
+          <p data-l10n-th="ค้นด้วย Rule ID, token, component, product, state หรือสิ่งที่ต้องทำ แล้วเปิด deep link เดิมกลับมาได้" data-l10n-en="Search by rule ID, token, component, product, state, or task, then return through the same deep link.">ค้นด้วย Rule ID, token, component, product, state หรือสิ่งที่ต้องทำ แล้วเปิด deep link เดิมกลับมาได้</p>
+        </div>
+        <div class="reference-status">
+          <span class="status-badge warning" data-l10n-th="Machine validation: pending" data-l10n-en="Machine validation: pending">Machine validation: pending</span>
+          <p data-l10n-th="อ้างอิงเชิงงานจาก normative master v0.8.6; generated schema/preflight package ยังไม่เสร็จ" data-l10n-en="Working reference from the v0.8.6 normative master; the generated schema/preflight package is not complete.">อ้างอิงเชิงงานจาก normative master v0.8.6; generated schema/preflight package ยังไม่เสร็จ</p>
+        </div>
+      </section>
+
+      <div class="reference-layout">
+        <aside class="reference-sidebar">
+          <label for="reference-search" data-l10n-th="ค้นหาใน Design System" data-l10n-en="Search the design system">ค้นหาใน Design System</label>
+          <input id="reference-search" type="search" autocomplete="off" placeholder="เช่น DATA-01, empty state, chart" data-l10n-placeholder-th="เช่น DATA-01, empty state, chart" data-l10n-placeholder-en="e.g. DATA-01, empty state, chart" aria-describedby="search-help">
+          <p id="search-help" class="small" data-l10n-th="ผลลัพธ์เปิด section ที่ตรงและบันทึก deep link" data-l10n-en="Results open the exact section and preserve a deep link.">ผลลัพธ์เปิด section ที่ตรงและบันทึก deep link</p>
+          <p class="search-count" id="search-count" role="status" aria-live="polite"></p>
+          <div id="search-results" class="search-results" aria-label="Search results"></div>
+          <nav class="reference-nav" aria-label="Reference sections">
+            <a href="#ref-build" data-ref-link="ref-build">Build Card</a>
+            <a href="#ref-core" data-ref-link="ref-core">Core Contract</a>
+            <a href="#ref-brand" data-ref-link="ref-brand">Brand</a>
+            <a href="#ref-flow" data-ref-link="ref-flow">Flow</a>
+            <a href="#ref-visual" data-ref-link="ref-visual">Visual</a>
+            <a href="#ref-components" data-ref-link="ref-components">Components</a>
+            <a href="#ref-data" data-ref-link="ref-data">Data / Map</a>
+            <a href="#ref-profiles" data-ref-link="ref-profiles">Profiles</a>
+            <a href="#ref-qa" data-ref-link="ref-qa">QA</a>
+            <a href="#ref-changes" data-ref-link="ref-changes">Changes</a>
+          </nav>
+        </aside>
+
+        <div class="reference-content">
+          <section class="reference-section" id="ref-why" data-source-section="0" data-search-item data-search-keywords="why architecture build card core profile trigger pack">
+            <div class="rule-head"><p class="rule-id">§0</p><button type="button" class="copy-link" data-copy-link="ref-why">Copy link</button></div>
+            <h2 data-l10n-th="ทำไม v0.8.6 จึงเปลี่ยนโครงสร้าง" data-l10n-en="Why v0.8.6 changed the architecture">ทำไม v0.8.6 จึงเปลี่ยนโครงสร้าง</h2>
+            <p data-l10n-th="งานเดิมนำทุกกฎออกมาเป็น UI จนเกิด 18 ตัวเลือกใน viewport แรก v0.8.6 จึงบังคับลำดับ Build Card → Core → หนึ่ง Profile → เฉพาะ Trigger Pack ที่เปิดใช้ → Token → QA" data-l10n-en="The failed page turned every rule into visible UI, creating 18 first-viewport choices. v0.8.6 now loads Build Card → Core → one Profile → enabled Trigger Packs → Tokens → QA.">งานเดิมนำทุกกฎออกมาเป็น UI จนเกิด 18 ตัวเลือกใน viewport แรก v0.8.6 จึงบังคับลำดับ Build Card → Core → หนึ่ง Profile → เฉพาะ Trigger Pack ที่เปิดใช้ → Token → QA</p>
+            <pre><code>Build Card
+→ Core Contract + Core Guidance
+→ exactly one Profile
+→ triggered packs only
+→ canonical tokens
+→ applicable QA</code></pre>
+          </section>
+
+          <section class="reference-section build-card-section" id="ref-build" data-source-section="1" data-search-item data-search-keywords="BUILD-01 build card profile delivery capability map dataviz theme language">
+            <div class="rule-head"><p class="rule-id">BUILD-01 · §1</p><button type="button" class="copy-link" data-copy-link="ref-build">Copy link</button></div>
+            <h2 data-l10n-th="Build Card ก่อนเริ่มออกแบบหรือเขียนโค้ด" data-l10n-en="Complete a Build Card before design or code">Build Card ก่อนเริ่มออกแบบหรือเขียนโค้ด</h2>
+            <p data-l10n-th="กรอกงาน วัตถุ AHA action profile delivery และ capability ให้ครบ เครื่องมือนี้สร้าง starter YAML และจับเงื่อนไขที่ขัดกัน แต่ยังไม่ใช่ schema validator" data-l10n-en="Complete the job, object, AHA, action, profile, delivery, and capabilities. This tool produces starter YAML and catches common conflicts; it is not the pending schema validator.">กรอกงาน วัตถุ AHA action profile delivery และ capability ให้ครบ เครื่องมือนี้สร้าง starter YAML และจับเงื่อนไขที่ขัดกัน แต่ยังไม่ใช่ schema validator</p>
+            <form id="build-card-form" class="build-card-form">
+              <div class="field"><label for="bc-name" data-l10n-th="ชื่อ artifact" data-l10n-en="Artifact name">ชื่อ artifact</label><input id="bc-name" required value="CityMETER place insight"></div>
+              <div class="field"><label for="bc-product">Product</label><select id="bc-product"><option value="landometer">Landometer</option><option value="citymeter">CityMETER</option><option value="citywiki">CityWiki</option><option value="citychat">CityChat</option><option value="ijji">ijji</option></select></div>
+              <div class="field"><label for="bc-profile">Profile</label><select id="bc-profile"><option>designsystem.adoption</option><option>brand.public</option><option>citymeter.dataset</option><option>citywiki.public</option><option>product.app</option><option>citychat.app</option><option>ijji.app</option><option>data.explainer</option><option>campaign.public</option><option>social.static</option><option>presentation</option></select></div>
+              <div class="field"><label for="bc-delivery">Delivery</label><select id="bc-delivery"><option>deployable_public</option><option>portable_single_file</option><option>internal_demo</option><option>static_export</option></select></div>
+              <div class="field"><label for="bc-page-kind" data-l10n-th="Page kind + source ref" data-l10n-en="Page kind + source ref">Page kind + source ref</label><input id="bc-page-kind" required value="working_reference · REFERENCE-01"></div>
+              <div class="field"><label for="bc-job" data-l10n-th="หนึ่งงานของผู้ใช้" data-l10n-en="One user job">หนึ่งงานของผู้ใช้</label><input id="bc-job" required value="Find and apply the exact rule or recipe"></div>
+              <div class="field"><label for="bc-aha">First AHA</label><input id="bc-aha" required value="A usable role recipe appears within 30 seconds"></div>
+              <div class="field"><label for="bc-action" data-l10n-th="หนึ่ง action หลัก" data-l10n-en="One primary action">หนึ่ง action หลัก</label><input id="bc-action" required value="Start with my role"></div>
+              <fieldset class="capability-fieldset"><legend>Capabilities</legend>
+                <label><input type="checkbox" name="capability" value="analyticalEvidence"> analyticalEvidence</label>
+                <label><input type="checkbox" name="capability" value="dataVisualization"> dataVisualization</label>
+                <label><input type="checkbox" name="capability" value="map"> map</label>
+                <label><input type="checkbox" name="capability" value="search" checked> search</label>
+                <label><input type="checkbox" name="capability" value="fullLivingReference" checked> fullLivingReference</label>
+                <label><input type="checkbox" name="capability" value="share"> share</label>
+                <label><input type="checkbox" name="capability" value="persistence"> persistence</label>
+                <label><input type="checkbox" name="capability" value="externalSideEffect"> externalSideEffect</label>
+                <label><input type="checkbox" name="capability" value="coCreation"> coCreation</label>
+              </fieldset>
+              <div class="form-actions">
+                <button class="button primary" type="submit" data-l10n-th="ตรวจและสร้าง YAML" data-l10n-en="Validate and generate YAML">ตรวจและสร้าง YAML</button>
+                <button class="button secondary" type="button" id="download-build-card" data-l10n-th="ดาวน์โหลด YAML นี้" data-l10n-en="Download this YAML">ดาวน์โหลด YAML นี้</button>
+              </div>
+            </form>
+            <div id="build-card-errors" class="validation-message" role="alert"></div>
+            <pre class="build-card-output"><code id="build-card-output"># Submit the form to generate a scoped starter Build Card.</code></pre>
+            <p><a download href="assets/downloads/build-card-template.yaml" data-l10n-th="ดาวน์โหลด Build Card template ฉบับเต็ม" data-l10n-en="Download the full Build Card template">ดาวน์โหลด Build Card template ฉบับเต็ม</a></p>
+          </section>
+
+          <section class="reference-section" id="ref-core" data-source-section="2" data-search-item data-search-keywords="CORE-01 CORE-02 CORE-03 CORE-04 CORE-05 CORE-06 CORE-07 CORE-08 CORE-09 CORE-10 core contract">
+            <div class="rule-head"><p class="rule-id">CORE-01…10 · §2</p><button type="button" class="copy-link" data-copy-link="ref-core">Copy link</button></div>
+            <h2>Core Contract</h2>
+            <div class="table-wrap"><table>
+              <caption data-l10n-th="กฎที่โหลดในทุก build" data-l10n-en="Rules loaded in every build">กฎที่โหลดในทุก build</caption>
+              <thead><tr><th>ID</th><th data-l10n-th="ต้องทำ" data-l10n-en="Requirement">ต้องทำ</th><th data-l10n-th="เช็ค" data-l10n-en="Check">เช็ค</th></tr></thead>
+              <tbody>
+                <tr><td>CORE-01</td><td data-l10n-th="ใช้ brand hierarchy และ protected lines ให้ถูกบทบาท" data-l10n-en="Use the brand hierarchy and protected lines in their correct roles.">ใช้ brand hierarchy และ protected lines ให้ถูกบทบาท</td><td>North Star ≠ Promise ≠ Cultural activation</td></tr>
+                <tr><td>CORE-02</td><td data-l10n-th="หนึ่ง scene = หนึ่งงาน หนึ่งวัตถุ ไม่เกินหนึ่ง action" data-l10n-en="One scene = one job, one object, at most one action.">หนึ่ง scene = หนึ่งงาน หนึ่งวัตถุ ไม่เกินหนึ่ง action</td><td>Job / Object / Action</td></tr>
+                <tr><td>CORE-03</td><td data-l10n-th="ให้ AHA ก่อนขอสมัคร บันทึก แชร์ หรือขอข้อมูลเพิ่ม" data-l10n-en="Deliver AHA before signup, save, sharing, or extra data.">ให้ AHA ก่อนขอสมัคร บันทึก แชร์ หรือขอข้อมูลเพิ่ม</td><td>Reward before request</td></tr>
+                <tr><td>CORE-04</td><td data-l10n-th="แสดงเฉพาะ control ที่ทำงานและจำเป็น" data-l10n-en="Render only working, necessary controls.">แสดงเฉพาะ control ที่ทำงานและจำเป็น</td><td>Zero dead controls</td></tr>
+                <tr><td>CORE-05</td><td data-l10n-th="รักษา state, source, date, boundary, confidence, limitation, recovery" data-l10n-en="Preserve state, source, date, boundary, confidence, limitation, and recovery.">รักษา state, source, date, boundary, confidence, limitation, recovery</td><td>Same truth across channels</td></tr>
+                <tr><td>CORE-06</td><td data-l10n-th="ใช้ official assets, exact tokens, semantic font roles, หนึ่ง profile" data-l10n-en="Use official assets, exact tokens, semantic fonts, and one profile.">ใช้ official assets, exact tokens, semantic font roles, หนึ่ง profile</td><td>No local mini-system</td></tr>
+                <tr><td>CORE-07</td><td data-l10n-th="ใช้งานได้ด้วย keyboard, touch, 200% zoom, reduced motion และ no-JS ตาม profile" data-l10n-en="Keep essential work usable with keyboard, touch, 200% zoom, reduced motion, and the profile’s no-JS baseline.">ใช้งานได้ด้วย keyboard, touch, 200% zoom, reduced motion และ no-JS ตาม profile</td><td>QA matrix</td></tr>
+                <tr><td>CORE-08</td><td data-l10n-th="ต้องจำได้ว่าเป็น Landometer ไม่ใช่ template AI/SaaS" data-l10n-en="Be recognizably Landometer, not a generic AI/SaaS template.">ต้องจำได้ว่าเป็น Landometer ไม่ใช่ template AI/SaaS</td><td>Substitution test</td></tr>
+                <tr><td>CORE-09</td><td data-l10n-th="แสดงหนึ่งภาษา; theme/language ไม่แย่งงานหลัก" data-l10n-en="Show one language; theme and language must not compete with the task.">แสดงหนึ่งภาษา; theme/language ไม่แย่งงานหลัก</td><td>First paint + persistence</td></tr>
+                <tr><td>CORE-10</td><td data-l10n-th="แชร์เมื่อผู้รับได้คุณค่า ไม่ใช้ share click เป็น network effect" data-l10n-en="Share for recipient value; a share click is not network effect.">แชร์เมื่อผู้รับได้คุณค่า ไม่ใช้ share click เป็น network effect</td><td>Recipient outcome</td></tr>
+              </tbody>
+            </table></div>
+          </section>
+
+          <section class="reference-section" id="ref-brand" data-source-section="3" data-search-item data-search-keywords="POSITION-01 BRAND-01 BRAND-02 CULTURE-01 BRAND-03 COPY-01 BRAND-04 Visualize City Shape Tomorrow Measure What Matters Let us cultivate our city Clear Grounded Energetic voice">
+            <div class="rule-head"><p class="rule-id">POSITION-01 · BRAND-01…04 · COPY-01 · §3</p><button type="button" class="copy-link" data-copy-link="ref-brand">Copy link</button></div>
+            <h2 data-l10n-th="Brand foundation, voice และ memory" data-l10n-en="Brand foundation, voice, and memory">Brand foundation, voice และ memory</h2>
+            <div class="protected-lines">
+              <div><span>North Star</span><strong>Visualize City, Shape Tomorrow.</strong></div>
+              <div><span>Promise</span><strong>Measure What Matters. Make It Actionable.</strong></div>
+              <div><span>Cultural activation</span><strong>Let us cultivate our city.</strong></div>
+            </div>
+            <h3 data-l10n-th="เลือกคำที่ลงมือทำได้" data-l10n-en="Write for action">เลือกคำที่ลงมือทำได้</h3>
+            <div class="voice-compare">
+              <div><span class="status-badge danger">Avoid</span><p>Unlock transformative data-driven insights.</p></div>
+              <div><span class="status-badge success">Use</span><p data-l10n-th="เปรียบเทียบประวัติน้ำท่วมของสองเทศบาลนี้" data-l10n-en="Compare flood history for these two municipalities.">เปรียบเทียบประวัติน้ำท่วมของสองเทศบาลนี้</p></div>
+            </div>
+            <p><a download href="assets/downloads/voice-recipes.md" data-l10n-th="ดาวน์โหลด voice recipes" data-l10n-en="Download voice recipes">ดาวน์โหลด voice recipes</a></p>
+          </section>
+
+          <section class="reference-section" id="ref-flow" data-source-section="4" data-search-item data-search-keywords="FLOW-01 FLOW-02 FLOW-03 FLOW-04 SPACE-01 FLOW-05 FLOW-06 first viewport quiet field navigation mobile density">
+            <div class="rule-head"><p class="rule-id">FLOW-01…06 · SPACE-01 · §4</p><button type="button" class="copy-link" data-copy-link="ref-flow">Copy link</button></div>
+            <h2 data-l10n-th="เส้นทาง ความหนาแน่น และพื้นที่ว่าง" data-l10n-en="Route, density, and protected space">เส้นทาง ความหนาแน่น และพื้นที่ว่าง</h2>
+            <ul class="rule-list">
+              <li data-l10n-th="Full reference แยก Start / Reference / Lab และแสดงทีละ mode" data-l10n-en="A full reference separates Start / Reference / Lab and shows one mode at a time.">Full reference แยก Start / Reference / Lab และแสดงทีละ mode</li>
+              <li data-l10n-th="Viewport แรก: หนึ่ง line, หนึ่งประโยค, หนึ่งภาพจริง, หนึ่ง action, ไม่เกิน 4 focusable targets" data-l10n-en="First viewport: one line, one sentence, one real image, one action, no more than four focusable targets.">Viewport แรก: หนึ่ง line, หนึ่งประโยค, หนึ่งภาพจริง, หนึ่ง action, ไม่เกิน 4 focusable targets</li>
+              <li data-l10n-th="หนึ่ง scene ไม่เกิน 40 คำหลักและไม่เกินสอง panel" data-l10n-en="One scene uses no more than 40 main words and two bounded panels.">หนึ่ง scene ไม่เกิน 40 คำหลักและไม่เกินสอง panel</li>
+              <li data-l10n-th="พื้นที่ว่างต่อเนื่องอย่างน้อย 30% บน tablet/desktop และ 20% บน mobile" data-l10n-en="Reserve a contiguous quiet field of at least 30% on tablet/desktop and 20% on mobile.">พื้นที่ว่างต่อเนื่องอย่างน้อย 30% บน tablet/desktop และ 20% บน mobile</li>
+              <li data-l10n-th="ห้ามซ่อน decision, AHA, action หรือ recovery เพื่อประหยัดพื้นที่มือถือ" data-l10n-en="Never hide the decision, AHA, action, or recovery to save mobile space.">ห้ามซ่อน decision, AHA, action หรือ recovery เพื่อประหยัดพื้นที่มือถือ</li>
+            </ul>
+          </section>
+
+          <section class="reference-section" id="ref-visual" data-source-section="5" data-search-item data-search-keywords="VIS-01 VIS-02 PHOTO-01 VIS-03 VIS-04 TYPE-01 LAYOUT-01 MOTIF-01 THEME-01 LOCALE-01 MOTION-01 logo color typography theme language motion energy tokens">
+            <div class="rule-head"><p class="rule-id">VIS · TYPE · THEME · LOCALE · MOTION · §5</p><button type="button" class="copy-link" data-copy-link="ref-visual">Copy link</button></div>
+            <h2 data-l10n-th="ระบบภาพที่จำได้และนำไปใช้ได้" data-l10n-en="A recognizable, usable visual system">ระบบภาพที่จำได้และนำไปใช้ได้</h2>
+            <div class="token-groups" data-brand-layer="visual">
+              <div><h3>Brand + energy</h3><div class="swatch-row"><button class="swatch brand-blue" data-copy-value="#1D4497"><span>#1D4497</span></button><button class="swatch energy-sky" data-copy-value="#59D2FE"><span>#59D2FE</span></button><button class="swatch energy-mint" data-copy-value="#0AD69C"><span>#0AD69C</span></button><button class="swatch energy-coral" data-copy-value="#FF5A5F"><span>#FF5A5F</span></button><button class="swatch energy-yellow" data-copy-value="#FFBC1F"><span>#FFBC1F</span></button></div></div>
+              <div><h3>Semantic ownership</h3><p data-l10n-th="brand ใช้กับ identity; energy ใช้กับ expression; semantic ใช้กับ state; product ใช้ข้างชื่อ/route; series และ dataviz ใช้กับข้อมูลเท่านั้น" data-l10n-en="Brand is for identity; energy for expression; semantic for state; product beside the name/route; series and dataviz for data only.">brand ใช้กับ identity; energy ใช้กับ expression; semantic ใช้กับ state; product ใช้ข้างชื่อ/route; series และ dataviz ใช้กับข้อมูลเท่านั้น</p></div>
+            </div>
+            <div class="download-grid">
+              <a download href="assets/downloads/landometer-tokens.css"><strong>CSS</strong><span>Canonical active subset</span></a>
+              <a download href="assets/downloads/landometer-tokens.json"><strong>JSON</strong><span>Tokens + roles</span></a>
+              <a download href="assets/downloads/landometer-tokens.ts"><strong>TypeScript</strong><span>Typed constant</span></a>
+              <a download href="assets/downloads/landometer-ds-v0.8.6-starter.zip"><strong>Starter ZIP</strong><span>Tokens, Build Card, recipes, fixtures</span></a>
+              <button type="button" data-route-mode="lab" data-specimen-target="typography"><strong>Typography Lab</strong><span>Exact fonts and roles</span></button>
+              <button type="button" data-route-mode="lab" data-specimen-target="theme"><strong>Theme Lab</strong><span>Light / Dark parity</span></button>
+              <button type="button" data-route-mode="lab" data-specimen-target="motion"><strong>Motion Lab</strong><span>Timing and reduced motion</span></button>
+            </div>
+          </section>
+
+          <section class="reference-section" id="ref-components" data-source-section="6" data-search-item data-search-keywords="CTRL-01 CTRL-02 STATE-01 A11Y-01 button decision card source ledger data table map legend empty error dialog toast accessibility state recovery">
+            <div class="rule-head"><p class="rule-id">CTRL-01 · CTRL-02 · STATE-01 · A11Y-01 · §6</p><button type="button" class="copy-link" data-copy-link="ref-components">Copy link</button></div>
+            <h2 data-l10n-th="Component contract และ truthful states" data-l10n-en="Component contracts and truthful states">Component contract และ truthful states</h2>
+            <div class="component-contracts">
+              <details open><summary>DecisionCard</summary><p>Object → status/metric → meaning → evidence/limit → one action.</p></details>
+              <details><summary>SourceLedger</summary><p>Source, publisher, date, supported claim, limitation, allowed use.</p></details>
+              <details><summary>EmptyState</summary><p>What is unavailable, why, what remains possible, and one honest next action.</p></details>
+              <details><summary>ErrorState</summary><p>What failed, preserved object/input, retry or safe alternative, announced status.</p></details>
+              <details><summary>Button</summary><p>Native button, 44px target, visible focus, pending/disabled reason, receipt, duplicate-action protection.</p></details>
+            </div>
+            <pre><code>default · hover · focus-visible · active · selected · disabled
+loading · partial · stale · reconciling · success · warning · error · empty
+offline · restricted · permission-denied · retrying · cancelled · conflict</code></pre>
+            <div class="inline-actions"><a download href="assets/downloads/component-recipes.md" data-l10n-th="ดาวน์โหลด component recipes" data-l10n-en="Download component recipes">ดาวน์โหลด component recipes</a><button type="button" data-route-mode="lab" data-specimen-target="states" data-l10n-th="ลอง State Lab" data-l10n-en="Open State Lab">ลอง State Lab</button></div>
+          </section>
+
+          <section class="reference-section" id="ref-data" data-source-section="7" data-search-item data-search-keywords="DATA-01 DATAVIZ-01 MAP-01 SHARE-01 COCREATE-01 SEARCH-01 PUB-01 EFFECT-01 LEARN-01 DELIVERY-01 AUTH-01 CONTEXT-01 AGENT-OUT-01 REFERENCE-01 TELEMETRY chart map no data zero pie donut source confidence limitation">
+            <div class="rule-head"><p class="rule-id">Trigger Packs · §7</p><button type="button" class="copy-link" data-copy-link="ref-data">Copy link</button></div>
+            <h2 data-l10n-th="เปิดเฉพาะ pack ที่ capability ต้องใช้" data-l10n-en="Load only the packs enabled by the task">เปิดเฉพาะ pack ที่ capability ต้องใช้</h2>
+            <div class="pack-grid">
+              <div><strong>DATA-01</strong><span data-l10n-th="ผลวิเคราะห์ต้องมี object/time/status/source/method/confidence/limit/missingness/counter-signal/next safe action" data-l10n-en="Analytical results need object/time/status/source/method/confidence/limit/missingness/counter-signal/next safe action.">ผลวิเคราะห์ต้องมี object/time/status/source/method/confidence/limit/missingness/counter-signal/next safe action</span></div>
+              <div><strong>DATAVIZ-01</strong><span data-l10n-th="เลือก chart จากคำถาม; ห้าม pie/donut; แยก no-data จาก zero" data-l10n-en="Choose a chart from the question; no pie/donut; separate no-data from zero.">เลือก chart จากคำถาม; ห้าม pie/donut; แยก no-data จาก zero</span></div>
+              <div><strong>MAP-01</strong><span data-l10n-th="แผนที่ต้องอ่านเป็นสถานที่ และ sync geometry/legend/readout/table" data-l10n-en="A map must read as a place and synchronize geometry, legend, readout, and table.">แผนที่ต้องอ่านเป็นสถานที่ และ sync geometry/legend/readout/table</span></div>
+              <div><strong>SHARE-01</strong><span data-l10n-th="แชร์หลัง AHA พร้อม exact object, limitation และ recipient outcome" data-l10n-en="Share after AHA with the exact object, limitation, and recipient outcome.">แชร์หลัง AHA พร้อม exact object, limitation และ recipient outcome</span></div>
+              <div><strong>EFFECT-01</strong><span data-l10n-th="งานภายนอกต้องมี scope, confirmation, pending, receipt, failure และ recovery" data-l10n-en="External effects need scope, confirmation, pending state, receipt, failure, and recovery.">งานภายนอกต้องมี scope, confirmation, pending, receipt, failure และ recovery</span></div>
+              <div><strong>LEARN-01</strong><span data-l10n-th="ให้คุณค่าก่อน ขอ investment โดยสมัครใจ และให้ inspect/correct/disable/delete" data-l10n-en="Deliver value first; make investment voluntary and inspectable/correctable/disableable/deletable.">ให้คุณค่าก่อน ขอ investment โดยสมัครใจ และให้ inspect/correct/disable/delete</span></div>
+              <div><strong>PUB-01</strong><span data-l10n-th="visibility, metadata, index policy และ permission ต้องตรงกับของจริง" data-l10n-en="Visibility, metadata, index policy, and permission must match reality.">visibility, metadata, index policy และ permission ต้องตรงกับของจริง</span></div>
+              <div><strong>REFERENCE-01</strong><span data-l10n-th="Reference/Lab ต้องครบ proof, fixture, deep link และ coverage ledger" data-l10n-en="Reference/Lab needs complete proofs, fixtures, deep links, and a coverage ledger.">Reference/Lab ต้องครบ proof, fixture, deep link และ coverage ledger</span></div>
+            </div>
+            <div class="inline-actions"><button type="button" data-route-mode="lab" data-specimen-target="charts" data-l10n-th="ลอง Chart Lab" data-l10n-en="Open Chart Lab">ลอง Chart Lab</button><button type="button" data-route-mode="lab" data-specimen-target="map" data-l10n-th="ลอง Map Lab" data-l10n-en="Open Map Lab">ลอง Map Lab</button><button type="button" data-route-mode="lab" data-specimen-target="scales" data-l10n-th="ลอง Scale Lab" data-l10n-en="Open Scale Lab">ลอง Scale Lab</button></div>
+          </section>
+
+          <section class="reference-section" id="ref-profiles" data-source-section="8" data-search-item data-search-keywords="PROFILE-01 AHA-01 ADOPT-01 PRODUCT-01 Landometer CityMETER CityWiki CityChat ijji profile">
+            <div class="rule-head"><p class="rule-id">PROFILE-01 · AHA-01 · ADOPT-01 · PRODUCT-01 · §8</p><button type="button" class="copy-link" data-copy-link="ref-profiles">Copy link</button></div>
+            <h2 data-l10n-th="เลือก profile เดียวให้ตรงกับงาน" data-l10n-en="Choose exactly one profile for the job">เลือก profile เดียวให้ตรงกับงาน</h2>
+            <div class="table-wrap"><table>
+              <caption data-l10n-th="Profile ที่ใช้บ่อย" data-l10n-en="Common profiles">Profile ที่ใช้บ่อย</caption>
+              <thead><tr><th>Profile</th><th data-l10n-th="หนึ่งงาน" data-l10n-en="One job">หนึ่งงาน</th><th>First AHA</th></tr></thead>
+              <tbody>
+                <tr><td>designsystem.adoption</td><td data-l10n-th="เชื่อ ลอง align และนำไปใช้" data-l10n-en="Believe, try, align, and adopt">เชื่อ ลอง align และนำไปใช้</td><td data-l10n-th="benefit ของบทบาท ≤30 วินาที" data-l10n-en="role benefit ≤30 seconds">benefit ของบทบาท ≤30 วินาที</td></tr>
+                <tr><td>brand.public</td><td data-l10n-th="เข้าใจว่า Landometer ช่วยเรื่องใด" data-l10n-en="Understand where Landometer fits">เข้าใจว่า Landometer ช่วยเรื่องใด</td><td data-l10n-th="proof แรกเห็นทันที" data-l10n-en="opening proof at first paint">proof แรกเห็นทันที</td></tr>
+                <tr><td>citymeter.dataset</td><td data-l10n-th="ดู spatial signal แล้วตัดสินใจว่าจะตรวจอะไร" data-l10n-en="Inspect a spatial signal and decide what to check">ดู spatial signal แล้วตัดสินใจว่าจะตรวจอะไร</td><td data-l10n-th="place/result + source + limitation" data-l10n-en="place/result + source + limitation">place/result + source + limitation</td></tr>
+                <tr><td>citywiki.public</td><td data-l10n-th="เข้าใจสถานที่เร็วและมั่นใจ" data-l10n-en="Understand a place quickly and confidently">เข้าใจสถานที่เร็วและมั่นใจ</td><td data-l10n-th="คำตอบหนึ่งนาทีที่มีแหล่งอ้างอิง" data-l10n-en="sourced one-minute answer">คำตอบหนึ่งนาทีที่มีแหล่งอ้างอิง</td></tr>
+                <tr><td>citychat.app</td><td data-l10n-th="รายงาน ตรวจ ลำดับความสำคัญ และติดตาม" data-l10n-en="Report, verify, prioritize, and follow up">รายงาน ตรวจ ลำดับความสำคัญ และติดตาม</td><td data-l10n-th="acknowledgement + status + next step" data-l10n-en="acknowledgement + status + next step">acknowledgement + status + next step</td></tr>
+                <tr><td>ijji.app</td><td data-l10n-th="วิเคราะห์ปัญหาร้านและเริ่ม progress ที่ทำได้" data-l10n-en="Diagnose a local-business problem and start achievable progress">วิเคราะห์ปัญหาร้านและเริ่ม progress ที่ทำได้</td><td data-l10n-th="diagnosis + ทิศทาง 7 วัน" data-l10n-en="diagnosis + credible 7-day direction">diagnosis + ทิศทาง 7 วัน</td></tr>
+              </tbody>
+            </table></div>
+            <button type="button" data-route-mode="lab" data-specimen-target="products" data-l10n-th="เปรียบเทียบ product profiles" data-l10n-en="Compare product profiles">เปรียบเทียบ product profiles</button>
+          </section>
+
+          <section class="reference-section" id="ref-agent" data-source-section="9" data-search-item data-search-keywords="AGENT-01 vibe coding build order output contract manifest html identity fail closed">
+            <div class="rule-head"><p class="rule-id">AGENT-01 · §9</p><button type="button" class="copy-link" data-copy-link="ref-agent">Copy link</button></div>
+            <h2 data-l10n-th="ลำดับที่ agent ต้องทำ" data-l10n-en="Agent build order">ลำดับที่ agent ต้องทำ</h2>
+            <ol class="numbered-grid">
+              <li>Validate Build Card</li><li>State one job, AHA, object, action</li><li>Select one profile and packs</li><li>Resolve logo, fonts, photos, tokens</li><li>Sketch route and first viewport</li><li>Build semantic HTML fallback</li><li>Add necessary controls only</li><li>Apply theme/locale and enabled capabilities</li><li>Test controls and critical states</li><li>Run brand, density, responsive, A11Y, truth QA</li>
+            </ol>
+          </section>
+
+          <section class="reference-section" id="ref-qa" data-source-section="10" data-search-item data-search-keywords="QA-01 EXCEPTION-01 P0 P1 P2 viewport keyboard touch zoom reduced motion no javascript severity definition done">
+            <div class="rule-head"><p class="rule-id">QA-01 · EXCEPTION-01 · §10</p><button type="button" class="copy-link" data-copy-link="ref-qa">Copy link</button></div>
+            <h2 data-l10n-th="QA ที่หยุด release ได้จริง" data-l10n-en="QA that can stop a release">QA ที่หยุด release ได้จริง</h2>
+            <div class="severity-grid">
+              <div><strong>P0</strong><span data-l10n-th="ความจริงผิด, privacy leak, critical path ใช้ไม่ได้, identity/meaning แตก" data-l10n-en="False truth, privacy leak, broken critical path, identity or meaning failure">ความจริงผิด, privacy leak, critical path ใช้ไม่ได้, identity/meaning แตก</span></div>
+              <div><strong>P1</strong><span data-l10n-th="brand generic, first viewport fail, dead controls, token drift, applicable pack ไม่ครบ" data-l10n-en="Generic brand, failed first viewport, dead controls, token drift, incomplete applicable pack">brand generic, first viewport fail, dead controls, token drift, applicable pack ไม่ครบ</span></div>
+              <div><strong>P2</strong><span data-l10n-th="friction หรือ drift ที่มี owner และรอบแก้ชัด" data-l10n-en="Documented friction or drift with an owner and follow-up">friction หรือ drift ที่มี owner และรอบแก้ชัด</span></div>
+            </div>
+            <p><strong>Matrix:</strong> 320 · 360 · 390 · 768 · 1024 · 1180 · 1440 px · Thai/English · Auto/Light/Dark · 200% zoom · keyboard/touch · reduced motion · no-JS.</p>
+          </section>
+
+          <section class="reference-section" id="ref-migration" data-source-section="11" data-search-item data-search-keywords="migration v0.8.5 Mission Lab remove dark brand blue 7FA2F1 google fonts share hero">
+            <div class="rule-head"><p class="rule-id">§11</p><button type="button" class="copy-link" data-copy-link="ref-migration">Copy link</button></div>
+            <h2 data-l10n-th="Regression ที่ v0.8.6 ต้องไม่ทำซ้ำ" data-l10n-en="Regressions v0.8.6 must not repeat">Regression ที่ v0.8.6 ต้องไม่ทำซ้ำ</h2>
+            <ul class="rule-list"><li>Mission Lab sub-brand</li><li>18 first-viewport choices</li><li>technical card over people</li><li>periwinkle dark Brand Blue</li><li>Google Fonts as the critical source</li><li>whole-DOM translation dictionary</li><li>mobile nav disappearance</li><li>share before AHA</li></ul>
+          </section>
+
+          <section class="reference-section" id="ref-done" data-source-section="12" data-search-item data-search-keywords="DONE-01 definition done ready complete build card tokens controls truth responsive reference lab">
+            <div class="rule-head"><p class="rule-id">DONE-01 · §12</p><button type="button" class="copy-link" data-copy-link="ref-done">Copy link</button></div>
+            <h2 data-l10n-th="Definition of done" data-l10n-en="Definition of done">Definition of done</h2>
+            <p data-l10n-th="งานพร้อมเมื่อ Build Card ตรงกับของจริง, มีหนึ่ง profile, AHA และ recovery ชัด, brand จำได้, token/asset ตรง, control ทุกตัวทำงาน, truth ไม่เปลี่ยน, QA ที่เกี่ยวข้องผ่าน และไม่ซับซ้อนเกินงานของผู้ใช้" data-l10n-en="A build is ready when its Build Card matches reality, one profile is active, AHA and recovery are clear, the brand is recognizable, assets/tokens are exact, every control works, truth survives handoff, applicable QA passes, and the experience is no more complex than the job requires.">งานพร้อมเมื่อ Build Card ตรงกับของจริง, มีหนึ่ง profile, AHA และ recovery ชัด, brand จำได้, token/asset ตรง, control ทุกตัวทำงาน, truth ไม่เปลี่ยน, QA ที่เกี่ยวข้องผ่าน และไม่ซับซ้อนเกินงานของผู้ใช้</p>
+          </section>
+
+          <section class="reference-section" id="ref-tokens" data-source-section="A" data-search-item data-search-keywords="TOKEN-01 Appendix A brand blue energy foundation semantic series dataviz map type spacing radius breakpoint motion fonts tokens css json typescript">
+            <div class="rule-head"><p class="rule-id">TOKEN-01 · Appendix A</p><button type="button" class="copy-link" data-copy-link="ref-tokens">Copy link</button></div>
+            <h2 data-l10n-th="Canonical active authoring tokens" data-l10n-en="Canonical active authoring tokens">Canonical active authoring tokens</h2>
+            <p data-l10n-th="ไฟล์ดาวน์โหลดใช้ค่าจาก Appendix A ตรง ๆ และไม่อ้างว่า generated Schema 6 ผ่าน machine validation แล้ว" data-l10n-en="The downloads use Appendix A values exactly and do not claim that the pending generated Schema 6 package has passed machine validation.">ไฟล์ดาวน์โหลดใช้ค่าจาก Appendix A ตรง ๆ และไม่อ้างว่า generated Schema 6 ผ่าน machine validation แล้ว</p>
+            <div class="download-grid compact-downloads"><a download href="assets/downloads/landometer-tokens.css">tokens.css</a><a download href="assets/downloads/landometer-tokens.json">tokens.json</a><a download href="assets/downloads/landometer-tokens.ts">tokens.ts</a><a download href="assets/downloads/reference-fixtures.json">fixtures.json</a></div>
+          </section>
+
+          <section class="reference-section" id="ref-machine" data-source-section="B" data-search-item data-search-keywords="MACHINE-01 Appendix B schema preflight pending manifest tokens package ledger">
+            <div class="rule-head"><p class="rule-id">MACHINE-01 · Appendix B</p><button type="button" class="copy-link" data-copy-link="ref-machine">Copy link</button></div>
+            <h2>Machine alignment: pending</h2>
+            <p data-l10n-th="ยังขาด build-card.schema.json, manifest.schema.json, generated Token Schema 6, preflight และ migration ledger จึงใช้ manual cross-field gate และห้ามอ้าง schema/preflight conformance" data-l10n-en="build-card.schema.json, manifest.schema.json, generated Token Schema 6, preflight, and the migration ledger are still missing. Use the manual cross-field gate and do not claim schema/preflight conformance.">ยังขาด build-card.schema.json, manifest.schema.json, generated Token Schema 6, preflight และ migration ledger จึงใช้ manual cross-field gate และห้ามอ้าง schema/preflight conformance</p>
+          </section>
+
+          <section class="reference-section" id="ref-changes" data-source-section="C" data-search-item data-search-keywords="Appendix C changes amendments boundaries historical source v0.8.6 machine pending no pie donut">
+            <div class="rule-head"><p class="rule-id">Appendix C · Changes</p><button type="button" class="copy-link" data-copy-link="ref-changes">Copy link</button></div>
+            <h2 data-l10n-th="Release boundaries และสิ่งที่เปลี่ยน" data-l10n-en="Release boundaries and changes">Release boundaries และสิ่งที่เปลี่ยน</h2>
+            <ul class="rule-list"><li>Let us cultivate our city. is the exact active Cultural activation.</li><li>Positive energy is functional, not decorative noise.</li><li>Reference and Lab remain outside the sparse Start route.</li><li>Pie and donut charts are prohibited everywhere.</li><li>Machine validation remains pending until the generated package exists.</li><li>Historical posters and decks are visual-spirit evidence, not density templates.</li></ul>
+          </section>
         </div>
       </div>
-    </section>
+    </div>
 
+    <div data-mode-panel="lab" id="lab-mode">
+      <section class="lab-hero">
+        <div>
+          <p class="eyebrow">Specimen Lab · local state only</p>
+          <h1 data-l10n-th="ลองก่อนนำไปใช้" data-l10n-en="Test before you ship">ลองก่อนนำไปใช้</h1>
+          <p data-l10n-th="ทุก specimen เป็น reference fixture ใน browser นี้ ไม่บันทึก ไม่ส่ง ไม่แก้ข้อมูลภายนอก และไม่อ้างว่าเป็น product capability" data-l10n-en="Every specimen is a local browser fixture. It does not save, send, change external data, or claim a live product capability.">ทุก specimen เป็น reference fixture ใน browser นี้ ไม่บันทึก ไม่ส่ง ไม่แก้ข้อมูลภายนอก และไม่อ้างว่าเป็น product capability</p>
+        </div>
+        <div class="trust-plate"><span class="status-badge info">Reference / QA aid</span><strong>effect: none</strong><span>localStateOnly: true</span></div>
+      </section>
+
+      <section class="lab-navigation" aria-label="Specimen navigation">
+        <button type="button" id="previous-specimen" data-l10n-aria-th="specimen ก่อนหน้า" data-l10n-aria-en="Previous specimen" aria-label="specimen ก่อนหน้า">←</button>
+        <label for="specimen-select" data-l10n-th="Specimen" data-l10n-en="Specimen">Specimen</label>
+        <select id="specimen-select">
+          <option value="proofs">Proof deck · 10</option><option value="theme">Theme parity</option><option value="typography">Typography</option><option value="states">Components + states</option><option value="charts">Chart selection</option><option value="scales">Scale Lab · 18 LUTs</option><option value="map">Map + legend</option><option value="motion">Motion</option><option value="products">Product profiles</option><option value="share">Recipient value</option><option value="metadata">Human / agent parity</option>
+        </select>
+        <span id="specimen-position" class="mono" aria-live="polite">1 / 11</span>
+        <button type="button" id="next-specimen" data-l10n-aria-th="specimen ถัดไป" data-l10n-aria-en="Next specimen" aria-label="specimen ถัดไป">→</button>
+      </section>
+
+      <div class="lab-stage">
+        <section data-lab-specimen="proofs" data-specimen="proof-deck" data-source-section="7" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">REFERENCE-01</p><h2 data-l10n-th="Proof deck ที่ตรวจ outcome จริง" data-l10n-en="Proof deck for observable outcomes">Proof deck ที่ตรวจ outcome จริง</h2></div><span class="status-badge assisted">10 required proofs</span></div>
+          <div class="proof-controls"><label for="proof-select">Proof</label><select id="proof-select"></select><div class="segmented" role="group" aria-label="Proof comparison"><button id="proof-baseline" type="button" aria-pressed="false">Baseline</button><button id="proof-assisted" type="button" aria-pressed="true">Assisted</button></div></div>
+          <article class="proof-card" id="proof-card" data-state="ready">
+            <div><p class="step-label">User goal</p><p id="proof-goal"></p></div>
+            <div><p class="step-label">Common failure</p><p id="proof-failure"></p></div>
+            <div><p class="step-label">Try</p><p id="proof-try"></p><button type="button" class="button secondary" id="run-proof" data-l10n-th="ลองการเปลี่ยนแปลง" data-l10n-en="Try the change">ลองการเปลี่ยนแปลง</button></div>
+            <div><p class="step-label">Observable outcome</p><p id="proof-outcome"></p><output id="proof-receipt" aria-live="polite"></output></div>
+            <details><summary>Evidence</summary><p id="proof-evidence"></p></details>
+          </article>
+          <button type="button" class="text-button" id="reset-proof" data-l10n-th="รีเซ็ต proof" data-l10n-en="Reset proof">รีเซ็ต proof</button>
+        </section>
+
+        <section data-lab-specimen="theme" data-specimen="theme-parity" data-source-section="5" data-theme-matrix class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">THEME-01</p><h2>Light / Dark parity</h2></div><span class="status-badge success">Brand Blue #1D4497</span></div>
+          <div class="theme-pair">
+            <article data-demo-theme="light"><span class="status-badge warning">Partial</span><h3 data-l10n-th="ข้อมูลพื้นที่ยังไม่ครบ" data-l10n-en="Place evidence is incomplete">ข้อมูลพื้นที่ยังไม่ครบ</h3><p data-l10n-th="เห็นความหมาย สถานะ focus และ action เหมือนกัน" data-l10n-en="Meaning, state, focus, and action remain equivalent.">เห็นความหมาย สถานะ focus และ action เหมือนกัน</p><button type="button">Inspect source</button></article>
+            <article data-demo-theme="dark"><span class="status-badge warning">Partial</span><h3 data-l10n-th="ข้อมูลพื้นที่ยังไม่ครบ" data-l10n-en="Place evidence is incomplete">ข้อมูลพื้นที่ยังไม่ครบ</h3><p data-l10n-th="เห็นความหมาย สถานะ focus และ action เหมือนกัน" data-l10n-en="Meaning, state, focus, and action remain equivalent.">เห็นความหมาย สถานะ focus และ action เหมือนกัน</p><button type="button">Inspect source</button></article>
+          </div>
+          <p class="specimen-note" data-l10n-th="Theme เปลี่ยน surface, text, interaction, semantic, chart, map และ product accents ด้วย token คนละชุด; ไม่ใช่แค่เปลี่ยนพื้นหลัง" data-l10n-en="Theme changes surfaces, text, interaction, semantic states, charts, maps, and product accents from paired tokens—not merely the page background.">Theme เปลี่ยน surface, text, interaction, semantic, chart, map และ product accents ด้วย token คนละชุด; ไม่ใช่แค่เปลี่ยนพื้นหลัง</p>
+        </section>
+
+        <section data-lab-specimen="typography" data-specimen="typography-lab" data-source-section="5 A" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">TYPE-01 · Appendix A11</p><h2 data-l10n-th="ตัวอักษรตามบทบาท" data-l10n-en="Typography by semantic role">ตัวอักษรตามบทบาท</h2></div><span class="status-badge success">6 packaged faces</span></div>
+          <div class="type-specimens">
+            <div class="type-display-en"><span>English display · Arvo 700</span><strong>Shape tomorrow.</strong></div>
+            <div class="type-display-th"><span>Thai display · IBM Plex Sans Thai Looped 700</span><strong>เข้าใจเมือง แล้วลงมือทำ</strong></div>
+            <div class="type-body"><span>Body / UI · Bai Jamjuree 400 / 600</span><p>ข้อมูลพื้นที่นี้ยังไม่พร้อมใช้ตัดสินใจ ตรวจแหล่งข้อมูลและข้อจำกัดก่อนสรุปผล</p></div>
+            <div class="type-number"><span>Number / technical · JetBrains Mono 500 / 700</span><strong>2026-07-22 · 12.4 km² · ±1.8</strong></div>
+          </div>
+          <p id="font-status" class="specimen-note" role="status">Waiting for document.fonts.ready…</p>
+        </section>
+
+        <section data-lab-specimen="states" data-specimen="state-lab" data-source-section="6" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">CTRL-02 · STATE-01</p><h2 data-l10n-th="สถานะต้องบอกสิ่งที่ยังทำได้" data-l10n-en="States must preserve what remains possible">สถานะต้องบอกสิ่งที่ยังทำได้</h2></div><span class="status-badge info">local fixture</span></div>
+          <div class="state-controls"><label for="state-select" data-l10n-th="เลือกสถานะ" data-l10n-en="Choose state">เลือกสถานะ</label><select id="state-select"><option>default</option><option>loading</option><option>empty</option><option>partial</option><option>stale</option><option>offline</option><option>error</option><option>restricted</option><option>retrying</option><option>success</option></select></div>
+          <article class="decision-card state-demo" id="state-demo-card" data-state="default"><div class="decision-head"><span>demo.citymeter.place-insight.v1</span><span class="status-badge" id="state-demo-badge">Default</span></div><h3 id="state-demo-title">ข้อมูลพื้นที่พร้อมให้ตรวจ</h3><p id="state-demo-message">เลือกสถานะเพื่อดู copy, evidence, action และ recovery ที่ต้องเปลี่ยนพร้อมกัน</p><p class="state-preserved">Object and input preserved · source boundary unchanged</p><button type="button" id="state-demo-action" class="button secondary">Inspect source</button><output id="state-demo-status" aria-live="polite"></output></article>
+        </section>
+
+        <section data-lab-specimen="charts" data-specimen="dataviz-matrix" data-source-section="7 A" data-dataviz-matrix class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">DATAVIZ-01</p><h2 data-l10n-th="เริ่มจากคำถาม ไม่ใช่รูปร่าง chart" data-l10n-en="Start from the question, not the chart shape">เริ่มจากคำถาม ไม่ใช่รูปร่าง chart</h2></div><span class="status-badge danger">No pie · no donut</span></div>
+          <div class="chart-controls"><label for="chart-select" data-l10n-th="ต้องการตัดสินใจอะไร" data-l10n-en="What decision are you making?">ต้องการตัดสินใจอะไร</label><select id="chart-select"><option value="rank">Which is larger or ranks first?</option><option value="trend">How did it change over time?</option><option value="composition">How is the whole composed?</option><option value="target">Are we on target?</option><option value="uncertainty">How uncertain is it?</option></select></div>
+          <div id="chart-stage" class="chart-stage" data-chart-type="horizontal-bar" data-chart-decision="compare_rank" data-chart-theme-pair data-chart-alternative="table" data-scale-kind="categorical"></div>
+          <details open><summary data-l10n-th="ตารางข้อมูลที่เข้าถึงได้" data-l10n-en="Accessible data table">ตารางข้อมูลที่เข้าถึงได้</summary><div id="chart-table" class="table-wrap"></div></details>
+          <p class="specimen-note">Synthetic QA fixture · period: Q2 2026 · source: local reference data · basis: fixed sample · not for a city decision.</p>
+        </section>
+
+        <section data-lab-specimen="scales" data-specimen="scale-lab" data-source-section="7 A" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">TOKEN-01 · DATAVIZ-01</p><h2>Scale Lab · 18 deterministic LUTs</h2></div><span class="status-badge warning">schema validation pending</span></div>
+          <div class="scale-controls"><label for="scale-select">Scale</label><select id="scale-select"><option>growth</option><option>water</option><option>risk</option><option>activity</option><option>density</option><option>confidence</option><option>balance</option><option>delta</option><option>tradeoff</option></select><label for="scale-theme">Theme</label><select id="scale-theme"><option>light</option><option>dark</option></select><label for="scale-classes">Classes</label><select id="scale-classes"><option>5</option><option>7</option><option>9</option></select></div>
+          <div id="scale-anchors" class="scale-anchors" aria-label="Low, midpoint, high anchors"></div>
+          <div id="scale-lut" class="scale-lut" aria-label="41 stop lookup table"></div>
+          <div id="scale-class-row" class="scale-class-row" aria-label="Selected class subset"></div>
+          <div class="no-data-zero"><span data-state-fixture="no-data" class="no-data">No data</span><span data-state-fixture="zero" class="zero">0 · meaningful zero</span></div>
+          <p id="scale-version" class="mono specimen-note"></p>
+        </section>
+
+        <section data-lab-specimen="map" data-specimen="map-lab" data-source-section="7 A" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">MAP-01 · DATAVIZ-01</p><h2 data-l10n-th="แผนที่ต้องอ่านเป็นสถานที่" data-l10n-en="A map must read as a place">แผนที่ต้องอ่านเป็นสถานที่</h2></div><span class="status-badge warning">Schematic QA fixture</span></div>
+          <div class="map-layout">
+            <svg id="map-fixture" class="map-fixture" viewBox="0 0 720 440" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">Schematic reference district map</title><desc id="map-desc">Three selectable governed areas beside a canal, a main road, a transit stop, and a civic landmark. This is a synthetic QA fixture, not a geographic claim.</desc>
+              <defs><pattern id="no-data-pattern" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#D5DAD6"></rect><rect width="3" height="10" fill="#8D9D99"></rect></pattern></defs>
+              <rect width="720" height="440" class="map-ground"></rect>
+              <path d="M0 330 C170 270 310 390 470 315 S650 250 720 285" class="map-water"></path>
+              <path d="M40 80 L680 370" class="map-road main"></path><path d="M120 390 L540 20" class="map-road"></path>
+              <text x="440" y="305" class="map-label">Main Road</text><text x="500" y="285" class="map-label water-label">Canal</text>
+              <g class="map-area" tabindex="0" role="button" aria-label="Select Area A" data-area="A"><path d="M115 85 L285 80 L320 210 L170 245 L90 170 Z"></path><text x="180" y="158">Area A</text></g>
+              <g class="map-area" tabindex="0" role="button" aria-label="Select Area B" data-area="B"><path d="M330 70 L515 98 L530 220 L330 205 Z"></path><text x="405" y="150">Area B</text></g>
+              <g class="map-area no-data-area" tabindex="0" role="button" aria-label="Select Area C, no data" data-area="C"><path d="M175 255 L345 215 L470 325 L310 370 L160 330 Z"></path><text x="275" y="295">Area C</text></g>
+              <circle cx="560" cy="110" r="9" class="map-marker"></circle><text x="575" y="116" class="map-label">Transit</text>
+              <rect x="560" y="180" width="18" height="18" class="map-landmark"></rect><text x="590" y="195" class="map-label">Civic hall</text>
+            </svg>
+            <div class="map-readout"><h3 id="map-area-title">Area A</h3><p id="map-area-status">Reference class: low</p><div class="map-legend"><span style="--legend:#F2F1DF">Low</span><span style="--legend:#E0B443">Mid</span><span style="--legend:#B74436">High</span><span class="legend-no-data">No data</span></div><p><strong>Method:</strong> 3-class risk scale · <strong>Source:</strong> synthetic QA fixture · <strong>Limit:</strong> not geographic or decision evidence.</p></div>
+          </div>
+          <div class="table-wrap"><table><caption>Accessible map alternative</caption><thead><tr><th>Area</th><th>State</th><th>Selection</th></tr></thead><tbody><tr data-map-row="A"><td>Area A</td><td>Low</td><td>Selected</td></tr><tr data-map-row="B"><td>Area B</td><td>High</td><td>—</td></tr><tr data-map-row="C"><td>Area C</td><td>No data</td><td>—</td></tr></tbody></table></div>
+        </section>
+
+        <section data-lab-specimen="motion" data-specimen="motion-lab staggered-scroll-reveal" data-source-section="5 7 A" data-motion-pattern="staggered_scroll_reveal" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">MOTION-01 · REFERENCE-01</p><h2 data-l10n-th="Motion อธิบายลำดับ ไม่สร้างพลังปลอม" data-l10n-en="Motion explains sequence; it does not manufacture energy">Motion อธิบายลำดับ ไม่สร้างพลังปลอม</h2></div><span id="motion-preference" class="status-badge info">Checking motion preference…</span></div>
+          <div class="motion-controls"><button type="button" id="replay-motion">Replay</button><button type="button" id="pause-motion">Pause / show final</button></div>
+          <div id="motion-stage" class="motion-stage">
+            <div data-reveal-item><span>1</span><strong>Object visible</strong><small>0 ms</small></div>
+            <div data-reveal-item><span>2</span><strong>Measured state</strong><small>≤160 ms</small></div>
+            <div data-reveal-item><span>3</span><strong>Evidence + meaning</strong><small>≤240 ms</small></div>
+            <div data-reveal-item><span>4</span><strong>Action ready</strong><small>≤320 ms</small></div>
+          </div>
+          <ol id="motion-log" class="motion-log" aria-live="polite"></ol>
+        </section>
+
+        <section data-lab-specimen="products" data-specimen="product-profiles" data-source-section="8" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">PRODUCT-01</p><h2 data-l10n-th="บุคลิกเปลี่ยน แต่วัตถุและความจริงไม่เปลี่ยน" data-l10n-en="Character changes; the object and truth do not">บุคลิกเปลี่ยน แต่วัตถุและความจริงไม่เปลี่ยน</h2></div><span class="status-badge info">same object/version</span></div>
+          <div class="product-controls" role="tablist" aria-label="Product profiles"><button role="tab" aria-selected="true" data-product="landometer">Landometer</button><button role="tab" aria-selected="false" data-product="citymeter" tabindex="-1">CityMETER</button><button role="tab" aria-selected="false" data-product="citywiki" tabindex="-1">CityWiki</button><button role="tab" aria-selected="false" data-product="citychat" tabindex="-1">CityChat</button><button role="tab" aria-selected="false" data-product="ijji" tabindex="-1">ijji</button></div>
+          <article id="product-panel" class="product-panel" role="tabpanel" tabindex="0"><p class="eyebrow" id="product-character">decision-led · human · ecosystem-aware</p><h3 id="product-title">ข้อมูลพื้นที่นี้ยังไม่พร้อมใช้ตัดสินใจ</h3><p id="product-copy">ตรวจแหล่งข้อมูลและข้อจำกัดก่อนสรุปผล</p><dl class="parity-strip"><div><dt>Object</dt><dd>demo.citymeter.place-insight.v1</dd></div><div><dt>Status</dt><dd>source-limited</dd></div><div><dt>Allowed use</dt><dd>reference QA</dd></div></dl></article>
+        </section>
+
+        <section data-lab-specimen="share" data-specimen="recipient-value" data-source-section="7" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">SHARE-01 · local fixture</p><h2 data-l10n-th="ส่งต่อวัตถุเดียวกัน ไม่ใช่แค่ลิงก์" data-l10n-en="Hand off the same object, not merely a link">ส่งต่อวัตถุเดียวกัน ไม่ใช่แค่ลิงก์</h2></div><span class="status-badge warning">No external send</span></div>
+          <div class="share-flow"><article><h3 data-l10n-th="ผู้ส่ง" data-l10n-en="Sender">ผู้ส่ง</h3><p>demo.citymeter.place-insight.v1 · source-limited · not for a real decision</p><label for="recipient-role" data-l10n-th="ผู้รับที่ตั้งใจ" data-l10n-en="Intended recipient">ผู้รับที่ตั้งใจ</label><select id="recipient-role"><option>Product</option><option>Design</option><option>Development</option><option>Evidence / QA</option></select><button type="button" id="prepare-preview" class="button secondary" data-l10n-th="เตรียม preview ในเครื่องนี้" data-l10n-en="Prepare local preview">เตรียม preview ในเครื่องนี้</button></article><article id="recipient-preview" aria-live="polite"><h3 data-l10n-th="สิ่งที่ผู้รับจะเห็น" data-l10n-en="What the recipient sees">สิ่งที่ผู้รับจะเห็น</h3><p data-l10n-th="ยังไม่สร้าง preview" data-l10n-en="No preview prepared yet">ยังไม่สร้าง preview</p></article></div>
+          <p class="specimen-note" data-l10n-th="การสร้าง preview สำเร็จเป็นเพียง handoff receipt ไม่ใช่ network effect; ต้องเห็น recipient AHA และ useful action จึงค่อยวัดผลลัพธ์ฝั่งผู้รับ" data-l10n-en="A prepared preview is only a handoff receipt, not network effect; recipient AHA and useful action must be observed separately.">การสร้าง preview สำเร็จเป็นเพียง handoff receipt ไม่ใช่ network effect; ต้องเห็น recipient AHA และ useful action จึงค่อยวัดผลลัพธ์ฝั่งผู้รับ</p>
+        </section>
+
+        <section data-lab-specimen="metadata" data-specimen="human-agent-parity" data-source-section="7 9" class="specimen-panel">
+          <div class="specimen-head"><div><p class="eyebrow">AGENT-OUT-01 · AGENT-01</p><h2 data-l10n-th="Human view และ agent context มาจากวัตถุเดียวกัน" data-l10n-en="Human view and agent context derive from the same object">Human view และ agent context มาจากวัตถุเดียวกัน</h2></div><span class="status-badge info">channelParityKey stable</span></div>
+          <div class="metadata-pair"><article><h3>Human</h3><p><strong data-l10n-th="ยังไม่มีผลปัจจุบัน" data-l10n-en="No current result">ยังไม่มีผลปัจจุบัน</strong></p><p data-l10n-th="แหล่งข้อมูลไม่เชื่อมต่อใน fixture นี้ ห้ามใช้ตัดสินใจจริง" data-l10n-en="The source is not connected in this fixture. Do not use for a real decision.">แหล่งข้อมูลไม่เชื่อมต่อใน fixture นี้ ห้ามใช้ตัดสินใจจริง</p></article><pre><code>{
+  "objectId": "demo.citymeter.place-insight.v1",
+  "status": "empty",
+  "sourceStatus": "source_limited",
+  "limitation": "reference fixture only",
+  "allowedUses": ["design-system QA"],
+  "authoritativeState": "no_current_result"
+}</code></pre></div>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <div class="shell footer-inner">
-      <span>Landometer Design System v0.8.6</span>
-      <span><span data-locale="th">Internal decision demo · 21 กรกฎาคม 2026</span><span data-locale="en" hidden>Internal decision demo · 21 July 2026</span></span>
-    </div>
+    <div><strong>Landometer Design System v0.8.6</strong><span data-l10n-th="Working reference · machine validation pending" data-l10n-en="Working reference · machine validation pending">Working reference · machine validation pending</span></div>
+    <nav><button type="button" data-route-mode="start" data-l10n-th="เริ่มต้น" data-l10n-en="Start">เริ่มต้น</button><button type="button" data-route-mode="reference" data-l10n-th="อ้างอิง" data-l10n-en="Reference">อ้างอิง</button><button type="button" data-route-mode="lab">Lab</button><a href="adoption-demo/">Adoption demo</a></nav>
   </footer>
 
-  <div class="sr-only" id="status-announcer" role="status" aria-live="polite"></div>
+  <div class="global-status" id="global-status" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <noscript>
-    <style>
-      .header-controls, .role-bar, #proof-action, #approval-action { display: none !important; }
-      #proof-checklist, #approval-panel { display: block !important; }
-    </style>
-  </noscript>
-
-  <script type="application/json" id="landometer-build-card">
+  <script type="application/json" id="build-card-manifest">
   {
-    "buildCardVersion": "0.8.6",
-    "normativeVersion": "0.8.6",
-    "manifestVersion": "pending_0.8.6_generation",
-    "tokenSchemaVersion": "6",
-    "product": "landometer",
-    "profile": "designsystem.adoption",
-    "pageKind": "stakeholder_decision_demo",
-    "pageKindSourceRef": "product-statement.md v0.1 sections 7 and 13",
-    "trigger": "The four task-scoped roles need to decide whether to run a bounded v0.8.6 adoption pilot.",
-    "oneJob": "See how one governed object changes role work, then review the exact Gate A decision.",
-    "firstAha": "The fixture shows no current result, its source gap, decision boundary, and the next evidence check without inventing a value.",
-    "ahaEvidenceCue": "status + source + boundary + limitation on demo.citymeter.place-insight.v1",
-    "primaryAction": "Start with my role; local fragment navigation and focus only.",
-    "nextUsefulAction": "Open the readiness evidence checklist; local disclosure only.",
-    "nextTriggerOrCleanCompletion": "Review Gate A, complete the Day-0 gates, then run the two-week pilot before Gate B chooses expand, revise, or stop.",
-    "dominantObject": "demo.citymeter.place-insight.v1",
-    "cleanCompletion": "The decision proposal and two-minute handoff recipe are visible; approval is recorded outside this site.",
-    "productStatementPath": "private handoff; intentionally excluded from public repository",
-    "proofTrace": ["hero.cultivate", "try.role-fixture", "align.parity", "culture.context", "approve.gate-a"],
-    "proofObjectVersion": "demo.citymeter.place-insight.v1",
-    "channelParityKey": "demo.citymeter.place-insight.v1|source_limited|2026-07-21",
-    "delivery": "internal_demo",
-    "outputType": "webpage",
-    "language": "th",
-    "additionalLanguages": ["en"],
-    "visibility": "public_repository",
-    "indexable": false,
-    "evidenceStatus": "source_limited",
-    "audience": ["Product", "Design", "Development", "Marketing"],
-    "theme": {"mode": "interactive_auto", "support": "dual", "default": "system", "systemDefault": true, "visibleOverride": true, "preferenceKey": "landometer-theme"},
-    "localePreferenceKey": "landometer-locale",
-    "motion": "guided",
-    "network": "reference_ready",
-    "fullLivingReference": false,
-    "adoptionRoleRegistry": {
-      "owner": "current user brief",
-      "version": "task-scope-2026-07-21-v1",
-      "status": "provisional_internal_demo_only",
-      "records": [
-        {"id": "marketing", "label": "Marketing", "oneJob": "pair a benefit with status and limitation", "proofOrRecipeId": "try.marketing", "nextRoleOrRecipient": "product"},
-        {"id": "product", "label": "Product", "oneJob": "define readiness and truth boundary", "proofOrRecipeId": "try.product", "nextRoleOrRecipient": "design"},
-        {"id": "design", "label": "Design", "oneJob": "make hierarchy, state, and recovery legible", "proofOrRecipeId": "try.design", "nextRoleOrRecipient": "development"},
-        {"id": "development", "label": "Development", "oneJob": "make state and token rules testable", "proofOrRecipeId": "try.development", "nextRoleOrRecipient": "data-evidence-and-qa"}
-      ]
-    },
-    "mediaAssets": [
-      {"path": "assets/images/landometer-logo-banner.png", "role": "candidate identity asset", "assetId": "not supplied", "variant": "banner raster extracted from guideline page 4", "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535", "dimensions": "3818x1048", "source": "Brand Visual Guidelines 2025 page 4", "transform": "none; intrinsic ratio preserved", "approvalStatus": "official asset registry record and approver not supplied", "use": "internal decision demo; public repository publication directed by the current user on 2026-07-21; reuse approval not supplied"},
-      {"path": "assets/images/team-hero.jpeg", "role": "opening contextual photograph", "variant": "exact uploaded file", "sha256": "4b52498242f9f30410240aad03ece0610e963be5307bd548d497b1c1901a7b07", "dimensions": "1477x1108", "source": "user-supplied IMG_9244.jpeg", "owner": "not supplied", "creatorCredit": "not supplied", "contextDate": "not supplied", "cropEdit": "no asset edit; CSS object-fit contain", "alt": "A group of people together in a workplace", "displayedCredit": "none because creator was not supplied", "permissionStatus": "public repository publication directed by the current user on 2026-07-21; underlying rights and expiry not supplied", "privacyReview": "no readable private screen content observed", "use": "specified public repository only; broader reuse not cleared"},
-      {"path": "assets/images/team-presenting.jpeg", "role": "culture contextual photograph", "variant": "exact uploaded file", "sha256": "3893f0da6816814bf7bbd0ab1f5635020f06b327e99033bd50cb5beba014f76f", "dimensions": "466x573", "source": "user-supplied IMG_5698.jpeg", "owner": "not supplied", "creatorCredit": "not supplied", "contextDate": "not supplied", "cropEdit": "no asset edit", "alt": "A person seated beside a laptop, gesturing while speaking", "displayedCredit": "none because creator was not supplied", "permissionStatus": "public repository publication directed by the current user on 2026-07-21; underlying rights and expiry not supplied", "privacyReview": "laptop screen content is not visible", "use": "specified public repository only; broader reuse not cleared"}
-    ],
-    "qa": {"controlInventoryPath": "control-inventory.json", "fontManifestPath": "font-assets.manifest.json", "qaEvidencePath": "private handoff; intentionally excluded from public repository", "browserEvidence": "agent_preview_pass_360_768_1280_1440_2026-07-21", "machineValidation": "pending"},
-    "publication": {"authorizedMode": "public_repository", "authorizationSource": "current user instruction 2026-07-21", "repository": "https://github.com/montri-th/Landometer", "repositoryVisibility": "public", "indexingSignal": "noindex", "pagesStatus": "not_yet_verified", "ownerOnlyHostedUrl": "https://landometer-ds-adoption.montri348261.chatgpt.site", "accessScope": "public source repository; decision-demo scope only", "destinationReady": "public_repository_target_confirmed"},
-    "capabilities": {
-      "motionEnhancement": true,
-      "search": false,
-      "share": false,
-      "map": false,
-      "dataVisualization": false,
-      "coCreation": false,
-      "persistence": false,
-      "authentication": false,
-      "authenticationScope": "no application-level authentication; repository source is public by current user instruction",
-      "telemetry": false
-    },
-    "fixtureCapabilities": {"roleSwitch": true, "baselineAssistedSwitch": true, "localDisclosure": true, "externalEffect": false},
-    "machineValidation": "pending"
+    "dsVersion":"0.8.6","buildCardVersion":"0.8.6","manifestVersion":"pending_0.8.6_generation","tokenSchemaVersion":6,
+    "product":"landometer","profile":"designsystem.adoption","pageKind":"full_living_reference","pageKindSourceRef":"REFERENCE-01",
+    "delivery":"deployable_public","language":"th","additionalLanguages":["en"],"evidenceStatus":"provisional","visibility":"public","indexable":false,
+    "canonicalUrl":"https://montri-th.github.io/Landometer/","theme":{"mode":"interactive_auto","support":"dual","default":"system","visibleOverride":true},
+    "motion":{"intensity":"guided"},"capabilities":{"search":true,"fullLivingReference":true,"motionEnhancement":true,"analyticalEvidence":false,"dataVisualization":false,"map":false,"share":false,"persistence":false,"externalSideEffect":false},
+    "fixtureScopedCapabilities":["analyticalEvidence","dataVisualization","map","share-preview","motion","component-states"],
+    "network":{"mode":"reference_ready","action":"none"},"channelParityKey":"demo.citymeter.place-insight.v1|source_limited|reference",
+    "machineValidation":"pending","telemetry":{"enabled":false,"scope":"none"}
   }
   </script>
 
   <script type="application/json" id="design-system-coverage">
   {
-    "normativeVersion": "0.8.6",
-    "scope": "scoped designsystem.adoption decision demo published in the user-designated public source repository",
-    "fullLivingReference": false,
-    "sections": [
-      {"id": "0", "status": "reference-only", "anchor": "#approve", "reason": "release rationale is recorded in the private QA handoff and summarized in the approval scene"},
-      {"id": "1", "status": "rendered", "anchor": "#landometer-build-card", "reason": "Build Card is embedded as machine-readable metadata"},
-      {"id": "2", "status": "rendered", "anchor": "#try", "reason": "decision-quality and truth contract shown"},
-      {"id": "3", "status": "rendered", "anchor": "#hero", "reason": "protected lines, DNA signatures, and voice applied across the route"},
-      {"id": "4", "status": "rendered", "anchor": "#hero", "reason": "Cultivate → Try → Align → Culture → Approve"},
-      {"id": "5", "status": "rendered", "anchor": "#hero", "reason": "identity, colors, type, layout, theme, locale, and motion"},
-      {"id": "6", "status": "rendered", "anchor": "#try", "reason": "controls, states, recovery, and accessibility"},
-      {"id": "7", "status": "rendered", "anchor": "#approve", "reason": "delivery, recovery, and publication boundaries apply; optional chart, map, share, auth, and persistence triggers are not applicable"},
-      {"id": "8", "status": "rendered", "anchor": "#try", "reason": "designsystem.adoption role proof and handoff"},
-      {"id": "9", "status": "reference-only", "anchor": "site-manifest.json", "reason": "manifest and inventory are present; machine package pending"},
-      {"id": "10", "status": "reference-only", "anchor": "#approve", "reason": "QA evidence remains in the private handoff and is intentionally excluded from the public repository"},
-      {"id": "11", "status": "reference-only", "anchor": "#approve", "reason": "legacy regression history remains in the private handoff and does not belong in the public decision path"},
-      {"id": "12", "status": "rendered", "anchor": "#approve", "reason": "bounded approval and release limitations shown"},
-      {"id": "A", "status": "reference-only", "anchor": "#hero", "reason": "only the applicable token, type, layout, and motion subset is implemented"},
-      {"id": "B", "status": "reference-only", "anchor": "#landometer-build-card", "reason": "machineValidation pending"},
-      {"id": "C", "status": "reference-only", "anchor": "#approve", "reason": "release boundary recorded"}
-    ]
+    "sourceTitle":"Landometer Design System v0.8.6",
+    "sections":[
+      {"id":"0","anchor":"ref-why","status":"rendered","specimens":["release-architecture"]},
+      {"id":"1","anchor":"ref-build","status":"rendered","specimens":["build-card-tool"]},
+      {"id":"2","anchor":"ref-core","status":"rendered","specimens":["core-contract-table"]},
+      {"id":"3","anchor":"ref-brand","status":"rendered","specimens":["brand-value-trace","role-path"]},
+      {"id":"4","anchor":"ref-flow","status":"rendered","specimens":["adoption-opening","role-path"]},
+      {"id":"5","anchor":"ref-visual","status":"rendered","specimens":["theme-parity","typography-lab","motion-lab"]},
+      {"id":"6","anchor":"ref-components","status":"rendered","specimens":["state-lab"]},
+      {"id":"7","anchor":"ref-data","status":"rendered","specimens":["dataviz-matrix","scale-lab","map-lab","recipient-value","proof-deck"]},
+      {"id":"8","anchor":"ref-profiles","status":"rendered","specimens":["product-profiles","cross-team-handoff"]},
+      {"id":"9","anchor":"ref-agent","status":"rendered","specimens":["human-agent-parity"]},
+      {"id":"10","anchor":"ref-qa","status":"rendered","specimens":["qa-matrix"]},
+      {"id":"11","anchor":"ref-migration","status":"rendered","specimens":["regression-list"]},
+      {"id":"12","anchor":"ref-done","status":"rendered","specimens":["definition-of-done"]},
+      {"id":"A","anchor":"ref-tokens","status":"rendered","specimens":["token-downloads","scale-lab"]},
+      {"id":"B","anchor":"ref-machine","status":"rendered","specimens":["machine-boundary"]},
+      {"id":"C","anchor":"ref-changes","status":"rendered","specimens":["release-boundaries"]}
+    ],
+    "requiredExamples":[
+      {"id":"reward-before-request","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"decision-quality","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"private-by-default","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"relevant-circle-coordination","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"recovery-completeness","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"cta-integrity","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"transparent-learning","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"voluntary-investment","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"hook-without-dark-patterns","sourceSection":"7.14","status":"rendered","anchor":"lab-mode"},
+      {"id":"cross-team-handoff","sourceSection":"7.14","status":"rendered","anchor":"align"},
+      {"id":"theme-parity","sourceSection":"5.9","status":"rendered","anchor":"lab-mode"},
+      {"id":"chart-selection","sourceSection":"7.2","status":"rendered","anchor":"lab-mode"},
+      {"id":"nine-scales-light-dark","sourceSection":"A6","status":"rendered","anchor":"lab-mode"},
+      {"id":"map-selection","sourceSection":"7.3","status":"rendered","anchor":"lab-mode"},
+      {"id":"typography-context","sourceSection":"5.6","status":"rendered","anchor":"lab-mode"},
+      {"id":"motion-sandbox","sourceSection":"5.11","status":"rendered","anchor":"lab-mode"},
+      {"id":"state-recovery","sourceSection":"6.3","status":"rendered","anchor":"lab-mode"}
+    ],
+    "brandLayers":["statement","dna","voice","visual"],
+    "knownBoundary":"Generated v0.8.6 schema, preflight, machine package, permission registry, and formal role-findability study remain pending."
   }
   </script>
-
-  <script>
-    (() => {
-      const root = document.documentElement;
-      const status = document.getElementById('status-announcer');
-      const localeSelect = document.getElementById('locale-select');
-      const roleSelect = document.getElementById('role-select');
-      const workbench = document.getElementById('workbench');
-      const modeButtons = [...document.querySelectorAll('[data-mode-button]')];
-      const proofAction = document.getElementById('proof-action');
-      const proofChecklist = document.getElementById('proof-checklist');
-      const approvalAction = document.getElementById('approval-action');
-      const approvalPanel = document.getElementById('approval-panel');
-      const preferenceReset = document.getElementById('preference-reset');
-      const themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-      function browserLocale() {
-        return (navigator.languages || [navigator.language || 'th']).some(value => String(value).toLowerCase().startsWith('en')) ? 'en' : 'th';
-      }
-
-      function resolveLocale() {
-        const fromUrl = new URL(window.location.href).searchParams.get('lang');
-        if (fromUrl === 'th' || fromUrl === 'en') return fromUrl;
-        try {
-          const stored = localStorage.getItem('landometer-locale');
-          if (stored === 'th' || stored === 'en') return stored;
-        } catch (_) {}
-        return browserLocale();
-      }
-
-      function setLocale(locale, persist) {
-        const next = locale === 'en' ? 'en' : 'th';
-        document.querySelectorAll('body [data-locale]').forEach(node => {
-          node.hidden = node.dataset.locale !== next;
-        });
-        document.querySelectorAll('[data-alt-th]').forEach(image => {
-          image.alt = next === 'en' ? image.dataset.altEn : image.dataset.altTh;
-        });
-        document.querySelectorAll('[data-alt-label-th]').forEach(node => {
-          node.setAttribute('aria-label', next === 'en' ? node.dataset.altLabelEn : node.dataset.altLabelTh);
-        });
-        document.querySelectorAll('[data-aria-th]').forEach(node => {
-          node.setAttribute('aria-label', next === 'en' ? node.dataset.ariaEn : node.dataset.ariaTh);
-        });
-        root.lang = next;
-        root.dataset.locale = next;
-        localeSelect.value = next;
-        if (persist) {
-          try { localStorage.setItem('landometer-locale', next); } catch (_) {}
-          const url = new URL(window.location.href);
-          url.searchParams.set('lang', next);
-          history.replaceState({}, '', url);
-        }
-      }
-
-      function actualTheme(choice) {
-        return choice === 'auto' ? (themeQuery.matches ? 'dark' : 'light') : choice;
-      }
-
-      function setTheme(choice, persist) {
-        const next = ['auto', 'light', 'dark'].includes(choice) ? choice : 'auto';
-        root.dataset.themePreference = next;
-        root.dataset.theme = actualTheme(next);
-        document.querySelectorAll('input[name="theme"]').forEach(input => {
-          input.checked = input.value === next;
-        });
-        document.querySelectorAll('[data-theme-label]').forEach(label => {
-          label.hidden = label.dataset.themeLabel !== next;
-        });
-        const color = root.dataset.theme === 'dark' ? '#11191D' : '#F6F7F3';
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', color);
-        if (persist) {
-          try { localStorage.setItem('landometer-theme', next); } catch (_) {}
-        }
-      }
-
-      function announce(th, en) {
-        status.textContent = root.lang === 'en' ? en : th;
-      }
-
-      function updateProof() {
-        const role = roleSelect.value;
-        const mode = modeButtons.find(button => button.getAttribute('aria-pressed') === 'true').dataset.modeButton;
-        workbench.dataset.role = role;
-        workbench.dataset.mode = mode;
-        document.querySelectorAll('[data-role-panel]').forEach(panel => {
-          panel.hidden = !(panel.dataset.rolePanel === role && panel.dataset.modePanel === mode);
-        });
-        announce('อัปเดตตัวอย่างตามบทบาทและวิธีทำงานแล้ว', 'The specimen has been updated for the selected role and mode.');
-      }
-
-      localeSelect.addEventListener('change', event => setLocale(event.target.value, true));
-      document.querySelectorAll('input[name="theme"]').forEach(input => {
-        input.addEventListener('change', event => setTheme(event.target.value, true));
-      });
-      const handleSystemTheme = () => {
-        if (root.dataset.themePreference === 'auto') setTheme('auto', false);
-      };
-      if (typeof themeQuery.addEventListener === 'function') themeQuery.addEventListener('change', handleSystemTheme);
-      else if (typeof themeQuery.addListener === 'function') themeQuery.addListener(handleSystemTheme);
-      preferenceReset.addEventListener('click', () => {
-        try {
-          localStorage.removeItem('landometer-theme');
-          localStorage.removeItem('landometer-locale');
-        } catch (_) {}
-        const url = new URL(window.location.href);
-        url.searchParams.delete('lang');
-        history.replaceState({}, '', url);
-        setTheme('auto', false);
-        setLocale(browserLocale(), false);
-        announce('คืนค่าธีมและภาษาเริ่มต้นแล้ว', 'Theme and language preferences reset.');
-      });
-      roleSelect.addEventListener('change', updateProof);
-      modeButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-          modeButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-          updateProof();
-        });
-        button.addEventListener('keydown', event => {
-          if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-          event.preventDefault();
-          const step = event.key === 'ArrowRight' ? 1 : -1;
-          const next = modeButtons[(index + step + modeButtons.length) % modeButtons.length];
-          next.click();
-          next.focus();
-        });
-      });
-      proofAction.addEventListener('click', () => {
-        const expanded = proofAction.getAttribute('aria-expanded') === 'true';
-        proofAction.setAttribute('aria-expanded', String(!expanded));
-        proofChecklist.hidden = expanded;
-        proofAction.querySelector('[data-state-label="closed"]').hidden = !expanded;
-        proofAction.querySelector('[data-state-label="open"]').hidden = expanded;
-        announce(expanded ? 'ซ่อนรายการตรวจแล้ว' : 'แสดงรายการตรวจแล้ว', expanded ? 'Checks hidden.' : 'Checks shown.');
-      });
-      approvalAction.addEventListener('click', () => {
-        const expanded = approvalAction.getAttribute('aria-expanded') === 'true';
-        approvalAction.setAttribute('aria-expanded', String(!expanded));
-        approvalPanel.hidden = expanded;
-        if (!expanded) approvalPanel.focus({preventScroll: true});
-        announce(expanded ? 'ปิดข้อเสนออนุมัติแล้ว' : 'เปิดข้อเสนออนุมัติแล้ว', expanded ? 'Decision proposal closed.' : 'Decision proposal opened.');
-      });
-      document.getElementById('start-action').addEventListener('click', () => {
-        window.setTimeout(() => roleSelect.focus({preventScroll: true}), 360);
-      });
-
-      const revealNodes = [...document.querySelectorAll('.reveal-group')];
-      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, {threshold: .12, rootMargin: '0px 0px -10% 0px'});
-        revealNodes.forEach(node => observer.observe(node));
-        root.classList.add('motion-ready');
-      } else {
-        revealNodes.forEach(node => node.classList.add('is-visible'));
-      }
-
-      setLocale(resolveLocale(), false);
-      setTheme(root.dataset.themePreference || 'auto', false);
-      updateProof();
-    })();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,150 @@
+{
+  "artifact": {
+    "id": "landometer-ds-adoption-v0.1",
+    "title": "Landometer Design System v0.8.6 — Adoption Decision Demo",
+    "releaseDate": "2026-07-21",
+    "status": "internal decision demo",
+    "normativeVersion": "0.8.6",
+    "buildCardVersion": "0.8.6",
+    "manifestVersion": "pending_0.8.6_generation",
+    "tokenSchemaVersion": "6",
+    "profile": "designsystem.adoption",
+    "pageKind": "stakeholder_decision_demo",
+    "pageKindSourceRef": "product-statement.md v0.1 sections 7 and 13",
+    "delivery": "internal_demo",
+    "outputType": "webpage",
+    "evidenceStatus": "source_limited",
+    "visibility": "public_repository",
+    "indexable": false,
+    "machineValidation": "pending",
+    "fullLivingReference": false
+  },
+  "decision": {
+    "audience": ["Product", "Design", "Development", "Marketing"],
+    "requested": "Gate A: approve v0.8.6 as the candidate shared language for four task-scoped roles and conditionally authorize a two-week pilot on one CityMETER decision flow after Day-0 gates are complete; this is not broad rollout.",
+    "recordingEffect": "none",
+    "reviewPoint": "Gate B at the end of the two-week pilot",
+    "gateBChoices": ["expand", "revise", "stop"]
+  },
+  "experience": {
+    "route": ["Cultivate", "Try", "Align", "Culture", "Approve"],
+    "signatures": ["Measure", "Ground", "Cultivate"],
+    "trigger": "The four task-scoped roles need to decide whether to run a bounded v0.8.6 adoption pilot.",
+    "oneJob": "See how one governed object changes role work, then review Gate A.",
+    "firstAha": "No current result, source gap, decision boundary, and next evidence check are visible without an invented value.",
+    "ahaEvidenceCue": "status + source + boundary + limitation",
+    "primaryAction": "start with my role; local navigation only",
+    "nextUsefulAction": "open the readiness evidence checklist; local disclosure only",
+    "cleanCompletion": "review Gate A and carry the static handoff recipe into the pilot",
+    "channelParityKey": "demo.citymeter.place-insight.v1|source_limited|2026-07-21",
+    "locales": {"fallback": "th", "additional": ["en"], "oneActiveAtATime": true},
+    "themes": {"mode": "interactive_auto", "support": "dual", "default": "system", "supported": ["auto", "light", "dark"], "visibleOverride": true, "explicitPreferenceStored": true, "preferenceKey": "landometer-theme"},
+    "localePreferenceKey": "landometer-locale",
+    "network": "reference_ready",
+    "capabilities": {
+      "motionEnhancement": true,
+      "search": false,
+      "share": false,
+      "map": false,
+      "dataVisualization": false,
+      "coCreation": false,
+      "persistence": false,
+      "authentication": false,
+      "authenticationScope": "no application-level authentication; repository source is public by current user instruction",
+      "telemetry": false
+    }
+  },
+  "adoptionRoleRegistry": {
+    "owner": "current user brief",
+    "version": "task-scope-2026-07-21-v1",
+    "status": "provisional_internal_demo_only",
+    "records": [
+      {"id": "marketing", "label": "Marketing", "oneJob": "pair a benefit with status and limitation", "proofOrRecipeId": "try.marketing", "nextRoleOrRecipient": "product"},
+      {"id": "product", "label": "Product", "oneJob": "define readiness and truth boundary", "proofOrRecipeId": "try.product", "nextRoleOrRecipient": "design"},
+      {"id": "design", "label": "Design", "oneJob": "make hierarchy, state, and recovery legible", "proofOrRecipeId": "try.design", "nextRoleOrRecipient": "development"},
+      {"id": "development", "label": "Development", "oneJob": "make state and token rules testable", "proofOrRecipeId": "try.development", "nextRoleOrRecipient": "data-evidence-and-qa"}
+    ]
+  },
+  "governedObject": {
+    "id": "demo.citymeter.place-insight.v1",
+    "classification": "design-system fixture in a CityMETER context; no claim of current product behavior",
+    "status": "no current result",
+    "source": "not connected in this demonstration",
+    "boundary": "must not be used for a real decision",
+    "liveData": false
+  },
+  "assets": [
+    {
+      "path": "assets/images/landometer-logo-banner.png",
+      "type": "logo",
+      "assetId": "not supplied",
+      "variant": "banner raster extracted from guideline page 4",
+      "source": "exact raster image extracted from page 4 of Landometer Brand Visual Guidelines 2025.pdf",
+      "dimensions": "3818x1048",
+      "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
+      "transform": "none; intrinsic ratio preserved",
+      "approvalStatus": "official asset registry ID, variant record, and approver not supplied",
+      "approvedUse": "internal decision demo; public repository publication directed by the current user on 2026-07-21; reuse approval not supplied"
+    },
+    {
+      "path": "assets/images/team-hero.jpg",
+      "type": "photograph",
+      "variant": "optimized derivative",
+      "source": "user-supplied IMG_9244.jpeg",
+      "dimensions": "1200x900",
+      "sha256": "50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb",
+      "approvedUse": "specified public repository only; broader reuse not cleared",
+      "externalPublication": "public repository publication directed by the current user on 2026-07-21; underlying rights and expiry not supplied",
+      "owner": "not supplied",
+      "creatorCredit": "not supplied",
+      "contextDate": "not supplied",
+      "cropEdit": "resized and metadata stripped; no crop",
+      "alt": "A group of people together in a workplace",
+      "displayedCredit": "none because creator was not supplied",
+      "permissionStatus": "rights and expiry not supplied",
+      "screenPrivacy": "no readable private screen content observed"
+    },
+    {
+      "path": "assets/images/team-presenting.jpg",
+      "type": "photograph",
+      "variant": "exact uploaded file",
+      "source": "user-supplied IMG_5698.jpeg",
+      "dimensions": "466x573",
+      "sha256": "3893f0da6816814bf7bbd0ab1f5635020f06b327e99033bd50cb5beba014f76f",
+      "approvedUse": "specified public repository only; broader reuse not cleared",
+      "externalPublication": "public repository publication directed by the current user on 2026-07-21; underlying rights and expiry not supplied",
+      "owner": "not supplied",
+      "creatorCredit": "not supplied",
+      "contextDate": "not supplied",
+      "cropEdit": "no asset edit",
+      "alt": "A person seated beside a laptop, gesturing while speaking",
+      "displayedCredit": "none because creator was not supplied",
+      "permissionStatus": "rights and expiry not supplied",
+      "screenPrivacy": "laptop screen content is not visible"
+    }
+  ],
+  "publication": {
+    "authorizedMode": "public_repository",
+    "authorizationSource": "current user instruction 2026-07-21",
+    "repository": "https://github.com/montri-th/Landometer",
+    "repositoryVisibility": "public",
+    "indexingSignal": "noindex",
+    "pagesStatus": "not_yet_verified",
+    "ownerOnlyHostedUrl": "https://landometer-ds-adoption.montri348261.chatgpt.site",
+    "accessScope": "public source repository; decision-demo scope only",
+    "destinationReady": "public_repository_target_confirmed"
+  },
+  "qa": {
+    "controlInventoryPath": "control-inventory.json",
+    "fontManifestPath": "font-assets.manifest.json",
+    "qaEvidencePath": "private handoff; intentionally excluded from public repository",
+    "browserEvidence": "agent_preview_pass_360_768_1280_1440_2026-07-21",
+    "machineValidation": "pending"
+  },
+  "supportingFiles": {
+    "controlInventory": "control-inventory.json",
+    "fontManifest": "font-assets.manifest.json",
+    "productStatement": "private handoff; intentionally excluded from public repository",
+    "qaReport": "private handoff; intentionally excluded from public repository"
+  }
+}

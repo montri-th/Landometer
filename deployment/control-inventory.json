@@ -1,21 +1,316 @@
 {
-  "inventoryVersion": "1.0",
-  "artifact": "landometer-ds-adoption-v0.1",
+  "version": "0.8.6",
+  "generated": "2026-07-22",
   "controls": [
-    {"id": "skip-link", "accessibleName": "ข้ามไปเนื้อหาหลัก / Skip to main content", "job": "bypass repeated header content", "effect": "local fragment navigation", "finalState": "main content focused", "failureRecovery": "main remains reachable by sequential keyboard navigation", "browserTest": "keyboard focus then Enter"},
-    {"id": "home-link", "accessibleName": "Landometer — กลับไปจุดเริ่มต้น / return to the start", "job": "return to the opening scene", "effect": "local fragment navigation", "finalState": "hero is in view", "failureRecovery": "browser Back or page scroll", "browserTest": "pointer and Enter"},
-    {"id": "locale-select", "accessibleName": "ภาษา / Language", "job": "show one active language", "effect": "local UI state plus URL and preference update", "finalState": "Thai or English is the only visible locale", "failureRecovery": "Thai fallback; session remains usable if storage fails", "browserTest": "select with keyboard and pointer; reload URL"},
-    {"id": "theme-summary", "accessibleName": "ธีม / Theme", "job": "open theme settings", "effect": "local disclosure", "finalState": "Auto, Light, and Dark options visible", "failureRecovery": "close with the same summary control", "browserTest": "Enter and pointer"},
-    {"id": "theme-auto", "accessibleName": "อัตโนมัติ / รีเซ็ตธีม / Auto / reset theme", "job": "follow the system color preference", "effect": "local theme state and preference storage", "finalState": "resolved system theme active", "failureRecovery": "session theme still applies if storage fails", "browserTest": "keyboard radio selection and system-emulation change"},
-    {"id": "theme-light", "accessibleName": "สว่าง / Light", "job": "force the light theme", "effect": "local theme state and preference storage", "finalState": "light theme active", "failureRecovery": "choose Auto or Dark", "browserTest": "keyboard and pointer"},
-    {"id": "theme-dark", "accessibleName": "มืด / Dark", "job": "force the dark theme", "effect": "local theme state and preference storage", "finalState": "dark theme active", "failureRecovery": "choose Auto or Light", "browserTest": "keyboard and pointer"},
-    {"id": "preference-reset", "accessibleName": "คืนค่าธีมและภาษาเริ่มต้น / Reset theme and language", "job": "remove explicit theme and locale preferences", "effect": "clears only the documented local utility keys and URL locale choice", "finalState": "Auto theme and browser/fallback locale active", "failureRecovery": "current session remains usable if storage is unavailable", "browserTest": "keyboard and pointer; verify URL and both utility keys"},
-    {"id": "start-action", "accessibleName": "เริ่มจากงานของฉัน / Start with my role", "job": "move from the opening to the role proof", "effect": "local fragment navigation and focus", "finalState": "role selector focused", "failureRecovery": "Try section remains reachable by scrolling", "browserTest": "Enter, pointer, and reduced motion"},
-    {"id": "role-select", "accessibleName": "ดูจากบทบาทของฉัน / View through my role", "job": "show one role-specific proof", "effect": "local specimen state", "finalState": "one matching role proof visible", "failureRecovery": "Product is the deterministic default", "browserTest": "select every option with keyboard and pointer"},
-    {"id": "mode-baseline", "accessibleName": "ก่อนใช้กติกากลาง / Baseline", "job": "show the neutral baseline mechanism", "effect": "local specimen state", "finalState": "baseline proof visible with the invariant object", "failureRecovery": "switch to Assisted", "browserTest": "click, Enter, Space, and arrow key"},
-    {"id": "mode-assisted", "accessibleName": "เมื่อใช้ v0.8.6 / With v0.8.6", "job": "show the governed mechanism", "effect": "local specimen state", "finalState": "assisted proof visible with the invariant object", "failureRecovery": "switch to Baseline", "browserTest": "click, Enter, Space, and arrow key"},
-    {"id": "proof-action", "accessibleName": "ดูสิ่งที่ต้องตรวจต่อ / Show the next checks", "job": "inspect evidence required for readiness", "effect": "local disclosure; no external effect", "finalState": "checklist shown or hidden and announced", "failureRecovery": "same control toggles state; no-JS shows the checklist and hides the control", "browserTest": "pointer and keyboard; verify aria-expanded"},
-    {"id": "evidence-gate-summary", "accessibleName": "ถ้าหลักฐานหาย งานจะหยุดตรงไหน? / Where does work stop when evidence is missing?", "job": "inspect the blocking branch", "effect": "native local disclosure", "finalState": "owner and blocking evidence visible", "failureRecovery": "same summary closes the disclosure", "browserTest": "pointer and keyboard"},
-    {"id": "approval-action", "accessibleName": "พิจารณาอนุมัติทิศทาง + pilot 2 สัปดาห์ / Consider the direction + a two-week pilot", "job": "review the exact Gate A decision request", "effect": "local disclosure; approval is not recorded or transmitted", "finalState": "decision, role actions, Gate B, and static takeaway visible", "failureRecovery": "same control closes the panel", "browserTest": "pointer and keyboard; verify focus and aria-expanded"}
+    {
+      "id": "menu.open",
+      "selector": "#open-menu",
+      "expectedCount": 1,
+      "accessibleName": "Open navigation, settings, language, and theme",
+      "userJob": "Open compact navigation/settings",
+      "finalState": "modal dialog open",
+      "failureRecovery": "Escape or visible Close",
+      "browserTest": "click + Enter"
+    },
+    {
+      "id": "menu.close",
+      "selector": "#close-menu",
+      "expectedCount": 1,
+      "accessibleName": "Close menu",
+      "userJob": "Close menu",
+      "finalState": "dialog closed and focus returned",
+      "failureRecovery": "Escape",
+      "browserTest": "click + Enter + Escape"
+    },
+    {
+      "id": "mode.routes",
+      "selector": "[data-route-mode]",
+      "expectedCount": 16,
+      "accessibleName": "Visible label per route",
+      "userJob": "Open Start, Reference, or Lab",
+      "finalState": "one active mode; URL restored",
+      "failureRecovery": "menu or footer routes",
+      "browserTest": "invoke every route"
+    },
+    {
+      "id": "locale.choice",
+      "selector": "[data-locale-choice]",
+      "expectedCount": 2,
+      "accessibleName": "ไทย / English",
+      "userJob": "Change active language",
+      "finalState": "one active locale; html lang and URL updated",
+      "failureRecovery": "reset preferences",
+      "browserTest": "switch both directions"
+    },
+    {
+      "id": "theme.choice",
+      "selector": "[data-theme-choice]",
+      "expectedCount": 3,
+      "accessibleName": "Auto / Light / Dark",
+      "userJob": "Change theme preference",
+      "finalState": "resolved theme and browser color updated",
+      "failureRecovery": "Auto or reset",
+      "browserTest": "Auto + Light + Dark"
+    },
+    {
+      "id": "preferences.reset",
+      "selector": "#reset-preferences",
+      "expectedCount": 1,
+      "accessibleName": "Reset language and theme",
+      "userJob": "Clear explicit utility preferences",
+      "finalState": "system theme and browser locale restored",
+      "failureRecovery": "choose settings again",
+      "browserTest": "click"
+    },
+    {
+      "id": "start.role",
+      "selector": "#start-role",
+      "expectedCount": 1,
+      "accessibleName": "Start with my role",
+      "userJob": "Reach role path",
+      "finalState": "role section focused in route",
+      "failureRecovery": "normal back/scroll",
+      "browserTest": "click + Enter"
+    },
+    {
+      "id": "role.select",
+      "selector": "#role-select",
+      "expectedCount": 1,
+      "accessibleName": "Role",
+      "userJob": "Choose role recipe",
+      "finalState": "one role proof and takeaway",
+      "failureRecovery": "choose another role",
+      "browserTest": "five options"
+    },
+    {
+      "id": "role.view",
+      "selector": "[data-role-view]",
+      "expectedCount": 2,
+      "accessibleName": "Baseline / Assisted",
+      "userJob": "Compare the same object with or without assistance",
+      "finalState": "view and URL updated",
+      "failureRecovery": "toggle back",
+      "browserTest": "both buttons"
+    },
+    {
+      "id": "role.copy",
+      "selector": "#copy-role-recipe",
+      "expectedCount": 1,
+      "accessibleName": "Copy recipe",
+      "userJob": "Copy role recipe",
+      "finalState": "clipboard receipt",
+      "failureRecovery": "select visible takeaway",
+      "browserTest": "click"
+    },
+    {
+      "id": "handoff.tabs",
+      "selector": "[data-handoff]",
+      "expectedCount": 5,
+      "accessibleName": "Marketing through Evidence/QA",
+      "userJob": "Inspect truth across roles",
+      "finalState": "one tabpanel updated",
+      "failureRecovery": "Arrow/Home/End",
+      "browserTest": "click + keyboard"
+    },
+    {
+      "id": "reference.search",
+      "selector": "#reference-search",
+      "expectedCount": 1,
+      "accessibleName": "Search the design system",
+      "userJob": "Find an exact rule/recipe",
+      "finalState": "matching section results",
+      "failureRecovery": "clear query",
+      "browserTest": "type + result click"
+    },
+    {
+      "id": "reference.deepLinks",
+      "selector": ".copy-link",
+      "expectedCount": 16,
+      "accessibleName": "Copy link",
+      "userJob": "Copy exact rule deep link",
+      "finalState": "clipboard receipt",
+      "failureRecovery": "native address copy",
+      "browserTest": "sample + count"
+    },
+    {
+      "id": "reference.swatches",
+      "selector": "[data-copy-value]",
+      "expectedCount": 5,
+      "accessibleName": "Token hex value",
+      "userJob": "Copy canonical value",
+      "finalState": "clipboard receipt",
+      "failureRecovery": "visible value remains",
+      "browserTest": "sample + count"
+    },
+    {
+      "id": "buildCard.fields",
+      "selector": "#build-card-form input:not([type=checkbox]), #build-card-form select",
+      "expectedCount": 8,
+      "accessibleName": "Associated field labels",
+      "userJob": "Define scoped build",
+      "finalState": "form values retained",
+      "failureRecovery": "edit and resubmit",
+      "browserTest": "required fields and selects"
+    },
+    {
+      "id": "buildCard.capabilities",
+      "selector": "#build-card-form input[type=checkbox]",
+      "expectedCount": 9,
+      "accessibleName": "Capability name",
+      "userJob": "Declare enabled branches",
+      "finalState": "validation uses selected capabilities",
+      "failureRecovery": "uncheck",
+      "browserTest": "conflict cases"
+    },
+    {
+      "id": "buildCard.generate",
+      "selector": "#build-card-form button[type=submit]",
+      "expectedCount": 1,
+      "accessibleName": "Validate and generate YAML",
+      "userJob": "Validate starter Build Card",
+      "finalState": "YAML or actionable errors",
+      "failureRecovery": "edit fields",
+      "browserTest": "valid + invalid"
+    },
+    {
+      "id": "buildCard.download",
+      "selector": "#download-build-card",
+      "expectedCount": 1,
+      "accessibleName": "Download this YAML",
+      "userJob": "Download generated Build Card",
+      "finalState": "local file download",
+      "failureRecovery": "copy code block / full template",
+      "browserTest": "click after valid generate"
+    },
+    {
+      "id": "downloads",
+      "selector": "a[download]",
+      "expectedCount": 11,
+      "accessibleName": "File-specific label",
+      "userJob": "Obtain implementation asset",
+      "finalState": "local file download",
+      "failureRecovery": "direct file URL",
+      "browserTest": "HEAD/local reference check"
+    },
+    {
+      "id": "reference.details",
+      "selector": "#reference-mode details",
+      "expectedCount": 5,
+      "accessibleName": "Visible summary",
+      "userJob": "Reveal exact contract/evidence",
+      "finalState": "detail expanded/collapsed",
+      "failureRecovery": "toggle again",
+      "browserTest": "keyboard sample + count"
+    },
+    {
+      "id": "lab.navigation",
+      "selector": "#previous-specimen, #specimen-select, #next-specimen",
+      "expectedCount": 3,
+      "accessibleName": "Previous / specimen / next",
+      "userJob": "Move among specimens",
+      "finalState": "one active specimen and URL",
+      "failureRecovery": "direct selector",
+      "browserTest": "previous + next + select"
+    },
+    {
+      "id": "proof.controls",
+      "selector": "#proof-select, #proof-baseline, #proof-assisted, #run-proof, #reset-proof",
+      "expectedCount": 5,
+      "accessibleName": "Proof-specific label",
+      "userJob": "Inspect and run a local proof",
+      "finalState": "local receipt or reset",
+      "failureRecovery": "reset proof",
+      "browserTest": "all ten proofs; six comparisons"
+    },
+    {
+      "id": "theme.inspect",
+      "selector": ".theme-pair button",
+      "expectedCount": 2,
+      "accessibleName": "Inspect source",
+      "userJob": "Open governing visual rule",
+      "finalState": "Reference visual section",
+      "failureRecovery": "Lab route",
+      "browserTest": "both panels"
+    },
+    {
+      "id": "state.controls",
+      "selector": "#state-select, #state-demo-action",
+      "expectedCount": 2,
+      "accessibleName": "Choose state / state action",
+      "userJob": "Inspect truthful state/recovery",
+      "finalState": "state-complete local fixture",
+      "failureRecovery": "choose default",
+      "browserTest": "all ten states + retry"
+    },
+    {
+      "id": "chart.select",
+      "selector": "#chart-select",
+      "expectedCount": 1,
+      "accessibleName": "What decision are you making?",
+      "userJob": "Choose chart from decision question",
+      "finalState": "one chart + accessible table",
+      "failureRecovery": "choose another question",
+      "browserTest": "five chart families"
+    },
+    {
+      "id": "scale.controls",
+      "selector": "#scale-select, #scale-theme, #scale-classes",
+      "expectedCount": 3,
+      "accessibleName": "Scale / Theme / Classes",
+      "userJob": "Inspect generated LUT and class subset",
+      "finalState": "anchors, LUT, classes, hash synchronized",
+      "failureRecovery": "choose defaults",
+      "browserTest": "nine scales × two themes × 5/7/9"
+    },
+    {
+      "id": "map.areas",
+      "selector": ".map-area",
+      "expectedCount": 3,
+      "accessibleName": "Select Area A/B/C",
+      "userJob": "Select governed area",
+      "finalState": "geometry/readout/table synchronized",
+      "failureRecovery": "select another area",
+      "browserTest": "click + Enter/Space"
+    },
+    {
+      "id": "motion.controls",
+      "selector": "#replay-motion, #pause-motion",
+      "expectedCount": 2,
+      "accessibleName": "Replay / Pause show final",
+      "userJob": "Inspect timing and safe final state",
+      "finalState": "event log and visible final meaning",
+      "failureRecovery": "Pause/show final",
+      "browserTest": "normal + reduced motion"
+    },
+    {
+      "id": "product.tabs",
+      "selector": "[data-product]",
+      "expectedCount": 5,
+      "accessibleName": "Product name",
+      "userJob": "Compare profile character with invariant truth",
+      "finalState": "one product tabpanel",
+      "failureRecovery": "Arrow/Home/End",
+      "browserTest": "click + keyboard"
+    },
+    {
+      "id": "recipient.controls",
+      "selector": "#recipient-role, #prepare-preview",
+      "expectedCount": 2,
+      "accessibleName": "Recipient / Prepare local preview",
+      "userJob": "Inspect a safe recipient handoff",
+      "finalState": "local exact-object preview",
+      "failureRecovery": "change recipient; no external send",
+      "browserTest": "all recipients"
+    },
+    {
+      "id": "footer.routes",
+      "selector": "footer nav button, footer nav a",
+      "expectedCount": 4,
+      "accessibleName": "Start / Reference / Lab / Adoption demo",
+      "userJob": "Navigate from page end",
+      "finalState": "selected route",
+      "failureRecovery": "browser back",
+      "browserTest": "all four"
+    }
   ]
 }

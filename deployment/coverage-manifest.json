@@ -1,0 +1,254 @@
+{
+  "sourceTitle": "Landometer Design System v0.8.6",
+  "sections": [
+    {
+      "id": "0",
+      "anchor": "ref-why",
+      "status": "rendered",
+      "specimens": [
+        "release-architecture"
+      ]
+    },
+    {
+      "id": "1",
+      "anchor": "ref-build",
+      "status": "rendered",
+      "specimens": [
+        "build-card-tool"
+      ]
+    },
+    {
+      "id": "2",
+      "anchor": "ref-core",
+      "status": "rendered",
+      "specimens": [
+        "core-contract-table"
+      ]
+    },
+    {
+      "id": "3",
+      "anchor": "ref-brand",
+      "status": "rendered",
+      "specimens": [
+        "brand-value-trace",
+        "role-path"
+      ]
+    },
+    {
+      "id": "4",
+      "anchor": "ref-flow",
+      "status": "rendered",
+      "specimens": [
+        "adoption-opening",
+        "role-path"
+      ]
+    },
+    {
+      "id": "5",
+      "anchor": "ref-visual",
+      "status": "rendered",
+      "specimens": [
+        "theme-parity",
+        "typography-lab",
+        "motion-lab"
+      ]
+    },
+    {
+      "id": "6",
+      "anchor": "ref-components",
+      "status": "rendered",
+      "specimens": [
+        "state-lab"
+      ]
+    },
+    {
+      "id": "7",
+      "anchor": "ref-data",
+      "status": "rendered",
+      "specimens": [
+        "dataviz-matrix",
+        "scale-lab",
+        "map-lab",
+        "recipient-value",
+        "proof-deck"
+      ]
+    },
+    {
+      "id": "8",
+      "anchor": "ref-profiles",
+      "status": "rendered",
+      "specimens": [
+        "product-profiles",
+        "cross-team-handoff"
+      ]
+    },
+    {
+      "id": "9",
+      "anchor": "ref-agent",
+      "status": "rendered",
+      "specimens": [
+        "human-agent-parity"
+      ]
+    },
+    {
+      "id": "10",
+      "anchor": "ref-qa",
+      "status": "rendered",
+      "specimens": [
+        "qa-matrix"
+      ]
+    },
+    {
+      "id": "11",
+      "anchor": "ref-migration",
+      "status": "rendered",
+      "specimens": [
+        "regression-list"
+      ]
+    },
+    {
+      "id": "12",
+      "anchor": "ref-done",
+      "status": "rendered",
+      "specimens": [
+        "definition-of-done"
+      ]
+    },
+    {
+      "id": "A",
+      "anchor": "ref-tokens",
+      "status": "rendered",
+      "specimens": [
+        "token-downloads",
+        "scale-lab"
+      ]
+    },
+    {
+      "id": "B",
+      "anchor": "ref-machine",
+      "status": "rendered",
+      "specimens": [
+        "machine-boundary"
+      ]
+    },
+    {
+      "id": "C",
+      "anchor": "ref-changes",
+      "status": "rendered",
+      "specimens": [
+        "release-boundaries"
+      ]
+    }
+  ],
+  "requiredExamples": [
+    {
+      "id": "reward-before-request",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "decision-quality",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "private-by-default",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "relevant-circle-coordination",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "recovery-completeness",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "cta-integrity",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "transparent-learning",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "voluntary-investment",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "hook-without-dark-patterns",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "cross-team-handoff",
+      "sourceSection": "7.14",
+      "status": "rendered",
+      "anchor": "align"
+    },
+    {
+      "id": "theme-parity",
+      "sourceSection": "5.9",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "chart-selection",
+      "sourceSection": "7.2",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "nine-scales-light-dark",
+      "sourceSection": "A6",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "map-selection",
+      "sourceSection": "7.3",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "typography-context",
+      "sourceSection": "5.6",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "motion-sandbox",
+      "sourceSection": "5.11",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    },
+    {
+      "id": "state-recovery",
+      "sourceSection": "6.3",
+      "status": "rendered",
+      "anchor": "lab-mode"
+    }
+  ],
+  "brandLayers": [
+    "statement",
+    "dna",
+    "voice",
+    "visual"
+  ],
+  "knownBoundary": "Generated v0.8.6 schema, preflight, machine package, permission registry, and formal role-findability study remain pending."
+}

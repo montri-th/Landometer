@@ -1,0 +1,87 @@
+# Landometer Design System v0.8.6 — Build Card starter
+# Complete every required blank before writing UI.
+landometerBuild:
+  dsVersion: 0.8.6
+  schemas:
+    buildCard: 0.8.6
+    manifest: pending_0.8.6_generation
+    tokens: 6
+  artifact:
+    name: ""
+    product: landometer
+    profile: designsystem.adoption
+    pageKind: ""
+    pageKindSourceRef: ""
+    delivery: deployable_public
+    language: th
+    additionalLanguages: [en]
+    generationMode: not_applicable
+    outputType: webpage
+  publication:
+    evidenceStatus: provisional
+    visibility: public
+    indexable: false
+    canonicalUrl: ""
+  audience:
+    primary: ""
+    role: ""
+  experience:
+    trigger: ""
+    oneJob: ""
+    promisedOutcome: ""
+    firstAha: ""
+    ahaEvidenceCue: ""
+    primaryAction: ""
+    nextUsefulAction: ""
+    nextTriggerOrCleanCompletion: ""
+    dominantObject: ""
+    channelParityKey: ""
+    brandSignatures: []
+    cleanCompletion: ""
+  brandAlignment:
+    productStatement: ""
+    proofObject: ""
+    ahaProvesPromise: false
+    networkAdvancesObjective: false
+  proof:
+    kind: brand
+    object: ""
+    sourceStatus: official
+    limitation: ""
+  theme:
+    mode: interactive_auto
+    support: dual
+    default: system
+    visibleOverride: true
+  motion:
+    intensity: guided
+  capabilities:
+    analyticalEvidence: false
+    motionEnhancement: true
+    search: false
+    share: false
+    map: false
+    dataVisualization: false
+    coCreation: false
+    persistence: false
+    externalSideEffect: false
+    authentication: false
+    permissions: false
+    contextDiscovery: false
+    agentReadable: false
+    boundedAgentAction: false
+    fullLivingReference: false
+  privacy:
+    personalData: false
+    sensitivity: public
+    redactedPublicProjection: false
+  telemetry:
+    enabled: false
+    scope: none
+  network:
+    mode: reference_ready
+    action: none
+    recipientOutcome: ""
+  qa:
+    evidencePath: ""
+    controlInventoryPath: "control-inventory.json"
