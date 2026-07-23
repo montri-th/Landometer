@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 
 const project = resolve(import.meta.dirname, "..");
@@ -26,7 +26,16 @@ const fonts = json("font-assets.manifest.json");
 const publicRelease = json("assets/downloads/landometer-public-release-v0.8.6.json");
 const publicSpec = text("assets/downloads/landometer-design-system-v0.8.6-public.md");
 const publicBuildCard = text("assets/downloads/build-card-template.yaml");
-const skillZipPath = resolve(root, "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip");
+const publicReadme = text("assets/downloads/README.md");
+const repositoryReadme = readFileSync(resolve(project, "README.md"), "utf8");
+const releaseManifestName = "landometer-public-release-v0.8.6.json";
+const checksumName = "SHA256SUMS.txt";
+const skillZipName = "apply-landometer-design-system-v0.8.6-public.2.zip";
+const starterZipName = "landometer-ds-v0.8.6-starter.zip";
+const skillZipPath = resolve(root, "assets/downloads", skillZipName);
+const starterZipPath = resolve(root, "assets/downloads", starterZipName);
+const sameSet = (left, right) =>
+  JSON.stringify([...new Set(left)].sort()) === JSON.stringify([...new Set(right)].sort());
 
 pass(manifest.artifact.normativeVersion === "0.8.6", "manifest normative version mismatch");
 pass(manifest.artifact.machineValidation === "pending", "machine validation must remain pending");
@@ -37,7 +46,8 @@ pass(/data-manifest-version="pending_0\.8\.6_generation"/.test(html), "HTML mani
 pass(/data-full-living-reference="true"/.test(html), "HTML full-reference identity missing");
 pass(/<meta name="robots" content="noindex, nofollow, noarchive">/.test(html), "robots metadata mismatch");
 pass(text("robots.txt") === "User-agent: *\nDisallow: /\n", "robots.txt mismatch");
-pass(manifest.publicRelease?.id === "landometer-design-system-v0.8.6-public.1", "public release metadata missing");
+pass(manifest.publicRelease?.id === "landometer-design-system-v0.8.6-public.2", "public release metadata missing");
+pass(manifest.publicRelease?.publicPackageRevision === 2, "site manifest public package revision mismatch");
 pass(manifest.publicRelease?.normativeSourceSha256 === "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604", "public release source fingerprint mismatch");
 pass(manifest.publicRelease?.skillInvocation === "explicit_only", "public skill must require explicit invocation");
 pass(manifest.publicRelease?.machineSchemaConformance === "pending", "public release must keep machine conformance pending");
@@ -111,10 +121,95 @@ for (const file of manifest.downloads) {
   pass(existsSync(resolve(root, file.path)), `manifest download missing: ${file.path}`);
   pass(hash(file.path) === file.sha256, `manifest download hash mismatch: ${file.path}`);
 }
+
+const expectedPayloadNames = [
+  "landometer-design-system-v0.8.6-public.md",
+  skillZipName,
+  `${skillZipName}.sha256`,
+  starterZipName,
+  "build-card-template.yaml",
+  "landometer-tokens.css",
+  "landometer-tokens.json",
+  "landometer-tokens.ts",
+  "component-recipes.md",
+  "voice-recipes.md",
+  "reference-fixtures.json",
+  "landometer-public-release-v0.8.6-changelog.md",
+  "README.md"
+];
+const expectedDownloadNames = [...expectedPayloadNames, releaseManifestName, checksumName];
+const actualDownloadNames = readdirSync(resolve(root, "assets/downloads")).sort();
+pass(sameSet(actualDownloadNames, expectedDownloadNames), "download directory contains missing, stale, or unexpected release files");
+
+const releasePayloadNames = publicRelease.files.map(file => basename(file.path));
+pass(sameSet(releasePayloadNames, expectedPayloadNames), "public release manifest payload set mismatch");
+
+const checksumLines = text(`assets/downloads/${checksumName}`).trim().split("\n");
+const checksumRecords = checksumLines.map(line => {
+  const match = line.match(/^([a-f0-9]{64})  ([^/][^\r\n]*)$/);
+  pass(Boolean(match), `invalid SHA256SUMS line: ${line}`);
+  return match ? { sha256: match[1], file: match[2] } : { sha256: "", file: "" };
+});
+const checksumNames = checksumRecords.map(item => item.file);
+pass(sameSet(checksumNames, [...expectedPayloadNames, releaseManifestName]), "SHA256SUMS coverage mismatch");
+pass(checksumNames.includes(releaseManifestName), "SHA256SUMS must cover the release manifest");
+pass(!checksumNames.includes(checksumName), "SHA256SUMS must exclude only itself");
+for (const item of checksumRecords) {
+  if (item.file) pass(hash(`assets/downloads/${item.file}`) === item.sha256, `SHA256SUMS hash mismatch: ${item.file}`);
+}
+
+const siteDownloadNames = manifest.downloads.map(file => basename(file.path));
+pass(sameSet(siteDownloadNames, expectedDownloadNames), "site manifest download set mismatch");
+pass(publicRelease.integrity?.checksumFile === `assets/downloads/${checksumName}`, "release manifest checksum path mismatch");
+pass(publicRelease.integrity?.checksumCoverage === "Every payload file plus this release manifest.", "release manifest checksum coverage statement mismatch");
+pass(
+  sameSet(publicRelease.integrity?.checksumExclusions || [], [`assets/downloads/${checksumName}`]),
+  "release manifest checksum exclusions mismatch"
+);
+
+const requiredIndexLinks = [
+  `assets/downloads/${releaseManifestName}`,
+  `assets/downloads/${checksumName}`,
+  `assets/downloads/${skillZipName}.sha256`,
+  "assets/downloads/README.md",
+  "https://github.com/montri-th/Landometer/tree/main/skill/apply-landometer-design-system-v0-8-6"
+];
+for (const href of requiredIndexLinks) {
+  pass(html.includes(`href="${href}"`), `required release link missing from index: ${href}`);
+}
+for (const href of [
+  "landometer-design-system-v0.8.6-public.md",
+  skillZipName,
+  `${skillZipName}.sha256`,
+  starterZipName,
+  releaseManifestName,
+  checksumName,
+  "https://github.com/montri-th/Landometer/tree/main/skill/apply-landometer-design-system-v0-8-6"
+]) {
+  pass(publicReadme.includes(`](${href})`), `download README link missing: ${href}`);
+}
+for (const href of [
+  "https://montri-th.github.io/Landometer/assets/downloads/landometer-design-system-v0.8.6-public.md",
+  `https://montri-th.github.io/Landometer/assets/downloads/${skillZipName}`,
+  `https://montri-th.github.io/Landometer/assets/downloads/${starterZipName}`,
+  `https://montri-th.github.io/Landometer/assets/downloads/${releaseManifestName}`,
+  `https://montri-th.github.io/Landometer/assets/downloads/${checksumName}`,
+  "skill/apply-landometer-design-system-v0-8-6/"
+]) {
+  pass(repositoryReadme.includes(`](${href})`), `repository README link missing: ${href}`);
+}
+
 const approvedMediaHashes = new Set(Object.values(expectedPublicImages));
 for (const zipName of readdirSync(resolve(root, "assets/downloads")).filter(name => name.endsWith(".zip"))) {
   const zipPath = resolve(root, "assets/downloads", zipName);
   const entries = execFileSync("unzip", ["-Z1", zipPath], { encoding: "utf8" }).trim().split("\n").filter(entry => entry && !entry.endsWith("/"));
+  pass(entries.every(entry => !entry.startsWith("/") && !entry.split("/").includes("..") && !entry.includes("\\")), `unsafe ZIP path found: ${zipName}`);
+  const zipDetails = execFileSync("unzip", ["-Z", "-l", zipPath], { encoding: "utf8" });
+  for (const line of zipDetails.split("\n").filter(line => /^[-dl][rwx-]{9}\s/.test(line))) {
+    const mode = line.slice(0, 10);
+    pass(!mode.startsWith("l"), `symlink found in download package: ${zipName}`);
+    if (mode.startsWith("-")) pass(!mode.includes("x"), `executable file found in download package: ${zipName}`);
+  }
   for (const entry of entries) {
     const entryBytes = execFileSync("unzip", ["-p", zipPath, entry]);
     const entryHash = createHash("sha256").update(entryBytes).digest("hex");
@@ -122,22 +217,32 @@ for (const zipName of readdirSync(resolve(root, "assets/downloads")).filter(name
     pass(!/\.(?:avif|bmp|gif|ico|jpe?g|png|svg|tiff?|webp|woff2?|ttf|otf|eot)$/i.test(entry), `image or font asset found in download package: ${zipName}:${entry}`);
     if (/\.(?:css|json|md|txt|ts|ya?ml)$/i.test(entry)) {
       const entryText = entryBytes.toString("utf8");
-      pass(!/(?:project_sources|\/workspace\/|\/root\/|IMG_\d|permissionRecordId|trackingTicket|06-IMG_8786|Brand Visual Guidelines|ownerOnlyHostedUrl|creatorCredit|authorizationSource|private handoff)/i.test(entryText), `internal path or provenance marker found in download package: ${zipName}:${entry}`);
-      pass(!/(?:BEGIN (?:RSA |OPENSSH )?PRIVATE KEY|AKIA[0-9A-Z]{16}|Bearer\s+[A-Za-z0-9._~-]{20,}|api[_-]?key\s*[:=]\s*["'][^"']+)/i.test(entryText), `credential-like content found in download package: ${zipName}:${entry}`);
+      pass(!/(?:project_sources|\/workspace\/|\/root\/|\/Users\/|\/home\/|[A-Z]:\\|IMG_\d|permissionRecordId|trackingTicket|06-IMG_8786|Brand Visual Guidelines|ownerOnlyHostedUrl|creatorCredit|authorizationSource|private handoff)/i.test(entryText), `internal path or provenance marker found in download package: ${zipName}:${entry}`);
+      pass(!/(?:BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY|A(?:KIA|SIA)[0-9A-Z]{16}|github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9_-]{20,}|AIza[0-9A-Za-z_-]{30,}|xox[baprs]-[A-Za-z0-9-]{10,}|Bearer\s+[A-Za-z0-9._~-]{20,}|api[_-]?key\s*[:=]\s*["'][^"']+|client[_-]?secret\s*[:=]|access[_-]?token\s*[:=]|password\s*[:=])/i.test(entryText), `credential-like content found in download package: ${zipName}:${entry}`);
+      pass(!/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i.test(entryText), `email address found in download package: ${zipName}:${entry}`);
+      pass(!/https?:\/\/[^ )>`"]*(?:docs\.google|drive\.google|notion\.so|slack\.com|figma\.com|netlify|vercel|cloudflare)[^ )>`"]*/i.test(entryText), `private-service URL found in download package: ${zipName}:${entry}`);
     }
   }
 }
-pass((html.match(/<a\b[^>]*\bdownload\b/gi) || []).length === 15, "HTML download control count must be 15");
+const downloadControls = (html.match(/<a\b[^>]*>/gi) || []).filter(tag => {
+  const attributesOnly = tag.replace(/"[^"]*"|'[^']*'/g, "");
+  return /\sdownload(?=\s|=|>)/i.test(attributesOnly);
+});
+pass(downloadControls.length === 15, "HTML download control count must be 15");
 for (const required of [
   "assets/downloads/landometer-design-system-v0.8.6-public.md",
-  "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip",
-  "assets/downloads/SHA256SUMS.txt",
-  "assets/downloads/landometer-public-release-v0.8.6.json",
-  "assets/downloads/landometer-public-release-v0.8.6-changelog.md"
+  `assets/downloads/${skillZipName}`,
+  `assets/downloads/${skillZipName}.sha256`,
+  `assets/downloads/${starterZipName}`,
+  `assets/downloads/${checksumName}`,
+  `assets/downloads/${releaseManifestName}`,
+  "assets/downloads/landometer-public-release-v0.8.6-changelog.md",
+  "assets/downloads/README.md"
 ]) pass(manifest.downloads.some(file => file.path === required), `public download not recorded: ${required}`);
 
 pass(publicRelease.release.designSystemVersion === "0.8.6", "public manifest version mismatch");
-pass(publicRelease.release.publicPackageRevision === 1, "public package revision mismatch");
+pass(publicRelease.release.id === "landometer-design-system-v0.8.6-public.2", "public release id mismatch");
+pass(publicRelease.release.publicPackageRevision === 2, "public package revision mismatch");
 pass(publicRelease.release.machineSchemaConformance === "pending", "public manifest must keep machine conformance pending");
 pass(publicRelease.release.normativeSourceSha256 === "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604", "public manifest source fingerprint mismatch");
 pass(publicRelease.release.publicSpecificationSha256 === hash("assets/downloads/landometer-design-system-v0.8.6-public.md"), "public specification fingerprint mismatch");
@@ -147,7 +252,7 @@ for (const file of publicRelease.files) {
 }
 
 pass(/^# Landometer Design System v0\.8\.6 — Public Implementation Specification/m.test(publicSpec), "public specification identity missing");
-pass(publicSpec.includes("Public package revision:** 1"), "public specification revision missing");
+pass(publicSpec.includes("Public package revision:** 2"), "public specification revision missing");
 pass(publicSpec.includes("d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604"), "public specification source fingerprint missing");
 pass(/machine (?:Schema 6\/preflight )?conformance pending/i.test(publicSpec), "public specification pending-machine boundary missing");
 pass(publicSpec.includes("The shared Landometer layer is product-neutral"), "portfolio/product evidence boundary missing");
@@ -156,6 +261,7 @@ pass(!/(?:project_sources|\/workspace\/|\/root\/|IMG_\d|permissionRecordId|track
 pass(!/(?:BEGIN (?:RSA |OPENSSH )?PRIVATE KEY|AKIA[0-9A-Z]{16}|Bearer\s+[A-Za-z0-9._~-]{20,}|api[_-]?key\s*[:=]\s*["'][^"']+)/i.test(publicSpec), "credential-like content found in public specification");
 
 pass(/delivery: internal_demo/.test(publicBuildCard), "public Build Card must default to internal_demo");
+pass(/publicPackageRevision: 2/.test(publicBuildCard), "public Build Card package revision mismatch");
 pass(/evidenceStatus: source_limited/.test(publicBuildCard), "public Build Card must default to source_limited");
 pass(/visibility: private/.test(publicBuildCard) && /indexable: false/.test(publicBuildCard), "public Build Card must default private and non-indexable");
 pass(/officialLogo: missing/.test(publicBuildCard) && /permissionStatus: unresolved/.test(publicBuildCard), "public Build Card must default assets unresolved");
@@ -197,7 +303,7 @@ pass(/Stop when the request names any other design-system version/.test(bundledS
 pass(/allow_implicit_invocation: false/.test(bundledAgent), "public skill implicit invocation must be disabled");
 pass(!/^dependencies:/m.test(bundledAgent), "public skill must not declare tool dependencies");
 const releaseLock = JSON.parse(zipRead("apply-landometer-design-system-v0-8-6/references/release-lock.json").toString("utf8"));
-pass(releaseLock.designSystemVersion === "0.8.6" && releaseLock.publicPackageRevision === 1, "skill release lock mismatch");
+pass(releaseLock.designSystemVersion === "0.8.6" && releaseLock.publicPackageRevision === 2, "skill release lock mismatch");
 for (const [file, expected] of Object.entries(releaseLock.files)) {
   const entry = `apply-landometer-design-system-v0-8-6/${file}`;
   pass(createHash("sha256").update(zipRead(entry)).digest("hex") === expected, `skill release-lock hash mismatch: ${file}`);
@@ -214,6 +320,42 @@ for (const relative of expectedSourceSkillFiles) {
   const zipBytes = zipRead(`apply-landometer-design-system-v0-8-6/${relative}`);
   pass(sourceBytes.equals(zipBytes), `public skill source differs from downloadable ZIP: ${relative}`);
 }
+
+const starterRoot = "landometer-ds-v0.8.6-starter";
+const starterEntries = execFileSync("unzip", ["-Z1", starterZipPath], { encoding: "utf8" }).trim().split("\n");
+const starterFiles = starterEntries.filter(entry => !entry.endsWith("/"));
+const expectedStarterFiles = [
+  `${starterRoot}/README.md`,
+  `${starterRoot}/build-card-template.yaml`,
+  `${starterRoot}/component-recipes.md`,
+  `${starterRoot}/landometer-tokens.css`,
+  `${starterRoot}/landometer-tokens.json`,
+  `${starterRoot}/landometer-tokens.ts`,
+  `${starterRoot}/reference-fixtures.json`,
+  `${starterRoot}/voice-recipes.md`
+].sort();
+pass(sameSet(starterFiles, expectedStarterFiles), "starter ZIP contains missing or unexpected files");
+const starterRead = entry => execFileSync("unzip", ["-p", starterZipPath, `${starterRoot}/${entry}`]);
+const starterReadme = starterRead("README.md").toString("utf8");
+pass(starterReadme !== publicReadme, "starter ZIP must not reuse the outer release README");
+pass(starterReadme.includes("This archive contains exactly these eight files:"), "starter README exact-inventory statement missing");
+for (const file of [
+  "build-card-template.yaml",
+  "component-recipes.md",
+  "landometer-tokens.css",
+  "landometer-tokens.json",
+  "landometer-tokens.ts",
+  "reference-fixtures.json",
+  "voice-recipes.md"
+]) {
+  pass(
+    createHash("sha256").update(starterRead(file)).digest("hex") === hash(`assets/downloads/${file}`),
+    `starter ZIP differs from published file: ${file}`
+  );
+  pass(starterReadme.includes(`\`${file}\``), `starter README inventory missing: ${file}`);
+}
+pass(starterReadme.includes("no image, logo, font binary, dataset, credential, connector, script, workflow, or deployment authority"), "starter README package boundary missing");
+
 pass(existsSync(resolve(root, "adoption-demo/index.html")), "preserved adoption demo missing");
 
 pass(controls.controls.length === 31, `control inventory group count changed: ${controls.controls.length}`);

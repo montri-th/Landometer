@@ -55,7 +55,7 @@ const safeBuildCard = `# Landometer Design System v0.8.6 — public-safe Build C
 # Required blanks intentionally block accidental publication.
 landometerBuild:
   dsVersion: 0.8.6
-  publicPackageRevision: 1
+  publicPackageRevision: 2
   artifact:
     name: ""
     product: ""
@@ -262,8 +262,8 @@ A public-spec draft is complete only when the Build Card is resolved, one profil
 
 const publicHeader = `# Landometer Design System v0.8.6 — Public Implementation Specification
 
-**Public package revision:** 1  
-**Generated:** 22 July 2026  
+**Public package revision:** 2<br>
+**Generated:** 23 July 2026<br>
 **Status:** Working public implementation projection; machine Schema 6/preflight conformance pending  
 **Source fingerprint:** \`${masterHash}\`  
 **Audience:** People and AI agents creating or reviewing Landometer-authorized work
@@ -301,6 +301,16 @@ Use the downloadable \`build-card-template.yaml\`. Required blank fields intenti
 const spec = [publicHeader, coreContract, brand, flow, visual, controls, capabilityPacks, profilesAndQa, tokens, `## Release status\n\nThis public projection is generated from the v0.8.6 source fingerprint above. A rule-meaning change requires a new design-system version. A packaging-only correction increments the public package revision. Generated Schema 6/preflight conformance remains pending.`].join("\n\n---\n\n") + "\n";
 
 const changelog = `# Landometer public package changelog
+
+## v0.8.6 · public package revision 2 · 23 July 2026
+
+- Added a starter-specific README whose inventory matches the archive.
+- Added the release manifest to \`SHA256SUMS.txt\` and documented the non-circular integrity chain.
+- Added direct links for the release manifest, checksums, download guide, checksum sidecar, and inspectable skill source.
+- Added release-set, starter-archive, link, and leakage regression checks.
+- Rebuilt both ZIP archives deterministically from declared source files.
+
+No design-system rule meaning changed. The normative source fingerprint remains unchanged.
 
 ## v0.8.6 · public package revision 1 · 22 July 2026
 
@@ -346,7 +356,7 @@ const lockFiles = [
 const lock = {
   skillName: "apply-landometer-design-system-v0-8-6",
   designSystemVersion: "0.8.6",
-  publicPackageRevision: 1,
+  publicPackageRevision: 2,
   publicSpecStatus: "working-public-specification",
   machineSchemaConformance: "pending",
   normativeSourceSha256: masterHash,

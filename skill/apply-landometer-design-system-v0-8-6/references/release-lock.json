@@ -1,20 +1,20 @@
 {
   "skillName": "apply-landometer-design-system-v0-8-6",
   "designSystemVersion": "0.8.6",
-  "publicPackageRevision": 1,
+  "publicPackageRevision": 2,
   "publicSpecStatus": "working-public-specification",
   "machineSchemaConformance": "pending",
   "normativeSourceSha256": "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604",
   "files": {
     "SKILL.md": "38a4cc4a853ff15f602c3f6ec0494a1cf46f120edf8f6eee3b3752dee9672dfe",
     "agents/openai.yaml": "a469be13862d6a895239fcc6acb1f81cd3f3ac91d52ea3cf99138f454636f6d2",
-    "references/landometer-design-system-v0.8.6-public.md": "b86bd1a12a7513f27ce80df9f7976e04d90988304b0461e54e1e3e0c426f657d",
-    "references/component-recipes.md": "53a7c6f7ed228485f6394204e7e4ab01b675d776d5724bc3865e4492d17ccb0a",
-    "references/voice-recipes.md": "7eb4f25dbaee234d335646e4f12ee57acadf03d6293e2c7e1169b35167bbe6b3",
-    "assets/build-card-template.yaml": "b47ea92aef7f5310b6c97831682ecd574f67c7d23768625a65884366841d84bb",
+    "assets/build-card-template.yaml": "04c1ee55949c77abd45023c17a7b60e93c91ee1f5d63d5df9293866e91063b19",
     "assets/landometer-tokens.css": "41c26f57be2d70fb050d1276aa3be7cd5e74c58fccfd34b1d1e9e0704e7be171",
     "assets/landometer-tokens.json": "085193279178089daca95019a34599cc79180dc24b26d873ced3be9b08bd13b2",
     "assets/landometer-tokens.ts": "565d7ca8975610c0a62eb43b9b423450306c7d70fbdaa9366cf8b750505872a6",
-    "assets/reference-fixtures.json": "9a12f5fa2184434fbcbcdf694864958d775c81d34bf02115cfa49528de771005"
+    "assets/reference-fixtures.json": "9a12f5fa2184434fbcbcdf694864958d775c81d34bf02115cfa49528de771005",
+    "references/component-recipes.md": "53a7c6f7ed228485f6394204e7e4ab01b675d776d5724bc3865e4492d17ccb0a",
+    "references/landometer-design-system-v0.8.6-public.md": "def5667baf860689c330584a04f967e3a40c0d22af5d8a3b48966e791693c6a4",
+    "references/voice-recipes.md": "7eb4f25dbaee234d335646e4f12ee57acadf03d6293e2c7e1169b35167bbe6b3"
   }
 }

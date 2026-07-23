@@ -1,7 +1,7 @@
 # Landometer Design System v0.8.6 — Public Implementation Specification
 
-**Public package revision:** 1  
-**Generated:** 22 July 2026  
+**Public package revision:** 2<br>
+**Generated:** 23 July 2026<br>
 **Status:** Working public implementation projection; machine Schema 6/preflight conformance pending  
 **Source fingerprint:** `d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604`  
 **Audience:** People and AI agents creating or reviewing Landometer-authorized work
