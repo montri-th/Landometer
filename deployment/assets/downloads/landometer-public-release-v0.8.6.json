@@ -1,13 +1,13 @@
 {
   "release": {
-    "id": "landometer-design-system-v0.8.6-public.1",
+    "id": "landometer-design-system-v0.8.6-public.2",
     "designSystemVersion": "0.8.6",
-    "publicPackageRevision": 1,
-    "generated": "2026-07-22",
+    "publicPackageRevision": 2,
+    "generated": "2026-07-23",
     "status": "working-public-implementation-projection",
     "machineSchemaConformance": "pending",
     "normativeSourceSha256": "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604",
-    "publicSpecificationSha256": "b86bd1a12a7513f27ce80df9f7976e04d90988304b0461e54e1e3e0c426f657d"
+    "publicSpecificationSha256": "def5667baf860689c330584a04f967e3a40c0d22af5d8a3b48966e791693c6a4"
   },
   "boundary": {
     "included": [
@@ -37,31 +37,39 @@
     "externalEffects": false,
     "conformanceClaim": "prohibited_while_machine_schema_preflight_pending"
   },
+  "integrity": {
+    "checksumFile": "assets/downloads/SHA256SUMS.txt",
+    "checksumCoverage": "Every payload file plus this release manifest.",
+    "checksumExclusions": [
+      "assets/downloads/SHA256SUMS.txt"
+    ],
+    "manifestCoverage": "Payload files only; the manifest and checksum file are excluded to avoid circular self-reference."
+  },
   "files": [
     {
       "path": "assets/downloads/landometer-design-system-v0.8.6-public.md",
-      "bytes": 71869,
-      "sha256": "b86bd1a12a7513f27ce80df9f7976e04d90988304b0461e54e1e3e0c426f657d"
+      "bytes": 71873,
+      "sha256": "def5667baf860689c330584a04f967e3a40c0d22af5d8a3b48966e791693c6a4"
     },
     {
-      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip",
-      "bytes": 41079,
-      "sha256": "fbb911aea246ee79156a107c16af0ffde74fe995754b23029e7729941177979c"
+      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.2.zip",
+      "bytes": 41088,
+      "sha256": "16a88c0e4a62944f22a34b178b9c316b6f244cda4dac10da8a8438382a31187a"
     },
     {
-      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip.sha256",
+      "path": "assets/downloads/apply-landometer-design-system-v0.8.6-public.2.zip.sha256",
       "bytes": 117,
-      "sha256": "55161286a9e14bd840fcb85b85348f6e04bfadd322e08e945160ba91a30cdd5b"
+      "sha256": "3501dd1887b9a29b27a49887f51eb6821c82ea4f7c9b26ee3c53cc0bcb545421"
     },
     {
       "path": "assets/downloads/landometer-ds-v0.8.6-starter.zip",
-      "bytes": 10710,
-      "sha256": "c45be2e1e4a0cccf0ac5e139cbfa04668bc726265708033893b7ad15b0c0360a"
+      "bytes": 10533,
+      "sha256": "bf39a7f701e6c811481d1cd35058c2833e45caeb3176caab09b19c5be6907e4d"
     },
     {
       "path": "assets/downloads/build-card-template.yaml",
       "bytes": 2027,
-      "sha256": "b47ea92aef7f5310b6c97831682ecd574f67c7d23768625a65884366841d84bb"
+      "sha256": "04c1ee55949c77abd45023c17a7b60e93c91ee1f5d63d5df9293866e91063b19"
     },
     {
       "path": "assets/downloads/landometer-tokens.css",
@@ -95,13 +103,13 @@
     },
     {
       "path": "assets/downloads/landometer-public-release-v0.8.6-changelog.md",
-      "bytes": 770,
-      "sha256": "b9014184679e03906f706af12a62706f7055c13171c21ed895b8904f1da32f0d"
+      "bytes": 1359,
+      "sha256": "e1bee1338be8dec916e3dc95744854b4738d0e437b462f7b4b93c44efc24ac17"
     },
     {
       "path": "assets/downloads/README.md",
-      "bytes": 1463,
-      "sha256": "33fbee8727381aa820b36be690eecc4d03b4f6dee9a2a9511f8dd2bbc01bbbaa"
+      "bytes": 2151,
+      "sha256": "277962c77bf64110b30e82fe42f0e6977f03585d1a4a81bfd209f8d7c194b3aa"
     }
   ]
 }

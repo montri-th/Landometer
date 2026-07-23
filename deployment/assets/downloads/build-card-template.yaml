@@ -2,7 +2,7 @@
 # Required blanks intentionally block accidental publication.
 landometerBuild:
   dsVersion: 0.8.6
-  publicPackageRevision: 1
+  publicPackageRevision: 2
   artifact:
     name: ""
     product: ""

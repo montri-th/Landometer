@@ -28,7 +28,7 @@ const controls = [
   { id: "buildCard.capabilities", selector: "#build-card-form input[type=checkbox]", expectedCount: 9, accessibleName: "Capability name", userJob: "Declare enabled branches", finalState: "validation uses selected capabilities", failureRecovery: "uncheck", browserTest: "conflict cases" },
   { id: "buildCard.generate", selector: "#build-card-form button[type=submit]", expectedCount: 1, accessibleName: "Validate and generate YAML", userJob: "Validate starter Build Card", finalState: "YAML or actionable errors", failureRecovery: "edit fields", browserTest: "valid + invalid" },
   { id: "buildCard.download", selector: "#download-build-card", expectedCount: 1, accessibleName: "Download this YAML", userJob: "Download generated Build Card", finalState: "local file download", failureRecovery: "copy code block / full template", browserTest: "click after valid generate" },
-  { id: "downloads", selector: "a[download]", expectedCount: 15, accessibleName: "File-specific label", userJob: "Obtain implementation asset, public specification, or version-pinned skill", finalState: "local file download", failureRecovery: "direct file URL and SHA256SUMS", browserTest: "download, hash, and package inspection" },
+  { id: "downloads", selector: "a[download]", expectedCount: 15, accessibleName: "File-specific label", userJob: "Obtain implementation asset, public specification, or version-pinned skill", finalState: "local file download", failureRecovery: "direct file URL, release manifest, and SHA256SUMS", browserTest: "download, hash, package inspection, and manifest parity" },
   { id: "reference.details", selector: "#reference-mode details", expectedCount: 5, accessibleName: "Visible summary", userJob: "Reveal exact contract/evidence", finalState: "detail expanded/collapsed", failureRecovery: "toggle again", browserTest: "keyboard sample + count" },
   { id: "lab.navigation", selector: "#previous-specimen, #specimen-select, #next-specimen", expectedCount: 3, accessibleName: "Previous / specimen / next", userJob: "Move among specimens", finalState: "one active specimen and URL", failureRecovery: "direct selector", browserTest: "previous + next + select" },
   { id: "proof.controls", selector: "#proof-select, #proof-baseline, #proof-assisted, #run-proof, #reset-proof", expectedCount: 5, accessibleName: "Proof-specific label", userJob: "Inspect and run a local proof", finalState: "local receipt or reset", failureRecovery: "reset proof", browserTest: "all ten proofs; six comparisons" },
@@ -52,7 +52,7 @@ const manifest = {
   artifact: {
     id: "landometer-design-system-v0.8.6-living-reference",
     title: "Landometer Design System v0.8.6 — Living Reference",
-    releaseDate: "2026-07-22",
+    releaseDate: "2026-07-23",
     status: "provisional working reference",
     normativeVersion: "0.8.6",
     buildCardVersion: "0.8.6",
@@ -111,7 +111,7 @@ const manifest = {
     scaleLuts: 18,
     chartFamilies: ["sorted horizontal bar", "line", "100% stacked bar", "bullet", "interval"],
     prohibitedCharts: ["pie", "donut", "semi-donut", "circular part-to-whole"],
-    implementationDownloads: ["CSS", "JSON", "TypeScript", "public-safe Build Card YAML", "component recipes", "voice recipes", "fixture registry", "starter ZIP", "Public Specification", "version-pinned AI skill", "checksums", "public release manifest"]
+    implementationDownloads: ["CSS", "JSON", "TypeScript", "public-safe Build Card YAML", "component recipes", "voice recipes", "fixture registry", "starter ZIP", "Public Specification", "version-pinned AI skill", "checksums", "public release manifest", "download guide", "inspectable skill source"]
   },
   assets: [
     { ...fileRecord("assets/images/landometer-logo-banner.png"), usageClass: "site brand identity", downloadPackageIncluded: false },
@@ -119,7 +119,8 @@ const manifest = {
     { ...fileRecord("assets/images/team-presenting.jpg"), usageClass: "site team culture", downloadPackageIncluded: false }
   ],
   publicRelease: {
-    id: "landometer-design-system-v0.8.6-public.1",
+    id: "landometer-design-system-v0.8.6-public.2",
+    publicPackageRevision: 2,
     normativeSourceSha256: "d91fa8b84f557221ae9c507f2be0655765d7ae225ae5e70b0857c1e27bef3604",
     publicSpecification: "assets/downloads/landometer-design-system-v0.8.6-public.md",
     skillName: "apply-landometer-design-system-v0-8-6",
@@ -137,22 +138,23 @@ const manifest = {
     "assets/downloads/reference-fixtures.json",
     "assets/downloads/landometer-ds-v0.8.6-starter.zip",
     "assets/downloads/landometer-design-system-v0.8.6-public.md",
-    "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip",
-    "assets/downloads/apply-landometer-design-system-v0.8.6-public.1.zip.sha256",
+    "assets/downloads/apply-landometer-design-system-v0.8.6-public.2.zip",
+    "assets/downloads/apply-landometer-design-system-v0.8.6-public.2.zip.sha256",
     "assets/downloads/SHA256SUMS.txt",
     "assets/downloads/landometer-public-release-v0.8.6.json",
-    "assets/downloads/landometer-public-release-v0.8.6-changelog.md"
+    "assets/downloads/landometer-public-release-v0.8.6-changelog.md",
+    "assets/downloads/README.md"
   ].filter(path => { try { statSync(resolve(deployment, path)); return true; } catch { return false; } }).map(fileRecord),
   publication: { repository: "https://github.com/montri-th/Landometer", repositoryVisibility: "public", canonicalUrl: "https://montri-th.github.io/Landometer/", indexingSignal: "noindex", telemetry: "disabled", oldDemoRoute: "/Landometer/adoption-demo/" },
   qa: { controlInventoryPath: "control-inventory.json", coverageManifestPath: "coverage-manifest.json", status: "pending browser and deployment verification", machineValidation: "pending", knownBoundaries: ["generated schema/preflight package pending", "formal photo/logo permission registry pending", "formal five-role findability study pending"] }
 };
 
-writeFileSync(resolve(deployment, "control-inventory.json"), `${JSON.stringify({ version: "0.8.6", generated: "2026-07-22", controls }, null, 2)}\n`);
+writeFileSync(resolve(deployment, "control-inventory.json"), `${JSON.stringify({ version: "0.8.6", generated: "2026-07-23", controls }, null, 2)}\n`);
 writeFileSync(resolve(deployment, "site-manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 writeFileSync(resolve(deployment, "robots.txt"), "User-agent: *\nDisallow: /\n");
 writeFileSync(resolve(deployment, ".nojekyll"), "");
 
 mkdirSync(resolve(project, "docs"), { recursive: true });
-writeFileSync(resolve(project, "README.md"), `# Landometer Design System v0.8.6 — Living Reference\n\nThe repository root deploys the working reference at https://montri-th.github.io/Landometer/.\n\n## Structure\n\n- \`deployment/\` — GitHub Pages root\n- \`deployment/assets/downloads/\` — implementation starter, Public Specification, version-pinned AI skill, release manifest, and checksums\n- \`skill/apply-landometer-design-system-v0-8-6/\` — inspectable source for the downloadable skill\n- \`deployment/adoption-demo/\` — preserved legacy decision-demo derivative; not part of the public specification or AI skill\n- \`tools/\` — deterministic generation and release checks\n\n## Public boundary\n\nThe Public Specification is a generated implementation projection, not the internal normative authority. It excludes internal product profiles, private ledgers/evidence paths, media, font binaries, datasets, credentials, connectors, and deployment authority. The downloadable skill is explicit-invocation only and stops before every external action. No standalone open-source/documentation license has been supplied; downloading does not grant rights to trademarks, logos, photography, fonts, datasets, product material, or third-party assets.\n\nGenerated Schema 6/preflight conformance remains pending.\n\n## Validate\n\n\`\`\`bash\nnode tools/validate-release.mjs\n\`\`\`\n\n## Run locally\n\n\`\`\`bash\npython3 -m http.server 8000 --directory deployment\n\`\`\`\n\nThen open http://localhost:8000/.\n`);
+writeFileSync(resolve(project, "README.md"), `# Landometer Design System v0.8.6 — Living Reference\n\nOpen the [working reference](https://montri-th.github.io/Landometer/).\n\n## Public release · package revision 2\n\n- [Public Specification](https://montri-th.github.io/Landometer/assets/downloads/landometer-design-system-v0.8.6-public.md)\n- [Version-pinned AI skill ZIP](https://montri-th.github.io/Landometer/assets/downloads/apply-landometer-design-system-v0.8.6-public.2.zip)\n- [Implementation starter ZIP](https://montri-th.github.io/Landometer/assets/downloads/landometer-ds-v0.8.6-starter.zip)\n- [Release manifest](https://montri-th.github.io/Landometer/assets/downloads/landometer-public-release-v0.8.6.json)\n- [Complete SHA-256 checksums](https://montri-th.github.io/Landometer/assets/downloads/SHA256SUMS.txt)\n- [Download guide](https://montri-th.github.io/Landometer/assets/downloads/README.md)\n- [Inspectable AI skill source](skill/apply-landometer-design-system-v0-8-6/)\n\n## Structure\n\n- \`deployment/\` — GitHub Pages root\n- \`deployment/assets/downloads/\` — implementation starter, Public Specification, version-pinned AI skill, release manifest, checksums, and download guide\n- \`skill/apply-landometer-design-system-v0-8-6/\` — inspectable source for the downloadable skill\n- \`deployment/adoption-demo/\` — preserved legacy decision-demo derivative; not part of the public specification or AI skill\n- \`tools/\` — deterministic generation, packaging, and release checks\n\n## Integrity\n\nThe release manifest records every payload file. \`SHA256SUMS.txt\` covers every payload file plus the release manifest and intentionally excludes only itself.\n\n## Public boundary\n\nThe Public Specification is a generated implementation projection, not the internal normative authority. It excludes internal product profiles, private ledgers/evidence paths, media, font binaries, datasets, credentials, connectors, and deployment authority. The downloadable skill is explicit-invocation only and stops before every external action. No standalone open-source/documentation license has been supplied; downloading does not grant rights to trademarks, logos, photography, fonts, datasets, product material, or third-party assets.\n\nGenerated Schema 6/preflight conformance remains pending.\n\n## Validate\n\n\`\`\`bash\nnode tools/validate-release.mjs\nsha256sum -c deployment/assets/downloads/SHA256SUMS.txt\n\`\`\`\n\n## Run locally\n\n\`\`\`bash\npython3 -m http.server 8000 --directory deployment\n\`\`\`\n\nThen open http://localhost:8000/.\n`);
 
 console.log(JSON.stringify({ controls: controls.length, sections: coverage.sections.length, requiredExamples: coverage.requiredExamples.length, downloads: manifest.downloads.length }, null, 2));

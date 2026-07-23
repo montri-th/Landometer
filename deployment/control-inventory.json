@@ -1,6 +1,6 @@
 {
   "version": "0.8.6",
-  "generated": "2026-07-22",
+  "generated": "2026-07-23",
   "controls": [
     {
       "id": "menu.open",
@@ -189,8 +189,8 @@
       "accessibleName": "File-specific label",
       "userJob": "Obtain implementation asset, public specification, or version-pinned skill",
       "finalState": "local file download",
-      "failureRecovery": "direct file URL and SHA256SUMS",
-      "browserTest": "download, hash, and package inspection"
+      "failureRecovery": "direct file URL, release manifest, and SHA256SUMS",
+      "browserTest": "download, hash, package inspection, and manifest parity"
     },
     {
       "id": "reference.details",
