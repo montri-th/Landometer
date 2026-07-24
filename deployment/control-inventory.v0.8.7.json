@@ -1,0 +1,140 @@
+{
+  "version": "0.8.7",
+  "inventory": [
+    {
+      "id": "skip-main",
+      "accessibleName": "Skip to main content",
+      "userJob": "Bypass repeated header",
+      "navigationOrEffect": "Navigate to #main",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "home-link",
+      "accessibleName": "Landometer",
+      "userJob": "Return to Adopt",
+      "navigationOrEffect": "Navigate to Adopt",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "menu-open",
+      "accessibleName": "Menu",
+      "userJob": "Open navigation and settings",
+      "navigationOrEffect": "Open dialog",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "menu-close",
+      "accessibleName": "Close",
+      "userJob": "Close menu",
+      "navigationOrEffect": "Close dialog",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "language",
+      "accessibleName": "Language",
+      "userJob": "Switch active locale",
+      "navigationOrEffect": "Update locale and URL",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "theme",
+      "accessibleName": "Theme",
+      "userJob": "Choose Auto/Light/Dark",
+      "navigationOrEffect": "Update theme and URL",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "reset",
+      "accessibleName": "Reset",
+      "userJob": "Clear locale/theme preference",
+      "navigationOrEffect": "Return to Thai/Auto",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "start",
+      "accessibleName": "Choose work to try",
+      "userJob": "Reach role proof",
+      "navigationOrEffect": "Navigate to Try",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "role",
+      "accessibleName": "Role",
+      "userJob": "Choose one role",
+      "navigationOrEffect": "Update active proof",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "baseline",
+      "accessibleName": "Baseline",
+      "userJob": "Show baseline comparison",
+      "navigationOrEffect": "Update proof state",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "assisted",
+      "accessibleName": "Assisted",
+      "userJob": "Show assisted comparison",
+      "navigationOrEffect": "Update proof state",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "open-reference",
+      "accessibleName": "Open Reference",
+      "userJob": "Open rule reference",
+      "navigationOrEffect": "Switch mode",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "rule-search",
+      "accessibleName": "Search",
+      "userJob": "Find rule by ID/keyword",
+      "navigationOrEffect": "Filter list",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "proof-select",
+      "accessibleName": "Proof",
+      "userJob": "Choose one proof",
+      "navigationOrEffect": "Update proof detail",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    },
+    {
+      "id": "proof-reset",
+      "accessibleName": "Reset proof",
+      "userJob": "Return to first proof",
+      "navigationOrEffect": "Reset local state",
+      "finalState": "visible local/navigation state",
+      "failureRecovery": "retry, reset, or leave with content intact",
+      "browserTest": "invoke and assert state"
+    }
+  ]
+}
