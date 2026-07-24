@@ -29,7 +29,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat release-sources/v0.8.7/chunk-* > /tmp/landometer-v087-overlay.b64
+          test "$(find release-sources/v0.8.7 -maxdepth 1 -type f -name 'part-*' | wc -l)" -eq 34
+          cat \
+            release-sources/v0.8.7/chunk-00 \
+            release-sources/v0.8.7/chunk-01 \
+            release-sources/v0.8.7/chunk-02 \
+            release-sources/v0.8.7/part-* \
+            > /tmp/landometer-v087-overlay.b64
+          test "$(wc -c < /tmp/landometer-v087-overlay.b64)" -eq 329144
           base64 --decode /tmp/landometer-v087-overlay.b64 > /tmp/landometer-v087-overlay.tar.xz
           echo "7b0a1f0ed7e64430f5499a4106a5dacd3f033c2f19c5659a0e998edb7ee14065  /tmp/landometer-v087-overlay.tar.xz" | sha256sum -c -
           tar -xJf /tmp/landometer-v087-overlay.tar.xz -C .
