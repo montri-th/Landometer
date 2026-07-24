@@ -68,13 +68,17 @@
     "status": "public source-limited working reference"
   },
   "qa": {
-    "automated": "pending branch validation",
+    "automated": "static validator passed; browser QA 13/13; Git blob parity passed",
     "manualOpen": [
       "Thai naturalness and bilingual parity tied to final copy hash",
       "five-reviewer Landometer recognition",
       "logo delivered-size recognition and clear-space review",
       "media permission/privacy confirmation",
       "desktop/mobile screen-reader matrix"
+    ],
+    "evidence": [
+      "qa/v0.8.7-automated.json",
+      "qa/v0.8.7-manual-gates.md"
     ]
   }
 }
