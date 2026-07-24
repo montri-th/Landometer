@@ -34,3 +34,8 @@ python3 -m http.server 8000 --directory deployment
 ```
 
 The v0.8.6 implementation remains available in Git history as migration and compatibility evidence; it is not current authoring authority.
+
+## Reusable skills
+
+- [`apply-landometer-design-system-v0-8-6`](skill/apply-landometer-design-system-v0-8-6/SKILL.md) — frozen v0.8.6 public implementation skill retained for compatibility.
+- [`publish-landometer-design-system-github-pages`](skill/publish-landometer-design-system-github-pages/SKILL.md) — direct GitHub source-write, parity, clean-branch, PR, merge, Pages, and live-endpoint verification workflow. It explicitly forbids ZIP/TAR release transport and force-pushing `main`.
