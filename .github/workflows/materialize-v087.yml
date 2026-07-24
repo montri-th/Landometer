@@ -1,0 +1,55 @@
+name: Materialize Landometer Design System v0.8.7
+
+on:
+  push:
+    branches:
+      - feat/design-system-0.8.7
+    paths:
+      - release-sources/v0.8.7/TRIGGER
+
+permissions:
+  contents: write
+
+concurrency:
+  group: materialize-landometer-v0-8-7
+  cancel-in-progress: false
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout release branch
+        uses: actions/checkout@v4
+        with:
+          ref: feat/design-system-0.8.7
+          fetch-depth: 0
+
+      - name: Verify and extract approved release overlay
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat release-sources/v0.8.7/chunk-* > /tmp/landometer-v087-overlay.b64
+          base64 --decode /tmp/landometer-v087-overlay.b64 > /tmp/landometer-v087-overlay.tar.xz
+          echo "7b0a1f0ed7e64430f5499a4106a5dacd3f033c2f19c5659a0e998edb7ee14065  /tmp/landometer-v087-overlay.tar.xz" | sha256sum -c -
+          tar -xJf /tmp/landometer-v087-overlay.tar.xz -C .
+          rm -rf release-sources/v0.8.7
+          rm -f .github/workflows/materialize-v087.yml
+
+      - name: Validate release against repository assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/validate-release.mjs
+          (cd deployment/assets/downloads && sha256sum -c SHA256SUMS.txt)
+
+      - name: Commit materialized v0.8.7 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "Publish Landometer Design System v0.8.7"
+          git push origin HEAD:feat/design-system-0.8.7
