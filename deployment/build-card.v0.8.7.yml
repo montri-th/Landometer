@@ -1,0 +1,70 @@
+landometerBuild:
+  dsVersion: 0.8.7
+  schemas: {buildCard: 0.8.7, manifest: 2.0, tokens: 6}
+  artifact:
+    name: Landometer Design System v0.8.7 Living Reference
+    product: landometer
+    profile: designsystem.adoption
+    pageKind: full_living_reference
+    pageKindSourceRef: REFERENCE-01
+    delivery: deployable_public
+    language: th
+    additionalLanguages: [en]
+    generationMode: not_applicable
+    outputType: webpage
+  publication:
+    evidenceStatus: source_limited
+    visibility: public
+    indexable: false
+    canonicalUrl: https://montri-th.github.io/Landometer/
+  audience:
+    primary: every Landometer function
+    role: cross-functional adoption
+    adoptionRoleRegistry:
+      owner: Landometer
+      version: 0.8.7-public-reference
+      roles: [marketing, product, design, engineering, evidence, qa]
+  experience:
+    trigger: replace v0.8.6 public working reference
+    oneJob: help every role believe, try, align, and adopt
+    promisedOutcome: one evidence-bound shared object moves between roles without losing meaning
+    firstAha: a role-specific assisted handoff is visible after one start action
+    ahaEvidenceCue: object/version, status, source boundary, limitation, and next role appear together
+    primaryAction: Choose work to try
+    nextUsefulAction: Open the exact rule or proof when needed
+    nextTriggerOrCleanCompletion: take a recipe into real work or leave with the reference
+    dominantObject: landometer-design-system@0.8.7
+    channelParityKey: ldm.ds.v0.8.7.living-reference
+    brandSignatures: [Measure, Ground, Cultivate]
+    cleanCompletion: reader understands the boundary and next safe action
+  proof:
+    kind: brand
+    object: landometer-design-system@0.8.7
+    sourceStatus: official
+    limitation: source-limited public working reference; not product, city, dataset, customer, or operational evidence
+  theme: {mode: interactive_auto, support: dual, default: system, visibleOverride: true}
+  motion: {intensity: guided}
+  capabilities:
+    analyticalEvidence: false
+    motionEnhancement: true
+    personalization: false
+    search: true
+    share: false
+    map: false
+    dataVisualization: false
+    coCreation: false
+    persistence: false
+    externalSideEffect: false
+    authentication: false
+    permissions: false
+    contextDiscovery: false
+    agentReadable: false
+    boundedAgentAction: false
+    agentActionEffect: none
+    fullLivingReference: true
+  privacy: {personalData: false, sensitivity: public, redactedPublicProjection: false}
+  telemetry: {enabled: false, scope: none, purpose: '', dataClasses: [], retention: '', privacyBasis: ''}
+  network: {mode: reference_ready, action: none, recipientOutcome: same object and evidence boundary, policyReason: ''}
+  qa:
+    evidencePath: deployment/qa/
+    controlInventoryPath: deployment/control-inventory.v0.8.7.json
