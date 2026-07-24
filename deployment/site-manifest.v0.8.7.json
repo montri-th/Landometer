@@ -1,0 +1,84 @@
+{
+  "artifact": {
+    "id": "landometer-design-system-v0.8.7-living-reference",
+    "version": "0.8.7",
+    "buildCardVersion": "0.8.7",
+    "manifestVersion": "2.0",
+    "tokenSchemaVersion": 6,
+    "product": "landometer",
+    "profile": "designsystem.adoption",
+    "pageKind": "full_living_reference",
+    "pageKindSourceRef": "REFERENCE-01",
+    "delivery": "deployable_public",
+    "language": "th",
+    "additionalLanguages": [
+      "en"
+    ],
+    "evidenceStatus": "source_limited",
+    "visibility": "public",
+    "indexable": false,
+    "canonicalUrl": "https://montri-th.github.io/Landometer/",
+    "machineValidation": "pending",
+    "fullLivingReference": true
+  },
+  "experience": {
+    "oneJob": "Help every role believe, try, align, and adopt",
+    "firstAha": "A role-specific evidence-bound handoff is visible after one start action",
+    "dominantObject": "landometer-design-system@0.8.7",
+    "primaryAction": "Choose work to try",
+    "channelParityKey": "ldm.ds.v0.8.7.living-reference"
+  },
+  "capabilities": {
+    "search": true,
+    "fullLivingReference": true,
+    "motionEnhancement": true,
+    "share": false,
+    "persistence": false,
+    "externalSideEffect": false,
+    "map": false,
+    "dataVisualization": false,
+    "analyticalEvidence": false,
+    "telemetry": false
+  },
+  "fixtureScope": {
+    "localStateOnly": true,
+    "effect": "none",
+    "proofIds": [
+      "reward-before-request",
+      "decision-quality",
+      "private-by-default",
+      "relevant-circle-coordination",
+      "recovery-completeness",
+      "cta-integrity",
+      "transparent-learning",
+      "voluntary-investment",
+      "hook-without-dark-patterns",
+      "cross-team-handoff"
+    ]
+  },
+  "assets": {
+    "logo": "assets/images/landometer-logo-banner.png",
+    "openingPhoto": "assets/images/team-hero.jpg",
+    "culturePhoto": "assets/images/team-presenting.jpg",
+    "fonts": "existing repository-packaged approved faces"
+  },
+  "publication": {
+    "robots": "noindex,nofollow,noarchive",
+    "telemetry": "disabled",
+    "status": "public source-limited working reference"
+  },
+  "qa": {
+    "automated": "static validator passed; browser QA 13/13; Git blob parity passed",
+    "manualOpen": [
+      "Thai naturalness and bilingual parity tied to final copy hash",
+      "five-reviewer Landometer recognition",
+      "logo delivered-size recognition and clear-space review",
+      "media permission/privacy confirmation",
+      "desktop/mobile screen-reader matrix"
+    ],
+    "evidence": [
+      "qa/v0.8.7-automated.json",
+      "qa/v0.8.7-manual-gates.md"
+    ]
+  }
+}
