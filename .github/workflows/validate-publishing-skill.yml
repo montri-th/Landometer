@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Check required skill files
         shell: bash
@@ -39,7 +41,7 @@ jobs:
         run: |
           set -euo pipefail
           skill="skill/publish-landometer-design-system-github-pages/SKILL.md"
-          sed -n '1,6p' "$skill" | grep -q '^---$'
+          test "$(sed -n '1p' "$skill")" = "---"
           grep -q '^name: publish-landometer-design-system-github-pages$' "$skill"
           grep -q 'Never use ZIP/TAR as release transport' "$skill"
           grep -q 'Do not force-push `main`' "$skill"
@@ -60,4 +62,11 @@ jobs:
           fi
 
       - name: Check whitespace errors
-        run: git diff --check "${{ github.event.pull_request.base.sha || 'HEAD^' }}" "${{ github.sha }}"
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git diff --check "${{ github.event.pull_request.base.sha }}...${{ github.sha }}"
+          else
+            git diff --check HEAD^ HEAD
+          fi
