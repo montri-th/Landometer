@@ -1,0 +1,63 @@
+name: Validate GitHub Pages publishing skill
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/validate-publishing-skill.yml"
+      - "skill/publish-landometer-design-system-github-pages/**"
+      - "README.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required skill files
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="skill/publish-landometer-design-system-github-pages"
+          test -f "$root/SKILL.md"
+          test -f "$root/references/release-checklist.md"
+          test -f "$root/references/v0.8.7-retrospective.md"
+          test -f "$root/scripts/verify-live.mjs"
+          test -f "$root/templates/pr-body.md"
+          test -f "$root/templates/verify-live.yml"
+
+      - name: Validate skill front matter and invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          skill="skill/publish-landometer-design-system-github-pages/SKILL.md"
+          sed -n '1,6p' "$skill" | grep -q '^---$'
+          grep -q '^name: publish-landometer-design-system-github-pages$' "$skill"
+          grep -q 'Never use ZIP/TAR as release transport' "$skill"
+          grep -q 'Do not force-push `main`' "$skill"
+          grep -q 'Verify the deployed endpoint' "$skill"
+
+      - name: Check verifier syntax
+        run: node --check skill/publish-landometer-design-system-github-pages/scripts/verify-live.mjs
+
+      - name: Reject archive payloads inside the skill
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find skill/publish-landometer-design-system-github-pages -type f \
+            \( -name '*.zip' -o -name '*.tar' -o -name '*.tar.gz' -o -name '*.tgz' -o -name '*.tar.xz' \) \
+            | grep -q .; then
+            echo 'Archive payload found inside publishing skill.' >&2
+            exit 1
+          fi
+
+      - name: Check whitespace errors
+        run: git diff --check "${{ github.event.pull_request.base.sha || 'HEAD^' }}" "${{ github.sha }}"
