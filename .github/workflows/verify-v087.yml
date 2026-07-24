@@ -1,0 +1,67 @@
+name: Verify v0.8.7 live site
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/verify-v087.yml"
+      - "deployment/**"
+      - "tools/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout proposed source
+        uses: actions/checkout@v4
+
+      - name: Validate repository release
+        run: node tools/validate-release.mjs
+
+      - name: Verify deployed HTML and Manifest 2.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          site="https://montri-th.github.io/Landometer/"
+          html="$(mktemp)"
+          manifest="$(mktemp)"
+          verified=0
+
+          for attempt in $(seq 1 30); do
+            echo "Live verification attempt ${attempt}/30"
+            if curl -fsSL --retry 2 --retry-delay 2 "${site}?verify=${GITHUB_SHA}-${attempt}" -o "$html" \
+              && grep -q 'data-ds-version="0.8.7"' "$html" \
+              && grep -q 'data-manifest-version="2.0"' "$html" \
+              && grep -q 'Landometer Design System v0.8.7' "$html" \
+              && curl -fsSL --retry 2 --retry-delay 2 "${site}site-manifest.v0.8.7.json?verify=${GITHUB_SHA}-${attempt}" -o "$manifest" \
+              && node - "$manifest" <<'NODE'
+          const fs = require('node:fs');
+          const path = process.argv[2];
+          const value = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const ok = value?.artifact?.version === '0.8.7'
+            && value?.artifact?.manifestVersion === '2.0'
+            && value?.artifact?.tokenSchemaVersion === 6
+            && value?.artifact?.machineValidation === 'pending'
+            && value?.artifact?.indexable === false;
+          if (!ok) process.exit(1);
+          NODE
+            then
+              verified=1
+              break
+            fi
+            sleep 10
+          done
+
+          if [ "$verified" -ne 1 ]; then
+            echo "Live GitHub Pages site did not converge to the v0.8.7 release boundary." >&2
+            exit 1
+          fi
+
+          echo "Live v0.8.7 HTML and Manifest 2.0 verified."
+          sha256sum "$html" "$manifest"
