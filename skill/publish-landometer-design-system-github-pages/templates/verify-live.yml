@@ -1,0 +1,63 @@
+# Copy this file to .github/workflows/verify-live-<version>.yml.
+# Replace every __PLACEHOLDER__ before enabling it.
+# This workflow verifies the deployed endpoint after a successful Pages run;
+# it is not a substitute for pull-request source validation.
+
+name: Verify Landometer __VERSION__ live release
+
+on:
+  workflow_run:
+    workflows:
+      - "Deploy static site to GitHub Pages"
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout deployed source boundary
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Validate repository release
+        run: node tools/validate-release.mjs
+
+      - name: Verify deployed HTML, Manifest, and critical assets
+        env:
+          SITE_URL: https://montri-th.github.io/Landometer/
+          TARGET_VERSION: __VERSION__
+          MANIFEST_PATH: __MANIFEST_PATH__
+          EXPECTED_MANIFEST_VERSION: "2.0"
+          EXPECTED_TOKEN_SCHEMA_VERSION: "6"
+          EXPECTED_PROFILE: __PROFILE__
+          EXPECTED_EVIDENCE_STATUS: __EVIDENCE_STATUS__
+          EXPECTED_INDEXABLE: "false"
+          EXPECTED_MACHINE_VALIDATION: pending
+          VERIFY_ATTEMPTS: "30"
+          VERIFY_DELAY_MS: "10000"
+          CRITICAL_ASSETS: >-
+            __ENTRY_CSS__,
+            __ENTRY_JS__,
+            assets/images/landometer-logo-banner.png,
+            assets/images/team-hero.jpg
+        run: node skill/publish-landometer-design-system-github-pages/scripts/verify-live.mjs
+
+      - name: Record release boundary
+        run: |
+          printf '%s\n' \
+            "version=__VERSION__" \
+            "manifest=__MANIFEST_PATH__" \
+            "archiveUsed=false" \
+            "forcePushUsed=false" \
+            "machineValidation=pending"
