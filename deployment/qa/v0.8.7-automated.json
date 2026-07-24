@@ -1,0 +1,42 @@
+{
+  "artifact": "landometer-design-system-v0.8.7-living-reference",
+  "testedAt": "2026-07-24",
+  "machineValidation": "pending",
+  "staticValidator": {
+    "status": "passed",
+    "summary": "v0.8.7 validation PASSED · 15 static controls · machineValidation pending"
+  },
+  "browserQA": {
+    "status": "passed",
+    "passed": 13,
+    "failed": 0,
+    "viewports": ["1440x900", "390x844"],
+    "checks": [
+      "v0.8.7 title and identity",
+      "Adopt is the default active mode",
+      "primary action is visible",
+      "one active H1 per mode",
+      "no horizontal overflow",
+      "Reference search opens CORE-05",
+      "Lab exposes ten proof IDs",
+      "proof selection persists after change",
+      "English locale switch",
+      "dark theme switch",
+      "no browser page errors",
+      "mobile no horizontal overflow",
+      "mobile one active H1"
+    ]
+  },
+  "gitBlobParity": {
+    "status": "passed",
+    "method": "Compare Git object SHA-1 of each direct source payload with the blob SHA returned by GitHub",
+    "archiveUsed": false
+  },
+  "openManualGates": [
+    "Thai naturalness and bilingual governed-value parity tied to final copy hash",
+    "five-reviewer Landometer recognition and substitution protocol",
+    "logo delivered-size recognition, clear-space, and exact surface review",
+    "media permission, visible-screen, privacy, and exact rendition confirmation",
+    "desktop and mobile keyboard/screen-reader matrix"
+  ]
+}
