@@ -1,1 +1,2104 @@
-<!doctype html><html lang="th" data-ds="landometer" data-ds-version="0.8.7" data-build-card-version="0.8.7" data-manifest-version="2.0" data-token-schema-version="6" data-ds-profile="designsystem.adoption" data-delivery-mode="deployable_public" data-evidence-status="source_limited" data-visibility="public" data-indexable="false" data-machine-validation="pending" data-full-living-reference="true" data-theme="light" data-theme-preference="system" data-locale="th" data-mode="adopt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#F6F7F3"><meta name="robots" content="noindex,nofollow,noarchive"><title>Landometer Design System v0.8.7 — Living Reference</title><meta name="description" content="Landometer Design System v0.8.7 Living Reference สำหรับ Adopt, Reference และ Lab โดยรักษา evidence boundary ของ shared และ product-specific layers"><link rel="canonical" href="https://montri-th.github.io/Landometer/"><meta property="og:site_name" content="Landometer"><meta property="og:title" content="Landometer Design System v0.8.7 — Living Reference"><meta property="og:description" content="A source-limited public working reference for Landometer Design System v0.8.7."><meta property="og:type" content="website"><meta property="og:url" content="https://montri-th.github.io/Landometer/"><meta property="og:image" content="https://montri-th.github.io/Landometer/assets/images/team-hero.jpg"><meta property="og:image:alt" content="Landometer team members together in a workplace"><meta property="og:locale" content="th_TH"><meta name="twitter:card" content="summary_large_image"><script>(()=>{const r=document.documentElement,p=new URL(location.href).searchParams;let l=p.get('lang');try{l=l||localStorage.getItem('ldm87-lang')}catch{}if(!['th','en'].includes(l))l=(navigator.language||'th').startsWith('en')?'en':'th';let q=p.get('theme');try{q=q||localStorage.getItem('ldm87-theme')}catch{}if(!['system','light','dark'].includes(q))q='system';const d=q==='system'&&matchMedia('(prefers-color-scheme:dark)').matches||q==='dark';r.lang=l;r.dataset.locale=l;r.dataset.themePreference=q;r.dataset.theme=d?'dark':'light';r.style.colorScheme=d?'dark':'light';r.dataset.mode=['adopt','reference','lab'].includes(p.get('mode'))?p.get('mode'):'adopt'})()</script><link rel="stylesheet" href="v087-base.css"><link rel="stylesheet" href="v087-components.css"><script src="v087-rules.js" defer></script><script src="v087-labs.js" defer></script><script src="v087-app.js" defer></script></head><body><a class="skip" href="#main" id="skip-main"><span data-th>ข้ามไปยังเนื้อหาหลัก</span><span data-en>Skip to main content</span></a><header class="top"><a class="logo-surface" href="?mode=adopt" id="home-link"><img src="assets/images/landometer-logo-banner.png" width="3818" height="1048" alt="Landometer"></a><div class="current"><b>DS 0.8.7</b><span id="mode-label">Adopt</span><small>source-limited · noindex</small></div><button id="menu-open" class="menu-button" aria-haspopup="dialog" aria-controls="menu">☰ <span data-th>เมนู</span><span data-en>Menu</span></button></header><dialog id="menu" aria-labelledby="menu-title"><div class="dialog-head"><h2 id="menu-title"><span data-th>ไปที่ไหนต่อ</span><span data-en>Where next</span></h2><button id="menu-close" aria-label="Close / ปิด">×</button></div><nav class="mode-nav" aria-label="Design system modes"><button data-mode-go="adopt">Adopt<small data-th>เห็นคุณค่า ลอง และส่งต่องาน</small><small data-en>See value, try, and align</small></button><button data-mode-go="reference">Reference<small data-th>ค้นกฎและวิธีใช้</small><small data-en>Find rules and recipes</small></button><button data-mode-go="lab">Lab<small data-th>ตรวจ proof, state, type และ motion</small><small data-en>Test proofs, states, type, and motion</small></button></nav><div class="settings"><label><span data-th>ภาษา</span><span data-en>Language</span><select id="language"><option value="th">ไทย</option><option value="en">English</option></select></label><label><span data-th>ธีม</span><span data-en>Theme</span><select id="theme"><option value="system">Auto</option><option value="light">Light</option><option value="dark">Dark</option></select></label><button id="reset">Reset</button></div><p class="boundary"><span data-th>ไม่มี analytics, share, save, account หรือ external effect</span><span data-en>No analytics, sharing, save, account, or external effect</span></p></dialog><main id="main"><section data-panel="adopt" id="adopt"><section class="hero promoted" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow">Landometer Design System · v0.8.7</p><h1 id="hero-title" lang="en">Let us cultivate our city.</h1><p data-th>เลือกบทบาท แล้วตรวจว่า Living Reference ส่งต่อวัตถุ หลักฐาน ข้อจำกัด และขั้นตอนถัดไปให้คนที่รับงานต่อครบหรือยัง</p><p data-en>Choose a role and check whether the Living Reference carries the object, evidence, limitation, and next move to the person who continues the work.</p><a class="primary" href="#try" id="start"><span data-th>เลือกงานที่จะลอง</span><span data-en>Choose work to try</span></a><p class="fine" data-th>reference fixture ของ shared Landometer layer ไม่ใช่ผลของเมือง ผลิตภัณฑ์ dataset ลูกค้า หรือการดำเนินงานจริง</p><p class="fine" data-en>A shared-layer reference fixture, not a city, product, dataset, customer, or operational result.</p></div><div class="quiet" data-quiet-field aria-hidden="true"></div><figure><img src="assets/images/team-hero.jpg" width="1200" height="900" alt="Landometer team members together in a workplace"><figcaption><span data-th>ภาพทีมใช้เป็น identity support ไม่ใช่หลักฐานผลลัพธ์ผลิตภัณฑ์</span><span data-en>Team identity support, not product-outcome evidence.</span></figcaption></figure></section><section id="try" class="scene promoted"><div><p class="eyebrow">Try · 30 seconds</p><h2><span data-th>เลือกบทบาทเดียว แล้วดูผลต่างที่ตรวจได้</span><span data-en>Choose one role and inspect one testable difference</span></h2><label class="role"><span data-th>บทบาท</span><span data-en>Role</span><select id="role"><option value="marketing">Marketing</option><option value="product">Product</option><option value="design">Design</option><option value="engineering">Engineering</option><option value="evidence">Data / Evidence</option><option value="qa">QA</option></select></label><div class="seg" role="group" aria-label="Comparison"><button id="baseline" aria-pressed="false">Baseline</button><button id="assisted" aria-pressed="true">Assisted</button></div></div><article class="proof" id="role-proof" data-object="landometer-design-system@0.8.7"><p class="eyebrow" id="role-name">Marketing</p><h3 id="role-title"></h3><p id="role-body"></p><dl><div><dt>Object</dt><dd>landometer-design-system@0.8.7</dd></div><div><dt>Status</dt><dd>source_limited · machineValidation pending</dd></div><div><dt>Next</dt><dd id="role-next"></dd></div></dl></article><div class="quiet" data-quiet-field aria-hidden="true"></div></section><section class="scene" id="align"><div><p class="eyebrow">Align</p><h2><span data-th>ส่งต่อความหมายเดิม ไม่เพิ่มความแน่นอนระหว่างทาง</span><span data-en>Carry the same meaning without upgrading certainty</span></h2><p data-th>ทุกบทบาทใช้ object/version เดียวกัน สถานะ source_limited ยังเป็น source_limited และ handoff ยังไม่ใช่ network effect</p><p data-en>Every role uses the same object/version; source_limited remains source_limited, and a handoff is not a network effect.</p></div><div class="handoff"><b>Marketing → Product → Design → Engineering → Data/Evidence → QA → Recipient</b><span>object · source · limitation · status · next safe action</span></div></section><section class="locale scene"><div><p class="eyebrow">Locale Insight</p><h2><span data-th>Land · Location · Living ในระดับ portfolio, methodology และ product architecture</span><span data-en>Land · Location · Living across portfolio, methodology, and product architecture</span></h2></div><div class="layers"><article><h3>Shared Landometer</h3><p data-th>Build Card, Core, Manifest 2.0, Token Schema 6, evidence vocabulary, Locale Insight methodology และ QA</p><p data-en>Build Card, Core, Manifest 2.0, Token Schema 6, evidence vocabulary, Locale Insight methodology, and QA.</p></article><article><h3>Product-specific</h3><p data-th>ข้อมูล สิทธิ์ workflow คะแนน โมเดล claims voice และ capability ของผลิตภัณฑ์จริง</p><p data-en>Data, rights, workflow, scores, models, claims, voice, and live product capabilities.</p></article></div><p class="warning" data-th>เปรียบเทียบข้ามเมืองหรือข้ามผลิตภัณฑ์ได้เมื่อใช้ schema/release ที่ compatible เท่านั้น มิฉะนั้นต้องแสดง incompatibility</p><p class="warning" data-en>Compare across cities or products only under compatible schema/release versions; otherwise show incompatibility.</p></section><section class="culture scene"><figure><img src="assets/images/team-presenting.jpg" width="466" height="573" alt="A Landometer team member presenting to colleagues"><figcaption><span data-th>บริบทการทำงานร่วมกัน ไม่ใช่หลักฐานผลลัพธ์</span><span data-en>Collaboration context, not outcome evidence.</span></figcaption></figure><div><p class="eyebrow">Culture</p><h2><span data-th>เริ่มจากผู้ใช้จริง ลองกับงานจริง และช่วยบทบาทถัดไปทำต่อได้</span><span data-en>Start with the real user, try real work, and help the next role continue</span></h2><p>real end user → try real work → help the next role → learn and improve</p></div></section><section class="closing promoted"><div><p class="eyebrow">Reference takeaway</p><h2>Build Card → Core → one Profile → Trigger Packs → Tokens → QA</h2><p data-th>เปิดกฎเมื่อจำเป็น โดยไม่เปลี่ยนเอกสารทั้งฉบับให้เป็น visible UI</p><p data-en>Open the exact rule when needed without turning the whole specification into visible UI.</p><button class="primary" data-mode-go="reference" id="open-reference"><span data-th>เปิด Reference</span><span data-en>Open Reference</span></button></div><div class="quiet" data-quiet-field aria-hidden="true"></div></section></section><section data-panel="reference" id="reference" hidden><div class="mode-hero"><p class="eyebrow">Reference · Manifest 2.0 · Schema 6</p><h1><span data-th>ค้นกฎที่ใช้กับงานนี้</span><span data-en>Find the rule for this work</span></h1><p data-th>ค้นด้วย Rule ID หรือคำสำคัญ ผลลัพธ์เปิดกฎเดียวและเก็บ state ใน URL</p><p data-en>Search by Rule ID or keyword; one result opens and state is preserved in the URL.</p></div><div class="reference-layout"><aside><label for="rule-search"><span data-th>ค้นหา</span><span data-en>Search</span></label><input id="rule-search" type="search" placeholder="CORE-05, Thai, logo, map"><p id="rule-count" role="status"></p><div id="rule-list" class="rule-list"></div></aside><article id="rule-detail" class="rule-detail" tabindex="-1"></article></div></section><section data-panel="lab" id="lab" hidden><div class="mode-hero"><p class="eyebrow">Proof Lab · local state only</p><h1><span data-th>ตรวจกลไกโดยไม่อ้าง capability ของผลิตภัณฑ์จริง</span><span data-en>Test mechanisms without claiming live product capability</span></h1></div><div class="lab-layout"><aside><label for="proof-select">Proof</label><select id="proof-select"></select><button id="proof-reset"><span data-th>รีเซ็ต proof</span><span data-en>Reset proof</span></button></aside><div><article id="proof-detail" class="proof-detail"></article><section class="lab-grid" id="lab-grid"></section></div></div></section></main><footer><b>Landometer Design System v0.8.7</b><span>source_limited · noindex · machineValidation pending</span><a href="site-manifest.v0.8.7.json">Manifest 2.0</a></footer></body></html>
+<!doctype html>
+<html
+  lang="th"
+  data-ds="landometer"
+  data-ds-version="0.8.8"
+  data-build-card-version="0.8.8"
+  data-manifest-version="2.0"
+  data-token-schema-version="6"
+  data-ds-profile="brand.public"
+  data-profile="brand.public"
+  data-delivery-mode="internal_demo"
+  data-delivery="internal_demo"
+  data-evidence-status="source_limited"
+  data-visibility="public_repository"
+  data-indexable="false"
+  data-machine-validation="pending"
+  data-full-living-reference="false"
+  data-theme="light"
+  data-theme-preference="system"
+  data-locale="th"
+>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F6F7F3">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Landometer Design Identity Playground · v0.8.8</title>
+  <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
+  <link rel="canonical" href="https://montri-th.github.io/Landometer/">
+  <meta property="og:site_name" content="Landometer">
+  <meta property="og:title" content="Let us cultivate our city. · Landometer Design Identity Playground">
+  <meta property="og:description" content="Choose one work object. Make it clear, grounded, energetic, and ready for the next person.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://montri-th.github.io/Landometer/">
+  <meta property="og:locale" content="th_TH">
+  <script>
+    (() => {
+      const root = document.documentElement;
+      root.classList.add("js");
+      const params = new URL(location.href).searchParams;
+      let locale = params.get("lang");
+      let theme = params.get("theme");
+      try {
+        locale = locale || localStorage.getItem("ldm88-lang");
+        theme = theme || localStorage.getItem("ldm88-theme");
+      } catch (_) {}
+      if (!["th", "en"].includes(locale)) {
+        locale = (navigator.language || "th").toLowerCase().startsWith("en") ? "en" : "th";
+      }
+      if (!["system", "light", "dark"].includes(theme)) theme = "system";
+      const systemDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const resolved = theme === "system" ? (systemDark ? "dark" : "light") : theme;
+      root.lang = locale;
+      root.dataset.locale = locale;
+      root.dataset.themePreference = theme;
+      root.dataset.theme = resolved;
+      root.style.colorScheme = resolved;
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeMeta) themeMeta.content = resolved === "dark" ? "#11191D" : "#F6F7F3";
+    })();
+  </script>
+  <style>
+    @font-face {
+      font-family: "Arvo";
+      src: url("assets/fonts/arvo-latin-700-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Thai Looped";
+      src: url("assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      unicode-range: U+0E00-0E7F;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Thai Looped";
+      src: url("assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-thai-400-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      unicode-range: U+0E00-0E7F;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-latin-400-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-thai-600-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      unicode-range: U+0E00-0E7F;
+    }
+    @font-face {
+      font-family: "Bai Jamjuree";
+      src: url("assets/fonts/bai-jamjuree-latin-600-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+
+    :root {
+      --brand-blue: #1D4497;
+      --brand-beige: #F2F1DF;
+      --energy-sky: #59D2FE;
+      --energy-mint: #0AD69C;
+      --energy-coral: #FF5A5F;
+      --energy-yellow: #FFBC1F;
+      --canvas: #F6F7F3;
+      --surface-alt: #EEF1EE;
+      --surface-card: #FCFCFA;
+      --surface-raised: #FFFFFF;
+      --surface-soft: #E5E9E6;
+      --surface-blue-tint: #E2E9ED;
+      --surface-beige-tint: #F2F1DF;
+      --text-primary: #182327;
+      --text-secondary: #5F635A;
+      --text-metadata: #686354;
+      --text-muted: #8B877A;
+      --border-hairline: #DCE1DD;
+      --border-default: #C9D0CB;
+      --border-emphasis: #7D877F;
+      --interaction-accent: #176B82;
+      --focus-ring: #176B82;
+      --success-fill: #E2F4E5;
+      --success-ink: #126B49;
+      --measure-surface: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
+      --ground-surface: linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
+      --cultivate-surface: linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
+      --type-caption: .75rem;
+      --type-label: .8125rem;
+      --type-body-sm: .875rem;
+      --type-body: 1rem;
+      --type-body-lg: 1.125rem;
+      --type-h3: clamp(1.35rem, 2vw, 1.75rem);
+      --type-h2: clamp(2rem, 4vw, 3.25rem);
+      --type-h1-en: clamp(3.25rem, 7vw, 6.5rem);
+      --type-h1-th: clamp(2.5rem, 6vw, 5rem);
+      --leading-display-en: 1.02;
+      --leading-display-th: 1.16;
+      --leading-editorial-en: 1.15;
+      --leading-ui-heading-en: 1.22;
+      --leading-ui-heading-th: 1.32;
+      --leading-body: 1.60;
+      --leading-body-compact: 1.45;
+      --leading-label: 1.35;
+      --leading-number: 1.25;
+      --font-display-en-fallback: Georgia, Cambria, "Times New Roman", serif;
+      --font-display-th-fallback: "Noto Sans Thai Looped", "Leelawadee UI", Tahoma, sans-serif;
+      --font-body-fallback: "Noto Sans Thai", "Leelawadee UI", Tahoma, sans-serif;
+      --font-number-fallback: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --font-display-en: "Arvo", var(--font-display-en-fallback);
+      --font-display-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
+      --font-ui-heading-en: "Arvo", var(--font-display-en-fallback);
+      --font-ui-heading-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
+      --font-body: "Bai Jamjuree", var(--font-body-fallback);
+      --font-number: "JetBrains Mono", var(--font-number-fallback);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+      --space-10: 128px;
+      --radius-xs: 6px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --gutter: clamp(16px, 3vw, 32px);
+      --container-reading: 760px;
+      --container-default: 1120px;
+      --container-wide: 1280px;
+      color-scheme: light;
+      font-synthesis: none;
+    }
+
+    html[data-theme="dark"] {
+      --canvas: #11191D;
+      --surface-alt: #172126;
+      --surface-card: #20292D;
+      --surface-raised: #293337;
+      --surface-soft: #2B3534;
+      --surface-blue-tint: #18333E;
+      --surface-beige-tint: #2C2A22;
+      --text-primary: #F1F4EF;
+      --text-secondary: #C4CECA;
+      --text-metadata: #A6B5B1;
+      --text-muted: #8D9D99;
+      --border-hairline: #33403D;
+      --border-default: #46524F;
+      --border-emphasis: #7C8A84;
+      --interaction-accent: #68C4E2;
+      --focus-ring: #68C4E2;
+      --success-fill: #17362D;
+      --success-ink: #72E8C4;
+      --measure-surface: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      background: var(--canvas);
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: var(--type-body);
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+    body,
+    button,
+    select,
+    textarea,
+    input { font: inherit; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button,
+    select,
+    textarea,
+    a { -webkit-tap-highlight-color: transparent; }
+    button,
+    select,
+    summary,
+    .button { min-height: 44px; }
+    button { color: inherit; }
+    [hidden] { display: none !important; }
+    html[data-locale="th"] [data-en],
+    html[data-locale="en"] [data-th] { display: none !important; }
+    html:not(.js) .js-only { display: none !important; }
+    :focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+    ::selection {
+      background: var(--energy-yellow);
+      color: #182327;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      inset: 8px auto auto 8px;
+      transform: translateY(-150%);
+      background: var(--surface-raised);
+      border: 2px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      font-weight: 600;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+    .eyebrow {
+      margin: 0 0 var(--space-4);
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+      font-weight: 700;
+      letter-spacing: .08em;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .container {
+      width: min(calc(100% - (2 * var(--gutter))), var(--container-wide));
+      margin-inline: auto;
+    }
+    .section-heading {
+      max-width: 850px;
+      margin-bottom: clamp(36px, 6vw, 72px);
+    }
+    .section-heading h2,
+    .handoff-intro h2,
+    .preflight-copy h2,
+    .closing h2 {
+      margin: 0;
+      font-family: var(--font-display-th);
+      font-size: var(--type-h2);
+      line-height: 1.18;
+      letter-spacing: -.035em;
+    }
+    html[data-locale="en"] .section-heading h2,
+    html[data-locale="en"] .handoff-intro h2,
+    html[data-locale="en"] .preflight-copy h2,
+    html[data-locale="en"] .closing h2 {
+      font-family: var(--font-display-en);
+      line-height: 1.08;
+    }
+    .section-heading > p:last-child,
+    .handoff-intro > p:last-child,
+    .preflight-copy > p:last-child {
+      max-width: 680px;
+      margin: var(--space-5) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-lg);
+    }
+
+    .site-header {
+      position: absolute;
+      z-index: 20;
+      inset: 0 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      gap: var(--space-4);
+      width: min(calc(100% - (2 * var(--gutter))), var(--container-wide));
+      margin-inline: auto;
+      padding-block: 18px;
+    }
+    .logo-surface {
+      display: grid;
+      place-items: center start;
+      width: fit-content;
+      min-height: 52px;
+      padding: 8px 12px;
+      background: #FFFFFF;
+      border-radius: var(--radius-sm);
+    }
+    .logo-surface img {
+      width: clamp(138px, 16vw, 184px);
+      height: auto;
+    }
+    .release-label {
+      align-self: center;
+      color: #182327;
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+      line-height: 1.35;
+      padding: 6px 9px;
+      background: rgba(255, 255, 255, .92);
+      border-radius: var(--radius-xs);
+      text-align: right;
+    }
+    .menu-button,
+    .icon-button {
+      border: 1px solid rgba(24, 35, 39, .28);
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, .9);
+      color: #182327;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 8px 14px;
+    }
+    .menu-button:hover,
+    .icon-button:hover { background: #FFFFFF; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(420px, .96fr);
+      min-height: min(900px, 100svh);
+      background: var(--cultivate-surface);
+      overflow: hidden;
+    }
+    .hero-copy {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-width: 0;
+      padding: clamp(126px, 14vh, 180px) max(var(--gutter), calc((100vw - var(--container-wide)) / 2 + var(--gutter))) clamp(72px, 10vh, 112px);
+    }
+    .hero-copy::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(105deg, rgba(246, 247, 243, .97) 0%, rgba(246, 247, 243, .92) 68%, rgba(246, 247, 243, .72) 100%);
+      content: "";
+    }
+    html[data-theme="dark"] .hero-copy::before {
+      background: linear-gradient(105deg, rgba(17, 25, 29, .97) 0%, rgba(17, 25, 29, .92) 68%, rgba(17, 25, 29, .76) 100%);
+    }
+    .hero .eyebrow {
+      margin-bottom: var(--space-5);
+      color: var(--text-primary);
+    }
+    .hero h1 {
+      max-width: 780px;
+      margin: 0;
+      font-family: var(--font-display-en);
+      font-size: var(--type-h1-en);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+    .hero-support {
+      max-width: 670px;
+      margin: var(--space-6) 0 0;
+      color: var(--text-secondary);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      line-height: 1.55;
+    }
+    .primary-action,
+    .secondary-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      margin-top: var(--space-6);
+      border: 2px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      padding: 11px 18px;
+      color: var(--interaction-accent);
+      font-weight: 600;
+      line-height: 1.35;
+      text-decoration: none;
+      transition: background-color 180ms ease, transform 180ms ease;
+    }
+    .primary-action {
+      background: var(--surface-raised);
+    }
+    .primary-action::after,
+    .secondary-action::after {
+      content: "→";
+      font-family: var(--font-number);
+    }
+    .primary-action:hover,
+    .secondary-action:hover {
+      background: var(--surface-blue-tint);
+      transform: translateY(-2px);
+    }
+    .hero-media {
+      position: relative;
+      min-height: 520px;
+      margin: 0;
+      background: #182327;
+      overflow: hidden;
+    }
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 53% center;
+    }
+    .hero-media figcaption {
+      position: absolute;
+      inset: auto 18px 16px;
+      max-width: 420px;
+      padding: 8px 10px;
+      background: rgba(17, 25, 29, .84);
+      color: #F1F4EF;
+      font-size: var(--type-caption);
+      line-height: 1.45;
+    }
+
+    .playground {
+      padding-block: clamp(80px, 10vw, 140px);
+      background: var(--canvas);
+    }
+    .playground-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+      gap: clamp(36px, 6vw, 88px);
+      align-items: start;
+    }
+    .play-controls {
+      position: sticky;
+      top: 24px;
+      display: grid;
+      gap: var(--space-6);
+      min-width: 0;
+    }
+    .control-block {
+      display: grid;
+      gap: 10px;
+      border: 0;
+      margin: 0;
+      padding: 0;
+    }
+    .control-label,
+    .control-block legend {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    select {
+      width: 100%;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      padding: 10px 42px 10px 12px;
+    }
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px;
+      padding: 4px;
+      background: var(--surface-soft);
+      border-radius: var(--radius-sm);
+    }
+    .segmented button,
+    .lens-list button,
+    .surface-list button {
+      border: 1px solid transparent;
+      border-radius: var(--radius-xs);
+      background: transparent;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 9px 12px;
+      text-align: left;
+    }
+    .segmented button { text-align: center; }
+    .segmented button[aria-pressed="true"],
+    .lens-list button[aria-selected="true"],
+    .surface-list button[aria-pressed="true"] {
+      border-color: var(--border-default);
+      background: var(--surface-raised);
+      color: var(--interaction-accent);
+    }
+    .lens-list {
+      display: grid;
+      gap: 4px;
+    }
+    .lens-list button {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      align-items: center;
+      min-height: 52px;
+      border-bottom: 1px solid var(--border-hairline);
+      border-radius: 0;
+    }
+    .lens-list b {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+    }
+    .lens-list button[aria-selected="true"] {
+      border-width: 0 0 1px 4px;
+      border-color: var(--interaction-accent);
+      background: var(--surface-blue-tint);
+      padding-left: 8px;
+    }
+    .proof-column { min-width: 0; }
+    .proof-preview {
+      position: relative;
+      isolation: isolate;
+      min-height: 500px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      background: var(--surface-card);
+      overflow: hidden;
+      transition: background-color 220ms ease, color 220ms ease;
+    }
+    .proof-preview::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      transition: background-color 220ms ease;
+    }
+    .proof-preview.is-visual[data-surface="measure"] {
+      background: var(--measure-surface);
+      color: #FFFFFF;
+    }
+    .proof-preview.is-visual[data-surface="measure"]::before {
+      background: rgba(17, 25, 29, .63);
+    }
+    .proof-preview.is-visual[data-surface="ground"] {
+      background: var(--ground-surface);
+      color: #182327;
+    }
+    .proof-preview.is-visual[data-surface="ground"]::before,
+    .proof-preview.is-visual[data-surface="cultivate"]::before {
+      background: rgba(246, 247, 243, .84);
+    }
+    .proof-preview.is-visual[data-surface="cultivate"] {
+      background: var(--cultivate-surface);
+      color: #182327;
+    }
+    .proof-preview.is-visual .fixture-label,
+    .proof-preview.is-visual .proof-meta dt,
+    .proof-preview.is-visual .proof-meta dd,
+    .proof-preview.is-visual .proof-body {
+      color: inherit;
+    }
+    .proof-header {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      align-items: flex-start;
+      padding: clamp(24px, 4vw, 44px) clamp(24px, 4vw, 48px) 0;
+    }
+    .fixture-label {
+      margin: 0;
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .proof-state {
+      flex: 0 0 auto;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+    }
+    .proof-content {
+      display: grid;
+      align-content: center;
+      min-height: 310px;
+      padding: clamp(38px, 7vw, 78px) clamp(24px, 5vw, 64px);
+    }
+    .proof-object {
+      margin: 0 0 var(--space-3);
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+      font-weight: 700;
+    }
+    .proof-title {
+      max-width: 720px;
+      margin: 0;
+      font-family: var(--font-display-th);
+      font-size: clamp(1.85rem, 4vw, 3.6rem);
+      line-height: 1.17;
+      letter-spacing: -.035em;
+    }
+    html[data-locale="en"] .proof-title {
+      font-family: var(--font-display-en);
+      line-height: 1.08;
+    }
+    .proof-body {
+      max-width: 670px;
+      margin: var(--space-5) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-lg);
+    }
+    .mock-action {
+      display: grid;
+      width: fit-content;
+      gap: 2px;
+      margin-top: var(--space-6);
+      padding-left: 14px;
+      border-left: 3px solid currentColor;
+      color: var(--interaction-accent);
+    }
+    .mock-action small {
+      color: inherit;
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .mock-action strong { font-weight: 600; }
+    .proof-preview.is-visual .mock-action { color: inherit; }
+    .proof-preview.is-baseline .proof-title {
+      max-width: 760px;
+      font-family: var(--font-body);
+      font-size: var(--type-body-lg);
+      font-weight: 400;
+      line-height: var(--leading-body);
+      letter-spacing: 0;
+    }
+    .proof-preview.is-baseline .proof-body {
+      margin-top: var(--space-2);
+      font-size: var(--type-body);
+    }
+    .proof-preview.is-baseline .mock-action {
+      padding-left: 0;
+      border-left: 0;
+      color: var(--text-secondary);
+    }
+    .proof-preview.is-baseline .proof-meta {
+      background: var(--surface-alt);
+    }
+    .proof-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 0;
+      border-top: 1px solid var(--border-default);
+    }
+    .proof-meta > div {
+      min-width: 0;
+      padding: 18px clamp(20px, 4vw, 44px);
+      border-right: 1px solid var(--border-default);
+      border-bottom: 1px solid var(--border-default);
+    }
+    .proof-meta > div:nth-child(2n) { border-right: 0; }
+    .proof-meta > div:nth-last-child(-n + 2) { border-bottom: 0; }
+    .proof-meta dt {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .proof-meta dd {
+      margin: 6px 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+      line-height: 1.5;
+    }
+    .lens-explanation {
+      display: grid;
+      grid-template-columns: minmax(0, .88fr) minmax(220px, 1.12fr);
+      gap: clamp(28px, 5vw, 64px);
+      margin-top: var(--space-7);
+      padding-top: var(--space-7);
+      border-top: 1px solid var(--border-default);
+    }
+    .lens-explanation h3 {
+      margin: 0;
+      font-family: var(--font-display-th);
+      font-size: var(--type-h3);
+      line-height: 1.25;
+    }
+    html[data-locale="en"] .lens-explanation h3 {
+      font-family: var(--font-display-en);
+    }
+    .lens-explanation > div > p {
+      margin: var(--space-4) 0 0;
+      color: var(--text-secondary);
+    }
+    .outcome-list,
+    .voice-path,
+    .visual-rules {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .outcome-list li,
+    .visual-rules li {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: var(--space-4);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .outcome-list li:last-child,
+    .visual-rules li:last-child { border-bottom: 0; }
+    .outcome-list b,
+    .visual-rules b {
+      color: var(--interaction-accent);
+      font-weight: 600;
+    }
+    .voice-path {
+      counter-reset: voice-step;
+    }
+    .voice-path li {
+      counter-increment: voice-step;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: var(--space-3);
+      align-items: start;
+      padding: 10px 0;
+    }
+    .voice-path li::before {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--border-emphasis);
+      border-radius: 50%;
+      content: counter(voice-step);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+    }
+    .reject-fixture {
+      margin: var(--space-5) 0 0;
+      padding: var(--space-4);
+      border-left: 4px solid var(--border-emphasis);
+      background: var(--surface-alt);
+      color: var(--text-secondary);
+    }
+    .reject-fixture b {
+      display: block;
+      margin-bottom: var(--space-2);
+      color: var(--text-primary);
+    }
+    .reject-fixture s { text-decoration-thickness: 2px; }
+    .surface-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-bottom: var(--space-5);
+    }
+    .surface-list button {
+      min-height: 54px;
+      border: 1px solid var(--border-default);
+      text-align: center;
+    }
+
+    .handoff-section {
+      padding-block: clamp(80px, 10vw, 140px);
+      background: var(--surface-blue-tint);
+    }
+    .handoff-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+      gap: clamp(48px, 8vw, 110px);
+      align-items: start;
+    }
+    .handoff-intro { max-width: 560px; }
+    .handoff-tool {
+      min-width: 0;
+      padding-top: 6px;
+    }
+    .stage-output {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(28px, 5vw, 56px);
+      margin-top: var(--space-7);
+    }
+    .stage-output section {
+      padding-top: var(--space-5);
+      border-top: 4px solid var(--interaction-accent);
+    }
+    .stage-output h3 {
+      margin: 0;
+      font-size: var(--type-body-lg);
+      line-height: 1.35;
+    }
+    .stage-output p,
+    .stage-output ul {
+      margin: var(--space-4) 0 0;
+      color: var(--text-secondary);
+    }
+    .stage-output ul { padding-left: 1.2em; }
+    .stage-output li + li { margin-top: 8px; }
+    .handoff-record {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: var(--space-7) 0 0;
+      border-block: 1px solid var(--border-default);
+    }
+    .handoff-record > div {
+      min-width: 0;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .handoff-record > div:nth-child(odd) { padding-right: var(--space-5); }
+    .handoff-record > div:nth-child(even) {
+      padding-left: var(--space-5);
+      border-left: 1px solid var(--border-hairline);
+    }
+    .handoff-record > div:nth-last-child(-n + 2) { border-bottom: 0; }
+    .handoff-record dt {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .handoff-record dd {
+      margin: 4px 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .truth-lock {
+      margin-top: var(--space-7);
+      padding-block: var(--space-5);
+      border-block: 1px solid var(--border-default);
+    }
+    .truth-lock p {
+      margin: 0;
+      font-family: var(--font-number);
+      font-size: clamp(.85rem, 2vw, 1rem);
+      font-weight: 700;
+      line-height: 1.8;
+    }
+    .truth-lock small {
+      display: block;
+      margin-top: var(--space-3);
+      color: var(--text-secondary);
+    }
+    .layer-boundary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-7);
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border-default);
+    }
+    .layer-boundary b {
+      display: block;
+      margin-bottom: var(--space-2);
+      color: var(--interaction-accent);
+    }
+    .layer-boundary p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+
+    .preflight {
+      padding-block: clamp(80px, 10vw, 140px);
+      background: var(--surface-beige-tint);
+    }
+    .preflight-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .86fr) minmax(400px, 1.14fr);
+      gap: clamp(48px, 8vw, 110px);
+      align-items: start;
+    }
+    .preflight-copy { max-width: 520px; }
+    .preflight-count {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: var(--space-7) 0 0;
+    }
+    .preflight-count strong {
+      color: var(--text-primary);
+      font-family: var(--font-number);
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1;
+    }
+    .preflight-count span { color: var(--text-secondary); }
+    .checklist {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border-default);
+      list-style: none;
+    }
+    .checklist label {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-default);
+      cursor: pointer;
+    }
+    .checklist input {
+      width: 24px;
+      height: 24px;
+      margin: 3px 0 0 4px;
+      accent-color: var(--interaction-accent);
+    }
+    .checklist b {
+      display: block;
+      font-weight: 600;
+    }
+    .checklist small {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .recipe {
+      margin-top: var(--space-7);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      background: var(--surface-raised);
+      overflow: hidden;
+    }
+    .recipe-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-default);
+    }
+    .recipe-head b {
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+    }
+    .copy-button {
+      min-height: 44px;
+      border: 1px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--interaction-accent);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 8px 14px;
+    }
+    .copy-button:hover { background: var(--surface-blue-tint); }
+    .recipe textarea {
+      display: block;
+      width: 100%;
+      min-height: 280px;
+      resize: vertical;
+      border: 0;
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      padding: 22px;
+    }
+    .copy-status {
+      min-height: 28px;
+      margin: 0;
+      padding: 0 18px 12px;
+      color: var(--success-ink);
+      font-size: var(--type-body-sm);
+    }
+
+    .closing {
+      position: relative;
+      isolation: isolate;
+      min-height: 640px;
+      display: grid;
+      place-items: center;
+      background: var(--measure-surface);
+      color: #FFFFFF;
+      text-align: center;
+      overflow: hidden;
+    }
+    .closing::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: rgba(17, 25, 29, .52);
+      content: "";
+    }
+    .closing-inner {
+      width: min(calc(100% - (2 * var(--gutter))), 980px);
+      padding-block: var(--space-9);
+    }
+    .closing .eyebrow { color: #FFFFFF; }
+    .closing h2 {
+      font-family: var(--font-display-en);
+      font-size: clamp(2.7rem, 6.5vw, 6rem);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+    }
+    .closing p:not(.eyebrow) {
+      max-width: 680px;
+      margin: var(--space-6) auto 0;
+      color: #F1F4EF;
+      font-size: var(--type-body-lg);
+    }
+    .closing .secondary-action {
+      margin-inline: auto;
+      border-color: #FFFFFF;
+      background: #FFFFFF;
+      color: #182327;
+    }
+
+    .site-footer {
+      background: #11191D;
+      color: #C4CECA;
+      padding-block: var(--space-7);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr auto;
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .footer-inner b {
+      color: #F1F4EF;
+      font-family: var(--font-display-en);
+    }
+    .footer-inner p {
+      margin: 4px 0 0;
+      font-size: var(--type-body-sm);
+    }
+    .footer-meta {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      line-height: 1.7;
+    }
+    .footer-links {
+      display: grid;
+      gap: 8px;
+      text-align: right;
+    }
+    .footer-links a {
+      min-height: 24px;
+      color: #F1F4EF;
+      text-underline-offset: 3px;
+    }
+
+    dialog {
+      width: min(92vw, 560px);
+      max-height: 86vh;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      padding: 0;
+    }
+    dialog::backdrop { background: rgba(17, 25, 29, .72); }
+    .dialog-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      align-items: center;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-default);
+    }
+    .dialog-head h2 {
+      margin: 0;
+      font-family: var(--font-display-th);
+      font-size: var(--type-h3);
+    }
+    .dialog-body {
+      display: grid;
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+    .dialog-setting {
+      display: grid;
+      gap: 8px;
+    }
+    .dialog-note {
+      margin: 0;
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .reset-button {
+      width: fit-content;
+      border: 0;
+      border-bottom: 1px solid currentColor;
+      background: transparent;
+      color: var(--interaction-accent);
+      cursor: pointer;
+      padding: 6px 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-copy {
+        min-height: 64svh;
+        padding-inline: var(--gutter);
+      }
+      .hero-media {
+        min-height: 58svh;
+        max-height: 720px;
+      }
+      .playground-grid,
+      .handoff-layout,
+      .preflight-grid {
+        grid-template-columns: 1fr;
+      }
+      .play-controls {
+        position: static;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+      }
+      .control-block:last-child { grid-column: span 3; }
+      .lens-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .lens-list button {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-sm);
+        text-align: center;
+      }
+      .lens-list button[aria-selected="true"] {
+        border: 1px solid var(--interaction-accent);
+        padding-left: 12px;
+      }
+      .handoff-intro,
+      .preflight-copy { max-width: 760px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-links {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, auto);
+        justify-content: start;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .site-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+      }
+      .release-label { display: none; }
+      .logo-surface img { width: 138px; }
+      .hero-copy {
+        min-height: 70svh;
+        padding-top: 120px;
+        padding-bottom: 68px;
+      }
+      .hero-media {
+        min-height: 54svh;
+      }
+      .hero h1 { font-size: clamp(3.15rem, 16vw, 5rem); }
+      .section-heading { margin-bottom: var(--space-7); }
+      .play-controls { grid-template-columns: 1fr; }
+      .control-block:last-child { grid-column: auto; }
+      .proof-preview { min-height: 0; }
+      .proof-content { min-height: 340px; }
+      .proof-meta { grid-template-columns: 1fr; }
+      .proof-meta > div,
+      .proof-meta > div:nth-child(2n),
+      .proof-meta > div:nth-last-child(-n + 2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-default);
+      }
+      .proof-meta > div:last-child { border-bottom: 0; }
+      .lens-explanation,
+      .stage-output,
+      .layer-boundary,
+      .handoff-record { grid-template-columns: 1fr; }
+      .handoff-record > div,
+      .handoff-record > div:nth-child(odd),
+      .handoff-record > div:nth-child(even),
+      .handoff-record > div:nth-last-child(-n + 2) {
+        padding-inline: 0;
+        border-left: 0;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+      .handoff-record > div:last-child { border-bottom: 0; }
+      .surface-list { grid-template-columns: 1fr; }
+      .outcome-list li,
+      .visual-rules li { grid-template-columns: 84px 1fr; }
+      .preflight-grid { grid-template-columns: minmax(0, 1fr); }
+      .recipe-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .recipe textarea { min-height: 340px; }
+      .closing { min-height: 560px; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-links {
+        grid-column: auto;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .lens-list { grid-template-columns: 1fr; }
+      .lens-list button {
+        grid-template-columns: 30px 1fr;
+        text-align: left;
+      }
+      .proof-header { flex-direction: column; }
+      .proof-content { padding-inline: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .hero-media,
+      .play-controls,
+      .js-only,
+      .closing .secondary-action { display: none !important; }
+      .hero,
+      .playground-grid,
+      .handoff-layout,
+      .preflight-grid { display: block; }
+      .hero-copy { min-height: auto; padding: 32px; }
+      .playground,
+      .handoff-section,
+      .preflight { padding-block: 40px; }
+      .proof-preview,
+      .recipe { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main" id="skip-main">
+    <span data-th>ข้ามไปยังเนื้อหาหลัก</span>
+    <span data-en>Skip to main content</span>
+  </a>
+
+  <header class="site-header" aria-label="Landometer Design Identity Playground">
+    <a class="logo-surface" href="#top" id="home-link" aria-label="Landometer — กลับไปจุดเริ่มต้น / return to the start">
+      <img src="assets/images/landometer-logo-banner.png" width="3818" height="1048" alt="Landometer">
+    </a>
+    <div class="release-label" aria-hidden="true">
+      DS 0.8.8<br>internal_demo
+    </div>
+    <button class="menu-button js-only" id="menu-open" type="button" aria-haspopup="dialog" aria-controls="settings-dialog">
+      <span data-th>ตั้งค่า</span><span data-en>Settings</span>
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy" data-quiet-field>
+        <p class="eyebrow">Design identity playground · v0.8.8 authoring master</p>
+        <h1 id="hero-title" lang="en">Let us cultivate our city.</h1>
+        <p class="hero-support" data-th>หยิบหน้าจอ แผนที่ รายงาน หรือข้อความหนึ่งชิ้นสำหรับการตัดสินใจเกี่ยวกับพื้นที่จริง แล้วดูว่าคนที่รับงานต่อเห็นสิ่งที่รู้ ข้อจำกัด และขั้นตอนถัดไปครบหรือยัง</p>
+        <p class="hero-support" data-en>Bring one screen, map, report, or message for a real-place decision. Check that the next person can see what is known, its limits, and what to do next.</p>
+        <a class="primary-action" href="#play" id="start">
+          <span data-th>เปิดตัวอย่างเพื่อฝึก</span>
+          <span data-en>Open the practice fixture</span>
+        </a>
+      </div>
+      <figure class="hero-media">
+        <img src="assets/images/team-hero.jpg" width="1200" height="900" alt="Landometer team members together in a workplace">
+        <figcaption>
+          <span data-th>ภาพทีมใช้เพื่อบริบทของตัวตนและวัฒนธรรม ไม่ใช่หลักฐานผลลัพธ์ของผลิตภัณฑ์</span>
+          <span data-en>Team identity and culture context—not evidence of a product outcome.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="playground" id="play" aria-labelledby="play-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Try · 30 seconds</p>
+          <h2 id="play-title">
+            <span data-th>งานหนึ่งชิ้น มองผ่านเลนส์เดียว</span>
+            <span data-en>One work object. One lens at a time.</span>
+          </h2>
+          <p data-th>เทียบงานก่อนและหลังใช้ design identity โดยให้วัตถุและความจริงต้นทางเหมือนเดิม</p>
+          <p data-en>Compare work before and after applying the design identity while keeping the object and its underlying truth unchanged.</p>
+        </div>
+
+        <div class="playground-grid">
+          <aside class="play-controls js-only" aria-label="Playground controls">
+            <div class="control-block">
+              <label class="control-label" for="work-select">
+                <span data-th>1 · งานที่กำลังทำ</span>
+                <span data-en>1 · Work in progress</span>
+              </label>
+              <select id="work-select"></select>
+            </div>
+
+            <fieldset class="control-block">
+              <legend><span data-th>2 · มุมมอง</span><span data-en>2 · View</span></legend>
+              <div class="segmented" role="group" aria-label="Needs-revision or assisted comparison">
+                <button id="view-baseline" type="button" aria-pressed="false">
+                  <span data-th>Baseline · ต้องแก้</span><span data-en>Baseline · Needs revision</span>
+                </button>
+                <button id="view-assisted" type="button" aria-pressed="true">
+                  <span data-th>Assisted · ใช้หลักเกณฑ์แล้ว</span><span data-en>Assisted</span>
+                </button>
+              </div>
+            </fieldset>
+
+            <div class="control-block">
+              <span class="control-label"><span data-th>3 · เลนส์ตรวจงาน</span><span data-en>3 · Inspection lens</span></span>
+              <div class="lens-list" role="tablist" aria-label="Brand inspection lenses">
+                <button id="lens-dna" type="button" role="tab" aria-selected="true" aria-controls="panel-dna">
+                  <b>01</b><span>Brand DNA</span>
+                </button>
+                <button id="lens-voice" type="button" role="tab" aria-selected="false" aria-controls="panel-voice">
+                  <b>02</b><span>Brand Voice</span>
+                </button>
+                <button id="lens-visual" type="button" role="tab" aria-selected="false" aria-controls="panel-visual">
+                  <b>03</b><span>Brand Visual</span>
+                </button>
+              </div>
+            </div>
+          </aside>
+
+          <div class="proof-column">
+            <article
+              class="proof-preview"
+              id="proof-preview"
+              data-object="landometer-design-system@0.8.8"
+              data-surface="cultivate"
+              aria-live="polite"
+            >
+              <div class="proof-header">
+                <p class="fixture-label">
+                  <span data-th>ตัวอย่างสำหรับฝึก · ไม่มีผลภายนอก</span>
+                  <span data-en>Practice fixture · no external effect</span>
+                </p>
+                <span class="proof-state" id="proof-state">ASSISTED</span>
+              </div>
+              <div class="proof-content" data-quiet-field>
+                <p class="proof-object" id="proof-object">หน้าจอประกอบการตัดสินใจ</p>
+                <h3 class="proof-title" id="proof-title">ก่อนส่งหน้าจอนี้ต่อ ระบุว่าคนกำลังตัดสินใจเรื่องอะไร</h3>
+                <p class="proof-body" id="proof-body">แสดงสิ่งที่รู้ แหล่งข้อมูล วันที่ พื้นที่ ขอบเขต และข้อจำกัดไว้กับผลที่กำลังดู</p>
+                <div class="mock-action">
+                  <small><span data-th>ขั้นตอนถัดไป</span><span data-en>Next action</span></small>
+                  <strong id="mock-action">เปิดจุดที่ต้องตรวจต่อ</strong>
+                </div>
+              </div>
+              <dl class="proof-meta">
+                <div>
+                  <dt><span data-th>สถานะ</span><span data-en>Status</span></dt>
+                  <dd id="meta-status">source_limited</dd>
+                </div>
+                <div>
+                  <dt><span data-th>แหล่งอ้างอิง</span><span data-en>Source</span></dt>
+                  <dd id="meta-source">v0.8.8 authoring master · 25 Jul 2026</dd>
+                </div>
+                <div>
+                  <dt><span data-th>ขอบเขต</span><span data-en>Boundary</span></dt>
+                  <dd id="meta-boundary">คำแนะนำด้านตัวตนร่วม · ความจริงของผลิตภัณฑ์ยังอยู่ในชั้น product-specific</dd>
+                </div>
+                <div>
+                  <dt><span data-th>ข้อจำกัด</span><span data-en>Limitation</span></dt>
+                  <dd id="meta-limit">ชุดข้อมูลสำหรับตรวจด้วยระบบ และการตรวจคุณภาพของงานชิ้นนี้ยังไม่เสร็จ</dd>
+                </div>
+              </dl>
+            </article>
+
+            <section class="lens-explanation" id="panel-dna" role="tabpanel" aria-labelledby="lens-dna">
+              <div>
+                <p class="eyebrow">Brand DNA</p>
+                <h3><span data-th>สามผลลัพธ์ที่ต้องเกิดพร้อมกัน</span><span data-en>Three outcomes that work together</span></h3>
+                <p data-th>พลังของแบรนด์ไม่ได้มาจากคำคุณศัพท์ แต่มาจากสิ่งที่คนเห็น เข้าใจ และทำต่อได้จริง</p>
+                <p data-en>Brand energy does not come from adjectives. It comes from what people can see, understand, and do next.</p>
+              </div>
+              <ul class="outcome-list">
+                <li>
+                  <b>Clear</b>
+                  <span data-th>เรียกชื่อวัตถุให้ชัด และทำให้ขั้นตอนถัดไปเห็นได้ทันที</span>
+                  <span data-en>Name the object and make the next step obvious.</span>
+                </li>
+                <li>
+                  <b>Grounded</b>
+                  <span data-th>ให้แหล่งข้อมูล วันที่ พื้นที่ ขอบเขต และข้อจำกัดอยู่กับผลที่กำลังดู</span>
+                  <span data-en>Keep source, date, place, boundary, and limitation with the result.</span>
+                </li>
+                <li>
+                  <b>Energetic</b>
+                  <span data-th>ใช้คำกริยาพางานไปข้างหน้า โดยไม่พูดเกินหลักฐาน</span>
+                  <span data-en>Use an active verb to move the work forward—without hype.</span>
+                </li>
+              </ul>
+            </section>
+
+            <section class="lens-explanation" id="panel-voice" role="tabpanel" aria-labelledby="lens-voice" hidden>
+              <div>
+                <p class="eyebrow">Brand Voice</p>
+                <h3><span data-th>เริ่มจากงาน แล้วบอกให้ชัดว่าใครใช้ต่อและทำอะไร</span><span data-en>Start with the work. Show who uses it next and what they can do.</span></h3>
+                <p data-th>เขียนภาษาไทยและอังกฤษจากความหมายและหลักฐานเดียวกัน ไม่ใช้ภาษาใดเป็นแม่แบบของอีกภาษา</p>
+                <p data-en>Author Thai and English independently from the same meaning and evidence. Neither language is the other's template.</p>
+              </div>
+              <ol class="voice-path">
+                <li><span data-th>งานหรือการตัดสินใจ</span><span data-en>The work or decision</span></li>
+                <li><span data-th>สิ่งที่รู้หรือสิ่งที่เปลี่ยน</span><span data-en>What is known or changed</span></li>
+                <li><span data-th>รู้จากไหน</span><span data-en>Where it came from</span></li>
+                <li><span data-th>รู้อะไรได้แค่ไหน</span><span data-en>Its boundary and limitation</span></li>
+                <li><span data-th>ใครใช้ต่อ และใช้ทำอะไร</span><span data-en>Who uses it next, and for what</span></li>
+              </ol>
+              <p class="reject-fixture">
+                <b><span data-th>ภาษาที่ต้องแก้</span><span data-en>Language that needs revision</span></b>
+                <s data-th>ข้อมูลเมืองที่ขับเคลื่อนการตัดสินใจอย่างชาญฉลาด · เปลี่ยนข้อมูลให้เป็นผลลัพธ์ที่มีความหมาย · สำรวจ</s>
+                <s data-en>Urban intelligence that powers smarter decisions · Transform data into meaningful outcomes · Explore</s>
+              </p>
+            </section>
+
+            <section class="lens-explanation" id="panel-visual" role="tabpanel" aria-labelledby="lens-visual" hidden>
+              <div>
+                <p class="eyebrow">Brand Visual</p>
+                <h3><span data-th>เลือกบรรยากาศจากหน้าที่ ไม่ใช่จากความชอบ</span><span data-en>Choose atmosphere by its job—not by taste.</span></h3>
+                <p data-th>ลองสาม brand signatures กับวัตถุเดิม สีพาคนอ่านเข้า เปลี่ยนผ่าน หรือปิดงาน แต่ไม่ทำหน้าที่แทนสถานะข้อมูล</p>
+                <p data-en>Try three brand signatures on the same object. Color can create entry, transition, or closure—but never substitute for data status.</p>
+              </div>
+              <div>
+                <div class="surface-list js-only" role="group" aria-label="Brand atmosphere surface">
+                  <button id="surface-measure" type="button" aria-pressed="false">Measure</button>
+                  <button id="surface-ground" type="button" aria-pressed="false">Ground</button>
+                  <button id="surface-cultivate" type="button" aria-pressed="true">Cultivate</button>
+                </div>
+                <ul class="visual-rules">
+                  <li><b><span data-th>จุดนำสายตา</span><span data-en>Focus</span></b><span data-th>หนึ่งแนวคิดหลักต่อฉาก</span><span data-en>One focal idea per scene.</span></li>
+                  <li><b><span data-th>ความสงบ</span><span data-en>Quiet</span></b><span data-th>เป็นสภาวะของความสนใจ ไม่ใช่กล่องว่าง</span><span data-en>An attention condition, never an empty box.</span></li>
+                  <li><b><span data-th>หลักฐาน</span><span data-en>Proof</span></b><span data-th>ภาพและข้อมูลที่มีประโยชน์ต้องอยู่ในขนาดที่อ่านความหมายได้</span><span data-en>Useful media and evidence stay large enough to carry meaning.</span></li>
+                  <li><b><span data-th>การเคลื่อนไหว</span><span data-en>Motion</span></b><span data-th>ใช้กับการเปลี่ยนสถานะ ไม่ใช้ตกแต่ง</span><span data-en>Support state change; never decorate.</span></li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="handoff-section" id="align" aria-labelledby="align-title">
+      <div class="container handoff-layout">
+        <div class="handoff-intro">
+          <p class="eyebrow">Align · truth-preserving handoff</p>
+          <h2 id="align-title">
+            <span data-th>ให้งานเปลี่ยนมือได้ โดยความจริงไม่เปลี่ยนตาม</span>
+            <span data-en>Let work change hands without changing its truth.</span>
+          </h2>
+          <p data-th>ปรับรูปแบบและภาษาให้เหมาะกับงานได้ แต่เมื่อส่งต่อ ต้องคงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต ข้อจำกัด และผู้ใช้คนถัดไปไว้ครบ</p>
+          <p data-en>Format and wording may adapt, but object/version, status, source, boundary, limitation, and the next user must travel together.</p>
+        </div>
+
+        <div class="handoff-tool">
+          <label class="control-block js-only" for="stage-select">
+            <span class="control-label"><span data-th>ตอนนี้งานอยู่ช่วงไหน</span><span data-en>Where is the work now?</span></span>
+            <select id="stage-select"></select>
+          </label>
+
+          <div class="stage-output">
+            <section>
+              <h3><span data-th>ปรับให้เหมาะกับช่วงนี้ได้</span><span data-en>May adapt at this stage</span></h3>
+              <p id="stage-adapt">ลำดับความสำคัญ คำถามของผู้ใช้ และวัตถุที่ต้องตัดสินใจ</p>
+            </section>
+            <section>
+              <h3><span data-th>ต้องอยู่ครบเมื่อส่งต่อ</span><span data-en>Must remain intact</span></h3>
+              <ul>
+                <li><span data-th>ชื่อและเวอร์ชันของงาน</span><span data-en>object + version</span></li>
+                <li><span data-th>สถานะ + แหล่งข้อมูล/วันที่</span><span data-en>status + source/date</span></li>
+                <li><span data-th>ขอบเขต + ข้อจำกัด</span><span data-en>boundary + limitation</span></li>
+                <li><span data-th>คนที่ใช้ต่อ + สิ่งที่ทำต่อ</span><span data-en>next user + next action</span></li>
+              </ul>
+            </section>
+          </div>
+
+          <dl class="handoff-record" aria-label="Active work-object handoff record">
+            <div>
+              <dt><span data-th>งานที่กำลังส่งต่อ</span><span data-en>Active work object</span></dt>
+              <dd id="handoff-object-label">หน้าจอประกอบการตัดสินใจ</dd>
+            </div>
+            <div>
+              <dt><span data-th>รหัสและรุ่นอ้างอิง</span><span data-en>Identity and version</span></dt>
+              <dd>landometer-design-system@0.8.8</dd>
+            </div>
+            <div>
+              <dt><span data-th>สถานะและแหล่งข้อมูล</span><span data-en>Status and source</span></dt>
+              <dd>source_limited · authoring master · 25 Jul 2026</dd>
+            </div>
+            <div>
+              <dt><span data-th>ขอบเขตและข้อจำกัด</span><span data-en>Boundary and limitation</span></dt>
+              <dd><span data-th>ชั้นตัวตนร่วมเท่านั้น · การตรวจระดับชิ้นงานยังไม่เสร็จ</span><span data-en>Shared identity layer only · artifact review remains pending</span></dd>
+            </div>
+            <div>
+              <dt><span data-th>สถานะหลักที่ห้ามเปลี่ยน</span><span data-en>Authoritative state</span></dt>
+              <dd>source_limited · machineValidation pending</dd>
+            </div>
+            <div>
+              <dt><span data-th>ผู้รับงานคนถัดไป</span><span data-en>Next recipient</span></dt>
+              <dd><span data-th>ต้องระบุชื่อไว้ใน brief ของงานจริงก่อนส่งต่อ</span><span data-en>Must be named in the real work brief before handoff</span></dd>
+            </div>
+          </dl>
+
+          <div class="truth-lock">
+            <p>partial ≠ complete · modelled ≠ observed · planned ≠ available</p>
+            <small data-th>ส่งต่องานไม่ใช่เหตุผลให้เพิ่มความแน่นอน หรือทำให้ความสามารถของผลิตภัณฑ์หนึ่งกลายเป็นความจริงร่วมของ Landometer</small>
+            <small data-en>A handoff never upgrades certainty or turns one product's capability into shared Landometer truth.</small>
+          </div>
+
+          <div class="layer-boundary">
+            <div>
+              <b>Locale Insight · Land · Location · Living</b>
+              <p data-th>ใช้ร่วมกันในระดับ portfolio, methodology และ product architecture</p>
+              <p data-en>Shared at portfolio, methodology, and product-architecture levels.</p>
+            </div>
+            <div>
+              <b><span data-th>ชั้นเฉพาะผลิตภัณฑ์</span><span data-en>Product-specific layer</span></b>
+              <p data-th>ข้อมูล ขั้นตอนทำงาน คะแนน แบบจำลอง ข้อความที่อ้างเป็นจริง น้ำเสียง และความสามารถที่ใช้งานได้ ต้องอ้างอิงผลิตภัณฑ์นั้น และเปรียบเทียบเมื่อรุ่นโครงสร้างข้อมูลกับรุ่นเผยแพร่เข้ากันได้เท่านั้น</p>
+              <p data-en>Data, workflows, scores, models, claims, voice, and capabilities stay with the product; comparison requires a compatible schema/release.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="preflight" id="takeaway" aria-labelledby="takeaway-title">
+      <div class="container preflight-grid">
+        <div class="preflight-copy">
+          <p class="eyebrow">Takeaway · 60-second preflight</p>
+          <h2 id="takeaway-title">
+            <span data-th>ก่อนปล่อยงาน ตรวจห้าจุดนี้</span>
+            <span data-en>Before the work leaves your hands, check five things.</span>
+          </h2>
+          <p data-th>ใช้รายการนี้กับงานที่เลือกไว้ ไม่ต้องเปิดข้อกำหนดทั้งฉบับ และไม่ต้องเพิ่มฟีเจอร์เพื่อพิสูจน์ว่า design system รู้จักมัน</p>
+          <p data-en>Use this with the work you selected. You do not need the whole specification—or extra features—to prove the design system exists.</p>
+          <div class="preflight-count js-only" aria-live="polite">
+            <strong id="check-count">0/5</strong>
+            <span data-th>จุดที่ตรวจแล้ว</span><span data-en>checks complete</span>
+          </div>
+        </div>
+
+        <div>
+          <ol class="checklist">
+            <li>
+              <label>
+                <input class="check-input" id="check-1" type="checkbox">
+                <span>
+                  <b data-th>เริ่มจากคน งาน สถานที่ หรือการตัดสินใจ</b>
+                  <b data-en>Start with the person, work, place, or decision</b>
+                  <small data-th>ไม่เริ่มจากคำอธิบายแพลตฟอร์มหรือคำโฆษณาที่แทนกันได้</small>
+                  <small data-en>Do not begin with interchangeable platform language.</small>
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input class="check-input" id="check-2" type="checkbox">
+                <span>
+                  <b data-th>ให้สิ่งที่รู้ อยู่กับแหล่งข้อมูล วันที่ และพื้นที่</b>
+                  <b data-en>Keep what is known with its source, date, and place</b>
+                  <small data-th>ข้อมูลที่ขาดไม่ใช่ศูนย์ และข้อมูลคนละ schema/release ไม่ได้แปลว่าเปรียบเทียบกันได้</small>
+                  <small data-en>Missing is not zero; incompatible schema/release versions are not comparable.</small>
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input class="check-input" id="check-3" type="checkbox">
+                <span>
+                  <b data-th>บอกสถานะ ขอบเขต และข้อจำกัดตามจริง</b>
+                  <b data-en>State status, boundary, and limitation honestly</b>
+                  <small data-th>ไม่เปลี่ยนข้อมูลที่ “มีบางส่วน” “สร้างจากแบบจำลอง” หรือ “วางแผนไว้” ให้ดูแน่นอนขึ้นระหว่างส่งต่องาน</small>
+                  <small data-en>Never upgrade partial, modelled, or planned during handoff.</small>
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input class="check-input" id="check-4" type="checkbox">
+                <span>
+                  <b data-th>จัดลำดับสายตาให้มีจุดหลัก จุดสงบ และหลักฐานที่อ่านได้</b>
+                  <b data-en>Compose one focal idea, perceptual quiet, and readable proof</b>
+                  <small data-th>ใช้เฉพาะโลโก้ ภาพ แบบอักษร สี และพื้นผิวไล่สีในรูปแบบและหน้าที่ที่ได้รับอนุมัติ</small>
+                  <small data-en>Use logo, media, type, color, and gradients only in their approved variants and jobs.</small>
+                </span>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input class="check-input" id="check-5" type="checkbox">
+                <span>
+                  <b data-th>จบด้วยขั้นตอนถัดไปที่มีประโยชน์หนึ่งอย่าง</b>
+                  <b data-en>End with one useful next action</b>
+                  <small data-th>บอกผลของการกด สถานะหลังจบ และทางกลับเมื่อทำต่อไม่ได้</small>
+                  <small data-en>Name the effect, completion state, and recovery when the action cannot continue.</small>
+                </span>
+              </label>
+            </li>
+          </ol>
+
+          <div class="recipe">
+            <div class="recipe-head">
+              <b><span data-th>สูตรสำหรับงานชิ้นนี้</span><span data-en>Recipe for this work</span></b>
+              <button class="copy-button js-only" id="copy-recipe" type="button">
+                <span data-th>คัดลอกสูตร</span><span data-en>Copy recipe</span>
+              </button>
+            </div>
+            <label class="sr-only" for="recipe-text">
+              <span data-th>สูตรที่เลือกและคัดลอกได้</span><span data-en>Selectable recipe</span>
+            </label>
+            <textarea id="recipe-text" readonly>งาน: หน้าจอประกอบการตัดสินใจ
+
+1. ระบุว่าใครกำลังตัดสินใจเรื่องอะไร
+2. บอกสิ่งที่รู้ พร้อมแหล่งข้อมูล วันที่ พื้นที่ และสถานะ
+3. บอกว่างานชิ้นนี้ใช้ตอบอะไรได้ และยังยืนยันอะไรไม่ได้
+4. จัดหนึ่งแนวคิดหลัก หลักฐานที่อ่านได้ และพื้นที่สงบให้ทำงานร่วมกัน
+5. จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง
+
+ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
+
+ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending</textarea>
+            <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="closing-inner" data-quiet-field>
+        <p class="eyebrow">Measure · Ground · Cultivate</p>
+        <h2 id="closing-title" lang="en">Measure What Matters. Make It Actionable.</h2>
+        <p data-th>ก่อนส่งงานต่อ ให้สถานะ แหล่งข้อมูล ขอบเขต ข้อจำกัด และสิ่งที่คนถัดไปต้องทำอยู่ด้วยกันเสมอ</p>
+        <p data-en>Before handoff, keep status, source, boundary, limitation, and the next person's action together.</p>
+        <a class="secondary-action" href="#play" id="return-play">
+          <span data-th>กลับไปลองกับงานอีกชิ้น</span><span data-en>Try another work object</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <b>Landometer Design Identity Playground</b>
+        <p>Based on the v0.8.8 owner-approved authoring master.</p>
+      </div>
+      <div class="footer-meta">
+        internal_demo · public source · noindex<br>
+        source_limited · machineValidation pending<br>
+        no analytics · no save · no share · no external effect
+      </div>
+      <nav class="footer-links" aria-label="Release references">
+        <a href="site-manifest.v0.8.8.json" id="manifest-link">Manifest 2.0</a>
+        <a href="https://github.com/montri-th/Landometer" id="github-link">GitHub source</a>
+      </nav>
+    </div>
+  </footer>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-head">
+      <h2 id="settings-title"><span data-th>ภาษาและการแสดงผล</span><span data-en>Language and appearance</span></h2>
+      <button class="icon-button" id="menu-close" type="button" aria-label="ปิด / Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <label class="dialog-setting" for="language">
+        <span class="control-label"><span data-th>ภาษา</span><span data-en>Language</span></span>
+        <select id="language">
+          <option value="th">ไทย</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <label class="dialog-setting" for="theme">
+        <span class="control-label"><span data-th>ธีม</span><span data-en>Theme</span></span>
+        <select id="theme">
+          <option value="system">Auto</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+      <button class="reset-button" id="reset-settings" type="button">
+        <span data-th>กลับไปภาษาไทยและธีมอัตโนมัติ</span>
+        <span data-en>Reset to Thai and automatic theme</span>
+      </button>
+      <p class="dialog-note">
+        <span data-th>การตั้งค่าบันทึกไว้ในอุปกรณ์นี้เท่านั้น ไม่มี analytics, account หรือการส่งข้อมูลออก</span>
+        <span data-en>Preferences stay on this device only. There is no analytics, account, or outbound data.</span>
+      </p>
+    </div>
+  </dialog>
+
+  <noscript>
+    <p style="margin:0;padding:16px;background:#F2F1DF;color:#182327;text-align:center">
+      The complete assisted-state guidance remains visible. Enable JavaScript only for comparisons, locale/theme preferences, and copying the recipe.
+    </p>
+  </noscript>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const params = new URL(location.href).searchParams;
+      const valid = (value, options, fallback) => options.includes(value) ? value : fallback;
+      const state = {
+        locale: valid(root.dataset.locale, ["th", "en"], "th"),
+        theme: valid(root.dataset.themePreference, ["system", "light", "dark"], "system"),
+        work: valid(params.get("work"), ["screen", "map", "report", "message"], "screen"),
+        view: valid(params.get("view"), ["baseline", "assisted"], "assisted"),
+        lens: valid(params.get("lens"), ["dna", "voice", "visual"], "dna"),
+        surface: valid(params.get("surface"), ["measure", "ground", "cultivate"], "cultivate"),
+        stage: valid(params.get("stage"), ["frame", "write", "compose", "build", "verify", "handoff"], "frame")
+      };
+
+      const copy = {
+        th: {
+          works: {
+            screen: {
+              label: "หน้าจอประกอบการตัดสินใจ",
+              title: "ก่อนส่งหน้าจอนี้ต่อ ระบุว่าคนกำลังตัดสินใจเรื่องอะไร",
+              body: "แสดงสิ่งที่รู้ แหล่งข้อมูล วันที่ พื้นที่ ขอบเขต และข้อจำกัดไว้กับผลที่กำลังดู",
+              action: "เปิดจุดที่ต้องตรวจต่อ"
+            },
+            map: {
+              label: "แผนที่เปรียบเทียบพื้นที่",
+              title: "บอกก่อนว่าพื้นที่ไหนกำลังถูกเปรียบเทียบ และข้อมูลเปรียบเทียบกันได้หรือยัง",
+              body: "แสดง schema/release แหล่งข้อมูล วันที่ และ incompatibility ก่อนสรุปความต่าง",
+              action: "ตรวจความเข้ากันได้ของข้อมูล"
+            },
+            report: {
+              label: "รายงานข้อมูลพื้นที่",
+              title: "พาคนอ่านจากสิ่งที่พบ ไปยังหลักฐานและการตัดสินใจถัดไป",
+              body: "ให้ผลที่พบอยู่กับแหล่งข้อมูล ช่วงเวลา ขอบเขต และสิ่งที่รายงานนี้ยังยืนยันไม่ได้",
+              action: "ตรวจข้อจำกัดก่อนส่งต่อ"
+            },
+            message: {
+              label: "ข้อความสื่อสารผล",
+              title: "เริ่มจากคน สถานที่ หรืองาน—ไม่ใช่คำอธิบายแพลตฟอร์ม",
+              body: "บอกว่าเกิดอะไรขึ้น รู้จากไหน รู้ได้แค่ไหน และคนอ่านทำอะไรต่อได้",
+              action: "อ่านออกเสียงก่อนเผยแพร่"
+            }
+          },
+          boundary: "คำแนะนำด้านตัวตนร่วม · ความจริงของผลิตภัณฑ์ยังอยู่ในชั้น product-specific",
+          limit: "ชุดข้อมูลสำหรับตรวจด้วยระบบ และการตรวจคุณภาพของงานชิ้นนี้ยังไม่เสร็จ",
+          stages: {
+            frame: ["ตั้งโจทย์", "ลำดับความสำคัญ คำถามของผู้ใช้ และวัตถุที่ต้องตัดสินใจ"],
+            write: ["เขียน", "ภาษา โครงประโยค และน้ำเสียงที่เป็นธรรมชาติของแต่ละภาษา"],
+            compose: ["จัดวาง", "ลำดับสายตา การครอบภาพ พื้นที่สงบ และบรรยากาศที่มีหน้าที่ชัด"],
+            build: ["สร้าง", "ส่วนประกอบ สถานะ การตอบสนองต่อขนาดหน้าจอ และทางกลับเมื่อทำต่อไม่ได้"],
+            verify: ["ตรวจ", "วิธีตรวจ ระดับความรุนแรงของปัญหา และหลักฐานการตรวจคุณภาพที่ผูกกับงานชิ้นนี้"],
+            handoff: ["ส่งต่อ", "รูปแบบช่องทางและบริบทที่คนถัดไปต้องใช้ทำงานต่อ"]
+          },
+          recipe: work => `งาน: ${work.label}
+
+1. ระบุว่าใครกำลังตัดสินใจเรื่องอะไร
+2. บอกสิ่งที่รู้ พร้อมแหล่งข้อมูล วันที่ พื้นที่ และสถานะ
+3. บอกว่างานชิ้นนี้ใช้ตอบอะไรได้ และยังยืนยันอะไรไม่ได้
+4. จัดหนึ่งแนวคิดหลัก หลักฐานที่อ่านได้ และพื้นที่สงบให้ทำงานร่วมกัน
+5. จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง
+
+ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
+
+ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending`,
+          copied: "คัดลอกสูตรแล้ว นำไปวางข้างงานที่กำลังทำได้เลย",
+          copyFail: "คัดลอกอัตโนมัติไม่ได้ ระบบเลือกข้อความไว้ให้แล้ว กดคัดลอกจากอุปกรณ์ของคุณได้เลย"
+        },
+        en: {
+          works: {
+            screen: {
+              label: "Decision-support screen",
+              title: "Before handoff, name the decision this screen helps someone make",
+              body: "Keep what is known with its source, date, place, boundary, and limitation.",
+              action: "Open the next evidence check"
+            },
+            map: {
+              label: "Area-comparison map",
+              title: "Name the areas being compared—and whether their data is compatible",
+              body: "Show schema/release, source, date, and incompatibility before interpreting a difference.",
+              action: "Check data compatibility"
+            },
+            report: {
+              label: "Place-data report",
+              title: "Move the reader from the finding to its evidence and next decision",
+              body: "Keep each finding with its source, period, boundary, and what the report still cannot establish.",
+              action: "Check limitations before handoff"
+            },
+            message: {
+              label: "Result message",
+              title: "Start with the person, place, or work—not the platform",
+              body: "Say what happened, where it came from, how far it can be trusted, and what the reader can do next.",
+              action: "Read aloud before publishing"
+            }
+          },
+          boundary: "Shared identity guidance · product truth remains product-specific",
+          limit: "Machine package and artifact QA remain pending",
+          stages: {
+            frame: ["Frame", "Priority, the user's question, and the object that supports a decision"],
+            write: ["Write", "Language, sentence structure, and natural voice authored for each locale"],
+            compose: ["Compose", "Hierarchy, crop, perceptual quiet, and atmosphere with a declared job"],
+            build: ["Build", "Testable component, state, responsive behavior, and recovery"],
+            verify: ["Verify", "Test method, issue severity, and QA evidence tied to this artifact"],
+            handoff: ["Hand off", "Channel format and the context the next person needs to continue"]
+          },
+          recipe: work => `Work: ${work.label}
+
+1. Name who is deciding what.
+2. State what is known with its source, date, place, and status.
+3. Say what this work can support—and what it still cannot establish.
+4. Compose one focal idea, readable proof, and perceptual quiet.
+5. End with one useful action for the next person.
+
+Before handoff: preserve object/version, status, source, boundary, and limitation.
+
+Source: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending`,
+          copied: "Recipe copied. Place it beside the work you are doing.",
+          copyFail: "Automatic copy was unavailable. The recipe is selected so you can copy it from your device."
+        }
+      };
+
+      const el = id => document.getElementById(id);
+      const workSelect = el("work-select");
+      const stageSelect = el("stage-select");
+      const preview = el("proof-preview");
+      const recipeText = el("recipe-text");
+      const checks = [...document.querySelectorAll(".check-input")];
+      const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+
+      function resolveTheme() {
+        const dark = state.theme === "dark" || (state.theme === "system" && mediaQuery && mediaQuery.matches);
+        root.dataset.themePreference = state.theme;
+        root.dataset.theme = dark ? "dark" : "light";
+        root.style.colorScheme = dark ? "dark" : "light";
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.content = dark ? "#11191D" : "#F6F7F3";
+      }
+
+      function syncUrl() {
+        const url = new URL(location.href);
+        url.searchParams.set("lang", state.locale);
+        url.searchParams.set("theme", state.theme);
+        url.searchParams.set("work", state.work);
+        url.searchParams.set("view", state.view);
+        url.searchParams.set("lens", state.lens);
+        url.searchParams.set("surface", state.surface);
+        url.searchParams.set("stage", state.stage);
+        history.replaceState(null, "", url);
+      }
+
+      function setOptions(select, records, value) {
+        select.replaceChildren();
+        for (const [id, record] of Object.entries(records)) {
+          const option = document.createElement("option");
+          option.value = id;
+          option.textContent = Array.isArray(record) ? record[0] : record.label;
+          select.append(option);
+        }
+        select.value = value;
+      }
+
+      function renderProof() {
+        const language = copy[state.locale];
+        const work = language.works[state.work];
+        const assisted = state.view === "assisted";
+        el("proof-object").textContent = work.label;
+        el("proof-title").textContent = work.title;
+        el("proof-body").textContent = work.body;
+        el("mock-action").textContent = work.action;
+        el("proof-state").textContent = assisted ? "ASSISTED" : "NEEDS REVISION";
+        el("meta-status").textContent = "source_limited";
+        el("meta-source").textContent = "v0.8.8 authoring master · 25 Jul 2026";
+        el("meta-boundary").textContent = language.boundary;
+        el("meta-limit").textContent = language.limit;
+        preview.dataset.surface = state.surface;
+        preview.classList.toggle("is-visual", state.lens === "visual");
+        preview.classList.toggle("is-baseline", !assisted);
+        el("handoff-object-label").textContent = work.label;
+        recipeText.value = language.recipe(work);
+      }
+
+      function renderControls() {
+        root.lang = state.locale;
+        root.dataset.locale = state.locale;
+        el("language").value = state.locale;
+        el("theme").value = state.theme;
+        setOptions(workSelect, copy[state.locale].works, state.work);
+        setOptions(stageSelect, copy[state.locale].stages, state.stage);
+        el("view-baseline").setAttribute("aria-pressed", String(state.view === "baseline"));
+        el("view-assisted").setAttribute("aria-pressed", String(state.view === "assisted"));
+        for (const lens of ["dna", "voice", "visual"]) {
+          const selected = state.lens === lens;
+          el(`lens-${lens}`).setAttribute("aria-selected", String(selected));
+          el(`lens-${lens}`).tabIndex = selected ? 0 : -1;
+          el(`panel-${lens}`).hidden = !selected;
+        }
+        for (const surface of ["measure", "ground", "cultivate"]) {
+          el(`surface-${surface}`).setAttribute("aria-pressed", String(state.surface === surface));
+        }
+        el("stage-adapt").textContent = copy[state.locale].stages[state.stage][1];
+        renderProof();
+        resolveTheme();
+        syncUrl();
+      }
+
+      function rememberPreferences() {
+        try {
+          localStorage.setItem("ldm88-lang", state.locale);
+          localStorage.setItem("ldm88-theme", state.theme);
+        } catch (_) {}
+      }
+
+      el("view-baseline").addEventListener("click", () => {
+        state.view = "baseline";
+        renderControls();
+      });
+      el("view-assisted").addEventListener("click", () => {
+        state.view = "assisted";
+        renderControls();
+      });
+      workSelect.addEventListener("change", event => {
+        state.work = event.target.value;
+        renderControls();
+      });
+      stageSelect.addEventListener("change", event => {
+        state.stage = event.target.value;
+        renderControls();
+      });
+      for (const lens of ["dna", "voice", "visual"]) {
+        el(`lens-${lens}`).addEventListener("click", () => {
+          state.lens = lens;
+          renderControls();
+        });
+      }
+      const lensOrder = ["dna", "voice", "visual"];
+      lensOrder.forEach((lens, index) => {
+        el(`lens-${lens}`).addEventListener("keydown", event => {
+          let targetIndex = null;
+          if (event.key === "ArrowRight" || event.key === "ArrowDown") targetIndex = (index + 1) % lensOrder.length;
+          if (event.key === "ArrowLeft" || event.key === "ArrowUp") targetIndex = (index - 1 + lensOrder.length) % lensOrder.length;
+          if (event.key === "Home") targetIndex = 0;
+          if (event.key === "End") targetIndex = lensOrder.length - 1;
+          if (targetIndex === null) return;
+          event.preventDefault();
+          state.lens = lensOrder[targetIndex];
+          renderControls();
+          el(`lens-${state.lens}`).focus();
+        });
+      });
+      for (const surface of ["measure", "ground", "cultivate"]) {
+        el(`surface-${surface}`).addEventListener("click", () => {
+          state.surface = surface;
+          renderControls();
+        });
+      }
+
+      const dialog = el("settings-dialog");
+      el("menu-open").addEventListener("click", () => {
+        if (typeof dialog.showModal === "function") dialog.showModal();
+        else dialog.setAttribute("open", "");
+      });
+      el("menu-close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", event => {
+        if (event.target === dialog) dialog.close();
+      });
+      el("language").addEventListener("change", event => {
+        state.locale = event.target.value;
+        rememberPreferences();
+        renderControls();
+      });
+      el("theme").addEventListener("change", event => {
+        state.theme = event.target.value;
+        rememberPreferences();
+        renderControls();
+      });
+      el("reset-settings").addEventListener("click", () => {
+        state.locale = "th";
+        state.theme = "system";
+        rememberPreferences();
+        renderControls();
+      });
+      if (mediaQuery) {
+        mediaQuery.addEventListener("change", () => {
+          if (state.theme === "system") resolveTheme();
+        });
+      }
+
+      checks.forEach(check => {
+        check.addEventListener("change", () => {
+          el("check-count").textContent = `${checks.filter(item => item.checked).length}/5`;
+        });
+      });
+
+      el("copy-recipe").addEventListener("click", async () => {
+        const status = el("copy-status");
+        try {
+          await navigator.clipboard.writeText(recipeText.value);
+          status.textContent = copy[state.locale].copied;
+        } catch (_) {
+          recipeText.focus();
+          recipeText.select();
+          let copied = false;
+          try { copied = document.execCommand("copy"); } catch (_) {}
+          status.textContent = copied ? copy[state.locale].copied : copy[state.locale].copyFail;
+        }
+      });
+
+      document.fonts && document.fonts.ready.then(() => {
+        root.dataset.fontsReady = "true";
+      });
+      renderControls();
+    })();
+  </script>
+</body>
+</html>
