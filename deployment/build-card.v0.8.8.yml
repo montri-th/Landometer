@@ -355,9 +355,9 @@ landometerBuild:
     photoApprovalBoundary: exact existing public repository rendition reused; formal rights and expiry record remains pending
   referenceDocuments:
     - path: assets/downloads/landometer-design-system-v0.8.8.md
-      bytes: 227972
-      sha256: 8d763489eb7d6b553eeb625ceecace5a301208ef68ab7ac9711c1a2d091c4d48
-      transform: byte-identical copy of supplied v0.8.8 integrated Markdown authoring master
+      bytes: 227924
+      sha256: 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776
+      transform: trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged
       status: source_limited; machineValidation pending
     - path: implementation-notes.v0.8.8.md
       authority: proposed artifact-level clarification; non-normative until an owner-approved release incorporates it
