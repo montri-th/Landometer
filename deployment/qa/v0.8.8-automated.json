@@ -4,17 +4,22 @@
   "machineValidation": "pending",
   "staticValidator": {
     "status": "passed",
-    "summary": "v0.8.8 validation PASSED · 292 static checks · 28 controls · machineValidation pending",
+    "summary": "v0.8.8 validation PASSED · 554 static checks · 48 controls · machineValidation pending",
     "scope": [
       "release identity and evidence boundary",
       "Build Card and Manifest 2.0 alignment",
-      "disabled capability assertions",
+      "disabled capability assertions, explicit user-triggered contextual discovery, and bounded reference fixtures",
       "protected brand lines, Brand DNA, Locale Insight, and product-layer boundary",
       "canonical color and gradient recipes",
-      "single H1 and exact control inventory parity",
-      "no external script, stylesheet, font host, network, or telemetry API",
-      "reused image and packaged font byte hashes",
-      "reduced-motion, no-JavaScript, clipboard recovery, and quiet-field source hooks"
+      "single H1, smart h1–h6 wrapping, progressive disclosures, and exact 48-control inventory parity",
+      "15 positive opportunity cards with boundaries, three positive Intent-to-AHA cases, and one static deletion test",
+      "truthful 120ms/320ms semantic-motion sequence, neutral source_limited state, quiet live announcement, and reduced-motion change handling",
+      "local CTA eligibility, pending, duplicate prevention, receipt, reset, and no-external-effect contract",
+      "seven-stage static recipient-value ladder with no share control or network-outcome claim",
+      "visible editable synthetic/non-real event query, explicit Google GET, third-party disclosure, and discovery-only boundary",
+      "no external script, stylesheet, font host, telemetry, share, save, or remote governed-object mutation API",
+      "reused image, packaged font, whitespace-normalized authoring-master, implementation-note, and llms-aid byte hashes",
+      "no-JavaScript final meaning, clipboard recovery, transparent identity surfaces, and quiet-field source hooks"
     ]
   },
   "scriptParse": {
@@ -24,11 +29,19 @@
   },
   "localHttpSmoke": {
     "status": "passed",
-    "passed": 9,
+    "passed": 17,
     "failed": 0,
     "checks": [
       "HTML 200",
       "Manifest 2.0 JSON 200",
+      "Build Card YAML 200",
+      "Control Inventory JSON 200",
+      "Automated QA JSON 200",
+      "Manual QA gates Markdown 200",
+      "Implementation clarification Markdown 200",
+      "llms.txt navigation aid 200",
+      "project-path robots record 200",
+      "v0.8.8 whitespace-normalized authoring-master Markdown 200 · 227,924 bytes",
       "logo PNG 200",
       "team photo JPEG 200",
       "Arvo 700 WOFF2 200",
@@ -45,16 +58,43 @@
     "forcePushUsed": false
   },
   "browserQA": {
-    "status": "not_run",
-    "reason": "The requested deliverable did not explicitly include browser testing; responsive, perceptual, interaction, and screen-reader checks remain manual gates."
+    "status": "targeted_passed",
+    "scope": [
+      "English and Thai computed font-family roles: Arvo 700, IBM Plex Sans Thai Looped 700, Bai Jamjuree 400/600, JetBrains Mono 500",
+      "Measure Brand Blue opening gradient and deterministic dark scrim",
+      "three deliberate hero line groups with no mid-word split or horizontal overflow",
+      "transparent logo and release metadata on one contrast-safe shared header surface",
+      "single-button theme cycle with one matching SVG icon and system/device default",
+      "single-button TH/EN locale cycle with URL and local-preference state",
+      "Brand Visual route opens the dataviz disclosure and focuses its summary",
+      "three dataviz figures, three visible table alternatives, measured zero, no data, missing period, and counter-signal",
+      "six native implementation-library disclosures at a 924 × 904 CSS-pixel viewport",
+      "15 positive opportunity cards across foundations, components, and dataviz; every card exposes a Boundary row",
+      "three positive Intent-to-AHA cases plus one deletion test with explicit evidence cues and clean completion",
+      "semantic motion ends in the complete final meaning, Pause/show final cancels the sequence, and visible history is separated from the polite status announcement",
+      "CTA state proof begins disabled with a reason, becomes eligible, produces a COMPLETE_LOCAL_REFERENCE receipt, prevents duplicate action, and resets cleanly",
+      "seven-stage recipient-value ladder separates preview, receipt, recipient landing, recipient AHA, useful action, and observed governed outcome",
+      "context query contains CM-SYNTHETIC-DISASTER-001, an explicit non-real marker, ยอดผู้เสียชีวิต, intent keywords, and the full public place hierarchy",
+      "context query is editable without navigation; Google submit was deliberately not invoked during QA; action/method/target/rel were inspected",
+      "all 17 local HTTP smoke resources returned 200",
+      "browser console log inspection returned no errors"
+    ],
+    "remaining": "Full viewport, zoom, keyboard, assistive-technology, perceptual, color-vision, and human-review matrices remain manual gates."
   },
   "openManualGates": [
     "Thai read-aloud and bilingual parity tied to final copy hashes",
     "five-reviewer recognition and 5-second/30-second/2-minute adoption checks",
-    "logo variant, delivered size, clear space, and surface approval",
+    "logo variant, delivered size, clear space, transparent-background invariant, and shared header-surface approval",
     "photo owner, creator, context, rights, expiry, privacy, and rendition approval",
     "perceptual quiet, gradient deletion, and worst-sample contrast",
-    "responsive, zoom, keyboard, dialog, clipboard recovery, and screen-reader matrix",
+    "dataviz dark/light, color-vision, grayscale, direct-label, table-parity, and 200% zoom review",
+    "responsive, zoom, disclosure keyboard, theme/language cycle, clipboard recovery, and screen-reader matrix",
+    "Implementation Library findability, product-boundary, and download review",
+    "semantic-motion timing, reduced-motion preference change, no-JavaScript state, and assistive-technology review",
+    "CTA fixture keyboard/screen-reader pending and receipt/recovery wording review",
+    "context-query privacy, runtime composition, cancellation/failure recovery, and same-intent relevance study",
+    "recipient-value fixture remains static and any future share receives product-owned permission/receipt/recovery review",
+    "HTML-only noindex scope, internal-intent/public-projection mismatch, project-path robots limitation, and llms navigation-aid review",
     "regenerated v0.8.8 public-safe machine package and release evidence"
   ]
 }

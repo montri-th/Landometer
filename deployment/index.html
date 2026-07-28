@@ -11,10 +11,12 @@
   data-delivery-mode="internal_demo"
   data-delivery="internal_demo"
   data-evidence-status="source_limited"
-  data-visibility="public_repository"
+  data-visibility="public"
   data-indexable="false"
   data-machine-validation="pending"
   data-full-living-reference="false"
+  data-data-visualization="fixture_only"
+  data-machine-discovery="llms_navigation_aid"
   data-theme="light"
   data-theme-preference="system"
   data-locale="th"
@@ -28,12 +30,6 @@
   <title>Landometer Design Identity Playground · v0.8.8</title>
   <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/">
-  <meta property="og:site_name" content="Landometer">
-  <meta property="og:title" content="Let us cultivate our city. · Landometer Design Identity Playground">
-  <meta property="og:description" content="Choose one work object. Make it clear, grounded, energetic, and ready for the next person.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://montri-th.github.io/Landometer/">
-  <meta property="og:locale" content="th_TH">
   <script>
     (() => {
       const root = document.documentElement;
@@ -159,9 +155,26 @@
       --focus-ring: #176B82;
       --success-fill: #E2F4E5;
       --success-ink: #126B49;
+      --series-primary: #147A9F;
+      --series-change: #007A58;
+      --series-outlier: #C52C00;
+      --dataviz-no-data: #D5DAD6;
+      --dataviz-zero: #7D877F;
       --measure-surface: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
       --ground-surface: linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
       --cultivate-surface: linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
+      --motion-duration-feedback: 120ms;
+      --motion-duration-state: 200ms;
+      --motion-duration-map: 280ms;
+      --motion-duration-chart: 360ms;
+      --motion-duration-reveal: 400ms;
+      --motion-duration-emphasis: 560ms;
+      --motion-delay-stagger: 60ms;
+      --motion-delay-stagger-cap: 240ms;
+      --motion-distance-feedback: 2px;
+      --motion-distance-reveal: 12px;
+      --motion-ease-state: cubic-bezier(.2, 0, 0, 1);
+      --motion-ease-enter: cubic-bezier(.16, 1, .3, 1);
       --type-caption: .75rem;
       --type-label: .8125rem;
       --type-body-sm: .875rem;
@@ -232,6 +245,11 @@
       --focus-ring: #68C4E2;
       --success-fill: #17362D;
       --success-ink: #72E8C4;
+      --series-primary: #59C7E8;
+      --series-change: #3BD19B;
+      --series-outlier: #FF8A4C;
+      --dataviz-no-data: #404844;
+      --dataviz-zero: #A59A80;
       --measure-surface: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
       color-scheme: dark;
     }
@@ -248,14 +266,29 @@
       color: var(--text-primary);
       font-family: var(--font-body);
       font-size: var(--type-body);
-      line-height: 1.6;
-      overflow-wrap: anywhere;
+      line-height: var(--leading-body);
+      overflow-wrap: break-word;
+      word-break: normal;
     }
-    body,
     button,
     select,
     textarea,
     input { font: inherit; }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      hyphens: none;
+      overflow-wrap: normal;
+      text-wrap: balance;
+      word-break: normal;
+    }
+    p,
+    li,
+    figcaption,
+    dd { text-wrap: pretty; }
     img { display: block; max-width: 100%; }
     a { color: inherit; }
     button,
@@ -308,9 +341,9 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: .08em;
-      line-height: 1.35;
+      line-height: var(--leading-label);
       text-transform: uppercase;
     }
     .container {
@@ -328,7 +361,8 @@
       margin: 0;
       font-family: var(--font-display-th);
       font-size: var(--type-h2);
-      line-height: 1.18;
+      font-weight: 700;
+      line-height: var(--leading-display-th);
       letter-spacing: -.035em;
     }
     html[data-locale="en"] .section-heading h2,
@@ -336,7 +370,7 @@
     html[data-locale="en"] .preflight-copy h2,
     html[data-locale="en"] .closing h2 {
       font-family: var(--font-display-en);
-      line-height: 1.08;
+      line-height: var(--leading-display-en);
     }
     .section-heading > p:last-child,
     .handoff-intro > p:last-child,
@@ -352,21 +386,29 @@
       z-index: 20;
       inset: 0 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto auto;
+      grid-template-columns: minmax(0, 1fr) auto auto auto;
       align-items: center;
       gap: var(--space-4);
       width: min(calc(100% - (2 * var(--gutter))), var(--container-wide));
       margin-inline: auto;
       padding-block: 18px;
     }
+    .site-header::before {
+      position: absolute;
+      z-index: -1;
+      inset: 0 calc(50% - 50vw);
+      background: #E2E9ED;
+      content: "";
+    }
     .logo-surface {
       display: grid;
       place-items: center start;
       width: fit-content;
       min-height: 52px;
-      padding: 8px 12px;
-      background: #FFFFFF;
-      border-radius: var(--radius-sm);
+      padding: 4px 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
     }
     .logo-surface img {
       width: clamp(138px, 16vw, 184px);
@@ -377,31 +419,49 @@
       color: #182327;
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
-      line-height: 1.35;
-      padding: 6px 9px;
-      background: rgba(255, 255, 255, .92);
-      border-radius: var(--radius-xs);
+      font-weight: 500;
+      line-height: var(--leading-label);
+      padding: 4px 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
       text-align: right;
     }
-    .menu-button,
-    .icon-button {
-      border: 1px solid rgba(24, 35, 39, .28);
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, .9);
+    .theme-cycle,
+    .language-cycle {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      min-height: 44px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
       color: #182327;
       cursor: pointer;
-      font-weight: 600;
-      padding: 8px 14px;
     }
-    .menu-button:hover,
-    .icon-button:hover { background: #FFFFFF; }
+    .theme-cycle:hover,
+    .language-cycle:hover { background: rgba(255, 255, 255, .48); }
+    .theme-cycle svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.6;
+    }
+    .language-cycle {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
 
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.04fr) minmax(420px, .96fr);
       min-height: min(900px, 100svh);
-      background: var(--cultivate-surface);
+      background: var(--measure-surface);
       overflow: hidden;
     }
     .hero-copy {
@@ -418,28 +478,36 @@
       position: absolute;
       z-index: -1;
       inset: 0;
-      background: linear-gradient(105deg, rgba(246, 247, 243, .97) 0%, rgba(246, 247, 243, .92) 68%, rgba(246, 247, 243, .72) 100%);
+      background: rgba(17, 25, 29, .52);
       content: "";
     }
     html[data-theme="dark"] .hero-copy::before {
-      background: linear-gradient(105deg, rgba(17, 25, 29, .97) 0%, rgba(17, 25, 29, .92) 68%, rgba(17, 25, 29, .76) 100%);
+      background: rgba(17, 25, 29, .52);
+    }
+    .hero .eyebrow,
+    .hero h1,
+    .hero-support {
+      color: #FFFFFF;
     }
     .hero .eyebrow {
       margin-bottom: var(--space-5);
-      color: var(--text-primary);
     }
     .hero h1 {
       max-width: 780px;
       margin: 0;
       font-family: var(--font-display-en);
       font-size: var(--type-h1-en);
-      line-height: 1.02;
+      font-weight: 700;
+      line-height: var(--leading-display-en);
       letter-spacing: -.055em;
+    }
+    .hero-line {
+      display: block;
+      white-space: nowrap;
     }
     .hero-support {
       max-width: 670px;
       margin: var(--space-6) 0 0;
-      color: var(--text-secondary);
       font-size: clamp(1.05rem, 2vw, 1.3rem);
       line-height: 1.55;
     }
@@ -458,21 +526,30 @@
       font-weight: 600;
       line-height: 1.35;
       text-decoration: none;
-      transition: background-color 180ms ease, transform 180ms ease;
+      transition:
+        background-color var(--motion-duration-state) var(--motion-ease-state),
+        transform var(--motion-duration-feedback) var(--motion-ease-state);
     }
     .primary-action {
       background: var(--surface-raised);
+    }
+    .hero .primary-action {
+      border-color: #FFFFFF;
+      background: #FFFFFF;
+      color: #182327;
     }
     .primary-action::after,
     .secondary-action::after {
       content: "→";
       font-family: var(--font-number);
+      font-weight: 500;
     }
     .primary-action:hover,
     .secondary-action:hover {
       background: var(--surface-blue-tint);
-      transform: translateY(-2px);
+      transform: translateY(calc(-1 * var(--motion-distance-feedback)));
     }
+    .hero .primary-action:hover { background: #F1F4EF; }
     .hero-media {
       position: relative;
       min-height: 520px;
@@ -526,7 +603,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: .04em;
     }
     select {
@@ -580,6 +657,16 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
+      font-weight: 500;
+    }
+    .lens-hint {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      line-height: var(--leading-number);
     }
     .lens-list button[aria-selected="true"] {
       border-width: 0 0 1px 4px;
@@ -596,7 +683,9 @@
       border-radius: var(--radius-lg);
       background: var(--surface-card);
       overflow: hidden;
-      transition: background-color 220ms ease, color 220ms ease;
+      transition:
+        background-color var(--motion-duration-state) var(--motion-ease-state),
+        color var(--motion-duration-state) var(--motion-ease-state);
     }
     .proof-preview::before {
       position: absolute;
@@ -604,7 +693,7 @@
       inset: 0;
       content: "";
       pointer-events: none;
-      transition: background-color 220ms ease;
+      transition: background-color var(--motion-duration-state) var(--motion-ease-state);
     }
     .proof-preview.is-visual[data-surface="measure"] {
       background: var(--measure-surface);
@@ -643,8 +732,8 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
-      line-height: 1.4;
+      font-weight: 500;
+      line-height: var(--leading-label);
       text-transform: uppercase;
     }
     .proof-state {
@@ -654,7 +743,7 @@
       padding: 4px 9px;
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
+      font-weight: 500;
     }
     .proof-content {
       display: grid;
@@ -667,19 +756,20 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 700;
+      font-weight: 500;
     }
     .proof-title {
       max-width: 720px;
       margin: 0;
-      font-family: var(--font-display-th);
+      font-family: var(--font-ui-heading-th);
       font-size: clamp(1.85rem, 4vw, 3.6rem);
-      line-height: 1.17;
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
       letter-spacing: -.035em;
     }
     html[data-locale="en"] .proof-title {
-      font-family: var(--font-display-en);
-      line-height: 1.08;
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
     }
     .proof-body {
       max-width: 670px;
@@ -700,7 +790,7 @@
       color: inherit;
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -744,7 +834,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -764,12 +854,14 @@
     }
     .lens-explanation h3 {
       margin: 0;
-      font-family: var(--font-display-th);
+      font-family: var(--font-ui-heading-th);
       font-size: var(--type-h3);
-      line-height: 1.25;
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
     }
     html[data-locale="en"] .lens-explanation h3 {
-      font-family: var(--font-display-en);
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
     }
     .lens-explanation > div > p {
       margin: var(--space-4) 0 0;
@@ -820,7 +912,7 @@
       content: counter(voice-step);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
+      font-weight: 500;
     }
     .reject-fixture {
       margin: var(--space-5) 0 0;
@@ -874,8 +966,14 @@
     }
     .stage-output h3 {
       margin: 0;
+      font-family: var(--font-ui-heading-th);
       font-size: var(--type-body-lg);
-      line-height: 1.35;
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .stage-output h3 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
     }
     .stage-output p,
     .stage-output ul {
@@ -905,7 +1003,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 700;
+      font-weight: 500;
       text-transform: uppercase;
     }
     .handoff-record dd {
@@ -922,7 +1020,7 @@
       margin: 0;
       font-family: var(--font-number);
       font-size: clamp(.85rem, 2vw, 1rem);
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.8;
     }
     .truth-lock small {
@@ -1024,6 +1122,7 @@
     .recipe-head b {
       font-family: var(--font-number);
       font-size: var(--type-label);
+      font-weight: 500;
     }
     .copy-button {
       min-height: 44px;
@@ -1056,6 +1155,1108 @@
       font-size: var(--type-body-sm);
     }
 
+    .library-gateway {
+      padding-block: clamp(64px, 8vw, 104px);
+      background: var(--canvas);
+    }
+    .library-gateway-inner {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr);
+      gap: clamp(36px, 7vw, 96px);
+      align-items: end;
+    }
+    .library-gateway h2,
+    .library-heading h2 {
+      margin: 0;
+      font-family: var(--font-display-th);
+      font-size: var(--type-h2);
+      font-weight: 700;
+      line-height: var(--leading-display-th);
+      letter-spacing: -.035em;
+    }
+    html[data-locale="en"] .library-gateway h2,
+    html[data-locale="en"] .library-heading h2 {
+      font-family: var(--font-display-en);
+      line-height: var(--leading-display-en);
+    }
+    .library-gateway-copy > p:last-child,
+    .library-heading > p:last-child {
+      max-width: 740px;
+      margin: var(--space-5) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-lg);
+    }
+    .library-gateway-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+    }
+    .library-gateway-actions .primary-action,
+    .library-gateway-actions .secondary-action { margin-top: 0; }
+
+    .implementation-library {
+      scroll-margin-top: var(--space-5);
+      padding-block: clamp(80px, 10vw, 140px);
+      background: var(--surface-alt);
+    }
+    .library-heading { max-width: 900px; }
+    .library-boundary {
+      max-width: 900px;
+      margin: var(--space-7) 0 var(--space-8);
+      padding: var(--space-5);
+      border-left: 4px solid var(--brand-blue);
+      background: var(--surface-blue-tint);
+    }
+    .library-boundary p { margin: 0; }
+    .library-boundary p + p {
+      margin-top: var(--space-2);
+      color: var(--text-secondary);
+    }
+    .library-group {
+      border-top: 1px solid var(--border-default);
+    }
+    .library-group:last-child {
+      border-bottom: 1px solid var(--border-default);
+    }
+    .library-group summary {
+      display: grid;
+      grid-template-columns: 44px minmax(190px, .7fr) minmax(260px, 1fr) auto 32px;
+      gap: var(--space-5);
+      align-items: center;
+      min-height: 88px;
+      padding: 16px 4px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .library-group summary::-webkit-details-marker { display: none; }
+    .library-group summary::after {
+      content: "+";
+      color: var(--interaction-accent);
+      font-family: var(--font-number);
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    .library-group[open] summary::after { content: "−"; }
+    .library-group[open] summary {
+      border-bottom: 1px solid var(--border-hairline);
+      color: var(--interaction-accent);
+    }
+    .library-index,
+    .library-count,
+    .specimen-kicker,
+    .dataviz-pattern-name,
+    .dataviz-unit,
+    .dataviz-source,
+    .resource-meta {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      line-height: var(--leading-number);
+    }
+    .library-index,
+    .library-count { color: var(--text-metadata); }
+    .library-group summary h3 {
+      margin: 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-h3);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .library-group summary h3 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .library-summary-copy {
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .library-content {
+      padding: var(--space-7) 0 var(--space-9);
+    }
+    .library-content h4 {
+      margin: 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-h3);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .library-content h4 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .library-content-intro {
+      max-width: 760px;
+      margin: var(--space-3) 0 var(--space-7);
+      color: var(--text-secondary);
+    }
+    .specimen-kicker,
+    .dataviz-pattern-name,
+    .dataviz-unit,
+    .dataviz-source,
+    .resource-meta {
+      color: var(--text-metadata);
+      text-transform: uppercase;
+    }
+
+    .foundation-grid,
+    .component-demo-grid,
+    .product-grid,
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-7);
+    }
+    .opportunity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+    .opportunity-gallery {
+      margin-top: var(--space-9);
+      padding-top: var(--space-7);
+      border-top: 1px solid var(--border-default);
+    }
+    .opportunity-gallery > p:not(.specimen-kicker) {
+      max-width: 760px;
+      color: var(--text-secondary);
+    }
+    .opportunity-card {
+      min-width: 0;
+      padding: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+      background: var(--surface-card);
+    }
+    .opportunity-card h5 {
+      margin: var(--space-2) 0 var(--space-4);
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .opportunity-card h5 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .opportunity-card dl {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+    }
+    .opportunity-card dl div {
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border-hairline);
+    }
+    .opportunity-card dt {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .opportunity-card dd {
+      margin: 4px 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .specimen {
+      min-width: 0;
+      padding-top: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+    }
+    .specimen h5,
+    .dataviz-pattern h5 {
+      margin: var(--space-2) 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    .decision-demo h5,
+    .product-grid h5,
+    .resource-grid h5 {
+      font-family: var(--font-ui-heading-th);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .specimen h5,
+    html[data-locale="en"] .dataviz-pattern h5,
+    html[data-locale="en"] .decision-demo h5,
+    html[data-locale="en"] .product-grid h5,
+    html[data-locale="en"] .resource-grid h5 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .specimen > p:last-child { color: var(--text-secondary); }
+    .signature-specimen {
+      padding: var(--space-5);
+      background: #E2E9ED;
+      color: #182327;
+    }
+    .signature-specimen .specimen-kicker { color: #686354; }
+    .specimen.signature-specimen > p.non-negotiable {
+      background: rgba(255, 255, 255, .62);
+      color: #182327;
+    }
+    .signature-specimen .non-negotiable strong { color: #A12600; }
+    .logo-rule-surface {
+      margin-top: var(--space-5);
+      background: transparent;
+    }
+    .logo-rule-surface img {
+      width: min(100%, 300px);
+      height: auto;
+      background: transparent;
+    }
+    .non-negotiable {
+      margin: var(--space-5) 0 0;
+      padding: var(--space-4);
+      border-left: 4px solid var(--series-outlier);
+      background: var(--surface-raised);
+    }
+    .non-negotiable strong { color: var(--series-outlier); }
+    .type-role-list,
+    .rule-list,
+    .experience-flow,
+    .product-recipe {
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .type-role-list li {
+      display: grid;
+      grid-template-columns: minmax(150px, .7fr) minmax(0, 1fr);
+      gap: var(--space-4);
+      align-items: baseline;
+      padding: 12px 0;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .type-role-list small { color: var(--text-secondary); }
+    .type-display-en {
+      font-family: var(--font-display-en);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .type-display-th {
+      font-family: var(--font-display-th);
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .type-body-sample { font-family: var(--font-body); }
+    .type-mono-sample {
+      font-family: var(--font-number);
+      font-weight: 500;
+    }
+    .rule-list li,
+    .product-recipe li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .rule-list li::before {
+      content: "✓";
+      color: var(--success-ink);
+      font-weight: 600;
+    }
+    .atmosphere-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      min-height: 120px;
+      margin-top: var(--space-5);
+    }
+    .atmosphere-strip div {
+      display: grid;
+      place-items: end start;
+      padding: var(--space-4);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .atmosphere-strip div:nth-child(1) { background: var(--measure-surface); }
+    .atmosphere-strip div:nth-child(2) {
+      background: var(--ground-surface);
+      color: #182327;
+    }
+    .atmosphere-strip div:nth-child(3) {
+      background: var(--cultivate-surface);
+      color: #182327;
+    }
+
+    .matrix-wrap {
+      overflow-x: auto;
+      margin-top: var(--space-7);
+    }
+    .implementation-matrix,
+    .dataviz-table,
+    .state-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--type-body-sm);
+    }
+    .implementation-matrix caption,
+    .dataviz-table caption,
+    .state-table caption {
+      padding-bottom: var(--space-3);
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-align: left;
+    }
+    .implementation-matrix th,
+    .implementation-matrix td,
+    .dataviz-table th,
+    .dataviz-table td,
+    .state-table th,
+    .state-table td {
+      padding: 11px 10px;
+      border-top: 1px solid var(--border-hairline);
+      text-align: left;
+      vertical-align: top;
+    }
+    .implementation-matrix thead th,
+    .dataviz-table thead th,
+    .state-table thead th {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .component-demo-grid { margin-top: var(--space-7); }
+    .decision-demo {
+      padding: var(--space-5);
+      border: 1px solid var(--border-default);
+      background: var(--surface-card);
+    }
+    .decision-demo h5 { margin: var(--space-3) 0; }
+    .decision-demo dl {
+      display: grid;
+      gap: var(--space-3);
+      margin: var(--space-5) 0 0;
+    }
+    .decision-demo dl div {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border-hairline);
+    }
+    .decision-demo dt {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .decision-demo dd { margin: 0; }
+    .form-demo {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      background: var(--surface-blue-tint);
+    }
+    .form-demo label {
+      display: grid;
+      gap: 6px;
+      font-weight: 600;
+    }
+    .form-demo input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border-default);
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      padding: 10px 12px;
+    }
+    .form-demo small { color: var(--text-secondary); }
+    .form-demo .button {
+      width: fit-content;
+      margin-top: 0;
+      background: var(--brand-blue);
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    .state-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: var(--space-7);
+      border-block: 1px solid var(--border-default);
+    }
+    .state-strip div {
+      padding: var(--space-5);
+      border-right: 1px solid var(--border-default);
+    }
+    .state-strip div:last-child { border-right: 0; }
+    .state-strip b { display: block; margin-bottom: var(--space-2); }
+    .state-strip span {
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+
+    .dataviz-intro { max-width: 760px; }
+    .dataviz-boundary {
+      margin-block: var(--space-6);
+      padding: var(--space-4) var(--space-5);
+      border-left: 4px solid var(--brand-blue);
+      background: var(--surface-blue-tint);
+    }
+    .dataviz-boundary p { margin: 0; }
+    .dataviz-boundary p + p {
+      margin-top: var(--space-2);
+      color: var(--text-secondary);
+    }
+    .chart-chooser {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: var(--space-6) 0;
+      border-block: 1px solid var(--border-default);
+    }
+    .chart-chooser div {
+      padding: var(--space-4);
+      border-right: 1px solid var(--border-default);
+    }
+    .chart-chooser div:nth-child(3n) { border-right: 0; }
+    .chart-chooser div:nth-child(n + 4) { border-top: 1px solid var(--border-default); }
+    .chart-chooser b { display: block; }
+    .chart-chooser small { color: var(--text-secondary); }
+    .dataviz-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .dataviz-pattern {
+      min-width: 0;
+      margin: 0;
+      padding: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+    }
+    .dataviz-pattern + .dataviz-pattern {
+      border-left: 1px solid var(--border-default);
+    }
+    .dataviz-pattern figcaption {
+      min-height: 4.8em;
+      margin-block: var(--space-4);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .dataviz-bars {
+      display: grid;
+      gap: 10px;
+      margin-top: var(--space-5);
+    }
+    .dataviz-bar-row {
+      display: grid;
+      grid-template-columns: 20px minmax(80px, 1fr) 64px;
+      gap: 8px;
+      align-items: center;
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .dataviz-track {
+      height: 16px;
+      background: var(--surface-soft);
+      overflow: hidden;
+    }
+    .dataviz-track i {
+      display: block;
+      width: var(--size);
+      height: 100%;
+      background: var(--series-primary);
+    }
+    .dataviz-track .is-zero {
+      width: 7px;
+      background: transparent;
+      border: 2px solid var(--dataviz-zero);
+    }
+    .dataviz-track .is-no-data {
+      width: 100%;
+      border: 1px solid var(--border-emphasis);
+      background: repeating-linear-gradient(135deg, var(--dataviz-no-data) 0 5px, transparent 5px 10px);
+    }
+    .dataviz-columns {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: end;
+      gap: 10px;
+      height: 190px;
+      margin-top: var(--space-5);
+      border-bottom: 1px solid var(--border-emphasis);
+    }
+    .dataviz-columns > div {
+      display: grid;
+      grid-template-rows: 24px 130px 24px;
+      align-items: end;
+      text-align: center;
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .dataviz-columns i {
+      display: block;
+      height: var(--size);
+      background: var(--series-change);
+    }
+    .dataviz-columns .is-no-data i {
+      height: 22px;
+      border: 1px solid var(--border-emphasis);
+      background: repeating-linear-gradient(135deg, var(--dataviz-no-data) 0 5px, transparent 5px 10px);
+    }
+    .dataviz-scatter {
+      position: relative;
+      height: 190px;
+      margin: var(--space-5) 10px 0 28px;
+      border-left: 1px solid var(--border-emphasis);
+      border-bottom: 1px solid var(--border-emphasis);
+    }
+    .dataviz-scatter i {
+      position: absolute;
+      left: var(--x);
+      bottom: var(--y);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--series-primary);
+      transform: translate(-50%, 50%);
+    }
+    .dataviz-scatter i::after {
+      position: absolute;
+      left: 15px;
+      top: -5px;
+      color: var(--text-primary);
+      content: attr(data-label);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-style: normal;
+      font-weight: 500;
+    }
+    .dataviz-scatter .is-outlier {
+      border-radius: 0;
+      background: var(--series-outlier);
+    }
+    .dataviz-table { margin-top: var(--space-5); }
+    .dataviz-table td:nth-child(2) {
+      font-family: var(--font-number);
+      font-variant-numeric: tabular-nums;
+    }
+    .dataviz-layer-rule {
+      margin: var(--space-7) 0 0;
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--border-default);
+      color: var(--text-secondary);
+    }
+
+    .experience-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-block: 1px solid var(--border-default);
+    }
+    .experience-flow li {
+      min-width: 0;
+      padding: var(--space-5);
+      border-right: 1px solid var(--border-default);
+    }
+    .experience-flow li:last-child { border-right: 0; }
+    .experience-flow b {
+      display: block;
+      color: var(--interaction-accent);
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+      font-weight: 500;
+    }
+    .experience-flow span {
+      display: block;
+      margin-top: var(--space-2);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .state-table { margin-top: var(--space-7); }
+
+    .experience-pattern-section {
+      margin-top: var(--space-9);
+      padding-top: var(--space-6);
+      border-top: 4px solid var(--brand-blue);
+    }
+    .experience-pattern-section h5,
+    .release-gate h5 {
+      max-width: 760px;
+      margin: var(--space-2) 0 var(--space-3);
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-h3);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .experience-pattern-section h5,
+    html[data-locale="en"] .release-gate h5 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .pattern-intro {
+      max-width: 760px;
+      margin: 0 0 var(--space-6);
+      color: var(--text-secondary);
+    }
+    .motion-layout,
+    .pattern-grid,
+    .intent-case-grid,
+    .discovery-layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-7);
+      align-items: start;
+    }
+    .pattern-card {
+      min-width: 0;
+      padding: var(--space-5);
+      border: 1px solid var(--border-default);
+      background: var(--surface-card);
+    }
+    .intent-case {
+      min-width: 0;
+      padding: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+      background: var(--surface-card);
+    }
+    .intent-case.is-rejected {
+      border-top-color: var(--series-outlier);
+      background: var(--surface-blue-tint);
+    }
+    .intent-case h6 {
+      margin: var(--space-2) 0 var(--space-4);
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .intent-case h6 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .intent-case dl {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+    }
+    .intent-case dl div {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr);
+      gap: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--border-hairline);
+    }
+    .intent-case dt {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .intent-case dd { margin: 0; }
+    .intent-case.is-rejected dd s { color: var(--series-outlier); }
+    .pattern-card h6,
+    .motion-lab h6,
+    .discovery-fixture h6 {
+      margin: 0 0 var(--space-3);
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .pattern-card h6,
+    html[data-locale="en"] .motion-lab h6,
+    html[data-locale="en"] .discovery-fixture h6 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .motion-token-table { margin-top: 0; }
+    .motion-token-table td:first-child,
+    .motion-token-table td:nth-child(2) {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .motion-lab {
+      min-width: 0;
+      padding: var(--space-5);
+      background: var(--surface-blue-tint);
+    }
+    .motion-object {
+      min-height: 280px;
+      padding: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+      background: var(--surface-raised);
+    }
+    .motion-object-name,
+    .motion-status,
+    .motion-action-cue {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .motion-object-name {
+      margin: 0;
+      color: var(--text-metadata);
+      text-transform: uppercase;
+    }
+    .motion-answer {
+      display: block;
+      margin-top: var(--space-3);
+      font-family: var(--font-ui-heading-en);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .motion-status {
+      width: fit-content;
+      margin-top: var(--space-5);
+      padding: 5px 8px;
+      border: 1px solid var(--border-default);
+      background: var(--surface-soft);
+      color: var(--text-metadata);
+      text-transform: uppercase;
+    }
+    .motion-context {
+      margin: var(--space-4) 0 0;
+      color: var(--text-secondary);
+    }
+    .motion-action-cue {
+      display: block;
+      margin-top: var(--space-5);
+      padding-left: var(--space-3);
+      border-left: 3px solid var(--interaction-accent);
+      color: var(--interaction-accent);
+    }
+    .motion-status,
+    .motion-context,
+    .motion-action-cue {
+      transition:
+        opacity var(--motion-duration-feedback) var(--motion-ease-state),
+        transform var(--motion-duration-feedback) var(--motion-ease-enter);
+    }
+    .motion-lab[data-phase="object"] .motion-context,
+    .motion-lab[data-phase="object"] .motion-action-cue {
+      opacity: .24;
+      transform: translateY(var(--motion-distance-reveal));
+    }
+    .motion-lab[data-phase="meaning"] .motion-action-cue {
+      opacity: .24;
+      transform: translateY(var(--motion-distance-reveal));
+    }
+    .motion-lab[data-phase="final"] .motion-status,
+    .motion-lab[data-phase="final"] .motion-context,
+    .motion-lab[data-phase="final"] .motion-action-cue,
+    .motion-lab[data-phase="meaning"] .motion-status,
+    .motion-lab[data-phase="meaning"] .motion-context,
+    .motion-lab[data-phase="object"] .motion-status {
+      opacity: 1;
+      transform: none;
+    }
+    .motion-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+    .pattern-button,
+    .intent-form button {
+      min-height: 44px;
+      border: 1px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--interaction-accent);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 9px 14px;
+    }
+    .pattern-button:hover,
+    .intent-form button:hover { background: var(--surface-blue-tint); }
+    .motion-log {
+      min-height: 72px;
+      margin: var(--space-4) 0 0;
+      padding: var(--space-3) var(--space-3) var(--space-3) 34px;
+      background: var(--surface-card);
+      color: var(--text-secondary);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .motion-log li + li { margin-top: 4px; }
+    .cta-proof {
+      display: grid;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+      padding: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+      background: var(--surface-blue-tint);
+    }
+    .cta-proof h6,
+    .cta-proof p { margin: 0; }
+    .cta-eligibility {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      min-height: 44px;
+      padding-block: 8px;
+      font-weight: 600;
+    }
+    .cta-eligibility input {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      accent-color: var(--brand-blue);
+    }
+    .cta-requirement {
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .cta-proof-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    .cta-proof button {
+      min-height: 44px;
+      border: 1px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      background: var(--brand-blue);
+      color: #FFFFFF;
+      padding: 9px 14px;
+      font-weight: 600;
+    }
+    .cta-proof button:disabled {
+      border-color: var(--border-default);
+      background: var(--surface-soft);
+      color: var(--text-muted);
+      cursor: not-allowed;
+    }
+    .cta-proof #cta-reset {
+      background: transparent;
+      color: var(--interaction-accent);
+    }
+    .cta-receipt {
+      min-height: 72px;
+      padding: var(--space-4);
+      border: 1px solid var(--border-default);
+      background: var(--surface-raised);
+      color: var(--text-secondary);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      white-space: pre-line;
+    }
+    .value-loop,
+    .recipient-ladder {
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: pattern-step;
+    }
+    .value-loop li,
+    .recipient-ladder li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: var(--space-3);
+      padding: 12px 0;
+      border-top: 1px solid var(--border-hairline);
+      counter-increment: pattern-step;
+    }
+    .value-loop li::before,
+    .recipient-ladder li::before {
+      color: var(--interaction-accent);
+      content: counter(pattern-step, decimal-leading-zero);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .value-loop b,
+    .recipient-ladder b { display: block; }
+    .value-loop span,
+    .recipient-ladder span {
+      display: block;
+      margin-top: 3px;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .pattern-boundary {
+      margin: var(--space-5) 0 0;
+      padding: var(--space-4);
+      border-left: 4px solid var(--series-outlier);
+      background: var(--surface-blue-tint);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .discovery-fixture {
+      min-width: 0;
+      padding: var(--space-5);
+      background: var(--surface-blue-tint);
+    }
+    .intent-form {
+      display: grid;
+      gap: var(--space-3);
+    }
+    .intent-form label { font-weight: 600; }
+    .context-snapshot {
+      display: grid;
+      gap: var(--space-2);
+      margin: 0 0 var(--space-5);
+      padding: var(--space-4);
+      background: var(--surface-raised);
+    }
+    .context-snapshot div {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: var(--space-3);
+      padding-top: var(--space-2);
+      border-top: 1px solid var(--border-hairline);
+    }
+    .context-snapshot div:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+    .context-snapshot dt {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .context-snapshot dd { margin: 0; }
+    .intent-form input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-xs);
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      padding: 10px 12px;
+    }
+    .intent-form small {
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .intent-form button {
+      width: fit-content;
+      background: var(--brand-blue);
+      color: #FFFFFF;
+    }
+    .intent-form button:hover { background: var(--interaction-accent); }
+    .label-correction {
+      margin-top: var(--space-5);
+      color: var(--text-secondary);
+    }
+    .label-correction s { color: var(--series-outlier); }
+    .label-correction strong { color: var(--interaction-accent); }
+    .release-gate {
+      margin-top: var(--space-8);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--border-default);
+    }
+
+    .product-grid article,
+    .resource-grid article {
+      min-width: 0;
+      padding-top: var(--space-5);
+      border-top: 4px solid var(--brand-blue);
+    }
+    .product-grid h5,
+    .resource-grid h5 {
+      margin: var(--space-2) 0;
+      font-size: var(--type-body-lg);
+    }
+    .product-grid article > p,
+    .resource-grid article > p { color: var(--text-secondary); }
+    .product-recipe li::before {
+      color: var(--text-metadata);
+      content: "→";
+      font-family: var(--font-number);
+      font-weight: 500;
+    }
+    .product-boundary {
+      margin-top: var(--space-4);
+      padding: var(--space-3);
+      background: var(--surface-blue-tint);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .resource-grid a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: var(--space-3);
+      color: var(--interaction-accent);
+      font-weight: 600;
+      text-underline-offset: 4px;
+    }
+    .resource-grid .download-action {
+      border: 2px solid var(--interaction-accent);
+      padding: 10px 14px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .library-gateway-inner,
+      .foundation-grid,
+      .component-demo-grid,
+      .motion-layout,
+      .pattern-grid,
+      .intent-case-grid,
+      .discovery-layout,
+      .product-grid,
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+      .opportunity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .library-group summary {
+        grid-template-columns: 36px 1fr auto;
+        gap: var(--space-3);
+      }
+      .library-summary-copy {
+        grid-column: 2 / 4;
+        grid-row: 2;
+        padding-right: var(--space-6);
+      }
+      .library-group summary::after {
+        grid-column: 3;
+        grid-row: 1;
+      }
+      .library-count { display: none; }
+      .dataviz-grid { grid-template-columns: 1fr; }
+      .dataviz-pattern + .dataviz-pattern {
+        border-left: 0;
+        border-top: 1px solid var(--border-default);
+      }
+      .dataviz-pattern figcaption { min-height: 0; }
+      .experience-flow { grid-template-columns: 1fr; }
+      .experience-flow li {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-default);
+      }
+      .experience-flow li:last-child { border-bottom: 0; }
+    }
+    @media (max-width: 620px) {
+      .library-gateway-actions { display: grid; }
+      .library-gateway-actions a { width: 100%; }
+      .type-role-list li { grid-template-columns: 1fr; }
+      .atmosphere-strip,
+      .state-strip,
+      .chart-chooser { grid-template-columns: 1fr; }
+      .state-strip div,
+      .chart-chooser div {
+        border-right: 0;
+        border-bottom: 1px solid var(--border-default);
+      }
+      .state-strip div:last-child,
+      .chart-chooser div:last-child { border-bottom: 0; }
+      .chart-chooser div:nth-child(n + 2) { border-top: 0; }
+      .decision-demo dl div { grid-template-columns: 1fr; }
+      .intent-case dl div { grid-template-columns: 1fr; }
+      .context-snapshot div { grid-template-columns: 1fr; }
+      .motion-controls { display: grid; }
+      .motion-controls button,
+      .intent-form button,
+      .cta-proof-actions button { width: 100%; }
+      .opportunity-grid { grid-template-columns: 1fr; }
+    }
+
     .closing {
       position: relative;
       isolation: isolate;
@@ -1082,6 +2283,7 @@
     .closing h2 {
       font-family: var(--font-display-en);
       font-size: clamp(2.7rem, 6.5vw, 6rem);
+      font-weight: 700;
       line-height: 1.02;
       letter-spacing: -.05em;
     }
@@ -1120,6 +2322,7 @@
     .footer-meta {
       font-family: var(--font-number);
       font-size: var(--type-caption);
+      font-weight: 500;
       line-height: 1.7;
     }
     .footer-links {
@@ -1131,55 +2334,6 @@
       min-height: 24px;
       color: #F1F4EF;
       text-underline-offset: 3px;
-    }
-
-    dialog {
-      width: min(92vw, 560px);
-      max-height: 86vh;
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-lg);
-      background: var(--surface-raised);
-      color: var(--text-primary);
-      padding: 0;
-    }
-    dialog::backdrop { background: rgba(17, 25, 29, .72); }
-    .dialog-head {
-      display: flex;
-      justify-content: space-between;
-      gap: var(--space-4);
-      align-items: center;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border-default);
-    }
-    .dialog-head h2 {
-      margin: 0;
-      font-family: var(--font-display-th);
-      font-size: var(--type-h3);
-    }
-    .dialog-body {
-      display: grid;
-      gap: var(--space-6);
-      padding: var(--space-6);
-    }
-    .dialog-setting {
-      display: grid;
-      gap: 8px;
-    }
-    .dialog-note {
-      margin: 0;
-      padding-top: var(--space-5);
-      border-top: 1px solid var(--border-hairline);
-      color: var(--text-secondary);
-      font-size: var(--type-body-sm);
-    }
-    .reset-button {
-      width: fit-content;
-      border: 0;
-      border-bottom: 1px solid currentColor;
-      background: transparent;
-      color: var(--interaction-accent);
-      cursor: pointer;
-      padding: 6px 0;
     }
 
     @media (max-width: 980px) {
@@ -1231,7 +2385,7 @@
 
     @media (max-width: 680px) {
       .site-header {
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: minmax(0, 1fr) auto auto;
       }
       .release-label { display: none; }
       .logo-surface img { width: 138px; }
@@ -1341,8 +2495,21 @@
     <div class="release-label" aria-hidden="true">
       DS 0.8.8<br>internal_demo
     </div>
-    <button class="menu-button js-only" id="menu-open" type="button" aria-haspopup="dialog" aria-controls="settings-dialog">
-      <span data-th>ตั้งค่า</span><span data-en>Settings</span>
+    <button class="theme-cycle js-only" id="theme-cycle" type="button" aria-label="ธีม: ตามอุปกรณ์ / Theme: follow device">
+      <svg data-theme-icon="system" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3.5" y="4.5" width="17" height="12" rx="1.5"></rect>
+        <path d="M8 20h8M12 16.5V20"></path>
+      </svg>
+      <svg data-theme-icon="light" viewBox="0 0 24 24" aria-hidden="true" hidden>
+        <circle cx="12" cy="12" r="3.5"></circle>
+        <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"></path>
+      </svg>
+      <svg data-theme-icon="dark" viewBox="0 0 24 24" aria-hidden="true" hidden>
+        <path d="M20 15.3A8 8 0 0 1 8.7 4a8.2 8.2 0 1 0 11.3 11.3Z"></path>
+      </svg>
+    </button>
+    <button class="language-cycle js-only" id="language-cycle" type="button" aria-label="ภาษา: ไทย กดเพื่อเปลี่ยนเป็น English">
+      <span aria-hidden="true">TH</span>
     </button>
   </header>
 
@@ -1350,7 +2517,7 @@
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-copy" data-quiet-field>
         <p class="eyebrow">Design identity playground · v0.8.8 authoring master</p>
-        <h1 id="hero-title" lang="en">Let us cultivate our city.</h1>
+        <h1 id="hero-title" lang="en" aria-label="Let us cultivate our city."><span class="hero-line">Let us</span><span class="hero-line">cultivate</span><span class="hero-line">our city.</span></h1>
         <p class="hero-support" data-th>หยิบหน้าจอ แผนที่ รายงาน หรือข้อความหนึ่งชิ้นสำหรับการตัดสินใจเกี่ยวกับพื้นที่จริง แล้วดูว่าคนที่รับงานต่อเห็นสิ่งที่รู้ ข้อจำกัด และขั้นตอนถัดไปครบหรือยัง</p>
         <p class="hero-support" data-en>Bring one screen, map, report, or message for a real-place decision. Check that the next person can see what is known, its limits, and what to do next.</p>
         <a class="primary-action" href="#play" id="start">
@@ -1411,7 +2578,8 @@
                   <b>02</b><span>Brand Voice</span>
                 </button>
                 <button id="lens-visual" type="button" role="tab" aria-selected="false" aria-controls="panel-visual">
-                  <b>03</b><span>Brand Visual</span>
+                  <b>03</b>
+                  <span>Brand Visual<small class="lens-hint" aria-hidden="true"><span data-th>Dataviz · 3 ตัวอย่าง</span><span data-en>Dataviz · 3 examples</span></small></span>
                 </button>
               </div>
             </div>
@@ -1527,6 +2695,10 @@
                   <li><b><span data-th>หลักฐาน</span><span data-en>Proof</span></b><span data-th>ภาพและข้อมูลที่มีประโยชน์ต้องอยู่ในขนาดที่อ่านความหมายได้</span><span data-en>Useful media and evidence stay large enough to carry meaning.</span></li>
                   <li><b><span data-th>การเคลื่อนไหว</span><span data-en>Motion</span></b><span data-th>ใช้กับการเปลี่ยนสถานะ ไม่ใช้ตกแต่ง</span><span data-en>Support state change; never decorate.</span></li>
                 </ul>
+                <a class="secondary-action" href="#library-dataviz" id="open-dataviz" data-open-details="library-dataviz">
+                  <span data-th>ไปยังคลังตัวอย่าง dataviz</span>
+                  <span data-en>Go to the dataviz examples</span>
+                </a>
               </div>
             </section>
           </div>
@@ -1719,6 +2891,819 @@
       </div>
     </section>
 
+    <section class="library-gateway" aria-labelledby="library-gateway-title">
+      <div class="container library-gateway-inner">
+        <div class="library-gateway-copy">
+          <p class="eyebrow">Reference · expand when needed</p>
+          <h2 id="library-gateway-title">
+            <span data-th>หน้าแรกเรียบไว้ รายละเอียดเปิดดูเมื่อถึงเวลาทำ</span>
+            <span data-en>Keep the first path simple. Expand the detail when you build.</span>
+          </h2>
+          <p data-th>เข้าไปดูตัวอย่าง foundations, components, dataviz, experience patterns และการปรับใช้ตามผลิตภัณฑ์ หรือดาวน์โหลดต้นฉบับ v0.8.8 ไปวางข้างงานได้ทันที</p>
+          <p data-en>Open foundations, components, dataviz, experience patterns, and product-adaptation examples—or keep the v0.8.8 authoring master beside your work.</p>
+        </div>
+        <div class="library-gateway-actions">
+          <a class="primary-action" href="#implementation-library" id="open-library">
+            <span data-th>เปิดคลังตัวอย่างการนำไปใช้</span>
+            <span data-en>Open the Implementation Library</span>
+          </a>
+          <a class="secondary-action" href="assets/downloads/landometer-design-system-v0.8.8.md" id="download-system" download>
+            <span data-th>ดาวน์โหลด Design System v0.8.8</span>
+            <span data-en>Download Design System v0.8.8</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="implementation-library" id="implementation-library" aria-labelledby="library-title">
+      <div class="container">
+        <header class="library-heading">
+          <p class="eyebrow">Implementation Library · source-limited reference</p>
+          <h2 id="library-title">
+            <span data-th>หลักเดียวกัน ตัวอย่างที่หยิบไปใช้ได้หลายแบบ</span>
+            <span data-en>One shared system. Many implementation-ready examples.</span>
+          </h2>
+          <p data-th>จัดกลุ่มตามสิ่งที่ทีมกำลังสร้างก่อน แล้วจึงแสดงวิธีปรับให้เข้ากับผลิตภัณฑ์ โดยความจริง ข้อมูล และความสามารถยังอยู่กับเจ้าของผลิตภัณฑ์นั้นเสมอ</p>
+          <p data-en>Browse first by what the team is building, then by product adaptation. Facts, data, methods, and live capabilities always remain with their product owner.</p>
+        </header>
+
+        <aside class="library-boundary" role="note">
+          <p><strong><span data-th>ขอบเขตของคลังนี้</span><span data-en>Library boundary</span></strong></p>
+          <p data-th>เป็นตัวอย่างจาก authoring master v0.8.8 สำหรับฝึกและนำไป implement ไม่ใช่หลักฐานของเมือง พื้นที่ ผลิตภัณฑ์ หรือผลลัพธ์จริง และยังไม่อ้างว่าเป็น Full Living Reference</p>
+          <p data-en>These v0.8.8 authoring-master examples support training and implementation. They are not evidence about a city, place, product, or outcome, and do not claim Full Living Reference status.</p>
+        </aside>
+
+        <details class="library-group" id="library-foundations">
+          <summary id="library-foundations-toggle">
+            <span class="library-index">01</span>
+            <h3><span data-th>รากฐานภาพและภาษา</span><span data-en>Foundations</span></h3>
+            <span class="library-summary-copy"><span data-th>โลโก้ ตัวอักษร สี gradient พื้นที่สงบ และบทบาทของแต่ละ token</span><span data-en>Logo, type, color, gradients, quiet, and token ownership.</span></span>
+            <span class="library-count">4 foundations + 8 opportunities</span>
+          </summary>
+          <div class="library-content">
+            <h4><span data-th>เริ่มจากบทบาท ไม่ใช่ความชอบเฉพาะหน้า</span><span data-en>Start with a role—not a one-off preference.</span></h4>
+            <p class="library-content-intro" data-th>ตัวอย่างเหล่านี้แสดงบทบาทที่บังคับใช้ร่วมกัน ส่วนคำศัพท์เฉพาะ น้ำเสียง และข้ออ้างเชิงข้อเท็จจริงยังต้องอ้างอิงผลิตภัณฑ์และหลักฐานของงานนั้น</p>
+            <p class="library-content-intro" data-en>These examples show shared, governed roles. Product terminology, voice, and factual claims still require the evidence and release context of that work.</p>
+
+            <div class="foundation-grid">
+              <article class="specimen">
+                <p class="specimen-kicker">TYPE-01 · packaged roles</p>
+                <h5><span data-th>ใช้ฟอนต์ตามหน้าที่</span><span data-en>Assign type by job</span></h5>
+                <ul class="type-role-list">
+                  <li><span class="type-display-en">English display</span><small>Arvo · 700 · display/Product UI heading</small></li>
+                  <li><span class="type-display-th">หัวเรื่องภาษาไทย</span><small>IBM Plex Sans Thai Looped · 700</small></li>
+                  <li><span class="type-body-sample">เนื้อหาและ UI ที่อ่านต่อเนื่อง</span><small>Bai Jamjuree · 400/600</small></li>
+                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 500; reserve 700 for true emphasis</small></li>
+                </ul>
+              </article>
+
+              <article class="specimen signature-specimen" data-logo-background="transparent">
+                <p class="specimen-kicker">BRAND-SIGNATURE · non-negotiable</p>
+                <h5><span data-th>โลโก้โปร่งใสเสมอ</span><span data-en>Logo background is always transparent</span></h5>
+                <div class="logo-rule-surface">
+                  <img src="assets/images/landometer-logo-banner.png" width="3818" height="1048" loading="lazy" alt="Landometer logo on a contrast-safe surrounding surface">
+                </div>
+                <p class="non-negotiable">
+                  <strong>Non-negotiable · </strong>
+                  <span data-th>ห้ามสร้างกล่อง แผ่นรอง หรือ carrier หลังโลโก้และ release metadata ถ้าคอนทราสต์ไม่ผ่าน ให้ปรับ shared surrounding surface แทน</span>
+                  <span data-en>Never add a box, plate, or carrier behind the logo or release metadata. If contrast fails, change their shared surrounding surface.</span>
+                </p>
+              </article>
+
+              <article class="specimen">
+                <p class="specimen-kicker">GRADIENT-01 · declared job</p>
+                <h5><span data-th>บรรยากาศสามหน้าที่</span><span data-en>Three atmosphere jobs</span></h5>
+                <div class="atmosphere-strip" aria-label="Measure, Ground, and Cultivate brand gradients">
+                  <div>Measure</div><div>Ground</div><div>Cultivate</div>
+                </div>
+                <p data-th>Measure เปิดเรื่องและทำให้ Brand Blue นำสายตา, Ground เชื่อมหลักฐานกับบริบท, Cultivate ใช้เมื่อพาคนไปสู่การลงมือทำ สีบรรยากาศไม่ใช้เข้ารหัสค่าข้อมูล</p>
+                <p data-en>Measure opens with Brand Blue; Ground connects evidence and context; Cultivate supports human action. Atmosphere colors never encode data values.</p>
+              </article>
+
+              <article class="specimen">
+                <p class="specimen-kicker">COMPOSITION-01 · quiet + proof</p>
+                <h5><span data-th>หนึ่งจุดหลัก พื้นที่สงบ และหลักฐานที่อ่านได้</span><span data-en>One focus, perceptual quiet, and readable proof</span></h5>
+                <ul class="rule-list">
+                  <li><span data-th>ให้แนวคิดหลักหนึ่งอย่างนำฉาก</span><span data-en>Let one focal idea lead the scene.</span></li>
+                  <li><span data-th>ใช้พื้นที่สงบเพื่อจัดความสนใจ ไม่ใช่กล่องว่างตกแต่ง</span><span data-en>Use quiet to direct attention—not as decorative emptiness.</span></li>
+                  <li><span data-th>ให้ภาพ ตาราง และข้อจำกัดใหญ่พอจะอ่านความหมาย</span><span data-en>Keep media, tables, and limitations large enough to carry meaning.</span></li>
+                  <li><span data-th>ใช้ motion เมื่อสถานะเปลี่ยน และเคารพ reduced motion</span><span data-en>Use motion for state change and respect reduced motion.</span></li>
+                </ul>
+              </article>
+            </div>
+
+            <section class="opportunity-gallery" aria-labelledby="foundation-opportunity-gallery-title">
+              <p class="specimen-kicker">FOUNDATIONS IN ACTION · CREATIVE CONCEPT SKETCHES</p>
+              <h4 id="foundation-opportunity-gallery-title"><span data-th>ใช้รากฐานเป็นรันเวย์ แล้วออกแบบ “ช่วงเวลาที่มีคุณค่า” ให้เหมาะกับงาน</span><span data-en>Use the foundations as a runway—then design a moment of value for the job.</span></h4>
+              <p data-th>ตัวอย่างต่อไปนี้แสดงทิศทางที่เป็นไปได้ ไม่ใช่รายการฟีเจอร์ที่เปิดใช้แล้ว แต่ละเคสเริ่มจาก intent และจบที่ evidence boundary เพื่อให้ทีมสร้างสิ่งใหม่ได้โดยไม่ทำความจริงหล่น</p>
+              <p data-en>These are possible design directions, not claims of enabled features. Each begins with intent and ends at an evidence boundary so teams can create something new without dropping truth.</p>
+              <div class="opportunity-grid">
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">01 · CITYMETER · REFERENCE CONCEPT · CONTEXT THREAD</p>
+                  <h5><span data-th>บริบทเดินทางไปกับผู้ใช้</span><span data-en>Let context travel with the user</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>อ่านข่าวล่าสุดของ event และ field ที่กำลังดู</span><span data-en>Read current news for the active event and field.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>ประกอบ query จาก event.name + active filters + place hierarchy พร้อมแสดงเหตุผลของแต่ละ keyword</span><span data-en>Compose the query from event.name + active filters + place hierarchy, explaining why each term is present.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>ผู้ใช้ต่อยอดได้โดยไม่พิมพ์บริบทซ้ำ แต่ยังแก้ query และเห็น privacy boundary</span><span data-en>The user continues without retyping context while retaining query control and a visible privacy boundary.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ผลภายนอกเป็น discovery_only จนกว่าจะตรวจแหล่งและนำเข้าโดยตั้งใจ</span><span data-en>External results remain discovery_only until reviewed and deliberately incorporated.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">02 · CITYMETER · REFERENCE CONCEPT · REVERSAL LENS</p>
+                  <h5><span data-th>ทำให้ความไม่แน่นอนกลายเป็นคำถามที่ลองได้</span><span data-en>Turn uncertainty into a testable question</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>รู้ว่าการเปลี่ยน assumption ใดอาจพลิกข้อสรุป</span><span data-en>Know which assumption could reverse the conclusion.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>วาง supporting signal, counter-signal และ assumption control คู่กับผลเดิม โดยทุก state อัปเดต source/legend พร้อมกัน</span><span data-en>Pair supporting signals, counter-signals, and one assumption control with the result; every state updates source and legend together.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>จาก “คะแนนสูง” กลายเป็น “เงื่อนไขไหนทำให้ตัดสินใจต่างออกไป”</span><span data-en>“High score” becomes “Which condition would change the decision?”</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>เปรียบเทียบเฉพาะ schema/release และ boundary ที่เข้ากันได้</span><span data-en>Compare only compatible schema/release and boundary states.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">03 · CITYWIKI · SOURCE-TO-STORY</p>
+                  <h5><span data-th>ให้หนึ่งนาทีแรกชัด และรายละเอียดถัดไปน่าค้นพบ</span><span data-en>Make the first minute clear and the next detail discoverable</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>เข้าใจสถานที่เร็ว แล้วรู้ว่ารายละเอียดใดเชื่อถือได้หรือควร live-check</span><span data-en>Understand a place quickly, then see which details are verified or need a live check.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>เริ่มจาก sourced one-minute answer แล้วเปิดเป็น detail trail ที่แต่ละช่วงผูกกับ SourceLedger</span><span data-en>Lead with a sourced one-minute answer, then unfold a detail trail tied to the SourceLedger.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>ความอยากรู้อยากเห็นเกิดจากรายละเอียดจริงของสถานที่ ไม่ใช่ teaser ที่ซ่อนคำตอบ</span><span data-en>Curiosity comes from truthful place detail—not a teaser that withholds the answer.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>editorial voice, generation mode และ publication status ยังเป็น CityWiki-specific</span><span data-en>Editorial voice, generation mode, and publication status remain CityWiki-specific.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">04 · CITYCHAT · REPORT-TO-COORDINATION</p>
+                  <h5><span data-th>เปลี่ยนการรายงานให้เห็นว่าใครรับช่วงต่อ</span><span data-en>Make a report reveal who carries it forward</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>รู้ว่ารายงานถูกส่งไปที่ใด อยู่สถานะใด และทำอะไรต่อได้</span><span data-en>Know where a report went, its current state, and what remains possible.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>ใช้ permission-aware preview + receipt timeline + quiet recovery route แทน toast “ส่งแล้ว”</span><span data-en>Use a permission-aware preview + receipt timeline + quiet recovery route instead of a “Sent” toast.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>ผู้ใช้เห็นความคืบหน้าโดยไม่ต้องเดา และกลับมาแก้ข้อมูลที่ยังไม่ครบได้</span><span data-en>The user sees progress without guessing and can return to correct incomplete information.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>สถานะจริง ผู้รับ permission และ external effect ต้องมาจาก product contract</span><span data-en>Real status, recipients, permissions, and effects require the product contract.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">05 · IJJI · SEVEN-DAY EXPERIMENT</p>
+                  <h5><span data-th>ทำให้คำแนะนำกลายเป็นการทดลองเล็กที่เรียนรู้ได้</span><span data-en>Turn direction into a small, learnable experiment</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>เลือกหนึ่งสิ่งที่ลองได้ใน 7 วันและรู้ว่าจะวัดผลอย่างไร</span><span data-en>Choose one action to try in seven days and know how its outcome will be checked.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>แสดง assumption, why-it-matters, mission, private receipt และ optional check-in บนวัตถุเดียวกัน</span><span data-en>Keep assumption, why-it-matters, mission, private receipt, and optional check-in on one object.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>ความก้าวหน้าเกิดจากการเห็นสิ่งที่เรียนรู้ ไม่ใช่ streak หรือแรงกดดัน</span><span data-en>Progress comes from visible learning—not a streak or pressure.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ข้อมูลธุรกิจส่วนตัวไม่ออกจาก private scope และไม่กลายเป็น hidden learning</span><span data-en>Private business data stays private and never becomes hidden learning.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">06 · SHARED · EVIDENCE RELAY</p>
+                  <h5><span data-th>ให้หนึ่ง claim วิ่งข้ามทีมโดยความหมายไม่เพี้ยน</span><span data-en>Let one claim cross teams without semantic drift</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>ส่งงานจาก Marketing → Product → Design → Engineering → Data/QA → recipient</span><span data-en>Carry work from Marketing → Product → Design → Engineering → Data/QA → recipient.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>ใช้ channelParityKey, object/version และ mismatch marker ที่ชี้ field ซึ่งเปลี่ยนความหมาย</span><span data-en>Use channelParityKey, object/version, and a mismatch marker that names the field where meaning changed.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>ทีมไม่ต้องอ่านเอกสารทั้งเล่มก็เห็นทันทีว่า status หรือ limitation ถูกทำให้แรงขึ้นตรงไหน</span><span data-en>Teams can see exactly where status or limitation was strengthened without rereading the whole document.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ชั้นร่วมกำกับ parity; owner ของผลิตภัณฑ์ยืนยันข้อเท็จจริงและ allowed use</span><span data-en>The shared layer governs parity; product owners confirm facts and allowed use.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">07 · SHARED · BILINGUAL MEANING</p>
+                  <h5><span data-th>ให้ภาษาไทยและอังกฤษพาคนถึง AHA เดียวกันคนละจังหวะ</span><span data-en>Let Thai and English reach the same AHA in their own rhythm</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>ให้คนอ่านแต่ละภาษาเข้าใจงานโดยไม่รู้สึกว่าอ่านคำแปล</span><span data-en>Help each reader understand the work without feeling they are reading a translation.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>เขียนสองภาษาจาก evidence record เดียวกัน แล้วเทียบ identifier, quantity, date, boundary และ action</span><span data-en>Author both languages from one evidence record, then compare identifiers, quantities, dates, boundaries, and actions.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>น้ำเสียงและ line break เป็นธรรมชาติ แต่ความจริงและ consequence ไม่เปลี่ยน</span><span data-en>Voice and line breaks feel native while truth and consequence remain stable.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ภาษาอังกฤษไม่ใช่ authority เหนือภาษาไทย และไม่มีการแปล field ที่ต้อง exact</span><span data-en>English is not authority over Thai; governed exact fields are not freely translated.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">08 · SHARED · HUMAN + MACHINE PARITY</p>
+                  <h5><span data-th>ออกแบบหน้าที่คนอ่านง่าย และเครื่องอ่านแล้วไม่หลงขอบเขต</span><span data-en>Design for human clarity and machine-safe interpretation</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>ให้คน ทีมค้นหา และ AI coding agent พบ object เดียวกันโดยไม่เดา capability</span><span data-en>Let people, search, and AI coding agents find the same object without guessing capabilities.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>ใช้ semantic HTML + visible boundary + exact download + Manifest/Build Card + concise llms navigation aid</span><span data-en>Combine semantic HTML + visible boundary + exact download + Manifest/Build Card + a concise llms navigation aid.</span></dd></div>
+                    <div><dt>Value moment</dt><dd><span data-th>คนอ่านหน้าเดียวก็เข้าใจ เครื่องอ่านไฟล์เดียวก็รู้ว่าอะไรทำได้ อะไรเป็น fixture และอะไรยัง pending</span><span data-en>A person understands the page; a machine can distinguish enabled, fixture-only, and pending states.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>machine-readable ไม่ได้ให้ permission กระทำ และ SEO/agent readiness ยังต้องผ่าน release gate</span><span data-en>Machine-readable does not grant permission to act; SEO and agent readiness remain release-gated.</span></dd></div>
+                  </dl>
+                </article>
+              </div>
+            </section>
+          </div>
+        </details>
+
+        <details class="library-group" id="library-components">
+          <summary id="library-components-toggle">
+            <span class="library-index">02</span>
+            <h3><span data-th>ส่วนประกอบหน้าจอ</span><span data-en>Interface components</span></h3>
+            <span class="library-summary-copy"><span data-th>Actions, input, decision, evidence, status และ recovery พร้อมสัญญาการใช้งาน</span><span data-en>Actions, input, decision, evidence, status, and recovery contracts.</span></span>
+            <span class="library-count">13 components + 4 ensembles</span>
+          </summary>
+          <div class="library-content">
+            <h4><span data-th>ทุก component ต้องบอกงาน สถานะ ผลของการใช้ และทางกลับ</span><span data-en>Every component names its job, state, effect, and recovery.</span></h4>
+            <p class="library-content-intro" data-th>รายการนี้คือชุด component ร่วม ไม่ได้แปลว่าทุกผลิตภัณฑ์เปิดใช้ทุก component หรือมีข้อมูลพร้อมเท่ากัน</p>
+            <p class="library-content-intro" data-en>This is the shared component set. It does not imply that every product enables every component or has equivalent data readiness.</p>
+
+            <div class="matrix-wrap">
+              <table class="implementation-matrix">
+                <caption><span data-th>Component contract matrix</span><span data-en>Shared component contract matrix</span></caption>
+                <thead><tr><th>Group</th><th>Component</th><th>Must carry</th><th>Recovery / boundary</th></tr></thead>
+                <tbody>
+                  <tr><td>Identity</td><th>BrandSignature</th><td>Approved transparent asset + safe surface</td><td>Change surface; never add a logo carrier</td></tr>
+                  <tr><td>Action</td><th>Button</th><td>Action label + effect + enabled state</td><td>Explain unavailable action</td></tr>
+                  <tr><td>Action</td><th>Link</th><td>Destination that makes sense out of context</td><td>Keep a return path</td></tr>
+                  <tr><td>Input</td><th>FormField</th><td>Visible label + requirement + validation</td><td>Keep the user's value and explain correction</td></tr>
+                  <tr><td>Decision</td><th>DecisionCard</th><td>Object + status/metric + meaning + next action</td><td>State what it cannot establish</td></tr>
+                  <tr><td>Evidence</td><th>SourceLedger</th><td>Source + date + method + boundary + limitation</td><td>Show missing/stale/incompatible state</td></tr>
+                  <tr><td>Evidence</td><th>TrustBadge</th><td>Plain status + basis</td><td>Never upgrade certainty with color</td></tr>
+                  <tr><td>Evidence</td><th>DataTable</th><td>Units + period + source + no-data/zero distinction</td><td>Accessible alternative to every chart</td></tr>
+                  <tr><td>Place</td><th>MapLegend</th><td>Scale + units + source + missingness + extent</td><td>Do not imply a map result without governed geometry</td></tr>
+                  <tr><td>State</td><th>EmptyState</th><td>Why empty + useful next action</td><td>Do not present missing as zero</td></tr>
+                  <tr><td>State</td><th>ErrorState</th><td>What failed + retained work + retry route</td><td>Give a non-destructive recovery</td></tr>
+                  <tr><td>Overlay</td><th>Dialog</th><td>Purpose + focus order + explicit close</td><td>Restore focus to the invoking control</td></tr>
+                  <tr><td>Feedback</td><th>Toast</th><td>Receipt + final state</td><td>Never hold critical recovery only in a timeout</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="component-demo-grid">
+              <article class="decision-demo">
+                <p class="specimen-kicker">DECISIONCARD + SOURCELEDGER</p>
+                <h5><span data-th>พื้นที่ตัวอย่าง A · พร้อมตรวจต่อ ไม่ใช่พร้อมสรุป</span><span data-en>Sample area A · ready to inspect, not ready to conclude</span></h5>
+                <p data-th>ใช้วัตถุ สถานะ และความหมายพาคนไปยังหลักฐานก่อนให้ขั้นตอนถัดไป</p>
+                <p data-en>Move from object and status to meaning, then evidence, before the next action.</p>
+                <dl>
+                  <div><dt>Status</dt><dd>source_limited · synthetic reference fixture</dd></div>
+                  <div><dt>Source</dt><dd>DS-FIXTURE-0.1 · 28 Jul 2026</dd></div>
+                  <div><dt>Boundary</dt><dd><span data-th>ตัวอย่างรูปแบบ ไม่ใช่ข้อเท็จจริงของพื้นที่</span><span data-en>Pattern example—not a place claim</span></dd></div>
+                  <div><dt>Next</dt><dd><span data-th>แทนที่ด้วยหลักฐานและ method ที่ product owner กำกับ</span><span data-en>Replace with product-owned evidence and method</span></dd></div>
+                </dl>
+              </article>
+
+              <article class="form-demo" aria-label="FormField, Button, and recovery specimen">
+                <p class="specimen-kicker">FORMFIELD + BUTTON + RECOVERY</p>
+                <div>
+                  <b><span data-th>คำถามที่งานนี้ช่วยตอบ</span><span data-en>Question this work helps answer</span></b>
+                  <div class="decision-demo"><span data-th>พื้นที่ใดต้องตรวจหลักฐานต่อก่อนเปรียบเทียบ</span><span data-en>Which area needs another evidence check before comparison?</span></div>
+                  <small><span data-th>เห็น label, requirement และคำอธิบายก่อนลงมือ</span><span data-en>Label, requirement, and guidance appear before action.</span></small>
+                </div>
+                <span class="button"><span data-th>ตรวจความเข้ากันได้ของข้อมูล</span><span data-en>Check data compatibility</span></span>
+                <small><span data-th>เมื่อทำต่อไม่ได้ ต้องคงข้อความไว้และบอกจุดแก้ไข ไม่ล้างงานของผู้ใช้</span><span data-en>If blocked, retain the value and identify the correction—never erase the user's work.</span></small>
+              </article>
+            </div>
+
+            <div class="state-strip" aria-label="Truthful state examples">
+              <div><b>Partial</b><span><span data-th>แสดงส่วนที่มี พร้อมบอกส่วนที่ขาด</span><span data-en>Show what exists and name what is missing.</span></span></div>
+              <div><b>Stale</b><span><span data-th>คงวันที่ตรวจล่าสุดและทางไปตรวจใหม่</span><span data-en>Keep the last-checked date and a refresh route.</span></span></div>
+              <div><b>Error</b><span><span data-th>บอกสิ่งที่ล้มเหลว งานที่ยังคงอยู่ และวิธีลองใหม่</span><span data-en>Name the failure, retained work, and safe retry.</span></span></div>
+            </div>
+
+            <section class="opportunity-gallery" aria-labelledby="component-ensembles-title">
+              <p class="specimen-kicker">COMPONENT ENSEMBLES · COMPOSE BY USER MOMENT</p>
+              <h4 id="component-ensembles-title"><span data-th>Component มีคุณค่าเมื่อเล่นเป็นวงเดียวกันเพื่อพาคนไปถึงผลสำเร็จ</span><span data-en>Components become valuable when they work together for one user moment.</span></h4>
+              <p data-th>อย่าเริ่มจากการวาง component ให้ครบ library ให้เริ่มจาก moment แล้วเลือกชุดเล็กที่สุดที่รักษาความหมาย สถานะ และทางทำต่อ</p>
+              <p data-en>Do not begin by filling a page with the library. Begin with the moment, then choose the smallest ensemble that preserves meaning, state, and continuation.</p>
+              <div class="opportunity-grid">
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">01 · EVIDENCE-TO-DECISION</p>
+                  <h5><span data-th>จากผลหนึ่งค่าไปสู่การตัดสินใจที่ปกป้องได้</span><span data-en>From one result to a defensible decision</span></h5>
+                  <dl>
+                    <div><dt>Ensemble</dt><dd>DecisionCard + TrustBadge + SourceLedger + one Button</dd></div>
+                    <div><dt>Creative move</dt><dd><span data-th>ให้ counter-signal เป็น “คำถามถัดไป” ที่มองเห็นได้ แทน footnote ท้ายหน้า</span><span data-en>Turn the counter-signal into a visible next question instead of a buried footnote.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>คนรู้ทั้งสิ่งที่ผลสนับสนุนและสิ่งที่ควรตรวจต่อในฉากเดียว</span><span data-en>The person sees what the result supports and what deserves another check in one scene.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ผลจริงต้องคง source, date, method, missingness และ allowed use ของผลิตภัณฑ์</span><span data-en>Real results must preserve product-owned source, date, method, missingness, and allowed use.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">02 · GENTLE RECOVERY</p>
+                  <h5><span data-th>ทำให้ error เป็นจุดเริ่มแก้ ไม่ใช่จุดจบ</span><span data-en>Make error the beginning of recovery</span></h5>
+                  <dl>
+                    <div><dt>Ensemble</dt><dd>FormField + ErrorState + retained input + retry Button</dd></div>
+                    <div><dt>Creative move</dt><dd><span data-th>วาง “สิ่งที่ยังใช้ได้” ข้าง “สิ่งที่ล้มเหลว” แล้วเสนอ retry เฉพาะส่วน</span><span data-en>Place “what still works” beside “what failed,” then offer a scoped retry.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>ความผิดพลาดไม่ลบงาน และผู้ใช้ไม่ต้องเดาว่าต้องเริ่มใหม่ตรงไหน</span><span data-en>Failure does not erase work, and the user never guesses where to resume.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>เก็บ input เฉพาะใน scope และ retention ที่ประกาศไว้; ไม่อ้างว่าสำเร็จก่อน authoritative receipt</span><span data-en>Retain input only within its declared scope and retention; never claim success before an authoritative receipt.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">03 · DATA WITH TWO DOORS</p>
+                  <h5><span data-th>ให้ภาพรวมกับรายละเอียดเป็นทางเข้าเท่าเทียมกัน</span><span data-en>Give overview and detail equal doors</span></h5>
+                  <dl>
+                    <div><dt>Ensemble</dt><dd>Chart or Map + MapLegend + DataTable + SourceLedger</dd></div>
+                    <div><dt>Creative move</dt><dd><span data-th>เมื่อเลือก mark หรือพื้นที่ ให้ตารางเลื่อนไป row เดียวกัน และ source/limitation เปลี่ยนพร้อมกัน</span><span data-en>When a mark or place is selected, move to the same table row and update source/limitation in sync.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>คนสลับจาก pattern ไป exact value ได้โดยไม่สูญเสีย context</span><span data-en>People move from pattern to exact value without losing context.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ใช้แผนที่เฉพาะเมื่อมี geometry ที่กำกับแล้ว; fixture นี้ไม่เปิด map capability</span><span data-en>Use a map only with governed geometry; this fixture does not enable map capability.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">04 · QUIET HANDOFF</p>
+                  <h5><span data-th>ทำให้การส่งต่อเป็นฉากสงบที่ตรวจได้</span><span data-en>Make handoff a calm, inspectable scene</span></h5>
+                  <dl>
+                    <div><dt>Ensemble</dt><dd>Exact-object preview + visibility + limitation + receipt + recovery</dd></div>
+                    <div><dt>Creative move</dt><dd><span data-th>แสดงเฉพาะความต่างระหว่าง source view กับ recipient view ก่อนยืนยัน</span><span data-en>Reveal only the differences between source and recipient views before confirmation.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>ผู้ส่งเห็นสิ่งที่จะหลุดออกจาก private scope โดยไม่ต้องอ่าน modal ยาว</span><span data-en>The sender sees what leaves private scope without reading a long modal.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>เป็น reference เท่านั้น หน้า playground นี้ไม่มีผู้รับ การส่งจริง permission หรือ share control</span><span data-en>Reference only: this playground has no recipient, delivery, permission, or share control.</span></dd></div>
+                  </dl>
+                </article>
+              </div>
+            </section>
+          </div>
+        </details>
+
+        <details class="library-group" id="library-dataviz">
+          <summary id="library-dataviz-toggle">
+            <span class="library-index">03</span>
+            <h3><span data-th>ข้อมูล ภาพ และแผนที่</span><span data-en>Data visualization & maps</span></h3>
+            <span class="library-summary-copy"><span data-th>เลือกกราฟจากคำถาม แยกศูนย์จากไม่มีข้อมูล และให้ตารางเข้าถึงได้อยู่คู่กัน</span><span data-en>Choose charts from the question, separate zero from no data, and keep an accessible table.</span></span>
+            <span class="library-count">3 live + 3 extensions</span>
+          </summary>
+          <div class="library-content" id="dataviz-examples">
+            <div class="dataviz-intro">
+              <p class="specimen-kicker">DATAVIZ-01 · DV-FIXTURE-0.1</p>
+              <h4><span data-th>เริ่มจากคำถาม แล้วจึงเลือกรูปแบบกราฟ</span><span data-en>Start with the question—then choose the chart.</span></h4>
+              <p class="library-content-intro" data-th>Brand gradient ทำหน้าที่สร้างบรรยากาศเท่านั้น ส่วน dataviz token ใช้เข้ารหัสค่า ประเภท สถานะ ข้อมูลที่หาย และ counter-signal</p>
+              <p class="library-content-intro" data-en>Brand gradients frame the experience. Dataviz tokens—not atmosphere colors—encode magnitude, category, state, missingness, and counter-signals.</p>
+            </div>
+
+            <aside class="dataviz-boundary" role="note">
+              <p><strong><span data-th>ขอบเขตหลักฐาน</span><span data-en>Evidence boundary</span></strong></p>
+              <p data-th>ข้อมูลสังเคราะห์สำหรับฝึกรูปแบบภาพ ไม่ใช่ข้อเท็จจริงของพื้นที่หรือผลิตภัณฑ์ เปรียบเทียบได้เฉพาะภายในแต่ละกราฟที่ใช้ DV-FIXTURE-0.1, หน่วย และ method เดียวกัน ห้ามเทียบค่าข้ามสามกราฟ</p>
+              <p data-en>Synthetic visual-pattern training data—not a place or product claim. Compare only within each chart under the same DV-FIXTURE-0.1 unit and method; never compare values between these three charts.</p>
+            </aside>
+
+            <div class="chart-chooser" aria-label="Question-first chart chooser">
+              <div><b>Compare / rank</b><small>Sorted horizontal bar or dot</small></div>
+              <div><b>Change over time</b><small>Line, step, or small multiples</small></div>
+              <div><b>Distribution</b><small>Histogram, box, or strip</small></div>
+              <div><b>Relationship</b><small>Scatter with labelled outliers</small></div>
+              <div><b>Part to whole</b><small>100% stacked bar; no pie/donut</small></div>
+              <div><b>Target / uncertainty</b><small>Reference line, interval, or band; no gauge</small></div>
+            </div>
+
+            <div class="dataviz-grid">
+              <figure class="dataviz-pattern" aria-labelledby="dv-compare-title">
+                <p class="dataviz-pattern-name">01 · Compare</p>
+                <h5 id="dv-compare-title"><span data-th>พื้นที่ตัวอย่างใดใช้เวลาเดินมากที่สุด</span><span data-en>Which sample area has the longest walk?</span></h5>
+                <p class="dataviz-unit"><span data-th>หน่วย · นาที</span><span data-en>Unit · minutes</span></p>
+                <div class="dataviz-bars" aria-hidden="true">
+                  <div class="dataviz-bar-row"><span>A</span><div class="dataviz-track"><i style="--size:100%"></i></div><b>18</b></div>
+                  <div class="dataviz-bar-row"><span>B</span><div class="dataviz-track"><i style="--size:78%"></i></div><b>14</b></div>
+                  <div class="dataviz-bar-row"><span>C</span><div class="dataviz-track"><i style="--size:50%"></i></div><b>9</b></div>
+                  <div class="dataviz-bar-row"><span>D</span><div class="dataviz-track"><i class="is-zero"></i></div><b>0</b></div>
+                  <div class="dataviz-bar-row"><span>E</span><div class="dataviz-track"><i class="is-no-data"></i></div><b>ND</b></div>
+                </div>
+                <figcaption><span data-th>D คือศูนย์ที่วัดได้ ส่วน E ไม่มีข้อมูล</span><span data-en>D is a measured zero; E has no data.</span></figcaption>
+                <table class="dataviz-table">
+                  <caption><span data-th>ตารางทางเลือกที่เข้าถึงได้ · Compare</span><span data-en>Accessible alternative · Compare</span></caption>
+                  <thead><tr><th>Area</th><th>Minutes</th><th>State</th></tr></thead>
+                  <tbody><tr><th>A</th><td>18</td><td>Observed</td></tr><tr><th>B</th><td>14</td><td>Observed</td></tr><tr><th>C</th><td>9</td><td>Observed</td></tr><tr><th>D</th><td>0</td><td>Measured zero</td></tr><tr><th>E</th><td>—</td><td>No data</td></tr></tbody>
+                </table>
+                <p class="dataviz-source">Source · DV-FIXTURE-0.1 · synthetic · 28 Jul 2026</p>
+              </figure>
+
+              <figure class="dataviz-pattern" aria-labelledby="dv-change-title">
+                <p class="dataviz-pattern-name">02 · Change</p>
+                <h5 id="dv-change-title"><span data-th>สัดส่วนร่มเงาบนเส้นทางเปลี่ยนอย่างไร</span><span data-en>How did route shade coverage change?</span></h5>
+                <p class="dataviz-unit"><span data-th>หน่วย · % ของเส้นทางตัวอย่าง</span><span data-en>Unit · % of sampled route</span></p>
+                <div class="dataviz-columns" aria-hidden="true">
+                  <div><b>22%</b><i style="--size:55%"></i><span>Q1</span></div>
+                  <div><b>27%</b><i style="--size:68%"></i><span>Q2</span></div>
+                  <div class="is-no-data"><b>ND</b><i></i><span>Q3</span></div>
+                  <div><b>31%</b><i style="--size:78%"></i><span>Q4</span></div>
+                </div>
+                <figcaption><span data-th>Q3 เว้นเป็นช่องว่าง ไม่ลากแนวโน้มผ่านหลักฐานที่ไม่มี</span><span data-en>Q3 remains a gap; never bridge missing evidence.</span></figcaption>
+                <table class="dataviz-table">
+                  <caption><span data-th>ตารางทางเลือกที่เข้าถึงได้ · Change</span><span data-en>Accessible alternative · Change</span></caption>
+                  <thead><tr><th>Period</th><th>Coverage</th><th>State</th></tr></thead>
+                  <tbody><tr><th>Q1</th><td>22%</td><td>Observed</td></tr><tr><th>Q2</th><td>27%</td><td>Observed</td></tr><tr><th>Q3</th><td>—</td><td>No data</td></tr><tr><th>Q4</th><td>31%</td><td>Observed</td></tr></tbody>
+                </table>
+                <p class="dataviz-source">Source · DV-FIXTURE-0.1 · synthetic · 28 Jul 2026</p>
+              </figure>
+
+              <figure class="dataviz-pattern" aria-labelledby="dv-relationship-title">
+                <p class="dataviz-pattern-name">03 · Relationship</p>
+                <h5 id="dv-relationship-title"><span data-th>ร่มเงาและจุดหยุดที่สังเกตได้เคลื่อนไปด้วยกันหรือไม่</span><span data-en>Do shade and observed stops move together?</span></h5>
+                <p class="dataviz-unit">X · shade (%) · Y · stops / 100 passes</p>
+                <div class="dataviz-scatter" aria-hidden="true">
+                  <i data-label="A" style="--x:20%;--y:28%"></i>
+                  <i data-label="B" style="--x:35%;--y:45%"></i>
+                  <i data-label="C" style="--x:50%;--y:62%"></i>
+                  <i data-label="D" style="--x:65%;--y:80%"></i>
+                  <i class="is-outlier" data-label="E" style="--x:80%;--y:50%"></i>
+                </div>
+                <figcaption><span data-th>E คือ counter-signal ที่ต้องอ่านต่อ ความสัมพันธ์ไม่พิสูจน์เหตุและผล</span><span data-en>E is a counter-signal. Association does not establish cause.</span></figcaption>
+                <table class="dataviz-table">
+                  <caption><span data-th>ตารางทางเลือกที่เข้าถึงได้ · Relationship</span><span data-en>Accessible alternative · Relationship</span></caption>
+                  <thead><tr><th>Area</th><th>Shade</th><th>Stops / 100</th></tr></thead>
+                  <tbody><tr><th>A</th><td>20%</td><td>10</td></tr><tr><th>B</th><td>35%</td><td>16</td></tr><tr><th>C</th><td>50%</td><td>22</td></tr><tr><th>D</th><td>65%</td><td>28</td></tr><tr><th>E · counter-signal</th><td>80%</td><td>18</td></tr></tbody>
+                </table>
+                <p class="dataviz-source">Source · DV-FIXTURE-0.1 · synthetic · 28 Jul 2026</p>
+              </figure>
+            </div>
+
+            <p class="dataviz-layer-rule">
+              <span data-th>ชั้น Landometer ร่วมกำกับ คำถาม → รูปแบบ → หน่วย → แหล่งข้อมูล → ขอบเขต → accessible alternative ส่วนนิยามข้อมูล method, threshold, allowed use และข้อสรุปจริงอยู่ในชั้น product-specific หากไม่มี geometry ที่กำกับแล้ว ให้สอน MapLegend และ anatomy แต่ไม่สร้างผลแผนที่จำลองขึ้นมาอ้าง</span>
+              <span data-en>The shared Landometer layer governs question → form → unit → source → boundary → accessible alternative. Definitions, methods, thresholds, allowed use, and actual claims remain product-specific. Without governed geometry, teach MapLegend and map anatomy—never invent a map result.</span>
+            </p>
+
+            <section class="opportunity-gallery" aria-labelledby="dataviz-opportunities-title">
+              <p class="specimen-kicker">DATAVIZ OPPORTUNITIES · QUESTION-LED EXTENSIONS</p>
+              <h4 id="dataviz-opportunities-title"><span data-th>กราฟที่ดีไม่ได้แค่ “ถูกชนิด” แต่ช่วยให้คนถามคำถามถัดไปได้ดีขึ้น</span><span data-en>A good chart is not merely the right type—it improves the next question.</span></h4>
+              <div class="opportunity-grid">
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">01 · QUESTION MORPH</p>
+                  <h5><span data-th>ให้คำถามเปลี่ยนรูปกราฟ ไม่ใช่ให้ palette เล่าเรื่องแทน</span><span data-en>Let the question change the chart—not the palette</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>สลับจาก “พื้นที่ไหนมากกว่า” ไป “ค่าเปลี่ยนเมื่อไร” บน object เดิม</span><span data-en>Move from “which area is higher?” to “when did it change?” on the same object.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>เปลี่ยน Compare bar เป็น Change small multiples พร้อมคง unit, source, period และ selected object</span><span data-en>Transform Compare bars into Change small multiples while preserving unit, source, period, and selected object.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>คนเห็นว่าคำถามที่เปลี่ยนทำให้วิธีอ่านเปลี่ยน โดยความจริงไม่ถูกเขียนใหม่</span><span data-en>The reader sees how a changed question changes the reading—not the underlying truth.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>เปลี่ยนรูปได้เฉพาะเมื่อ unit, period, method และ schema/release เปรียบเทียบกันได้</span><span data-en>Morph the view only when unit, period, method, and schema/release are compatible.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">02 · COUNTER-SIGNAL SPOTLIGHT</p>
+                  <h5><span data-th>ทำให้ outlier เป็นประตูสู่ความเข้าใจ ไม่ใช่จุดที่ซ่อน</span><span data-en>Make the outlier a doorway to understanding</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>รู้ว่าอะไรไม่เดินตาม pattern และควรตรวจสมมติฐานใด</span><span data-en>See what does not follow the pattern and which assumption deserves review.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>direct-label จุด E แล้ววาง “ตรวจบริบทนี้ต่อ” ข้าง limitation โดยไม่ลาก regression line ที่อ้างเหตุผลเกินจริง</span><span data-en>Direct-label point E and place “inspect this context” beside the limitation without an unjustified regression line.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>ความผิดปกติกลายเป็น next safe action แทนการถูกลบออกจาก narrative</span><span data-en>The anomaly becomes a next safe action instead of being edited out of the narrative.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>counter-signal ไม่พิสูจน์สาเหตุ และห้ามตัดออกเพียงเพราะขัด narrative</span><span data-en>A counter-signal does not establish cause and must not be removed for contradicting the narrative.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="opportunity-card">
+                  <p class="specimen-kicker">03 · PLACE + TABLE CHOREOGRAPHY</p>
+                  <h5><span data-th>ให้แผนที่ กราฟ ตาราง และ source ตอบสนองเป็นวัตถุเดียวกัน</span><span data-en>Let map, chart, table, and source respond as one object</span></h5>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>เลือกพื้นที่หนึ่งแล้วเห็น pattern, exact value และขอบเขตหลักฐานพร้อมกัน</span><span data-en>Select one place and see its pattern, exact value, and evidence boundary together.</span></dd></div>
+                    <div><dt>Design move</dt><dd><span data-th>selection เดียว sync geometry, legend class, chart mark, table row, source date และ limitation; keyboard ใช้เส้นทางเดียวกัน</span><span data-en>One selection syncs geometry, legend class, chart mark, table row, source date, and limitation; keyboard follows the same route.</span></dd></div>
+                    <div><dt>Value</dt><dd><span data-th>overview และ verification ต่อกันลื่นไหลโดยไม่สร้าง decorative map</span><span data-en>Overview and verification flow together without creating a decorative map.</span></dd></div>
+                    <div><dt>Boundary</dt><dd><span data-th>ทุก channel ต้องชี้ object/version เดียวกัน; หากไม่มี geometry จริง ให้ใช้ chart + table เท่านั้น</span><span data-en>Every channel must resolve to the same object/version; without real geometry, use chart + table only.</span></dd></div>
+                  </dl>
+                </article>
+              </div>
+            </section>
+          </div>
+        </details>
+
+        <details class="library-group" id="library-experience">
+          <summary id="library-experience-toggle">
+            <span class="library-index">04</span>
+            <h3><span data-th>รูปแบบประสบการณ์</span><span data-en>Experience patterns</span></h3>
+            <span class="library-summary-copy"><span data-th>Success path, truthful states, motion, CTA, ethical loop, recipient value และ external discovery</span><span data-en>Success path, truthful states, motion, CTA, ethical loops, recipient value, and external discovery.</span></span>
+            <span class="library-count">4 cases + 6 patterns</span>
+          </summary>
+          <div class="library-content">
+            <h4><span data-th>พาคนไปถึงความสำเร็จ โดยไม่ทำความจริงหล่นระหว่างทาง</span><span data-en>Guide people toward success without dropping truth along the way.</span></h4>
+            <p class="library-content-intro" data-th>AHA ควรเกิดก่อนขอข้อมูลหรือสิทธิ์ที่ไม่จำเป็น และทุก action ต้องบอกผลลัพธ์ สถานะหลังจบ กับทางกลับเมื่อทำต่อไม่ได้</p>
+            <p class="library-content-intro" data-en>Let the AHA arrive before unnecessary data or permission requests. Every action names its effect, completion state, and recovery.</p>
+            <ol class="experience-flow">
+              <li><b>01 · See</b><span><span data-th>เห็นวัตถุ สถานะ และสิ่งสำคัญก่อน</span><span data-en>See the object, state, and priority.</span></span></li>
+              <li><b>02 · Understand</b><span><span data-th>เข้าใจความหมาย ที่มา ขอบเขต และข้อจำกัด</span><span data-en>Understand meaning, source, boundary, and limits.</span></span></li>
+              <li><b>03 · Decide</b><span><span data-th>รู้ว่างานนี้ช่วยตัดสินใจอะไรได้</span><span data-en>Know which decision the work can support.</span></span></li>
+              <li><b>04 · Act</b><span><span data-th>มี next action หนึ่งอย่างที่ทำได้จริง</span><span data-en>Take one genuinely enabled next action.</span></span></li>
+              <li><b>05 · Learn</b><span><span data-th>เห็น receipt, feedback และสิ่งที่ต้องตรวจต่อ</span><span data-en>See the receipt, feedback, and next evidence check.</span></span></li>
+            </ol>
+            <table class="state-table">
+              <caption><span data-th>Truthful state and recovery patterns</span><span data-en>Truthful state and recovery patterns</span></caption>
+              <thead><tr><th>State</th><th>Show now</th><th>Safe recovery</th></tr></thead>
+              <tbody>
+                <tr><th>Loading</th><td>What is loading and what remains usable</td><td>Keep a cancel/return route when meaningful</td></tr>
+                <tr><th>Partial</th><td>Available subset + missing portion</td><td>Continue only within the visible boundary</td></tr>
+                <tr><th>Stale</th><td>Last checked + reason freshness matters</td><td>Refresh or inspect the older evidence explicitly</td></tr>
+                <tr><th>Offline</th><td>Local state + actions that still work</td><td>Queue only with an honest receipt</td></tr>
+                <tr><th>Restricted</th><td>Why access is limited</td><td>Request the minimum permission from the right owner</td></tr>
+                <tr><th>Conflict</th><td>Both versions and their provenance</td><td>Choose/merge without silent overwrite</td></tr>
+                <tr><th>Error</th><td>What failed + what was retained</td><td>Retry, revise, or return without losing work</td></tr>
+              </tbody>
+            </table>
+
+            <section class="experience-pattern-section" aria-labelledby="intent-cases-title">
+              <p class="specimen-kicker">INTENT → AHA → DESIGN RESPONSE</p>
+              <h5 id="intent-cases-title"><span data-th>Trace ทุก design response กลับไปยัง Intent, AHA และ evidence cue ที่ประกาศไว้</span><span data-en>Trace every design response to a declared Intent, AHA, and evidence cue.</span></h5>
+              <p class="pattern-intro" data-th>สามเคสแรกเป็นทิศทางเชิงบวก เคสสุดท้ายเป็น deletion test เพื่อให้ทีมตรวจว่า intent เฉพาะเจาะจง, AHA เป็นคุณค่าที่พิสูจน์ได้ และ UI ตอบงานนั้นโดยตรง</p>
+              <p class="pattern-intro" data-en>The first three cases are positive directions; the final case is a deletion test. Together they check that intent is specific, the AHA is evidence-backed value, and the proposed UI directly serves the job.</p>
+              <div class="intent-case-grid">
+                <article class="intent-case">
+                  <p class="specimen-kicker">CASE 01 · DECISION EVIDENCE</p>
+                  <h6><span data-th>รู้ว่าผลนี้น่าเชื่อถือพอสำหรับตัดสินใจหรือยัง</span><span data-en>Know whether this result is trustworthy enough for a decision.</span></h6>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>“ฉันต้องรู้ว่าผลนี้มาจากไหน สดแค่ไหน และใช้ตัดสินใจเรื่องใดได้”</span><span data-en>“I need to know where this result came from, how current it is, and which decision it can support.”</span></dd></div>
+                    <div><dt>AHA</dt><dd><span data-th>เห็นคำตอบหลักพร้อม status, source/date, boundary, limitation และ counter-signal โดยไม่ต้องเปิดหลายหน้า</span><span data-en>The answer appears with status, source/date, boundary, limitation, and counter-signal without opening several screens.</span></dd></div>
+                    <div><dt>Evidence cue</dt><dd><span data-th>object/version, วันที่ตรวจล่าสุด, missingness และ allowed use อ่านได้ในฉากเดียวกัน</span><span data-en>Object/version, last-checked date, missingness, and allowed use are readable in the same scene.</span></dd></div>
+                    <div><dt>Design</dt><dd><span data-th>ใช้ DecisionCard + SourceLedger + TrustBadge และ CTA เดียวว่า “ตรวจแหล่งข้อมูลและข้อจำกัด”</span><span data-en>Use a DecisionCard + SourceLedger + TrustBadge with one CTA: “Inspect source and limitations.”</span></dd></div>
+                    <div><dt>Clean completion</dt><dd><span data-th>บันทึก decision boundary หรือออกจากหน้าโดยยังคงคำตอบและแหล่งข้อมูลที่ได้รับแล้ว</span><span data-en>Record the decision boundary or leave with the answer and source already received.</span></dd></div>
+                    <div><dt>Guardrail</dt><dd><span data-th>ไม่ซ่อน missingness, ไม่ใช้สีแทนสถานะเพียงอย่างเดียว และไม่ให้ share แย่ง primary decision</span><span data-en>Do not hide missingness, rely on color alone, or let sharing displace the primary decision.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="intent-case">
+                  <p class="specimen-kicker">CASE 02 · CITYMETER-SPECIFIC REFERENCE SCENARIO</p>
+                  <h6><span data-th>นำบริบท Disaster ของพื้นที่ที่กำลังดูไปค้นข่าวต่อ</span><span data-en>Carry the active place and Disaster context into a news search.</span></h6>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>“ขณะดูหัวข้อ Disaster ของเทศบาลเมืองแสนสุข ฉันต้องการอ่านข่าวสาธารณภัยล่าสุดที่เกี่ยวกับพื้นที่นี้”</span><span data-en>“While viewing Disaster for Saen Suk Municipality, I want recent public-disaster news relevant to this place.”</span></dd></div>
+                    <div><dt>AHA</dt><dd><span data-th>reference concept แสดงว่า product, place hierarchy, active topic และ current intent อาจเดินทางไปกับ query public-safe ได้โดยไม่ต้องพิมพ์บริบทซ้ำ</span><span data-en>The reference concept shows how product, place hierarchy, active topic, and current intent could travel in a public-safe query without retyping context.</span></dd></div>
+                    <div><dt>Evidence cue</dt><dd><span data-th>context snapshot และ exact query ที่แก้ได้แสดง field ต้นทางทุกตัวก่อนออกจากผลิตภัณฑ์</span><span data-en>A context snapshot and editable exact query expose every source field before leaving the product.</span></dd></div>
+                    <div><dt>Design</dt><dd><span data-th>แสดง context snapshot + query ที่ประกอบอัตโนมัติและแก้ได้ + CTA “ค้นคำนี้ต่อใน Google” โดยเปิดแท็บใหม่และเก็บหน้าปัจจุบันไว้</span><span data-en>Show a context snapshot + an editable auto-composed query + “Continue this query in Google,” opening a new tab while preserving the current page.</span></dd></div>
+                    <div><dt>Clean completion</dt><dd><span data-th>แก้หรือคัดลอก query แล้วจบได้โดยไม่ส่ง; หากค้นต่อ หน้าปัจจุบันยังอยู่และผลเป็น discovery_only</span><span data-en>Edit or copy the query and stop without sending; if search continues, the current page remains and results stay discovery_only.</span></dd></div>
+                    <div><dt>Guardrail</dt><dd><span data-th>เป็น fixture-specific, product-specific reference scenario ไม่ใช่คำยืนยันว่า CityMETER ทุก instance มีฟีเจอร์นี้ และไม่มีเหตุการณ์หรือยอดผู้เสียชีวิตจริงใน fixture</span><span data-en>This fixture-specific, product-specific reference scenario does not claim every CityMETER instance has the feature, and contains no real event or casualty value.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="intent-case">
+                  <p class="specimen-kicker">CASE 03 · RECIPIENT VALUE</p>
+                  <h6><span data-th>ส่งงานให้คนถัดไปเข้าใจวัตถุเดียวกันและทำต่อได้</span><span data-en>Help the next person understand the same object and continue safely.</span></h6>
+                  <dl>
+                    <div><dt>Intent</dt><dd><span data-th>“ฉันต้องส่งผลนี้ให้คนที่มีบทบาทเกี่ยวข้อง โดยไม่ให้ version, scope หรือ limitation หล่นหาย”</span><span data-en>“I need to hand this result to the relevant role without losing its version, scope, or limitation.”</span></dd></div>
+                    <div><dt>AHA</dt><dd><span data-th>ผู้ส่งเห็น exact-object preview และผู้รับมาถึง object/version/boundary เดียวกันพร้อม next safe action</span><span data-en>The sender sees an exact-object preview; the recipient lands on the same object/version/boundary with a safe next action.</span></dd></div>
+                    <div><dt>Evidence cue</dt><dd><span data-th>static ladder แยก preview, receipt, recipient landing, recipient AHA และ useful action ออกจากกัน</span><span data-en>A static ladder separates preview, receipt, recipient landing, recipient AHA, and useful action.</span></dd></div>
+                    <div><dt>Design</dt><dd><span data-th>reference นี้เสนอ contextual handoff หลัง source AHA เท่านั้น พร้อม recipient, visibility, redaction, receipt และ revoke/recovery; หน้า playground ไม่ส่งจริง</span><span data-en>This static reference proposes contextual handoff only after source AHA, with recipient, visibility, redaction, receipt, and revoke/recovery; the playground sends nothing.</span></dd></div>
+                    <div><dt>Clean completion</dt><dd><span data-th>ผู้ส่งยกเลิกได้หลัง preview โดยไม่เสีย source AHA หรือเปลี่ยน governed object</span><span data-en>The sender may stop after preview without losing the source AHA or changing the governed object.</span></dd></div>
+                    <div><dt>Guardrail</dt><dd><span data-th>ปุ่ม share ไม่อยู่ทุก card, หนึ่ง state มี network action สูงสุดหนึ่งอย่าง และ handoff ไม่ถูกเรียกว่า network effect</span><span data-en>No share button on every card, at most one network action per state, and no claim that handoff is network effect.</span></dd></div>
+                  </dl>
+                </article>
+                <article class="intent-case is-rejected">
+                  <p class="specimen-kicker">CASE 04 · REJECTED PATTERN</p>
+                  <h6><span data-th>“ทำให้ engagement และ virality สูงขึ้น” ไม่ใช่ user intent หรือ AHA ที่พอสำหรับออกแบบ</span><span data-en>“Increase engagement and virality” is not a sufficient user intent or AHA.</span></h6>
+                  <dl>
+                    <div><dt>Intent?</dt><dd><span data-th>เป้าธุรกิจคลุมเครือ ไม่บอกว่างานของใครดีขึ้นอย่างไร</span><span data-en>A vague business target that does not say whose work becomes better or how.</span></dd></div>
+                    <div><dt>AHA?</dt><dd><span data-th><s>เวลาบนหน้า, click, share count หรือเปิดแอปซ้ำ</s> ไม่ใช่ความเข้าใจหรือผลสำเร็จของผู้ใช้</span><span data-en><s>Time-on-page, clicks, share count, or repeat opens</s> are not user understanding or success.</span></dd></div>
+                    <div><dt>Do not design</dt><dd><span data-th><s>ซ่อนคำตอบหลัง sign-up, ใส่ See more ทุก card, auto-open Google, pulse share, streak/guilt และ hidden tracking</s></span><span data-en><s>Gate the answer behind sign-up, add See more to every card, auto-open Google, pulse sharing, use streak/guilt, or add hidden tracking.</s></span></dd></div>
+                    <div><dt>Rewrite first</dt><dd><span data-th>กลับไปนิยามคน งาน trigger, useful AHA, evidence cue, allowed next action และ clean completion ก่อนเขียน UI</span><span data-en>Define the person, job, trigger, useful AHA, evidence cue, allowed next action, and clean completion before writing UI.</span></dd></div>
+                  </dl>
+                </article>
+              </div>
+            </section>
+
+            <section class="experience-pattern-section" aria-labelledby="motion-pattern-title">
+              <p class="specimen-kicker">MOTION-01 · LOCAL REFERENCE FIXTURE</p>
+              <h5 id="motion-pattern-title"><span data-th>Motion ต้องอธิบายการเปลี่ยนสถานะ ไม่ได้มีไว้สร้างความคึกคัก</span><span data-en>Motion explains a state change—it does not manufacture energy.</span></h5>
+              <p class="pattern-intro" data-th>วัตถุและคำตอบหลักต้องเห็นทันที จากนั้น motion จึงช่วยเรียงลำดับสถานะ ความหมาย และ next action เพียงครั้งเดียว โดย reduced motion และ no-JavaScript เห็นความหมายสุดท้ายครบตั้งแต่ต้น</p>
+              <p class="pattern-intro" data-en>The object and answer remain immediate. Motion may then clarify status, meaning, and the next action once. Reduced-motion and no-JavaScript states expose the complete final meaning immediately.</p>
+              <div class="motion-layout">
+                <div class="matrix-wrap">
+                  <table class="state-table motion-token-table">
+                    <caption><span data-th>Canonical motion tokens และหน้าที่</span><span data-en>Canonical motion tokens and jobs</span></caption>
+                    <thead><tr><th><span data-th>Role / หน้าที่</span><span data-en>Role</span></th><th><span data-th>เวลา</span><span data-en>Time</span></th><th><span data-th>ใช้เมื่อ</span><span data-en>Use</span></th></tr></thead>
+                    <tbody>
+                      <tr><td>Feedback</td><td>120ms</td><td><span data-th>รับรู้การกด</span><span data-en>Press acknowledgement</span></td></tr>
+                      <tr><td>State</td><td>200ms</td><td><span data-th>เปลี่ยน selected, status หรือ receipt</span><span data-en>Selected, status, or receipt change</span></td></tr>
+                      <tr><td>Map</td><td>280ms</td><td><span data-th>เปลี่ยน governed layer ที่เทียบกันได้</span><span data-en>Comparable governed layer change</span></td></tr>
+                      <tr><td>Chart</td><td>360ms</td><td><span data-th>เผย measured state หนึ่งครั้ง</span><span data-en>One measured-state reveal</span></td></tr>
+                      <tr><td>Reveal</td><td>400ms</td><td><span data-th>เรียง evidence หรือ reading order หนึ่งครั้ง</span><span data-en>Evidence or reading order, once</span></td></tr>
+                      <tr><td>Emphasis</td><td>560ms</td><td><span data-th>decision cue ที่จำเป็นและจบได้</span><span data-en>Rare, finite decision cue</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="motion-lab" id="motion-lab" data-phase="final">
+                  <h6><span data-th>ลองลำดับ semantic motion</span><span data-en>Try the semantic motion sequence</span></h6>
+                  <div class="motion-object">
+                    <p class="motion-object-name">landometer-design-system@0.8.8</p>
+                    <strong class="motion-answer"><span data-th>คำตอบหลักเห็นได้ทันที</span><span data-en>The primary answer is immediate.</span></strong>
+                    <div class="motion-status">source_limited</div>
+                    <p class="motion-context"><span data-th>บริบท แหล่งข้อมูล และข้อจำกัดเข้ามาเพื่ออธิบายคำตอบ ไม่ใช่ซ่อนคำตอบไว้รอ animation</span><span data-en>Context, source, and limitation clarify the answer; they never hide it behind animation.</span></p>
+                    <span class="motion-action-cue"><span data-th>ขั้นตอนถัดไป · ตรวจ evidence boundary</span><span data-en>Next action · inspect the evidence boundary</span></span>
+                  </div>
+                  <div class="motion-controls js-only">
+                    <button class="pattern-button" id="motion-replay" type="button"><span data-th>เล่นลำดับอีกครั้ง</span><span data-en>Replay sequence</span></button>
+                    <button class="pattern-button" id="motion-show-final" type="button"><span data-th>หยุดและแสดงผลสุดท้าย</span><span data-en>Pause · show final</span></button>
+                  </div>
+                  <ol class="motion-log" id="motion-log" aria-label="บันทึกลำดับ semantic motion / Semantic motion event log">
+                    <li><span data-th>ผลสุดท้ายพร้อมอ่าน · ไม่มี autoplay</span><span data-en>Final meaning ready · no autoplay</span></li>
+                  </ol>
+                  <p class="sr-only" id="motion-announcement" role="status" aria-live="polite"></p>
+                </div>
+              </div>
+              <p class="pattern-boundary"><span data-th>ห้าม bounce, pulse ซ้ำ, shimmer, orbit, parallax, animation โลโก้/ภาพสารคดี, generic scroll reveal หรือเล่น hero ซ้ำเมื่อกลับมา</span><span data-en>No bounce, repeated pulse, shimmer, orbit, parallax, animated logo/documentary photo, generic scroll reveal, or replayed hero on return.</span></p>
+            </section>
+
+            <section class="experience-pattern-section" aria-labelledby="cta-pattern-title">
+              <p class="specimen-kicker">CTA INTEGRITY · CTRL-01 + STATE-01</p>
+              <h5 id="cta-pattern-title"><span data-th>CTA บอกสิ่งที่จะเกิด “ถัดไปทันที” และต้องมีสถานะหลังการกดที่พิสูจน์ได้</span><span data-en>A CTA names the immediate next consequence and ends in a verifiable state.</span></h5>
+              <p class="pattern-intro" data-th>หนึ่ง page state มี primary CTA เดียว ใช้ link สำหรับ navigation/download และ button สำหรับการเปลี่ยนสถานะ โดยไม่ใช้ toast หรือ label เปลี่ยนเป็นหลักฐานว่าระบบทำงานสำเร็จแล้ว</p>
+              <p class="pattern-intro" data-en>One page state has one primary CTA. Use links for navigation/download and buttons for state change. A toast or changed label never proves authoritative completion.</p>
+              <div class="matrix-wrap">
+                <table class="state-table">
+                  <caption><span data-th>CTA contract ที่ต้องออกแบบและทดสอบพร้อมกัน</span><span data-en>CTA contract fields designed and tested together</span></caption>
+                  <thead><tr><th><span data-th>Contract</span><span data-en>Contract</span></th><th><span data-th>ก่อนลงมือ</span><span data-en>Show before action</span></th><th><span data-th>หลังลงมือ</span><span data-en>After action</span></th><th><span data-th>การกู้คืน</span><span data-en>Recovery</span></th></tr></thead>
+                  <tbody>
+                    <tr><th>Intent label</th><td><span data-th>คำกริยา + object + ปลายทางเมื่อออกภายนอก</span><span data-en>Exact verb + object + destination when external</span></td><td><span data-th>คง governed object เดิม</span><span data-en>Keep the same governed object</span></td><td><span data-th>กลับได้โดยไม่เสีย context</span><span data-en>Return without losing context</span></td></tr>
+                    <tr><th>Eligibility</th><td><span data-th>บอกเหตุผลที่กดได้ หรือ requirement ที่ยังขาด</span><span data-en>Why it is available; actionable missing requirement if disabled</span></td><td><span data-th>ป้องกันการทำซ้ำ</span><span data-en>Prevent duplicate execution</span></td><td><span data-th>แก้ input ที่ขาด</span><span data-en>Revise the missing input</span></td></tr>
+                    <tr><th>Consequence</th><td><span data-th>target, scope, visibility, permission และ commitment</span><span data-en>Target, scope, visibility, permission, and commitment</span></td><td><span data-th>Pending ไม่ใช่ success</span><span data-en>Pending is not success</span></td><td><span data-th>ยกเลิกเมื่อมีความหมาย</span><span data-en>Cancel where meaningful</span></td></tr>
+                    <tr><th>Receipt</th><td><span data-th>authoritative system และ state ที่คาด</span><span data-en>Authoritative system and expected state</span></td><td><span data-th>object, status, timestamp และ limitation</span><span data-en>Object, status, timestamp, limitation</span></td><td><span data-th>retry, alternative, revoke หรือ correction</span><span data-en>Retry, alternative, revoke, or correction</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="cta-proof js-only" id="cta-fixture" data-state="ineligible">
+                <p class="specimen-kicker">LOCAL-ONLY · DETERMINISTIC CTA PROOF</p>
+                <h6><span data-th>ลอง contract ตั้งแต่ requirement ที่ยังขาด จนถึง local receipt และ recovery</span><span data-en>Exercise the contract from missing requirement to local receipt and recovery.</span></h6>
+                <label class="cta-eligibility" for="cta-eligibility">
+                  <input id="cta-eligibility" type="checkbox" aria-describedby="cta-requirement">
+                  <span data-th>ฉันตรวจ object, source และ limitation ของ fixture นี้แล้ว</span>
+                  <span data-en>I reviewed this fixture's object, source, and limitation.</span>
+                </label>
+                <p class="cta-requirement" id="cta-requirement"><span data-th>Requirement ที่ยังขาด: ตรวจ evidence boundary ก่อนสร้าง receipt</span><span data-en>Missing requirement: review the evidence boundary before creating a receipt.</span></p>
+                <div class="cta-proof-actions">
+                  <button id="cta-execute" type="button" disabled aria-describedby="cta-requirement"><span data-th>สร้าง local receipt</span><span data-en>Create local receipt</span></button>
+                  <button id="cta-reset" type="button" hidden><span data-th>ล้าง fixture และลองใหม่</span><span data-en>Reset fixture</span></button>
+                </div>
+                <div class="cta-receipt" id="cta-receipt" role="status" aria-live="polite"><span data-th>ยังไม่เกิด action · ไม่มีการส่ง บันทึก หรือติดต่อระบบภายนอก</span><span data-en>No action yet · nothing is sent, saved, or delivered externally.</span></div>
+              </div>
+            </section>
+
+            <section class="experience-pattern-section" aria-labelledby="ethical-loop-title">
+              <p class="specimen-kicker">AHA-01 · LEARN-01 · HOOK WITHOUT DARK PATTERNS</p>
+              <h5 id="ethical-loop-title"><span data-th>ทดสอบ value loop ด้วย AHA-01, LEARN-01 และ clean-completion contract</span><span data-en>Test the value loop against AHA-01, LEARN-01, and the clean-completion contract.</span></h5>
+              <div class="pattern-grid">
+                <article class="pattern-card">
+                  <h6><span data-th>Ethical success loop</span><span data-en>Ethical success loop</span></h6>
+                  <ol class="value-loop">
+                    <li><div><b><span data-th>Trigger ที่ผู้ใช้เป็นเจ้าของ</span><span data-en>User-owned trigger</span></b><span data-th>เริ่มจากงาน คำถาม สถานที่ หรือการตัดสินใจจริง</span><span data-en>Begin with a real task, question, place, or decision.</span></div></li>
+                    <li><div><b><span data-th>Useful action ที่เล็กที่สุด</span><span data-en>Smallest useful action</span></b><span data-th>ทำให้เข้าใกล้คำตอบโดยไม่ขอ account หรือ permission เกินจำเป็น</span><span data-en>Move toward the answer without an unnecessary account or permission ask.</span></div></li>
+                    <li><div><b><span data-th>Reward จาก objective</span><span data-en>Objective-based reward</span></b><span data-th>เห็นคำตอบ ความหมาย หลักฐาน และข้อจำกัด ไม่ใช่ variable reward</span><span data-en>Reveal answer, meaning, evidence, and limits—not a variable reward.</span></div></li>
+                    <li><div><b><span data-th>ทำต่อหรือจบอย่างสะอาด</span><span data-en>Continue or finish cleanly</span></b><span data-th>มี next action ที่เป็นประโยชน์ หรือออกได้โดยไม่เสียสิ่งที่ได้รับแล้ว</span><span data-en>Offer a useful next action or a penalty-free exit with value retained.</span></div></li>
+                    <li><div><b><span data-th>ลงทุนโดยสมัครใจหลัง AHA</span><span data-en>Optional investment after AHA</span></b><span data-th>ถามเฉพาะเมื่อบอก benefit, scope, retention และวิธีแก้/ปิด/ลบได้</span><span data-en>Ask only with a stated benefit, scope, retention, and inspect/correct/disable/delete path.</span></div></li>
+                  </ol>
+                  <p class="pattern-boundary"><span data-th>ไม่มี streak, guilt, forced share, hidden personalization, hidden engagement score หรือแรงกดดันให้กลับมา</span><span data-en>No streak, guilt, forced share, hidden personalization, hidden engagement score, or pressure to return.</span></p>
+                </article>
+                <article class="pattern-card">
+                  <h6><span data-th>ส่งต่อคุณค่า ไม่ใช่แค่ปุ่มแชร์</span><span data-en>Recipient value—not a share button</span></h6>
+                  <ol class="recipient-ladder">
+                    <li><div><b>Source AHA</b><span><span data-th>ผู้ส่งเข้าใจวัตถุและขอบเขตก่อน</span><span data-en>The source user understands the object and boundary first.</span></span></div></li>
+                    <li><div><b>Exact-object handoff preview</b><span><span data-th>preview รักษา object/version และ recipient view</span><span data-en>The preview preserves object/version and the intended recipient view.</span></span></div></li>
+                    <li><div><b>Delivery receipt</b><span><span data-th>ระบบ authoritative ยืนยัน delivery จริง; static fixture นี้ไม่สร้าง receipt</span><span data-en>An authoritative system confirms real delivery; this static fixture creates no receipt.</span></span></div></li>
+                    <li><div><b>Recipient lands on the same object</b><span><span data-th>ปลายทางคง version, source, visibility และ limitation เดิม</span><span data-en>The destination preserves version, source, visibility, and limitation.</span></span></div></li>
+                    <li><div><b>Recipient AHA</b><span><span data-th>ผู้รับมาถึง object, source และ limitation เดียวกัน</span><span data-en>The recipient lands on the same object, source, and limitation.</span></span></div></li>
+                    <li><div><b>Recipient useful action</b><span><span data-th>ผู้รับทำสิ่งที่ allowed use รองรับจริง</span><span data-en>The recipient completes an action supported by the allowed use.</span></span></div></li>
+                    <li><div><b>Observed governed outcome</b><span><span data-th>ถึงขั้นนี้เท่านั้นจึงอาจอ้าง network outcome ได้</span><span data-en>Only here may a network outcome be claimed.</span></span></div></li>
+                  </ol>
+                  <p class="pattern-boundary"><span data-th>Fixture นี้ไม่ส่งจริง ไม่เก็บ telemetry และไม่อ้าง network effect ของผลิตภัณฑ์ใด: share click ≠ delivery, sent ≠ received, received ≠ understood, handoff ≠ network effect</span><span data-en>This fixture sends nothing, records no telemetry, and makes no product network-effect claim: share click ≠ delivery, sent ≠ received, received ≠ understood, handoff ≠ network effect.</span></p>
+                </article>
+              </div>
+            </section>
+
+            <section class="experience-pattern-section" aria-labelledby="external-discovery-title">
+              <p class="specimen-kicker">CONTEXT-01 · IMPL-SEARCH-EXT-01</p>
+              <h5 id="external-discovery-title"><span data-th>พา intent ไปค้นต่ออย่างโปร่งใส โดยไม่ทำ discovery ให้ดูเป็น evidence</span><span data-en>Continue an intent transparently—without presenting discovery as evidence.</span></h5>
+              <p class="pattern-intro" data-th>Master v0.8.8 กำกับ external discovery แล้ว แต่ยังไม่ได้ระบุ Google โดยตรง Implementation note นี้จึงกำหนดให้เห็นและแก้ query ได้ก่อนส่ง รักษางานปัจจุบันไว้ และติดป้ายผลลัพธ์ว่า discovery_only จนกว่าจะตรวจ provenance</p>
+              <p class="pattern-intro" data-en>The v0.8.8 master governs external discovery but does not name Google directly. This implementation note makes the query inspectable/editable before sending, preserves the current work, and keeps returned material discovery_only until provenance review.</p>
+              <div class="discovery-layout">
+                <article class="pattern-card">
+                  <h6><span data-th>สัญญาร่วมของ Landometer</span><span data-en>Shared Landometer contract</span></h6>
+                  <ul class="rule-list">
+                    <li><span data-th>ใช้เฉพาะ query ที่ public-safe และเห็นได้ก่อนส่ง</span><span data-en>Use only a public-safe query visible before sending.</span></li>
+                    <li><span data-th>ไม่ใส่ identity, private filter, note, customer criteria, sensitive location หรือ restricted ID</span><span data-en>Exclude identity, private filters, notes, customer criteria, sensitive locations, and restricted IDs.</span></li>
+                    <li><span data-th>ไม่ auto-redirect, ไม่เรียกก่อน AHA และไม่แทน primary decision/action</span><span data-en>No auto-redirect, pre-AHA diversion, or displacement of the primary decision/action.</span></li>
+                    <li><span data-th>แต่ละผลิตภัณฑ์กำกับ entity × intent, provider, review และ incorporation เอง</span><span data-en>Each product owns its entity × intent pairs, provider, review, and incorporation rules.</span></li>
+                  </ul>
+                  <p class="label-correction"><s>See more</s> → <strong><span data-th>ค้นคำนี้ต่อใน Google</span><span data-en>Continue this query in Google</span></strong></p>
+                </article>
+                <div class="discovery-fixture">
+                  <p class="specimen-kicker">PRODUCT-SPECIFIC · SYNTHETIC EVENT FIXTURE</p>
+                  <h6><span data-th>Query ประกอบจาก context ที่กำลังใช้งาน</span><span data-en>The query is composed from the active context</span></h6>
+                  <dl class="context-snapshot" id="context-snapshot">
+                    <div><dt>Product</dt><dd>CityMETER · reference scenario only</dd></div>
+                    <div><dt>Place</dt><dd><span data-th>เทศบาลเมืองแสนสุข › อำเภอเมืองชลบุรี › จังหวัดชลบุรี</span><span data-en>Saen Suk Municipality › Mueang Chonburi District › Chonburi Province</span></dd></div>
+                    <div><dt>Topic</dt><dd>Disaster · <span data-th>ข่าวสาธารณภัย</span><span data-en>public-disaster news</span></dd></div>
+                    <div><dt>Event</dt><dd><span data-th>CM-SYNTHETIC-DISASTER-001 · ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง</span><span data-en>CM-SYNTHETIC-DISASTER-001 · synthetic data, not a real event</span></dd></div>
+                    <div><dt>Active filter</dt><dd><span data-th>ยอดผู้เสียชีวิต · field label only; ไม่มีค่าจริงใน fixture</span><span data-en>Fatalities · field label only; the fixture contains no real value</span></dd></div>
+                    <div><dt>Intent</dt><dd><span data-th>อ่านข่าวล่าสุดที่สัมพันธ์กับ event, field และพื้นที่ปัจจุบัน</span><span data-en>Read recent news relevant to the active event, field, and place.</span></dd></div>
+                  </dl>
+                  <p class="pattern-boundary"><span data-th>Fixture นี้จับคู่พื้นที่จริงกับ event จำลองเพื่อสอนการประกอบ query เท่านั้น ไม่ได้ระบุว่าเกิดสาธารณภัยหรือมีผู้เสียชีวิตในพื้นที่ เมื่อกด Google จะได้รับ query ที่เห็นอยู่</span><span data-en>This fixture pairs a real place with a synthetic event only to teach query composition. It does not indicate that a disaster or fatality occurred there. Google receives the visible query only after activation.</span></p>
+                  <form
+                    class="intent-form"
+                    id="context-search-form"
+                    action="https://www.google.com/search"
+                    method="get"
+                    target="_blank"
+                    rel="noopener noreferrer external"
+                    accept-charset="UTF-8"
+                    data-event-name="CM-SYNTHETIC-DISASTER-001 ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง"
+                    data-active-filter="ยอดผู้เสียชีวิต"
+                    data-intent-keywords="ข่าว สาธารณภัย ภัยพิบัติ เหตุฉุกเฉิน"
+                    data-place-name="เทศบาลเมืองแสนสุข"
+                    data-district-name="อำเภอเมืองชลบุรี"
+                    data-province-name="จังหวัดชลบุรี"
+                  >
+                    <label for="context-query"><span data-th>คำค้นที่ประกอบอัตโนมัติและแก้ได้</span><span data-en>Editable, auto-composed query</span></label>
+                    <input id="context-query" name="q" type="search" required maxlength="240" value="CM-SYNTHETIC-DISASTER-001 ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง ยอดผู้เสียชีวิต ข่าว สาธารณภัย ภัยพิบัติ เหตุฉุกเฉิน เทศบาลเมืองแสนสุข อำเภอเมืองชลบุรี จังหวัดชลบุรี" autocomplete="off" aria-describedby="context-query-help">
+                    <small id="context-query-help"><span data-th>ระบบไม่บันทึก query นี้ Google จะได้รับข้อความที่เห็นอยู่เมื่อกดเท่านั้น ผลลัพธ์ยังเป็น discovery_only</span><span data-en>This site does not save the query. Google receives the visible text only after activation; returned material remains discovery_only.</span></small>
+                    <button id="context-search-google" type="submit"><span data-th>ค้นคำนี้ต่อใน Google</span><span data-en>Continue this query in Google</span></button>
+                  </form>
+                </div>
+              </div>
+              <p class="pattern-boundary"><span data-th>external search ไม่ใช่ share และไม่ใช่ network effect หาก query ทำให้ข้อมูลส่วนตัวหรือขอบเขตงานรั่ว ให้ยกเลิกและใช้คำค้นทั่วไปหรือ copy query แทน</span><span data-en>External search is neither sharing nor network effect. If the query would expose private data or task scope, stop and use a generic or copied query instead.</span></p>
+            </section>
+          </div>
+        </details>
+
+        <details class="library-group" id="library-products">
+          <summary id="library-products-toggle">
+            <span class="library-index">05</span>
+            <h3><span data-th>การปรับใช้ตามผลิตภัณฑ์</span><span data-en>Product adaptations</span></h3>
+            <span class="library-summary-copy"><span data-th>ใช้ shared layer ร่วมกัน แล้วเก็บข้อมูล method น้ำเสียง และ capability ไว้กับผลิตภัณฑ์</span><span data-en>Share the system layer; keep data, method, voice, and capability with the product.</span></span>
+            <span class="library-count">4 templates</span>
+          </summary>
+          <div class="library-content">
+            <h4><span data-th>นี่คือ adaptation template ไม่ใช่รายการฟีเจอร์ที่เปิดใช้งานแล้ว</span><span data-en>These are adaptation templates—not claims of enabled features.</span></h4>
+            <p class="library-content-intro" data-th>Locale Insight ครอบคลุม Land, Location และ Living ในระดับ portfolio, methodology และ product architecture แต่ evidence boundary ของแต่ละผลิตภัณฑ์ยังแยกจากกัน</p>
+            <p class="library-content-intro" data-en>Locale Insight spans Land, Location, and Living at portfolio, methodology, and product-architecture levels. Each product still owns its evidence boundary.</p>
+            <div class="product-grid">
+              <article>
+                <p class="specimen-kicker">CITYMETER · decision template</p>
+                <h5>CityMETER</h5>
+                <ul class="product-recipe">
+                  <li><span><span data-th>เริ่มจากพื้นที่หรือคำถามที่เลือก</span><span data-en>Start with the selected area or question.</span></span></li>
+                  <li><span><span data-th>ให้ dataset, source, date, schema/release และ boundary อยู่กับผล</span><span data-en>Keep dataset, source, date, schema/release, and boundary with the result.</span></span></li>
+                  <li><span><span data-th>บอกว่าใช้สนับสนุนอะไรได้ และยังสรุปอะไรไม่ได้</span><span data-en>Name what it supports and what it cannot establish.</span></span></li>
+                  <li><span><span data-th>จบด้วย evidence check ที่เปิดใช้งานจริง</span><span data-en>End with a genuinely enabled evidence check.</span></span></li>
+                </ul>
+                <p class="product-boundary"><span data-th>ห้ามยกระดับสมมติฐานเรื่อง flood, municipality, retail, F&amp;B หรือ land valuation เป็นความจริงร่วม</span><span data-en>Never universalize flood, municipality, retail, F&amp;B, or land-valuation assumptions.</span></p>
+              </article>
+              <article>
+                <p class="specimen-kicker">CITYWIKI · editorial template</p>
+                <h5>CityWiki</h5>
+                <ul class="product-recipe">
+                  <li><span><span data-th>เริ่มจาก identity ของสถานที่และคำตอบหนึ่งนาทีที่มีแหล่งอ้างอิง</span><span data-en>Start with place identity and a sourced one-minute answer.</span></span></li>
+                  <li><span><span data-th>แยก verified fact จากสิ่งที่ต้อง live-check</span><span data-en>Separate verified facts from items that require a live check.</span></span></li>
+                  <li><span><span data-th>แสดง SourceLedger, last checked และ next action หนึ่งอย่าง</span><span data-en>Show SourceLedger, last checked, and one next action.</span></span></li>
+                </ul>
+                <p class="product-boundary"><span data-th>Charming และความหมาย A/B/C ยังคงเป็น CityWiki-specific จนกว่าจะมี production spec</span><span data-en>Charming and any A/B/C meaning remain CityWiki-specific until governed by a production spec.</span></p>
+              </article>
+              <article>
+                <p class="specimen-kicker">CITYCHAT · consent template</p>
+                <h5>CityChat</h5>
+                <ul class="product-recipe">
+                  <li><span><span data-th>ขอ input ขั้นต่ำที่ทำให้เส้นทางทำงานได้</span><span data-en>Ask for the minimum route-safe input.</span></span></li>
+                  <li><span><span data-th>อธิบายเหตุผลของ location, identity, media และ contact permission</span><span data-en>Explain location, identity, media, and contact permission.</span></span></li>
+                  <li><span><span data-th>ให้ receipt และสถานะที่กลับมาทำต่อได้</span><span data-en>Provide a receipt and resumable status.</span></span></li>
+                </ul>
+                <p class="product-boundary"><span data-th>เปิด share สาธารณะเฉพาะสถานะที่ product owner ยืนยันว่า public-safe</span><span data-en>Enable public sharing only for product-owner-confirmed public-safe states.</span></p>
+              </article>
+              <article>
+                <p class="specimen-kicker">IJJI · progress template</p>
+                <h5>ijji</h5>
+                <ul class="product-recipe">
+                  <li><span><span data-th>เริ่มจากบริบทธุรกิจท้องถิ่นที่จำเป็นและสมมติฐานที่มองเห็นได้</span><span data-en>Start with essential local-business context and visible assumptions.</span></span></li>
+                  <li><span><span data-th>บอกว่าการลงมือทำสำคัญอย่างไร พร้อมทิศทาง 7 วันที่น่าเชื่อถือ</span><span data-en>Explain why action matters with a credible seven-day direction.</span></span></li>
+                  <li><span><span data-th>ให้ receipt และจุด check-in โดยไม่ทำ hidden learning</span><span data-en>Provide a receipt and check-in without hidden learning.</span></span></li>
+                </ul>
+                <p class="product-boundary"><span data-th>ยอดขาย ต้นทุน พนักงาน และข้อมูลการแข่งขันส่วนตัวยังคงเป็น private/product-specific</span><span data-en>Private sales, cost, staffing, and competitive data remain private and product-specific.</span></p>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="library-group" id="library-resources">
+          <summary id="library-resources-toggle">
+            <span class="library-index">06</span>
+            <h3><span data-th>เอกสารและไฟล์อ้างอิง</span><span data-en>Resources & release records</span></h3>
+            <span class="library-summary-copy"><span data-th>Human-readable master, implementation note, release records, SEO gate และ machine-discovery aid</span><span data-en>Human-readable master, implementation note, release records, SEO gate, and machine-discovery aid.</span></span>
+            <span class="library-count">7 records + gates</span>
+          </summary>
+          <div class="library-content">
+            <h4><span data-th>ดาวน์โหลดฉบับอ่านได้ และตรวจ release records ได้จากแหล่งเดียวกัน</span><span data-en>Keep the readable master and release records together.</span></h4>
+            <p class="library-content-intro" data-th>ไฟล์ดาวน์โหลดเป็น authoring master v0.8.8 ที่ normalize เฉพาะช่องว่างท้ายบรรทัด โดยข้อความและลำดับเชิงบรรทัดฐานไม่เปลี่ยน สถานะ source_limited และ machineValidation pending ไม่มี ZIP หรือ archive เพิ่ม</p>
+            <p class="library-content-intro" data-en>The download is the v0.8.8 authoring master with trailing whitespace normalized; normative text and ordering are unchanged. It remains source_limited and machineValidation pending, with no added ZIP or archive.</p>
+            <div class="resource-grid">
+              <article>
+                <p class="resource-meta">HUMAN-READABLE · MARKDOWN · V0.8.8</p>
+                <h5><span data-th>Design System authoring master</span><span data-en>Design System authoring master</span></h5>
+                <p>227,924 bytes · SHA-256 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776</p>
+                <a class="download-action" href="assets/downloads/landometer-design-system-v0.8.8.md" id="resource-download-system" download><span data-th>ดาวน์โหลด Markdown</span><span data-en>Download Markdown</span></a>
+              </article>
+              <article>
+                <p class="resource-meta">MACHINE-READABLE · RELEASE CONTEXT</p>
+                <h5><span data-th>ไฟล์กำกับการส่งมอบ</span><span data-en>Delivery records</span></h5>
+                <a href="site-manifest.v0.8.8.json" id="resource-manifest">Site Manifest 2.0</a><br>
+                <a href="build-card.v0.8.8.yml" id="resource-build-card">Build Card v0.8.8</a><br>
+                <a href="control-inventory.v0.8.8.json" id="resource-control-inventory">Control Inventory</a><br>
+                <a href="qa/v0.8.8-manual-gates.md" id="resource-manual-gates">Manual QA gates</a>
+              </article>
+              <article>
+                <p class="resource-meta">PROPOSED · NON-NORMATIVE CLARIFICATION</p>
+                <h5><span data-th>Implementation notes</span><span data-en>Implementation notes</span></h5>
+                <p data-th>ขยาย share placement, contextual external search, Intent → AHA cases และ opportunity-led examples โดยไม่เปลี่ยนข้อความเชิงบรรทัดฐานของ authoring master</p>
+                <p data-en>Clarifies share placement, contextual external search, Intent → AHA cases, and opportunity-led examples without changing the authoring master’s normative text.</p>
+                <a href="implementation-notes.v0.8.8.md" id="resource-implementation-notes" type="text/markdown"><span data-th>อ่าน proposed clarification</span><span data-en>Read proposed clarification</span></a>
+              </article>
+              <article>
+                <p class="resource-meta">MACHINE DISCOVERY · NAVIGATION AID ONLY</p>
+                <h5>llms.txt</h5>
+                <p data-th>สรุปทางเข้าสู่ source, release status และ evidence boundary สำหรับเครื่องอ่าน ไม่ใช่ ranking signal, access control, conformance หรือ permission ให้ agent กระทำ</p>
+                <p data-en>A concise route to sources, release status, and evidence boundaries. It is not a ranking signal, access control, conformance claim, or permission for an agent to act.</p>
+                <a href="llms.txt" id="resource-llms" type="text/plain"><span data-th>เปิด machine discovery aid</span><span data-en>Open machine discovery aid</span></a>
+              </article>
+            </div>
+            <section class="release-gate" aria-labelledby="seo-ai-gate-title">
+              <p class="resource-meta">PUB-01 · SEO + AI DELIVERY STATES</p>
+              <h5 id="seo-ai-gate-title"><span data-th>SEO และ AI-friendly ไม่ใช่ checkbox เดียว แต่เป็น release state ที่ต้องสอดคล้องกันทั้งระบบ</span><span data-en>SEO and AI friendliness are not one checkbox—they are aligned release states.</span></h5>
+              <p class="pattern-intro" data-th>หน้าปัจจุบันมี internal-team intent แต่ฉายผ่าน public GitHub Pages จึงไม่อ้าง delivery conformance และคง noindex เพราะยังเป็น source_limited กับ machineValidation pending สิ่งที่ทำได้ตอนนี้คือทำเนื้อหาให้ semantic, linkable, human-readable และ machine-navigable โดยไม่อ้าง readiness เกินจริง</p>
+              <p class="pattern-intro" data-en>This page has an internal-team intent but is projected through public GitHub Pages, so delivery conformance is not claimed. It deliberately remains noindex, source_limited, and machineValidation pending while keeping the content semantic, linkable, human-readable, and machine-navigable.</p>
+              <div class="matrix-wrap">
+                <table class="state-table">
+                  <caption><span data-th>Release promotion recipe</span><span data-en>Release promotion recipe</span></caption>
+                  <thead><tr><th>State</th><th>Human experience</th><th>Search / machine contract</th><th>Promotion gate</th></tr></thead>
+                  <tbody>
+                    <tr><th>Current · source_limited</th><td>Complete initial HTML, semantic landmarks, exact download, visible status and boundaries</td><td>HTML page is noindex; linked public-safe files do not inherit that directive; llms.txt is a project-path navigation aid; agentReadable false</td><td>Keep pending gaps visible</td></tr>
+                    <tr><th>Public SEO candidate</th><td>Stable pre-rendered Thai and English URLs with real links between them</td><td>Self-canonical + reciprocal hreflang; localized title/description; approved OG/Twitter asset; truthful JSON-LD; sitemap</td><td>Verified evidence, permissions, metadata, private-state stripping, performance, and machine validation</td></tr>
+                    <tr><th>Agent-readable candidate</th><td>The same object, answer, source, missingness, limitation, and allowed use stay visible</td><td>channelParityKey + bounded action declaration + durable failure/recovery; readable never implies permission to act</td><td>Validated public-safe machine package and AGENT-OUT-01 parity evidence</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <section class="closing" aria-labelledby="closing-title">
       <div class="closing-inner" data-quiet-field>
         <p class="eyebrow">Measure · Ground · Cultivate</p>
@@ -1739,9 +3724,11 @@
         <p>Based on the v0.8.8 owner-approved authoring master.</p>
       </div>
       <div class="footer-meta">
-        internal_demo · public source · noindex<br>
+        internal-team intent · public projection · noindex<br>
+        delivery conformance not claimed<br>
         source_limited · machineValidation pending<br>
-        no analytics · no save · no share · no external effect
+        no analytics · no save · no share · no remote mutation<br>
+        one explicit contextual Google GET after user activation
       </div>
       <nav class="footer-links" aria-label="Release references">
         <a href="site-manifest.v0.8.8.json" id="manifest-link">Manifest 2.0</a>
@@ -1749,38 +3736,6 @@
       </nav>
     </div>
   </footer>
-
-  <dialog id="settings-dialog" aria-labelledby="settings-title">
-    <div class="dialog-head">
-      <h2 id="settings-title"><span data-th>ภาษาและการแสดงผล</span><span data-en>Language and appearance</span></h2>
-      <button class="icon-button" id="menu-close" type="button" aria-label="ปิด / Close">×</button>
-    </div>
-    <div class="dialog-body">
-      <label class="dialog-setting" for="language">
-        <span class="control-label"><span data-th>ภาษา</span><span data-en>Language</span></span>
-        <select id="language">
-          <option value="th">ไทย</option>
-          <option value="en">English</option>
-        </select>
-      </label>
-      <label class="dialog-setting" for="theme">
-        <span class="control-label"><span data-th>ธีม</span><span data-en>Theme</span></span>
-        <select id="theme">
-          <option value="system">Auto</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
-      <button class="reset-button" id="reset-settings" type="button">
-        <span data-th>กลับไปภาษาไทยและธีมอัตโนมัติ</span>
-        <span data-en>Reset to Thai and automatic theme</span>
-      </button>
-      <p class="dialog-note">
-        <span data-th>การตั้งค่าบันทึกไว้ในอุปกรณ์นี้เท่านั้น ไม่มี analytics, account หรือการส่งข้อมูลออก</span>
-        <span data-en>Preferences stay on this device only. There is no analytics, account, or outbound data.</span>
-      </p>
-    </div>
-  </dialog>
 
   <noscript>
     <p style="margin:0;padding:16px;background:#F2F1DF;color:#182327;text-align:center">
@@ -1915,6 +3870,161 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       const recipeText = el("recipe-text");
       const checks = [...document.querySelectorAll(".check-input")];
       const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+      const reducedMotionQuery = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+      const motionLab = el("motion-lab");
+      const motionLog = el("motion-log");
+      const motionAnnouncement = el("motion-announcement");
+      const ctaFixture = el("cta-fixture");
+      const ctaEligibility = el("cta-eligibility");
+      const ctaRequirement = el("cta-requirement");
+      const ctaExecute = el("cta-execute");
+      const ctaReset = el("cta-reset");
+      const ctaReceipt = el("cta-receipt");
+      let motionTimers = [];
+      let ctaTimer = null;
+      let motionLogKeys = ["finalReady"];
+      const motionMessages = {
+        th: {
+          object: "0ms · วัตถุ คำตอบ และ source_limited เห็นทันที",
+          meaning: "120ms · บริบท แหล่งข้อมูล และข้อจำกัดชัดขึ้น",
+          action: "320ms · next action เข้าที่โดยไม่แย่งคำตอบ",
+          finalReady: "ผลสุดท้ายพร้อมอ่าน · ไม่มี autoplay",
+          reduced: "Reduced motion · แสดงความหมายสุดท้ายทันที",
+          paused: "หยุดลำดับ · แสดงความหมายสุดท้ายครบ"
+        },
+        en: {
+          object: "0ms · object, answer, and source_limited are immediate",
+          meaning: "120ms · context, source, and limitation settle",
+          action: "320ms · the next action settles without displacing the answer",
+          finalReady: "Final meaning ready · no autoplay",
+          reduced: "Reduced motion · final meaning shown immediately",
+          paused: "Sequence paused · complete final meaning shown"
+        }
+      };
+      const ctaMessages = {
+        th: {
+          requirementMissing: "Requirement ที่ยังขาด: ตรวจ evidence boundary ก่อนสร้าง receipt",
+          requirementReady: "พร้อมสร้าง local receipt · ไม่มีการส่ง บันทึก หรือ external effect",
+          execute: "สร้าง local receipt",
+          pending: "กำลังสร้าง local receipt…",
+          complete: "สร้าง local receipt แล้ว",
+          noAction: "ยังไม่เกิด action · ไม่มีการส่ง บันทึก หรือติดต่อระบบภายนอก",
+          eligible: "Eligibility ผ่านแล้ว · CTA เปิดใช้งานและ consequence ยังเห็นอยู่",
+          pendingReceipt: "PENDING_LOCAL · ยังไม่ใช่ success · ปุ่มถูกปิดเพื่อป้องกันการทำซ้ำ",
+          completeReceipt: "object · landometer-design-system@0.8.8\nstatus · COMPLETE_LOCAL_REFERENCE\nexternal effect · none\nrecovery · ล้าง fixture และลองใหม่"
+        },
+        en: {
+          requirementMissing: "Missing requirement: review the evidence boundary before creating a receipt.",
+          requirementReady: "Ready for a local receipt · nothing will be sent, saved, or delivered externally.",
+          execute: "Create local receipt",
+          pending: "Creating local receipt…",
+          complete: "Local receipt created",
+          noAction: "No action yet · nothing is sent, saved, or delivered externally.",
+          eligible: "Eligibility met · the CTA is enabled and its consequence remains visible.",
+          pendingReceipt: "PENDING_LOCAL · not success yet · duplicate execution is disabled",
+          completeReceipt: "object · landometer-design-system@0.8.8\nstatus · COMPLETE_LOCAL_REFERENCE\nexternal effect · none\nrecovery · reset the fixture and try again"
+        }
+      };
+
+      function renderMotionLog() {
+        if (!motionLog) return;
+        motionLog.replaceChildren();
+        for (const key of motionLogKeys) {
+          const item = document.createElement("li");
+          item.textContent = motionMessages[state.locale][key];
+          motionLog.append(item);
+        }
+      }
+
+      function announceMotion(key) {
+        if (motionAnnouncement) motionAnnouncement.textContent = motionMessages[state.locale][key];
+      }
+
+      function clearMotionTimers() {
+        motionTimers.forEach(timer => clearTimeout(timer));
+        motionTimers = [];
+      }
+
+      function showMotionFinal(logKey = "finalReady") {
+        clearMotionTimers();
+        if (motionLab) motionLab.dataset.phase = "final";
+        motionLogKeys = [logKey];
+        renderMotionLog();
+        announceMotion(logKey);
+      }
+
+      function replayMotion() {
+        clearMotionTimers();
+        if (!motionLab) return;
+        if (reducedMotionQuery && reducedMotionQuery.matches) {
+          showMotionFinal("reduced");
+          return;
+        }
+        motionLab.dataset.phase = "object";
+        motionLogKeys = ["object"];
+        renderMotionLog();
+        announceMotion("object");
+        void motionLab.offsetWidth;
+        motionLab.dataset.phase = "meaning";
+        motionTimers.push(setTimeout(() => {
+          motionLogKeys.push("meaning");
+          renderMotionLog();
+          announceMotion("meaning");
+        }, 120));
+        motionTimers.push(setTimeout(() => {
+          motionLab.dataset.phase = "final";
+        }, 200));
+        motionTimers.push(setTimeout(() => {
+          motionLogKeys.push("action");
+          renderMotionLog();
+          announceMotion("action");
+          motionTimers = [];
+        }, 320));
+      }
+
+      function renderCtaFixture() {
+        if (!ctaFixture) return;
+        const messages = ctaMessages[state.locale];
+        const fixtureState = ctaFixture.dataset.state;
+        const ready = fixtureState === "eligible";
+        const pending = fixtureState === "pending";
+        const complete = fixtureState === "complete";
+        ctaEligibility.disabled = pending || complete;
+        ctaExecute.disabled = !ready;
+        ctaExecute.textContent = pending ? messages.pending : complete ? messages.complete : messages.execute;
+        ctaRequirement.textContent = ready || pending || complete ? messages.requirementReady : messages.requirementMissing;
+        ctaReceipt.textContent = pending
+          ? messages.pendingReceipt
+          : complete
+            ? messages.completeReceipt
+            : ready
+              ? messages.eligible
+              : messages.noAction;
+        ctaReset.hidden = !complete;
+      }
+
+      function resetCtaFixture() {
+        if (ctaTimer) clearTimeout(ctaTimer);
+        ctaTimer = null;
+        ctaEligibility.checked = false;
+        ctaFixture.dataset.state = "ineligible";
+        renderCtaFixture();
+      }
+
+      const contextSearchForm = el("context-search-form");
+      const contextQuery = el("context-query");
+      if (contextSearchForm && contextQuery) {
+        const context = contextSearchForm.dataset;
+        const exact = value => `"${String(value || "").replaceAll('"', "").trim()}"`;
+        contextQuery.value = [
+          exact(context.eventName),
+          exact(context.activeFilter),
+          context.intentKeywords,
+          exact(context.placeName),
+          exact(context.districtName),
+          exact(context.provinceName)
+        ].filter(Boolean).join(" ");
+      }
 
       function resolveTheme() {
         const dark = state.theme === "dark" || (state.theme === "system" && mediaQuery && mediaQuery.matches);
@@ -1971,8 +4081,30 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       function renderControls() {
         root.lang = state.locale;
         root.dataset.locale = state.locale;
-        el("language").value = state.locale;
-        el("theme").value = state.theme;
+        const languageCycle = el("language-cycle");
+        languageCycle.querySelector("span").textContent = state.locale.toUpperCase();
+        languageCycle.setAttribute(
+          "aria-label",
+          state.locale === "th"
+            ? "ภาษา: ไทย กดเพื่อเปลี่ยนเป็น English"
+            : "Language: English. Activate for Thai"
+        );
+        document.querySelectorAll("[data-theme-icon]").forEach(icon => {
+          icon.toggleAttribute("hidden", icon.dataset.themeIcon !== state.theme);
+        });
+        const themeLabels = {
+          th: {
+            system: "ธีม: ตามอุปกรณ์ กดเพื่อเปลี่ยนเป็น Light",
+            light: "ธีม: Light กดเพื่อเปลี่ยนเป็น Dark",
+            dark: "ธีม: Dark กดเพื่อเปลี่ยนเป็นตามอุปกรณ์"
+          },
+          en: {
+            system: "Theme: follow device. Activate for Light",
+            light: "Theme: Light. Activate for Dark",
+            dark: "Theme: Dark. Activate to follow device"
+          }
+        };
+        el("theme-cycle").setAttribute("aria-label", themeLabels[state.locale][state.theme]);
         setOptions(workSelect, copy[state.locale].works, state.work);
         setOptions(stageSelect, copy[state.locale].stages, state.stage);
         el("view-baseline").setAttribute("aria-pressed", String(state.view === "baseline"));
@@ -1987,6 +4119,8 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           el(`surface-${surface}`).setAttribute("aria-pressed", String(state.surface === surface));
         }
         el("stage-adapt").textContent = copy[state.locale].stages[state.stage][1];
+        renderMotionLog();
+        renderCtaFixture();
         renderProof();
         resolveTheme();
         syncUrl();
@@ -2043,34 +4177,25 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         });
       }
 
-      const dialog = el("settings-dialog");
-      el("menu-open").addEventListener("click", () => {
-        if (typeof dialog.showModal === "function") dialog.showModal();
-        else dialog.setAttribute("open", "");
-      });
-      el("menu-close").addEventListener("click", () => dialog.close());
-      dialog.addEventListener("click", event => {
-        if (event.target === dialog) dialog.close();
-      });
-      el("language").addEventListener("change", event => {
-        state.locale = event.target.value;
+      el("language-cycle").addEventListener("click", () => {
+        state.locale = state.locale === "th" ? "en" : "th";
         rememberPreferences();
         renderControls();
       });
-      el("theme").addEventListener("change", event => {
-        state.theme = event.target.value;
-        rememberPreferences();
-        renderControls();
-      });
-      el("reset-settings").addEventListener("click", () => {
-        state.locale = "th";
-        state.theme = "system";
+      el("theme-cycle").addEventListener("click", () => {
+        const themes = ["system", "light", "dark"];
+        state.theme = themes[(themes.indexOf(state.theme) + 1) % themes.length];
         rememberPreferences();
         renderControls();
       });
       if (mediaQuery) {
         mediaQuery.addEventListener("change", () => {
           if (state.theme === "system") resolveTheme();
+        });
+      }
+      if (reducedMotionQuery) {
+        reducedMotionQuery.addEventListener("change", event => {
+          if (event.matches) showMotionFinal("reduced");
         });
       }
 
@@ -2093,6 +4218,47 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           status.textContent = copied ? copy[state.locale].copied : copy[state.locale].copyFail;
         }
       });
+
+      el("motion-replay").addEventListener("click", replayMotion);
+      el("motion-show-final").addEventListener("click", () => showMotionFinal("paused"));
+      ctaEligibility.addEventListener("change", () => {
+        ctaFixture.dataset.state = ctaEligibility.checked ? "eligible" : "ineligible";
+        renderCtaFixture();
+      });
+      ctaExecute.addEventListener("click", () => {
+        if (ctaFixture.dataset.state !== "eligible") return;
+        ctaFixture.dataset.state = "pending";
+        renderCtaFixture();
+        ctaTimer = setTimeout(() => {
+          ctaTimer = null;
+          ctaFixture.dataset.state = "complete";
+          renderCtaFixture();
+        }, 280);
+      });
+      ctaReset.addEventListener("click", resetCtaFixture);
+
+      function revealDetails(id, shouldFocus = false) {
+        const details = el(id);
+        if (!(details instanceof HTMLDetailsElement)) return;
+        details.open = true;
+        requestAnimationFrame(() => {
+          details.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            block: "start"
+          });
+          if (shouldFocus) details.querySelector("summary")?.focus();
+        });
+      }
+      document.querySelectorAll("[data-open-details]").forEach(link => {
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          const target = link.dataset.openDetails;
+          history.replaceState(null, "", `#${target}`);
+          revealDetails(target, true);
+        });
+      });
+      const initialDetails = location.hash ? el(location.hash.slice(1)) : null;
+      if (initialDetails instanceof HTMLDetailsElement) initialDetails.open = true;
 
       document.fonts && document.fonts.ready.then(() => {
         root.dataset.fontsReady = "true";

@@ -1,2 +1,5 @@
+# Project-path informational record only.
+# Crawlers use https://montri-th.github.io/robots.txt, not /Landometer/robots.txt.
+# The HTML page carries its own noindex,nofollow,noarchive directive.
 User-agent: *
-Disallow: /
+Allow: /

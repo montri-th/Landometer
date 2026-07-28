@@ -7,11 +7,13 @@
     "tokenSchemaVersion": 6,
     "product": "landometer",
     "profile": "brand.public",
-    "pageKind": "design_identity_adoption_playground",
-    "pageKindSourceRef": "current owner instruction 2026-07-28 + ADOPT-01 + FLOW-02",
+    "pageKind": "design_identity_playground_with_implementation_library",
+    "pageKindSourceRef": "current owner instructions 2026-07-28 + ADOPT-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + DATAVIZ-01 + CTRL-02",
     "delivery": "internal_demo",
     "language": "th",
     "additionalLanguages": ["en"],
+    "deliveryConformance": "not_claimed",
+    "deliveryVisibilityMismatch": "internal_demo intent is projected through a public GitHub Pages URL; public-delivery gates remain open",
     "evidenceStatus": "source_limited",
     "visibility": "public",
     "indexable": false,
@@ -20,14 +22,14 @@
     "fullLivingReference": false
   },
   "experience": {
-    "route": ["Cultivate", "Try", "Align", "Takeaway"],
+    "route": ["Cultivate", "Try", "Align", "Takeaway", "Library", "Closure"],
     "oneJob": "Improve one real work object and prepare it for the next person without changing its truth.",
     "firstAha": "The same source-grounded object and facts become easier to scan and hand off when Assisted hierarchy is applied.",
     "ahaEvidenceCue": "Identical object, status, source, boundary, limitation, and next action remain visible in both comparison states.",
     "dominantObject": "landometer-design-system@0.8.8",
     "primaryAction": "Open the practice fixture",
-    "nextUsefulAction": "Copy the 60-second recipe",
-    "cleanCompletion": "Leave with a selectable recipe and truthful release boundary.",
+    "nextUsefulAction": "Copy the recipe, inspect a positive implementation case, try a local fixture, open a release record, or download the v0.8.8 authoring master.",
+    "cleanCompletion": "Leave with a selectable recipe, multiple positive design directions, a downloadable master, and a truthful release boundary.",
     "brandSignatures": ["Measure", "Ground", "Cultivate"],
     "channelParityKey": "ldm.ds.v0.8.8.design-identity-playground",
     "locales": {
@@ -35,14 +37,18 @@
       "additional": ["en"],
       "oneActiveAtATime": true,
       "urlState": true,
-      "preferenceKey": "ldm88-lang"
+      "preferenceKey": "ldm88-lang",
+      "control": "single quiet cycling state button",
+      "cycle": ["th", "en"]
     },
     "themes": {
       "mode": "interactive_auto",
       "support": "dual",
       "default": "system",
       "visibleOverride": true,
-      "preferenceKey": "ldm88-theme"
+      "preferenceKey": "ldm88-theme",
+      "control": "single quiet cycling icon button",
+      "cycle": ["system", "light", "dark"]
     }
   },
   "composition": {
@@ -52,14 +58,14 @@
       {"id": "closing-measure", "selector": ".closing-inner", "desktopThreshold": 0.3, "mobileThreshold": 0.2, "minimumDimensionRatio": 0.25, "secondaryUI": false, "status": "manual rectangle and perceptual review pending"}
     ],
     "gradientSurfaces": [
-      {"id": "hero-cultivate", "sceneId": "top", "recipe": "cultivate", "job": "entry", "angle": "135deg", "focalTarget": "cultural invitation and practice-fixture action", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "hero-measure", "sceneId": "top", "recipe": "measure", "job": "entry", "angle": "135deg", "focalTarget": "cultural invitation and practice-fixture action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "browser source/computed-style inspection passed; worst-sample human review remains pending"},
       {"id": "visual-measure", "sceneId": "play", "recipe": "measure", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"},
       {"id": "visual-ground", "sceneId": "play", "recipe": "ground", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
       {"id": "visual-cultivate", "sceneId": "play", "recipe": "cultivate", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
       {"id": "closing-measure", "sceneId": "closing", "recipe": "measure", "job": "closure", "angle": "135deg", "focalTarget": "Brand Promise and return action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"}
     ],
     "scrims": [
-      {"id": "hero-copy-tonal-scrim", "selector": ".hero-copy::before", "job": "foreground contrast", "status": "sampled review pending"},
+      {"id": "hero-copy-tonal-scrim", "selector": ".hero-copy::before", "job": "foreground contrast over Measure", "status": "browser source/computed-style inspection passed; sampled human review pending"},
       {"id": "signature-demo-scrim", "selector": ".proof-preview::before", "job": "foreground contrast", "status": "sampled review pending"},
       {"id": "closing-dark-scrim", "selector": ".closing::before", "job": "foreground contrast", "status": "sampled review pending"}
     ],
@@ -70,13 +76,93 @@
     "search": false,
     "fullLivingReference": false,
     "share": false,
+    "contextDiscovery": true,
+    "externalNavigation": true,
+    "thirdPartyRequest": "explicit_user_triggered_visible_query_only",
+    "agentReadable": false,
+    "boundedAgentAction": false,
+    "agentActionEffect": "none",
     "persistence": false,
     "authentication": false,
     "externalSideEffect": false,
     "map": false,
-    "dataVisualization": false,
-    "analyticalEvidence": false,
+    "dataVisualization": true,
+    "analyticalEvidence": true,
     "telemetry": false
+  },
+  "network": {
+    "mode": "reference_ready",
+    "action": "none",
+    "networkAdvancesObjective": false,
+    "recipientOutcome": "not_observed — reference target only; a future recipient should receive the same object/version/boundary",
+    "policyReason": "not_applicable — no network action is enabled"
+  },
+  "fixtureCapabilities": {
+    "dataVisualization": {
+      "status": "enabled_for_synthetic_training_only",
+      "fixtureId": "DV-FIXTURE-0.1",
+      "patterns": ["compare", "change", "relationship"],
+      "sourceStatus": "source_limited",
+      "limitation": "Static hand-authored values demonstrate visual and accessibility patterns only; they are not a city, place, product, person, or outcome claim.",
+      "mapResult": false,
+      "externalEffect": false
+    },
+    "experiencePatterns": {
+      "status": "enabled_for_reference_training_only",
+      "fixtureId": "UX-FIXTURE-0.1",
+      "patterns": [
+        "three_intent_aha_design_cases",
+        "one_static_rejected_case",
+        "four_component_ensembles",
+        "eight_creative_application_sketches",
+        "three_dataviz_extensions",
+        "deterministic_local_cta_fixture"
+      ],
+      "localStateOnly": true,
+      "limitation": "Examples teach design reasoning and do not claim enabled product features or outcomes."
+    },
+    "motion": {
+      "status": "enabled_for_local_reference_only",
+      "fixtureId": "MOTION-FIXTURE-0.1",
+      "sequence": ["object_immediate", "meaning_120ms", "action_320ms", "final"],
+      "reducedMotion": "final meaning immediately",
+      "noJavaScript": "final meaning immediately; replay controls omitted",
+      "externalEffect": false
+    },
+    "recipientValue": {
+      "status": "static_reference_only",
+      "fixtureId": "NETWORK-FIXTURE-0.1",
+      "sequence": ["source_aha", "exact_object_handoff_preview", "delivery_receipt", "recipient_lands_same_object", "recipient_aha", "recipient_useful_action", "observed_governed_outcome"],
+      "shareControl": false,
+      "telemetry": false,
+      "externalEffect": false,
+      "limitation": "No delivery, recipient behavior, product network effect, or network outcome is simulated or claimed."
+    },
+    "contextualDiscovery": {
+      "status": "enabled_explicit_user_triggered_reference_action",
+      "fixtureId": "CONTEXT-FIXTURE-0.1",
+      "productContext": "fixture-specific CityMETER reference scenario; not current product availability",
+      "activeObject": "synthetic disaster event CM-SYNTHETIC-DISASTER-001; not a real event",
+      "activeFilter": "fatalities field label only; no real casualty value",
+      "publicPlaceHierarchy": ["Saen Suk Municipality", "Mueang Chonburi District", "Chonburi Province"],
+      "composition": ["event display name", "active public-safe filter labels", "intent keywords", "public place hierarchy"],
+      "destination": "explicit user-confirmed Google Search GET in a new tab",
+      "thirdPartyRequest": true,
+      "outboundData": "visible editable q value only",
+      "remoteMutation": false,
+      "resultStatus": "discovery_only until provenance review and deliberate incorporation",
+      "telemetry": false,
+      "persistence": false,
+      "externalSideEffect": false,
+      "limitation": "Product-specific synthetic context; no real event, casualty value, current CityMETER availability, or superior-relevance claim."
+    },
+    "machineDiscovery": {
+      "status": "navigation_aid_only",
+      "path": "llms.txt",
+      "agentReadableCapability": false,
+      "boundedAgentAction": false,
+      "limitation": "Optional project-path proposal; not a host-root discovery guarantee, ranking signal, conformance claim, access control, or permission to act."
+    }
   },
   "roleRegistry": {
     "status": "not_applicable",
@@ -88,14 +174,68 @@
     "source": "Landometer Design System v0.8.8 owner-approved authoring master, prepared 25 July 2026",
     "boundary": "Shared design identity and experience guidance only; product data, workflow, scores, models, claims, and capabilities remain product-specific.",
     "limitation": "The regenerated v0.8.8 public-safe machine package and artifact-level manual gates remain pending.",
-    "allowedUses": ["design-system education", "local deterministic comparison", "60-second preflight recipe"]
+    "allowedUses": ["design-system education", "local deterministic comparison", "60-second preflight recipe", "positive Intent-to-AHA design cases", "component implementation reference", "semantic-motion training", "context-discovery design training", "synthetic dataviz pattern training", "bounded product-adaptation planning"]
   },
+  "referenceFixtures": [
+    {
+      "id": "DV-FIXTURE-0.1",
+      "sourceAndDate": "Landometer synthetic training fixture · 28 Jul 2026",
+      "methodOrRecipe": "Fixed hand-authored values chosen to exercise Compare, Change, Relationship, measured zero, no data, missing period, and counter-signal treatment.",
+      "signalClass": "calculated synthetic fixture",
+      "confidence": "not applicable — non-empirical fixture",
+      "limitation": "Not evidence about a real place, city, product, person, or outcome; values may be compared only within one example under its declared unit and method.",
+      "missingness": "Area E and Q3 are intentionally no-data; Area D is an intentional measured zero.",
+      "allowedUses": ["design-system training", "accessibility review", "implementation reference"],
+      "nextSafeAction": "Replace with product-owned evidence, method, unit, period, boundary, and allowed use before reuse in a product."
+    },
+    {
+      "id": "UX-FIXTURE-0.1",
+      "sourceAndDate": "v0.8.8 owner-directed implementation examples · 28 Jul 2026",
+      "methodOrRecipe": "Intent → useful AHA → design response → moment of value → evidence/privacy boundary → next useful action or clean completion.",
+      "signalClass": "non-empirical design reference",
+      "confidence": "not applicable",
+      "limitation": "Concept sketches and component ensembles are not live product features, performance evidence, or outcome claims.",
+      "allowedUses": ["design critique", "concept generation", "bounded product-adaptation planning"],
+      "nextSafeAction": "Resolve a product-owned Build Card and evidence record before implementation."
+    },
+    {
+      "id": "MOTION-FIXTURE-0.1",
+      "sourceAndDate": "canonical v0.8.8 motion roles · 28 Jul 2026",
+      "methodOrRecipe": "User-triggered object → meaning → action sequence with Replay, Pause/show final, and a visible event log.",
+      "signalClass": "local interaction reference",
+      "confidence": "not applicable",
+      "limitation": "Not a Full Living Reference motion sandbox and not a product behavior claim.",
+      "allowedUses": ["semantic-motion training", "reduced-motion review", "component implementation reference"],
+      "nextSafeAction": "Test real product state transitions with reduced-motion and no-JavaScript evidence before release."
+    },
+    {
+      "id": "NETWORK-FIXTURE-0.1",
+      "sourceAndDate": "CORE-10 + SHARE-01 recipient-value sequence · 28 Jul 2026",
+      "methodOrRecipe": "Static evidence ladder from source AHA to observed governed outcome.",
+      "signalClass": "static reference",
+      "confidence": "not applicable",
+      "limitation": "No share, delivery, recipient action, telemetry, or product network effect occurs.",
+      "allowedUses": ["recipient-value design training", "share-readiness review"],
+      "nextSafeAction": "Require product-owned recipient, permission, route, receipt, and recovery before enabling share; govern telemetry only if separately enabled, and require observed outcome evidence before claiming network effect."
+    },
+    {
+      "id": "CONTEXT-FIXTURE-0.1",
+      "sourceAndDate": "fixture-specific CityMETER reference scenario + CONTEXT-01 · 28 Jul 2026",
+      "methodOrRecipe": "Compose a visible editable query from synthetic active event, active public-safe filter label, user intent, and public place hierarchy.",
+      "signalClass": "product-specific synthetic reference",
+      "confidence": "not applicable",
+      "limitation": "No real disaster event or casualty value; no claim of current CityMETER availability or superior relevance.",
+      "allowedUses": ["context-discovery design training", "CTA integrity review", "query-privacy review"],
+      "nextSafeAction": "Use governed runtime context and measure same-intent relevance before making a comparative performance claim."
+    }
+  ],
   "assets": [
     {
       "path": "assets/images/landometer-logo-banner.png",
       "bytes": 184476,
       "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
-      "transform": "source bytes unchanged; responsive CSS crop uses object-fit:cover and object-position:53% center",
+      "transform": "source bytes unchanged; transparent background is mandatory; no box, plate, carrier, border, or radius is applied",
+      "contrastStrategy": "logo and release metadata remain transparent; shared surrounding header surface changes to maintain contrast",
       "reuseBoundary": "Exact existing repository path and bytes; formal current identity approval record remains pending."
     },
     {
@@ -110,6 +250,28 @@
       "path": "assets/fonts",
       "usageClass": "existing repository-packaged Arvo, IBM Plex Sans Thai Looped, Bai Jamjuree, and JetBrains Mono faces",
       "manifest": "font-assets.manifest.json"
+    },
+    {
+      "path": "assets/downloads/landometer-design-system-v0.8.8.md",
+      "bytes": 227924,
+      "sha256": "19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776",
+      "usageClass": "human-readable authoring master download",
+      "transform": "trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged",
+      "status": "source_limited; machineValidation pending"
+    },
+    {
+      "path": "implementation-notes.v0.8.8.md",
+      "bytes": 7402,
+      "sha256": "af733d265b17a956c67d131be3746d0b2cd4f35ea5582d0a3657c742634e559e",
+      "usageClass": "proposed artifact-level implementation clarification",
+      "authority": "non-normative until incorporated into an owner-approved Design System release"
+    },
+    {
+      "path": "llms.txt",
+      "bytes": 2939,
+      "sha256": "ba2690985e2ac814f14f6579ce140aa4c9d809498f85142bd927bd0b505c756d",
+      "usageClass": "optional project-path machine discovery navigation aid",
+      "authority": "not a ranking signal, access-control rule, conformance claim, host-root discovery guarantee, or agent-action permission"
     }
   ],
   "publication": {
@@ -117,8 +279,18 @@
     "repositoryVisibility": "public",
     "canonicalUrl": "https://montri-th.github.io/Landometer/",
     "robots": "noindex,nofollow,noarchive",
+    "indexPolicyScope": "html_page_only; linked public-safe artifacts do not inherit the page directive",
+    "robotsFile": {
+      "path": "robots.txt",
+      "authority": "project_path_non_authoritative",
+      "reason": "Crawlers use the host-root robots.txt; the HTML robots meta is the page-level directive."
+    },
+    "socialPreviewMetadata": "omitted while internal_demo and source_limited",
+    "structuredData": false,
+    "sitemap": false,
+    "machineDiscoveryAid": "llms.txt project-path navigation aid only",
     "telemetry": "disabled",
-    "status": "source-limited internal team playground in a public repository"
+    "status": "source-limited internal-team-intent playground publicly projected through GitHub Pages; delivery conformance not claimed"
   },
   "qa": {
     "controlInventoryPath": "control-inventory.v0.8.8.json",
@@ -128,10 +300,17 @@
     "openManualGates": [
       "Thai naturalness/read-aloud and bilingual governed-value parity tied to final copy hashes",
       "five-reviewer Landometer recognition and 5-second/30-second/2-minute adoption checks",
-      "logo delivered-size, clear-space, and exact surface approval",
+      "logo delivered-size, clear-space, transparent-background invariant, release-metadata transparency, and shared header-surface approval",
       "media permission, creator, privacy, context, and expiry confirmation",
       "perceptual quiet, gradient deletion, and contrast sampling review",
-      "desktop/mobile keyboard and screen-reader matrix"
+      "dataviz light/dark, color-vision, grayscale, direct-label, table-parity, and 200% zoom review",
+      "Implementation Library findability, six-group coverage, product-boundary, disclosure behavior, and download review",
+      "desktop/mobile keyboard, theme/language cycle, disclosure, and screen-reader matrix",
+      "positive Intent-to-AHA case variety, relevance, findability, and non-operational rejected-pattern review",
+      "semantic-motion replay, pause/final, event-log, reduced-motion, no-JavaScript, and assistive-technology review",
+      "context-query runtime composition, privacy, destination, recovery, discovery-only, and same-intent relevance study",
+      "recipient-value fixture remains static with no share, delivery, or network-outcome claim",
+      "HTML-only noindex scope, project-path robots limitation, and llms navigation-aid boundary review"
     ]
   }
 }

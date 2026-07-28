@@ -9,21 +9,31 @@ landometerBuild:
     manifestVersion: 2.0
     tokenSchemaVersion: 6
   artifact:
-    name: Landometer Design Identity Playground
+    name: Landometer Design Identity Playground + Implementation Library
     product: landometer
     profile: brand.public
-    pageKind: design_identity_adoption_playground
-    pageKindSourceRef: current owner instruction 2026-07-28 + ADOPT-01 + FLOW-02
+    pageKind: design_identity_playground_with_implementation_library
+    pageKindSourceRef: current owner instructions 2026-07-28 + ADOPT-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + DATAVIZ-01 + CTRL-02
     delivery: internal_demo
     language: th
     additionalLanguages: [en]
     generationMode: not_applicable
     outputType: webpage
+    deliveryConformance: not_claimed
+    deliveryVisibilityMismatch: internal_demo intent is projected through a public GitHub Pages URL; public-delivery gates remain open
   publication:
     evidenceStatus: source_limited
     visibility: public
+    repositoryVisibility: public
     indexable: false
     canonicalUrl: https://montri-th.github.io/Landometer/
+    robots: noindex,nofollow,noarchive
+    indexPolicyScope: html_page_only; linked public-safe artifacts do not inherit the page directive
+    robotsFile: project-path non-authoritative record; crawlers use the host-root robots.txt
+    socialPreviewMetadata: omitted while internal_demo and source_limited
+    structuredData: false
+    sitemap: false
+    machineDiscoveryAid: project-path llms.txt; navigation aid only, not ranking, access control, conformance, or agent permission
   audience:
     primary: every Landometer function working with design identity and experience
     role: cross-functional adoption
@@ -52,18 +62,19 @@ landometerBuild:
         naturalnessReviewRef: pending editorial review
         parityReviewRef: pending bilingual parity review
   experience:
+    route: [Cultivate, Try, Align, Takeaway, Library, Closure]
     trigger: a team member needs to apply Landometer design identity to a screen, map, report, or message
     oneJob: improve one real work object and prepare it for the next person without changing its truth
-    promisedOutcome: a 60-second recipe that keeps Brand DNA, Voice, Visual, and evidence boundary together
+    promisedOutcome: a 60-second recipe plus expandable Intent → AHA cases, creative application opportunities, component ensembles, dataviz patterns, and governed evidence boundaries
     firstAha: the same source-grounded object and facts become easier to scan and hand off when Assisted hierarchy is applied
     ahaEvidenceCue: identical object, status, source, boundary, limitation, and next action remain visible in both comparison states
     primaryAction: Open the practice fixture
-    nextUsefulAction: Copy the 60-second recipe
+    nextUsefulAction: Copy the recipe, inspect a positive implementation case, try a local fixture, open a release record, or download the v0.8.8 authoring master
     nextTriggerOrCleanCompletion: take the recipe into the real work tool or leave without saving
     dominantObject: landometer-design-system@0.8.8
     channelParityKey: ldm.ds.v0.8.8.design-identity-playground
     brandSignatures: [Measure, Ground, Cultivate]
-    cleanCompletion: reader leaves with a selectable recipe and truthful release boundary
+    cleanCompletion: reader leaves with a selectable recipe, multiple positive design directions, a downloadable master, and a truthful release boundary
   composition:
     quietRegions:
       - id: hero-message
@@ -94,17 +105,17 @@ landometerBuild:
         focalPreservation: source inspection passed
         measuredRectangles: pending internal-demo manual review
     gradientSurfaces:
-      - id: hero-cultivate
+      - id: hero-measure
         sceneId: top
-        recipe: cultivate
+        recipe: measure
         job: entry
-        sourceTokenRefs: [surface.cultivate]
+        sourceTokenRefs: [surface.measure]
         angle: 135deg
         focalTarget: cultural invitation + practice-fixture action
         readingDirection: invitation to real team context
-        foregroundStrategy: deterministic canvas scrim
-        logoPairing: none; logo is on an adjacent separate surface
-        contrastEvidence: pending internal-demo sampled review
+        foregroundStrategy: deterministic dark scrim
+        logoPairing: logo and release metadata stay transparent on a shared contrast-safe header surface
+        contrastEvidence: browser source/computed-style inspection passed; worst-sample human review remains pending
         deletionTest: pending manual review
       - id: visual-measure
         sceneId: play
@@ -157,7 +168,7 @@ landometerBuild:
     scrims:
       - id: hero-copy-tonal-scrim
         selector: .hero-copy::before
-        job: deterministic foreground contrast over the Cultivate atmosphere
+        job: deterministic foreground contrast over the Measure atmosphere
         themeVariants: [light, dark]
         contrastEvidence: pending internal-demo sampled review
       - id: signature-demo-scrim
@@ -188,27 +199,130 @@ landometerBuild:
     support: dual
     default: system
     visibleOverride: true
+    control: single quiet icon button
+    cycle: [system, light, dark]
+  localeControls:
+    control: single quiet state button
+    cycle: [th, en]
   motion:
     intensity: guided
     motionEnhancement: false
+    referenceFixture: MOTION-FIXTURE-0.1
+    behavior: user-triggered local semantic sequence; final meaning is the default, reduced-motion, and no-JavaScript state
   capabilities:
-    analyticalEvidence: false
+    analyticalEvidence: true
     motionEnhancement: false
     personalization: false
     search: false
     share: false
     map: false
-    dataVisualization: false
+    dataVisualization: true
     coCreation: false
     persistence: false
     externalSideEffect: false
     authentication: false
     permissions: false
-    contextDiscovery: false
+    contextDiscovery: true
+    externalNavigation: true
+    thirdPartyRequest: explicit_user_triggered_visible_query_only
     agentReadable: false
     boundedAgentAction: false
     agentActionEffect: none
     fullLivingReference: false
+  fixtureCapabilities:
+    dataVisualization:
+      status: enabled_for_synthetic_training_only
+      fixtureId: DV-FIXTURE-0.1
+      patterns: [compare, change, relationship]
+      sourceStatus: source_limited
+      limitation: static hand-authored values demonstrate visual and accessibility patterns only; not a city, place, product, person, or outcome claim
+      mapResult: false
+      externalEffect: false
+    experiencePatterns:
+      status: enabled_for_reference_training_only
+      fixtureId: UX-FIXTURE-0.1
+      patterns: [three_intent_aha_design_cases, one_static_rejected_case, four_component_ensembles, eight_creative_application_sketches, three_dataviz_extensions, deterministic_local_cta_fixture]
+      localStateOnly: true
+      limitation: examples teach design reasoning and do not claim enabled product features or outcomes
+    motion:
+      status: enabled_for_local_reference_only
+      fixtureId: MOTION-FIXTURE-0.1
+      sequence: [object_immediate, meaning_120ms, action_320ms, final]
+      reducedMotion: final meaning immediately
+      noJavaScript: final meaning immediately; replay controls omitted
+      externalEffect: false
+    recipientValue:
+      status: static_reference_only
+      fixtureId: NETWORK-FIXTURE-0.1
+      sequence: [source_aha, exact_object_handoff_preview, delivery_receipt, recipient_lands_same_object, recipient_aha, recipient_useful_action, observed_governed_outcome]
+      shareControl: false
+      telemetry: false
+      externalEffect: false
+      limitation: no delivery, recipient behavior, product network effect, or network outcome is simulated or claimed
+    contextualDiscovery:
+      status: enabled_explicit_user_triggered_reference_action
+      fixtureId: CONTEXT-FIXTURE-0.1
+      productContext: fixture-specific CityMETER reference scenario; not current product availability
+      activeObject: synthetic disaster event CM-SYNTHETIC-DISASTER-001; not a real event
+      activeFilter: fatalities field label only; no real casualty value
+      publicPlaceHierarchy: Saen Suk Municipality → Mueang Chonburi District → Chonburi Province
+      composition: event display name + active public-safe filter labels + intent keywords + public place hierarchy
+      destination: explicit user-confirmed Google Search GET in a new tab
+      thirdPartyRequest: true
+      outboundData: visible editable q value only
+      remoteMutation: false
+      resultStatus: discovery_only until provenance review and deliberate incorporation
+      telemetry: false
+      persistence: false
+      externalSideEffect: false
+    machineDiscovery:
+      status: navigation_aid_only
+      path: llms.txt
+      agentReadableCapability: false
+      boundedAgentAction: false
+      limitation: project-path optional proposal; not a host-root discovery guarantee, ranking signal, conformance claim, access control, or permission to act
+  referenceFixtures:
+    - id: DV-FIXTURE-0.1
+      sourceAndDate: Landometer synthetic training fixture · 28 Jul 2026
+      methodOrRecipe: fixed hand-authored values for Compare, Change, Relationship, measured zero, no data, missing period, and counter-signal treatment
+      signalClass: calculated synthetic fixture
+      confidence: not applicable — non-empirical fixture
+      limitation: not evidence about a real place, city, product, person, or outcome; compare only within one example under the declared unit and method
+      missingness: Area E and Q3 are intentionally no-data; Area D is an intentional measured zero
+      allowedUses: [design-system training, accessibility review, implementation reference]
+      nextSafeAction: replace with product-owned evidence, method, unit, period, boundary, and allowed use before product reuse
+    - id: UX-FIXTURE-0.1
+      sourceAndDate: v0.8.8 owner-directed implementation examples · 28 Jul 2026
+      methodOrRecipe: Intent → useful AHA → design response → moment of value → evidence/privacy boundary → next useful action or clean completion
+      signalClass: non-empirical design reference
+      confidence: not applicable
+      limitation: concept sketches and component ensembles are not live product features, performance evidence, or outcome claims
+      allowedUses: [design critique, concept generation, bounded product-adaptation planning]
+      nextSafeAction: resolve a product-owned Build Card and evidence record before implementation
+    - id: MOTION-FIXTURE-0.1
+      sourceAndDate: canonical v0.8.8 motion roles · 28 Jul 2026
+      methodOrRecipe: user-triggered object → meaning → action sequence with Replay, Pause/show final, and visible event log
+      signalClass: local interaction reference
+      confidence: not applicable
+      limitation: not a Full Living Reference motion sandbox and not a product behavior claim
+      allowedUses: [semantic-motion training, reduced-motion review, component implementation reference]
+      nextSafeAction: test real product state transitions with reduced-motion and no-JavaScript evidence before release
+    - id: NETWORK-FIXTURE-0.1
+      sourceAndDate: CORE-10 + SHARE-01 recipient-value sequence · 28 Jul 2026
+      methodOrRecipe: static evidence ladder from source AHA to observed governed outcome
+      signalClass: static reference
+      confidence: not applicable
+      limitation: no share, delivery, recipient action, telemetry, or product network effect occurs
+      allowedUses: [recipient-value design training, share-readiness review]
+      nextSafeAction: require product-owned recipient, permission, route, receipt, and recovery before enabling share; govern telemetry only if separately enabled, and require observed outcome evidence before claiming network effect
+    - id: CONTEXT-FIXTURE-0.1
+      sourceAndDate: fixture-specific CityMETER reference scenario + CONTEXT-01 · 28 Jul 2026
+      methodOrRecipe: compose a visible editable query from synthetic active event, active public-safe filter label, user intent, and public place hierarchy
+      signalClass: product-specific synthetic reference
+      confidence: not applicable
+      limitation: no real disaster event or casualty value; no claim of current CityMETER availability or superior relevance
+      allowedUses: [context-discovery design training, CTA integrity review, query-privacy review]
+      nextSafeAction: use governed runtime context and measure same-intent relevance before making a comparative performance claim
   privacy:
     personalData: false
     sensitivity: public
@@ -223,17 +337,34 @@ landometerBuild:
   network:
     mode: reference_ready
     action: none
-    recipientOutcome: same work object and evidence boundary
-    policyReason: local educational fixture only
+    networkAdvancesObjective: false
+    recipientOutcome: not_observed — reference target only; a future recipient should receive the same object/version/boundary
+    policyReason: not_applicable — no network action is enabled
   identity:
     logoPath: assets/images/landometer-logo-banner.png
     logoSha256: f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535
     logoTransform: none
+    logoBackground: transparent_non_negotiable
+    logoCarrier: prohibited
+    releaseMetadataBackground: transparent
+    contrastStrategy: change the shared surrounding header surface; never add a logo or metadata box, plate, carrier, border, or radius
     logoApprovalBoundary: existing repository public-use record; formal current identity registry remains pending
     openingPhotoPath: assets/images/team-hero.jpg
     openingPhotoSha256: 50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb
     openingPhotoTransform: source bytes unchanged; responsive CSS crop uses object-fit cover and object-position 53% center
     photoApprovalBoundary: exact existing public repository rendition reused; formal rights and expiry record remains pending
+  referenceDocuments:
+    - path: assets/downloads/landometer-design-system-v0.8.8.md
+      bytes: 227924
+      sha256: 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776
+      transform: trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged
+      status: source_limited; machineValidation pending
+    - path: implementation-notes.v0.8.8.md
+      authority: proposed artifact-level clarification; non-normative until an owner-approved release incorporates it
+      covers: [share placement, contextual external search, positive Intent-to-AHA examples, SEO and machine-discovery gates]
+    - path: llms.txt
+      authority: optional project-path machine navigation aid only
+      agentAction: none
   qa:
     evidencePath: deployment/qa/
     controlInventoryPath: deployment/control-inventory.v0.8.8.json

@@ -1,4 +1,4 @@
-name: Verify v0.8.7 live site
+name: Verify current live release boundary
 
 on:
   pull_request:
@@ -24,7 +24,7 @@ jobs:
       - name: Validate repository release
         run: node tools/validate-release.mjs
 
-      - name: Verify deployed HTML and Manifest 2.0
+      - name: Verify deployed v0.8.8 HTML and Manifest 2.0
         shell: bash
         run: |
           set -euo pipefail
@@ -36,15 +36,15 @@ jobs:
           for attempt in $(seq 1 30); do
             echo "Live verification attempt ${attempt}/30"
             if curl -fsSL --retry 2 --retry-delay 2 "${site}?verify=${GITHUB_SHA}-${attempt}" -o "$html" \
-              && grep -q 'data-ds-version="0.8.7"' "$html" \
+              && grep -q 'data-ds-version="0.8.8"' "$html" \
               && grep -q 'data-manifest-version="2.0"' "$html" \
-              && grep -q 'Landometer Design System v0.8.7' "$html" \
-              && curl -fsSL --retry 2 --retry-delay 2 "${site}site-manifest.v0.8.7.json?verify=${GITHUB_SHA}-${attempt}" -o "$manifest" \
+              && grep -q 'data-machine-validation="pending"' "$html" \
+              && curl -fsSL --retry 2 --retry-delay 2 "${site}site-manifest.v0.8.8.json?verify=${GITHUB_SHA}-${attempt}" -o "$manifest" \
               && node - "$manifest" <<'NODE'
           const fs = require('node:fs');
           const path = process.argv[2];
           const value = JSON.parse(fs.readFileSync(path, 'utf8'));
-          const ok = value?.artifact?.version === '0.8.7'
+          const ok = value?.artifact?.version === '0.8.8'
             && value?.artifact?.manifestVersion === '2.0'
             && value?.artifact?.tokenSchemaVersion === 6
             && value?.artifact?.machineValidation === 'pending'
@@ -59,9 +59,9 @@ jobs:
           done
 
           if [ "$verified" -ne 1 ]; then
-            echo "Live GitHub Pages site did not converge to the v0.8.7 release boundary." >&2
+            echo "Live GitHub Pages site did not expose the current v0.8.8 release boundary." >&2
             exit 1
           fi
 
-          echo "Live v0.8.7 HTML and Manifest 2.0 verified."
+          echo "Live v0.8.8 HTML and Manifest 2.0 verified."
           sha256sum "$html" "$manifest"
