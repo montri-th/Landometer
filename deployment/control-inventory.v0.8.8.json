@@ -298,9 +298,9 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "Browser download starts for the exact Markdown master",
       "recovery": "Open the same-origin href directly",
-      "finalState": "The 227,972-byte v0.8.8 Markdown file is available locally",
+      "finalState": "The 227,924-byte whitespace-normalized v0.8.8 Markdown file is available locally",
       "failureRecovery": "Open the same-origin href directly or use the Resources group",
-      "browserTest": "Inspect #download-system href and download attribute; request the href and assert HTTP 200, 227972 bytes, and the governed SHA-256."
+      "browserTest": "Inspect #download-system href and download attribute; request the href and assert HTTP 200, 227924 bytes, and the governed SHA-256."
     },
     {
       "id": "library-foundations-toggle",
@@ -466,7 +466,7 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "Browser download starts for the exact Markdown master",
       "recovery": "Use #download-system or open the href directly",
-      "finalState": "The byte-identical authoring master is available locally",
+      "finalState": "The whitespace-normalized authoring master is available locally",
       "failureRecovery": "Use #download-system or open the href directly",
       "browserTest": "Assert #resource-download-system matches #download-system href and download behavior; verify HTTP 200, byte count, and SHA-256."
     },
@@ -526,7 +526,7 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "The same-origin proposed non-normative Markdown note opens",
       "recovery": "Use browser Back",
-      "finalState": "The note visibly distinguishes proposed artifact guidance from the byte-identical owner-approved master",
+      "finalState": "The note visibly distinguishes proposed artifact guidance from the whitespace-normalized owner-approved master",
       "failureRecovery": "Open the same-origin path directly from the repository",
       "browserTest": "Inspect #resource-implementation-notes href/type; request it and assert HTTP 200, proposed/non-normative status, IMPL-SHARE-01, IMPL-SEARCH-EXT-01, and IMPL-EXAMPLE-01."
     },
