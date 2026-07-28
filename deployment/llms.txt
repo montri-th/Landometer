@@ -1,0 +1,43 @@
+# Landometer Design System
+
+> Version 0.8.8 source-limited Design Identity Playground and implementation reference.
+
+Canonical page: https://montri-th.github.io/Landometer/
+Release status: internal_demo; source_limited; noindex; machineValidation pending
+Languages: Thai and English
+Governed object: landometer-design-system@0.8.8
+Channel parity key: ldm.ds.v0.8.8.design-identity-playground
+
+## Primary reference
+
+- Design System v0.8.8 Markdown: https://montri-th.github.io/Landometer/assets/downloads/landometer-design-system-v0.8.8.md
+- Proposed implementation clarifications: https://montri-th.github.io/Landometer/implementation-notes.v0.8.8.md
+
+## Machine-readable release context
+
+- Site Manifest 2.0: https://montri-th.github.io/Landometer/site-manifest.v0.8.8.json
+- Build Card v0.8.8: https://montri-th.github.io/Landometer/build-card.v0.8.8.yml
+- Control Inventory: https://montri-th.github.io/Landometer/control-inventory.v0.8.8.json
+- Automated QA record: https://montri-th.github.io/Landometer/qa/v0.8.8-automated.json
+- Manual QA gates: https://montri-th.github.io/Landometer/qa/v0.8.8-manual-gates.md
+
+## Evidence and capability boundaries
+
+- This release is not a Full Living Reference.
+- Dataviz examples use synthetic training fixture DV-FIXTURE-0.1.
+- Product data, methods, claims, terminology, thresholds, and capabilities remain product-specific.
+- Locale Insight spans Land, Location, and Living at portfolio, methodology, and product-architecture levels without merging product evidence boundaries.
+- Cross-product or cross-city comparison requires the same compatible schema and release, or a visible incompatibility explanation.
+- The playground does not save, share, invite, publish, track, or mutate a remote governed object.
+- Contextual discovery is enabled only as one explicit, user-triggered Google Search GET. It sends the visible, editable query to Google in a new tab; returned material remains discovery-only.
+- No bounded agent action is enabled. Machine-readable files are reference inputs, not permission to act.
+
+## Machine-use rules
+
+- Preserve object ID, version, scope, boundary, time, source, missingness, confidence, limitation, allowed use, visibility, and authoritative state.
+- Never upgrade partial to complete, modelled to observed, planned to available, sent to received, handoff to network effect, or discovery to evidence.
+- Do not universalize CityMETER, CityWiki, CityChat, ijji, municipality, retail, F&B, flood, land-valuation, or other product-instance assumptions.
+- Do not make or execute consequential decisions affecting rights, access, eligibility, housing, health, safety, employment, credit, or public benefit.
+- Do not infer an agent action endpoint from a human-facing link or control.
+
+This project-path llms.txt is a navigation aid only. It is not the host-root llms.txt for montri-th.github.io and is not guaranteed to be discovered by search engines or AI systems.
