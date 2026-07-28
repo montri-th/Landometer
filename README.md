@@ -21,9 +21,9 @@ The contextual-discovery specimen composes a visible editable Google query from 
 
 Three synthetic dataviz patterns—Compare, Change, and Relationship—keep units, source, no-data, measured-zero, limitation, and visible table alternatives attached. They are `DV-FIXTURE-0.1` training examples, not city, place, product, or outcome evidence.
 
-Download the byte-identical human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.8.8.md`](deployment/assets/downloads/landometer-design-system-v0.8.8.md).
+Download the whitespace-normalized human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.8.8.md`](deployment/assets/downloads/landometer-design-system-v0.8.8.md). Its normative text and ordering are unchanged; trailing Markdown hard-break spaces were removed to satisfy repository whitespace checks.
 
-The artifact-level additions remain separate from that byte-identical authority in [`deployment/implementation-notes.v0.8.8.md`](deployment/implementation-notes.v0.8.8.md). This proposed, non-normative clarification covers contextual external search, share placement, positive examples, and release-gated SEO/machine discovery. [`deployment/llms.txt`](deployment/llms.txt) is an optional project-path navigation aid—not a ranking signal, host-root discovery guarantee, access-control rule, conformance claim, or permission for an agent to act.
+The artifact-level additions remain separate from that owner-approved authority in [`deployment/implementation-notes.v0.8.8.md`](deployment/implementation-notes.v0.8.8.md). This proposed, non-normative clarification covers contextual external search, share placement, positive examples, and release-gated SEO/machine discovery. [`deployment/llms.txt`](deployment/llms.txt) is an optional project-path navigation aid—not a ranking signal, host-root discovery guarantee, access-control rule, conformance claim, or permission for an agent to act.
 
 The shared Landometer layer covers portfolio, methodology, and product architecture across **Land · Location · Living**. Product data, workflows, scores, models, claims, voice, and capabilities remain product-specific. Cross-product or cross-city comparison requires a compatible schema/release; otherwise incompatibility must remain visible.
 
