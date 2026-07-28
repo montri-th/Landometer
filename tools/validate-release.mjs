@@ -335,19 +335,19 @@ pass(
   "Reused opening photo bytes match the existing approved-path record"
 );
 pass(
-  sha256("assets/downloads/landometer-design-system-v0.8.8.md") === "8d763489eb7d6b553eeb625ceecace5a301208ef68ab7ac9711c1a2d091c4d48",
-  "Downloadable v0.8.8 authoring master matches the supplied source bytes"
+  sha256("assets/downloads/landometer-design-system-v0.8.8.md") === "19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776",
+  "Downloadable whitespace-normalized v0.8.8 authoring master matches the governed hash"
 );
 pass(
-  readFileSync(resolve(root, "assets/downloads/landometer-design-system-v0.8.8.md")).byteLength === 227972,
-  "Downloadable v0.8.8 authoring master has the governed byte count"
+  readFileSync(resolve(root, "assets/downloads/landometer-design-system-v0.8.8.md")).byteLength === 227924,
+  "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "bd48ef6a48b49214c61c8ac35647bce0b9dec9018b974706938442e8bff5f279",
+  sha256("implementation-notes.v0.8.8.md") === "af733d265b17a956c67d131be3746d0b2cd4f35ea5582d0a3657c742634e559e",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 7367,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 7402,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
@@ -361,8 +361,8 @@ pass(
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 7367 &&
-    asset.sha256 === "bd48ef6a48b49214c61c8ac35647bce0b9dec9018b974706938442e8bff5f279"
+    asset.bytes === 7402 &&
+    asset.sha256 === "af733d265b17a956c67d131be3746d0b2cd4f35ea5582d0a3657c742634e559e"
   ),
   "Manifest records the exact implementation clarification"
 );
