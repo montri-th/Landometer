@@ -253,16 +253,16 @@
     },
     {
       "path": "assets/downloads/landometer-design-system-v0.8.8.md",
-      "bytes": 227972,
-      "sha256": "8d763489eb7d6b553eeb625ceecace5a301208ef68ab7ac9711c1a2d091c4d48",
+      "bytes": 227924,
+      "sha256": "19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776",
       "usageClass": "human-readable authoring master download",
-      "transform": "byte-identical copy of the supplied v0.8.8 integrated Markdown master",
+      "transform": "trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged",
       "status": "source_limited; machineValidation pending"
     },
     {
       "path": "implementation-notes.v0.8.8.md",
-      "bytes": 7367,
-      "sha256": "bd48ef6a48b49214c61c8ac35647bce0b9dec9018b974706938442e8bff5f279",
+      "bytes": 7402,
+      "sha256": "af733d265b17a956c67d131be3746d0b2cd4f35ea5582d0a3657c742634e559e",
       "usageClass": "proposed artifact-level implementation clarification",
       "authority": "non-normative until incorporated into an owner-approved Design System release"
     },
