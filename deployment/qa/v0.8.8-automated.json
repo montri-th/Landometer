@@ -1,0 +1,60 @@
+{
+  "artifact": "landometer-design-identity-playground-v0.8.8",
+  "testedAt": "2026-07-28",
+  "machineValidation": "pending",
+  "staticValidator": {
+    "status": "passed",
+    "summary": "v0.8.8 validation PASSED · 292 static checks · 28 controls · machineValidation pending",
+    "scope": [
+      "release identity and evidence boundary",
+      "Build Card and Manifest 2.0 alignment",
+      "disabled capability assertions",
+      "protected brand lines, Brand DNA, Locale Insight, and product-layer boundary",
+      "canonical color and gradient recipes",
+      "single H1 and exact control inventory parity",
+      "no external script, stylesheet, font host, network, or telemetry API",
+      "reused image and packaged font byte hashes",
+      "reduced-motion, no-JavaScript, clipboard recovery, and quiet-field source hooks"
+    ]
+  },
+  "scriptParse": {
+    "status": "passed",
+    "inlineScriptsParsed": 2,
+    "parser": "Node.js vm.Script"
+  },
+  "localHttpSmoke": {
+    "status": "passed",
+    "passed": 9,
+    "failed": 0,
+    "checks": [
+      "HTML 200",
+      "Manifest 2.0 JSON 200",
+      "logo PNG 200",
+      "team photo JPEG 200",
+      "Arvo 700 WOFF2 200",
+      "IBM Plex Sans Thai Looped 700 Thai WOFF2 200",
+      "Bai Jamjuree 400 Thai WOFF2 200",
+      "Bai Jamjuree 600 Thai WOFF2 200",
+      "JetBrains Mono 500 WOFF2 200"
+    ]
+  },
+  "sourceIntegrity": {
+    "status": "passed",
+    "gitDiffCheck": "passed",
+    "archiveUsed": false,
+    "forcePushUsed": false
+  },
+  "browserQA": {
+    "status": "not_run",
+    "reason": "The requested deliverable did not explicitly include browser testing; responsive, perceptual, interaction, and screen-reader checks remain manual gates."
+  },
+  "openManualGates": [
+    "Thai read-aloud and bilingual parity tied to final copy hashes",
+    "five-reviewer recognition and 5-second/30-second/2-minute adoption checks",
+    "logo variant, delivered size, clear space, and surface approval",
+    "photo owner, creator, context, rights, expiry, privacy, and rendition approval",
+    "perceptual quiet, gradient deletion, and worst-sample contrast",
+    "responsive, zoom, keyboard, dialog, clipboard recovery, and screen-reader matrix",
+    "regenerated v0.8.8 public-safe machine package and release evidence"
+  ]
+}
