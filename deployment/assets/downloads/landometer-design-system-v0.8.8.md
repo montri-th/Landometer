@@ -1,14 +1,14 @@
 # Landometer Design System v0.8.8
 
-**Release:** v0.8.8  
-**Manifest version:** 2.0 — unchanged  
-**Token schema version:** 6 — unchanged  
-**Build Card schema version:** 0.8.8  
-**Status:** Owner-approved simplified normative authoring master; the v0.8.8 public-safe machine package, release lock, source fingerprint, rule ledger, schemas, recipes, and preflight MUST be regenerated before package-level v0.8.8 conformance is claimed  
-**Prepared:** 25 July 2026  
-**Supersedes:** Landometer Design System v0.8.7 for human-readable authoring. The frozen v0.8.7 package and earlier packages remain read-only migration and compatibility evidence. v0.8.8 retains Manifest 2.0 and Token Schema 6, adds no raw color value, Profile, Trigger Pack, optional capability, menu, mode, or default-route scene, and introduces composition records for perceptual quiet, governed atmosphere surfaces, and semantic connectors. Package-level validation never certifies an individual implementation: every artifact must still pass its applicable Build Card, asset, evidence, browser, accessibility, privacy, composition, and effect gates.  
-**Audience:** every Landometer function, including Product, Design, Engineering, Marketing, Content, Data/Evidence, QA, Sales/Business, Operations, and AI coding agents  
-**Products:** Landometer, CityMETER, CityWiki, CityChat, and ijji  
+**Release:** v0.8.8
+**Manifest version:** 2.0 — unchanged
+**Token schema version:** 6 — unchanged
+**Build Card schema version:** 0.8.8
+**Status:** Owner-approved simplified normative authoring master; the v0.8.8 public-safe machine package, release lock, source fingerprint, rule ledger, schemas, recipes, and preflight MUST be regenerated before package-level v0.8.8 conformance is claimed
+**Prepared:** 25 July 2026
+**Supersedes:** Landometer Design System v0.8.7 for human-readable authoring. The frozen v0.8.7 package and earlier packages remain read-only migration and compatibility evidence. v0.8.8 retains Manifest 2.0 and Token Schema 6, adds no raw color value, Profile, Trigger Pack, optional capability, menu, mode, or default-route scene, and introduces composition records for perceptual quiet, governed atmosphere surfaces, and semantic connectors. Package-level validation never certifies an individual implementation: every artifact must still pass its applicable Build Card, asset, evidence, browser, accessibility, privacy, composition, and effect gates.
+**Audience:** every Landometer function, including Product, Design, Engineering, Marketing, Content, Data/Evidence, QA, Sales/Business, Operations, and AI coding agents
+**Products:** Landometer, CityMETER, CityWiki, CityChat, and ijji
 **Primary outcome:** Make every Landometer experience unmistakably Landometer, easy to use, grounded in truth, and able to move a person from understanding to useful action without losing meaning between teams.
 
 > **Active cultural invitation: Let us cultivate our city.**
@@ -461,19 +461,19 @@ If it answers none, remove or demote it.
 
 ### 3.1 Brand Statement `[POSITION-01]`
 
-**Who**  
+**Who**
 Landometer is an AI-driven urban data company for organizations and people who need to understand places, people behavior, local context, risk, opportunity, and change before making a decision.
 
-**What**  
+**What**
 Landometer turns fragmented urban and spatial information into clear, source-grounded intelligence that helps users see what matters, understand why it matters, decide, act, and learn from the outcome.
 
-**Which**  
+**Which**
 Unlike isolated GIS layers, map-only dashboards, one-off reports, generic AI answers, or disconnected communication tools, Landometer connects evidence, place context, explanation, decision, action, contribution, and learning.
 
-**How**  
+**How**
 Landometer combines structured urban and geospatial data, spatial analysis, local and human context, visible evidence and limits, its product ecosystem, ethical co-creation, and relevant-circle coordination.
 
-**Positioning**  
+**Positioning**
 Landometer is the decision-intelligence layer between raw urban data and real local action.
 
 ### 3.2 Three protected brand lines `[BRAND-01]`
@@ -603,13 +603,13 @@ The advisory Thai lint list, failure patterns, deletion tests, and fixtures live
 
 A long adoption route and a genuinely long action-bearing brand route retain exactly three **semantic promoted moments**:
 
-1. **Opening — Direction and invitation**  
+1. **Opening — Direction and invitation**
    Establish the profile-specific protected line, one real Landometer image or proof, and one start action. A governed atmosphere surface MAY support the opening, including a full-bleed photograph with a gradient/scrim.
 
-2. **Transition — Measure → Ground → Act**  
+2. **Transition — Measure → Ground → Act**
    Turn one principle into visible meaning, evidence, and action. The transition MAY use a large gradient field, a proof surface, or a change in photographic/flat atmosphere. It MUST NOT rely on decorative connector lines.
 
-3. **Closing — Shared action or useful reference**  
+3. **Closing — Shared action or useful reference**
    Use one concise shared-purpose line, one active-role takeaway or reference action, and the approved Measure/signature gradient when it supports closure.
 
 Gradient cadence and semantic rhythm are related but different:
@@ -2749,19 +2749,19 @@ Landometer Design System v0.8.8 succeeds when it makes real people, work, eviden
 
 Quiet is the part of the composition that lets the reader notice what matters first.
 
-A photograph may remain large.  
-A gradient may create direction.  
-Text may sit over genuine calm.  
+A photograph may remain large.
+A gradient may create direction.
+Text may sit over genuine calm.
 A line may connect things only when the relationship is real.
 
 > **Let us cultivate our city.**
 
 # Appendix D — Reference-only Thai voice recipe and approved structural fixtures
 
-**Reference ID:** `thai-voice-fixtures-v0.8.7-v1`  
-**v0.8.8 disposition:** retained unchanged; v0.8.8 changes composition rather than voice  
-**Status:** owner-approved structural fixture set; exact Thai/English siblings and review records live in `thai-voice-fixtures-v0.8.7.json`  
-**Load behavior:** reference and QA only; never part of default Core, Profile, or visible UI  
+**Reference ID:** `thai-voice-fixtures-v0.8.7-v1`
+**v0.8.8 disposition:** retained unchanged; v0.8.8 changes composition rather than voice
+**Status:** owner-approved structural fixture set; exact Thai/English siblings and review records live in `thai-voice-fixtures-v0.8.7.json`
+**Load behavior:** reference and QA only; never part of default Core, Profile, or visible UI
 
 These fixtures test structure and naturalness. Placeholders MUST resolve from the Build Card and canonical evidence record before use. Approval makes the structures usable as QA fixtures; it does not turn them into CityMETER claims, campaign copy, product availability, or evidence. The generated fixture file carries independently structured English siblings and the owner approval/parity record.
 
