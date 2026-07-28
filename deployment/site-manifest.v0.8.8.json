@@ -1,0 +1,137 @@
+{
+  "artifact": {
+    "id": "landometer-design-identity-playground-v0.8.8",
+    "version": "0.8.8",
+    "buildCardVersion": "0.8.8",
+    "manifestVersion": "2.0",
+    "tokenSchemaVersion": 6,
+    "product": "landometer",
+    "profile": "brand.public",
+    "pageKind": "design_identity_adoption_playground",
+    "pageKindSourceRef": "current owner instruction 2026-07-28 + ADOPT-01 + FLOW-02",
+    "delivery": "internal_demo",
+    "language": "th",
+    "additionalLanguages": ["en"],
+    "evidenceStatus": "source_limited",
+    "visibility": "public",
+    "indexable": false,
+    "canonicalUrl": "https://montri-th.github.io/Landometer/",
+    "machineValidation": "pending",
+    "fullLivingReference": false
+  },
+  "experience": {
+    "route": ["Cultivate", "Try", "Align", "Takeaway"],
+    "oneJob": "Improve one real work object and prepare it for the next person without changing its truth.",
+    "firstAha": "The same source-grounded object and facts become easier to scan and hand off when Assisted hierarchy is applied.",
+    "ahaEvidenceCue": "Identical object, status, source, boundary, limitation, and next action remain visible in both comparison states.",
+    "dominantObject": "landometer-design-system@0.8.8",
+    "primaryAction": "Open the practice fixture",
+    "nextUsefulAction": "Copy the 60-second recipe",
+    "cleanCompletion": "Leave with a selectable recipe and truthful release boundary.",
+    "brandSignatures": ["Measure", "Ground", "Cultivate"],
+    "channelParityKey": "ldm.ds.v0.8.8.design-identity-playground",
+    "locales": {
+      "fallback": "th",
+      "additional": ["en"],
+      "oneActiveAtATime": true,
+      "urlState": true,
+      "preferenceKey": "ldm88-lang"
+    },
+    "themes": {
+      "mode": "interactive_auto",
+      "support": "dual",
+      "default": "system",
+      "visibleOverride": true,
+      "preferenceKey": "ldm88-theme"
+    }
+  },
+  "composition": {
+    "quietRegions": [
+      {"id": "hero-message", "selector": ".hero-copy", "desktopThreshold": 0.3, "mobileThreshold": 0.2, "minimumDimensionRatio": 0.25, "secondaryUI": false, "status": "manual rectangle and perceptual review pending"},
+      {"id": "assisted-proof", "selector": ".proof-content", "desktopThreshold": 0.3, "mobileThreshold": 0.2, "minimumDimensionRatio": 0.25, "secondaryUI": false, "status": "manual rectangle and perceptual review pending"},
+      {"id": "closing-measure", "selector": ".closing-inner", "desktopThreshold": 0.3, "mobileThreshold": 0.2, "minimumDimensionRatio": 0.25, "secondaryUI": false, "status": "manual rectangle and perceptual review pending"}
+    ],
+    "gradientSurfaces": [
+      {"id": "hero-cultivate", "sceneId": "top", "recipe": "cultivate", "job": "entry", "angle": "135deg", "focalTarget": "cultural invitation and practice-fixture action", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-measure", "sceneId": "play", "recipe": "measure", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-ground", "sceneId": "play", "recipe": "ground", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-cultivate", "sceneId": "play", "recipe": "cultivate", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "closing-measure", "sceneId": "closing", "recipe": "measure", "job": "closure", "angle": "135deg", "focalTarget": "Brand Promise and return action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"}
+    ],
+    "scrims": [
+      {"id": "hero-copy-tonal-scrim", "selector": ".hero-copy::before", "job": "foreground contrast", "status": "sampled review pending"},
+      {"id": "signature-demo-scrim", "selector": ".proof-preview::before", "job": "foreground contrast", "status": "sampled review pending"},
+      {"id": "closing-dark-scrim", "selector": ".closing::before", "job": "foreground contrast", "status": "sampled review pending"}
+    ],
+    "connectors": []
+  },
+  "capabilities": {
+    "motionEnhancement": false,
+    "search": false,
+    "fullLivingReference": false,
+    "share": false,
+    "persistence": false,
+    "authentication": false,
+    "externalSideEffect": false,
+    "map": false,
+    "dataVisualization": false,
+    "analyticalEvidence": false,
+    "telemetry": false
+  },
+  "roleRegistry": {
+    "status": "not_applicable",
+    "reason": "The selected brand.public profile provides a product-neutral work-object fixture and makes no role-specific adoption proof claim."
+  },
+  "governedObject": {
+    "id": "landometer-design-system@0.8.8",
+    "status": "source_limited",
+    "source": "Landometer Design System v0.8.8 owner-approved authoring master, prepared 25 July 2026",
+    "boundary": "Shared design identity and experience guidance only; product data, workflow, scores, models, claims, and capabilities remain product-specific.",
+    "limitation": "The regenerated v0.8.8 public-safe machine package and artifact-level manual gates remain pending.",
+    "allowedUses": ["design-system education", "local deterministic comparison", "60-second preflight recipe"]
+  },
+  "assets": [
+    {
+      "path": "assets/images/landometer-logo-banner.png",
+      "bytes": 184476,
+      "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
+      "transform": "source bytes unchanged; responsive CSS crop uses object-fit:cover and object-position:53% center",
+      "reuseBoundary": "Exact existing repository path and bytes; formal current identity approval record remains pending."
+    },
+    {
+      "path": "assets/images/team-hero.jpg",
+      "bytes": 182387,
+      "sha256": "50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb",
+      "transform": "none",
+      "usageClass": "team identity and culture context; not product-outcome evidence",
+      "reuseBoundary": "Exact existing public repository rendition; formal rights, creator, and expiry record remains pending."
+    },
+    {
+      "path": "assets/fonts",
+      "usageClass": "existing repository-packaged Arvo, IBM Plex Sans Thai Looped, Bai Jamjuree, and JetBrains Mono faces",
+      "manifest": "font-assets.manifest.json"
+    }
+  ],
+  "publication": {
+    "repository": "https://github.com/montri-th/Landometer",
+    "repositoryVisibility": "public",
+    "canonicalUrl": "https://montri-th.github.io/Landometer/",
+    "robots": "noindex,nofollow,noarchive",
+    "telemetry": "disabled",
+    "status": "source-limited internal team playground in a public repository"
+  },
+  "qa": {
+    "controlInventoryPath": "control-inventory.v0.8.8.json",
+    "automatedEvidencePath": "qa/v0.8.8-automated.json",
+    "manualGatesPath": "qa/v0.8.8-manual-gates.md",
+    "machineValidation": "pending",
+    "openManualGates": [
+      "Thai naturalness/read-aloud and bilingual governed-value parity tied to final copy hashes",
+      "five-reviewer Landometer recognition and 5-second/30-second/2-minute adoption checks",
+      "logo delivered-size, clear-space, and exact surface approval",
+      "media permission, creator, privacy, context, and expiry confirmation",
+      "perceptual quiet, gradient deletion, and contrast sampling review",
+      "desktop/mobile keyboard and screen-reader matrix"
+    ]
+  }
+}

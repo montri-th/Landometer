@@ -1,0 +1,240 @@
+landometerBuild:
+  dsVersion: 0.8.8
+  schemas:
+    buildCard: 0.8.8
+    manifest: 2.0
+    tokens: 6
+  legacyReadOnlyBaseline:
+    authoringMasterVersion: 0.8.7
+    manifestVersion: 2.0
+    tokenSchemaVersion: 6
+  artifact:
+    name: Landometer Design Identity Playground
+    product: landometer
+    profile: brand.public
+    pageKind: design_identity_adoption_playground
+    pageKindSourceRef: current owner instruction 2026-07-28 + ADOPT-01 + FLOW-02
+    delivery: internal_demo
+    language: th
+    additionalLanguages: [en]
+    generationMode: not_applicable
+    outputType: webpage
+  publication:
+    evidenceStatus: source_limited
+    visibility: public
+    indexable: false
+    canonicalUrl: https://montri-th.github.io/Landometer/
+  audience:
+    primary: every Landometer function working with design identity and experience
+    role: cross-functional adoption
+    roleRegistry:
+      owner: not_applicable
+      version: not_applicable
+      roles: []
+      uiStatus: not_applicable to brand.public; no role-specific proof or claim is rendered
+  voice:
+    applies: true
+    locales:
+      - locale: th
+        ruleRefs: [VOICE-01, COPY-01, LDM-VOICE-01, LOCALE-TH-01]
+        normativeSourceRef: Landometer Design System v0.8.8 authoring master
+        authoringBasisRef: current owner instruction + product-neutral shared-layer fixture
+        fixtureSetRef: Appendix D
+        copyHash: pending final publication parity record
+        naturalnessReviewRef: pending Thai read-aloud review
+        parityReviewRef: pending bilingual parity review
+      - locale: en
+        ruleRefs: [VOICE-01, COPY-01, LDM-VOICE-01]
+        normativeSourceRef: Landometer Design System v0.8.8 authoring master
+        authoringBasisRef: current owner instruction + product-neutral shared-layer fixture
+        fixtureSetRef: Appendix D
+        copyHash: pending final publication parity record
+        naturalnessReviewRef: pending editorial review
+        parityReviewRef: pending bilingual parity review
+  experience:
+    trigger: a team member needs to apply Landometer design identity to a screen, map, report, or message
+    oneJob: improve one real work object and prepare it for the next person without changing its truth
+    promisedOutcome: a 60-second recipe that keeps Brand DNA, Voice, Visual, and evidence boundary together
+    firstAha: the same source-grounded object and facts become easier to scan and hand off when Assisted hierarchy is applied
+    ahaEvidenceCue: identical object, status, source, boundary, limitation, and next action remain visible in both comparison states
+    primaryAction: Open the practice fixture
+    nextUsefulAction: Copy the 60-second recipe
+    nextTriggerOrCleanCompletion: take the recipe into the real work tool or leave without saving
+    dominantObject: landometer-design-system@0.8.8
+    channelParityKey: ldm.ds.v0.8.8.design-identity-playground
+    brandSignatures: [Measure, Ground, Cultivate]
+    cleanCompletion: reader leaves with a selectable recipe and truthful release boundary
+  composition:
+    quietRegions:
+      - id: hero-message
+        selector: .hero-copy
+        job: keep the cultural invitation, one support sentence, and one action as the only focal group
+        desktopThreshold: 0.30
+        mobileThreshold: 0.20
+        minimumDimensionRatio: 0.25
+        secondaryUI: false
+        focalPreservation: source inspection passed
+        measuredRectangles: pending internal-demo manual review
+      - id: assisted-proof
+        selector: .proof-content
+        job: keep one work object, its proof, and its next action readable without a literal empty component
+        desktopThreshold: 0.30
+        mobileThreshold: 0.20
+        minimumDimensionRatio: 0.25
+        secondaryUI: false
+        focalPreservation: source inspection passed
+        measuredRectangles: pending internal-demo manual review
+      - id: closing-measure
+        selector: .closing-inner
+        job: close the route with the Brand Promise and one return action
+        desktopThreshold: 0.30
+        mobileThreshold: 0.20
+        minimumDimensionRatio: 0.25
+        secondaryUI: false
+        focalPreservation: source inspection passed
+        measuredRectangles: pending internal-demo manual review
+    gradientSurfaces:
+      - id: hero-cultivate
+        sceneId: top
+        recipe: cultivate
+        job: entry
+        sourceTokenRefs: [surface.cultivate]
+        angle: 135deg
+        focalTarget: cultural invitation + practice-fixture action
+        readingDirection: invitation to real team context
+        foregroundStrategy: deterministic canvas scrim
+        logoPairing: none; logo is on an adjacent separate surface
+        contrastEvidence: pending internal-demo sampled review
+        deletionTest: pending manual review
+      - id: visual-measure
+        sceneId: play
+        recipe: measure
+        job: product_identity
+        sourceTokenRefs: [surface.measure]
+        angle: 135deg
+        focalTarget: active work object
+        readingDirection: same object under one selected signature
+        foregroundStrategy: deterministic dark scrim
+        logoPairing: none
+        contrastEvidence: pending internal-demo sampled review
+        deletionTest: pending manual review
+      - id: visual-ground
+        sceneId: play
+        recipe: ground
+        job: product_identity
+        sourceTokenRefs: [surface.ground]
+        angle: 135deg
+        focalTarget: active work object
+        readingDirection: same object under one selected signature
+        foregroundStrategy: deterministic canvas scrim
+        logoPairing: none
+        contrastEvidence: pending internal-demo sampled review
+        deletionTest: pending manual review
+      - id: visual-cultivate
+        sceneId: play
+        recipe: cultivate
+        job: product_identity
+        sourceTokenRefs: [surface.cultivate]
+        angle: 135deg
+        focalTarget: active work object
+        readingDirection: same object under one selected signature
+        foregroundStrategy: deterministic canvas scrim
+        logoPairing: none
+        contrastEvidence: pending internal-demo sampled review
+        deletionTest: pending manual review
+      - id: closing-measure
+        sceneId: closing
+        recipe: measure
+        job: closure
+        sourceTokenRefs: [surface.measure]
+        angle: 135deg
+        focalTarget: Brand Promise + return action
+        readingDirection: promise to final handoff test
+        foregroundStrategy: deterministic dark scrim
+        logoPairing: none
+        contrastEvidence: pending internal-demo sampled review
+        deletionTest: pending manual review
+    scrims:
+      - id: hero-copy-tonal-scrim
+        selector: .hero-copy::before
+        job: deterministic foreground contrast over the Cultivate atmosphere
+        themeVariants: [light, dark]
+        contrastEvidence: pending internal-demo sampled review
+      - id: signature-demo-scrim
+        selector: .proof-preview::before
+        job: deterministic foreground contrast for selectable atmosphere states
+        themeVariants: [light, dark]
+        contrastEvidence: pending internal-demo sampled review
+      - id: closing-dark-scrim
+        selector: .closing::before
+        job: deterministic foreground contrast over the Measure closure surface
+        themeVariants: [light, dark]
+        contrastEvidence: pending internal-demo sampled review
+    connectors: []
+  brandAlignment:
+    productStatement: shared Landometer design identity only; no product capability statement
+    proofObject: landometer-design-system@0.8.8
+    ahaProvesPromise: true
+    networkAdvancesObjective: false
+  investment:
+    mode: none_no_honest_investment
+  proof:
+    kind: brand
+    object: landometer-design-system@0.8.8
+    sourceStatus: source_limited
+    limitation: owner-approved authoring master; regenerated public-safe machine package and artifact gates remain pending
+  theme:
+    mode: interactive_auto
+    support: dual
+    default: system
+    visibleOverride: true
+  motion:
+    intensity: guided
+    motionEnhancement: false
+  capabilities:
+    analyticalEvidence: false
+    motionEnhancement: false
+    personalization: false
+    search: false
+    share: false
+    map: false
+    dataVisualization: false
+    coCreation: false
+    persistence: false
+    externalSideEffect: false
+    authentication: false
+    permissions: false
+    contextDiscovery: false
+    agentReadable: false
+    boundedAgentAction: false
+    agentActionEffect: none
+    fullLivingReference: false
+  privacy:
+    personalData: false
+    sensitivity: public
+    redactedPublicProjection: false
+  telemetry:
+    enabled: false
+    scope: none
+    purpose: ""
+    dataClasses: []
+    retention: ""
+    privacyBasis: ""
+  network:
+    mode: reference_ready
+    action: none
+    recipientOutcome: same work object and evidence boundary
+    policyReason: local educational fixture only
+  identity:
+    logoPath: assets/images/landometer-logo-banner.png
+    logoSha256: f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535
+    logoTransform: none
+    logoApprovalBoundary: existing repository public-use record; formal current identity registry remains pending
+    openingPhotoPath: assets/images/team-hero.jpg
+    openingPhotoSha256: 50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb
+    openingPhotoTransform: source bytes unchanged; responsive CSS crop uses object-fit cover and object-position 53% center
+    photoApprovalBoundary: exact existing public repository rendition reused; formal rights and expiry record remains pending
+  qa:
+    evidencePath: deployment/qa/
+    controlInventoryPath: deployment/control-inventory.v0.8.8.json
+    machineValidation: pending
