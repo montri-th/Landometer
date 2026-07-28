@@ -1,11 +1,11 @@
 # Landometer Design System v0.8.8 — Implementation clarifications
 
-**Status:** Proposed artifact-level clarification  
-**Authority:** Non-normative until incorporated into an owner-approved Design System release  
-**Applies to:** The v0.8.8 Design Identity Playground implementation  
+**Status:** Proposed artifact-level clarification
+**Authority:** Non-normative until incorporated into an owner-approved Design System release
+**Applies to:** The v0.8.8 Design Identity Playground implementation
 **Preserves:** `[CORE-03]`, `[CORE-10]`, `[CTRL-01]`, `[STATE-01]`, `[SHARE-01]`, `[CONTEXT-01]`, `[PUB-01]`, and `[AGENT-OUT-01]`
 
-This note makes four implementation clarifications explicit without changing the byte-identical v0.8.8 authoring master.
+This note makes four implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
 
 ## IMPL-SHARE-01 — Share by recipient value, never by repetition
 
