@@ -108,15 +108,18 @@ pass(
 );
 pass(manifest.fixtureCapabilities?.contextualDiscovery?.fixtureId === "CONTEXT-FIXTURE-0.1", "Contextual discovery is bounded to CONTEXT-FIXTURE-0.1");
 pass(manifest.fixtureCapabilities?.contextualDiscovery?.resultStatus.startsWith("discovery_only"), "External search results remain discovery-only");
-pass(manifest.fixtureCapabilities?.contextualDiscovery?.activeFilter.includes("field label only"), "Context fixture excludes a real casualty value");
+pass(manifest.fixtureCapabilities?.contextualDiscovery?.activeFilter.includes("visible field label"), "Context fixture preserves the active visible field");
 pass(manifest.fixtureCapabilities?.contextualDiscovery?.thirdPartyRequest === true, "Context fixture declares the real third-party GET");
 pass(manifest.fixtureCapabilities?.contextualDiscovery?.remoteMutation === false, "Context fixture does not mutate a remote governed object");
-pass(manifest.fixtureCapabilities?.contextualDiscovery?.activeObject.includes("not a real event"), "Context fixture explicitly marks the synthetic event as non-real");
+pass(manifest.fixtureCapabilities?.contextualDiscovery?.activeObject.includes("four CityMETER records"), "Context fixture declares four product-specific records");
+pass(manifest.fixtureCapabilities?.contextualDiscovery?.limitation.includes("no provenance"), "Context fixture keeps the source-provenance limitation explicit");
+pass(manifest.fixtureCapabilities?.dataVisualization?.snapshotId === "CITYMETER-DV-SNAPSHOT-2026-07-29", "Dataviz declares the CityMETER snapshot fixture");
 pass(manifest.fixtureCapabilities?.machineDiscovery?.status === "navigation_aid_only", "llms.txt remains a navigation aid only");
 pass(manifest.fixtureCapabilities?.machineDiscovery?.agentReadableCapability === false, "Machine discovery does not claim agent-readable capability");
 pass(manifest.fixtureCapabilities?.machineDiscovery?.boundedAgentAction === false, "Machine discovery grants no bounded agent action");
 for (const fixtureId of [
   "DV-FIXTURE-0.1",
+  "CITYMETER-DV-SNAPSHOT-2026-07-29",
   "UX-FIXTURE-0.1",
   "MOTION-FIXTURE-0.1",
   "NETWORK-FIXTURE-0.1",
@@ -148,6 +151,7 @@ pass(buildCard.includes("connectors: []"), "Build Card declares no connector");
 pass(buildCard.includes("dataVisualization: true"), "Build Card declares the synthetic dataviz examples");
 pass(buildCard.includes("analyticalEvidence: true"), "Build Card couples dataviz to its reference fixture");
 pass(buildCard.includes("fixtureId: DV-FIXTURE-0.1"), "Build Card names the synthetic dataviz fixture");
+pass(buildCard.includes("snapshotId: CITYMETER-DV-SNAPSHOT-2026-07-29"), "Build Card names the CityMETER dataviz snapshot");
 pass(buildCard.includes("fixtureId: UX-FIXTURE-0.1"), "Build Card names the positive-design reference fixture");
 pass(buildCard.includes("fixtureId: MOTION-FIXTURE-0.1"), "Build Card names the semantic-motion reference fixture");
 pass(buildCard.includes("fixtureId: NETWORK-FIXTURE-0.1"), "Build Card names the recipient-value reference fixture");
@@ -184,6 +188,8 @@ pass(html.includes("Implementation Library") && (html.match(/<details class="lib
 pass(html.includes("CityMETER") && html.includes("CityWiki") && html.includes("CityChat") && html.includes("ijji"), "Product-adaptation templates are present");
 pass((html.match(/class="dataviz-pattern"/g) || []).length === 3, "Compare, Change, and Relationship dataviz examples are present");
 pass((html.match(/class="dataviz-table"/g) || []).length === 3, "Every rendered dataviz example has a visible table alternative");
+pass((html.match(/class="citymeter-chart-card"/g) || []).length === 9, "Nine CityMETER-derived dataviz treatments are present");
+pass(html.includes("5,944.26 km²") && html.includes("TOYOTA") && html.includes("MERCEDES BENZ · 626"), "CityMETER public snapshot values are visibly represented");
 pass((html.match(/class="opportunity-card"/g) || []).length === 15, "Fifteen positive opportunity sketches span foundations, components, and dataviz");
 pass((html.match(/class="intent-case(?: is-rejected)?"/g) || []).length === 4, "Three positive Intent-to-AHA cases and one rejected case are present");
 pass((html.match(/class="intent-case is-rejected"/g) || []).length === 1, "Exactly one rejected Intent-to-AHA case is present");
@@ -191,7 +197,8 @@ pass(html.includes("FOUNDATIONS IN ACTION · CREATIVE CONCEPT SKETCHES"), "Found
 pass(html.includes("four_component_ensembles") === false, "Internal manifest identifiers do not leak into reader-facing HTML");
 pass(html.includes("Measured zero") && html.includes("No data"), "Dataviz distinguishes measured zero from no data");
 pass(html.includes("Association does not establish cause"), "Relationship example does not imply causality");
-pass(/data-data-visualization="fixture_only"/.test(html), "HTML labels data visualization as fixture-only");
+pass(/data-data-visualization="fixtures_and_product_snapshots"/.test(html), "HTML distinguishes training fixtures from product snapshots");
+pass(html.includes("TREATMENT SKETCH") && html.includes("do not claim the live product already conforms"), "Dataviz treatment sketches do not claim live-product conformance");
 
 pass(!/Mission Lab|#7FA2F1|googleapis|gstatic|fonts\.google/i.test(html), "Forbidden legacy sub-brand, color, and font dependencies are absent");
 pass(!/#[0-9a-f]{6}\b[^<]*(purple|violet|lavender|fuchsia)/i.test(html), "No forbidden purple-family token is declared");
@@ -206,6 +213,10 @@ pass(html.includes("--font-display-th-fallback: \"Noto Sans Thai Looped\", \"Lee
 pass(html.includes("--font-body-fallback: \"Noto Sans Thai\", \"Leelawadee UI\", Tahoma, sans-serif"), "Body fallback token is exact");
 pass(html.includes("--font-number-fallback: \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace"), "Number fallback token is exact");
 pass(html.includes("document.fonts.ready"), "Font readiness is observed");
+pass(html.includes('rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2"'), "Thai label font is preloaded from the self-hosted asset");
+pass(html.includes("--font-label-th: \"Bai Jamjuree\""), "Thai compact labels have a deterministic semantic font role");
+pass(/html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)/.test(html), "Thai controls and handoff labels do not fall through JetBrains Mono to an OS font");
+pass(html.includes("document.fonts.load") && html.includes("thaiLabelsReady"), "Thai label glyph readiness is explicitly checked");
 pass(/body\s*\{[\s\S]*?font-family:\s*var\(--font-body\)/.test(html), "Body and UI use the governed Bai Jamjuree role");
 pass(!/body,\s*\n\s*button[\s\S]*?font:\s*inherit/.test(html), "Body font is not overwritten by the form-control inheritance rule");
 pass(html.includes("overflow-wrap: break-word") && !html.includes("overflow-wrap: anywhere"), "Text wrapping avoids arbitrary mid-word breaks");
@@ -256,21 +267,31 @@ pass(
   "Recipient-value ladder exposes every governed evidence stage"
 );
 pass(!/<(?:button|a)\b[^>]*(?:\bid="[^"]*(?:share|invite|send)|\bclass="[^"]*(?:share|invite|send))/i.test(html), "No live share, invite, or send control is rendered");
+pass((html.match(/class="ui-icon"/g) || []).length >= 28, "Outline icons carry scanning work across the library and examples");
+pass(/\.ui-icon\s*\{[\s\S]*?fill:\s*none[\s\S]*?stroke-linecap:\s*round[\s\S]*?stroke-linejoin:\s*round/.test(html), "Icon language is outline-only with rounded caps and joins");
 pass(
   /<form[\s\S]*?id="context-search-form"[\s\S]*?action="https:\/\/www\.google\.com\/search"[\s\S]*?method="get"[\s\S]*?target="_blank"[\s\S]*?rel="noopener noreferrer external"/.test(html),
   "Contextual discovery names Google, uses an explicit GET, and preserves the current page"
 );
 pass(html.includes('id="context-query"') && html.includes('name="q"') && html.includes("Editable, auto-composed query"), "Contextual query is visible, editable, and sent as q");
-pass(html.includes('data-event-name="CM-SYNTHETIC-DISASTER-001 ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง"'), "Contextual query carries a clearly non-real synthetic event label");
-pass(html.includes('data-active-filter="ยอดผู้เสียชีวิต"'), "Contextual query includes the active user-visible field label");
 pass(
-  html.includes('data-place-name="เทศบาลเมืองแสนสุข"') &&
-    html.includes('data-district-name="อำเภอเมืองชลบุรี"') &&
-    html.includes('data-province-name="จังหวัดชลบุรี"'),
-  "Contextual query includes the public place hierarchy"
+  ["tha-sai", "krok-phra", "bueng-lak", "na-to"].every(value => html.includes(`<option value="${value}">`)),
+  "Contextual discovery exposes four current-record examples"
 );
+pass(
+  html.includes("ปี 2567 อุทกภัย") &&
+    html.includes("27 พฤศจิกายน 2567") &&
+    html.includes("ยอดผู้เสียชีวิต") &&
+    html.includes("หมู่บ้านท่าไทร") &&
+    html.includes("องค์การบริหารส่วนตำบล เกาะยอ") &&
+    html.includes("อำเภอเมืองสงขลา") &&
+    html.includes("จังหวัดสงขลา"),
+  "Default contextual query includes the event, date, active field, and full public place hierarchy"
+);
+pass(html.includes('id="context-source"') && html.includes("CityMETER public API · checked 29 Jul 2026"), "Every selected context keeps an inspectable product source");
+pass(html.includes("public endpoint exposes no provenance") || html.includes("endpoint exposes no provenance"), "Current-record examples keep their evidence boundary visible");
 pass(html.includes("discovery_only") && html.includes("<s>See more</s>"), "External discovery keeps its evidence status and corrects the ambiguous label");
-pass(html.includes("Google receives the visible query only after activation"), "Third-party query disclosure is visible beside the fixture");
+pass(html.includes("Google receives the visible text only after activation"), "Third-party query disclosure is visible beside the fixture");
 pass(!html.includes("user-provided, product-specific reference scenario"), "Conversational provenance is not exposed as product guidance");
 pass(html.includes('id="resource-implementation-notes"') && html.includes('id="resource-llms"'), "Implementation clarification and machine-navigation aid are discoverable");
 pass(!/<meta\s+property="og:/i.test(html), "Internal demo omits Open Graph promotion metadata");
@@ -343,34 +364,34 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "af733d265b17a956c67d131be3746d0b2cd4f35ea5582d0a3657c742634e559e",
+  sha256("implementation-notes.v0.8.8.md") === "cd142b55f88d572a3515f7eaf08d89329bedda0404b952b00e565d2ac437d8f0",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 7402,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 8674,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
-  sha256("llms.txt") === "ba2690985e2ac814f14f6579ce140aa4c9d809498f85142bd927bd0b505c756d",
+  sha256("llms.txt") === "d32aea73c7ad4c5489a5112d33c053593a614976c9a6f10e0613ca77251ef977",
   "Machine-navigation aid hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "llms.txt")).byteLength === 2939,
+  readFileSync(resolve(root, "llms.txt")).byteLength === 3228,
   "Machine-navigation aid byte count matches the manifest record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 7402 &&
-    asset.sha256 === "af733d265b17a956c67d131be3746d0b2cd4f35ea5582d0a3657c742634e559e"
+    asset.bytes === 8674 &&
+    asset.sha256 === "cd142b55f88d572a3515f7eaf08d89329bedda0404b952b00e565d2ac437d8f0"
   ),
   "Manifest records the exact implementation clarification"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "llms.txt" &&
-    asset.bytes === 2939 &&
-    asset.sha256 === "ba2690985e2ac814f14f6579ce140aa4c9d809498f85142bd927bd0b505c756d"
+    asset.bytes === 3228 &&
+    asset.sha256 === "d32aea73c7ad4c5489a5112d33c053593a614976c9a6f10e0613ca77251ef977"
   ),
   "Manifest records the exact machine-navigation aid"
 );
