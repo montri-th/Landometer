@@ -522,9 +522,35 @@ pass(html.includes("--font-body-fallback: \"Noto Sans Thai\", \"Leelawadee UI\",
 pass(html.includes("--font-number-fallback: \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace"), "Number fallback token is exact");
 pass(html.includes("document.fonts.ready"), "Font readiness is observed");
 pass(html.includes('rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2"'), "Thai label font is preloaded from the self-hosted asset");
-pass(html.includes("--font-label-th: \"Bai Jamjuree\""), "Thai compact labels have a deterministic semantic font role");
-pass(/html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)/.test(html), "Thai controls and handoff labels do not fall through JetBrains Mono to an OS font");
-pass(html.includes("document.fonts.load") && html.includes("thaiLabelsReady"), "Thai label glyph readiness is explicitly checked");
+pass(html.includes('rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2"'), "Thai technical companion is preloaded from the self-hosted asset");
+pass(
+  html.includes('--font-technical-latin: "JetBrains Mono"') &&
+    html.includes('--font-technical-th: "IBM Plex Sans Thai"') &&
+    html.includes('--font-technical: "JetBrains Mono", "IBM Plex Sans Thai"'),
+  "Technical typography uses one deterministic script-aware JetBrains Mono and IBM Plex Sans Thai pair",
+);
+pass(
+  /font-family:\s*"IBM Plex Sans Thai";[\s\S]*?font-weight:\s*500;[\s\S]*?size-adjust:\s*102%;[\s\S]*?unicode-range:\s*U\+02D7,\s*U\+0303,\s*U\+0331,\s*U\+0E01-0E5B,\s*U\+200C-200D,\s*U\+25CC/.test(html),
+  "IBM Plex Sans Thai 500 has the exact Thai subset and conservative optical size adjustment",
+);
+pass(
+  html.includes("--font-label-th: var(--font-technical)") &&
+    /html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)[\s\S]*?font-weight:\s*500[\s\S]*?letter-spacing:\s*var\(--tracking-technical-th\)[\s\S]*?line-height:\s*var\(--leading-technical-th\)/.test(html),
+  "Thai controls and handoff labels use the tuned technical pair rather than an operating-system fallback",
+);
+pass(
+  html.includes("--leading-technical-th: 1.48") &&
+    html.includes("--tracking-technical-th: .008em") &&
+    /html\[data-locale="th"\] \.proof-state,[\s\S]*?padding-block:\s*5px/.test(html) &&
+    /html\[data-locale="th"\] \.atlas-scale-theme\s*\{[\s\S]*?padding-block:\s*4px/.test(html),
+  "Thai technical labels carry governed line-height, tracking, and compact-pill breathing room",
+);
+pass(
+  html.includes('document.fonts.load(\'500 16px "IBM Plex Sans Thai"\'') &&
+    html.includes("thaiBodyReady") &&
+    html.includes("thaiTechnicalReady"),
+  "Thai body and technical glyph readiness are checked independently",
+);
 pass(/body\s*\{[\s\S]*?font-family:\s*var\(--font-body\)/.test(html), "Body and UI use the governed Bai Jamjuree role");
 pass(!/body,\s*\n\s*button[\s\S]*?font:\s*inherit/.test(html), "Body font is not overwritten by the form-control inheritance rule");
 const anywhereWrapRules = cssRules(html).filter(rule =>
@@ -822,41 +848,41 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("landometer-design-system-v0.8.8-standalone.html") === "636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1",
+  sha256("landometer-design-system-v0.8.8-standalone.html") === "8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0",
   "Standalone HTML hash matches the release record"
 );
 pass(
-  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2159322,
+  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2191914,
   "Standalone HTML byte count matches the release record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
-    asset.bytes === 2159322 &&
-    asset.sha256 === "636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1"
+    asset.bytes === 2191914 &&
+    asset.sha256 === "8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0"
   ),
   "Manifest records the exact standalone HTML"
 );
 pass(
   buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
-    buildCard.includes("sha256: 636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1"),
+    buildCard.includes("sha256: 8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0"),
   "Build Card records the exact standalone HTML"
 );
 pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");
 pass(
-  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 9,
-  "Standalone HTML embeds all nine display-font files"
+  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 10,
+  "Standalone HTML embeds all ten display-font files"
 );
 pass(
   !/(?:src|href)="assets\//.test(standaloneHtml) && !/url\(["']?assets\//.test(standaloneHtml),
   "Standalone HTML has no display-critical relative asset"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "36d7a49fa9402a3b4dac8a94e98c1c7a4e1f5e27670293a200c8b560388c393d",
+  sha256("implementation-notes.v0.8.8.md") === "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 13457,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 14542,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
@@ -870,8 +896,8 @@ pass(
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 13457 &&
-    asset.sha256 === "36d7a49fa9402a3b4dac8a94e98c1c7a4e1f5e27670293a200c8b560388c393d"
+    asset.bytes === 14542 &&
+    asset.sha256 === "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181"
   ),
   "Manifest records the exact implementation clarification"
 );
@@ -901,6 +927,18 @@ for (const face of fontManifest.faces) {
   pass(existsSync(resolve(root, face.licenseFile)), `Font license exists: ${face.licenseFile}`);
   pass(html.includes(face.file), `Font is packaged in the single-page HTML: ${face.file}`);
 }
+pass(
+  fontManifest.faces.some(face =>
+    face.family === "IBM Plex Sans Thai" &&
+    face.subset === "thai" &&
+    face.weight === 500 &&
+    face.file === "assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2" &&
+    face.sha256 === "7e01c133031aba4ca902d81930096f0224d83f808014c1232016b49e0a7ecff6" &&
+    face.licenseFile === "assets/fonts/licenses/ibm-plex-sans-thai-OFL.txt" &&
+    face.sourcePackage === "@fontsource/ibm-plex-sans-thai@5.3.0"
+  ),
+  "Font manifest records the exact licensed IBM Plex Sans Thai 500 technical companion",
+);
 
 pass(!existsSync(resolve(root, "site-manifest.json")), "Stale unversioned manifest is removed");
 pass(!existsSync(resolve(root, "control-inventory.json")), "Stale unversioned control inventory is removed");

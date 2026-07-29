@@ -52,7 +52,10 @@ JetBrains Mono covers Latin and numerals in the v0.8.8 package; it is not a Thai
 Use script-aware routing:
 
 - JetBrains Mono for ASCII identifiers, numbers, and short Latin technical labels.
-- Self-hosted Bai Jamjuree for Thai technical labels that do not require fixed cells.
+- Self-hosted IBM Plex Sans Thai 500 for Thai technical labels that do not require fixed cells.
+- Bai Jamjuree 400/600 for continuous-reading Thai body and general UI; do not replace it globally when only the technical role changes.
 - Self-hosted TlwgMono only when genuine Thai fixed-cell behavior is functionally required and its terminal-style forms pass readability review.
 
 Never let a generic `monospace` fallback choose the Thai face by device. Package the selected face, license record, hashes, and Thai subset; verify computed family after `document.fonts.ready` with third-party requests blocked.
+
+Treat IBM Plex Sans Thai as an optical companion, not a true monospace face. Start conservatively with weight 500, `size-adjust: 102%`, `.008em` tracking, `1.48` compact-label line-height, and enough vertical pill padding to protect Thai marks. Then review mixed-script baselines, combining marks, 12–16 CSS px labels, 130% Thai, 200% zoom, export, and all supported devices. Record any tuning as an implementation value until a normative release approves it.

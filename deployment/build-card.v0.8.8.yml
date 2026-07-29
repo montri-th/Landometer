@@ -409,10 +409,10 @@ landometerBuild:
       transform: trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged
       status: source_limited; machineValidation pending
     - path: landometer-design-system-v0.8.8-standalone.html
-      bytes: 2159322
-      sha256: 636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1
+      bytes: 2191914
+      sha256: 8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0
       usageClass: self-contained single-file playground snapshot
-      transform: generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs
+      transform: generated from deployment/index.html with ten display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs
       status: source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending
     - path: implementation-notes.v0.8.8.md
       authority: proposed artifact-level clarification; non-normative until an owner-approved release incorporates it

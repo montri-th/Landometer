@@ -302,7 +302,7 @@
     },
     {
       "path": "assets/fonts",
-      "usageClass": "existing repository-packaged Arvo, IBM Plex Sans Thai Looped, Bai Jamjuree, and JetBrains Mono faces",
+      "usageClass": "self-hosted Arvo, IBM Plex Sans Thai Looped, Bai Jamjuree, JetBrains Mono, and IBM Plex Sans Thai 500 technical-companion faces",
       "manifest": "font-assets.manifest.json"
     },
     {
@@ -315,16 +315,16 @@
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.html",
-      "bytes": 2159322,
-      "sha256": "636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1",
+      "bytes": 2191914,
+      "sha256": "8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0",
       "usageClass": "self-contained single-file playground snapshot",
-      "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
+      "transform": "generated from deployment/index.html with ten display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"
     },
     {
       "path": "implementation-notes.v0.8.8.md",
-      "bytes": 13457,
-      "sha256": "36d7a49fa9402a3b4dac8a94e98c1c7a4e1f5e27670293a200c8b560388c393d",
+      "bytes": 14542,
+      "sha256": "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181",
       "usageClass": "proposed artifact-level implementation clarification",
       "authority": "non-normative until incorporated into an owner-approved Design System release"
     },
@@ -360,7 +360,7 @@
     "manualGatesPath": "qa/v0.8.8-manual-gates.md",
     "machineValidation": "pending",
     "openManualGates": [
-      "Thai naturalness/read-aloud, bilingual governed-value parity, and cross-device self-hosted Bai Jamjuree label-font confirmation",
+      "Thai naturalness/read-aloud, bilingual governed-value parity, and cross-device confirmation of self-hosted Bai Jamjuree body/UI plus the JetBrains Mono 500 and IBM Plex Sans Thai 500 technical pair",
       "five-reviewer Landometer recognition and 5-second/30-second/2-minute adoption checks",
       "logo delivered-size, clear-space, transparent-background invariant, release-metadata transparency, and shared header-surface approval",
       "media permission, creator, privacy, context, and expiry confirmation",

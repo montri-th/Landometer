@@ -32,6 +32,7 @@
   <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/">
   <link rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>
     (() => {
       const root = document.documentElement;
@@ -114,6 +115,15 @@
       font-weight: 600;
       font-display: swap;
       unicode-range: U+0000-024F, U+1E00-1EFF;
+    }
+    @font-face {
+      font-family: "IBM Plex Sans Thai";
+      src: url("assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      size-adjust: 102%;
+      unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
     }
     @font-face {
       font-family: "JetBrains Mono";
@@ -255,9 +265,14 @@
       --font-ui-heading-en: "Arvo", var(--font-display-en-fallback);
       --font-ui-heading-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
       --font-body: "Bai Jamjuree", var(--font-body-fallback);
-      --font-number: "JetBrains Mono", var(--font-number-fallback);
-      --font-label-th: "Bai Jamjuree", "Leelawadee UI", Tahoma, sans-serif;
-      --font-data-label: "JetBrains Mono", "Bai Jamjuree", "SFMono-Regular", Consolas, monospace;
+      --font-technical-latin: "JetBrains Mono", var(--font-number-fallback);
+      --font-technical-th: "IBM Plex Sans Thai", var(--font-body-fallback);
+      --font-technical: "JetBrains Mono", "IBM Plex Sans Thai", "SFMono-Regular", Consolas, monospace;
+      --font-number: var(--font-technical);
+      --font-label-th: var(--font-technical);
+      --font-data-label: var(--font-technical);
+      --leading-technical-th: 1.48;
+      --tracking-technical-th: .008em;
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -1324,8 +1339,9 @@
     html[data-locale="th"] .control-block legend,
     html[data-locale="th"] .handoff-record dt {
       font-family: var(--font-label-th);
-      font-weight: 400;
-      letter-spacing: 0;
+      font-weight: 500;
+      letter-spacing: var(--tracking-technical-th);
+      line-height: var(--leading-technical-th);
       text-transform: none;
     }
     .handoff-record dd {
@@ -1910,7 +1926,18 @@
     }
     .type-technical-th {
       font-family: var(--font-data-label);
-      font-weight: 400;
+      font-weight: 500;
+      letter-spacing: var(--tracking-technical-th);
+      line-height: var(--leading-technical-th);
+    }
+    html[data-locale="th"] .proof-state,
+    html[data-locale="th"] .color-status {
+      padding-block: 5px;
+      line-height: var(--leading-technical-th);
+    }
+    html[data-locale="th"] .atlas-scale-theme {
+      padding-block: 4px;
+      line-height: var(--leading-technical-th);
     }
     .library-color-signal {
       display: flex;
@@ -5650,7 +5677,7 @@
                   <li><span class="type-display-en">English display</span><small>Arvo · 700 · display/Product UI heading</small></li>
                   <li><span class="type-display-th">หัวเรื่องภาษาไทย</span><small>IBM Plex Sans Thai Looped · 700</small></li>
                   <li><span class="type-body-sample">เนื้อหาและ UI ที่อ่านต่อเนื่อง</span><small>Bai Jamjuree · 400/600</small></li>
-                  <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>Bai Jamjuree สำหรับป้ายเทคนิคภาษาไทย · self-hosted · ไม่ปล่อยให้เครื่องเลือก fallback เอง</span><span data-en>Bai Jamjuree for Thai technical labels · self-hosted · never device-selected fallback</span></small></li>
+                  <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>IBM Plex Sans Thai · 500 · ปรับสัดส่วนให้เข้าคู่กับ JetBrains Mono · self-hosted</span><span data-en>IBM Plex Sans Thai · 500 · optically paired with JetBrains Mono · self-hosted</span></small></li>
                   <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 500; reserve 700 for true emphasis</small></li>
                 </ul>
               </article>
@@ -9806,10 +9833,12 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       if (document.fonts) {
         Promise.all([
           document.fonts.ready,
-          document.fonts.load('400 16px "Bai Jamjuree"', "ตอนนี้งานอยู่ช่วงไหน")
+          document.fonts.load('400 16px "Bai Jamjuree"', "เนื้อหาที่อ่านต่อเนื่อง"),
+          document.fonts.load('500 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่")
         ]).then(() => {
           root.dataset.fontsReady = "true";
-          root.dataset.thaiLabelsReady = document.fonts.check('400 16px "Bai Jamjuree"', "ตอนนี้งานอยู่ช่วงไหน") ? "true" : "false";
+          root.dataset.thaiBodyReady = document.fonts.check('400 16px "Bai Jamjuree"', "เนื้อหาที่อ่านต่อเนื่อง") ? "true" : "false";
+          root.dataset.thaiTechnicalReady = document.fonts.check('500 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่") ? "true" : "false";
         });
       }
       decorateOpportunityCards();

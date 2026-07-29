@@ -21,6 +21,7 @@ const embeddedAssets = [
   ["assets/fonts/bai-jamjuree-thai-600-normal.woff2", "font/woff2"],
   ["assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2", "font/woff2"],
   ["assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2", "font/woff2"],
+  ["assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2", "font/woff2"],
   ["assets/fonts/jetbrains-mono-latin-500-normal.woff2", "font/woff2"],
   ["assets/fonts/jetbrains-mono-latin-700-normal.woff2", "font/woff2"],
   ["assets/images/landometer-logo-banner.png", "image/png"],

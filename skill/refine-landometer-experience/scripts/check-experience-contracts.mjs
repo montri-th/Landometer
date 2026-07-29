@@ -91,9 +91,20 @@ try {
 
 const checks = [
   ["before/after data", /\bbefore:\s*\{/u.test(html) && /\bafter:\s*\{/u.test(html)],
-  ["visual surface owns metadata colors", /\.proof-preview\.is-visual\s+\.proof-meta/u.test(html)],
-  ["visual surface owns object color", /\.proof-preview\.is-visual\s+\.proof-object/u.test(html)],
-  ["Thai technical labels have a packaged face", /--font-data-label:[^;]*"Bai Jamjuree"/u.test(html)],
+  ["governed surface owns metadata colors", /\.proof-preview\.has-brand-surface\s+\.proof-meta/u.test(html)],
+  ["governed surface owns object color", /\.proof-preview\.has-brand-surface\s+\.proof-object/u.test(html)],
+  [
+    "Thai technical labels have the packaged companion face",
+    /--font-technical-th:[^;]*"IBM Plex Sans Thai"/u.test(html) &&
+      /--font-technical:[^;]*"JetBrains Mono"[^;]*"IBM Plex Sans Thai"/u.test(html) &&
+      /ibm-plex-sans-thai-thai-500-normal\.woff2/u.test(html)
+  ],
+  [
+    "Thai technical companion has conservative optical tuning",
+    /size-adjust:\s*102%/u.test(html) &&
+      /--tracking-technical-th:\s*\.008em/u.test(html) &&
+      /--leading-technical-th:\s*1\.48/u.test(html)
+  ],
   ["semantic recipe uses structured ordered list", /class="recipe-steps"/u.test(html)],
   ["no tab-indented numbered recipe item", !/\n\t+\d+\.\s/u.test(html)],
   ["six color teaching plates", (html.match(/class="color-plate(?:\s|")/gu) || []).length >= 6],
