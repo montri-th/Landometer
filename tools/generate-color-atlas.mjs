@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { readFile, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -13,7 +14,10 @@ const SCALE_SOURCE = path.join(
   "data",
   "scales.json",
 );
-const OUTPUT_PATH = "/private/tmp/landometer-color-atlas.fragment.html";
+const OUTPUT_PATH = path.join(
+  tmpdir(),
+  "landometer-color-atlas.fragment.html",
+);
 const INDEX_PATH = path.join(PROJECT_ROOT, "deployment", "index.html");
 const START_MARKER = "<!-- COLOR_ATLAS_START -->";
 const END_MARKER = "<!-- COLOR_ATLAS_END -->";
