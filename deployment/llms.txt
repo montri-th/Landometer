@@ -29,7 +29,7 @@ Channel parity key: ldm.ds.v0.8.8.design-identity-playground
 - Locale Insight spans Land, Location, and Living at portfolio, methodology, and product-architecture levels without merging product evidence boundaries.
 - Cross-product or cross-city comparison requires the same compatible schema and release, or a visible incompatibility explanation.
 - The playground does not save, share, invite, publish, track, or mutate a remote governed object.
-- Contextual discovery is enabled only as one explicit, user-triggered Google Search GET. Four current public CityMETER record snapshots may compose the visible editable query; the incident endpoint exposes no provenance, values with unresolved scope are omitted, and returned material remains discovery-only.
+- Contextual discovery offers two explicit user-triggered destinations from the same visible editable public-safe query: Google Search for a source trail, or Google AI Mode for synthesis and follow-up. The provider route is an implementation detail. Four current public CityMETER record snapshots may compose the query; the incident endpoint exposes no provenance, values with unresolved scope are omitted, and both Search results and AI synthesis remain `discovery_only` until cited sources are opened, checked, and deliberately incorporated with provenance.
 - No bounded agent action is enabled. Machine-readable files are reference inputs, not permission to act.
 
 ## Machine-use rules

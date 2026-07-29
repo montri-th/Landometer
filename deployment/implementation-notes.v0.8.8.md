@@ -5,7 +5,7 @@
 **Applies to:** The v0.8.8 Design Identity Playground implementation
 **Preserves:** `[CORE-03]`, `[CORE-10]`, `[CTRL-01]`, `[STATE-01]`, `[SHARE-01]`, `[CONTEXT-01]`, `[PUB-01]`, and `[AGENT-OUT-01]`
 
-This note makes four implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
+This note makes six implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
 
 ## IMPL-SHARE-01 — Share by recipient value, never by repetition
 
@@ -43,6 +43,8 @@ For the current playground, `network.mode` remains `reference_ready`, `share` re
 
 Use an external-search action only when fresh outside context is useful to the current task and the query can be made public-safe.
 
+Source Search finds source pages, records, or reporting that a person can inspect. It is distinct from asking an AI provider to synthesize or follow up on the same intent. Do not silently switch between the two.
+
 ### Label
 
 The action label names the immediate consequence and destination.
@@ -56,12 +58,12 @@ Do not use `See more`, `Explore`, or another destination-free label when the act
 
 1. derive the query from the current governed context when the product has it;
 2. preserve the active object or event name, public-safe place hierarchy, selected topic, current intent, and semantically useful active filters;
-3. show the exact composed query and the context fields that supplied it before any request;
+3. show the exact composed query, the context fields that supplied it, and the named search provider before any request;
 4. let the user inspect or edit the query;
 5. remove private filters, identities, notes, customer criteria, sensitive locations, restricted IDs, and filter values that are not safe or useful outside the product;
 6. send the query only after an explicit user action;
 7. keep the current work state available when the external result opens;
-8. identify the external destination and provide a copyable-query fallback when useful;
+8. identify the external destination and provide a copyable-query fallback;
 9. treat returned material as `discovery_only` until a person reviews it and records source, retrieval time, method, boundary, limitation, and allowed use;
 10. preserve empty, timeout, cancellation, restricted, unsupported, and failure recovery.
 
@@ -90,6 +92,30 @@ External search is not sharing and does not prove a network effect. It must not 
 The shared Landometer layer owns the visible-query, privacy, navigation, recovery, and evidence-promotion contract. Each product owns the supported entity × intent pairs, query construction, allowed providers, sensitivity rules, review workflow, and whether discovered material may be incorporated.
 
 Relevance is an inspectable design hypothesis, not a superiority claim. Before claiming that contextual composition outperforms another approach, compare a declared baseline and assisted query on the same intent set, record top-result usefulness or another governed outcome, and keep irrelevant/counter-results visible.
+
+## IMPL-AI-EXT-01 — Continue a visible intent into external AI synthesis
+
+Offer AI synthesis or follow-up as a separate, explicitly named action only when a generated response is useful to the current task and the prompt can be made public-safe.
+
+Before send:
+
+1. show `AI synthesis` or `Ask AI` as the job rather than presenting it as source Search;
+2. name the provider;
+3. show the exact editable prompt and every current-context field used to compose it;
+4. remove private identity, notes, restricted identifiers, sensitive locations, customer criteria, and unsafe or unnecessary filter values;
+5. explain that the provider, signed-in account, prior history, and personalization may influence the response;
+6. send only after explicit user activation;
+7. open the provider in a new tab and keep the current work state available.
+
+Treat every returned AI response as `discovery_only`, never as evidence by itself. Make cited sources openable. Before a material claim is incorporated into a governed object, open the cited source, verify the important claim against it, and record source, retrieval time, method, boundary, limitation, and allowed use. Missing, circular, inaccessible, or non-supporting citations remain visible limitations.
+
+The current playground routes its Google AI action with `udm=50`. That parameter is an implementation-specific deep link, not a normative Landometer contract and not a guarantee that the provider will preserve the route. If the deep link is unavailable, keep the exact prompt copyable and offer the documented Google AI entry point at `https://www.google.com/ai`. Do not silently fall back to Google Search, another provider, or a different action.
+
+The shared Landometer layer owns the distinction between Source Search and AI synthesis, visible prompt, provider disclosure, privacy removal, explicit activation, new-tab/state-preservation behavior, fallback, and evidence-promotion contract. Each product owns supported entity × intent pairs, prompt construction, allowed providers, sensitivity rules, and the workflow for reviewing and incorporating discovered material.
+
+Provider URL parameters, including `udm=50`, are implementation-only. A product may use another documented provider route while preserving the same user-visible contract.
+
+AI usefulness is an inspectable design hypothesis, not a superiority claim. Do not claim that contextual AI synthesis is better, more relevant, or more accurate than Source Search or another route without a same-intent study against a declared baseline, a governed usefulness or accuracy outcome, and visible irrelevant or counter-results.
 
 ## IMPL-TYPE-TH-01 — Keep Thai compact labels deterministic
 

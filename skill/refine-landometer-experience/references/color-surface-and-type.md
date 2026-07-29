@@ -15,21 +15,35 @@ Test at least:
 
 Use deterministic scrims or opaque panels when sampled gradient contrast fails. Preserve canonical gradient stops.
 
-## Color teaching plates
+## Complete color atlas
 
-Use one bounded fixture to show:
+When complete color coverage is requested, use one bounded fixture and render all governed records:
 
-1. solid surface and semantic state roles;
-2. Brand Blue versus interaction accent;
-3. flat evidence versus Measure/Ground/Cultivate;
-4. categorical versus sequential versus diverging scales;
-5. no-data versus meaningful zero;
-6. opacity and overlap with redundant labels/patterns;
-7. line/stroke meaning and any unresolved token gap.
+1. 17 light/dark foundation pairs and 7 semantic states;
+2. 2 shared gradients and 3 Measure/Ground/Cultivate motif gradients;
+3. 4 product-gradient families as 8 light/dark specimens;
+4. 10 light/dark categorical pairs with a redundant shape or pattern cue;
+5. 18 analytical scale records with 41 exact LUT cells each (738 total) and exact 5/7/9 classes (378 cells total);
+6. 8 light/dark map pairs, including no-data and measured-zero treatment;
+7. 8 opacity values and 6 named depth roles;
+8. Brand Blue versus interaction accent, line/stroke meaning, and every unresolved token gap.
 
 Mark candidates explicitly. The current v0.8.8 source does not define a universal chart stroke-width scale, dash convention, or overlap compositing recipe.
 
-Never mix canonical dataviz ramps at runtime. Show exact anchors unless the generated LUT and `scaleVersion` are available.
+Keep product gradients inside product-identity specimens. Never reuse them as shared atmosphere, data, map, interaction, or semantic-state colors.
+
+Never mix canonical dataviz ramps at runtime. Render LUT and 5/7/9 class cells from the pre-generated source values.
+
+Treat `deployment/assets/data/scales.json` as a carried `source_limited` reference because its `meta.version` is `0.8.6`. Do not call it the gated v0.8.8 `dataviz.tokens.json`, and do not claim v0.8.8 scale conformance until hash parity, renderer/legend/export parity, contrast, color-vision-deficiency, grayscale, and product implementation gates pass.
+
+Verify the atlas in light and dark themes at 320 and 390 CSS pixels. Confirm that color-vision-deficiency simulation and grayscale preserve meaning through labels, shapes, patterns, measured-zero treatment, and no-data treatment.
+
+Generate and check the deterministic atlas before release:
+
+```sh
+node tools/generate-color-atlas.mjs --inject
+node tools/generate-color-atlas.mjs --check-index
+```
 
 ## Thai technical labels
 

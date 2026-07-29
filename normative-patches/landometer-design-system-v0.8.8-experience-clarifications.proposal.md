@@ -6,13 +6,14 @@
 
 ## Why this patch is proposed
 
-Implementation review exposed five repeatable gaps:
+Implementation review exposed six repeatable gaps:
 
 1. a Brand DNA/Voice lens can appear to change only typography rather than meaning and usefulness;
 2. fixed gradient surfaces can inherit theme-global text colors and fail contrast;
 3. JetBrains Mono has no Thai glyphs in the six-face package, so an unqualified `monospace` fallback can vary by device;
 4. color roles exist normatively but lack a required, complete worked reference;
-5. v0.8.8 governs map strokes and connector meaning but does not define a universal chart stroke-width or overlap-compositing recipe.
+5. v0.8.8 governs map strokes and connector meaning but does not define a universal chart stroke-width or overlap-compositing recipe;
+6. external contextual discovery does not yet distinguish source Search from AI synthesis or follow-up, including the different provider, disclosure, fallback, and evidence-promotion duties.
 
 ## Proposed normative changes
 
@@ -102,6 +103,18 @@ Before promotion, an owner-approved patch must define named roles, exact values,
 - label intersections directly and do not treat the blended hue as a new token;
 - mark any illustrative line width as `candidate`.
 
+### 7. Add source Search versus AI synthesis to `[CONTEXT-01]`
+
+> An external contextual-discovery action MUST name which job it performs. **Source Search** finds source pages or records for a person to inspect. **AI synthesis or follow-up** asks a named provider to generate a response from a public-safe prompt. These are separate actions and MUST NOT silently substitute for one another.
+>
+> Before either request, show the named provider and the exact editable query or prompt, including the public-safe context fields used to compose it. Remove private identity, notes, restricted identifiers, sensitive locations, customer criteria, and unsafe filter values before display or transmission. Send only after explicit user activation, open the destination in a new tab or equivalent separate context, and preserve the current work state.
+>
+> An AI response is `discovery_only`, not evidence. Make cited sources openable and require important claims to be checked against those sources before incorporation into a governed object. Disclose that provider model behavior, signed-in account, prior history, and personalization may influence the response. Provider deep-link failure MUST preserve the user’s prompt and offer a copyable prompt plus a documented provider entry point; it MUST NOT silently switch to source Search, another provider, or another action.
+>
+> The shared Landometer layer owns action distinction, visible query/prompt, provider disclosure, privacy removal, explicit activation, state preservation, recovery, and evidence-promotion rules. Each product owns supported entity × intent pairs, context composition, allowed providers, sensitivity rules, and the review workflow for incorporating discovered material. Provider URL parameters are implementation details, not normative behavior.
+>
+> Contextual composition is a design hypothesis. Do not claim that source Search or AI synthesis is “better,” more relevant, or more accurate than another route without a same-intent study against a declared baseline, a governed usefulness or accuracy outcome, and visible irrelevant or counter-results.
+
 ## Implementation disposition for the current webpage
 
 | Finding | Disposition |
@@ -112,4 +125,4 @@ Before promotion, an owner-approved patch must define named roles, exact values,
 | Thai device-dependent fallback | artifact fix now; normative clarification proposed |
 | complete color teaching plates | artifact/reference fix; coverage rule proposed |
 | universal stroke widths and overlap blending | remain candidate; no normative claim |
-
+| source Search versus AI synthesis/follow-up | artifact fix + contextual-discovery contract proposed |

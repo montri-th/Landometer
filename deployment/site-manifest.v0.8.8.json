@@ -8,7 +8,7 @@
     "product": "landometer",
     "profile": "brand.public",
     "pageKind": "design_identity_playground_with_implementation_library",
-    "pageKindSourceRef": "current owner instructions 2026-07-28 + ADOPT-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + DATAVIZ-01 + CTRL-02",
+    "pageKindSourceRef": "current owner instructions 2026-07-28 + ADOPT-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + EXT-AI-01 + DATAVIZ-01 + CTRL-02",
     "delivery": "internal_demo",
     "language": "th",
     "additionalLanguages": ["en"],
@@ -59,9 +59,9 @@
     ],
     "gradientSurfaces": [
       {"id": "hero-measure", "sceneId": "top", "recipe": "measure", "job": "entry", "angle": "135deg", "focalTarget": "cultural invitation and practice-fixture action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "browser source/computed-style inspection passed; worst-sample human review remains pending"},
-      {"id": "visual-measure", "sceneId": "play", "recipe": "measure", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"},
-      {"id": "visual-ground", "sceneId": "play", "recipe": "ground", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
-      {"id": "visual-cultivate", "sceneId": "play", "recipe": "cultivate", "job": "product_identity", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-measure", "sceneId": "play", "recipe": "measure", "job": "orientation", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-ground", "sceneId": "play", "recipe": "ground", "job": "transition", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-cultivate", "sceneId": "play", "recipe": "cultivate", "job": "momentum", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
       {"id": "closing-measure", "sceneId": "closing", "recipe": "measure", "job": "closure", "angle": "135deg", "focalTarget": "Brand Promise and return action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"}
     ],
     "scrims": [
@@ -78,7 +78,7 @@
     "share": false,
     "contextDiscovery": true,
     "externalNavigation": true,
-    "thirdPartyRequest": "explicit_user_triggered_visible_query_only",
+    "thirdPartyRequest": "explicit_user_triggered_visible_query_plus_selected_route",
     "agentReadable": false,
     "boundedAgentAction": false,
     "agentActionEffect": "none",
@@ -107,6 +107,33 @@
       "sourceStatus": "mixed_source_limited",
       "limitation": "DV-FIXTURE-0.1 remains synthetic. CITYMETER-DV-SNAPSHOT-2026-07-29 is a product-specific public API snapshot plus clearly labelled treatment sketches; it is not a portfolio claim or evidence that the live product already conforms.",
       "mapResult": false,
+      "externalEffect": false
+    },
+    "colorAtlas": {
+      "status": "enabled_for_reference_training_only",
+      "fixtureId": "COLOR-ATLAS-0.8.8",
+      "coverage": {
+        "identityAndLogoRecords": 14,
+        "foundationPairs": 17,
+        "semanticStates": 7,
+        "sharedGradients": 2,
+        "motifGradients": 3,
+        "productGradientFamilies": 4,
+        "productGradientThemeSpecimens": 8,
+        "gradientRecords": 13,
+        "categoricalPairs": 10,
+        "scaleRecords": 18,
+        "lutCellsPerScale": 41,
+        "lutCellsTotal": 738,
+        "classCounts": [5, 7, 9],
+        "classCellsTotal": 378,
+        "mapPairs": 8,
+        "opacityValues": 8,
+        "depthRoles": 6
+      },
+      "scaleSource": "assets/data/scales.json · meta.version 0.8.6 · carried reference fixture",
+      "scaleGate": "pending — source_limited; not the gated v0.8.8 dataviz.tokens.json package; hash, renderer/legend/export parity, contrast, and CVD review remain open",
+      "productGradientBoundary": "product identity specimens only; never shared atmosphere, data, map, interaction, or semantic state",
       "externalEffect": false
     },
     "experiencePatterns": {
@@ -148,15 +175,20 @@
       "activeFilter": "the visible field label; a numeric value appears only for the independently corroborated Krok Phra fire case",
       "publicPlaceHierarchy": ["event-specific village", "municipality or subdistrict administrative organisation", "district", "province"],
       "composition": ["event display name", "event date", "known cause", "active public-safe field label", "intent keyword", "public place hierarchy"],
-      "destination": "explicit user-confirmed Google Search GET in a new tab",
+      "supportedModes": ["source_search", "ai_synthesis"],
+      "destination": "explicit user-confirmed Google Search or Google AI Mode GET in a new tab",
       "thirdPartyRequest": true,
-      "outboundData": "visible editable q value only",
+      "outboundData": "visible editable q value plus the explicitly selected destination mode; no hidden context",
       "remoteMutation": false,
       "resultStatus": "discovery_only until provenance review and deliberate incorporation",
+      "aiBoundary": "AI synthesis is a discovery aid, not a source or evidence. Open cited sources, check important claims across more than one source, and preserve provenance before incorporation.",
+      "providerRouting": "The Google AI Mode route is an implementation detail, not a normative contract. Availability can vary by locale, account, and provider state.",
+      "providerInfluence": "Provider account, search history, and personalization may affect returned results outside this artifact.",
+      "fallback": "Keep the exact query copyable and identify the documented provider entry point if the direct AI route is unavailable; never silently switch modes.",
       "telemetry": false,
       "persistence": false,
       "externalSideEffect": false,
-      "limitation": "The public incident endpoint exposes no provenance. Records are shown as current CityMETER snapshots, values with unresolved geographic scope are omitted, and no superior-relevance claim is made."
+      "limitation": "The public incident endpoint exposes no provenance. Records are shown as current CityMETER snapshots, values with unresolved geographic scope are omitted, and no superior-relevance claim is made for Search or AI Mode."
     },
     "machineDiscovery": {
       "status": "navigation_aid_only",
@@ -179,6 +211,16 @@
     "allowedUses": ["design-system education", "local deterministic comparison", "60-second preflight recipe", "positive Intent-to-AHA design cases", "component implementation reference", "semantic-motion training", "context-discovery design training", "synthetic dataviz pattern training", "product-specific public snapshot review", "bounded product-adaptation planning"]
   },
   "referenceFixtures": [
+    {
+      "id": "COLOR-ATLAS-0.8.8",
+      "sourceAndDate": "Landometer Design System v0.8.8 Appendix A + carried scales.json reference fixture · 29 Jul 2026",
+      "methodOrRecipe": "Render every active-authoring color role as exact light/dark swatches; render all analytical LUT and 5/7/9 classes from pre-generated cells without runtime mixing.",
+      "signalClass": "source_limited design-system reference fixture",
+      "confidence": "exact authoring values; generated v0.8.8 package conformance not claimed",
+      "limitation": "scales.json carries meta.version 0.8.6 and is not the gated v0.8.8 dataviz.tokens.json package. Hash parity, renderer/legend/export parity, contrast, CVD, and product implementation evidence remain pending.",
+      "allowedUses": ["design-system training", "color-role review", "implementation planning", "accessibility preparation"],
+      "nextSafeAction": "Generate and validate the v0.8.8 public-safe token package before claiming production scale conformance."
+    },
     {
       "id": "DV-FIXTURE-0.1",
       "sourceAndDate": "Landometer synthetic training fixture · 28 Jul 2026",
@@ -233,12 +275,12 @@
     {
       "id": "CONTEXT-FIXTURE-0.1",
       "sourceAndDate": "Four public CityMETER disaster-record snapshots + CONTEXT-01 · checked 29 Jul 2026",
-      "methodOrRecipe": "Compose a visible editable query from current event name, date, known cause, active public-safe field label, user intent, and event-specific place hierarchy.",
+      "methodOrRecipe": "Compose one visible editable query from current event name, date, known cause, active public-safe field label, user intent, and event-specific place hierarchy; then let the user explicitly choose source Search or AI synthesis.",
       "signalClass": "product-specific current-record reference",
       "confidence": "source_limited — public endpoint exposes records but no provenance",
-      "limitation": "Not independent ground-truth verification. Values with unresolved geographic scope are omitted; returned search material remains discovery_only.",
-      "allowedUses": ["context-discovery design training", "CTA integrity review", "query-privacy review"],
-      "nextSafeAction": "Confirm governed runtime provenance and measure same-intent relevance before making a comparative performance claim."
+      "limitation": "Not independent ground-truth verification. Values with unresolved geographic scope are omitted; Search results and AI synthesis remain discovery_only.",
+      "allowedUses": ["context-discovery design training", "source-search and AI-synthesis mode review", "CTA integrity review", "query-privacy review"],
+      "nextSafeAction": "Open and review cited sources, preserve provenance before deliberate incorporation, confirm governed runtime provenance, and measure same-intent relevance before making a comparative performance claim."
     }
   ],
   "assets": [
@@ -272,16 +314,24 @@
       "status": "source_limited; machineValidation pending"
     },
     {
+      "path": "landometer-design-system-v0.8.8-standalone.html",
+      "bytes": 2134434,
+      "sha256": "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7",
+      "usageClass": "self-contained single-file playground snapshot",
+      "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
+      "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"
+    },
+    {
       "path": "implementation-notes.v0.8.8.md",
-      "bytes": 8674,
-      "sha256": "cd142b55f88d572a3515f7eaf08d89329bedda0404b952b00e565d2ac437d8f0",
+      "bytes": 11537,
+      "sha256": "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1",
       "usageClass": "proposed artifact-level implementation clarification",
       "authority": "non-normative until incorporated into an owner-approved Design System release"
     },
     {
       "path": "llms.txt",
-      "bytes": 3228,
-      "sha256": "d32aea73c7ad4c5489a5112d33c053593a614976c9a6f10e0613ca77251ef977",
+      "bytes": 3478,
+      "sha256": "ae84632111b69bf7b2a1c41024950b0fbbac51cce4af2feea9ad708caa69ee2e",
       "usageClass": "optional project-path machine discovery navigation aid",
       "authority": "not a ranking signal, access-control rule, conformance claim, host-root discovery guarantee, or agent-action permission"
     }
