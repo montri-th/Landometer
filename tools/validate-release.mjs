@@ -351,6 +351,22 @@ pass(
     html.includes("details.open = true"),
   "Deep color links open every closed ancestor disclosure before scrolling",
 );
+pass(
+  html.includes('html[data-theme="dark"] .color-role-map span:first-child') &&
+    !html.includes('[data-resolved-theme="dark"] .color-role-map'),
+  "Dark color-role emphasis consumes the runtime theme state",
+);
+pass(
+  html.includes("grid-template-columns: repeat(var(--route-class-count, 3), minmax(0, 1fr))") &&
+    (html.match(/--route-class-count:3/g) || []).length === 2,
+  "Sequential and diverging route previews fill exactly their three declared tracks",
+);
+pass(
+  html.includes("revealTarget(target, true)") &&
+    html.includes('focusTarget.setAttribute("tabindex", "-1")') &&
+    html.includes("focusTarget?.focus({ preventScroll: true })"),
+  "Deep color links move keyboard focus to the revealed target without reversing the scroll",
+);
 
 const atlasStartMarker = "<!-- COLOR_ATLAS_START -->";
 const atlasEndMarker = "<!-- COLOR_ATLAS_END -->";
@@ -848,24 +864,24 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("landometer-design-system-v0.8.8-standalone.html") === "8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0",
+  sha256("landometer-design-system-v0.8.8-standalone.html") === "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d",
   "Standalone HTML hash matches the release record"
 );
 pass(
-  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2191914,
+  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2192096,
   "Standalone HTML byte count matches the release record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
-    asset.bytes === 2191914 &&
-    asset.sha256 === "8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0"
+    asset.bytes === 2192096 &&
+    asset.sha256 === "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d"
   ),
   "Manifest records the exact standalone HTML"
 );
 pass(
   buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
-    buildCard.includes("sha256: 8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0"),
+    buildCard.includes("sha256: daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d"),
   "Build Card records the exact standalone HTML"
 );
 pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");

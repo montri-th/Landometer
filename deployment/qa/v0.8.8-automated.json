@@ -4,7 +4,7 @@
   "machineValidation": "pending",
   "staticValidator": {
     "status": "passed",
-    "summary": "v0.8.8 validation PASSED · 694 static checks · 58 controls · machineValidation pending",
+    "summary": "v0.8.8 validation PASSED · 697 static checks · 58 controls · machineValidation pending",
     "scope": [
       "release identity and evidence boundary",
       "Build Card and Manifest 2.0 alignment",
@@ -46,7 +46,7 @@
       "llms.txt navigation aid 200",
       "project-path robots record 200",
       "v0.8.8 whitespace-normalized authoring-master Markdown 200 · 227,924 bytes",
-      "standalone HTML 200 · 2,191,914 bytes · embedded display fonts and images",
+      "standalone HTML 200 · 2,192,096 bytes · embedded display fonts and images",
       "logo PNG 200",
       "team photo JPEG 200",
       "Arvo 700 WOFF2 200",

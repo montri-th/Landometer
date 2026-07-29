@@ -315,8 +315,8 @@
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.html",
-      "bytes": 2191914,
-      "sha256": "8e4ea58119a0a133502dc8423b614cb1070f2572c1a80709feba4c4088c530e0",
+      "bytes": 2192096,
+      "sha256": "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d",
       "usageClass": "self-contained single-file playground snapshot",
       "transform": "generated from deployment/index.html with ten display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"

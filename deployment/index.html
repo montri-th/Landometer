@@ -1987,7 +1987,7 @@
       border-color: var(--brand-blue);
       color: var(--brand-blue);
     }
-    [data-resolved-theme="dark"] .color-role-map span:first-child {
+    html[data-theme="dark"] .color-role-map span:first-child {
       border-color: var(--interaction-accent);
       color: var(--interaction-accent);
     }
@@ -2079,7 +2079,7 @@
     }
     .color-route-visual.is-scale > span {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(var(--route-class-count, 3), minmax(0, 1fr));
       overflow: hidden;
       height: 20px;
       border-radius: 999px;
@@ -9803,8 +9803,11 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           if (shouldFocus) {
             const focusTarget = target instanceof HTMLDetailsElement
               ? target.querySelector(":scope > summary")
-              : target.closest("details")?.querySelector(":scope > summary");
-            focusTarget?.focus();
+              : target;
+            if (focusTarget && !focusTarget.matches("a, button, input, select, textarea, summary, [tabindex]")) {
+              focusTarget.setAttribute("tabindex", "-1");
+            }
+            focusTarget?.focus({ preventScroll: true });
           }
         });
       }
@@ -9821,7 +9824,7 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           event.preventDefault();
           const target = link.dataset.revealTarget;
           try { history.replaceState(null, "", `#${target}`); } catch (_) {}
-          revealTarget(target);
+          revealTarget(target, true);
         });
       });
       function revealHashTarget() {

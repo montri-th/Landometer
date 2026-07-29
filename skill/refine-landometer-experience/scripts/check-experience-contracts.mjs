@@ -105,6 +105,20 @@ const checks = [
       /--tracking-technical-th:\s*\.008em/u.test(html) &&
       /--leading-technical-th:\s*1\.48/u.test(html)
   ],
+  [
+    "dark color-role emphasis uses the runtime theme attribute",
+    /html\[data-theme="dark"\]\s+\.color-role-map span:first-child/u.test(html) &&
+      !/\[data-resolved-theme="dark"\]\s+\.color-role-map/u.test(html)
+  ],
+  [
+    "scale route consumes its declared class count",
+    /grid-template-columns:\s*repeat\(var\(--route-class-count,\s*3\)/u.test(html)
+  ],
+  [
+    "deep routes transfer focus to the revealed target",
+    /revealTarget\(target,\s*true\)/u.test(html) &&
+      /focusTarget\?\.focus\(\{\s*preventScroll:\s*true\s*\}\)/u.test(html)
+  ],
   ["semantic recipe uses structured ordered list", /class="recipe-steps"/u.test(html)],
   ["no tab-indented numbered recipe item", !/\n\t+\d+\.\s/u.test(html)],
   ["six color teaching plates", (html.match(/class="color-plate(?:\s|")/gu) || []).length >= 6],
