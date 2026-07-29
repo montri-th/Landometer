@@ -15,7 +15,7 @@
   data-indexable="false"
   data-machine-validation="pending"
   data-full-living-reference="false"
-  data-data-visualization="fixture_only"
+  data-data-visualization="fixtures_and_product_snapshots"
   data-machine-discovery="llms_navigation_aid"
   data-theme="light"
   data-theme-preference="system"
@@ -30,6 +30,7 @@
   <title>Landometer Design Identity Playground · v0.8.8</title>
   <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/">
+  <link rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>
     (() => {
       const root = document.documentElement;
@@ -203,6 +204,8 @@
       --font-ui-heading-th: "IBM Plex Sans Thai Looped", var(--font-display-th-fallback);
       --font-body: "Bai Jamjuree", var(--font-body-fallback);
       --font-number: "JetBrains Mono", var(--font-number-fallback);
+      --font-label-th: "Bai Jamjuree", "Leelawadee UI", Tahoma, sans-serif;
+      --font-data-label: "JetBrains Mono", "Bai Jamjuree", "SFMono-Regular", Consolas, monospace;
       --space-1: 4px;
       --space-2: 8px;
       --space-3: 12px;
@@ -1006,6 +1009,14 @@
       font-weight: 500;
       text-transform: uppercase;
     }
+    html[data-locale="th"] .control-label,
+    html[data-locale="th"] .control-block legend,
+    html[data-locale="th"] .handoff-record dt {
+      font-family: var(--font-label-th);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+    }
     .handoff-record dd {
       margin: 4px 0 0;
       color: var(--text-secondary);
@@ -1219,6 +1230,31 @@
     .library-group:last-child {
       border-bottom: 1px solid var(--border-default);
     }
+    .icon-sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+    .ui-icon {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .icon-well {
+      display: inline-grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      color: var(--interaction-accent);
+    }
     .library-group summary {
       display: grid;
       grid-template-columns: 44px minmax(190px, .7fr) minmax(260px, 1fr) auto 32px;
@@ -1256,6 +1292,10 @@
     }
     .library-index,
     .library-count { color: var(--text-metadata); }
+    .library-index.library-icon {
+      color: var(--interaction-accent);
+      font-size: 0;
+    }
     .library-group summary h3 {
       margin: 0;
       font-family: var(--font-ui-heading-th);
@@ -1612,13 +1652,21 @@
       border-block: 1px solid var(--border-default);
     }
     .chart-chooser div {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
       padding: var(--space-4);
       border-right: 1px solid var(--border-default);
     }
     .chart-chooser div:nth-child(3n) { border-right: 0; }
     .chart-chooser div:nth-child(n + 4) { border-top: 1px solid var(--border-default); }
-    .chart-chooser b { display: block; }
-    .chart-chooser small { color: var(--text-secondary); }
+    .chart-chooser b,
+    .chart-chooser small { display: block; }
+    .chart-chooser small {
+      margin-top: 2px;
+      color: var(--text-secondary);
+    }
     .dataviz-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1744,6 +1792,126 @@
       border-top: 1px solid var(--border-default);
       color: var(--text-secondary);
     }
+    .citymeter-gallery {
+      margin-top: var(--space-9);
+      padding-top: var(--space-7);
+      border-top: 4px solid var(--brand-blue);
+    }
+    .citymeter-gallery-heading {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 760px);
+      gap: var(--space-4);
+      align-items: start;
+    }
+    .citymeter-gallery-heading h4 { margin-top: 0; }
+    .citymeter-gallery-heading p {
+      margin: var(--space-2) 0 0;
+      color: var(--text-secondary);
+    }
+    .citymeter-chart-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-5);
+      margin-top: var(--space-7);
+    }
+    .citymeter-chart-card {
+      min-width: 0;
+      padding: var(--space-5);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      background: var(--surface-card);
+    }
+    .citymeter-chart-card header {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
+    }
+    .citymeter-chart-card h5 {
+      margin: 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .citymeter-chart-card h5 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .chart-status {
+      display: block;
+      margin-top: 3px;
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .chart-thumbnail {
+      width: 100%;
+      min-height: 154px;
+      margin-top: var(--space-4);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      color: var(--text-primary);
+    }
+    .chart-thumbnail .axis,
+    .chart-thumbnail .outline {
+      fill: none;
+      stroke: var(--border-emphasis);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .chart-thumbnail .primary {
+      fill: none;
+      stroke: var(--series-primary);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .chart-thumbnail .change {
+      fill: none;
+      stroke: var(--series-change);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .chart-thumbnail .outlier {
+      fill: none;
+      stroke: var(--series-outlier);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .chart-thumbnail .fill-primary { fill: var(--series-primary); }
+    .chart-thumbnail .fill-change { fill: var(--series-change); }
+    .chart-thumbnail .fill-soft { fill: var(--surface-blue-tint); }
+    .chart-thumbnail .fill-muted { fill: var(--surface-soft); }
+    .chart-thumbnail text {
+      fill: var(--text-secondary);
+      font-family: var(--font-data-label);
+      font-size: 9px;
+      font-weight: 500;
+    }
+    .chart-card-caption {
+      min-height: 3.9em;
+      margin: var(--space-3) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .chart-card-caption strong { color: var(--text-primary); }
+    .citymeter-gallery-boundary {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: start;
+      margin-top: var(--space-6);
+      padding: var(--space-4);
+      border-left: 4px solid var(--brand-blue);
+      background: var(--surface-blue-tint);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .citymeter-gallery-boundary p { margin: 0; }
 
     .experience-flow {
       display: grid;
@@ -2089,6 +2257,29 @@
       padding: var(--space-5);
       background: var(--surface-blue-tint);
     }
+    .context-case-picker {
+      display: grid;
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
+    }
+    .context-case-picker label {
+      color: var(--text-metadata);
+      font-size: var(--type-body-sm);
+      font-weight: 600;
+    }
+    .context-hero {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
+      margin-bottom: var(--space-4);
+    }
+    .context-hero h6 { margin: 0; }
+    .context-hero p {
+      margin: 3px 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
     .intent-form {
       display: grid;
       gap: var(--space-3);
@@ -2096,30 +2287,63 @@
     .intent-form label { font-weight: 600; }
     .context-snapshot {
       display: grid;
-      gap: var(--space-2);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
       margin: 0 0 var(--space-5);
-      padding: var(--space-4);
-      background: var(--surface-raised);
+      padding: 1px;
+      background: var(--border-hairline);
     }
     .context-snapshot div {
       display: grid;
-      grid-template-columns: 108px minmax(0, 1fr);
+      grid-template-columns: 32px minmax(0, 1fr);
       gap: var(--space-3);
-      padding-top: var(--space-2);
-      border-top: 1px solid var(--border-hairline);
-    }
-    .context-snapshot div:first-child {
-      padding-top: 0;
-      border-top: 0;
+      align-items: start;
+      min-height: 84px;
+      padding: var(--space-3);
+      background: var(--surface-raised);
     }
     .context-snapshot dt {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
       color: var(--text-metadata);
-      font-family: var(--font-number);
-      font-size: var(--type-caption);
-      font-weight: 500;
-      text-transform: uppercase;
+      font-size: var(--type-body-sm);
+      font-weight: 600;
     }
-    .context-snapshot dd { margin: 0; }
+    .context-snapshot dt .ui-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--interaction-accent);
+    }
+    .context-snapshot dd {
+      grid-column: 2;
+      margin: 3px 0 0;
+      color: var(--text-primary);
+      font-size: var(--type-body-sm);
+    }
+    .context-source-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      margin: calc(var(--space-3) * -1) 0 var(--space-4);
+    }
+    .context-source-link {
+      display: inline-flex;
+      gap: var(--space-2);
+      align-items: center;
+      min-height: 44px;
+      color: var(--interaction-accent);
+      font-weight: 600;
+      text-underline-offset: 4px;
+    }
+    .context-source-link .ui-icon { width: 18px; height: 18px; }
+    .context-source-row small {
+      color: var(--text-secondary);
+      font-size: var(--type-caption);
+    }
     .intent-form input {
       width: 100%;
       min-height: 48px;
@@ -2205,6 +2429,7 @@
         grid-template-columns: 1fr;
       }
       .opportunity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .citymeter-chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .library-group summary {
         grid-template-columns: 36px 1fr auto;
         gap: var(--space-3);
@@ -2249,12 +2474,15 @@
       .chart-chooser div:nth-child(n + 2) { border-top: 0; }
       .decision-demo dl div { grid-template-columns: 1fr; }
       .intent-case dl div { grid-template-columns: 1fr; }
-      .context-snapshot div { grid-template-columns: 1fr; }
+      .context-snapshot div { grid-template-columns: 32px minmax(0, 1fr); }
       .motion-controls { display: grid; }
       .motion-controls button,
       .intent-form button,
       .cta-proof-actions button { width: 100%; }
       .opportunity-grid { grid-template-columns: 1fr; }
+      .citymeter-chart-grid,
+      .context-snapshot { grid-template-columns: 1fr; }
+      .citymeter-gallery-heading { grid-template-columns: 40px minmax(0, 1fr); }
     }
 
     .closing {
@@ -2483,6 +2711,88 @@
   </style>
 </head>
 <body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="icon-foundation" viewBox="0 0 24 24">
+      <path d="M4 18h16M6 18v-5h12v5M8.5 13V9h7v4M12 4v5M9.5 6.5 12 4l2.5 2.5"></path>
+    </symbol>
+    <symbol id="icon-components" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="7" height="7" rx="2"></rect><rect x="13.5" y="3.5" width="7" height="7" rx="2"></rect>
+      <rect x="3.5" y="13.5" width="7" height="7" rx="2"></rect><rect x="13.5" y="13.5" width="7" height="7" rx="2"></rect>
+    </symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24">
+      <path d="M4 19.5V5M4 19.5h16"></path><path d="m7 15 4-4 3 2 5-6"></path>
+    </symbol>
+    <symbol id="icon-experience" viewBox="0 0 24 24">
+      <circle cx="6" cy="17" r="2"></circle><circle cx="18" cy="7" r="2"></circle><path d="M8 17h3a3 3 0 0 0 3-3v-4a3 3 0 0 1 3-3"></path>
+    </symbol>
+    <symbol id="icon-products" viewBox="0 0 24 24">
+      <path d="m12 3 8 4-8 4-8-4 8-4Z"></path><path d="m4 12 8 4 8-4M4 17l8 4 8-4"></path>
+    </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+      <path d="M12 3v12m-4-4 4 4 4-4"></path><path d="M4 18v2h16v-2"></path>
+    </symbol>
+    <symbol id="icon-rank" viewBox="0 0 24 24">
+      <path d="M5 6h11M5 12h14M5 18h8"></path><path d="M3 6h.01M3 12h.01M3 18h.01"></path>
+    </symbol>
+    <symbol id="icon-trend" viewBox="0 0 24 24">
+      <path d="M4 19V5M4 19h16"></path><path d="m7 15 3-4 3 2 5-7"></path>
+    </symbol>
+    <symbol id="icon-distribution" viewBox="0 0 24 24">
+      <path d="M4 19h16"></path><path d="M6 19v-4h3v4M10.5 19V9h3v10M15 19v-7h3v7"></path>
+    </symbol>
+    <symbol id="icon-scatter" viewBox="0 0 24 24">
+      <path d="M4 4v16h16"></path><circle cx="8" cy="15" r="1.3"></circle><circle cx="12" cy="11" r="1.3"></circle><circle cx="17" cy="7" r="1.3"></circle>
+    </symbol>
+    <symbol id="icon-stack" viewBox="0 0 24 24">
+      <rect x="4" y="6" width="16" height="4" rx="2"></rect><rect x="4" y="14" width="10" height="4" rx="2"></rect><path d="M14 14h6v4h-6"></path>
+    </symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M22 12h-3"></path>
+    </symbol>
+    <symbol id="icon-map" viewBox="0 0 24 24">
+      <path d="m3.5 6 5-2.5 7 3 5-2.5v14l-5 2.5-7-3-5 2.5V6Z"></path><path d="M8.5 3.5v14M15.5 6.5v14"></path>
+    </symbol>
+    <symbol id="icon-water" viewBox="0 0 24 24">
+      <path d="M4 8.5c1.5 0 1.5-1.5 3-1.5s1.5 1.5 3 1.5S11.5 7 13 7s1.5 1.5 3 1.5S17.5 7 19 7"></path>
+      <path d="M4 13c1.5 0 1.5-1.5 3-1.5S8.5 13 10 13s1.5-1.5 3-1.5 1.5 1.5 3 1.5 1.5-1.5 3-1.5M6 17.5h12"></path>
+    </symbol>
+    <symbol id="icon-fire" viewBox="0 0 24 24">
+      <path d="M12.5 3.5c.8 3-1.7 4.2-.7 6.4.6 1.4 2.1 1.6 2.8 3 .8-1.4 1-3 .3-4.4 2.8 1.9 4.1 4.2 4.1 6.5a7 7 0 0 1-14 0c0-2.6 1.3-4.8 3.6-6.7-.1 2.3.7 3.7 1.8 4.5-.5-3.4.3-6.6 2.1-9.3Z"></path>
+    </symbol>
+    <symbol id="icon-wind" viewBox="0 0 24 24">
+      <path d="M3 8h11c2.8 0 2.8-4 0-4-1.2 0-2 .6-2.4 1.4M3 12h16c2.8 0 2.8 4 0 4-1.2 0-2-.6-2.4-1.4M3 16h8"></path>
+    </symbol>
+    <symbol id="icon-mountain" viewBox="0 0 24 24">
+      <path d="m3 19 6.5-11 3 5 2.5-4 6 10H3Z"></path><path d="m7.5 11.5 2 1.5 1.7-1.1"></path>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5.5" width="17" height="15" rx="2"></rect><path d="M7 3v5M17 3v5M3.5 10h17"></path>
+    </symbol>
+    <symbol id="icon-filter" viewBox="0 0 24 24">
+      <path d="M4 5h16l-6.2 7v5.5l-3.6 1.5v-7L4 5Z"></path>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24">
+      <path d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z"></path><circle cx="12" cy="10" r="2"></circle>
+    </symbol>
+    <symbol id="icon-source" viewBox="0 0 24 24">
+      <path d="M5 4h10l4 4v12H5V4Z"></path><path d="M15 4v4h4M8 13h8M8 17h6"></path>
+    </symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3"></circle><path d="M3.5 19v-2.2A4.8 4.8 0 0 1 8.3 12h1.4a4.8 4.8 0 0 1 4.8 4.8V19"></path><path d="M15 6.5a2.5 2.5 0 0 1 0 5M16.5 13.5a4 4 0 0 1 4 4V19"></path>
+    </symbol>
+    <symbol id="icon-car" viewBox="0 0 24 24">
+      <path d="m4 15 1.5-6h13l1.5 6v4h-2v-2H6v2H4v-4Z"></path><path d="M7 9 8.5 5h7L17 9M6 14h2M16 14h2"></path>
+    </symbol>
+    <symbol id="icon-treemap" viewBox="0 0 24 24">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2"></rect><path d="M13 3.5v17M13 12h7.5M3.5 14h9.5"></path>
+    </symbol>
+    <symbol id="icon-compare" viewBox="0 0 24 24">
+      <path d="M4 8h12M13 5l3 3-3 3M20 16H8M11 13l-3 3 3 3"></path>
+    </symbol>
+    <symbol id="icon-micro" viewBox="0 0 24 24">
+      <path d="M4 7h4l2-3 3 6 2-3h5M4 14h3l2 3 3-6 3 5h5M4 21h16"></path>
+    </symbol>
+  </svg>
   <a class="skip-link" href="#main" id="skip-main">
     <span data-th>ข้ามไปยังเนื้อหาหลัก</span>
     <span data-en>Skip to main content</span>
@@ -2579,7 +2889,7 @@
                 </button>
                 <button id="lens-visual" type="button" role="tab" aria-selected="false" aria-controls="panel-visual">
                   <b>03</b>
-                  <span>Brand Visual<small class="lens-hint" aria-hidden="true"><span data-th>Dataviz · 3 ตัวอย่าง</span><span data-en>Dataviz · 3 examples</span></small></span>
+                  <span>Brand Visual<small class="lens-hint" aria-hidden="true"><span data-th>Dataviz · 3 พื้นฐาน + 9 เคส</span><span data-en>Dataviz · 3 basics + 9 cases</span></small></span>
                 </button>
               </div>
             </div>
@@ -2935,7 +3245,7 @@
 
         <details class="library-group" id="library-foundations">
           <summary id="library-foundations-toggle">
-            <span class="library-index">01</span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg><span class="sr-only">01</span></span>
             <h3><span data-th>รากฐานภาพและภาษา</span><span data-en>Foundations</span></h3>
             <span class="library-summary-copy"><span data-th>โลโก้ ตัวอักษร สี พื้นผิวไล่สี ที่พักสายตา และหน้าที่ของค่ามาตรฐานแต่ละตัว</span><span data-en>Logo, type, color, gradients, quiet, and token ownership.</span></span>
             <span class="library-count">4 foundations + 8 opportunities</span>
@@ -3085,7 +3395,7 @@
 
         <details class="library-group" id="library-components">
           <summary id="library-components-toggle">
-            <span class="library-index">02</span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-components"></use></svg><span class="sr-only">02</span></span>
             <h3><span data-th>ส่วนประกอบหน้าจอ</span><span data-en>Interface components</span></h3>
             <span class="library-summary-copy"><span data-th>การลงมือทำ ข้อมูลที่กรอก การตัดสินใจ หลักฐาน สถานะ และทางแก้เมื่อมีปัญหา</span><span data-en>Actions, input, decision, evidence, status, and recovery contracts.</span></span>
             <span class="library-count">13 components + 4 ensembles</span>
@@ -3202,10 +3512,10 @@
 
         <details class="library-group" id="library-dataviz">
           <summary id="library-dataviz-toggle">
-            <span class="library-index">03</span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg><span class="sr-only">03</span></span>
             <h3><span data-th>ข้อมูล ภาพ และแผนที่</span><span data-en>Data visualization & maps</span></h3>
             <span class="library-summary-copy"><span data-th>เลือกกราฟจากคำถาม แยกศูนย์จากไม่มีข้อมูล และให้ตารางเข้าถึงได้อยู่คู่กัน</span><span data-en>Choose charts from the question, separate zero from no data, and keep an accessible table.</span></span>
-            <span class="library-count">3 live + 3 extensions</span>
+            <span class="library-count">3 basics + 9 CityMETER</span>
           </summary>
           <div class="library-content" id="dataviz-examples">
             <div class="dataviz-intro">
@@ -3222,12 +3532,12 @@
             </aside>
 
             <div class="chart-chooser" aria-label="Question-first chart chooser">
-              <div><b>Compare / rank</b><small>Sorted horizontal bar or dot</small></div>
-              <div><b>Change over time</b><small>Line, step, or small multiples</small></div>
-              <div><b>Distribution</b><small>Histogram, box, or strip</small></div>
-              <div><b>Relationship</b><small>Scatter with labelled outliers</small></div>
-              <div><b>Part to whole</b><small>100% stacked bar; no pie/donut</small></div>
-              <div><b>Target / uncertainty</b><small>Reference line, interval, or band; no gauge</small></div>
+              <div><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-rank"></use></svg></span><span><b>Compare / rank</b><small>Sorted bar or dot</small></span></div>
+              <div><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-trend"></use></svg></span><span><b>Change over time</b><small>Line, step, or multiples</small></span></div>
+              <div><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-distribution"></use></svg></span><span><b>Distribution</b><small>Histogram, box, or strip</small></span></div>
+              <div><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-scatter"></use></svg></span><span><b>Relationship</b><small>Scatter + labelled outlier</small></span></div>
+              <div><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-stack"></use></svg></span><span><b>Part to whole</b><small>100% stack; no pie</small></span></div>
+              <div><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-target"></use></svg></span><span><b>Target / uncertainty</b><small>Line, interval, or band</small></span></div>
             </div>
 
             <div class="dataviz-grid">
@@ -3296,6 +3606,134 @@
               <span data-en>The shared Landometer layer governs question → form → unit → source → boundary → accessible alternative. Definitions, methods, thresholds, allowed use, and actual claims remain product-specific. Without governed geometry, teach MapLegend and map anatomy—never invent a map result.</span>
             </p>
 
+            <section class="citymeter-gallery" aria-labelledby="citymeter-chart-gallery-title">
+              <div class="citymeter-gallery-heading">
+                <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span>
+                <div>
+                  <p class="specimen-kicker">CITYMETER · CURRENT FORMS → DS TREATMENTS</p>
+                  <h4 id="citymeter-chart-gallery-title"><span data-th>9 แบบที่พบใน CityMETER และวิธีทำให้อ่านง่ายขึ้น</span><span data-en>Nine CityMETER forms—reframed for faster, safer reading</span></h4>
+                  <p><span data-th>สี่การ์ดแรกใช้ข้อมูลน้ำท่วมที่ CityMETER เปิดเผย ส่วนการ์ดรถใช้ข้อมูล ณ ก.พ. 2026 การ์ดที่ระบุ “โครงร่าง” แสดงเพียงวิธีจัดวาง ไม่ได้สร้างผลข้อมูลขึ้นใหม่</span><span data-en>The first four use public flood API data; vehicle cards use the Feb 2026 snapshot. Cards marked “treatment sketch” show structure without inventing results.</span></p>
+                </div>
+              </div>
+
+              <div class="citymeter-chart-grid">
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-map"></use></svg></span><div><h5><span data-th>แผนที่พื้นที่น้ำท่วม</span><span data-en>Flood-area choropleth</span></h5><span class="chart-status">LIVE FORM · TREATMENT SKETCH</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Schematic choropleth anatomy with a selected outline, named scale, zero and no-data keys">
+                    <path class="fill-soft outline" d="M24 35 69 20l35 23-8 38-49 8-30-26Z"></path>
+                    <path class="fill-muted outline" d="m104 43 52-18 35 31-17 34-78-9Z"></path>
+                    <path class="fill-primary outline" d="m47 89 49-8 42 29-18 28-63-5-24-25Z"></path>
+                    <path class="outline" d="m174 90 38-24 31 20-8 43-54 7-43-26Z"></path>
+                    <path class="primary" d="m46 88 50-8 43 30-19 29-64-6-24-25Z"></path>
+                    <rect x="164" y="18" width="73" height="10" rx="5" class="fill-soft"></rect><path class="primary" d="M165 23h51"></path>
+                    <text x="164" y="42">named scale</text><text x="164" y="53">date · method</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>เพิ่ม</span><span data-en>Add</span></strong> · <span data-th>วันที่ วิธีแบ่งช่วง เส้นพื้นที่ที่เลือก ลาย “ไม่มีข้อมูล” และตารางค่าจริง</span><span data-en>date, class method, selected outline, no-data pattern, and exact-value table.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-trend"></use></svg></span><div><h5><span data-th>พื้นที่น้ำท่วมตามเวลา</span><span data-en>Flood area over time</span></h5><span class="chart-status">PUBLIC API · 21–30 NOV 2025</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Country flood-area series from 21 to 30 November 2025; selected 27 November value is 5,944.26 square kilometres">
+                    <path class="axis" d="M28 18v108h214"></path><path class="axis" d="M28 46h214M28 86h214"></path>
+                    <polyline class="primary" points="36,124 58,103 80,94 102,44 124,51 146,91 168,93 190,92 212,91 234,100"></polyline>
+                    <circle cx="168" cy="93" r="5" class="fill-primary"></circle><path class="primary" d="M168 93v31"></path>
+                    <text x="28" y="142">21 Nov</text><text x="150" y="142">27 Nov</text><text x="213" y="142">30 Nov</text>
+                    <text x="151" y="78">5,944.26 km²</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong>27 พ.ย. 2025 · 5,944.26 km²</strong> · <span data-th>เขียนค่าของวันที่เลือกตรงจุด ไม่ปล่อยให้คนเดาจากแกน</span><span data-en>Direct-label the selected date instead of making readers estimate from an axis.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-rank"></use></svg></span><div><h5><span data-th>จังหวัดที่มีพื้นที่น้ำท่วมสูง</span><span data-en>Flood-area ranking</span></h5><span class="chart-status">PUBLIC API · 27 NOV 2025</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Top flood area provinces on 27 November 2025: Ayutthaya 778.22, Suphan Buri 672.78, Nakhon Sawan 671.07, Songkhla 525.07, Phichit 501.50 square kilometres">
+                    <text x="8" y="24">อยุธยา</text><rect x="79" y="14" width="151" height="13" rx="6" class="fill-primary"></rect><text x="250" y="24" text-anchor="end">778</text>
+                    <text x="8" y="50">สุพรรณบุรี</text><rect x="79" y="40" width="130" height="13" rx="6" class="fill-primary"></rect><text x="229" y="50" text-anchor="end">673</text>
+                    <text x="8" y="76">นครสวรรค์</text><rect x="79" y="66" width="130" height="13" rx="6" class="fill-primary"></rect><text x="229" y="76" text-anchor="end">671</text>
+                    <text x="8" y="102">สงขลา</text><rect x="79" y="92" width="102" height="13" rx="6" class="fill-primary"></rect><text x="201" y="102" text-anchor="end">525</text>
+                    <text x="8" y="128">พิจิตร</text><rect x="79" y="118" width="97" height="13" rx="6" class="fill-primary"></rect><text x="196" y="128" text-anchor="end">501</text>
+                    <text x="191" y="145">km²</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>เรียงจากมากไปน้อย</span><span data-en>Sort descending</span></strong> · <span data-th>ชื่อเต็ม ค่าตรงปลายแท่ง และวันที่เดียวกัน</span><span data-en>full labels, direct values, and one shared date.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-people"></use></svg></span><div><h5><span data-th>สิ่งที่ซ้อนทับกับพื้นที่น้ำท่วม</span><span data-en>Flood-overlap profile</span></h5><span class="chart-status">PUBLIC API · 27 NOV 2025</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Flood overlap snapshot: area 5,944.26 square kilometres, population 308,224, buildings 4,549, road 375.67 kilometres">
+                    <rect x="10" y="12" width="112" height="58" rx="10" class="fill-soft outline"></rect><text x="22" y="33">พื้นที่</text><text x="22" y="55">5,944.26 km²</text>
+                    <rect x="138" y="12" width="112" height="58" rx="10" class="fill-soft outline"></rect><text x="150" y="33">ประชากร</text><text x="150" y="55">308,224</text>
+                    <rect x="10" y="84" width="112" height="58" rx="10" class="fill-soft outline"></rect><text x="22" y="105">อาคาร</text><text x="22" y="127">4,549</text>
+                    <rect x="138" y="84" width="112" height="58" rx="10" class="fill-soft outline"></rect><text x="150" y="105">ถนน</text><text x="150" y="127">375.67 km</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>ใช้คำว่า “ซ้อนทับ/สัมผัส”</span><span data-en>Label as “overlap/exposure”</span></strong> · <span data-th>ไม่เรียกว่าความเสียหายที่ยืนยันแล้ว และไม่จับหน่วยต่างกันใส่แกนเดียว</span><span data-en>not confirmed damage; never force unlike units onto one scale.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-car"></use></svg></span><div><h5><span data-th>แบรนด์รถยนต์ Top 5</span><span data-en>Top-five vehicle brands</span></h5><span class="chart-status">CITYMETER · THAILAND · FEB 2026 · รย.1</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="CityMETER vehicle snapshot February 2026, Thailand, type 1: Toyota 16,040, Honda 7,175, Isuzu 4,076, Mitsubishi 2,076, Ford 1,633">
+                    <text x="8" y="24">TOYOTA</text><rect x="78" y="14" width="130" height="13" rx="6" class="fill-primary"></rect><text x="252" y="24" text-anchor="end">16,040</text>
+                    <text x="8" y="50">HONDA</text><rect x="78" y="40" width="58" height="13" rx="6" class="fill-primary"></rect><text x="174" y="50" text-anchor="end">7,175</text>
+                    <text x="8" y="76">ISUZU</text><rect x="78" y="66" width="33" height="13" rx="6" class="fill-primary"></rect><text x="144" y="76" text-anchor="end">4,076</text>
+                    <text x="8" y="102">MITSUBISHI</text><rect x="78" y="92" width="17" height="13" rx="6" class="fill-primary"></rect><text x="126" y="102" text-anchor="end">2,076</text>
+                    <text x="8" y="128">FORD</text><rect x="78" y="118" width="13" height="13" rx="6" class="fill-primary"></rect><text x="121" y="128" text-anchor="end">1,633</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong>Top 5 + Other</strong> · <span data-th>ให้ช่วงเวลา ประเภทรถ และตัวหารอยู่ข้างกราฟเสมอ</span><span data-en>Keep period, vehicle type, and denominator beside the chart.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-treemap"></use></svg></span><div><h5><span data-th>แบรนด์ → รุ่นรถ</span><span data-en>Brand → model hierarchy</span></h5><span class="chart-status">CITYMETER SNAPSHOT · DS TREATMENT</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Treemap treatment using February 2026 top models: Toyota Yaris Ativ 6,051, Toyota Yaris Cross 3,095, Isuzu D-Max 2,861, Honda HR-V 2,355, raw API label Toyota Hilux Travo 1,801">
+                    <rect x="8" y="10" width="138" height="84" rx="8" class="fill-primary"></rect><text x="18" y="33" style="fill:#fff">TOYOTA</text><text x="18" y="52" style="fill:#fff">YARIS ATIV</text><text x="18" y="71" style="fill:#fff">6,051</text>
+                    <rect x="151" y="10" width="101" height="40" rx="8" class="fill-change"></rect><text x="160" y="34" style="fill:#fff">YARIS CROSS · 3,095</text>
+                    <rect x="151" y="55" width="101" height="39" rx="8" class="fill-soft outline"></rect><text x="160" y="79">D-MAX · 2,861</text>
+                    <rect x="8" y="99" width="104" height="45" rx="8" class="fill-soft outline"></rect><text x="17" y="125">HR-V · 2,355</text>
+                    <rect x="117" y="99" width="135" height="45" rx="8" class="fill-muted outline"></rect><text x="126" y="119">HILUX TRAVO*</text><text x="126" y="134">1,801</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>ใช้ treemap เมื่อข้อมูลมีลำดับชั้นจริง</span><span data-en>Use treemap only for a real hierarchy</span></strong> · <span data-th>มีทางย้อนกลับ กลุ่ม “อื่น ๆ” และตาราง; *คงชื่อที่ได้รับจากข้อมูลต้นทาง</span><span data-en>add breadcrumbs, Other, and a table; *raw API label retained.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-stack"></use></svg></span><div><h5><span data-th>ส่วนแบ่ง + แนวโน้ม</span><span data-en>Composition + trend</span></h5><span class="chart-status">LIVE FORM · TREATMENT SKETCH</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Treatment sketch separating a 100 percent composition bar from an aligned time trend">
+                    <text x="12" y="20">SHARE · 100%</text>
+                    <path class="outline" d="M12 31h236v26H12Z"></path>
+                    <path class="primary" d="M12 44h91"></path><path class="change" d="M103 44h41"></path><path class="outlier" d="M144 44h23"></path><path class="axis" d="M167 44h81"></path>
+                    <text x="12" y="75">TREND · SAME PERIOD</text><path class="axis" d="M12 132h236M12 87v45"></path>
+                    <polyline class="primary" points="20,121 53,112 86,117 119,97 152,101 185,82 218,89 244,73"></polyline>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>แยกเป็นสองชั้น</span><span data-en>Use two aligned layers</span></strong> · <span data-th>ส่วนแบ่ง 100% อยู่บน แนวโน้มอยู่ล่าง ไม่ใช้แกนคู่</span><span data-en>100% share above, trend below—never a dual axis.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compare"></use></svg></span><div><h5><span data-th>เปรียบเทียบสองแบรนด์</span><span data-en>Two-brand comparison</span></h5><span class="chart-status">CITYMETER · FEB 2026 · รย.1</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="CityMETER February 2026 comparison: Mercedes Benz 626 and BMW 879">
+                    <path class="axis" d="M130 24v108"></path>
+                    <rect x="45" y="48" width="85" height="24" rx="10" class="fill-soft outline"></rect><text x="50" y="64">MERCEDES BENZ · 626</text>
+                    <rect x="130" y="88" width="112" height="24" rx="10" class="fill-primary"></rect><text x="143" y="104" style="fill:#fff">BMW · 879</text>
+                    <text x="119" y="142">0</text>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>ศูนย์ร่วม + ค่าที่เขียนตรงกราฟ</span><span data-en>Shared zero + direct labels</span></strong> · <span data-th>ใช้ตำแหน่ง รูปร่าง และข้อความร่วมกับสี ไม่ใช้แดง/เขียวลำพัง</span><span data-en>position, shape, and text carry meaning with color—not red/green alone.</span></p>
+                </article>
+
+                <article class="citymeter-chart-card">
+                  <header><span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-micro"></use></svg></span><div><h5><span data-th>แนวโน้มย่อยหลายแถว</span><span data-en>Micro trends + table</span></h5><span class="chart-status">LIVE FORM · TREATMENT SKETCH</span></div></header>
+                  <svg class="chart-thumbnail" viewBox="0 0 260 154" role="img" aria-label="Treatment sketch for three compact sparkline rows with current values, direction cues, and an aligned table">
+                    <text x="10" y="29">A</text><polyline class="primary" points="34,31 68,23 102,27 136,17 170,21"></polyline><text x="188" y="27">current ↑</text>
+                    <path class="axis" d="M10 48h240"></path>
+                    <text x="10" y="76">B</text><polyline class="change" points="34,76 68,66 102,72 136,73 170,59"></polyline><text x="188" y="72">current →</text>
+                    <path class="axis" d="M10 94h240"></path>
+                    <text x="10" y="122">C</text><polyline class="outlier" points="34,113 68,118 102,105 136,121 170,116"></polyline><text x="188" y="118">inspect ↓</text>
+                    <path class="axis" d="M10 140h240"></path>
+                  </svg>
+                  <p class="chart-card-caption"><strong><span data-th>แต่ละแถวต้องอ่านจบได้</span><span data-en>Each row must stand alone</span></strong> · <span data-th>ค่าล่าสุด ค่าเดิม ทิศทาง สถานะ และตาราง—ไม่ใช้ sparkline เป็นของตกแต่ง</span><span data-en>current, prior, direction, state, and table—not decorative sparklines.</span></p>
+                </article>
+              </div>
+
+              <div class="citymeter-gallery-boundary">
+                <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg></span>
+                <p><span data-th>ตรวจรูปแบบจาก CityMETER ที่เปิดให้สาธารณะดูเมื่อ 29 ก.ค. 2026 ตัวเลขในกราฟตามเวลา กราฟจัดอันดับ และกราฟรถยนต์เป็นข้อมูลเฉพาะของ CityMETER ไม่ใช่ข้อเท็จจริงร่วมของ Landometer ส่วนแผนที่และภาพที่ระบุ “โครงร่าง” ใช้สอนวิธีจัดวางเท่านั้น ไม่ได้อ้างว่าผลิตภัณฑ์จริงใช้ Design System นี้แล้ว</span><span data-en>Forms checked in public CityMETER on 29 Jul 2026. Timeline, ranking, and vehicle values are CityMETER-specific—not portfolio facts. Map and “treatment sketch” thumbnails teach anatomy only and do not claim the live product already conforms.</span></p>
+              </div>
+            </section>
+
             <section class="opportunity-gallery" aria-labelledby="dataviz-opportunities-title">
               <p class="specimen-kicker">DATAVIZ OPPORTUNITIES · QUESTION-LED EXTENSIONS</p>
               <h4 id="dataviz-opportunities-title"><span data-th>กราฟที่ดีตอบคำถามนี้ และช่วยให้รู้ว่าจะถามอะไรต่อ</span><span data-en>A good chart is not merely the right type—it improves the next question.</span></h4>
@@ -3337,7 +3775,7 @@
 
         <details class="library-group" id="library-experience">
           <summary id="library-experience-toggle">
-            <span class="library-index">04</span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-experience"></use></svg><span class="sr-only">04</span></span>
             <h3><span data-th>รูปแบบประสบการณ์</span><span data-en>Experience patterns</span></h3>
             <span class="library-summary-copy"><span data-th>เส้นทางสู่ความสำเร็จ สถานะที่ตรงไปตรงมา motion, CTA คุณค่าของผู้รับ และการค้นต่อภายนอก</span><span data-en>Success path, truthful states, motion, CTA, ethical loops, recipient value, and external discovery.</span></span>
             <span class="library-count">4 cases + 6 patterns</span>
@@ -3386,15 +3824,15 @@
                   </dl>
                 </article>
                 <article class="intent-case">
-                  <p class="specimen-kicker">CASE 02 · CITYMETER-SPECIFIC REFERENCE SCENARIO</p>
-                  <h6><span data-th>นำบริบท Disaster ของพื้นที่ที่กำลังดูไปค้นข่าวต่อ</span><span data-en>Carry the active place and Disaster context into a news search.</span></h6>
+                  <p class="specimen-kicker">CASE 02 · CITYMETER CURRENT-RECORD REFERENCE</p>
+                  <h6><span data-th>นำเหตุการณ์ พื้นที่ และ field ที่กำลังดูไปค้นข่าวต่อ</span><span data-en>Carry the active event, place, and field into a news search.</span></h6>
                   <dl>
-                    <div><dt>Intent</dt><dd><span data-th>“ขณะดูหัวข้อ Disaster ของเทศบาลเมืองแสนสุข ฉันต้องการอ่านข่าวสาธารณภัยล่าสุดที่เกี่ยวกับพื้นที่นี้”</span><span data-en>“While viewing Disaster for Saen Suk Municipality, I want recent public-disaster news relevant to this place.”</span></dd></div>
-                    <div><dt>AHA</dt><dd><span data-th>เห็นว่าชื่อผลิตภัณฑ์ ลำดับพื้นที่ หัวข้อที่เปิดอยู่ และสิ่งที่อยากรู้ สามารถรวมเป็น query ที่ปลอดภัยต่อการส่งออกได้ โดยไม่ต้องพิมพ์ใหม่</span><span data-en>The reference concept shows how product, place hierarchy, active topic, and current intent could travel in a public-safe query without retyping context.</span></dd></div>
-                    <div><dt>Evidence cue</dt><dd><span data-th>ก่อนออกจากผลิตภัณฑ์ คนเห็นบริบทต้นทางและ query ฉบับเต็มที่แก้ได้</span><span data-en>A context snapshot and editable exact query expose every source field before leaving the product.</span></dd></div>
+                    <div><dt>Intent</dt><dd><span data-th>“ขณะดูปี 2567 อุทกภัย ที่หมู่บ้านท่าไทร และเลือกดูยอดผู้เสียชีวิต ฉันอยากตามข่าวที่ตรงกับเหตุการณ์นี้”</span><span data-en>“While viewing the 2024 flood record for Tha Sai with the fatalities field active, I want news for this exact event.”</span></dd></div>
+                    <div><dt>AHA</dt><dd><span data-th>ชื่อเหตุการณ์ วันที่ สาเหตุ เรื่องที่เลือกดู และลำดับพื้นที่ กลายเป็นคำค้นพร้อมใช้โดยไม่ต้องพิมพ์บริบทซ้ำ</span><span data-en>Event, date, cause, active field, and place hierarchy become a ready query without retyping context.</span></dd></div>
+                    <div><dt>Evidence cue</dt><dd><span data-th>ก่อนออกไปค้น คนเห็นข้อมูลต้นทาง คำค้นฉบับเต็ม และแก้ได้ทุกคำ</span><span data-en>The source record and full editable query remain visible before leaving.</span></dd></div>
                     <div><dt>Design</dt><dd><span data-th>แสดงบริบทที่กำลังใช้ query ที่ระบบประกอบให้และแก้ได้ พร้อม CTA “ค้นคำนี้ต่อใน Google” เปิดผลในแท็บใหม่และเก็บหน้าปัจจุบันไว้</span><span data-en>Show a context snapshot + an editable auto-composed query + “Continue this query in Google,” opening a new tab while preserving the current page.</span></dd></div>
                     <div><dt>Clean completion</dt><dd><span data-th>แก้หรือคัดลอก query แล้วหยุดได้โดยไม่ส่ง หากค้นต่อ หน้าปัจจุบันยังอยู่ และผลที่ได้ยังเป็น discovery_only</span><span data-en>Edit or copy the query and stop without sending; if search continues, the current page remains and results stay discovery_only.</span></dd></div>
-                    <div><dt>Guardrail</dt><dd><span data-th>นี่เป็นตัวอย่างเฉพาะ fixture และผลิตภัณฑ์ ไม่ได้ยืนยันว่า CityMETER ทุก instance มีฟีเจอร์นี้ และไม่มีเหตุการณ์หรือยอดผู้เสียชีวิตจริงในตัวอย่าง</span><span data-en>This fixture-specific, product-specific reference scenario does not claim every CityMETER instance has the feature, and contains no real event or casualty value.</span></dd></div>
+                    <div><dt>Guardrail</dt><dd><span data-th>ตัวอย่างนี้อ้างอิงรายการที่แสดงใน CityMETER ไม่ใช่การยืนยันจากพื้นที่จริง ข้อมูลต้นทางไม่บอกแหล่งอ้างอิง จึงไม่นำตัวเลขที่ยังไม่รู้ว่าครอบคลุมพื้นที่ใดมาใช้</span><span data-en>This is a CityMETER record snapshot—not independent ground-truth verification. The endpoint exposes no provenance; numeric values are omitted when scope is unclear.</span></dd></div>
                   </dl>
                 </article>
                 <article class="intent-case">
@@ -3546,17 +3984,37 @@
                   <p class="label-correction"><s>See more</s> → <strong><span data-th>ค้นคำนี้ต่อใน Google</span><span data-en>Continue this query in Google</span></strong></p>
                 </article>
                 <div class="discovery-fixture">
-                  <p class="specimen-kicker">PRODUCT-SPECIFIC · SYNTHETIC EVENT FIXTURE</p>
-                  <h6><span data-th>คำค้นนี้สร้างจากบริบทที่กำลังดู</span><span data-en>The query is composed from the active context</span></h6>
+                  <p class="specimen-kicker">PRODUCT-SPECIFIC · CURRENT CITYMETER RECORD SNAPSHOTS</p>
+                  <div class="context-case-picker">
+                    <label for="context-case"><span data-th>ลองดูอีก 3 เหตุการณ์ที่มีอยู่ใน CityMETER</span><span data-en>Switch among four current-record examples</span></label>
+                    <select id="context-case">
+                      <option value="tha-sai">น้ำท่วม · หมู่บ้านท่าไทร · สงขลา · 27 พ.ย. 2567</option>
+                      <option value="krok-phra">อัคคีภัย · หมู่บ้านโกรกพระ · นครสวรรค์ · 26 ธ.ค. 2567</option>
+                      <option value="bueng-lak">วาตภัย · หมู่บ้านบึงหลัก · อุตรดิตถ์ · 3 พ.ค. 2567</option>
+                      <option value="na-to">ดินถล่ม · หมู่บ้านนาโต่ · เชียงราย · 17 ส.ค. 2567</option>
+                    </select>
+                  </div>
+                  <div class="context-hero">
+                    <span class="icon-well"><svg class="ui-icon" id="context-event-icon" aria-hidden="true"><use href="#icon-water"></use></svg></span>
+                    <div>
+                      <h6 id="context-event">ปี 2567 อุทกภัย</h6>
+                      <p id="context-place-inline">หมู่บ้านท่าไทร · จังหวัดสงขลา</p>
+                    </div>
+                  </div>
                   <dl class="context-snapshot" id="context-snapshot">
-                    <div><dt>Product</dt><dd>CityMETER · reference scenario only</dd></div>
-                    <div><dt>Place</dt><dd><span data-th>เทศบาลเมืองแสนสุข › อำเภอเมืองชลบุรี › จังหวัดชลบุรี</span><span data-en>Saen Suk Municipality › Mueang Chonburi District › Chonburi Province</span></dd></div>
-                    <div><dt>Topic</dt><dd>Disaster · <span data-th>ข่าวสาธารณภัย</span><span data-en>public-disaster news</span></dd></div>
-                    <div><dt>Event</dt><dd><span data-th>CM-SYNTHETIC-DISASTER-001 · ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง</span><span data-en>CM-SYNTHETIC-DISASTER-001 · synthetic data, not a real event</span></dd></div>
-                    <div><dt>Active filter</dt><dd><span data-th>ยอดผู้เสียชีวิต · เป็นเพียงชื่อช่อง ไม่มีค่าจริงใน fixture</span><span data-en>Fatalities · field label only; the fixture contains no real value</span></dd></div>
-                    <div><dt>Intent</dt><dd><span data-th>อ่านข่าวล่าสุดที่ตรงกับเหตุการณ์ ข้อมูล และพื้นที่ที่กำลังดู</span><span data-en>Read recent news relevant to the active event, field, and place.</span></dd></div>
+                    <div><dt><svg class="ui-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg><span><span data-th>วันที่</span><span data-en>Date</span></span></dt><dd id="context-date">27 พฤศจิกายน 2567</dd></div>
+                    <div><dt><svg class="ui-icon" aria-hidden="true"><use href="#icon-water"></use></svg><span><span data-th>ประเภท / สาเหตุ</span><span data-en>Type / cause</span></span></dt><dd id="context-cause">น้ำท่วม · น้ำป่าไหลหลาก / น้ำท่วมฉับพลัน</dd></div>
+                    <div><dt><svg class="ui-icon" aria-hidden="true"><use href="#icon-filter"></use></svg><span><span data-th>ข้อมูลที่กำลังดู</span><span data-en>Active field</span></span></dt><dd id="context-filter">ยอดผู้เสียชีวิต · ใช้เฉพาะชื่อหัวข้อ</dd></div>
+                    <div><dt><svg class="ui-icon" aria-hidden="true"><use href="#icon-pin"></use></svg><span><span data-th>พื้นที่</span><span data-en>Place</span></span></dt><dd id="context-place">หมู่บ้านท่าไทร › องค์การบริหารส่วนตำบล เกาะยอ › อำเภอเมืองสงขลา › จังหวัดสงขลา</dd></div>
                   </dl>
-                  <p class="pattern-boundary"><span data-th>ตัวอย่างนี้จับคู่พื้นที่จริงกับเหตุการณ์จำลอง เพื่อสอนวิธีสร้าง query เท่านั้น ไม่ได้บอกว่าเกิดสาธารณภัยหรือมีผู้เสียชีวิตในพื้นที่ Google จะได้รับเฉพาะ query ที่เห็นอยู่หลังจากกด</span><span data-en>This fixture pairs a real place with a synthetic event only to teach query composition. It does not indicate that a disaster or fatality occurred there. Google receives the visible query only after activation.</span></p>
+                  <div class="context-source-row">
+                    <a class="context-source-link" id="context-source" href="https://landometer.com/api/v2/citymeter-v3/disaster/incidents?villageId=34a723e4-3aad-42fd-8df0-03d9b9da1d3c&amp;disasterType=flood&amp;year=2024" target="_blank" rel="noopener noreferrer external">
+                      <svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg>
+                      <span><span data-th>เปิดข้อมูลต้นทาง</span><span data-en>Open source record</span></span>
+                    </a>
+                    <small><span data-th>ข้อมูลสาธารณะจาก CityMETER · ตรวจเมื่อ 29 ก.ค. 2026</span><span data-en>CityMETER public API · checked 29 Jul 2026</span></small>
+                  </div>
+                  <p class="pattern-boundary"><span data-th>ตัวอย่างนี้ดึงมาจากข้อมูลที่ CityMETER เปิดให้ดู ไม่ใช่การยืนยันจากพื้นที่จริง และข้อมูลต้นทางไม่ได้บอกแหล่งอ้างอิงของเหตุการณ์ เราจึงใช้เฉพาะชื่อเหตุการณ์ วันที่ สาเหตุ พื้นที่ และหัวข้อที่กำลังดู ตัวเลขที่ยังไม่แน่ใจว่าครอบคลุมพื้นที่ไหนจะไม่ถูกนำไปค้น ส่วนผลจาก Google ต้องตรวจแหล่งที่มาก่อนใช้</span><span data-en>This is a public CityMETER record snapshot—not independent ground-truth verification. Because the endpoint exposes no provenance, the query uses event, date, cause, place, and field label; values with unclear scope are omitted. Search results remain discovery_only.</span></p>
                   <form
                     class="intent-form"
                     id="context-search-form"
@@ -3565,17 +4023,11 @@
                     target="_blank"
                     rel="noopener noreferrer external"
                     accept-charset="UTF-8"
-                    data-event-name="CM-SYNTHETIC-DISASTER-001 ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง"
-                    data-active-filter="ยอดผู้เสียชีวิต"
-                    data-intent-keywords="ข่าว สาธารณภัย ภัยพิบัติ เหตุฉุกเฉิน"
-                    data-place-name="เทศบาลเมืองแสนสุข"
-                    data-district-name="อำเภอเมืองชลบุรี"
-                    data-province-name="จังหวัดชลบุรี"
                   >
-                    <label for="context-query"><span data-th>คำค้นที่ประกอบอัตโนมัติและแก้ได้</span><span data-en>Editable, auto-composed query</span></label>
-                    <input id="context-query" name="q" type="search" required maxlength="240" value="CM-SYNTHETIC-DISASTER-001 ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง ยอดผู้เสียชีวิต ข่าว สาธารณภัย ภัยพิบัติ เหตุฉุกเฉิน เทศบาลเมืองแสนสุข อำเภอเมืองชลบุรี จังหวัดชลบุรี" autocomplete="off" aria-describedby="context-query-help">
-                    <small id="context-query-help"><span data-th>หน้านี้ไม่บันทึก query Google จะได้รับเฉพาะข้อความที่เห็นอยู่หลังจากกด ผลที่ได้ยังเป็น discovery_only</span><span data-en>This site does not save the query. Google receives the visible text only after activation; returned material remains discovery_only.</span></small>
-                    <button id="context-search-google" type="submit"><span data-th>ค้นคำนี้ต่อใน Google</span><span data-en>Continue this query in Google</span></button>
+                    <label for="context-query"><span data-th>คำค้นที่ระบบเตรียมให้ (แก้ไขได้)</span><span data-en>Editable, auto-composed query</span></label>
+                    <input id="context-query" name="q" type="search" required maxlength="320" value="&quot;ปี 2567 อุทกภัย&quot; 27 พฤศจิกายน 2567 น้ำป่าไหลหลาก น้ำท่วมฉับพลัน &quot;ยอดผู้เสียชีวิต&quot; ข่าว &quot;หมู่บ้านท่าไทร&quot; &quot;องค์การบริหารส่วนตำบล เกาะยอ&quot; &quot;อำเภอเมืองสงขลา&quot; &quot;จังหวัดสงขลา&quot;" autocomplete="off" aria-describedby="context-query-help">
+                    <small id="context-query-help"><span data-th>เว็บนี้ไม่เก็บคำค้น Google จะได้รับเฉพาะข้อความที่เห็นหลังจากกด และสิ่งที่พบยังต้องตรวจแหล่งที่มาก่อนใช้</span><span data-en>This site does not save the query. Google receives the visible text only after activation; returned material remains discovery_only.</span></small>
+                    <button id="context-search-google" type="submit"><span data-th>ค้นต่อใน Google</span><span data-en>Continue this query in Google</span></button>
                   </form>
                 </div>
               </div>
@@ -3586,7 +4038,7 @@
 
         <details class="library-group" id="library-products">
           <summary id="library-products-toggle">
-            <span class="library-index">05</span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-products"></use></svg><span class="sr-only">05</span></span>
             <h3><span data-th>การปรับใช้ตามผลิตภัณฑ์</span><span data-en>Product adaptations</span></h3>
             <span class="library-summary-copy"><span data-th>ใช้ shared layer ร่วมกัน ส่วนข้อมูล วิธีทำงาน น้ำเสียง และ capability ให้แต่ละผลิตภัณฑ์ดูแล</span><span data-en>Share the system layer; keep data, method, voice, and capability with the product.</span></span>
             <span class="library-count">4 templates</span>
@@ -3643,7 +4095,7 @@
 
         <details class="library-group" id="library-resources">
           <summary id="library-resources-toggle">
-            <span class="library-index">06</span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-download"></use></svg><span class="sr-only">06</span></span>
             <h3><span data-th>เอกสารและไฟล์อ้างอิง</span><span data-en>Resources & release records</span></h3>
             <span class="library-summary-copy"><span data-th>คู่มือฉบับอ่านง่าย implementation note บันทึกการส่งมอบ SEO gate และตัวช่วยให้เครื่องค้นพบ</span><span data-en>Human-readable master, implementation note, release records, SEO gate, and machine-discovery aid.</span></span>
             <span class="library-count">7 records + gates</span>
@@ -4013,17 +4465,77 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
 
       const contextSearchForm = el("context-search-form");
       const contextQuery = el("context-query");
-      if (contextSearchForm && contextQuery) {
-        const context = contextSearchForm.dataset;
-        const exact = value => `"${String(value || "").replaceAll('"', "").trim()}"`;
-        contextQuery.value = [
-          exact(context.eventName),
-          exact(context.activeFilter),
-          context.intentKeywords,
-          exact(context.placeName),
-          exact(context.districtName),
-          exact(context.provinceName)
-        ].filter(Boolean).join(" ");
+      const contextCase = el("context-case");
+      const contextEvent = el("context-event");
+      const contextEventIcon = el("context-event-icon");
+      const contextPlaceInline = el("context-place-inline");
+      const contextDate = el("context-date");
+      const contextCause = el("context-cause");
+      const contextFilter = el("context-filter");
+      const contextPlace = el("context-place");
+      const contextSource = el("context-source");
+      const contextCases = {
+        "tha-sai": {
+          event: "ปี 2567 อุทกภัย",
+          date: "27 พฤศจิกายน–27 ธันวาคม 2567",
+          typeCause: "น้ำท่วม · น้ำป่าไหลหลาก / น้ำท่วมฉับพลัน",
+          field: "ยอดผู้เสียชีวิต · ใช้เฉพาะชื่อหัวข้อ",
+          placeInline: "หมู่บ้านท่าไทร · จังหวัดสงขลา",
+          place: "หมู่บ้านท่าไทร › องค์การบริหารส่วนตำบล เกาะยอ › อำเภอเมืองสงขลา › จังหวัดสงขลา",
+          icon: "water",
+          query: '"ปี 2567 อุทกภัย" 27 พฤศจิกายน 2567 น้ำป่าไหลหลาก น้ำท่วมฉับพลัน "ยอดผู้เสียชีวิต" ข่าว "หมู่บ้านท่าไทร" "องค์การบริหารส่วนตำบล เกาะยอ" "อำเภอเมืองสงขลา" "จังหวัดสงขลา"',
+          source: "https://landometer.com/api/v2/citymeter-v3/disaster/incidents?villageId=34a723e4-3aad-42fd-8df0-03d9b9da1d3c&disasterType=flood&year=2024"
+        },
+        "krok-phra": {
+          event: "ปี 2567 อัคคีภัย",
+          date: "26 ธันวาคม 2567–6 มกราคม 2568",
+          typeCause: "อัคคีภัย · ข้อมูลต้นทางไม่ได้ระบุสาเหตุ",
+          field: "ผู้เสียชีวิต · 3 ราย",
+          placeInline: "หมู่บ้านโกรกพระ · จังหวัดนครสวรรค์",
+          place: "หมู่บ้านโกรกพระ › เทศบาลตำบล โกรกพระ › อำเภอโกรกพระ › จังหวัดนครสวรรค์",
+          icon: "fire",
+          query: '"ปี 2567 อัคคีภัย" 26 ธันวาคม 2567 "ผู้เสียชีวิต 3 ราย" ข่าว "หมู่บ้านโกรกพระ" "เทศบาลตำบล โกรกพระ" "อำเภอโกรกพระ" "จังหวัดนครสวรรค์"',
+          source: "https://landometer.com/api/v2/citymeter-v3/disaster/incidents?villageId=36cbe8c6-958c-4c36-9fe5-b86b86770229&disasterType=fire&year=2024"
+        },
+        "bueng-lak": {
+          event: "ปี 2567 วาตภัย",
+          date: "3–4 พฤษภาคม 2567",
+          typeCause: "วาตภัย · พายุฤดูร้อน",
+          field: "บ้านเรือนเสียหาย · ใช้เฉพาะชื่อหัวข้อ",
+          placeInline: "หมู่บ้านบึงหลัก · จังหวัดอุตรดิตถ์",
+          place: "หมู่บ้านบึงหลัก › เทศบาลตำบล ป่าเซ่า › อำเภอเมืองอุตรดิตถ์ › จังหวัดอุตรดิตถ์",
+          icon: "wind",
+          query: '"ปี 2567 วาตภัย" พายุฤดูร้อน 3 พฤษภาคม 2567 "บ้านเรือนเสียหาย" ข่าว "หมู่บ้านบึงหลัก" "เทศบาลตำบล ป่าเซ่า" "อำเภอเมืองอุตรดิตถ์" "จังหวัดอุตรดิตถ์"',
+          source: "https://landometer.com/api/v2/citymeter-v3/disaster/incidents?villageId=f174209d-fb0b-409b-a671-036aa951e576&disasterType=storm&year=2024"
+        },
+        "na-to": {
+          event: "ปี 2567 ดินถล่ม",
+          date: "17 สิงหาคม–4 กันยายน 2567",
+          typeCause: "ดินถล่ม · ข้อมูลต้นทางไม่ได้ระบุสาเหตุ",
+          field: "ผู้ได้รับผลกระทบ · ใช้เฉพาะชื่อหัวข้อ",
+          placeInline: "หมู่บ้านนาโต่ · จังหวัดเชียงราย",
+          place: "หมู่บ้านนาโต่ › องค์การบริหารส่วนตำบล แม่สลองใน › อำเภอแม่ฟ้าหลวง › จังหวัดเชียงราย",
+          icon: "mountain",
+          query: '"ปี 2567 ดินถล่ม" 17 สิงหาคม 2567 "ผู้ได้รับผลกระทบ" ข่าว "หมู่บ้านนาโต่" "องค์การบริหารส่วนตำบล แม่สลองใน" "อำเภอแม่ฟ้าหลวง" "จังหวัดเชียงราย"',
+          source: "https://landometer.com/api/v2/citymeter-v3/disaster/incidents?villageId=f96caf41-0f12-4a86-88aa-bcf474251c8d&disasterType=landslide_alt&year=2024"
+        }
+      };
+      function renderContextCase(caseId) {
+        const record = contextCases[caseId] || contextCases["tha-sai"];
+        if (contextEvent) contextEvent.textContent = record.event;
+        if (contextPlaceInline) contextPlaceInline.textContent = record.placeInline;
+        if (contextDate) contextDate.textContent = record.date;
+        if (contextCause) contextCause.textContent = record.typeCause;
+        if (contextFilter) contextFilter.textContent = record.field;
+        if (contextPlace) contextPlace.textContent = record.place;
+        if (contextQuery) contextQuery.value = record.query;
+        if (contextSource) contextSource.href = record.source;
+        const iconUse = contextEventIcon?.querySelector("use");
+        if (iconUse) iconUse.setAttribute("href", `#icon-${record.icon}`);
+      }
+      if (contextSearchForm && contextQuery && contextCase) {
+        contextCase.addEventListener("change", () => renderContextCase(contextCase.value));
+        renderContextCase(contextCase.value);
       }
 
       function resolveTheme() {
@@ -4260,9 +4772,15 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       const initialDetails = location.hash ? el(location.hash.slice(1)) : null;
       if (initialDetails instanceof HTMLDetailsElement) initialDetails.open = true;
 
-      document.fonts && document.fonts.ready.then(() => {
-        root.dataset.fontsReady = "true";
-      });
+      if (document.fonts) {
+        Promise.all([
+          document.fonts.ready,
+          document.fonts.load('400 16px "Bai Jamjuree"', "ตอนนี้งานอยู่ช่วงไหน")
+        ]).then(() => {
+          root.dataset.fontsReady = "true";
+          root.dataset.thaiLabelsReady = document.fonts.check('400 16px "Bai Jamjuree"', "ตอนนี้งานอยู่ช่วงไหน") ? "true" : "false";
+        });
+      }
       renderControls();
     })();
   </script>
