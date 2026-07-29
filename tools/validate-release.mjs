@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -23,7 +24,64 @@ function sha256(path) {
   return createHash("sha256").update(readFileSync(resolve(root, path))).digest("hex");
 }
 
+function elementsWithClass(source, className) {
+  return [...source.matchAll(/<([a-z][\w:-]*)\b([^>]*)>/gi)]
+    .filter(([, , attributes]) => {
+      const classAttribute = attributes.match(/\bclass="([^"]*)"/i)?.[1] ?? "";
+      return classAttribute.split(/\s+/).includes(className);
+    })
+    .map(match => match[0]);
+}
+
+function countClass(source, className) {
+  return elementsWithClass(source, className).length;
+}
+
+function attributeValue(element, attributeName) {
+  const match = element.match(
+    new RegExp(
+      `\\b${attributeName}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`,
+      "i",
+    ),
+  );
+  return match?.[1] ?? match?.[2] ?? match?.[3] ?? null;
+}
+
+function openTagById(source, tagName, id) {
+  return (
+    source.match(
+      new RegExp(
+        `<${tagName}\\b(?=[^>]*\\bid=(?:"${id}"|'${id}'))[^>]*>`,
+        "i",
+      ),
+    )?.[0] ?? ""
+  );
+}
+
+function elementById(source, tagName, id) {
+  return (
+    source.match(
+      new RegExp(
+        `<${tagName}\\b(?=[^>]*\\bid=(?:"${id}"|'${id}'))[^>]*>[\\s\\S]*?<\\/${tagName}>`,
+        "i",
+      ),
+    )?.[0] ?? ""
+  );
+}
+
+function cssRules(source) {
+  const styles = [...source.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)]
+    .map(match => match[1])
+    .join("\n");
+  return [...styles.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+    .map(([, selector, declarations]) => ({
+      selector: selector.trim(),
+      declarations
+    }));
+}
+
 const html = text("index.html");
+const standaloneHtml = text("landometer-design-system-v0.8.8-standalone.html");
 const manifest = json("site-manifest.v0.8.8.json");
 const inventory = json("control-inventory.v0.8.8.json");
 const buildCard = text("build-card.v0.8.8.yml");
@@ -79,7 +137,11 @@ for (const capability of [
 }
 pass(manifest.capabilities.contextDiscovery === true, "Explicit user-triggered contextual discovery is declared");
 pass(manifest.capabilities.externalNavigation === true, "Contextual discovery declares external navigation");
-pass(manifest.capabilities.thirdPartyRequest === "explicit_user_triggered_visible_query_only", "Third-party request is bounded to the visible confirmed query");
+pass(
+  manifest.capabilities.thirdPartyRequest ===
+    "explicit_user_triggered_visible_query_plus_selected_route",
+  "Third-party request is bounded to the visible confirmed query plus the explicitly selected route",
+);
 pass(manifest.capabilities.agentActionEffect === "none", "Manifest projects the no-agent-action effect");
 pass(manifest.network?.mode === "reference_ready" && manifest.network?.action === "none", "Manifest projects the static network boundary");
 pass(manifest.network?.networkAdvancesObjective === false, "Manifest does not claim a network objective");
@@ -157,7 +219,37 @@ pass(buildCard.includes("fixtureId: MOTION-FIXTURE-0.1"), "Build Card names the 
 pass(buildCard.includes("fixtureId: NETWORK-FIXTURE-0.1"), "Build Card names the recipient-value reference fixture");
 pass(buildCard.includes("fixtureId: CONTEXT-FIXTURE-0.1"), "Build Card names the contextual-discovery reference fixture");
 pass(buildCard.includes("contextDiscovery: true"), "Build Card declares the explicit contextual-discovery action");
-pass(buildCard.includes("thirdPartyRequest: explicit_user_triggered_visible_query_only"), "Build Card bounds the third-party request");
+pass(
+  buildCard.includes(
+    "thirdPartyRequest: explicit_user_triggered_visible_query_plus_selected_route",
+  ),
+  "Build Card bounds the third-party request to the visible query plus selected route",
+);
+pass(
+  JSON.stringify(manifest.fixtureCapabilities?.contextualDiscovery?.supportedModes) ===
+    JSON.stringify(["source_search", "ai_synthesis"]) &&
+    buildCard.includes("supportedModes: [source_search, ai_synthesis]"),
+  "Manifest and Build Card distinguish source Search from AI synthesis",
+);
+pass(
+  /not a source or evidence/i.test(
+    manifest.fixtureCapabilities?.contextualDiscovery?.aiBoundary ?? "",
+  ) &&
+    /discovery_only/.test(
+      manifest.fixtureCapabilities?.contextualDiscovery?.resultStatus ?? "",
+    ),
+  "Manifest keeps external AI synthesis discovery_only rather than evidence",
+);
+pass(
+  /implementation detail/i.test(
+    manifest.fixtureCapabilities?.contextualDiscovery?.providerRouting ?? "",
+  ) &&
+    /never silently switch/i.test(
+      manifest.fixtureCapabilities?.contextualDiscovery?.fallback ?? "",
+    ) &&
+    implementationNotes.includes("https://www.google.com/ai"),
+  "Provider routing stays implementation-specific with an explicit no-silent-switch fallback",
+);
 pass(buildCard.includes("agentReadable: false"), "Build Card does not claim agent-readable delivery");
 pass(buildCard.includes("boundedAgentAction: false"), "Build Card grants no bounded agent action");
 pass(buildCard.includes("shareControl: false"), "Build Card records that no live share control is rendered");
@@ -207,6 +299,170 @@ pass(html.includes("linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100
 pass(html.includes("linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%)"), "Ground gradient stop order is exact");
 pass(html.includes("linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)"), "Light Measure gradient is exact");
 pass(html.includes("linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%)"), "Dark Measure gradient is exact");
+
+const atlasStartMarker = "<!-- COLOR_ATLAS_START -->";
+const atlasEndMarker = "<!-- COLOR_ATLAS_END -->";
+const atlasStart = html.indexOf(atlasStartMarker);
+const atlasEnd = html.indexOf(atlasEndMarker);
+const atlasMarkersValid = atlasStart >= 0 && atlasEnd > atlasStart;
+const atlasHtml = atlasMarkersValid
+  ? html.slice(atlasStart + atlasStartMarker.length, atlasEnd)
+  : "";
+pass(atlasMarkersValid, "Complete color atlas has one ordered generated-fragment boundary");
+pass((html.match(/<!-- COLOR_ATLAS_START -->/g) || []).length === 1, "Complete color atlas has exactly one start marker");
+pass((html.match(/<!-- COLOR_ATLAS_END -->/g) || []).length === 1, "Complete color atlas has exactly one end marker");
+pass(
+  html.includes('id="complete-color-atlas"') &&
+    html.includes('id="complete-color-atlas-toggle"'),
+  "Complete color atlas is available through one progressive-disclosure control"
+);
+pass(countClass(atlasHtml, "atlas-pair-card") === 17, "Color atlas contains exactly 17 foundation light/dark pairs");
+pass(countClass(atlasHtml, "atlas-state-card") === 7, "Color atlas contains exactly seven semantic-state cards");
+pass(
+  countClass(atlasHtml, "atlas-gradient-card") === 5 &&
+    countClass(atlasHtml, "atlas-gradient-card--shared") === 2 &&
+    countClass(atlasHtml, "atlas-gradient-card--motif") === 3,
+  "Color atlas contains exactly two shared and three motif gradient cards"
+);
+const productGradientCards = elementsWithClass(atlasHtml, "atlas-product-card");
+pass(
+  productGradientCards.length === 4 &&
+    productGradientCards.every(card => /\bdata-scope="product-identity"/.test(card)),
+  "Color atlas contains exactly four explicitly product-scoped gradient cards"
+);
+pass(countClass(atlasHtml, "atlas-gradient-theme") === 8, "Four product gradients expose exactly eight light/dark specimens");
+pass(countClass(atlasHtml, "atlas-series-card") === 10, "Color atlas contains exactly ten categorical-series cards");
+pass(countClass(atlasHtml, "atlas-scale-record") === 18, "Color atlas contains exactly 18 quantitative scale records");
+pass(countClass(atlasHtml, "atlas-lut-cell") === 738, "Color atlas contains exactly 738 generated LUT cells");
+pass(countClass(atlasHtml, "atlas-class-cell") === 378, "Color atlas contains exactly 378 generated 5/7/9 class cells");
+pass(countClass(atlasHtml, "atlas-map-card") === 8, "Color atlas contains exactly eight map-state cards");
+pass(countClass(atlasHtml, "atlas-opacity-row") === 8, "Color atlas contains exactly eight canonical opacity rows");
+pass(countClass(atlasHtml, "atlas-depth-step") === 6, "Color atlas contains exactly six perceptual depth roles");
+
+const expectedScaleKeys = [
+  "growth:light", "growth:dark",
+  "water:light", "water:dark",
+  "risk:light", "risk:dark",
+  "activity:light", "activity:dark",
+  "density:light", "density:dark",
+  "confidence:light", "confidence:dark",
+  "balance:light", "balance:dark",
+  "delta:light", "delta:dark",
+  "tradeoff:light", "tradeoff:dark"
+];
+const scaleRecords = [...atlasHtml.matchAll(
+  /<article class="atlas-scale-record"([^>]*)>([\s\S]*?)<\/article>/g
+)];
+const scaleKeys = scaleRecords.map(([, attributes]) => {
+  const scale = attributes.match(/\bdata-atlas-scale="([^"]+)"/)?.[1] ?? "";
+  const theme = attributes.match(/\bdata-atlas-theme="([^"]+)"/)?.[1] ?? "";
+  return `${scale}:${theme}`;
+});
+pass(
+  scaleKeys.length === expectedScaleKeys.length &&
+    expectedScaleKeys.every(key => scaleKeys.includes(key)) &&
+    new Set(scaleKeys).size === expectedScaleKeys.length,
+  "Color atlas exposes one light and one dark record for all nine governed scales"
+);
+pass(
+  scaleRecords.every(([, , body]) => countClass(body, "atlas-lut-cell") === 41),
+  "Every quantitative scale record contains exactly 41 LUT cells"
+);
+pass(
+  scaleRecords.every(([, , body]) => {
+    const classRows = [...body.matchAll(
+      /<figure class="atlas-class-row">([\s\S]*?)<\/figure>/g
+    )].map(match => ({
+      label: Number(match[1].match(/<figcaption><strong>(\d+)<\/strong>/)?.[1]),
+      cells: countClass(match[1], "atlas-class-cell")
+    }));
+    return classRows.length === 3 &&
+      [5, 7, 9].every(size =>
+        classRows.some(row => row.label === size && row.cells === size)
+      );
+  }),
+  "Every quantitative scale record contains exact 5-, 7-, and 9-class strips"
+);
+
+const atlasScaleCellElements = [
+  ...elementsWithClass(atlasHtml, "atlas-lut-cell"),
+  ...elementsWithClass(atlasHtml, "atlas-class-cell")
+];
+pass(
+  atlasScaleCellElements.every(element => !/(?:linear|radial|conic)-gradient\s*\(/i.test(element)),
+  "Atlas LUT and class cells use generated solid values, never CSS gradients"
+);
+const scaleRendererRules = cssRules(html).filter(rule =>
+  /\.atlas-(?:lut(?:-cell)?|class-(?:cells|cell))\b/.test(rule.selector)
+);
+pass(
+  scaleRendererRules.length > 0 &&
+    scaleRendererRules.every(rule =>
+      !/(?:linear|radial|conic)-gradient\s*\(/i.test(rule.declarations)
+    ),
+  "Atlas LUT and class renderer CSS does not synthesize gradients"
+);
+pass(!/color-mix\s*\(/i.test(atlasHtml), "Complete color atlas contains no runtime color mixing");
+pass(
+  /SOURCE_LIMITED\s*·\s*REFERENCE FIXTURE\s*·\s*MACHINE VALIDATION PENDING/.test(atlasHtml) &&
+    /not a scale-gate-cleared dataviz\.tokens\.json package/i.test(atlasHtml) &&
+    /not to claim production conformance/i.test(atlasHtml),
+  "Color atlas preserves the source_limited, reference-fixture, and pending-validation boundary"
+);
+pass(
+  inventory.controls.some(control => control.id === "complete-color-atlas-toggle"),
+  "Complete color atlas toggle is recorded in the control inventory"
+);
+
+const projectRoot = resolve(root, "..");
+const atlasGenerator = resolve(projectRoot, "tools/generate-color-atlas.mjs");
+pass(existsSync(atlasGenerator), "Build-time color-atlas generator exists");
+const atlasGeneratorCheck = existsSync(atlasGenerator)
+  ? spawnSync(process.execPath, [atlasGenerator, "--check-index"], {
+      cwd: projectRoot,
+      encoding: "utf8"
+    })
+  : null;
+pass(
+  atlasGeneratorCheck?.status === 0,
+  `Embedded color atlas matches its build-time generator${
+    atlasGeneratorCheck?.status === 0
+      ? ""
+      : ` (${(atlasGeneratorCheck?.stderr || atlasGeneratorCheck?.stdout || "generator did not run").trim()})`
+  }`
+);
+
+const styleRules = cssRules(html);
+const semanticDangerWarningRules = styleRules.filter(rule =>
+  /(?:^|[\s.#:[_-])(?:danger|warning)(?:\b|[_-])/i.test(rule.selector)
+);
+pass(
+  semanticDangerWarningRules.every(rule => !/var\(--series-outlier\)/.test(rule.declarations)),
+  "Semantic danger and warning selectors never consume the nominal series-outlier token"
+);
+const seriesOutlierConsumers = styleRules.filter(rule =>
+  /var\(--series-outlier\)/.test(rule.declarations)
+);
+pass(
+  seriesOutlierConsumers.length > 0 &&
+    seriesOutlierConsumers.every(rule =>
+      /(?:dataviz|chart)[\s\S]*(?:is-)?outlier/i.test(rule.selector)
+    ),
+  "Every series-outlier consumer remains in an explicitly nominal chart selector"
+);
+
+const scriptSource = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)]
+  .map(match => match[1])
+  .join("\n");
+pass(
+  !/\bIntersectionObserver\b|\bScrollTimeline\b|animation-timeline\s*:|scroll-timeline\s*:|addEventListener\(\s*["']scroll["']/i.test(scriptSource),
+  "Main-page scripts contain no parallax or generic scroll-reveal engine"
+);
+pass(
+  !/\b(?:data-parallax|class="[^"]*\bparallax\b|id="[^"]*\bparallax\b|data-scroll-reveal|class="[^"]*\bscroll-reveal\b)/i.test(html),
+  "Main-page markup declares no parallax or scroll-reveal behavior"
+);
+
 pass(html.includes("font-synthesis: none"), "Font synthesis is disabled");
 pass(html.includes("--font-display-en-fallback: Georgia, Cambria, \"Times New Roman\", serif"), "English display fallback token is exact");
 pass(html.includes("--font-display-th-fallback: \"Noto Sans Thai Looped\", \"Leelawadee UI\", Tahoma, sans-serif"), "Thai display fallback token is exact");
@@ -219,7 +475,17 @@ pass(/html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--fon
 pass(html.includes("document.fonts.load") && html.includes("thaiLabelsReady"), "Thai label glyph readiness is explicitly checked");
 pass(/body\s*\{[\s\S]*?font-family:\s*var\(--font-body\)/.test(html), "Body and UI use the governed Bai Jamjuree role");
 pass(!/body,\s*\n\s*button[\s\S]*?font:\s*inherit/.test(html), "Body font is not overwritten by the form-control inheritance rule");
-pass(html.includes("overflow-wrap: break-word") && !html.includes("overflow-wrap: anywhere"), "Text wrapping avoids arbitrary mid-word breaks");
+const anywhereWrapRules = cssRules(html).filter(rule =>
+  /overflow-wrap:\s*anywhere/.test(rule.declarations)
+);
+pass(
+  html.includes("overflow-wrap: break-word") &&
+    anywhereWrapRules.length > 0 &&
+    anywhereWrapRules.every(rule =>
+      /(?:atlas-pair-label\s+strong|atlas-map-cell\s+figcaption\s+strong|atlas-scale-foot\s+code)/.test(rule.selector)
+    ),
+  "Prose avoids arbitrary mid-word breaks while constrained atlas values may wrap safely"
+);
 pass(html.includes("text-wrap: balance") && html.includes("text-wrap: pretty"), "Display and prose use balanced/pretty wrapping");
 pass(/h5,\s*\n\s*h6\s*\{[\s\S]*?overflow-wrap:\s*normal/.test(html), "H6 pattern headings inherit smart non-arbitrary wrapping");
 pass(/\.eyebrow\s*\{[\s\S]*?font-weight:\s*500/.test(html), "JetBrains Mono metadata uses the lightest packaged weight 500");
@@ -269,11 +535,131 @@ pass(
 pass(!/<(?:button|a)\b[^>]*(?:\bid="[^"]*(?:share|invite|send)|\bclass="[^"]*(?:share|invite|send))/i.test(html), "No live share, invite, or send control is rendered");
 pass((html.match(/class="ui-icon"/g) || []).length >= 28, "Outline icons carry scanning work across the library and examples");
 pass(/\.ui-icon\s*\{[\s\S]*?fill:\s*none[\s\S]*?stroke-linecap:\s*round[\s\S]*?stroke-linejoin:\s*round/.test(html), "Icon language is outline-only with rounded caps and joins");
+const svgSymbolIds = [...html.matchAll(/<symbol\b[^>]*\bid="([^"]+)"/gi)]
+  .map(match => match[1]);
 pass(
-  /<form[\s\S]*?id="context-search-form"[\s\S]*?action="https:\/\/www\.google\.com\/search"[\s\S]*?method="get"[\s\S]*?target="_blank"[\s\S]*?rel="noopener noreferrer external"/.test(html),
-  "Contextual discovery names Google, uses an explicit GET, and preserves the current page"
+  svgSymbolIds.length >= 30 && new Set(svgSymbolIds).size === svgSymbolIds.length,
+  "The inline SVG sprite exposes at least 30 uniquely named outline symbols",
 );
-pass(html.includes('id="context-query"') && html.includes('name="q"') && html.includes("Editable, auto-composed query"), "Contextual query is visible, editable, and sent as q");
+
+const contextForm =
+  html.match(
+    /<form\b(?=[^>]*\bid=(?:"context-search-form"|'context-search-form'))[^>]*>[\s\S]*?<\/form>/i,
+  )?.[0] ?? "";
+const contextFormTag = openTagById(contextForm, "form", "context-search-form");
+const contextQueryTag = openTagById(contextForm, "input", "context-query");
+const contextSearchButton = elementById(
+  contextForm,
+  "button",
+  "context-search-google",
+);
+const contextSearchButtonTag = openTagById(
+  contextSearchButton,
+  "button",
+  "context-search-google",
+);
+const contextAiButton = elementById(
+  contextForm,
+  "button",
+  "context-search-google-ai",
+);
+const contextAiButtonTag = openTagById(
+  contextAiButton,
+  "button",
+  "context-search-google-ai",
+);
+const contextQueryHelp =
+  html.match(
+    /<small\b(?=[^>]*\bid=(?:"context-query-help"|'context-query-help'))[^>]*>[\s\S]*?<\/small>/i,
+  )?.[0] ?? "";
+const contextRoutingHelp =
+  html.match(
+    /<p\b(?=[^>]*\bid=(?:"context-routing-help"|'context-routing-help'))[^>]*>[\s\S]*?<\/p>/i,
+  )?.[0] ?? "";
+const contextualDiscoverySection =
+  html.match(
+    /<section\b(?=[^>]*\baria-labelledby=(?:"external-discovery-title"|'external-discovery-title'))[^>]*>[\s\S]*?<\/section>/i,
+  )?.[0] ?? "";
+
+pass(
+  attributeValue(contextFormTag, "action") ===
+    "https://www.google.com/search" &&
+    attributeValue(contextFormTag, "method")?.toLowerCase() === "get" &&
+    attributeValue(contextFormTag, "target") === "_blank" &&
+    /\bnoopener\b/i.test(attributeValue(contextFormTag, "rel") ?? "") &&
+    /\bnoreferrer\b/i.test(attributeValue(contextFormTag, "rel") ?? "") &&
+    /\bexternal\b/i.test(attributeValue(contextFormTag, "rel") ?? ""),
+  "Contextual discovery names Google, uses an explicit GET, and preserves the current page",
+);
+pass(
+  attributeValue(contextQueryTag, "name") === "q" &&
+    attributeValue(contextQueryTag, "type")?.toLowerCase() === "search" &&
+    (attributeValue(contextQueryTag, "aria-describedby") ?? "")
+      .split(/\s+/)
+      .includes("context-query-help") &&
+    (attributeValue(contextQueryTag, "aria-describedby") ?? "")
+      .split(/\s+/)
+      .includes("context-routing-help") &&
+    !/\b(?:hidden|readonly|disabled)\b/i.test(contextQueryTag) &&
+    /<label\b[^>]*\bfor=(?:"context-query"|'context-query')[^>]*>/i.test(
+      contextForm,
+    ) &&
+    html.includes("Editable, auto-composed query"),
+  "One visible, labelled, editable q field is shared by both explicit Google routes",
+);
+pass(
+  (contextForm.match(
+    /<(?:input|button)\b[^>]*\bname=(?:"q"|'q')[^>]*>/gi,
+  ) ?? []).length === 1,
+  "The contextual form sends exactly one user-visible q value",
+);
+pass(
+    attributeValue(contextAiButtonTag, "type")?.toLowerCase() === "submit" &&
+    attributeValue(contextAiButtonTag, "name") === "udm" &&
+    attributeValue(contextAiButtonTag, "value") === "50" &&
+    /Synthesize|สังเคราะห์/i.test(contextAiButton) &&
+    /AI\s*Mode|โหมด\s*AI/i.test(contextAiButton),
+  "Google AI Mode is an explicit submitter route using udm=50",
+);
+pass(
+  attributeValue(contextSearchButtonTag, "type")?.toLowerCase() === "submit" &&
+    attributeValue(contextSearchButtonTag, "name") !== "udm" &&
+    attributeValue(contextSearchButtonTag, "value") !== "50" &&
+    !/\bname=(?:"udm"|'udm')/i.test(contextSearchButtonTag),
+  "Ordinary Google Search remains available and never contributes udm",
+);
+pass(
+  (contextForm.match(
+    /<(?:input|button)\b[^>]*\bname=(?:"udm"|'udm')[^>]*>/gi,
+  ) ?? []).length === 1 &&
+    !/<input\b[^>]*(?:\btype=(?:"hidden"|'hidden')|\bhidden\b)[^>]*>/i.test(
+      contextForm,
+    ),
+  "AI routing is carried only by the activated visible button; no hidden route or query is transmitted",
+);
+pass(
+  /discovery_only/i.test(contextualDiscoverySection) &&
+    /Landometer sends the visible q/i.test(
+      contextQueryHelp,
+    ) &&
+    /AI Mode selector/i.test(contextQueryHelp) &&
+    /no hidden prompt or context|ไม่มี prompt หรือ context ซ่อน/i.test(
+      contextQueryHelp,
+    ) &&
+    /ตรวจ(?:แหล่ง|ข้อ)|open citations|verify sources?/i.test(contextQueryHelp) &&
+    /same visible query|this visible query|คำค้น(?:เดียวกัน|ที่เห็นตรงนี้)/i.test(contextRoutingHelp) &&
+    /no hidden prompt|ไม่มี prompt ซ่อน/i.test(contextRoutingHelp) &&
+    /provider|model|รุ่นของบริการ/i.test(contextRoutingHelp) &&
+    /personalization|ปรับให้เหมาะกับแต่ละคน/i.test(contextRoutingHelp),
+  "The visible query disclosure keeps every Search and AI Mode result discovery_only pending source review",
+);
+pass(
+  !/\.(?:requestSubmit|submit)\s*\(/.test(html) &&
+    !/\b(?:fetch|XMLHttpRequest|sendBeacon|WebSocket)\s*(?:\(|\b)/i.test(
+      html,
+    ),
+  "No script can automatically submit or transmit the contextual query",
+);
 pass(
   ["tha-sai", "krok-phra", "bueng-lak", "na-to"].every(value => html.includes(`<option value="${value}">`)),
   "Contextual discovery exposes four current-record examples"
@@ -291,7 +677,12 @@ pass(
 pass(html.includes('id="context-source"') && html.includes("CityMETER public API · checked 29 Jul 2026"), "Every selected context keeps an inspectable product source");
 pass(html.includes("public endpoint exposes no provenance") || html.includes("endpoint exposes no provenance"), "Current-record examples keep their evidence boundary visible");
 pass(html.includes("discovery_only") && html.includes("<s>See more</s>"), "External discovery keeps its evidence status and corrects the ambiguous label");
-pass(html.includes("Google receives the visible text only after activation"), "Third-party query disclosure is visible beside the fixture");
+pass(
+  /Landometer sends the visible q/i.test(html) &&
+    /AI Mode selector/i.test(html) &&
+    /no hidden prompt or context|ไม่มี prompt หรือ context ซ่อน/i.test(html),
+  "Third-party query disclosure is visible beside the fixture",
+);
 pass(!html.includes("user-provided, product-specific reference scenario"), "Conversational provenance is not exposed as product guidance");
 pass(html.includes('id="resource-implementation-notes"') && html.includes('id="resource-llms"'), "Implementation clarification and machine-navigation aid are discoverable");
 pass(!/<meta\s+property="og:/i.test(html), "Internal demo omits Open Graph promotion metadata");
@@ -314,6 +705,15 @@ const controlIds = [...html.matchAll(/<(?:a|button|input|select|textarea|summary
 const inventoryIds = inventory.controls.map(control => control.id);
 pass(new Set(controlIds).size === controlIds.length, "All control IDs are unique");
 pass(new Set(inventoryIds).size === inventoryIds.length, "All inventory IDs are unique");
+pass(
+  controlIds.length === 55 && controlIds.includes("context-search-google-ai"),
+  "HTML exposes the expected 55 controls including the explicit AI Mode submitter",
+);
+pass(
+  inventoryIds.length === 55 &&
+    inventoryIds.includes("context-search-google-ai"),
+  "Control inventory records all 55 controls including the AI Mode submitter",
+);
 pass(
   controlIds.length === inventoryIds.length &&
     controlIds.every(id => inventoryIds.includes(id)) &&
@@ -341,6 +741,7 @@ for (const path of [
   "robots.txt",
   "font-assets.manifest.json",
   "assets/downloads/landometer-design-system-v0.8.8.md",
+  "landometer-design-system-v0.8.8-standalone.html",
   "assets/images/landometer-logo-banner.png",
   "assets/images/team-hero.jpg"
 ]) {
@@ -364,38 +765,73 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "cd142b55f88d572a3515f7eaf08d89329bedda0404b952b00e565d2ac437d8f0",
+  sha256("landometer-design-system-v0.8.8-standalone.html") === "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7",
+  "Standalone HTML hash matches the release record"
+);
+pass(
+  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2134434,
+  "Standalone HTML byte count matches the release record"
+);
+pass(
+  manifest.assets?.some(asset =>
+    asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
+    asset.bytes === 2134434 &&
+    asset.sha256 === "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7"
+  ),
+  "Manifest records the exact standalone HTML"
+);
+pass(
+  buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
+    buildCard.includes("sha256: 58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7"),
+  "Build Card records the exact standalone HTML"
+);
+pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");
+pass(
+  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 9,
+  "Standalone HTML embeds all nine display-font files"
+);
+pass(
+  !/(?:src|href)="assets\//.test(standaloneHtml) && !/url\(["']?assets\//.test(standaloneHtml),
+  "Standalone HTML has no display-critical relative asset"
+);
+pass(
+  sha256("implementation-notes.v0.8.8.md") === "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 8674,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 11537,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
-  sha256("llms.txt") === "d32aea73c7ad4c5489a5112d33c053593a614976c9a6f10e0613ca77251ef977",
+  sha256("llms.txt") === "ae84632111b69bf7b2a1c41024950b0fbbac51cce4af2feea9ad708caa69ee2e",
   "Machine-navigation aid hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "llms.txt")).byteLength === 3228,
+  readFileSync(resolve(root, "llms.txt")).byteLength === 3478,
   "Machine-navigation aid byte count matches the manifest record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 8674 &&
-    asset.sha256 === "cd142b55f88d572a3515f7eaf08d89329bedda0404b952b00e565d2ac437d8f0"
+    asset.bytes === 11537 &&
+    asset.sha256 === "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1"
   ),
   "Manifest records the exact implementation clarification"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "llms.txt" &&
-    asset.bytes === 3228 &&
-    asset.sha256 === "d32aea73c7ad4c5489a5112d33c053593a614976c9a6f10e0613ca77251ef977"
+    asset.bytes === 3478 &&
+    asset.sha256 === "ae84632111b69bf7b2a1c41024950b0fbbac51cce4af2feea9ad708caa69ee2e"
   ),
   "Manifest records the exact machine-navigation aid"
 );
-pass(implementationNotes.includes("IMPL-SHARE-01") && implementationNotes.includes("IMPL-SEARCH-EXT-01"), "Implementation clarification covers recipient value and contextual external search");
+pass(
+  implementationNotes.includes("IMPL-SHARE-01") &&
+    implementationNotes.includes("IMPL-SEARCH-EXT-01") &&
+    implementationNotes.includes("IMPL-AI-EXT-01"),
+  "Implementation clarification covers recipient value, contextual source Search, and external AI synthesis"
+);
 pass(implementationNotes.includes("CityMETER-specific") && implementationNotes.includes("discovery_only"), "Implementation clarification preserves product and evidence boundaries");
 pass(machineDiscoveryAid.includes("project-path llms.txt is a navigation aid only"), "llms.txt exposes its project-path discovery limitation");
 pass(machineDiscoveryAid.includes("No bounded agent action is enabled"), "llms.txt grants no agent action");
