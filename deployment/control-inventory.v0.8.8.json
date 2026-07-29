@@ -315,6 +315,18 @@
       "browserTest": "Invoke #library-foundations-toggle; assert parent details.open, visible type/logo/atmosphere/composition specimens, and eight .opportunity-card concept sketches; invoke again to close."
     },
     {
+      "id": "complete-color-atlas-toggle",
+      "accessibleName": "Open every governed color, gradient, and scale",
+      "userJob": "Inspect the complete source-backed color reference after the fast overview",
+      "effect": "Toggle #complete-color-atlas using native details behavior",
+      "keyboardTouch": "Enter, Space, or touch",
+      "feedback": "Brand, foundation, semantic, gradient, categorical, quantitative, map, opacity, and depth references expand or collapse",
+      "recovery": "Activate the same summary again",
+      "finalState": "The native open state matches the user's choice and exact values remain available in source",
+      "failureRecovery": "Native details behavior remains usable without JavaScript",
+      "browserTest": "Open #library-foundations, invoke #complete-color-atlas-toggle, assert the atlas contains 17 foundation pairs, seven semantic roles, ten categorical records, 18 scale records with 41/5/7/9 cells, map pairs, and eight opacity values; invoke again to close."
+    },
+    {
       "id": "library-components-toggle",
       "accessibleName": "Interface components",
       "userJob": "Inspect the complete shared component contract and representative specimens",
@@ -448,15 +460,27 @@
     },
     {
       "id": "context-search-google",
-      "accessibleName": "Continue this query in Google",
+      "accessibleName": "Search sources with Google",
       "userJob": "Continue a visible public-safe intent into an explicit external search",
       "effect": "Submit the exact visible q value to https://www.google.com/search in a new tab after explicit activation",
       "keyboardTouch": "Enter, Space, or touch",
       "feedback": "A new external search tab opens while the playground state remains available",
       "recovery": "Close the external tab, return to the preserved playground, or copy/edit the query",
-      "finalState": "The external destination receives only the confirmed visible query; returned material remains discovery_only",
+      "finalState": "The Landometer form contributes only the confirmed visible q; returned material remains discovery_only",
       "failureRecovery": "Keep the current page and use the visible query as a manual copy fallback",
-      "browserTest": "Intercept #context-search-form submit; assert action, method=get, target=_blank, rel includes noopener+noreferrer, name=q, and exact current value without allowing navigation."
+      "browserTest": "Intercept #context-search-form submission through #context-search-google; assert action, method=get, target=_blank, rel includes noopener+noreferrer, exact current name=q value, and no udm submitter parameter without allowing navigation."
+    },
+    {
+      "id": "context-search-google-ai",
+      "accessibleName": "Synthesize with Google AI Mode",
+      "userJob": "Ask Google AI Mode to synthesize the same visible public-safe intent while keeping source verification explicit",
+      "effect": "Submit the exact visible q plus submitter parameter udm=50 to https://www.google.com/search in a new tab after explicit activation",
+      "keyboardTouch": "Enter, Space, or touch",
+      "feedback": "The Google AI Mode route is requested in a new external tab while the visible query and playground state remain available; the provider may redirect or decline",
+      "recovery": "Close the external tab, return to the preserved playground, choose ordinary Search, or edit/copy the visible query",
+      "finalState": "The Landometer form contributes only the confirmed visible q and explicit udm=50 route; synthesized material remains discovery_only and requires source verification",
+      "failureRecovery": "Keep the exact query visible and copy it to the documented google.com/ai entry point if the direct route is unavailable; do not silently switch jobs or treat AI synthesis as a source",
+      "browserTest": "Intercept #context-search-form submission through #context-search-google-ai; assert action, method=get, target=_blank, rel includes noopener+noreferrer, exact current name=q value, clicked submitter name=udm and value=50, and no hidden prompt or automatic navigation."
     },
     {
       "id": "library-products-toggle",
@@ -545,14 +569,14 @@
     {
       "id": "resource-implementation-notes",
       "accessibleName": "Read proposed clarification",
-      "userJob": "Inspect the proposed share, contextual-search, and positive-example implementation clarification",
+      "userJob": "Inspect the proposed share, contextual source-search, external AI-synthesis, and positive-example implementation clarification",
       "effect": "Navigate to implementation-notes.v0.8.8.md",
       "keyboardTouch": "Enter or touch",
       "feedback": "The same-origin proposed non-normative Markdown note opens",
       "recovery": "Use browser Back",
       "finalState": "The note visibly distinguishes proposed artifact guidance from the whitespace-normalized owner-approved master",
       "failureRecovery": "Open the same-origin path directly from the repository",
-      "browserTest": "Inspect #resource-implementation-notes href/type; request it and assert HTTP 200, proposed/non-normative status, IMPL-SHARE-01, IMPL-SEARCH-EXT-01, and IMPL-EXAMPLE-01."
+      "browserTest": "Inspect #resource-implementation-notes href/type; request it and assert HTTP 200, proposed/non-normative status, IMPL-SHARE-01, IMPL-SEARCH-EXT-01, IMPL-AI-EXT-01, and IMPL-EXAMPLE-01."
     },
     {
       "id": "resource-llms",
@@ -574,7 +598,7 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "The clearly labelled proposal Markdown opens in a new tab",
       "recovery": "Close the tab or return to the implementation library",
-      "finalState": "Proposed value-proof, surface-contrast, Thai-type, color-reference, and visual-first clauses are available for owner review",
+      "finalState": "Proposed value-proof, surface-contrast, Thai-type, color-reference, visual-first, and source-Search-versus-AI-synthesis clauses are available for owner review",
       "failureRecovery": "Open normative-patches/landometer-design-system-v0.8.8-experience-clarifications.proposal.md directly in the repository",
       "browserTest": "Inspect #resource-normative-patch href/target/rel; assert it points to the versioned proposal path and does not describe the proposal as approved normative truth."
     },
@@ -589,6 +613,18 @@
       "finalState": "The modular audit workflow, reference checks, and validation script are available for reuse",
       "failureRecovery": "Open skill/refine-landometer-experience directly in the repository",
       "browserTest": "Inspect #resource-refinement-skill href/target/rel; assert it points to the reusable skill folder and opens without changing the playground state."
+    },
+    {
+      "id": "resource-standalone",
+      "accessibleName": "Download standalone HTML",
+      "userJob": "Keep or hand off the latest webpage as one self-contained file",
+      "effect": "Download landometer-design-system-v0.8.8-standalone.html",
+      "keyboardTouch": "Enter or touch",
+      "feedback": "The browser downloads the single-file snapshot",
+      "recovery": "Open the same-origin href directly or return to Resources",
+      "finalState": "A standalone HTML file with embedded display fonts and images is available",
+      "failureRecovery": "Use the production page or retry the direct download",
+      "browserTest": "Inspect #resource-standalone href/download; request the file, assert HTTP 200, data-standalone=true, no relative display assets, and exact embedded atlas coverage."
     },
     {
       "id": "return-play",
