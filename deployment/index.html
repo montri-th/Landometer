@@ -800,7 +800,7 @@
       pointer-events: none;
       transition: background-color var(--motion-duration-state) var(--motion-ease-state);
     }
-    .proof-preview.is-visual[data-surface="measure"] {
+    .proof-preview.has-brand-surface[data-surface="measure"] {
       --proof-subtle: #E8EFEE;
       --proof-meta-ink: #FFFFFF;
       --proof-meta-surface: rgba(17, 25, 29, .78);
@@ -808,10 +808,10 @@
       background: var(--measure-surface);
       color: #FFFFFF;
     }
-    .proof-preview.is-visual[data-surface="measure"]::before {
+    .proof-preview.has-brand-surface[data-surface="measure"]::before {
       background: rgba(17, 25, 29, .63);
     }
-    .proof-preview.is-visual[data-surface="ground"] {
+    .proof-preview.has-brand-surface[data-surface="ground"] {
       --proof-subtle: #46524F;
       --proof-meta-ink: #182327;
       --proof-meta-surface: rgba(246, 247, 243, .93);
@@ -819,11 +819,11 @@
       background: var(--ground-surface);
       color: #182327;
     }
-    .proof-preview.is-visual[data-surface="ground"]::before,
-    .proof-preview.is-visual[data-surface="cultivate"]::before {
+    .proof-preview.has-brand-surface[data-surface="ground"]::before,
+    .proof-preview.has-brand-surface[data-surface="cultivate"]::before {
       background: rgba(246, 247, 243, .84);
     }
-    .proof-preview.is-visual[data-surface="cultivate"] {
+    .proof-preview.has-brand-surface[data-surface="cultivate"] {
       --proof-subtle: #46524F;
       --proof-meta-ink: #182327;
       --proof-meta-surface: rgba(246, 247, 243, .93);
@@ -831,20 +831,20 @@
       background: var(--cultivate-surface);
       color: #182327;
     }
-    .proof-preview.is-visual .fixture-label,
-    .proof-preview.is-visual .proof-object,
-    .proof-preview.is-visual .proof-meta dt,
-    .proof-preview.is-visual .proof-meta dd,
-    .proof-preview.is-visual .proof-body,
-    .proof-preview.is-visual .mock-action {
+    .proof-preview.has-brand-surface .fixture-label,
+    .proof-preview.has-brand-surface .proof-object,
+    .proof-preview.has-brand-surface .proof-meta dt,
+    .proof-preview.has-brand-surface .proof-meta dd,
+    .proof-preview.has-brand-surface .proof-body,
+    .proof-preview.has-brand-surface .mock-action {
       color: inherit;
     }
-    .proof-preview.is-visual .proof-meta {
+    .proof-preview.has-brand-surface .proof-meta {
       background: var(--proof-meta-surface);
       border-color: var(--proof-separator);
       color: var(--proof-meta-ink);
     }
-    .proof-preview.is-visual .proof-meta > div {
+    .proof-preview.has-brand-surface .proof-meta > div {
       border-color: var(--proof-separator);
     }
     .proof-header {
@@ -934,7 +934,7 @@
       background: var(--surface-blue-tint);
       color: var(--interaction-accent);
     }
-    .proof-preview.is-visual .proof-cues li {
+    .proof-preview.has-brand-surface .proof-cues li {
       border-color: var(--proof-separator);
       background: var(--proof-meta-surface);
       color: inherit;
@@ -957,7 +957,7 @@
       text-transform: uppercase;
     }
     .mock-action strong { font-weight: 600; }
-    .proof-preview.is-visual .mock-action { color: inherit; }
+    .proof-preview.has-brand-surface .mock-action { color: inherit; }
     .proof-preview.is-baseline .proof-title {
       max-width: 760px;
       font-family: var(--font-body);
@@ -975,10 +975,7 @@
       border-left: 0;
       color: var(--text-secondary);
     }
-    .proof-preview.is-baseline:not(.is-visual) .proof-meta {
-      background: var(--surface-alt);
-    }
-    .proof-preview.is-visual.is-baseline .mock-action { color: inherit; }
+    .proof-preview.has-brand-surface.is-baseline .mock-action { color: inherit; }
     .proof-meta {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1914,6 +1911,273 @@
     .type-technical-th {
       font-family: var(--font-data-label);
       font-weight: 400;
+    }
+    .library-color-signal {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 96px;
+      margin-top: 8px;
+    }
+    .library-color-signal i {
+      width: 15px;
+      height: 15px;
+      border: 1px solid rgba(24, 35, 39, .24);
+      border-radius: 50%;
+      background: var(--signal-color);
+    }
+    .color-route-intro {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(280px, 1.2fr);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: end;
+    }
+    .color-route-intro .library-content-intro {
+      margin-bottom: 0;
+    }
+    .color-role-map {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+    }
+    .color-role-map span {
+      display: grid;
+      min-height: 54px;
+      place-items: center;
+      padding: 8px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      color: var(--text-secondary);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-align: center;
+    }
+    .color-role-map span:first-child {
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+    }
+    [data-resolved-theme="dark"] .color-role-map span:first-child {
+      border-color: var(--interaction-accent);
+      color: var(--interaction-accent);
+    }
+    .color-route-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-5);
+      margin-top: var(--space-7);
+    }
+    .color-route-card {
+      display: grid;
+      min-width: 0;
+      gap: var(--space-4);
+      align-content: start;
+      padding: var(--space-5);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      background: var(--surface-card);
+      color: var(--text-primary);
+      text-decoration: none;
+      transition:
+        transform var(--motion-duration-feedback) var(--motion-ease-state),
+        border-color var(--motion-duration-state) var(--motion-ease-state),
+        background-color var(--motion-duration-state) var(--motion-ease-state);
+    }
+    .color-route-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--interaction-accent);
+      background: var(--surface-raised);
+    }
+    .color-route-card:focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+    .color-route-card-head {
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+    }
+    .color-route-card .icon-well {
+      flex: 0 0 40px;
+    }
+    .color-route-card h5 {
+      margin: 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .color-route-card h5 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .color-route-card p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .color-route-visual {
+      position: relative;
+      display: grid;
+      min-height: 96px;
+      overflow: hidden;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background: var(--surface-alt);
+    }
+    .color-route-visual.is-solid {
+      grid-template-columns: repeat(4, 1fr);
+      align-items: end;
+      gap: 6px;
+      padding: 14px;
+    }
+    .color-route-visual.is-solid i {
+      height: var(--sample-height);
+      border: 1px solid var(--border-default);
+      border-radius: 7px 7px 3px 3px;
+      background: var(--sample-color);
+    }
+    .color-route-visual.is-gradient {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .color-route-visual.is-gradient i:nth-child(1) { background: var(--measure-surface); }
+    .color-route-visual.is-gradient i:nth-child(2) { background: var(--ground-surface); }
+    .color-route-visual.is-gradient i:nth-child(3) { background: var(--cultivate-surface); }
+    .color-route-visual.is-scale {
+      align-content: center;
+      gap: 12px;
+      padding: 16px;
+    }
+    .color-route-visual.is-scale > span {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      overflow: hidden;
+      height: 20px;
+      border-radius: 999px;
+    }
+    .color-route-visual.is-scale i {
+      background: var(--scale-color);
+    }
+    .color-route-visual.is-category {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      align-items: end;
+      padding: 14px;
+    }
+    .category-load {
+      display: grid;
+      gap: 4px;
+      align-content: end;
+    }
+    .category-load b {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .category-load span {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+    .category-load i {
+      aspect-ratio: 1;
+      border: 2px solid var(--sample-color);
+      border-radius: var(--sample-radius, 50%);
+      background: var(--sample-fill, transparent);
+    }
+    .category-load.is-eight i:nth-child(n + 5) {
+      background-image: repeating-linear-gradient(135deg, transparent 0 3px, currentColor 3px 4px);
+      color: var(--sample-color);
+    }
+    .category-load.is-twelve span {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .category-load.is-twelve i:nth-child(n + 7) {
+      display: none;
+    }
+    .color-route-visual.is-layer {
+      place-items: center;
+      background:
+        linear-gradient(90deg, var(--surface-alt) 0 33%, var(--surface-card) 33% 66%, var(--surface-raised) 66%);
+    }
+    .color-route-visual.is-layer i {
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      border: 3px solid var(--map-selected-stroke);
+      border-radius: 50%;
+      background: var(--map-selected-fill);
+    }
+    .color-route-visual.is-layer i:first-child { transform: translateX(-20px); }
+    .color-route-visual.is-layer i:last-child {
+      border-color: var(--map-hover-stroke);
+      background: var(--map-hover-fill);
+      transform: translateX(20px);
+    }
+    .color-route-visual.is-line {
+      padding: 12px;
+      color: var(--text-primary);
+    }
+    .color-route-visual.is-line svg {
+      width: 100%;
+      height: 100%;
+    }
+    .color-route-visual.is-line .route-grid-line {
+      stroke: var(--border-hairline);
+      stroke-width: 1;
+    }
+    .color-route-visual.is-line .route-data-line {
+      fill: none;
+      stroke: var(--series-primary);
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+    .color-route-visual.is-line .route-boundary-line {
+      fill: none;
+      stroke: var(--map-selected-stroke);
+      stroke-width: 3;
+    }
+    .color-route-visual.is-line .route-connector-line {
+      fill: none;
+      stroke: var(--text-metadata);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    .color-route-boundary {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      margin-top: var(--space-6);
+      padding: var(--space-5);
+      border-left: 4px solid var(--interaction-accent);
+      background: var(--surface-blue-tint);
+    }
+    .color-route-boundary p {
+      margin: 0;
+      color: var(--text-secondary);
+    }
+    .color-route-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    .color-route-actions .primary-action,
+    .color-route-actions .secondary-action {
+      margin-top: 0;
+    }
+    #library-color-guide,
+    .color-plate[id],
+    #atlas-gradients-title,
+    #atlas-categorical-title,
+    #atlas-dataviz-title,
+    #atlas-map-title,
+    #atlas-depth-title {
+      scroll-margin-top: 96px;
     }
     .rule-list li,
     .product-recipe li {
@@ -4251,6 +4515,7 @@
 
     @media (max-width: 980px) {
       .library-gateway-inner,
+      .color-route-intro,
       .foundation-grid,
       .color-in-action-layout,
       .color-system-grid,
@@ -4263,6 +4528,7 @@
       .resource-grid {
         grid-template-columns: 1fr;
       }
+      .color-route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .color-plate--wide { grid-column: auto; }
       .scale-triptych,
       .overlap-layout,
@@ -4307,6 +4573,8 @@
       .library-gateway-actions { display: grid; }
       .library-gateway-actions a { width: 100%; }
       .type-role-list li { grid-template-columns: 1fr; }
+      .color-route-grid { grid-template-columns: 1fr; }
+      .color-role-map { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .color-example-body { grid-template-columns: 1fr; }
       .surface-stack,
       .semantic-chip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -4817,7 +5085,7 @@
 
           <div class="proof-column">
             <article
-              class="proof-preview"
+              class="proof-preview has-brand-surface"
               id="proof-preview"
               data-object="landometer-design-system@0.8.8"
               data-surface="cultivate"
@@ -4943,6 +5211,10 @@
                   <li><b><span data-th>หลักฐาน</span><span data-en>Proof</span></b><span data-th>ภาพและข้อมูลที่มีประโยชน์ต้องอยู่ในขนาดที่อ่านความหมายได้</span><span data-en>Useful media and evidence stay large enough to carry meaning.</span></li>
                   <li><b><span data-th>การเคลื่อนไหว</span><span data-en>Motion</span></b><span data-th>ใช้กับการเปลี่ยนสถานะ ไม่ใช้ตกแต่ง</span><span data-en>Support state change; never decorate.</span></li>
                 </ul>
+                <a class="primary-action" href="#library-color" id="open-color-from-visual" data-reveal-target="library-color">
+                  <span data-th>เลือกสีและพื้นผิวให้ตรงหน้าที่</span>
+                  <span data-en>Choose color and surface by job</span>
+                </a>
                 <a class="secondary-action" href="#library-dataviz" id="open-dataviz" data-open-details="library-dataviz">
                   <span data-th>ดูตัวอย่าง dataviz</span>
                   <span data-en>Go to the dataviz examples</span>
@@ -5165,11 +5437,15 @@
             <span data-th>ดูคำตอบหลักให้ชัดก่อน แล้วค่อยเปิดรายละเอียดที่ต้องใช้</span>
             <span data-en>Keep the first path simple. Expand the detail when you build.</span>
           </h2>
-          <p data-th>กำลังทำส่วนไหนอยู่? เลือกดูรากฐาน ส่วนประกอบ กราฟ หรือรูปแบบประสบการณ์ได้ทีละกลุ่ม หากต้องทำงานต่อในเครื่องมืออื่น ดาวน์โหลดต้นฉบับ v0.8.8 ไปวางข้างงานได้เลย</p>
-          <p data-en>Open foundations, components, dataviz, experience patterns, and product-adaptation examples—or keep the v0.8.8 authoring master beside your work.</p>
+          <p data-th>กำลังทำส่วนไหนอยู่? เปิดคู่มือสีและพื้นผิวโดยตรง หรือเลือกดูรากฐาน ส่วนประกอบ กราฟ และรูปแบบประสบการณ์ทีละกลุ่ม หากต้องทำงานต่อในเครื่องมืออื่น ดาวน์โหลดต้นฉบับ v0.8.8 ไปวางข้างงานได้เลย</p>
+          <p data-en>Open color and surface guidance directly, or browse foundations, components, dataviz, experience patterns, and product-adaptation examples one group at a time.</p>
         </div>
         <div class="library-gateway-actions">
-          <a class="primary-action" href="#implementation-library" id="open-library">
+          <a class="primary-action" href="#library-color" id="open-color-library" data-reveal-target="library-color">
+            <span data-th>เปิดคู่มือสี พื้นผิว และสีข้อมูล</span>
+            <span data-en>Open color, surfaces, and data palettes</span>
+          </a>
+          <a class="secondary-action" href="#implementation-library" id="open-library">
             <span data-th>เลือกตัวอย่างที่ใกล้งานของฉัน</span>
             <span data-en>Open the Implementation Library</span>
           </a>
@@ -5199,9 +5475,164 @@
           <p data-en>These v0.8.8 authoring-master examples support training and implementation. They are not evidence about a city, place, product, or outcome, and do not claim Full Living Reference status.</p>
         </aside>
 
+        <details class="library-group" id="library-color">
+          <summary id="library-color-toggle">
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg><span class="sr-only">01</span></span>
+            <h3><span data-th>สี พื้นผิว และสีสำหรับข้อมูล</span><span data-en>Color, surfaces, and data palettes</span></h3>
+            <span class="library-summary-copy">
+              <span data-th>เลือกจากหน้าที่ของสี แล้วไปดู solid, gradient, scale, หมวดหมู่, ชั้นซ้อน และเส้นในชิ้นงานจริง</span>
+              <span data-en>Choose color by its job, then inspect solids, gradients, scales, categories, layers, and lines in real work.</span>
+              <span class="library-color-signal" aria-hidden="true">
+                <i style="--signal-color:#1D4497"></i>
+                <i style="--signal-color:#59D2FE"></i>
+                <i style="--signal-color:#0AD69C"></i>
+                <i style="--signal-color:#FF8A4C"></i>
+                <i style="--signal-color:#F4C44E"></i>
+              </span>
+            </span>
+            <span class="library-count">6 ways in · complete atlas · Light/Dark</span>
+          </summary>
+          <div class="library-content">
+            <div class="color-route-intro">
+              <div>
+                <p class="specimen-kicker">COLOR ROUTER · CHOOSE THE JOB FIRST</p>
+                <h4><span data-th>ก่อนหยิบสี ถามก่อนว่าสีกำลังทำงานอะไร</span><span data-en>Before choosing a color, name the job it must do.</span></h4>
+                <p class="library-content-intro" data-th>สีแบรนด์บอกว่าใครเป็นเจ้าของ สี interaction บอกว่ากดอะไรได้ สีสถานะบอกสิ่งที่เกิดขึ้น สีบรรยากาศพาเข้าสู่ฉาก และสีข้อมูลช่วยเปรียบเทียบ—ห้ามสลับหน้าที่เพียงเพราะหน้าตาคล้ายกัน</p>
+                <p class="library-content-intro" data-en>Brand names the owner; interaction marks action; semantic color names a state; atmosphere frames a scene; data color supports comparison. Never swap those jobs because two colors look similar.</p>
+              </div>
+              <div class="color-role-map" aria-label="Governed color-role map">
+                <span>Brand</span>
+                <span>Interaction</span>
+                <span>Semantic</span>
+                <span>Atmosphere</span>
+                <span>Series</span>
+                <span>Scale</span>
+                <span>Map</span>
+                <span>Depth</span>
+              </div>
+            </div>
+
+            <div class="color-route-grid">
+              <a class="color-route-card" href="#color-solids-states" data-reveal-target="color-solids-states">
+                <span class="color-route-card-head">
+                  <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg></span>
+                  <h5><span data-th>Solid และสถานะ</span><span data-en>Solids and states</span></h5>
+                </span>
+                <span class="color-route-visual is-solid" aria-hidden="true">
+                  <i style="--sample-height:42%;--sample-color:var(--surface-alt)"></i>
+                  <i style="--sample-height:58%;--sample-color:var(--surface-card)"></i>
+                  <i style="--sample-height:76%;--sample-color:var(--surface-raised)"></i>
+                  <i style="--sample-height:92%;--sample-color:var(--success-fill)"></i>
+                </span>
+                <p><span data-th>วาง canvas → card → raised ให้เห็นชั้น และให้สถานะมากับคำหรือไอคอนเสมอ</span><span data-en>Build canvas → card → raised depth; always pair state color with a word or icon.</span></p>
+              </a>
+
+              <a class="color-route-card" href="#color-atmosphere-gradients" data-reveal-target="color-atmosphere-gradients">
+                <span class="color-route-card-head">
+                  <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg></span>
+                  <h5><span data-th>Gradient ที่มีหน้าที่</span><span data-en>Gradients with a job</span></h5>
+                </span>
+                <span class="color-route-visual is-gradient" aria-hidden="true"><i></i><i></i><i></i></span>
+                <p><span data-th>Measure เปิดทาง, Ground เชื่อมบริบท, Cultivate พาไปสู่การลงมือทำ—คง stop เดิมและแก้ contrast ด้วย scrim หรือ panel</span><span data-en>Measure opens, Ground connects context, and Cultivate supports action—preserve stops and repair contrast with a scrim or panel.</span></p>
+              </a>
+
+              <a class="color-route-card" href="#color-data-scales" data-reveal-target="color-data-scales">
+                <span class="color-route-card-head">
+                  <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span>
+                  <h5><span data-th>Sequential และ diverging</span><span data-en>Sequential and diverging</span></h5>
+                </span>
+                <span class="color-route-visual is-scale" aria-hidden="true">
+                  <span style="--route-class-count:3">
+                    <i style="--scale-color:var(--dataviz-seq-confidence-low)"></i>
+                    <i style="--scale-color:var(--dataviz-seq-confidence-mid)"></i>
+                    <i style="--scale-color:var(--dataviz-seq-confidence-high)"></i>
+                  </span>
+                  <span style="--route-class-count:3">
+                    <i style="--scale-color:var(--dataviz-div-delta-side-a)"></i>
+                    <i style="--scale-color:var(--dataviz-div-delta-neutral)"></i>
+                    <i style="--scale-color:var(--dataviz-div-delta-side-b)"></i>
+                  </span>
+                </span>
+                <p><span data-th>ใช้ sequential กับมาก–น้อย และ diverging กับสองทิศทางรอบจุดกลาง; 5/7/9 ชั้นต้องมาจาก LUT เดียวกัน</span><span data-en>Use sequential for magnitude and diverging for two directions around a midpoint; 5/7/9 classes come from one governed LUT.</span></p>
+              </a>
+
+              <a class="color-route-card" href="#atlas-categorical-title" data-reveal-target="atlas-categorical-title">
+                <span class="color-route-card-head">
+                  <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-components"></use></svg></span>
+                  <h5><span data-th>หมวดหมู่ 4, 8 และ 12+</span><span data-en>Four, eight, and 12+ categories</span></h5>
+                </span>
+                <span class="color-route-visual is-category" aria-hidden="true">
+                  <span class="category-load">
+                    <b>4 · color</b>
+                    <span>
+                      <i style="--sample-color:var(--series-01)"></i><i style="--sample-color:var(--series-02);--sample-radius:3px"></i><i style="--sample-color:var(--series-03)"></i><i style="--sample-color:var(--series-04);--sample-radius:3px"></i>
+                    </span>
+                  </span>
+                  <span class="category-load is-eight">
+                    <b>8 · + shape</b>
+                    <span>
+                      <i style="--sample-color:var(--series-01)"></i><i style="--sample-color:var(--series-02);--sample-radius:3px"></i><i style="--sample-color:var(--series-03)"></i><i style="--sample-color:var(--series-04);--sample-radius:3px"></i>
+                      <i style="--sample-color:var(--series-05)"></i><i style="--sample-color:var(--series-06);--sample-radius:3px"></i><i style="--sample-color:var(--series-07)"></i><i style="--sample-color:var(--series-08);--sample-radius:3px"></i>
+                    </span>
+                  </span>
+                  <span class="category-load is-twelve">
+                    <b>12+ · group</b>
+                    <span>
+                      <i style="--sample-color:var(--series-01);--sample-fill:var(--series-01)"></i><i style="--sample-color:var(--series-05);--sample-fill:var(--series-05);--sample-radius:3px"></i><i style="--sample-color:var(--series-07);--sample-fill:var(--series-07)"></i>
+                      <i style="--sample-color:var(--series-09);--sample-fill:var(--series-09);--sample-radius:3px"></i><i style="--sample-color:var(--series-10);--sample-fill:var(--series-10)"></i><i style="--sample-color:var(--border-emphasis);--sample-fill:var(--surface-alt);--sample-radius:3px"></i>
+                    </span>
+                  </span>
+                </span>
+                <p><span data-th>สีอย่างเดียวไม่เกิน 6; 7–10 เพิ่มรูปทรงหรือลาย; มากกว่า 10 ให้จัดกลุ่ม กรอง ทำ small multiples หรือตาราง</span><span data-en>Color alone stops at six; add shape or pattern for 7–10; above ten, group, filter, use small multiples, or use a table.</span></p>
+              </a>
+
+              <a class="color-route-card" href="#color-opacity-layers" data-reveal-target="color-opacity-layers">
+                <span class="color-route-card-head">
+                  <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-layers"></use></svg></span>
+                  <h5><span data-th>Opacity และชั้นซ้อน</span><span data-en>Opacity and overlapping layers</span></h5>
+                </span>
+                <span class="color-route-visual is-layer" aria-hidden="true"><i></i><i></i></span>
+                <p><span data-th>ใช้ opacity จัดชั้น ไม่ใช้แทนความหมายสำคัญ สีที่เกิดตรงส่วนซ้อนไม่ใช่ token ใหม่—ต้องมี label ค่า หรือลายกำกับ</span><span data-en>Use opacity to organize depth, never critical meaning. A blended overlap is not a new token—label it with a value or pattern.</span></p>
+              </a>
+
+              <a class="color-route-card" href="#color-lines-strokes" data-reveal-target="color-lines-strokes">
+                <span class="color-route-card-head">
+                  <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-line"></use></svg></span>
+                  <h5><span data-th>เส้น ขอบ และ stroke</span><span data-en>Lines, borders, and strokes</span></h5>
+                </span>
+                <span class="color-route-visual is-line" aria-hidden="true">
+                  <svg viewBox="0 0 240 72">
+                    <path class="route-grid-line" d="M8 16H232M8 36H232M8 56H232"></path>
+                    <path class="route-data-line" d="m12 54 44-20 42 8 46-28 46 14 38-18"></path>
+                    <path class="route-boundary-line" d="M26 12h56v48H26Z"></path>
+                    <path class="route-connector-line" d="M158 58h64m-9-7 9 7-9 7"></path>
+                  </svg>
+                </span>
+                <p><span data-th>เส้นบริบทต้องเงียบ เส้นข้อมูลต้องอ่านต่อเนื่อง ขอบเขตที่เลือกใช้ map token และ connector ต้องบอกความสัมพันธ์; ความหนาในตัวอย่างยังเป็น candidate</span><span data-en>Keep context quiet, data continuous, selection on map tokens, and connectors meaningful; the shown widths remain candidate recipes.</span></p>
+              </a>
+            </div>
+
+            <aside class="color-route-boundary" role="note">
+              <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg></span>
+              <p><strong><span data-th>ขอบเขตที่ต้องจำ</span><span data-en>Boundary to keep</span></strong><br><span data-th>หน้าเว็บนี้ใช้ token และกฎที่ DS ระบุจริง ไม่สร้างสีใหม่หรือผสม ramp ตอน runtime ส่วนความหนาเส้น chart/axis, dash convention และสูตรผสมสีของชั้นซ้อนยังไม่มีมาตรฐานกลาง จึงแสดงเป็น candidate หรือหลักการ ไม่อ้างว่าเป็น normative token</span><span data-en>This page uses governed tokens and rules without minting colors or mixing ramps at runtime. Universal chart/axis widths, dash conventions, and overlap-blending formulas are not yet shared standards, so they remain candidates or principles—not normative tokens.</span></p>
+            </aside>
+
+            <div class="color-route-actions">
+              <a class="primary-action" href="#library-color-guide" data-reveal-target="library-color-guide">
+                <span data-th>ดูตัวอย่างสีทำงานกับชิ้นงานจริง</span>
+                <span data-en>See color work in a real fixture</span>
+              </a>
+              <a class="secondary-action" href="#complete-color-atlas" data-reveal-target="complete-color-atlas">
+                <span data-th>เปิด Color Atlas และค่าทั้งหมด</span>
+                <span data-en>Open the complete Color Atlas</span>
+              </a>
+            </div>
+          </div>
+        </details>
+
         <details class="library-group" id="library-foundations">
           <summary id="library-foundations-toggle">
-            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg><span class="sr-only">01</span></span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg><span class="sr-only">02</span></span>
             <h3><span data-th>รากฐานภาพและภาษา</span><span data-en>Foundations</span></h3>
             <span class="library-summary-copy"><span data-th>โลโก้ ตัวอักษร สี พื้นผิวไล่สี ที่พักสายตา และหน้าที่ของค่ามาตรฐานแต่ละตัว</span><span data-en>Logo, type, color, gradients, quiet, and token ownership.</span></span>
             <span class="library-count">4 foundations · complete color atlas · 8 opportunities</span>
@@ -5259,7 +5690,7 @@
               </article>
             </div>
 
-            <section class="color-in-action" aria-labelledby="color-in-action-title">
+            <section class="color-in-action" id="library-color-guide" aria-labelledby="color-in-action-title">
               <p class="specimen-kicker">COLOR-01 · SEE COLOR DO REAL WORK</p>
               <h4 id="color-in-action-title"><span data-th>ดูสีทำงานกับชิ้นงานจริง</span><span data-en>See color do real work</span></h4>
               <p data-th>ใช้ชิ้นงานเดียวกันดูให้ชัดว่าอะไรคือแบรนด์ อะไรกดได้ อะไรคือสถานะ อะไรคือข้อมูล และอะไรเป็นเพียงบรรยากาศ สีไม่ต้องพูดคนเดียว—มีคำ ค่า รูปร่าง หรือลายช่วยยืนยันเสมอ</p>
@@ -5357,7 +5788,7 @@
               </div>
 
               <div class="color-system-grid" aria-label="Fast color implementation overview">
-                <figure class="color-plate">
+                <figure class="color-plate" id="color-solids-states">
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg></span>
                     <h5><span data-th>พื้นผิวและสถานะ</span><span data-en>Solids & states</span></h5>
@@ -5402,7 +5833,7 @@
                   <figcaption><span data-th>ปุ่มหลักใช้ label/border ของ interaction.accent พร้อม surface.blueTint เมื่อ hover/selected—ไม่ใช้ปุ่มทึบ Brand Blue</span><span data-en>Primary actions use interaction.accent labels/borders and surface.blueTint for hover/selection—never a filled Brand Blue button.</span></figcaption>
                 </figure>
 
-                <figure class="color-plate color-plate--wide">
+                <figure class="color-plate color-plate--wide" id="color-atmosphere-gradients">
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-layers"></use></svg></span>
                     <h5><span data-th>Gradient ต้องมีหน้าที่</span><span data-en>A gradient needs a job</span></h5>
@@ -5425,7 +5856,7 @@
                   <figcaption><span data-th>หนึ่ง viewport มี gradient เด่นได้ไม่เกินหนึ่งผืน ใช้ stop ตาม recipe เดิม ตรวจคอนทราสต์ใต้ตัวอักษรจริง และลบทิ้งถ้าความเข้าใจไม่ดีขึ้น</span><span data-en>Use at most one dominant gradient per viewport, preserve the exact recipe, sample contrast beneath real glyphs, and delete it when comprehension does not improve.</span></figcaption>
                 </figure>
 
-                <figure class="color-plate color-plate--wide">
+                <figure class="color-plate color-plate--wide" id="color-data-scales">
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span>
                     <h5><span data-th>เลือก scale ให้ตรงคำถาม</span><span data-en>Match the scale to the question</span></h5>
@@ -5459,7 +5890,7 @@
                   <figcaption><span data-th>หน้าเว็บนี้แสดงเพียง anchor ที่ DS กำหนด; 5/7/9 classes ต้องมาจาก LUT และ scaleVersion ที่ generate ไว้ล่วงหน้า ไม่ผสมสีตอน runtime</span><span data-en>This page shows only governed anchors; 5/7/9 classes require the generated LUT and scaleVersion—never runtime color mixing.</span></figcaption>
                 </figure>
 
-                <figure class="color-plate">
+                <figure class="color-plate" id="color-opacity-layers">
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-layers"></use></svg></span>
                     <h5><span data-th>ซ้อนชั้นโดยไม่สร้างความหมายใหม่</span><span data-en>Layer without inventing meaning</span></h5>
@@ -5485,7 +5916,7 @@
                   <figcaption><span data-th>opacity ช่วยจัดชั้น แต่ห้ามแบกความหมายสำคัญเพียงลำพัง สีที่เกิดจากการซ้อนไม่ใช่ token ใหม่; ส่วนซ้อนต้องมี label/ค่า/ลายช่วย</span><span data-en>Opacity may organize depth but never carry critical meaning alone. A blended result is not a new token; label or pattern the overlap.</span></figcaption>
                 </figure>
 
-                <figure class="color-plate">
+                <figure class="color-plate" id="color-lines-strokes">
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-line"></use></svg></span>
                     <h5><span data-th>ทุกเส้นต้องบอกหน้าที่</span><span data-en>Every line needs a meaning</span></h5>
@@ -7660,7 +8091,7 @@
 
         <details class="library-group" id="library-components">
           <summary id="library-components-toggle">
-            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-components"></use></svg><span class="sr-only">02</span></span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-components"></use></svg><span class="sr-only">03</span></span>
             <h3><span data-th>ส่วนประกอบหน้าจอ</span><span data-en>Interface components</span></h3>
             <span class="library-summary-copy"><span data-th>การลงมือทำ ข้อมูลที่กรอก การตัดสินใจ หลักฐาน สถานะ และทางแก้เมื่อมีปัญหา</span><span data-en>Actions, input, decision, evidence, status, and recovery contracts.</span></span>
             <span class="library-count">13 components + 4 ensembles</span>
@@ -7777,7 +8208,7 @@
 
         <details class="library-group" id="library-dataviz">
           <summary id="library-dataviz-toggle">
-            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg><span class="sr-only">03</span></span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg><span class="sr-only">04</span></span>
             <h3><span data-th>ข้อมูล ภาพ และแผนที่</span><span data-en>Data visualization & maps</span></h3>
             <span class="library-summary-copy"><span data-th>เลือกกราฟจากคำถาม แยกศูนย์จากไม่มีข้อมูล และให้ตารางเข้าถึงได้อยู่คู่กัน</span><span data-en>Choose charts from the question, separate zero from no data, and keep an accessible table.</span></span>
             <span class="library-count">3 basics + 9 CityMETER</span>
@@ -7788,6 +8219,17 @@
               <h4><span data-th>เริ่มจากสิ่งที่อยากรู้ แล้วค่อยเลือกกราฟ</span><span data-en>Start with the question—then choose the chart.</span></h4>
               <p class="library-content-intro" data-th>Brand gradient ใช้สร้างบรรยากาศ ส่วนสีของ dataviz ใช้บอกค่า ประเภท สถานะ ข้อมูลที่หาย และสัญญาณที่ชวนให้ตรวจต่อ</p>
               <p class="library-content-intro" data-en>Brand gradients frame the experience. Dataviz tokens—not atmosphere colors—encode magnitude, category, state, missingness, and counter-signals.</p>
+            </div>
+
+            <div class="color-route-actions">
+              <a class="secondary-action" href="#atlas-categorical-title" data-reveal-target="atlas-categorical-title">
+                <span data-th>เลือกสีสำหรับหมวดหมู่</span>
+                <span data-en>Choose categorical colors</span>
+              </a>
+              <a class="secondary-action" href="#atlas-dataviz-title" data-reveal-target="atlas-dataviz-title">
+                <span data-th>เปิด scale และชุด 5/7/9 ชั้น</span>
+                <span data-en>Open scales and 5/7/9 classes</span>
+              </a>
             </div>
 
             <aside class="dataviz-boundary" role="note">
@@ -8040,7 +8482,7 @@
 
         <details class="library-group" id="library-experience">
           <summary id="library-experience-toggle">
-            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-experience"></use></svg><span class="sr-only">04</span></span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-experience"></use></svg><span class="sr-only">05</span></span>
             <h3><span data-th>รูปแบบประสบการณ์</span><span data-en>Experience patterns</span></h3>
             <span class="library-summary-copy"><span data-th>เส้นทางสู่ความสำเร็จ สถานะที่ตรงไปตรงมา motion, CTA คุณค่าของผู้รับ และการค้นต่อภายนอก</span><span data-en>Success path, truthful states, motion, CTA, ethical loops, recipient value, and external discovery.</span></span>
             <span class="library-count">4 cases + 6 patterns</span>
@@ -8313,7 +8755,7 @@
 
         <details class="library-group" id="library-products">
           <summary id="library-products-toggle">
-            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-products"></use></svg><span class="sr-only">05</span></span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-products"></use></svg><span class="sr-only">06</span></span>
             <h3><span data-th>การปรับใช้ตามผลิตภัณฑ์</span><span data-en>Product adaptations</span></h3>
             <span class="library-summary-copy"><span data-th>ใช้ shared layer ร่วมกัน ส่วนข้อมูล วิธีทำงาน น้ำเสียง และ capability ให้แต่ละผลิตภัณฑ์ดูแล</span><span data-en>Share the system layer; keep data, method, voice, and capability with the product.</span></span>
             <span class="library-count">4 templates</span>
@@ -8370,7 +8812,7 @@
 
         <details class="library-group" id="library-resources">
           <summary id="library-resources-toggle">
-            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-download"></use></svg><span class="sr-only">06</span></span>
+            <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-download"></use></svg><span class="sr-only">07</span></span>
             <h3><span data-th>เอกสารและไฟล์อ้างอิง</span><span data-en>Resources & release records</span></h3>
             <span class="library-summary-copy"><span data-th>คู่มือฉบับอ่านง่าย normative patch, skill ใช้ซ้ำ บันทึกการส่งมอบ SEO gate และตัวช่วยให้เครื่องค้นพบ</span><span data-en>Human-readable master, normative patch, reusable skill, release records, SEO gate, and machine-discovery aid.</span></span>
             <span class="library-count">10 records + gates</span>
@@ -9107,7 +9549,6 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         });
         preview.dataset.surface = state.surface;
         preview.dataset.lens = state.lens;
-        preview.classList.toggle("is-visual", state.lens === "visual");
         preview.classList.toggle("is-baseline", !assisted);
         el("handoff-object-label").textContent = work.label;
         recipeWorkLabel.textContent = work.label;
@@ -9311,20 +9752,33 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         });
       }
 
-      function revealDetails(id, shouldFocus = false, requestedBehavior = null) {
-        const details = el(id);
-        if (!(details instanceof HTMLDetailsElement)) return;
-        details.open = true;
+      function revealTarget(id, shouldFocus = false, requestedBehavior = null) {
+        const target = el(id);
+        if (!target) return;
+        const detailChain = [];
+        let ancestor = target instanceof HTMLDetailsElement ? target : target.parentElement;
+        while (ancestor) {
+          if (ancestor instanceof HTMLDetailsElement) detailChain.unshift(ancestor);
+          ancestor = ancestor.parentElement;
+        }
+        detailChain.forEach(details => {
+          details.open = true;
+        });
         requestAnimationFrame(() => {
           const forceInstant = requestedBehavior === "instant";
           const previousScrollBehavior = root.style.scrollBehavior;
           if (forceInstant) root.style.scrollBehavior = "auto";
-          details.scrollIntoView({
+          target.scrollIntoView({
             behavior: forceInstant ? "auto" : (requestedBehavior || (window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth")),
             block: "start"
           });
           if (forceInstant) root.style.scrollBehavior = previousScrollBehavior;
-          if (shouldFocus) details.querySelector("summary")?.focus();
+          if (shouldFocus) {
+            const focusTarget = target instanceof HTMLDetailsElement
+              ? target.querySelector(":scope > summary")
+              : target.closest("details")?.querySelector(":scope > summary");
+            focusTarget?.focus();
+          }
         });
       }
       document.querySelectorAll("[data-open-details]").forEach(link => {
@@ -9332,16 +9786,22 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           event.preventDefault();
           const target = link.dataset.openDetails;
           try { history.replaceState(null, "", `#${target}`); } catch (_) {}
-          revealDetails(target, true);
+          revealTarget(target, true);
         });
       });
-      function revealHashDetails() {
-        const hashDetails = location.hash ? el(location.hash.slice(1)) : null;
-        if (hashDetails instanceof HTMLDetailsElement) {
-          revealDetails(hashDetails.id, false, "instant");
-        }
+      document.querySelectorAll("[data-reveal-target]").forEach(link => {
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          const target = link.dataset.revealTarget;
+          try { history.replaceState(null, "", `#${target}`); } catch (_) {}
+          revealTarget(target);
+        });
+      });
+      function revealHashTarget() {
+        const hashTarget = location.hash ? el(location.hash.slice(1)) : null;
+        if (hashTarget) revealTarget(hashTarget.id, false, "instant");
       }
-      window.addEventListener("hashchange", revealHashDetails);
+      window.addEventListener("hashchange", revealHashTarget);
 
       if (document.fonts) {
         Promise.all([
@@ -9355,9 +9815,9 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       decorateOpportunityCards();
       renderControls();
       if (document.readyState === "complete") {
-        revealHashDetails();
+        revealHashTarget();
       } else {
-        window.addEventListener("load", revealHashDetails, { once: true });
+        window.addEventListener("load", revealHashTarget, { once: true });
       }
     })();
   </script>

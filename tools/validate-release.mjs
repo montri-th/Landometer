@@ -276,7 +276,7 @@ pass(html.includes("portfolio, methodology") && html.includes("product-architect
 pass(html.includes("schema/release") && html.includes("compatible"), "Compatibility boundary is present");
 pass(html.includes("partial ≠ complete") && html.includes("modelled ≠ observed") && html.includes("planned ≠ available"), "Truth-preserving handoff guards are present");
 pass(html.includes("product-specific"), "Product-specific evidence boundary is explicit");
-pass(html.includes("Implementation Library") && (html.match(/<details class="library-group"/g) || []).length === 6, "Six progressive-disclosure implementation groups are present");
+pass(html.includes("Implementation Library") && (html.match(/<details class="library-group"/g) || []).length === 7, "Seven progressive-disclosure implementation groups are present");
 pass(html.includes("CityMETER") && html.includes("CityWiki") && html.includes("CityChat") && html.includes("ijji"), "Product-adaptation templates are present");
 pass((html.match(/class="dataviz-pattern"/g) || []).length === 3, "Compare, Change, and Relationship dataviz examples are present");
 pass((html.match(/class="dataviz-table"/g) || []).length === 3, "Every rendered dataviz example has a visible table alternative");
@@ -299,6 +299,58 @@ pass(html.includes("linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100
 pass(html.includes("linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%)"), "Ground gradient stop order is exact");
 pass(html.includes("linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)"), "Light Measure gradient is exact");
 pass(html.includes("linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%)"), "Dark Measure gradient is exact");
+pass(
+  /class="proof-preview has-brand-surface"/.test(html),
+  "Try fixture owns its governed atmosphere independently of the selected inspection lens",
+);
+pass(
+  !html.includes('classList.toggle("is-visual"') &&
+    !html.includes(".proof-preview.is-visual"),
+  "No Brand Visual-only class gate can flatten Brand DNA or Brand Voice surfaces",
+);
+pass(
+  html.includes('.proof-preview.has-brand-surface[data-surface="measure"]') &&
+    html.includes('.proof-preview.has-brand-surface[data-surface="ground"]') &&
+    html.includes('.proof-preview.has-brand-surface[data-surface="cultivate"]') &&
+    html.includes(".proof-preview.has-brand-surface .proof-meta"),
+  "All three governed atmospheres carry one complete local foreground and metadata contract",
+);
+pass(
+  html.includes('id="library-color"') &&
+    html.includes('id="library-color-toggle"') &&
+    (html.match(/class="color-route-card"/g) || []).length === 6,
+  "First-class Color Library route exposes exactly six decision-first visual routes",
+);
+pass(
+  html.includes("Brand</span>") &&
+    html.includes("Interaction</span>") &&
+    html.includes("Semantic</span>") &&
+    html.includes("Atmosphere</span>") &&
+    html.includes("Series</span>") &&
+    html.includes("Scale</span>") &&
+    html.includes("Map</span>") &&
+    html.includes("Depth</span>"),
+  "Color Library distinguishes all eight governed color jobs",
+);
+pass(
+  html.includes('data-reveal-target="library-color-guide"') &&
+    html.includes('data-reveal-target="complete-color-atlas"') &&
+    html.includes('data-reveal-target="atlas-categorical-title"') &&
+    html.includes('data-reveal-target="atlas-dataviz-title"'),
+  "Color routes connect realistic examples, categorical guidance, quantitative classes, and the complete atlas",
+);
+pass(
+  html.includes("Color alone stops at six") &&
+    html.includes("add shape or pattern for 7–10") &&
+    html.includes("above ten, group, filter, use small multiples, or use a table"),
+  "Category-capacity guidance is visible before the exhaustive palette registry",
+);
+pass(
+  html.includes("detailChain.unshift(ancestor)") &&
+    html.includes("detailChain.forEach(details =>") &&
+    html.includes("details.open = true"),
+  "Deep color links open every closed ancestor disclosure before scrolling",
+);
 
 const atlasStartMarker = "<!-- COLOR_ATLAS_START -->";
 const atlasEndMarker = "<!-- COLOR_ATLAS_END -->";
@@ -706,13 +758,18 @@ const inventoryIds = inventory.controls.map(control => control.id);
 pass(new Set(controlIds).size === controlIds.length, "All control IDs are unique");
 pass(new Set(inventoryIds).size === inventoryIds.length, "All inventory IDs are unique");
 pass(
-  controlIds.length === 55 && controlIds.includes("context-search-google-ai"),
-  "HTML exposes the expected 55 controls including the explicit AI Mode submitter",
+  controlIds.length === 58 &&
+    controlIds.includes("context-search-google-ai") &&
+    controlIds.includes("open-color-library") &&
+    controlIds.includes("library-color-toggle"),
+  "HTML exposes the expected 58 controls including explicit AI Mode and color-library routes",
 );
 pass(
-  inventoryIds.length === 55 &&
-    inventoryIds.includes("context-search-google-ai"),
-  "Control inventory records all 55 controls including the AI Mode submitter",
+  inventoryIds.length === 58 &&
+    inventoryIds.includes("context-search-google-ai") &&
+    inventoryIds.includes("open-color-library") &&
+    inventoryIds.includes("library-color-toggle"),
+  "Control inventory records all 58 controls including AI Mode and color-library routes",
 );
 pass(
   controlIds.length === inventoryIds.length &&
@@ -765,24 +822,24 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("landometer-design-system-v0.8.8-standalone.html") === "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7",
+  sha256("landometer-design-system-v0.8.8-standalone.html") === "636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1",
   "Standalone HTML hash matches the release record"
 );
 pass(
-  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2134434,
+  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2159322,
   "Standalone HTML byte count matches the release record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
-    asset.bytes === 2134434 &&
-    asset.sha256 === "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7"
+    asset.bytes === 2159322 &&
+    asset.sha256 === "636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1"
   ),
   "Manifest records the exact standalone HTML"
 );
 pass(
   buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
-    buildCard.includes("sha256: 58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7"),
+    buildCard.includes("sha256: 636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1"),
   "Build Card records the exact standalone HTML"
 );
 pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");
@@ -795,11 +852,11 @@ pass(
   "Standalone HTML has no display-critical relative asset"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1",
+  sha256("implementation-notes.v0.8.8.md") === "36d7a49fa9402a3b4dac8a94e98c1c7a4e1f5e27670293a200c8b560388c393d",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 11537,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 13457,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
@@ -813,8 +870,8 @@ pass(
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 11537 &&
-    asset.sha256 === "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1"
+    asset.bytes === 13457 &&
+    asset.sha256 === "36d7a49fa9402a3b4dac8a94e98c1c7a4e1f5e27670293a200c8b560388c393d"
   ),
   "Manifest records the exact implementation clarification"
 );
@@ -827,10 +884,11 @@ pass(
   "Manifest records the exact machine-navigation aid"
 );
 pass(
-  implementationNotes.includes("IMPL-SHARE-01") &&
+  implementationNotes.includes("IMPL-SURFACE-COLOR-01") &&
+    implementationNotes.includes("IMPL-SHARE-01") &&
     implementationNotes.includes("IMPL-SEARCH-EXT-01") &&
     implementationNotes.includes("IMPL-AI-EXT-01"),
-  "Implementation clarification covers recipient value, contextual source Search, and external AI synthesis"
+  "Implementation clarification covers governed atmosphere, color guidance, recipient value, contextual source Search, and external AI synthesis"
 );
 pass(implementationNotes.includes("CityMETER-specific") && implementationNotes.includes("discovery_only"), "Implementation clarification preserves product and evidence boundaries");
 pass(machineDiscoveryAid.includes("project-path llms.txt is a navigation aid only"), "llms.txt exposes its project-path discovery limitation");

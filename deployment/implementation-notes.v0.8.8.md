@@ -7,6 +7,25 @@
 
 This note makes six implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
 
+## IMPL-SURFACE-COLOR-01 — Preserve governed atmosphere and make color guidance findable
+
+The Try fixture treats the inspection lens and atmosphere as independent choices. Brand DNA, Brand Voice, and Brand Visual may each be inspected on Measure, Ground, or Cultivate. Changing lens must not replace the governed gradient with a generic light or dark card.
+
+Keep the canonical gradient recipe intact. Repair readability through the surface-owned foreground contract:
+
+1. choose the tested local foreground;
+2. apply the deterministic Measure, Ground, or Cultivate scrim where declared;
+3. place dense metadata on the declared opaque or near-opaque panel;
+4. keep separators, cues, controls, and focus states inside the same local contrast contract;
+5. test light, dark, system preference, reduced motion, narrow viewport, and zoom;
+6. never use an atmosphere gradient to encode semantic state or data magnitude.
+
+Color guidance is a first-class Implementation Library route. Start by naming the job—Brand, Interaction, Semantic, Atmosphere, Series, Scale, Map, or Depth—then choose among solids/states, gradients, sequential/diverging scales, categories, opacity/layers, and lines/strokes. The concise router leads to realistic fixtures first and the complete generated atlas second.
+
+The artifact does not mint new colors, generate analytical ramps at runtime, or promote candidate stroke widths, dash conventions, or overlap formulas into normative tokens. Categorical capacity remains: color alone up to six; add stable shape or pattern for seven to ten; above ten, group, filter, use small multiples, or provide a table.
+
+This corrects an artifact regression and improves discoverability. The existing v0.8.8 normative rules already require governed atmosphere, local contrast repair, role-separated color, generated scales, and redundant category encoding, so no normative patch is required for this change.
+
 ## IMPL-SHARE-01 — Share by recipient value, never by repetition
 
 Do not place a share button on every page, section, result, chart, card, or completion state.

@@ -183,6 +183,18 @@
       "browserTest": "Select #lens-visual then invoke #open-dataviz; assert #library-dataviz.open, location.hash, focused summary, three chart figures, three visible tables, and nine .citymeter-chart-card examples."
     },
     {
+      "id": "open-color-from-visual",
+      "accessibleName": "Choose color and surface by job",
+      "userJob": "Move directly from Brand Visual to role-based color guidance",
+      "effect": "Open #library-color, update the fragment, scroll it into view, and focus its summary",
+      "keyboardTouch": "Enter or touch",
+      "feedback": "Color, surface, and data-palette routes open with six visual choices",
+      "recovery": "Close the native details group or use browser Back",
+      "finalState": "#library-color is open and its summary has focus",
+      "failureRecovery": "Navigate to #library-color and open it manually",
+      "browserTest": "Select #lens-visual then invoke #open-color-from-visual; assert #library-color.open, location.hash, focused summary, eight role labels, six .color-route-card examples, and the 4/8/12+ category rule."
+    },
+    {
       "id": "stage-select",
       "accessibleName": "Where is the work now",
       "userJob": "Inspect what may adapt at one work stage",
@@ -284,11 +296,23 @@
       "userJob": "Reach implementation detail without complicating the opening route",
       "effect": "Navigate to #implementation-library",
       "keyboardTouch": "Enter or touch",
-      "feedback": "The six collapsed library groups are in view",
+      "feedback": "The seven collapsed library groups are in view",
       "recovery": "Use browser Back or scroll",
       "finalState": "Implementation Library heading and disclosure groups are visible",
       "failureRecovery": "Scroll to #implementation-library",
-      "browserTest": "Invoke #open-library; assert location.hash or target position resolves to #implementation-library and six details groups are present."
+      "browserTest": "Invoke #open-library; assert location.hash or target position resolves to #implementation-library and seven details groups are present."
+    },
+    {
+      "id": "open-color-library",
+      "accessibleName": "Open color, surfaces, and data palettes",
+      "userJob": "Reach role-based color guidance directly from the library gateway",
+      "effect": "Open #library-color, update the fragment, scroll it into view, and focus its summary",
+      "keyboardTouch": "Enter or touch",
+      "feedback": "Color roles, six visual routes, and the 4/8/12+ category rule are visible",
+      "recovery": "Close the native details group or use browser Back",
+      "finalState": "#library-color is open and its summary has focus",
+      "failureRecovery": "Navigate to #library-color and open it manually",
+      "browserTest": "Invoke #open-color-library; assert #library-color.open, location.hash, focused summary, eight role labels, six .color-route-card examples, and working routes to the realistic fixture and complete atlas."
     },
     {
       "id": "download-system",
@@ -301,6 +325,18 @@
       "finalState": "The 227,924-byte whitespace-normalized v0.8.8 Markdown file is available locally",
       "failureRecovery": "Open the same-origin href directly or use the Resources group",
       "browserTest": "Inspect #download-system href and download attribute; request the href and assert HTTP 200, 227924 bytes, and the governed SHA-256."
+    },
+    {
+      "id": "library-color-toggle",
+      "accessibleName": "Color, surfaces, and data palettes",
+      "userJob": "Choose color by role and reach realistic or exhaustive implementation examples",
+      "effect": "Toggle #library-color using native details behavior",
+      "keyboardTouch": "Enter, Space, or touch",
+      "feedback": "Eight color roles, six visual routes, a category-capacity rule, and reference actions expand or collapse",
+      "recovery": "Activate the same summary again",
+      "finalState": "The native open state matches the user's choice",
+      "failureRecovery": "All routes remain inspectable in source and the summary works without JavaScript",
+      "browserTest": "Invoke #library-color-toggle; assert parent details.open, eight role labels, six .color-route-card examples, solid/state, gradient, scale, category, opacity/layer, and line/stroke routes, then invoke again to close."
     },
     {
       "id": "library-foundations-toggle",

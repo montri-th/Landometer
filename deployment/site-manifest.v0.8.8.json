@@ -315,16 +315,16 @@
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.html",
-      "bytes": 2134434,
-      "sha256": "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7",
+      "bytes": 2159322,
+      "sha256": "636ddb57b8281612b3f950daeda8668c811dee2fac519eafb8f69a100542d8b1",
       "usageClass": "self-contained single-file playground snapshot",
       "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"
     },
     {
       "path": "implementation-notes.v0.8.8.md",
-      "bytes": 11537,
-      "sha256": "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1",
+      "bytes": 13457,
+      "sha256": "36d7a49fa9402a3b4dac8a94e98c1c7a4e1f5e27670293a200c8b560388c393d",
       "usageClass": "proposed artifact-level implementation clarification",
       "authority": "non-normative until incorporated into an owner-approved Design System release"
     },
@@ -366,7 +366,7 @@
       "media permission, creator, privacy, context, and expiry confirmation",
       "perceptual quiet, gradient deletion, and contrast sampling review",
       "dataviz light/dark, color-vision, grayscale, direct-label, table-parity, 200% zoom, and CityMETER snapshot-versus-sketch boundary review",
-      "Implementation Library findability, six-group coverage, product-boundary, disclosure behavior, and download review",
+      "Implementation Library findability, seven-group coverage including the first-class color route, product-boundary, disclosure behavior, and download review",
       "desktop/mobile keyboard, theme/language cycle, disclosure, and screen-reader matrix",
       "positive Intent-to-AHA case variety, relevance, findability, and non-operational rejected-pattern review",
       "semantic-motion replay, pause/final, event-log, reduced-motion, no-JavaScript, and assistive-technology review",
