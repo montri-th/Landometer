@@ -480,7 +480,7 @@
       "recovery": "Activate the same summary again",
       "finalState": "The native open state matches the user's choice",
       "failureRecovery": "All summary controls remain usable without JavaScript",
-      "browserTest": "Invoke #library-resources-toggle; assert parent details.open, governed authoring-master bytes/hash, seven resource records, llms disclosure, and SEO/AI release-gate table."
+      "browserTest": "Invoke #library-resources-toggle; assert parent details.open, governed authoring-master bytes/hash, nine resource records, llms disclosure, reusable-skill and normative-patch proposals, and SEO/AI release-gate table."
     },
     {
       "id": "resource-download-system",
@@ -565,6 +565,30 @@
       "finalState": "Current version, status, canonical object, sources, product boundary, and no-agent-action rule are visible",
       "failureRecovery": "Use the Manifest, Build Card, or authoring master directly",
       "browserTest": "Inspect #resource-llms href/type; request it and assert HTTP 200 plus version 0.8.8, source_limited, DV-FIXTURE-0.1, contextual-search boundary, and no bounded agent action."
+    },
+    {
+      "id": "resource-normative-patch",
+      "accessibleName": "Open normative patch proposal",
+      "userJob": "Inspect proposed Design System clarifications without confusing them with the approved authoring master",
+      "effect": "Navigate to the versioned normative-patch proposal in the public repository",
+      "keyboardTouch": "Enter or touch",
+      "feedback": "The clearly labelled proposal Markdown opens in a new tab",
+      "recovery": "Close the tab or return to the implementation library",
+      "finalState": "Proposed value-proof, surface-contrast, Thai-type, color-reference, and visual-first clauses are available for owner review",
+      "failureRecovery": "Open normative-patches/landometer-design-system-v0.8.8-experience-clarifications.proposal.md directly in the repository",
+      "browserTest": "Inspect #resource-normative-patch href/target/rel; assert it points to the versioned proposal path and does not describe the proposal as approved normative truth."
+    },
+    {
+      "id": "resource-refinement-skill",
+      "accessibleName": "Open reusable refinement skill",
+      "userJob": "Reuse the experience-refinement workflow in later Landometer implementation work",
+      "effect": "Navigate to the project-versioned skill folder in the public repository",
+      "keyboardTouch": "Enter or touch",
+      "feedback": "The reusable skill folder opens in a new tab",
+      "recovery": "Close the tab or return to the implementation library",
+      "finalState": "The modular audit workflow, reference checks, and validation script are available for reuse",
+      "failureRecovery": "Open skill/refine-landometer-experience directly in the repository",
+      "browserTest": "Inspect #resource-refinement-skill href/target/rel; assert it points to the reusable skill folder and opens without changing the playground state."
     },
     {
       "id": "return-play",
