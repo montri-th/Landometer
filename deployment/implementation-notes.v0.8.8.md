@@ -7,6 +7,25 @@
 
 This note makes six implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
 
+## IMPL-SURFACE-COLOR-01 — Preserve governed atmosphere and make color guidance findable
+
+The Try fixture treats the inspection lens and atmosphere as independent choices. Brand DNA, Brand Voice, and Brand Visual may each be inspected on Measure, Ground, or Cultivate. Changing lens must not replace the governed gradient with a generic light or dark card.
+
+Keep the canonical gradient recipe intact. Repair readability through the surface-owned foreground contract:
+
+1. choose the tested local foreground;
+2. apply the deterministic Measure, Ground, or Cultivate scrim where declared;
+3. place dense metadata on the declared opaque or near-opaque panel;
+4. keep separators, cues, controls, and focus states inside the same local contrast contract;
+5. test light, dark, system preference, reduced motion, narrow viewport, and zoom;
+6. never use an atmosphere gradient to encode semantic state or data magnitude.
+
+Color guidance is a first-class Implementation Library route. Start by naming the job—Brand, Interaction, Semantic, Atmosphere, Series, Scale, Map, or Depth—then choose among solids/states, gradients, sequential/diverging scales, categories, opacity/layers, and lines/strokes. The concise router leads to realistic fixtures first and the complete generated atlas second.
+
+The artifact does not mint new colors, generate analytical ramps at runtime, or promote candidate stroke widths, dash conventions, or overlap formulas into normative tokens. Categorical capacity remains: color alone up to six; add stable shape or pattern for seven to ten; above ten, group, filter, use small multiples, or provide a table.
+
+This corrects an artifact regression and improves discoverability. The existing v0.8.8 normative rules already require governed atmosphere, local contrast repair, role-separated color, generated scales, and redundant category encoding, so no normative patch is required for this change.
+
 ## IMPL-SHARE-01 — Share by recipient value, never by repetition
 
 Do not place a share button on every page, section, result, chart, card, or completion state.
@@ -119,9 +138,19 @@ AI usefulness is an inspectable design hypothesis, not a superiority claim. Do n
 
 ## IMPL-TYPE-TH-01 — Keep Thai compact labels deterministic
 
-The v0.8.8 normative role already assigns Bai Jamjuree 400/600 to Thai UI, labels, and compact controls. JetBrains Mono’s packaged files contain Latin glyphs only, so assigning Thai text to that family causes the browser or operating system to choose an uncontrolled fallback such as Ayuthaya on one device or SarabunTH on another.
+The owner-approved v0.8.8 master assigns Bai Jamjuree 400/600 to Thai body and general UI. JetBrains Mono’s packaged files contain Latin glyphs only, so using a JetBrains-first stack for mixed Thai technical metadata otherwise allows the browser or operating system to choose an uncontrolled Thai fallback.
 
-This artifact therefore self-hosts and preloads Bai Jamjuree 400 for human-readable Thai labels while retaining JetBrains Mono 500 for Latin technical metadata and numbers. This corrects HTML implementation drift; it does not revise the v0.8.8 normative master. A different Thai label voice would require a separately reviewed future release, font licence record, specimens, and cross-device QA.
+Following the owner’s implementation direction, this artifact uses a script-aware technical pair:
+
+- JetBrains Mono 500 for Latin identifiers, numerals, and Latin technical labels;
+- IBM Plex Sans Thai 500 for Thai glyphs in the same technical role;
+- Bai Jamjuree 400/600 remains the continuous-reading body and general UI family.
+
+Both technical faces are self-hosted. The IBM Plex Sans Thai subset is recorded from `@fontsource/ibm-plex-sans-thai@5.3.0`, carries the SIL Open Font License 1.1 record, and has an exact SHA-256 entry in `font-assets.manifest.json`. The page preloads the Thai technical face and checks it explicitly after `document.fonts.ready`.
+
+The pairing is optically compact rather than mechanically monospaced. The reference applies `size-adjust: 102%` to the Thai face, weight 500, `.008em` tracking, `1.48` line-height, and one additional pixel of vertical padding in the smallest technical pills. These values keep Thai marks readable and visually closer to JetBrains Mono’s compact rhythm without forcing Thai clusters into fixed cells. IBM Plex Sans Thai remains proportionally spaced; any genuine fixed-cell requirement still needs a separately approved `font.code.th` role and font.
+
+This is a documented artifact-level override and a proposed normative clarification, not a silent rewrite of the owner-approved v0.8.8 master. A future normative release should either adopt the companion role and its delivery record or replace it deliberately after cross-device review.
 
 ## IMPL-EXAMPLE-01 — Show the pattern through positive cases
 

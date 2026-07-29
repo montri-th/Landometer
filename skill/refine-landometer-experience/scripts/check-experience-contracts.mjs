@@ -91,9 +91,34 @@ try {
 
 const checks = [
   ["before/after data", /\bbefore:\s*\{/u.test(html) && /\bafter:\s*\{/u.test(html)],
-  ["visual surface owns metadata colors", /\.proof-preview\.is-visual\s+\.proof-meta/u.test(html)],
-  ["visual surface owns object color", /\.proof-preview\.is-visual\s+\.proof-object/u.test(html)],
-  ["Thai technical labels have a packaged face", /--font-data-label:[^;]*"Bai Jamjuree"/u.test(html)],
+  ["governed surface owns metadata colors", /\.proof-preview\.has-brand-surface\s+\.proof-meta/u.test(html)],
+  ["governed surface owns object color", /\.proof-preview\.has-brand-surface\s+\.proof-object/u.test(html)],
+  [
+    "Thai technical labels have the packaged companion face",
+    /--font-technical-th:[^;]*"IBM Plex Sans Thai"/u.test(html) &&
+      /--font-technical:[^;]*"JetBrains Mono"[^;]*"IBM Plex Sans Thai"/u.test(html) &&
+      /ibm-plex-sans-thai-thai-500-normal\.woff2/u.test(html)
+  ],
+  [
+    "Thai technical companion has conservative optical tuning",
+    /size-adjust:\s*102%/u.test(html) &&
+      /--tracking-technical-th:\s*\.008em/u.test(html) &&
+      /--leading-technical-th:\s*1\.48/u.test(html)
+  ],
+  [
+    "dark color-role emphasis uses the runtime theme attribute",
+    /html\[data-theme="dark"\]\s+\.color-role-map span:first-child/u.test(html) &&
+      !/\[data-resolved-theme="dark"\]\s+\.color-role-map/u.test(html)
+  ],
+  [
+    "scale route consumes its declared class count",
+    /grid-template-columns:\s*repeat\(var\(--route-class-count,\s*3\)/u.test(html)
+  ],
+  [
+    "deep routes transfer focus to the revealed target",
+    /revealTarget\(target,\s*true\)/u.test(html) &&
+      /focusTarget\?\.focus\(\{\s*preventScroll:\s*true\s*\}\)/u.test(html)
+  ],
   ["semantic recipe uses structured ordered list", /class="recipe-steps"/u.test(html)],
   ["no tab-indented numbered recipe item", !/\n\t+\d+\.\s/u.test(html)],
   ["six color teaching plates", (html.match(/class="color-plate(?:\s|")/gu) || []).length >= 6],

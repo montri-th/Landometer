@@ -276,7 +276,7 @@ pass(html.includes("portfolio, methodology") && html.includes("product-architect
 pass(html.includes("schema/release") && html.includes("compatible"), "Compatibility boundary is present");
 pass(html.includes("partial ≠ complete") && html.includes("modelled ≠ observed") && html.includes("planned ≠ available"), "Truth-preserving handoff guards are present");
 pass(html.includes("product-specific"), "Product-specific evidence boundary is explicit");
-pass(html.includes("Implementation Library") && (html.match(/<details class="library-group"/g) || []).length === 6, "Six progressive-disclosure implementation groups are present");
+pass(html.includes("Implementation Library") && (html.match(/<details class="library-group"/g) || []).length === 7, "Seven progressive-disclosure implementation groups are present");
 pass(html.includes("CityMETER") && html.includes("CityWiki") && html.includes("CityChat") && html.includes("ijji"), "Product-adaptation templates are present");
 pass((html.match(/class="dataviz-pattern"/g) || []).length === 3, "Compare, Change, and Relationship dataviz examples are present");
 pass((html.match(/class="dataviz-table"/g) || []).length === 3, "Every rendered dataviz example has a visible table alternative");
@@ -299,6 +299,74 @@ pass(html.includes("linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100
 pass(html.includes("linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%)"), "Ground gradient stop order is exact");
 pass(html.includes("linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)"), "Light Measure gradient is exact");
 pass(html.includes("linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%)"), "Dark Measure gradient is exact");
+pass(
+  /class="proof-preview has-brand-surface"/.test(html),
+  "Try fixture owns its governed atmosphere independently of the selected inspection lens",
+);
+pass(
+  !html.includes('classList.toggle("is-visual"') &&
+    !html.includes(".proof-preview.is-visual"),
+  "No Brand Visual-only class gate can flatten Brand DNA or Brand Voice surfaces",
+);
+pass(
+  html.includes('.proof-preview.has-brand-surface[data-surface="measure"]') &&
+    html.includes('.proof-preview.has-brand-surface[data-surface="ground"]') &&
+    html.includes('.proof-preview.has-brand-surface[data-surface="cultivate"]') &&
+    html.includes(".proof-preview.has-brand-surface .proof-meta"),
+  "All three governed atmospheres carry one complete local foreground and metadata contract",
+);
+pass(
+  html.includes('id="library-color"') &&
+    html.includes('id="library-color-toggle"') &&
+    (html.match(/class="color-route-card"/g) || []).length === 6,
+  "First-class Color Library route exposes exactly six decision-first visual routes",
+);
+pass(
+  html.includes("Brand</span>") &&
+    html.includes("Interaction</span>") &&
+    html.includes("Semantic</span>") &&
+    html.includes("Atmosphere</span>") &&
+    html.includes("Series</span>") &&
+    html.includes("Scale</span>") &&
+    html.includes("Map</span>") &&
+    html.includes("Depth</span>"),
+  "Color Library distinguishes all eight governed color jobs",
+);
+pass(
+  html.includes('data-reveal-target="library-color-guide"') &&
+    html.includes('data-reveal-target="complete-color-atlas"') &&
+    html.includes('data-reveal-target="atlas-categorical-title"') &&
+    html.includes('data-reveal-target="atlas-dataviz-title"'),
+  "Color routes connect realistic examples, categorical guidance, quantitative classes, and the complete atlas",
+);
+pass(
+  html.includes("Color alone stops at six") &&
+    html.includes("add shape or pattern for 7–10") &&
+    html.includes("above ten, group, filter, use small multiples, or use a table"),
+  "Category-capacity guidance is visible before the exhaustive palette registry",
+);
+pass(
+  html.includes("detailChain.unshift(ancestor)") &&
+    html.includes("detailChain.forEach(details =>") &&
+    html.includes("details.open = true"),
+  "Deep color links open every closed ancestor disclosure before scrolling",
+);
+pass(
+  html.includes('html[data-theme="dark"] .color-role-map span:first-child') &&
+    !html.includes('[data-resolved-theme="dark"] .color-role-map'),
+  "Dark color-role emphasis consumes the runtime theme state",
+);
+pass(
+  html.includes("grid-template-columns: repeat(var(--route-class-count, 3), minmax(0, 1fr))") &&
+    (html.match(/--route-class-count:3/g) || []).length === 2,
+  "Sequential and diverging route previews fill exactly their three declared tracks",
+);
+pass(
+  html.includes("revealTarget(target, true)") &&
+    html.includes('focusTarget.setAttribute("tabindex", "-1")') &&
+    html.includes("focusTarget?.focus({ preventScroll: true })"),
+  "Deep color links move keyboard focus to the revealed target without reversing the scroll",
+);
 
 const atlasStartMarker = "<!-- COLOR_ATLAS_START -->";
 const atlasEndMarker = "<!-- COLOR_ATLAS_END -->";
@@ -470,9 +538,35 @@ pass(html.includes("--font-body-fallback: \"Noto Sans Thai\", \"Leelawadee UI\",
 pass(html.includes("--font-number-fallback: \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace"), "Number fallback token is exact");
 pass(html.includes("document.fonts.ready"), "Font readiness is observed");
 pass(html.includes('rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2"'), "Thai label font is preloaded from the self-hosted asset");
-pass(html.includes("--font-label-th: \"Bai Jamjuree\""), "Thai compact labels have a deterministic semantic font role");
-pass(/html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)/.test(html), "Thai controls and handoff labels do not fall through JetBrains Mono to an OS font");
-pass(html.includes("document.fonts.load") && html.includes("thaiLabelsReady"), "Thai label glyph readiness is explicitly checked");
+pass(html.includes('rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2"'), "Thai technical companion is preloaded from the self-hosted asset");
+pass(
+  html.includes('--font-technical-latin: "JetBrains Mono"') &&
+    html.includes('--font-technical-th: "IBM Plex Sans Thai"') &&
+    html.includes('--font-technical: "JetBrains Mono", "IBM Plex Sans Thai"'),
+  "Technical typography uses one deterministic script-aware JetBrains Mono and IBM Plex Sans Thai pair",
+);
+pass(
+  /font-family:\s*"IBM Plex Sans Thai";[\s\S]*?font-weight:\s*500;[\s\S]*?size-adjust:\s*102%;[\s\S]*?unicode-range:\s*U\+02D7,\s*U\+0303,\s*U\+0331,\s*U\+0E01-0E5B,\s*U\+200C-200D,\s*U\+25CC/.test(html),
+  "IBM Plex Sans Thai 500 has the exact Thai subset and conservative optical size adjustment",
+);
+pass(
+  html.includes("--font-label-th: var(--font-technical)") &&
+    /html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)[\s\S]*?font-weight:\s*500[\s\S]*?letter-spacing:\s*var\(--tracking-technical-th\)[\s\S]*?line-height:\s*var\(--leading-technical-th\)/.test(html),
+  "Thai controls and handoff labels use the tuned technical pair rather than an operating-system fallback",
+);
+pass(
+  html.includes("--leading-technical-th: 1.48") &&
+    html.includes("--tracking-technical-th: .008em") &&
+    /html\[data-locale="th"\] \.proof-state,[\s\S]*?padding-block:\s*5px/.test(html) &&
+    /html\[data-locale="th"\] \.atlas-scale-theme\s*\{[\s\S]*?padding-block:\s*4px/.test(html),
+  "Thai technical labels carry governed line-height, tracking, and compact-pill breathing room",
+);
+pass(
+  html.includes('document.fonts.load(\'500 16px "IBM Plex Sans Thai"\'') &&
+    html.includes("thaiBodyReady") &&
+    html.includes("thaiTechnicalReady"),
+  "Thai body and technical glyph readiness are checked independently",
+);
 pass(/body\s*\{[\s\S]*?font-family:\s*var\(--font-body\)/.test(html), "Body and UI use the governed Bai Jamjuree role");
 pass(!/body,\s*\n\s*button[\s\S]*?font:\s*inherit/.test(html), "Body font is not overwritten by the form-control inheritance rule");
 const anywhereWrapRules = cssRules(html).filter(rule =>
@@ -706,13 +800,18 @@ const inventoryIds = inventory.controls.map(control => control.id);
 pass(new Set(controlIds).size === controlIds.length, "All control IDs are unique");
 pass(new Set(inventoryIds).size === inventoryIds.length, "All inventory IDs are unique");
 pass(
-  controlIds.length === 55 && controlIds.includes("context-search-google-ai"),
-  "HTML exposes the expected 55 controls including the explicit AI Mode submitter",
+  controlIds.length === 58 &&
+    controlIds.includes("context-search-google-ai") &&
+    controlIds.includes("open-color-library") &&
+    controlIds.includes("library-color-toggle"),
+  "HTML exposes the expected 58 controls including explicit AI Mode and color-library routes",
 );
 pass(
-  inventoryIds.length === 55 &&
-    inventoryIds.includes("context-search-google-ai"),
-  "Control inventory records all 55 controls including the AI Mode submitter",
+  inventoryIds.length === 58 &&
+    inventoryIds.includes("context-search-google-ai") &&
+    inventoryIds.includes("open-color-library") &&
+    inventoryIds.includes("library-color-toggle"),
+  "Control inventory records all 58 controls including AI Mode and color-library routes",
 );
 pass(
   controlIds.length === inventoryIds.length &&
@@ -765,41 +864,41 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("landometer-design-system-v0.8.8-standalone.html") === "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7",
+  sha256("landometer-design-system-v0.8.8-standalone.html") === "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d",
   "Standalone HTML hash matches the release record"
 );
 pass(
-  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2134434,
+  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2192096,
   "Standalone HTML byte count matches the release record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
-    asset.bytes === 2134434 &&
-    asset.sha256 === "58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7"
+    asset.bytes === 2192096 &&
+    asset.sha256 === "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d"
   ),
   "Manifest records the exact standalone HTML"
 );
 pass(
   buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
-    buildCard.includes("sha256: 58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7"),
+    buildCard.includes("sha256: daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d"),
   "Build Card records the exact standalone HTML"
 );
 pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");
 pass(
-  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 9,
-  "Standalone HTML embeds all nine display-font files"
+  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 10,
+  "Standalone HTML embeds all ten display-font files"
 );
 pass(
   !/(?:src|href)="assets\//.test(standaloneHtml) && !/url\(["']?assets\//.test(standaloneHtml),
   "Standalone HTML has no display-critical relative asset"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1",
+  sha256("implementation-notes.v0.8.8.md") === "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 11537,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 14542,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
@@ -813,8 +912,8 @@ pass(
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 11537 &&
-    asset.sha256 === "14fc875fd4171ad96eb64da415902995a0017718fb82b574c631d16e9e5231b1"
+    asset.bytes === 14542 &&
+    asset.sha256 === "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181"
   ),
   "Manifest records the exact implementation clarification"
 );
@@ -827,10 +926,11 @@ pass(
   "Manifest records the exact machine-navigation aid"
 );
 pass(
-  implementationNotes.includes("IMPL-SHARE-01") &&
+  implementationNotes.includes("IMPL-SURFACE-COLOR-01") &&
+    implementationNotes.includes("IMPL-SHARE-01") &&
     implementationNotes.includes("IMPL-SEARCH-EXT-01") &&
     implementationNotes.includes("IMPL-AI-EXT-01"),
-  "Implementation clarification covers recipient value, contextual source Search, and external AI synthesis"
+  "Implementation clarification covers governed atmosphere, color guidance, recipient value, contextual source Search, and external AI synthesis"
 );
 pass(implementationNotes.includes("CityMETER-specific") && implementationNotes.includes("discovery_only"), "Implementation clarification preserves product and evidence boundaries");
 pass(machineDiscoveryAid.includes("project-path llms.txt is a navigation aid only"), "llms.txt exposes its project-path discovery limitation");
@@ -843,6 +943,18 @@ for (const face of fontManifest.faces) {
   pass(existsSync(resolve(root, face.licenseFile)), `Font license exists: ${face.licenseFile}`);
   pass(html.includes(face.file), `Font is packaged in the single-page HTML: ${face.file}`);
 }
+pass(
+  fontManifest.faces.some(face =>
+    face.family === "IBM Plex Sans Thai" &&
+    face.subset === "thai" &&
+    face.weight === 500 &&
+    face.file === "assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2" &&
+    face.sha256 === "7e01c133031aba4ca902d81930096f0224d83f808014c1232016b49e0a7ecff6" &&
+    face.licenseFile === "assets/fonts/licenses/ibm-plex-sans-thai-OFL.txt" &&
+    face.sourcePackage === "@fontsource/ibm-plex-sans-thai@5.3.0"
+  ),
+  "Font manifest records the exact licensed IBM Plex Sans Thai 500 technical companion",
+);
 
 pass(!existsSync(resolve(root, "site-manifest.json")), "Stale unversioned manifest is removed");
 pass(!existsSync(resolve(root, "control-inventory.json")), "Stale unversioned control inventory is removed");

@@ -4,14 +4,14 @@
   "machineValidation": "pending",
   "staticValidator": {
     "status": "passed",
-    "summary": "v0.8.8 validation PASSED · 660 static checks · 55 controls · machineValidation pending",
+    "summary": "v0.8.8 validation PASSED · 697 static checks · 58 controls · machineValidation pending",
     "scope": [
       "release identity and evidence boundary",
       "Build Card and Manifest 2.0 alignment",
       "disabled capability assertions, explicit user-triggered contextual discovery, and bounded reference fixtures",
       "protected brand lines, Brand DNA, Locale Insight, and product-layer boundary",
       "canonical color and gradient recipes",
-      "single H1, smart h1–h6 wrapping, progressive disclosures, and exact 55-control inventory parity",
+      "single H1, smart h1–h6 wrapping, seven progressive disclosures, and exact 58-control inventory parity",
       "generated complete-color-atlas parity: 17 foundation pairs, seven semantic states, five shared/motif gradient cards, four product families/eight theme specimens, ten categorical pairs, 18 analytical records, 738 LUT cells, 378 class cells, eight map pairs, eight opacity values, and six depth roles",
       "analytical scale source_limited boundary, product-gradient product-identity boundary, solid-cell/no-runtime-mixing guard, nominal-only outlier styling, and no parallax or generic scroll-reveal engine",
       "15 positive opportunity cards with boundaries, three positive Intent-to-AHA cases, and one static deletion test",
@@ -20,7 +20,7 @@
       "seven-stage static recipient-value ladder with no share control or network-outcome claim",
       "four visible editable CityMETER current-record queries, inspectable source links, explicit Google Search and Google AI Mode GET choices, provenance limitation, and discovery-only boundary",
       "nine CityMETER-derived dataviz treatments separated into public API snapshots and anatomy-only treatment sketches",
-      "33 outline icon symbols with rounded caps/joins and deterministic self-hosted Bai Jamjuree 400 for human-readable Thai compact labels",
+      "33 outline icon symbols with rounded caps/joins; deterministic self-hosted Bai Jamjuree 400/600 for body/UI; and an IBM Plex Sans Thai 500 technical companion beside JetBrains Mono 500",
       "no external script, stylesheet, font host, telemetry, share, save, or remote governed-object mutation API",
       "reused image, packaged font, whitespace-normalized authoring-master, implementation-note, and llms-aid byte hashes",
       "no-JavaScript final meaning, clipboard recovery, transparent identity surfaces, and quiet-field source hooks"
@@ -46,11 +46,12 @@
       "llms.txt navigation aid 200",
       "project-path robots record 200",
       "v0.8.8 whitespace-normalized authoring-master Markdown 200 · 227,924 bytes",
-      "standalone HTML 200 · 2,134,434 bytes · embedded display fonts and images",
+      "standalone HTML 200 · 2,192,096 bytes · embedded display fonts and images",
       "logo PNG 200",
       "team photo JPEG 200",
       "Arvo 700 WOFF2 200",
       "IBM Plex Sans Thai Looped 700 Thai WOFF2 200",
+      "IBM Plex Sans Thai 500 Thai WOFF2 200",
       "Bai Jamjuree 400 Thai WOFF2 200",
       "Bai Jamjuree 600 Thai WOFF2 200",
       "JetBrains Mono 500 WOFF2 200"
@@ -65,7 +66,7 @@
   "browserQA": {
     "status": "targeted_passed",
     "scope": [
-      "English and Thai computed font-family roles: Arvo 700, IBM Plex Sans Thai Looped 700, Bai Jamjuree 400/600, JetBrains Mono 500; Thai compact labels resolve to self-hosted Bai Jamjuree 400",
+      "English and Thai computed font-family roles: Arvo 700, IBM Plex Sans Thai Looped 700, Bai Jamjuree 400/600, JetBrains Mono 500, and IBM Plex Sans Thai 500; mixed technical labels resolve Latin/numerals to JetBrains Mono and Thai glyphs to the self-hosted IBM companion",
       "Measure Brand Blue opening gradient and deterministic dark scrim",
       "three deliberate hero line groups with no mid-word split or horizontal overflow",
       "transparent logo and release metadata on one contrast-safe shared header surface",
@@ -74,7 +75,7 @@
       "Brand Visual route opens the dataviz disclosure and focuses its summary",
       "three dataviz fundamentals, three visible table alternatives, measured zero, no data, missing period, counter-signal, and nine CityMETER-derived chart cards",
       "CityMETER gallery keeps public flood/vehicle snapshot values separate from clearly labelled treatment sketches in Thai/English and light/dark",
-      "six native implementation-library disclosures at a 924 × 904 CSS-pixel viewport",
+      "seven native implementation-library disclosures at a 924 × 904 CSS-pixel viewport",
       "15 positive opportunity cards across foundations, components, and dataviz; every card exposes a Boundary row",
       "three positive Intent-to-AHA cases plus one deletion test with explicit evidence cues and clean completion",
       "semantic motion ends in the complete final meaning, Pause/show final cancels the sequence, and visible history is separated from the polite status announcement",
@@ -90,14 +91,14 @@
       "complete color atlas exact coverage: 17 foundation pairs, 7 semantic states, 5 shared/motif gradients, 4 product families/8 theme specimens, 10 categorical pairs, 18 scale records/738 LUT cells/378 class cells, 8 map pairs, 8 opacity values, and 6 depth roles",
       "complete color atlas has no horizontal overflow at 390 × 844 or 320 × 700 CSS pixels in the tested light/dark states",
       "dark no-data uses a visible light hatch, RGBA map fills composite on explicit light/dark fixture surfaces, and categorical shape/pattern cues retain their governed dark pairs",
-      "standalone HTML exposes data-standalone=true, embeds nine WOFF2 faces plus the logo and team image, contains no relative display asset, preserves exact atlas counts and both Search/AI Mode controls, and keeps theme/language controls functional",
+      "standalone HTML exposes data-standalone=true, embeds ten WOFF2 faces plus the logo and team image, contains no relative display asset, preserves exact atlas counts and both Search/AI Mode controls, and keeps theme/language controls functional",
       "semantic state motion uses a .56 minimum transition opacity; no parallax, scroll-linked reveal, logo/photo motion, or autoplay is present",
       "browser console log inspection returned no errors"
     ],
     "remaining": "Full viewport, zoom, keyboard, assistive-technology, perceptual, color-vision, and human-review matrices remain manual gates."
   },
   "openManualGates": [
-    "Thai read-aloud and bilingual parity tied to final copy hashes",
+    "Thai read-aloud, bilingual parity, and cross-device mixed-script baseline/combining-mark review for JetBrains Mono 500 plus IBM Plex Sans Thai 500, tied to final copy hashes",
     "five-reviewer recognition and 5-second/30-second/2-minute adoption checks",
     "logo variant, delivered size, clear space, transparent-background invariant, and shared header-surface approval",
     "photo owner, creator, context, rights, expiry, privacy, and rendition approval",

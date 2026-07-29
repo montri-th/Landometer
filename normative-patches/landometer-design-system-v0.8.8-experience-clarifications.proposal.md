@@ -41,15 +41,23 @@ Proposed semantic roles:
 ```css
 :root {
   --font-technical-latin: "JetBrains Mono", var(--font-number-fallback);
-  --font-technical-th: "Bai Jamjuree", var(--font-body-fallback);
-  --font-technical: "JetBrains Mono", "Bai Jamjuree",
+  --font-technical-th: "IBM Plex Sans Thai", var(--font-body-fallback);
+  --font-technical: "JetBrains Mono", "IBM Plex Sans Thai",
     "SFMono-Regular", Consolas, monospace;
 }
 ```
 
 Proposed wording:
 
-> Use JetBrains Mono for Latin identifiers, numerals, and short Latin technical labels. Use the packaged Bai Jamjuree face for Thai technical labels unless fixed-cell alignment is functionally required. Never rely on a device-selected generic monospace face for Thai. Mixed-script labels use script-aware font fallback with both required faces packaged and verified after `document.fonts.ready`.
+> Use JetBrains Mono 500 for Latin identifiers, numerals, and short Latin technical labels. Use IBM Plex Sans Thai 500 as its Thai technical companion unless fixed-cell alignment is functionally required. Never rely on a device-selected generic monospace face for Thai. Mixed-script labels use script-aware fallback with both required faces self-hosted, licensed, hashed, preloaded when critical, and verified after `document.fonts.ready`. Keep Bai Jamjuree 400/600 for continuous-reading body and general UI roles.
+
+Optical-companion guidance:
+
+- match perceived size conservatively at the font-face or semantic-role level; this reference uses `size-adjust: 102%`;
+- preserve Thai shaping with restrained tracking (`.008em` in this reference), never force each code point into a fixed cell;
+- provide at least `1.48` line-height for compact Thai technical labels and add vertical padding where a pill or chip would otherwise clip marks;
+- test mixed Thai/Latin baselines, combining marks, 12–16 CSS px labels, 130% Thai text, 200% zoom, export, and supported operating systems;
+- record these values as implementation tuning, not universal font metrics, until multi-device review approves them.
 
 #### Genuine Thai monospace
 
@@ -62,13 +70,13 @@ If Landometer adopts it, approval must:
 - package WOFF2, license, SHA-256, Thai/Latin coverage, and real metrics;
 - review readability at 12–16 CSS px, Thai shaping, clipping, zoom, export, and cross-platform parity.
 
-This implementation therefore fixes the current page with self-hosted Bai Jamjuree for Thai technical labels. It does **not** silently add TlwgMono as a seventh normative face.
+This implementation therefore proposes a seventh delivered face: self-hosted IBM Plex Sans Thai 500 for the Thai technical-companion role. It does **not** replace Bai Jamjuree in body/general UI, claim that IBM Plex Sans Thai is fixed-cell, or silently add TlwgMono. The owner-approved v0.8.8 master remains unchanged until a future normative release incorporates this proposal and its delivery record.
 
 Primary references used for the candidate assessment:
 
 - Thai Linux Working Group Fonts-TLWG project and TlwgMono release;
 - Debian’s TlwgMono package description, which identifies it as purely monospace;
-- JetBrains Mono’s official project and the current v0.8.8 manifest, which scope the packaged faces to Latin/numerals.
+- IBM Plex’s official repository, the `@fontsource/ibm-plex-sans-thai@5.3.0` package record, JetBrains Mono’s official project, and the current v0.8.8 manifest, which scopes packaged JetBrains Mono to Latin/numerals.
 
 ### 4. Add worked color-reference coverage to `[REFERENCE-01]`
 
