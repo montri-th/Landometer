@@ -77,9 +77,11 @@ governed active object or event display name
 → explicit external-search action
 ```
 
-For example, a CityMETER-specific Disaster view may compose the active event name, the selected `ยอดผู้เสียชีวิต` field label, and the current public place hierarchy into a news query. The product must take those values from its governed runtime context. A design-system fixture uses synthetic event data and must not invent a real event, casualty value, or product capability.
+For example, a CityMETER-specific Disaster view may compose the active event name, date, known cause, selected `ยอดผู้เสียชีวิต` field label, and current public place hierarchy into a news query. The product must take those values from its governed runtime context.
 
-When a synthetic event is paired with a real public place for training, the context snapshot and the outbound query must both say that the event is synthetic and not real. The fixture must not imply that an incident, fatality, or other outcome occurred in that place.
+A design-system example may use a current public product record only when it keeps the product boundary visible, links the inspected source, records the retrieval date, and describes the item as a product record snapshot rather than independently verified ground truth. If the product endpoint omits provenance, say so. Omit numeric values whose geographic or methodological scope is unresolved; a visible field label may still be used to preserve the user’s search intent. A numeric value may appear only when its scope and source are inspectable and, for a material claim, independently corroborated.
+
+The four current-record examples in this artifact were inspected in the public CityMETER API on 29 July 2026. They remain CityMETER-specific and `source_limited`; they do not establish a portfolio-wide Landometer fact or a superior-relevance outcome.
 
 External search is not sharing and does not prove a network effect. It must not replace the primary decision or action, appear before the promised AHA, or silently broaden the governed object.
 
@@ -88,6 +90,12 @@ External search is not sharing and does not prove a network effect. It must not 
 The shared Landometer layer owns the visible-query, privacy, navigation, recovery, and evidence-promotion contract. Each product owns the supported entity × intent pairs, query construction, allowed providers, sensitivity rules, review workflow, and whether discovered material may be incorporated.
 
 Relevance is an inspectable design hypothesis, not a superiority claim. Before claiming that contextual composition outperforms another approach, compare a declared baseline and assisted query on the same intent set, record top-result usefulness or another governed outcome, and keep irrelevant/counter-results visible.
+
+## IMPL-TYPE-TH-01 — Keep Thai compact labels deterministic
+
+The v0.8.8 normative role already assigns Bai Jamjuree 400/600 to Thai UI, labels, and compact controls. JetBrains Mono’s packaged files contain Latin glyphs only, so assigning Thai text to that family causes the browser or operating system to choose an uncontrolled fallback such as Ayuthaya on one device or SarabunTH on another.
+
+This artifact therefore self-hosts and preloads Bai Jamjuree 400 for human-readable Thai labels while retaining JetBrains Mono 500 for Latin technical metadata and numbers. This corrects HTML implementation drift; it does not revise the v0.8.8 normative master. A different Thai label voice would require a separately reviewed future release, font licence record, specimens, and cross-device QA.
 
 ## IMPL-EXAMPLE-01 — Show the pattern through positive cases
 

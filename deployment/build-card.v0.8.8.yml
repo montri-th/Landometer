@@ -231,11 +231,13 @@ landometerBuild:
     fullLivingReference: false
   fixtureCapabilities:
     dataVisualization:
-      status: enabled_for_synthetic_training_only
+      status: enabled_for_training_and_product_specific_snapshots
       fixtureId: DV-FIXTURE-0.1
+      snapshotId: CITYMETER-DV-SNAPSHOT-2026-07-29
       patterns: [compare, change, relationship]
-      sourceStatus: source_limited
-      limitation: static hand-authored values demonstrate visual and accessibility patterns only; not a city, place, product, person, or outcome claim
+      productSnapshotPatterns: [choropleth anatomy, flood time series, flood ranking, flood overlap profile, vehicle ranking, brand-model treemap, composition and trend, two-brand compare, micro trends]
+      sourceStatus: mixed_source_limited
+      limitation: DV-FIXTURE-0.1 remains synthetic; CITYMETER-DV-SNAPSHOT-2026-07-29 is a product-specific public API snapshot plus labelled treatment sketches, not a portfolio claim or evidence of live-product conformance
       mapResult: false
       externalEffect: false
     experiencePatterns:
@@ -262,11 +264,11 @@ landometerBuild:
     contextualDiscovery:
       status: enabled_explicit_user_triggered_reference_action
       fixtureId: CONTEXT-FIXTURE-0.1
-      productContext: fixture-specific CityMETER reference scenario; not current product availability
-      activeObject: synthetic disaster event CM-SYNTHETIC-DISASTER-001; not a real event
-      activeFilter: fatalities field label only; no real casualty value
-      publicPlaceHierarchy: Saen Suk Municipality → Mueang Chonburi District → Chonburi Province
-      composition: event display name + active public-safe filter labels + intent keywords + public place hierarchy
+      productContext: four current public CityMETER disaster-record snapshots retrieved 29 Jul 2026; product-specific reference, not independent ground-truth verification
+      activeObject: one of Tha Sai flood, Krok Phra fire, Bueng Lak storm, or Na To landslide
+      activeFilter: visible field label; a numeric value appears only for the independently corroborated Krok Phra fire case
+      publicPlaceHierarchy: event-specific village → municipality or subdistrict administrative organisation → district → province
+      composition: event display name + event date + known cause + active public-safe field label + intent keyword + public place hierarchy
       destination: explicit user-confirmed Google Search GET in a new tab
       thirdPartyRequest: true
       outboundData: visible editable q value only
@@ -275,6 +277,7 @@ landometerBuild:
       telemetry: false
       persistence: false
       externalSideEffect: false
+      limitation: public incident endpoint exposes no provenance; records remain CityMETER snapshots, values with unresolved geographic scope are omitted, and no superior-relevance claim is made
     machineDiscovery:
       status: navigation_aid_only
       path: llms.txt
@@ -291,6 +294,14 @@ landometerBuild:
       missingness: Area E and Q3 are intentionally no-data; Area D is an intentional measured zero
       allowedUses: [design-system training, accessibility review, implementation reference]
       nextSafeAction: replace with product-owned evidence, method, unit, period, boundary, and allowed use before product reuse
+    - id: CITYMETER-DV-SNAPSHOT-2026-07-29
+      sourceAndDate: public CityMETER runtime and API snapshots checked 29 Jul 2026
+      methodOrRecipe: preserve current product chart forms, attach date/unit/geography/type, use direct labels and non-colour cues, and separate public API values from anatomy-only treatment sketches
+      signalClass: product-specific public snapshot plus design-treatment reference
+      confidence: source_limited — API responses observed; product provenance and release metadata are not exposed by the endpoints
+      limitation: flood and vehicle values are CityMETER-specific snapshots; map geometry and treatment sketches do not claim a real rendered result or live-product conformance
+      allowedUses: [CityMETER dataviz critique, design-system treatment review, accessibility review]
+      nextSafeAction: resolve product-owned source, schema/release, method, allowed use, and accessible table before production adoption
     - id: UX-FIXTURE-0.1
       sourceAndDate: v0.8.8 owner-directed implementation examples · 28 Jul 2026
       methodOrRecipe: Intent → useful AHA → design response → moment of value → evidence/privacy boundary → next useful action or clean completion
@@ -316,13 +327,13 @@ landometerBuild:
       allowedUses: [recipient-value design training, share-readiness review]
       nextSafeAction: require product-owned recipient, permission, route, receipt, and recovery before enabling share; govern telemetry only if separately enabled, and require observed outcome evidence before claiming network effect
     - id: CONTEXT-FIXTURE-0.1
-      sourceAndDate: fixture-specific CityMETER reference scenario + CONTEXT-01 · 28 Jul 2026
-      methodOrRecipe: compose a visible editable query from synthetic active event, active public-safe filter label, user intent, and public place hierarchy
-      signalClass: product-specific synthetic reference
-      confidence: not applicable
-      limitation: no real disaster event or casualty value; no claim of current CityMETER availability or superior relevance
+      sourceAndDate: four public CityMETER disaster-record snapshots + CONTEXT-01 · checked 29 Jul 2026
+      methodOrRecipe: compose a visible editable query from current event name, date, known cause, active public-safe field label, user intent, and event-specific place hierarchy
+      signalClass: product-specific current-record reference
+      confidence: source_limited — public endpoint exposes records but no provenance
+      limitation: not independent ground-truth verification; values with unresolved geographic scope are omitted and returned search material remains discovery_only
       allowedUses: [context-discovery design training, CTA integrity review, query-privacy review]
-      nextSafeAction: use governed runtime context and measure same-intent relevance before making a comparative performance claim
+      nextSafeAction: confirm governed runtime provenance and measure same-intent relevance before making a comparative performance claim
   privacy:
     personalData: false
     sensitivity: public

@@ -24,12 +24,12 @@ Channel parity key: ldm.ds.v0.8.8.design-identity-playground
 ## Evidence and capability boundaries
 
 - This release is not a Full Living Reference.
-- Dataviz examples use synthetic training fixture DV-FIXTURE-0.1.
+- Dataviz fundamentals use synthetic training fixture DV-FIXTURE-0.1. Nine additional cards use source-limited, product-specific CityMETER public snapshots or explicitly labelled treatment sketches under CITYMETER-DV-SNAPSHOT-2026-07-29.
 - Product data, methods, claims, terminology, thresholds, and capabilities remain product-specific.
 - Locale Insight spans Land, Location, and Living at portfolio, methodology, and product-architecture levels without merging product evidence boundaries.
 - Cross-product or cross-city comparison requires the same compatible schema and release, or a visible incompatibility explanation.
 - The playground does not save, share, invite, publish, track, or mutate a remote governed object.
-- Contextual discovery is enabled only as one explicit, user-triggered Google Search GET. It sends the visible, editable query to Google in a new tab; returned material remains discovery-only.
+- Contextual discovery is enabled only as one explicit, user-triggered Google Search GET. Four current public CityMETER record snapshots may compose the visible editable query; the incident endpoint exposes no provenance, values with unresolved scope are omitted, and returned material remains discovery-only.
 - No bounded agent action is enabled. Machine-readable files are reference inputs, not permission to act.
 
 ## Machine-use rules

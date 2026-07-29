@@ -176,11 +176,11 @@
       "userJob": "Move directly from Brand Visual to implementation examples",
       "effect": "Open #library-dataviz, update the fragment, scroll it into view, and focus its summary",
       "keyboardTouch": "Enter or touch",
-      "feedback": "Data visualization group opens with Compare, Change, and Relationship examples",
+      "feedback": "Data visualization group opens with three fundamentals and nine CityMETER-derived treatment cards",
       "recovery": "Close the native details group or use browser Back",
       "finalState": "#library-dataviz is open and its summary has focus",
       "failureRecovery": "Navigate to #library-dataviz and open it manually",
-      "browserTest": "Select #lens-visual then invoke #open-dataviz; assert #library-dataviz.open, location.hash, focused summary, three chart figures, and three visible tables."
+      "browserTest": "Select #lens-visual then invoke #open-dataviz; assert #library-dataviz.open, location.hash, focused summary, three chart figures, three visible tables, and nine .citymeter-chart-card examples."
     },
     {
       "id": "stage-select",
@@ -332,11 +332,11 @@
       "userJob": "Inspect question-first dataviz rules and accessible examples",
       "effect": "Toggle #library-dataviz using native details behavior",
       "keyboardTouch": "Enter, Space, or touch",
-      "feedback": "Chart chooser, boundary, three charts, three tables, and three question-led extensions expand or collapse",
+      "feedback": "Chart chooser, boundary, three fundamentals, three tables, nine CityMETER-derived treatments, and three question-led extensions expand or collapse",
       "recovery": "Activate the same summary again",
       "finalState": "The native open state matches the user's choice",
       "failureRecovery": "All examples remain in source and the summary works without JavaScript",
-      "browserTest": "Invoke #library-dataviz-toggle; assert parent details.open, three .dataviz-pattern figures, three .dataviz-table tables, three extension cards, no-data and zero states; invoke again to close."
+      "browserTest": "Invoke #library-dataviz-toggle; assert parent details.open, three .dataviz-pattern figures, three .dataviz-table tables, nine .citymeter-chart-card examples, three extension cards, no-data and zero states; invoke again to close."
     },
     {
       "id": "library-experience-toggle",
@@ -411,16 +411,40 @@
       "browserTest": "After local completion invoke #cta-reset; assert ineligible state, unchecked eligibility, disabled execute, hidden reset, and no persisted state after reload."
     },
     {
+      "id": "context-case",
+      "accessibleName": "Switch among four current CityMETER record examples",
+      "userJob": "Inspect how the same contextual-search pattern adapts to four real CityMETER records",
+      "effect": "Update the local event snapshot, icon, source link, and editable query without making a request",
+      "keyboardTouch": "Native select behavior",
+      "feedback": "Event, date, cause, active field, place hierarchy, source URL, and query update together",
+      "recovery": "Choose the Tha Sai flood example to restore the default",
+      "finalState": "Exactly one current-record example is represented consistently across snapshot and query",
+      "failureRecovery": "Keep the current visible example or reload to restore Tha Sai",
+      "browserTest": "Open #library-experience; cycle #context-case through tha-sai, krok-phra, bueng-lak, and na-to; assert icon, event, place, source href, and query update with no request."
+    },
+    {
+      "id": "context-source",
+      "accessibleName": "Open source record",
+      "userJob": "Inspect the public CityMETER record used to compose the active reference query",
+      "effect": "Open the selected public CityMETER API record in a new tab after explicit activation",
+      "keyboardTouch": "Enter or touch",
+      "feedback": "The source record opens while the playground remains available",
+      "recovery": "Close the source tab and return to the preserved playground",
+      "finalState": "The selected event source URL is inspectable; no product record is mutated",
+      "failureRecovery": "Keep the visible snapshot and do not treat it as independently verified ground truth",
+      "browserTest": "For each #context-case value assert #context-source targets the matching landometer.com public API URL and includes noopener noreferrer external."
+    },
+    {
       "id": "context-query",
       "accessibleName": "Editable, auto-composed query",
-      "userJob": "Inspect and edit the public-safe query composed from the active synthetic CityMETER context",
+      "userJob": "Inspect and edit the public-safe query composed from the active current-record CityMETER context",
       "effect": "Edit only the local search field; no request, save, telemetry, or product state change occurs",
       "keyboardTouch": "Native search-input behavior",
       "feedback": "The exact query remains visible before any external navigation",
       "recovery": "Undo edits or restore the visible context terms manually",
-      "finalState": "The field contains the user-confirmed synthetic/non-real event label, active-filter label, intent keywords, and place hierarchy",
+      "finalState": "The field contains the user-confirmed event, date/cause where known, active-field label, intent keyword, and place hierarchy",
       "failureRecovery": "Do not submit; copy or revise a generic public-safe query instead",
-      "browserTest": "Open #library-experience; assert #context-query includes CM-SYNTHETIC-DISASTER-001, ข้อมูลจำลอง ไม่ใช่เหตุการณ์จริง, ยอดผู้เสียชีวิต, municipality, district, and province; edit it and assert no request or persistence before explicit submit."
+      "browserTest": "Open #library-experience; assert the default #context-query includes ปี 2567 อุทกภัย, 27 พฤศจิกายน 2567, ยอดผู้เสียชีวิต, หมู่บ้านท่าไทร, องค์การบริหารส่วนตำบล เกาะยอ, อำเภอเมืองสงขลา, and จังหวัดสงขลา; edit it and assert no request or persistence before explicit submit."
     },
     {
       "id": "context-search-google",
