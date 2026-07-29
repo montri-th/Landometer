@@ -41,3 +41,23 @@ Prefer exact nouns and direct verbs. Draft Thai and English independently from t
 - Let the lens change the highlighted anatomy, not the underlying facts.
 - Announce one concise summary through a polite live region.
 - Use a 160–240 ms state transition; show the final state immediately under reduced motion.
+
+## External discovery proof
+
+Keep Source Search and AI synthesis/follow-up as separate, named actions.
+
+Before send:
+
+- show the named provider and exact editable public-safe query or prompt;
+- show which current-context fields supplied it;
+- remove private or restricted context;
+- require explicit activation, open a new tab, and preserve the current work;
+- disclose that an AI provider, signed-in account, history, and personalization may influence its response.
+
+Treat AI output as `discovery_only`, not evidence. Open cited sources and verify important claims before incorporating them into a governed object.
+
+If a provider deep link fails, preserve a copyable query or prompt and show its documented entry point. Never silently switch provider, Source Search, or job. Treat URL parameters as implementation details.
+
+Keep the ownership boundary explicit: shared Landometer governs distinction, visibility, privacy, activation, recovery, and evidence promotion; each product governs supported context, provider, prompt/query construction, sensitivity, and incorporation workflow.
+
+Do not claim one discovery route is better without a same-intent baseline study and a governed outcome.
