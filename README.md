@@ -17,9 +17,9 @@ The page turns the v0.8.8 authoring master into one short route:
 
 The library includes the complete shared component contract, four component ensembles, three positive Intent → AHA → Design cases, one static rejected case, a reduced-motion-safe semantic motion fixture, a deterministic local CTA state proof, an ethical value loop, a recipient-value ladder, bounded templates for CityMETER, CityWiki, CityChat, and ijji, and multiple creative concept sketches.
 
-The contextual-discovery specimen composes a visible editable Google query from **CM-SYNTHETIC-DISASTER-001**, the public-safe active-filter label `ยอดผู้เสียชีวิต`, intent keywords, and the fixture-specific Saen Suk Municipality place hierarchy. Both the snapshot and outbound query say that the event is synthetic and not real. It is a product-specific reference scenario—not a claim of current CityMETER availability, a real disaster/casualty record, or superior relevance. The request happens only after explicit activation, and returned material remains `discovery_only`.
+The contextual-discovery specimen now offers four current public CityMETER record snapshots: Tha Sai flood, Krok Phra fire, Bueng Lak storm, and Na To landslide. Each composes a visible editable Google query from event name, date, known cause, active public-safe field label, intent, and the event-specific village → municipality → district → province hierarchy. The source record is inspectable before search. These are product-specific snapshots retrieved on 29 July 2026—not independent ground-truth verification; the public incident endpoint exposes no provenance, and values with unclear geographic scope are omitted. The request happens only after explicit activation, and returned material remains `discovery_only`.
 
-Three synthetic dataviz patterns—Compare, Change, and Relationship—keep units, source, no-data, measured-zero, limitation, and visible table alternatives attached. They are `DV-FIXTURE-0.1` training examples, not city, place, product, or outcome evidence.
+Three synthetic dataviz fundamentals—Compare, Change, and Relationship—keep units, source, no-data, measured-zero, limitation, and visible table alternatives attached. Nine additional CityMETER-derived cards cover choropleth anatomy, flood time series/ranking/overlap, vehicle ranking/treemap/composition/compare/micro-trends. Public API snapshots are visibly separated from treatment sketches and remain product-specific.
 
 Download the whitespace-normalized human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.8.8.md`](deployment/assets/downloads/landometer-design-system-v0.8.8.md). Its normative text and ordering are unchanged; trailing Markdown hard-break spaces were removed to satisfy repository whitespace checks.
 
@@ -36,7 +36,7 @@ The shared Landometer layer covers portfolio, methodology, and product architect
 - profile `brand.public`
 - internal-team delivery intent through a public GitHub Pages projection; delivery conformance is not claimed while public-delivery gates remain open
 - `fullLivingReference: false`
-- `dataVisualization: true` and `analyticalEvidence: true` only for the explicitly synthetic `DV-FIXTURE-0.1` training fixture
+- `dataVisualization: true` and `analyticalEvidence: true` for synthetic `DV-FIXTURE-0.1` training plus the source-limited, product-specific `CITYMETER-DV-SNAPSHOT-2026-07-29`
 - `map: false`; no governed map result is claimed
 - evidence `source_limited`
 - `noindex`
@@ -47,7 +47,7 @@ The shared Landometer layer covers portfolio, methodology, and product architect
 - motion, recipient value, creative examples, and machine navigation remain fixture/reference scoped; contextual discovery is enabled only as the explicit reference GET described above and does not claim a current product capability
 - regenerated public-safe machine package remains pending; no role-specific adoption proof is claimed
 
-The page reuses the existing repository logo, team-photo, and packaged font bytes without alteration. Logo and release metadata backgrounds are always transparent; contrast is managed by their shared surrounding header surface, never by adding a box, plate, or carrier. JetBrains Mono uses packaged weight 500 for metadata and technical labels, with 700 reserved for deliberate emphasis.
+The page reuses the existing repository logo, team-photo, and packaged font bytes without alteration. Logo and release metadata backgrounds are always transparent; contrast is managed by their shared surrounding header surface, never by adding a box, plate, or carrier. JetBrains Mono uses packaged weight 500 for Latin metadata and technical labels, with 700 reserved for deliberate emphasis. Human-readable Thai compact labels use the self-hosted Bai Jamjuree 400 role defined by v0.8.8, so they do not depend on each operating system’s Thai fallback choice.
 
 Theme defaults to the device preference and cycles from one quiet icon control: `system → light → dark`. Language uses one matching quiet state control: `TH ↔ EN`. Their URL and local-device preferences remain explicit and reversible.
 
