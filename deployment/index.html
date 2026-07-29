@@ -1225,6 +1225,7 @@
       color: var(--text-secondary);
     }
     .library-group {
+      scroll-margin-top: 88px;
       border-top: 1px solid var(--border-default);
     }
     .library-group:last-child {
@@ -1521,6 +1522,246 @@
     .atmosphere-strip div:nth-child(3) {
       background: var(--cultivate-surface);
       color: #182327;
+    }
+
+    .color-in-action {
+      margin-top: var(--space-9);
+      padding-top: var(--space-7);
+      border-top: 1px solid var(--border-default);
+    }
+    .color-in-action > p:not(.specimen-kicker) {
+      max-width: 760px;
+      color: var(--text-secondary);
+    }
+    .color-in-action-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, .65fr);
+      gap: var(--space-7);
+      align-items: start;
+      margin-top: var(--space-6);
+    }
+    .color-example-preview {
+      min-width: 0;
+      margin: 0;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      background: var(--surface-card);
+      overflow: hidden;
+    }
+    .color-example-atmosphere {
+      height: 6px;
+      background: var(--measure-surface);
+    }
+    .color-example-topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      align-items: center;
+      padding: 14px var(--space-5);
+      border-bottom: 1px solid #C9D0CB;
+      background: #E2E9ED;
+      color: #182327;
+    }
+    .color-example-topbar img {
+      width: min(190px, 48%);
+      height: auto;
+      background: transparent;
+    }
+    .color-example-topbar span {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .color-example-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(190px, .52fr);
+      gap: var(--space-6);
+      padding: var(--space-6);
+    }
+    .color-example-question {
+      margin: 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-h3);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .color-example-question {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .color-example-selection,
+    .color-example-state,
+    .color-example-human,
+    .color-example-source {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .color-example-selection {
+      width: fit-content;
+      margin-top: var(--space-4);
+      padding: 8px 11px;
+      border: 2px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      background: var(--surface-blue-tint);
+      color: var(--interaction-accent);
+      font-weight: 600;
+    }
+    .color-example-selection .ui-icon,
+    .color-example-state .ui-icon,
+    .color-example-human .ui-icon,
+    .color-example-source .ui-icon {
+      flex: 0 0 auto;
+      width: 20px;
+      height: 20px;
+    }
+    .color-example-bars {
+      display: grid;
+      gap: 12px;
+      margin-top: var(--space-6);
+    }
+    .color-example-bar {
+      display: grid;
+      grid-template-columns: minmax(64px, auto) minmax(100px, 1fr) minmax(42px, auto);
+      gap: 10px;
+      align-items: center;
+      font-size: var(--type-body-sm);
+    }
+    .color-example-bar > span:first-child,
+    .color-example-bar > strong {
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .color-example-track {
+      height: 14px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      overflow: hidden;
+    }
+    .color-example-fill {
+      height: 100%;
+      width: var(--value);
+      border-radius: inherit;
+      background: var(--series-primary);
+    }
+    .color-example-bar.is-change .color-example-fill {
+      background: var(--series-change);
+    }
+    .color-example-bar.is-missing .color-example-track {
+      border: 1px solid var(--border-emphasis);
+      background:
+        repeating-linear-gradient(
+          135deg,
+          transparent 0 6px,
+          var(--border-emphasis) 6px 8px
+        ),
+        var(--dataviz-no-data);
+    }
+    .color-example-bar.is-missing strong {
+      color: var(--text-secondary);
+      font-family: var(--font-label-th);
+    }
+    html[data-locale="en"] .color-example-bar.is-missing strong {
+      font-family: var(--font-body);
+    }
+    .color-example-aside {
+      display: grid;
+      gap: var(--space-4);
+      align-content: start;
+    }
+    .color-example-state {
+      width: fit-content;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--success-fill);
+      color: var(--success-ink);
+      font-weight: 600;
+    }
+    .color-example-human {
+      align-items: flex-start;
+      padding: var(--space-4);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+    }
+    .color-example-human .ui-icon { color: var(--energy-coral); }
+    .color-example-human p { margin: 0; }
+    .color-example-human strong { display: block; }
+    .color-example-human span {
+      display: block;
+      margin-top: 4px;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .color-example-source {
+      padding: 12px var(--space-5);
+      border-top: 1px solid var(--border-hairline);
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: 500;
+    }
+    .color-role-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .color-role-list li {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
+      min-height: 64px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .color-role-list li:first-child { border-top: 0; }
+    .color-role-list .icon-well {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+    }
+    .color-role-list strong {
+      display: block;
+      line-height: 1.35;
+    }
+    .color-role-list small {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .color-role-list .is-brand {
+      border-color: #7D877F;
+      background: #E2E9ED;
+      color: var(--brand-blue);
+    }
+    .color-role-list .is-interaction { color: var(--interaction-accent); }
+    .color-role-list .is-state {
+      background: var(--success-fill);
+      color: var(--success-ink);
+    }
+    .color-role-list .is-series { color: var(--series-primary); }
+    .color-role-list .is-energy { color: var(--energy-coral); }
+    .color-role-list .is-missing {
+      border-color: var(--border-emphasis);
+      background:
+        repeating-linear-gradient(
+          135deg,
+          transparent 0 5px,
+          var(--border-emphasis) 5px 7px
+        ),
+        var(--dataviz-no-data);
+      color: var(--text-primary);
+    }
+    .color-role-list .is-atmosphere {
+      background: var(--measure-surface);
+      color: #FFFFFF;
     }
 
     .matrix-wrap {
@@ -2419,6 +2660,7 @@
     @media (max-width: 980px) {
       .library-gateway-inner,
       .foundation-grid,
+      .color-in-action-layout,
       .component-demo-grid,
       .motion-layout,
       .pattern-grid,
@@ -2461,6 +2703,7 @@
       .library-gateway-actions { display: grid; }
       .library-gateway-actions a { width: 100%; }
       .type-role-list li { grid-template-columns: 1fr; }
+      .color-example-body { grid-template-columns: 1fr; }
       .atmosphere-strip,
       .state-strip,
       .chart-chooser { grid-template-columns: 1fr; }
@@ -2559,7 +2802,10 @@
       text-align: right;
     }
     .footer-links a {
-      min-height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 44px;
       color: #F1F4EF;
       text-underline-offset: 3px;
     }
@@ -2609,6 +2855,7 @@
         justify-content: start;
         text-align: left;
       }
+      .footer-links a { justify-content: flex-start; }
     }
 
     @media (max-width: 680px) {
@@ -2828,11 +3075,11 @@
       <div class="hero-copy" data-quiet-field>
         <p class="eyebrow">Design identity playground · v0.8.8 authoring master</p>
         <h1 id="hero-title" lang="en" aria-label="Let us cultivate our city."><span class="hero-line">Let us</span><span class="hero-line">cultivate</span><span class="hero-line">our city.</span></h1>
-        <p class="hero-support" data-th>มีหน้าจอ แผนที่ รายงาน หรือข้อความที่กำลังทำอยู่ไหม? หยิบมาหนึ่งชิ้น แล้วลองดูว่าคนรับงานต่อจะเห็นสิ่งที่เรารู้ ข้อจำกัด และสิ่งที่ต้องทำต่อครบหรือยัง</p>
-        <p class="hero-support" data-en>Bring one screen, map, report, or message for a real-place decision. Check that the next person can see what is known, its limits, and what to do next.</p>
+        <p class="hero-support" data-th>เคยไหม—งานชัดในหัวเรา พอส่งต่อ คนถัดไปถามว่า ตัวเลขมาจากไหน ยังขาดอะไร แล้วทำอะไรต่อ? หยิบงานมาหนึ่งชิ้น แล้วให้ความหมาย หลักฐาน และก้าวถัดไปเดินทางไปด้วยกัน</p>
+        <p class="hero-support" data-en>Work feels clear in your hands—then turns into questions when it moves on. Bring one screen, map, report, or message. Let meaning, evidence, limits, and next steps travel together.</p>
         <a class="primary-action" href="#play" id="start">
-          <span data-th>ลองกับงานของคุณ</span>
-          <span data-en>Open the practice fixture</span>
+          <span data-th>เริ่มจากงานที่มีอยู่</span>
+          <span data-en>Start with your work</span>
         </a>
       </div>
       <figure class="hero-media">
@@ -3248,7 +3495,7 @@
             <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg><span class="sr-only">01</span></span>
             <h3><span data-th>รากฐานภาพและภาษา</span><span data-en>Foundations</span></h3>
             <span class="library-summary-copy"><span data-th>โลโก้ ตัวอักษร สี พื้นผิวไล่สี ที่พักสายตา และหน้าที่ของค่ามาตรฐานแต่ละตัว</span><span data-en>Logo, type, color, gradients, quiet, and token ownership.</span></span>
-            <span class="library-count">4 foundations + 8 opportunities</span>
+            <span class="library-count">4 foundations · 1 color case · 8 opportunities</span>
           </summary>
           <div class="library-content">
             <h4><span data-th>เริ่มจากบทบาท ไม่ใช่ความชอบเฉพาะหน้า</span><span data-en>Start with a role—not a one-off preference.</span></h4>
@@ -3301,6 +3548,104 @@
                 </ul>
               </article>
             </div>
+
+            <section class="color-in-action" aria-labelledby="color-in-action-title">
+              <p class="specimen-kicker">COLOR-01 · ONE SCREEN, CLEAR JOBS</p>
+              <h4 id="color-in-action-title"><span data-th>สีแต่ละสีมีงานของตัวเอง</span><span data-en>Give every color one job</span></h4>
+              <p data-th>ลองอ่านชิ้นงานนี้โดยไม่ดูรหัสสี: ใครเป็นเจ้าของงาน อะไรกำลังถูกเลือก สถานะเป็นอย่างไร ค่าไหนคือข้อมูล และตรงไหนยังไม่มีข้อมูล ทุกสีมีป้าย ค่า รูปร่าง หรือลายช่วยยืนยันความหมาย</p>
+              <p data-en>Read this work without looking at hex values: who owns it, what is selected, what state it is in, which marks encode data, and where data is missing. Labels, values, shapes, and patterns keep color from carrying meaning alone.</p>
+
+              <div class="color-in-action-layout">
+                <figure class="color-example-preview" aria-labelledby="color-example-question" aria-describedby="color-example-source">
+                  <div class="color-example-atmosphere" aria-hidden="true"></div>
+                  <div class="color-example-topbar">
+                    <img src="assets/images/landometer-logo-banner.png" width="3818" height="1048" loading="lazy" alt="Landometer">
+                    <span><span data-th>ตัวอย่างอ้างอิง</span><span data-en>Reference fixture</span></span>
+                  </div>
+                  <div class="color-example-body">
+                    <div>
+                      <h5 class="color-example-question" id="color-example-question">
+                        <span data-th>พื้นที่ไหนควรตรวจต่อ?</span>
+                        <span data-en>Which area deserves the next check?</span>
+                      </h5>
+                      <div class="color-example-selection">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-pin"></use></svg>
+                        <span data-th>ขอบเขตที่เลือก · 3 พื้นที่</span>
+                        <span data-en>Selected boundary · 3 areas</span>
+                      </div>
+                      <div class="color-example-bars" aria-label="Synthetic comparison with direct labels and a visible no-data state">
+                        <div class="color-example-bar">
+                          <span><span data-th>พื้นที่ ก</span><span data-en>Area A</span></span>
+                          <span class="color-example-track"><span class="color-example-fill" style="--value: 68%"></span></span>
+                          <strong>68</strong>
+                        </div>
+                        <div class="color-example-bar is-change">
+                          <span><span data-th>พื้นที่ ข</span><span data-en>Area B</span></span>
+                          <span class="color-example-track"><span class="color-example-fill" style="--value: 44%"></span></span>
+                          <strong>44</strong>
+                        </div>
+                        <div class="color-example-bar is-missing">
+                          <span><span data-th>พื้นที่ ค</span><span data-en>Area C</span></span>
+                          <span class="color-example-track" aria-hidden="true"></span>
+                          <strong><span data-th>ยังไม่มีข้อมูล</span><span data-en>No data</span></strong>
+                        </div>
+                      </div>
+                    </div>
+                    <aside class="color-example-aside">
+                      <div class="color-example-state">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg>
+                        <span data-th>ตรวจแล้ว 3/5</span>
+                        <span data-en>Reviewed 3/5</span>
+                      </div>
+                      <div class="color-example-human">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-people"></use></svg>
+                        <p>
+                          <strong><span data-th>มุมของคนรับช่วงต่อ</span><span data-en>For the next person</span></strong>
+                          <span data-th>เห็นคำตอบ พร้อมที่มาและจุดที่ต้องตรวจ</span>
+                          <span data-en>See the answer, its source, and what still needs checking.</span>
+                        </p>
+                      </div>
+                    </aside>
+                  </div>
+                  <figcaption class="color-example-source" id="color-example-source">
+                    <svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg>
+                    <span data-th>COLOR-FIXTURE-01 · ข้อมูลจำลอง · ใช้ดูหน้าที่ของสี ไม่ใช้ตัดสินใจจริง</span>
+                    <span data-en>COLOR-FIXTURE-01 · synthetic data · for color-role review, not a real decision</span>
+                  </figcaption>
+                </figure>
+
+                <ul class="color-role-list" aria-label="Color role reference">
+                  <li>
+                    <span class="icon-well is-brand"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg></span>
+                    <span><strong>Brand</strong><small><span data-th>บอกว่าใครเป็นเจ้าของงาน ไม่ใช้แทนค่าข้อมูล</span><span data-en>Names the owner; never a data value.</span></small></span>
+                  </li>
+                  <li>
+                    <span class="icon-well is-interaction"><svg class="ui-icon" aria-hidden="true"><use href="#icon-filter"></use></svg></span>
+                    <span><strong>Interaction</strong><small><span data-th>บอกจุดที่กด เลือก หรือโฟกัสได้จริง</span><span data-en>Marks real action, selection, and focus.</span></small></span>
+                  </li>
+                  <li>
+                    <span class="icon-well is-state"><svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg></span>
+                    <span><strong>State</strong><small><span data-th>สีอยู่คู่คำและไอคอนเสมอ</span><span data-en>Pairs color with words and an icon.</span></small></span>
+                  </li>
+                  <li>
+                    <span class="icon-well is-series"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span>
+                    <span><strong>Series</strong><small><span data-th>แยกหมวด พร้อมชื่อและค่ากำกับ</span><span data-en>Separates categories with names and values.</span></small></span>
+                  </li>
+                  <li>
+                    <span class="icon-well is-missing"><svg class="ui-icon" aria-hidden="true"><use href="#icon-micro"></use></svg></span>
+                    <span><strong>No data</strong><small><span data-th>ใช้ลายและคำกำกับ—ไม่ใช่ศูนย์</span><span data-en>Uses pattern and text—never zero.</span></small></span>
+                  </li>
+                  <li>
+                    <span class="icon-well is-energy"><svg class="ui-icon" aria-hidden="true"><use href="#icon-people"></use></svg></span>
+                    <span><strong>Energy</strong><small><span data-th>เติมพลังให้ช่วงที่พูดถึงผู้คน ไม่ใช้แทนสถานะ</span><span data-en>Adds human energy; never a state.</span></small></span>
+                  </li>
+                  <li>
+                    <span class="icon-well is-atmosphere"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg></span>
+                    <span><strong>Atmosphere</strong><small><span data-th>วางกรอบให้ฉาก ไม่เข้ารหัสค่า 68 หรือ 44</span><span data-en>Frames the scene; never encodes 68 or 44.</span></small></span>
+                  </li>
+                </ul>
+              </div>
+            </section>
 
             <section class="opportunity-gallery" aria-labelledby="foundation-opportunity-gallery-title">
               <p class="specimen-kicker">FOUNDATIONS IN ACTION · CREATIVE CONCEPT SKETCHES</p>
@@ -4749,15 +5094,19 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       });
       ctaReset.addEventListener("click", resetCtaFixture);
 
-      function revealDetails(id, shouldFocus = false) {
+      function revealDetails(id, shouldFocus = false, requestedBehavior = null) {
         const details = el(id);
         if (!(details instanceof HTMLDetailsElement)) return;
         details.open = true;
         requestAnimationFrame(() => {
+          const forceInstant = requestedBehavior === "instant";
+          const previousScrollBehavior = root.style.scrollBehavior;
+          if (forceInstant) root.style.scrollBehavior = "auto";
           details.scrollIntoView({
-            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            behavior: forceInstant ? "auto" : (requestedBehavior || (window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth")),
             block: "start"
           });
+          if (forceInstant) root.style.scrollBehavior = previousScrollBehavior;
           if (shouldFocus) details.querySelector("summary")?.focus();
         });
       }
@@ -4769,8 +5118,13 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           revealDetails(target, true);
         });
       });
-      const initialDetails = location.hash ? el(location.hash.slice(1)) : null;
-      if (initialDetails instanceof HTMLDetailsElement) initialDetails.open = true;
+      function revealHashDetails() {
+        const hashDetails = location.hash ? el(location.hash.slice(1)) : null;
+        if (hashDetails instanceof HTMLDetailsElement) {
+          revealDetails(hashDetails.id, false, "instant");
+        }
+      }
+      window.addEventListener("hashchange", revealHashDetails);
 
       if (document.fonts) {
         Promise.all([
@@ -4782,6 +5136,11 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         });
       }
       renderControls();
+      if (document.readyState === "complete") {
+        revealHashDetails();
+      } else {
+        window.addEventListener("load", revealHashDetails, { once: true });
+      }
     })();
   </script>
 </body>
