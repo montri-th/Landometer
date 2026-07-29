@@ -34,7 +34,7 @@ Required rendered matrix for a three-surface adoption fixture:
 
 ### 3. Clarify Thai technical-label typography in `[TYPE-01]` and Appendix A11
 
-Current A11 correctly packages JetBrains Mono for `scripts: [latin, numerals]`; it does not deliver Thai glyphs. The generic `monospace` fallback therefore cannot be treated as deterministic Thai typography.
+Current A11 packages JetBrains Mono 500 and 700 for `scripts: [latin, numerals]`; it does not deliver Thai glyphs. The generic `monospace` fallback therefore cannot be treated as deterministic Thai typography. The owner’s implementation direction also replaces the two-weight technical treatment with one lighter active weight: 500.
 
 Proposed semantic roles:
 
@@ -49,7 +49,7 @@ Proposed semantic roles:
 
 Proposed wording:
 
-> Use JetBrains Mono 500 for Latin identifiers, numerals, and short Latin technical labels. Use IBM Plex Sans Thai 500 as its Thai technical companion unless fixed-cell alignment is functionally required. Never rely on a device-selected generic monospace face for Thai. Mixed-script labels use script-aware fallback with both required faces self-hosted, licensed, hashed, preloaded when critical, and verified after `document.fonts.ready`. Keep Bai Jamjuree 400/600 for continuous-reading body and general UI roles.
+> Use one technical weight: JetBrains Mono 500 for Latin identifiers, numerals, and short Latin technical labels, paired with IBM Plex Sans Thai 500 for Thai technical glyphs unless fixed-cell alignment is functionally required. Do not declare, package, request, or synthesize JetBrains Mono 700 inside the technical role. Never rely on a device-selected generic monospace face for Thai. Mixed-script labels use script-aware fallback with both required faces self-hosted, licensed, hashed, preloaded when critical, and verified after `document.fonts.ready`. Keep Bai Jamjuree 400/600 for continuous-reading body and general UI roles. Arvo 700 and IBM Plex Sans Thai Looped 700 remain separate display-heading roles.
 
 Optical-companion guidance:
 
@@ -70,7 +70,7 @@ If Landometer adopts it, approval must:
 - package WOFF2, license, SHA-256, Thai/Latin coverage, and real metrics;
 - review readability at 12–16 CSS px, Thai shaping, clipping, zoom, export, and cross-platform parity.
 
-This implementation therefore proposes a seventh delivered face: self-hosted IBM Plex Sans Thai 500 for the Thai technical-companion role. It does **not** replace Bai Jamjuree in body/general UI, claim that IBM Plex Sans Thai is fixed-cell, or silently add TlwgMono. The owner-approved v0.8.8 master remains unchanged until a future normative release incorporates this proposal and its delivery record.
+This implementation therefore proposes replacing the JetBrains Mono 700 technical face with self-hosted IBM Plex Sans Thai 500, keeping one 500-weight face per script in the technical pair. The active standalone package contains nine WOFF2 subset files and no JetBrains Mono 700 declaration or embedded payload. This does **not** replace Bai Jamjuree in body/general UI, alter the separately governed 700-weight display-heading families, claim that IBM Plex Sans Thai is fixed-cell, or silently add TlwgMono. The owner-approved v0.8.8 master remains unchanged until a future normative release incorporates this proposal and its delivery record.
 
 Primary references used for the candidate assessment:
 
