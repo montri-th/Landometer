@@ -59,14 +59,14 @@
     ],
     "gradientSurfaces": [
       {"id": "hero-measure", "sceneId": "top", "recipe": "measure", "job": "entry", "angle": "135deg", "focalTarget": "cultural invitation and practice-fixture action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "browser source/computed-style inspection passed; worst-sample human review remains pending"},
-      {"id": "visual-measure", "sceneId": "play", "recipe": "measure", "job": "orientation", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"},
-      {"id": "visual-ground", "sceneId": "play", "recipe": "ground", "job": "transition", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
-      {"id": "visual-cultivate", "sceneId": "play", "recipe": "cultivate", "job": "momentum", "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-measure", "sceneId": "play", "recipe": "measure", "job": "orientation", "teachingPreset": "brand-dna", "visualChooserOption": true, "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-ground", "sceneId": "play", "recipe": "ground", "job": "transition", "teachingPreset": "brand-voice", "visualChooserOption": true, "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
+      {"id": "visual-cultivate", "sceneId": "play", "recipe": "cultivate", "job": "momentum", "visualChooserOption": true, "angle": "135deg", "focalTarget": "active work object", "foregroundStrategy": "deterministic canvas scrim", "contrastEvidence": "pending internal-demo sampled review"},
       {"id": "closing-measure", "sceneId": "closing", "recipe": "measure", "job": "closure", "angle": "135deg", "focalTarget": "Brand Promise and return action", "foregroundStrategy": "deterministic dark scrim", "contrastEvidence": "pending internal-demo sampled review"}
     ],
     "scrims": [
       {"id": "hero-copy-tonal-scrim", "selector": ".hero-copy::before", "job": "foreground contrast over Measure", "status": "browser source/computed-style inspection passed; sampled human review pending"},
-      {"id": "signature-demo-scrim", "selector": ".proof-preview::before", "job": "foreground contrast", "status": "sampled review pending"},
+      {"id": "signature-demo-scrim", "selector": ".proof-preview::before", "job": "foreground contrast for DNA/Voice teaching presets and Brand Visual choices", "status": "sampled review pending"},
       {"id": "closing-dark-scrim", "selector": ".closing::before", "job": "foreground contrast", "status": "sampled review pending"}
     ],
     "connectors": []
@@ -315,16 +315,16 @@
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.html",
-      "bytes": 2192096,
-      "sha256": "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d",
+      "bytes": 2162799,
+      "sha256": "a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4",
       "usageClass": "self-contained single-file playground snapshot",
-      "transform": "generated from deployment/index.html with ten display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
+      "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"
     },
     {
       "path": "implementation-notes.v0.8.8.md",
-      "bytes": 14542,
-      "sha256": "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181",
+      "bytes": 15321,
+      "sha256": "7f723b9a82ad3d264f6c24edaedf9e495290211fdfa15739af18463b34d47f62",
       "usageClass": "proposed artifact-level implementation clarification",
       "authority": "non-normative until incorporated into an owner-approved Design System release"
     },

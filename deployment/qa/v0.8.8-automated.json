@@ -46,7 +46,7 @@
       "llms.txt navigation aid 200",
       "project-path robots record 200",
       "v0.8.8 whitespace-normalized authoring-master Markdown 200 · 227,924 bytes",
-      "standalone HTML 200 · 2,192,096 bytes · embedded display fonts and images",
+      "standalone HTML 200 · 2,162,799 bytes · embedded display fonts and images",
       "logo PNG 200",
       "team photo JPEG 200",
       "Arvo 700 WOFF2 200",
@@ -67,6 +67,7 @@
     "status": "targeted_passed",
     "scope": [
       "English and Thai computed font-family roles: Arvo 700, IBM Plex Sans Thai Looped 700, Bai Jamjuree 400/600, JetBrains Mono 500, and IBM Plex Sans Thai 500; mixed technical labels resolve Latin/numerals to JetBrains Mono and Thai glyphs to the self-hosted IBM companion",
+      "Brand DNA resolves to the Measure gradient, Brand Voice resolves to muted Ground, and Brand Visual retains the explicit Measure/Ground/Cultivate chooser",
       "Measure Brand Blue opening gradient and deterministic dark scrim",
       "three deliberate hero line groups with no mid-word split or horizontal overflow",
       "transparent logo and release metadata on one contrast-safe shared header surface",
@@ -91,7 +92,7 @@
       "complete color atlas exact coverage: 17 foundation pairs, 7 semantic states, 5 shared/motif gradients, 4 product families/8 theme specimens, 10 categorical pairs, 18 scale records/738 LUT cells/378 class cells, 8 map pairs, 8 opacity values, and 6 depth roles",
       "complete color atlas has no horizontal overflow at 390 × 844 or 320 × 700 CSS pixels in the tested light/dark states",
       "dark no-data uses a visible light hatch, RGBA map fills composite on explicit light/dark fixture surfaces, and categorical shape/pattern cues retain their governed dark pairs",
-      "standalone HTML exposes data-standalone=true, embeds ten WOFF2 faces plus the logo and team image, contains no relative display asset, preserves exact atlas counts and both Search/AI Mode controls, and keeps theme/language controls functional",
+      "standalone HTML exposes data-standalone=true, embeds nine WOFF2 faces plus the logo and team image, contains no relative display asset, preserves exact atlas counts and both Search/AI Mode controls, keeps the technical pair at one active 500 weight, and keeps theme/language controls functional",
       "semantic state motion uses a .56 minimum transition opacity; no parallax, scroll-linked reveal, logo/photo motion, or autoplay is present",
       "browser console log inspection returned no errors"
     ],

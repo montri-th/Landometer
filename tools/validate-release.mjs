@@ -316,6 +316,21 @@ pass(
   "All three governed atmospheres carry one complete local foreground and metadata contract",
 );
 pass(
+  html.includes('state.lens === "dna"') &&
+    html.includes('? "measure"') &&
+    html.includes('state.lens === "voice"') &&
+    html.includes('? "ground"') &&
+    html.includes("preview.dataset.surface = resolvedSurface"),
+  "Try opens Brand DNA on Measure and Brand Voice on muted Ground while Brand Visual keeps its selected atmosphere",
+);
+pass(
+  !html.includes("jetbrains-mono-latin-700-normal.woff2") &&
+    !fontManifest.faces?.some(face => face.family === "JetBrains Mono" && face.weight === 700) &&
+    fontManifest.faces?.some(face => face.family === "JetBrains Mono" && face.weight === 500) &&
+    fontManifest.faces?.some(face => face.family === "IBM Plex Sans Thai" && face.weight === 500),
+  "Technical Latin and Thai use one active weight, 500, with no JetBrains Mono 700 payload",
+);
+pass(
   html.includes('id="library-color"') &&
     html.includes('id="library-color-toggle"') &&
     (html.match(/class="color-route-card"/g) || []).length === 6,
@@ -864,41 +879,41 @@ pass(
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
 pass(
-  sha256("landometer-design-system-v0.8.8-standalone.html") === "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d",
+  sha256("landometer-design-system-v0.8.8-standalone.html") === "a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4",
   "Standalone HTML hash matches the release record"
 );
 pass(
-  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2192096,
+  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2162799,
   "Standalone HTML byte count matches the release record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
-    asset.bytes === 2192096 &&
-    asset.sha256 === "daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d"
+    asset.bytes === 2162799 &&
+    asset.sha256 === "a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4"
   ),
   "Manifest records the exact standalone HTML"
 );
 pass(
   buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
-    buildCard.includes("sha256: daf360c271ecbb91acf7609c94c62d91019dd5761446b910194b8671e659748d"),
+    buildCard.includes("sha256: a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4"),
   "Build Card records the exact standalone HTML"
 );
 pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");
 pass(
-  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 10,
-  "Standalone HTML embeds all ten display-font files"
+  (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 9,
+  "Standalone HTML embeds all nine active display-font files"
 );
 pass(
   !/(?:src|href)="assets\//.test(standaloneHtml) && !/url\(["']?assets\//.test(standaloneHtml),
   "Standalone HTML has no display-critical relative asset"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181",
+  sha256("implementation-notes.v0.8.8.md") === "7f723b9a82ad3d264f6c24edaedf9e495290211fdfa15739af18463b34d47f62",
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 14542,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 15321,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
@@ -912,8 +927,8 @@ pass(
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 14542 &&
-    asset.sha256 === "0e99e3fe323474a058a46f7213dd5427f03a091e96ba6898eb37ccf2f1b32181"
+    asset.bytes === 15321 &&
+    asset.sha256 === "7f723b9a82ad3d264f6c24edaedf9e495290211fdfa15739af18463b34d47f62"
   ),
   "Manifest records the exact implementation clarification"
 );

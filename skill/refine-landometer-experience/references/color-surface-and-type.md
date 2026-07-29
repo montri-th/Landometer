@@ -15,6 +15,8 @@ Test at least:
 
 Use deterministic scrims or opaque panels when sampled gradient contrast fails. Preserve canonical gradient stops.
 
+For a teaching artifact, lens-specific opening presets are allowed when they are documented as presets rather than universal brand rules. A useful reference pairing is Measure for Brand DNA and muted Ground for Brand Voice, while Brand Visual keeps the explicit atmosphere chooser. Keep the underlying lens and atmosphere concepts separate in product architecture.
+
 ## Complete color atlas
 
 When complete color coverage is requested, use one bounded fixture and render all governed records:
@@ -59,3 +61,5 @@ Use script-aware routing:
 Never let a generic `monospace` fallback choose the Thai face by device. Package the selected face, license record, hashes, and Thai subset; verify computed family after `document.fonts.ready` with third-party requests blocked.
 
 Treat IBM Plex Sans Thai as an optical companion, not a true monospace face. Start conservatively with weight 500, `size-adjust: 102%`, `.008em` tracking, `1.48` compact-label line-height, and enough vertical pill padding to protect Thai marks. Then review mixed-script baselines, combining marks, 12–16 CSS px labels, 130% Thai, 200% zoom, export, and all supported devices. Record any tuning as an implementation value until a normative release approves it.
+
+Use one technical weight across the script-aware pair. For this reference that weight is 500: do not declare or embed JetBrains Mono 700, do not request 700 within the technical role, and keep `font-synthesis: none` so emphasis comes from hierarchy, color, spacing, or wording rather than faux bold. Display families may retain their separately governed weights.

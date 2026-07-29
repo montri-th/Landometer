@@ -133,15 +133,6 @@
       font-display: swap;
       unicode-range: U+0000-024F, U+1E00-1EFF;
     }
-    @font-face {
-      font-family: "JetBrains Mono";
-      src: url("assets/fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");
-      font-style: normal;
-      font-weight: 700;
-      font-display: swap;
-      unicode-range: U+0000-024F, U+1E00-1EFF;
-    }
-
     :root {
       --brand-blue: #1D4497;
       --brand-beige: #F2F1DF;
@@ -819,7 +810,7 @@
       --proof-subtle: #E8EFEE;
       --proof-meta-ink: #FFFFFF;
       --proof-meta-surface: rgba(17, 25, 29, .78);
-      --proof-separator: rgba(255, 255, 255, .30);
+      --proof-separator: rgba(255, 255, 255, .35);
       background: var(--measure-surface);
       color: #FFFFFF;
     }
@@ -830,7 +821,7 @@
       --proof-subtle: #46524F;
       --proof-meta-ink: #182327;
       --proof-meta-surface: rgba(246, 247, 243, .93);
-      --proof-separator: rgba(24, 35, 39, .24);
+      --proof-separator: rgba(24, 35, 39, .50);
       background: var(--ground-surface);
       color: #182327;
     }
@@ -842,7 +833,7 @@
       --proof-subtle: #46524F;
       --proof-meta-ink: #182327;
       --proof-meta-surface: rgba(246, 247, 243, .93);
-      --proof-separator: rgba(24, 35, 39, .24);
+      --proof-separator: rgba(24, 35, 39, .50);
       background: var(--cultivate-surface);
       color: #182327;
     }
@@ -5115,7 +5106,7 @@
               class="proof-preview has-brand-surface"
               id="proof-preview"
               data-object="landometer-design-system@0.8.8"
-              data-surface="cultivate"
+              data-surface="measure"
               data-motion-phase="final"
               aria-live="polite"
             >
@@ -5678,7 +5669,7 @@
                   <li><span class="type-display-th">หัวเรื่องภาษาไทย</span><small>IBM Plex Sans Thai Looped · 700</small></li>
                   <li><span class="type-body-sample">เนื้อหาและ UI ที่อ่านต่อเนื่อง</span><small>Bai Jamjuree · 400/600</small></li>
                   <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>IBM Plex Sans Thai · 500 · ปรับสัดส่วนให้เข้าคู่กับ JetBrains Mono · self-hosted</span><span data-en>IBM Plex Sans Thai · 500 · optically paired with JetBrains Mono · self-hosted</span></small></li>
-                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 500; reserve 700 for true emphasis</small></li>
+                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 500 · single technical weight</small></li>
                 </ul>
               </article>
 
@@ -9574,7 +9565,12 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         lensCues.forEach((cue, index) => {
           el(`proof-cue-${index + 1}`).textContent = cue;
         });
-        preview.dataset.surface = state.surface;
+        const resolvedSurface = state.lens === "dna"
+          ? "measure"
+          : state.lens === "voice"
+            ? "ground"
+            : state.surface;
+        preview.dataset.surface = resolvedSurface;
         preview.dataset.lens = state.lens;
         preview.classList.toggle("is-baseline", !assisted);
         el("handoff-object-label").textContent = work.label;

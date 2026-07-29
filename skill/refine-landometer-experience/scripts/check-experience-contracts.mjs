@@ -94,6 +94,10 @@ const checks = [
   ["governed surface owns metadata colors", /\.proof-preview\.has-brand-surface\s+\.proof-meta/u.test(html)],
   ["governed surface owns object color", /\.proof-preview\.has-brand-surface\s+\.proof-object/u.test(html)],
   [
+    "Try fixture resolves DNA to Measure and Voice to Ground",
+    /state\.lens\s*===\s*"dna"[\s\S]{0,80}\?\s*"measure"[\s\S]{0,120}state\.lens\s*===\s*"voice"[\s\S]{0,80}\?\s*"ground"/u.test(html)
+  ],
+  [
     "Thai technical labels have the packaged companion face",
     /--font-technical-th:[^;]*"IBM Plex Sans Thai"/u.test(html) &&
       /--font-technical:[^;]*"JetBrains Mono"[^;]*"IBM Plex Sans Thai"/u.test(html) &&
@@ -104,6 +108,12 @@ const checks = [
     /size-adjust:\s*102%/u.test(html) &&
       /--tracking-technical-th:\s*\.008em/u.test(html) &&
       /--leading-technical-th:\s*1\.48/u.test(html)
+  ],
+  [
+    "technical pair exposes one active 500 weight",
+    !/jetbrains-mono-latin-700-normal\.woff2/u.test(html) &&
+      !/@font-face\s*\{[^{}]*font-family:\s*"JetBrains Mono"[^{}]*font-weight:\s*700/gu.test(html) &&
+      /font-synthesis:\s*none/u.test(html)
   ],
   [
     "dark color-role emphasis uses the runtime theme attribute",

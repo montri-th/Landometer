@@ -9,7 +9,9 @@ This note makes six implementation clarifications explicit without changing the 
 
 ## IMPL-SURFACE-COLOR-01 — Preserve governed atmosphere and make color guidance findable
 
-The Try fixture treats the inspection lens and atmosphere as independent choices. Brand DNA, Brand Voice, and Brand Visual may each be inspected on Measure, Ground, or Cultivate. Changing lens must not replace the governed gradient with a generic light or dark card.
+The Try fixture uses two teaching presets so each inspection lens opens with the intended visual character: Brand DNA resolves to Measure, with its dark-blue directional gradient; Brand Voice resolves to Ground, with the canonical cool gradient under the declared light scrim so it reads as muted light blue. Brand Visual remains the atmosphere playground and keeps the user-selected Measure, Ground, or Cultivate surface.
+
+These presets belong to this teaching artifact. They do not create a normative rule that DNA must always use Measure or Voice must always use Ground in a product. Lens and atmosphere remain separate design decisions outside this fixture, and no lens may fall back to a generic flat light or dark card merely because it is not Brand Visual.
 
 Keep the canonical gradient recipe intact. Repair readability through the surface-owned foreground contract:
 
@@ -145,6 +147,8 @@ Following the owner’s implementation direction, this artifact uses a script-aw
 - JetBrains Mono 500 for Latin identifiers, numerals, and Latin technical labels;
 - IBM Plex Sans Thai 500 for Thai glyphs in the same technical role;
 - Bai Jamjuree 400/600 remains the continuous-reading body and general UI family.
+
+The technical pair uses one active weight only: 500. The v0.8.8 playground does not declare, embed, or request JetBrains Mono 700, and `font-synthesis: none` prevents faux bold. Display headings remain a separate role and continue to use Arvo 700 or IBM Plex Sans Thai Looped 700.
 
 Both technical faces are self-hosted. The IBM Plex Sans Thai subset is recorded from `@fontsource/ibm-plex-sans-thai@5.3.0`, carries the SIL Open Font License 1.1 record, and has an exact SHA-256 entry in `font-assets.manifest.json`. The page preloads the Thai technical face and checks it explicitly after `document.fonts.ready`.
 
