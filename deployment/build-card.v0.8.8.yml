@@ -13,7 +13,7 @@ landometerBuild:
     product: landometer
     profile: brand.public
     pageKind: design_identity_playground_with_implementation_library
-    pageKindSourceRef: current owner instructions 2026-07-28 + ADOPT-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + DATAVIZ-01 + CTRL-02
+    pageKindSourceRef: current owner instructions 2026-07-28 + ADOPT-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + EXT-AI-01 + DATAVIZ-01 + CTRL-02
     delivery: internal_demo
     language: th
     additionalLanguages: [en]
@@ -120,7 +120,7 @@ landometerBuild:
       - id: visual-measure
         sceneId: play
         recipe: measure
-        job: product_identity
+        job: orientation
         sourceTokenRefs: [surface.measure]
         angle: 135deg
         focalTarget: active work object
@@ -132,7 +132,7 @@ landometerBuild:
       - id: visual-ground
         sceneId: play
         recipe: ground
-        job: product_identity
+        job: transition
         sourceTokenRefs: [surface.ground]
         angle: 135deg
         focalTarget: active work object
@@ -144,7 +144,7 @@ landometerBuild:
       - id: visual-cultivate
         sceneId: play
         recipe: cultivate
-        job: product_identity
+        job: momentum
         sourceTokenRefs: [surface.cultivate]
         angle: 135deg
         focalTarget: active work object
@@ -224,7 +224,7 @@ landometerBuild:
     permissions: false
     contextDiscovery: true
     externalNavigation: true
-    thirdPartyRequest: explicit_user_triggered_visible_query_only
+    thirdPartyRequest: explicit_user_triggered_visible_query_plus_selected_route
     agentReadable: false
     boundedAgentAction: false
     agentActionEffect: none
@@ -239,6 +239,31 @@ landometerBuild:
       sourceStatus: mixed_source_limited
       limitation: DV-FIXTURE-0.1 remains synthetic; CITYMETER-DV-SNAPSHOT-2026-07-29 is a product-specific public API snapshot plus labelled treatment sketches, not a portfolio claim or evidence of live-product conformance
       mapResult: false
+      externalEffect: false
+    colorAtlas:
+      status: enabled_for_reference_training_only
+      fixtureId: COLOR-ATLAS-0.8.8
+      coverage:
+        identityAndLogoRecords: 14
+        foundationPairs: 17
+        semanticStates: 7
+        sharedGradients: 2
+        motifGradients: 3
+        productGradientFamilies: 4
+        productGradientThemeSpecimens: 8
+        gradientRecords: 13
+        categoricalPairs: 10
+        scaleRecords: 18
+        lutCellsPerScale: 41
+        lutCellsTotal: 738
+        classCounts: [5, 7, 9]
+        classCellsTotal: 378
+        mapPairs: 8
+        opacityValues: 8
+        depthRoles: 6
+      scaleSource: assets/data/scales.json · meta.version 0.8.6 · carried reference fixture
+      scaleGate: pending — source_limited; not the gated v0.8.8 dataviz.tokens.json package; hash, renderer/legend/export parity, contrast, and CVD review remain open
+      productGradientBoundary: product identity specimens only; never shared atmosphere, data, map, interaction, or semantic state
       externalEffect: false
     experiencePatterns:
       status: enabled_for_reference_training_only
@@ -269,15 +294,20 @@ landometerBuild:
       activeFilter: visible field label; a numeric value appears only for the independently corroborated Krok Phra fire case
       publicPlaceHierarchy: event-specific village → municipality or subdistrict administrative organisation → district → province
       composition: event display name + event date + known cause + active public-safe field label + intent keyword + public place hierarchy
-      destination: explicit user-confirmed Google Search GET in a new tab
+      supportedModes: [source_search, ai_synthesis]
+      destination: explicit user-confirmed Google Search or Google AI Mode GET in a new tab
       thirdPartyRequest: true
-      outboundData: visible editable q value only
+      outboundData: visible editable q value plus the explicitly selected destination mode; no hidden context
       remoteMutation: false
       resultStatus: discovery_only until provenance review and deliberate incorporation
+      aiBoundary: AI synthesis is a discovery aid, not a source or evidence; open cited sources, check important claims across more than one source, and preserve provenance before incorporation
+      providerRouting: the Google AI Mode route is an implementation detail, not a normative contract; availability can vary by locale, account, and provider state
+      providerInfluence: provider account, search history, and personalization may affect returned results outside this artifact
+      fallback: keep the exact query copyable and identify the documented provider entry point if the direct AI route is unavailable; never silently switch modes
       telemetry: false
       persistence: false
       externalSideEffect: false
-      limitation: public incident endpoint exposes no provenance; records remain CityMETER snapshots, values with unresolved geographic scope are omitted, and no superior-relevance claim is made
+      limitation: public incident endpoint exposes no provenance; records remain CityMETER snapshots, values with unresolved geographic scope are omitted, and no superior-relevance claim is made for Search or AI Mode
     machineDiscovery:
       status: navigation_aid_only
       path: llms.txt
@@ -285,6 +315,14 @@ landometerBuild:
       boundedAgentAction: false
       limitation: project-path optional proposal; not a host-root discovery guarantee, ranking signal, conformance claim, access control, or permission to act
   referenceFixtures:
+    - id: COLOR-ATLAS-0.8.8
+      sourceAndDate: Landometer Design System v0.8.8 Appendix A + carried scales.json reference fixture · 29 Jul 2026
+      methodOrRecipe: render every active-authoring color role as exact light/dark swatches; render all analytical LUT and 5/7/9 classes from pre-generated cells without runtime mixing
+      signalClass: source_limited design-system reference fixture
+      confidence: exact authoring values; generated v0.8.8 package conformance not claimed
+      limitation: scales.json carries meta.version 0.8.6 and is not the gated v0.8.8 dataviz.tokens.json package; hash parity, renderer/legend/export parity, contrast, CVD, and product implementation evidence remain pending
+      allowedUses: [design-system training, color-role review, implementation planning, accessibility preparation]
+      nextSafeAction: generate and validate the v0.8.8 public-safe token package before claiming production scale conformance
     - id: DV-FIXTURE-0.1
       sourceAndDate: Landometer synthetic training fixture · 28 Jul 2026
       methodOrRecipe: fixed hand-authored values for Compare, Change, Relationship, measured zero, no data, missing period, and counter-signal treatment
@@ -328,12 +366,12 @@ landometerBuild:
       nextSafeAction: require product-owned recipient, permission, route, receipt, and recovery before enabling share; govern telemetry only if separately enabled, and require observed outcome evidence before claiming network effect
     - id: CONTEXT-FIXTURE-0.1
       sourceAndDate: four public CityMETER disaster-record snapshots + CONTEXT-01 · checked 29 Jul 2026
-      methodOrRecipe: compose a visible editable query from current event name, date, known cause, active public-safe field label, user intent, and event-specific place hierarchy
+      methodOrRecipe: compose one visible editable query from current event name, date, known cause, active public-safe field label, user intent, and event-specific place hierarchy; then let the user explicitly choose source Search or AI synthesis
       signalClass: product-specific current-record reference
       confidence: source_limited — public endpoint exposes records but no provenance
-      limitation: not independent ground-truth verification; values with unresolved geographic scope are omitted and returned search material remains discovery_only
-      allowedUses: [context-discovery design training, CTA integrity review, query-privacy review]
-      nextSafeAction: confirm governed runtime provenance and measure same-intent relevance before making a comparative performance claim
+      limitation: not independent ground-truth verification; values with unresolved geographic scope are omitted and Search results and AI synthesis remain discovery_only
+      allowedUses: [context-discovery design training, source-search and AI-synthesis mode review, CTA integrity review, query-privacy review]
+      nextSafeAction: open and review cited sources, preserve provenance before deliberate incorporation, confirm governed runtime provenance, and measure same-intent relevance before making a comparative performance claim
   privacy:
     personalData: false
     sensitivity: public
@@ -370,9 +408,15 @@ landometerBuild:
       sha256: 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776
       transform: trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged
       status: source_limited; machineValidation pending
+    - path: landometer-design-system-v0.8.8-standalone.html
+      bytes: 2134434
+      sha256: 58874c809a3fc631b3549128b6e9c64f3cabc4463449ef0b6846273c4efeb5c7
+      usageClass: self-contained single-file playground snapshot
+      transform: generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs
+      status: source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending
     - path: implementation-notes.v0.8.8.md
       authority: proposed artifact-level clarification; non-normative until an owner-approved release incorporates it
-      covers: [share placement, contextual external search, positive Intent-to-AHA examples, SEO and machine-discovery gates]
+      covers: [share placement, contextual source search, external AI synthesis, positive Intent-to-AHA examples, SEO and machine-discovery gates]
     - path: llms.txt
       authority: optional project-path machine navigation aid only
       agentAction: none
