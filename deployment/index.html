@@ -157,11 +157,39 @@
       --focus-ring: #176B82;
       --success-fill: #E2F4E5;
       --success-ink: #126B49;
+      --warning-fill: #FFF1D1;
+      --warning-ink: #795300;
+      --danger-fill: #FCE5DF;
+      --danger-ink: #B43A3A;
+      --info-fill: #E8EEF0;
+      --info-ink: #176B82;
+      --pending-fill: #F3EEDB;
+      --pending-ink: #686354;
+      --assisted-fill: #DFF3F1;
+      --assisted-ink: #176C67;
       --series-primary: #147A9F;
       --series-change: #007A58;
       --series-outlier: #C52C00;
       --dataviz-no-data: #D5DAD6;
       --dataviz-zero: #7D877F;
+      --dataviz-seq-confidence-low: #F2F1DF;
+      --dataviz-seq-confidence-mid: #85A5A2;
+      --dataviz-seq-confidence-high: #08756F;
+      --dataviz-div-delta-side-a: #B74436;
+      --dataviz-div-delta-neutral: #F2F1DF;
+      --dataviz-div-delta-side-b: #007C78;
+      --map-hover-stroke: #347DA8;
+      --map-hover-fill: rgba(52, 125, 168, .16);
+      --map-selected-stroke: #176B82;
+      --map-selected-fill: rgba(23, 107, 130, .18);
+      --opacity-solid: 1;
+      --opacity-strong: .88;
+      --opacity-medium: .72;
+      --opacity-soft: .56;
+      --opacity-subtle: .40;
+      --opacity-ghost: .24;
+      --opacity-watermark: .12;
+      --opacity-trace: .06;
       --measure-surface: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
       --ground-surface: linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
       --cultivate-surface: linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
@@ -249,11 +277,31 @@
       --focus-ring: #68C4E2;
       --success-fill: #17362D;
       --success-ink: #72E8C4;
+      --warning-fill: #3B2E16;
+      --warning-ink: #F5C15C;
+      --danger-fill: #3A1F21;
+      --danger-ink: #FF7C72;
+      --info-fill: #18333E;
+      --info-ink: #68C4E2;
+      --pending-fill: #2C2A22;
+      --pending-ink: #D8CFB2;
+      --assisted-fill: #163331;
+      --assisted-ink: #79D9D1;
       --series-primary: #59C7E8;
       --series-change: #3BD19B;
       --series-outlier: #FF8A4C;
       --dataviz-no-data: #404844;
       --dataviz-zero: #A59A80;
+      --dataviz-seq-confidence-low: #7C8B8C;
+      --dataviz-seq-confidence-mid: #95A9AA;
+      --dataviz-seq-confidence-high: #D8E6E5;
+      --dataviz-div-delta-side-a: #F28575;
+      --dataviz-div-delta-neutral: #827C68;
+      --dataviz-div-delta-side-b: #55C8BC;
+      --map-hover-stroke: #65B6DB;
+      --map-hover-fill: rgba(101, 182, 219, .18);
+      --map-selected-stroke: #68C4E2;
+      --map-selected-fill: rgba(104, 196, 226, .22);
       --measure-surface: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
       color-scheme: dark;
     }
@@ -605,7 +653,7 @@
     .control-label,
     .control-block legend {
       color: var(--text-metadata);
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-label);
       font-weight: 500;
       letter-spacing: .04em;
@@ -667,7 +715,7 @@
       display: block;
       margin-top: 2px;
       color: var(--text-metadata);
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
       line-height: var(--leading-number);
@@ -686,6 +734,7 @@
       border: 1px solid var(--border-default);
       border-radius: var(--radius-lg);
       background: var(--surface-card);
+      color: var(--text-primary);
       overflow: hidden;
       transition:
         background-color var(--motion-duration-state) var(--motion-ease-state),
@@ -700,6 +749,10 @@
       transition: background-color var(--motion-duration-state) var(--motion-ease-state);
     }
     .proof-preview.is-visual[data-surface="measure"] {
+      --proof-subtle: #E8EFEE;
+      --proof-meta-ink: #FFFFFF;
+      --proof-meta-surface: rgba(17, 25, 29, .78);
+      --proof-separator: rgba(255, 255, 255, .30);
       background: var(--measure-surface);
       color: #FFFFFF;
     }
@@ -707,6 +760,10 @@
       background: rgba(17, 25, 29, .63);
     }
     .proof-preview.is-visual[data-surface="ground"] {
+      --proof-subtle: #46524F;
+      --proof-meta-ink: #182327;
+      --proof-meta-surface: rgba(246, 247, 243, .93);
+      --proof-separator: rgba(24, 35, 39, .24);
       background: var(--ground-surface);
       color: #182327;
     }
@@ -715,14 +772,28 @@
       background: rgba(246, 247, 243, .84);
     }
     .proof-preview.is-visual[data-surface="cultivate"] {
+      --proof-subtle: #46524F;
+      --proof-meta-ink: #182327;
+      --proof-meta-surface: rgba(246, 247, 243, .93);
+      --proof-separator: rgba(24, 35, 39, .24);
       background: var(--cultivate-surface);
       color: #182327;
     }
     .proof-preview.is-visual .fixture-label,
+    .proof-preview.is-visual .proof-object,
     .proof-preview.is-visual .proof-meta dt,
     .proof-preview.is-visual .proof-meta dd,
-    .proof-preview.is-visual .proof-body {
+    .proof-preview.is-visual .proof-body,
+    .proof-preview.is-visual .mock-action {
       color: inherit;
+    }
+    .proof-preview.is-visual .proof-meta {
+      background: var(--proof-meta-surface);
+      border-color: var(--proof-separator);
+      color: var(--proof-meta-ink);
+    }
+    .proof-preview.is-visual .proof-meta > div {
+      border-color: var(--proof-separator);
     }
     .proof-header {
       display: flex;
@@ -734,7 +805,7 @@
     .fixture-label {
       margin: 0;
       color: var(--text-metadata);
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
       line-height: var(--leading-label);
@@ -745,7 +816,7 @@
       border: 1px solid currentColor;
       border-radius: 999px;
       padding: 4px 9px;
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
     }
@@ -758,7 +829,7 @@
     .proof-object {
       margin: 0 0 var(--space-3);
       color: var(--text-metadata);
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-label);
       font-weight: 500;
     }
@@ -781,6 +852,41 @@
       color: var(--text-secondary);
       font-size: var(--type-body-lg);
     }
+    .proof-cues {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: var(--space-5) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .proof-cues li {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 10px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .proof-cues .ui-icon {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+    }
+    .proof-preview:not(.is-baseline) .proof-cues li {
+      border-color: var(--interaction-accent);
+      background: var(--surface-blue-tint);
+      color: var(--interaction-accent);
+    }
+    .proof-preview.is-visual .proof-cues li {
+      border-color: var(--proof-separator);
+      background: var(--proof-meta-surface);
+      color: inherit;
+    }
     .mock-action {
       display: grid;
       width: fit-content;
@@ -792,7 +898,7 @@
     }
     .mock-action small {
       color: inherit;
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
       letter-spacing: .04em;
@@ -803,9 +909,9 @@
     .proof-preview.is-baseline .proof-title {
       max-width: 760px;
       font-family: var(--font-body);
-      font-size: var(--type-body-lg);
-      font-weight: 400;
-      line-height: var(--leading-body);
+      font-size: clamp(1.55rem, 3vw, 2.4rem);
+      font-weight: 600;
+      line-height: var(--leading-ui-heading-th);
       letter-spacing: 0;
     }
     .proof-preview.is-baseline .proof-body {
@@ -817,14 +923,17 @@
       border-left: 0;
       color: var(--text-secondary);
     }
-    .proof-preview.is-baseline .proof-meta {
+    .proof-preview.is-baseline:not(.is-visual) .proof-meta {
       background: var(--surface-alt);
     }
+    .proof-preview.is-visual.is-baseline .mock-action { color: inherit; }
     .proof-meta {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       margin: 0;
       border-top: 1px solid var(--border-default);
+      background: var(--surface-card);
+      color: var(--text-primary);
     }
     .proof-meta > div {
       min-width: 0;
@@ -836,7 +945,7 @@
     .proof-meta > div:nth-last-child(-n + 2) { border-bottom: 0; }
     .proof-meta dt {
       color: var(--text-metadata);
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
       letter-spacing: .04em;
@@ -931,6 +1040,103 @@
       color: var(--text-primary);
     }
     .reject-fixture s { text-decoration-thickness: 2px; }
+    .value-contrast-grid {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+    .value-contrast-card {
+      display: grid;
+      grid-template-columns: 34px minmax(0, .8fr) 22px minmax(0, 1.2fr);
+      gap: 10px;
+      align-items: center;
+      min-height: 74px;
+      padding: 12px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-card);
+    }
+    .value-contrast-card > .ui-icon {
+      grid-row: 1 / 3;
+      width: 28px;
+      height: 28px;
+      padding: 5px;
+      border: 1px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      color: var(--interaction-accent);
+    }
+    .value-contrast-card .value-name {
+      grid-column: 2 / -1;
+      color: var(--text-metadata);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      letter-spacing: .045em;
+      text-transform: uppercase;
+    }
+    .value-contrast-card .value-before {
+      color: var(--text-muted);
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
+    }
+    .value-contrast-card .value-arrow {
+      color: var(--interaction-accent);
+      font-family: var(--font-number);
+      text-align: center;
+    }
+    .value-contrast-card .value-after {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .voice-rewrite {
+      display: grid;
+      gap: 10px;
+      margin-top: var(--space-5);
+    }
+    .voice-rewrite > div {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-card);
+    }
+    .voice-rewrite > div:last-child {
+      border-color: var(--interaction-accent);
+      background: var(--surface-blue-tint);
+    }
+    .voice-rewrite .ui-icon {
+      width: 30px;
+      height: 30px;
+      padding: 6px;
+      border: 1px solid currentColor;
+      border-radius: var(--radius-sm);
+    }
+    .voice-rewrite small,
+    .voice-rewrite strong {
+      display: block;
+    }
+    .voice-rewrite small {
+      margin-bottom: 4px;
+      color: var(--text-metadata);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .voice-rewrite .voice-before strong {
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    .voice-rewrite .voice-after {
+      color: var(--interaction-accent);
+    }
+    .voice-rewrite .voice-after strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
     .surface-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1132,7 +1338,7 @@
       border-bottom: 1px solid var(--border-default);
     }
     .recipe-head b {
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-label);
       font-weight: 500;
     }
@@ -1147,17 +1353,96 @@
       padding: 8px 14px;
     }
     .copy-button:hover { background: var(--surface-blue-tint); }
-    .recipe textarea {
+    .recipe-display {
+      display: grid;
+      gap: var(--space-5);
+      padding: clamp(22px, 4vw, 32px);
+    }
+    .recipe-work {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin: 0;
+      color: var(--text-secondary);
+    }
+    .recipe-work .ui-icon {
+      flex: 0 0 auto;
+      width: 22px;
+      height: 22px;
+      color: var(--interaction-accent);
+    }
+    .recipe-work strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .recipe-steps {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      counter-reset: recipe-step;
+      list-style: none;
+    }
+    .recipe-steps li {
+      display: grid;
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      counter-increment: recipe-step;
+      line-height: 1.6;
+    }
+    .recipe-steps li::before {
+      display: grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      border: 1px solid var(--border-emphasis);
+      border-radius: var(--radius-sm);
+      content: counter(recipe-step);
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-label);
+      font-weight: 500;
+      line-height: 1;
+    }
+    .recipe-note {
+      display: grid;
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      margin: 0;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .recipe-note .ui-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--interaction-accent);
+    }
+    .recipe-source {
+      margin: 0;
+      color: var(--text-metadata);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+      line-height: var(--leading-label);
+    }
+    .recipe textarea.copy-fallback-text {
       display: block;
-      width: 100%;
+      position: static;
+      width: calc(100% - 36px);
       min-height: 280px;
+      margin: 0 18px 18px;
       resize: vertical;
-      border: 0;
+      clip: auto;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
       background: var(--surface-raised);
       color: var(--text-primary);
       font-family: var(--font-body);
       line-height: 1.65;
-      padding: 22px;
+      padding: 18px;
     }
     .copy-status {
       min-height: 28px;
@@ -1401,6 +1686,36 @@
       color: var(--text-secondary);
       font-size: var(--type-body-sm);
     }
+    .opportunity-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 0 var(--space-4);
+      padding: 0 0 var(--space-4);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .opportunity-flow span {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 52px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      color: var(--interaction-accent);
+    }
+    .opportunity-flow span:not(:last-child)::after {
+      position: absolute;
+      z-index: 2;
+      right: -9px;
+      width: 9px;
+      border-top: 1px solid var(--border-emphasis);
+      content: "";
+    }
+    .opportunity-flow .ui-icon {
+      width: 22px;
+      height: 22px;
+    }
     .specimen {
       min-width: 0;
       padding-top: var(--space-5);
@@ -1489,6 +1804,10 @@
       font-family: var(--font-number);
       font-weight: 500;
     }
+    .type-technical-th {
+      font-family: var(--font-data-label);
+      font-weight: 400;
+    }
     .rule-list li,
     .product-recipe li {
       display: grid;
@@ -1550,8 +1869,7 @@
       overflow: hidden;
     }
     .color-example-atmosphere {
-      height: 6px;
-      background: var(--measure-surface);
+      display: none;
     }
     .color-example-topbar {
       display: flex;
@@ -1569,7 +1887,7 @@
       background: transparent;
     }
     .color-example-topbar span {
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
       text-align: right;
@@ -1701,7 +2019,7 @@
       padding: 12px var(--space-5);
       border-top: 1px solid var(--border-hairline);
       color: var(--text-metadata);
-      font-family: var(--font-number);
+      font-family: var(--font-data-label);
       font-size: var(--type-caption);
       font-weight: 500;
     }
@@ -1763,6 +2081,393 @@
     .color-role-list .is-atmosphere {
       background: var(--measure-surface);
       color: #FFFFFF;
+    }
+
+    .color-system-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-5);
+      margin-top: var(--space-7);
+    }
+    .color-plate {
+      min-width: 0;
+      margin: 0;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      background: var(--surface-card);
+      overflow: hidden;
+    }
+    .color-plate--wide { grid-column: 1 / -1; }
+    .color-plate-head {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .color-plate-head .icon-well {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      color: var(--interaction-accent);
+    }
+    .color-plate-head h5 {
+      margin: 0;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .color-plate-head h5 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .color-status {
+      width: fit-content;
+      padding: 4px 7px;
+      border: 1px solid currentColor;
+      border-radius: var(--radius-xs);
+      color: var(--success-ink);
+      font-family: var(--font-data-label);
+      font-size: .68rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+    .color-status--candidate {
+      border-style: dashed;
+      color: var(--pending-ink);
+    }
+    .color-plate-body {
+      padding: clamp(18px, 3vw, 26px);
+    }
+    .color-plate figcaption {
+      padding: 12px 18px;
+      border-top: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .surface-stack {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(64px, 1fr));
+      gap: 8px;
+    }
+    .surface-stack span {
+      display: grid;
+      align-content: end;
+      min-height: 92px;
+      padding: 10px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+    }
+    .surface-stack .is-canvas { background: var(--canvas); }
+    .surface-stack .is-alt { background: var(--surface-alt); }
+    .surface-stack .is-card { background: var(--surface-card); }
+    .surface-stack .is-raised { background: var(--surface-raised); }
+    .semantic-chip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: var(--space-4);
+    }
+    .semantic-chip-grid span {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 9px;
+      border-radius: var(--radius-sm);
+      font-size: var(--type-body-sm);
+      font-weight: 600;
+    }
+    .semantic-chip-grid .ui-icon { width: 17px; height: 17px; }
+    .semantic-chip-grid .is-success { background: var(--success-fill); color: var(--success-ink); }
+    .semantic-chip-grid .is-warning { background: var(--warning-fill); color: var(--warning-ink); }
+    .semantic-chip-grid .is-danger { background: var(--danger-fill); color: var(--danger-ink); }
+    .semantic-chip-grid .is-info { background: var(--info-fill); color: var(--info-ink); }
+    .semantic-chip-grid .is-pending { background: var(--pending-fill); color: var(--pending-ink); }
+    .semantic-chip-grid .is-assisted { background: var(--assisted-fill); color: var(--assisted-ink); }
+    .brand-interaction-split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+    .brand-interaction-split > div {
+      display: grid;
+      align-content: space-between;
+      min-height: 164px;
+      padding: var(--space-4);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+    }
+    .brand-interaction-split strong,
+    .brand-interaction-split small { display: block; }
+    .brand-interaction-split small {
+      margin-top: 5px;
+      color: var(--text-secondary);
+    }
+    .brand-identity-sample {
+      background: var(--surface-blue-tint);
+      color: var(--brand-blue);
+    }
+    .brand-identity-sample .brand-bar {
+      width: 68%;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--brand-blue);
+    }
+    .interaction-sample {
+      background: var(--surface-raised);
+      color: var(--interaction-accent);
+    }
+    .interaction-sample .interaction-control {
+      width: fit-content;
+      padding: 9px 12px;
+      border: 2px solid var(--interaction-accent);
+      border-radius: var(--radius-sm);
+      background: var(--surface-blue-tint);
+      font-weight: 600;
+    }
+    .surface-mode-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .surface-mode {
+      display: grid;
+      align-items: end;
+      min-height: 172px;
+      padding: 12px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+    }
+    .surface-mode.is-measure { background: var(--measure-surface); color: #FFFFFF; }
+    .surface-mode.is-ground { background: var(--ground-surface); color: #182327; }
+    .surface-mode.is-cultivate { background: var(--cultivate-surface); color: #182327; }
+    .surface-mode > span {
+      display: block;
+      padding: 10px;
+      border-radius: var(--radius-xs);
+      background: var(--surface-card);
+      color: var(--text-primary);
+    }
+    .surface-mode.is-measure > span {
+      background: rgba(17, 25, 29, .78);
+      color: #FFFFFF;
+    }
+    .surface-mode.is-ground > span,
+    .surface-mode.is-cultivate > span {
+      background: rgba(246, 247, 243, .92);
+      color: #182327;
+    }
+    .surface-mode strong,
+    .surface-mode small { display: block; }
+    .surface-mode small {
+      margin-top: 3px;
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+    }
+    .scale-triptych {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+    .scale-card {
+      padding: var(--space-4);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+    }
+    .scale-card > strong,
+    .scale-card > small { display: block; }
+    .scale-card > small {
+      min-height: 38px;
+      margin-top: 3px;
+      color: var(--text-secondary);
+    }
+    .category-marks {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      min-height: 70px;
+      margin-top: 10px;
+    }
+    .category-marks span {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 3px solid currentColor;
+      background: transparent;
+      color: var(--series-primary);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+    }
+    .category-marks span:nth-child(1) { border-radius: 50%; }
+    .category-marks span:nth-child(2) { color: var(--series-change); }
+    .category-marks span:nth-child(3) {
+      border-radius: 50% 50% 4px 4px;
+      color: var(--series-outlier);
+    }
+    .category-marks span:nth-child(4) {
+      transform: rotate(45deg);
+      color: var(--text-metadata);
+    }
+    .category-marks span:nth-child(4) b { transform: rotate(-45deg); font-weight: 500; }
+    .scale-ramp {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 42px;
+      margin-top: 18px;
+      border-radius: var(--radius-xs);
+      overflow: hidden;
+    }
+    .scale-ramp span { min-width: 0; }
+    .scale-ramp.is-sequential span:nth-child(1) { background: var(--dataviz-seq-confidence-low); }
+    .scale-ramp.is-sequential span:nth-child(2) { background: var(--dataviz-seq-confidence-mid); }
+    .scale-ramp.is-sequential span:nth-child(3) { background: var(--dataviz-seq-confidence-high); }
+    .scale-ramp.is-diverging span:nth-child(1) { background: var(--dataviz-div-delta-side-a); }
+    .scale-ramp.is-diverging span:nth-child(2) { background: var(--dataviz-div-delta-neutral); }
+    .scale-ramp.is-diverging span:nth-child(3) { background: var(--dataviz-div-delta-side-b); }
+    .scale-extremes {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 7px;
+      color: var(--text-metadata);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+    }
+    .no-data-zero {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .no-data-swatch,
+    .zero-swatch {
+      width: 34px;
+      height: 22px;
+      border-radius: var(--radius-xs);
+    }
+    .no-data-swatch {
+      border: 1px solid var(--border-emphasis);
+      background: repeating-linear-gradient(135deg, var(--dataviz-no-data) 0 5px, transparent 5px 10px);
+    }
+    .zero-swatch {
+      border: 2px solid var(--dataviz-zero);
+      background: transparent;
+    }
+    .overlap-layout {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) minmax(180px, .72fr);
+      gap: var(--space-5);
+      align-items: center;
+    }
+    .overlap-canvas {
+      position: relative;
+      min-height: 220px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background:
+        linear-gradient(var(--border-hairline) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px),
+        var(--surface-alt);
+      background-size: 28px 28px;
+      overflow: hidden;
+    }
+    .overlap-shape {
+      position: absolute;
+      width: 150px;
+      height: 126px;
+      border: 3px solid var(--map-selected-stroke);
+      border-radius: 46% 54% 42% 58% / 55% 42% 58% 45%;
+      background: var(--map-selected-fill);
+    }
+    .overlap-shape.is-a { top: 35px; left: 42px; }
+    .overlap-shape.is-b {
+      top: 65px;
+      left: 126px;
+      border-color: var(--map-hover-stroke);
+      background: var(--map-hover-fill);
+      transform: rotate(-10deg);
+    }
+    .overlap-label {
+      position: absolute;
+      z-index: 2;
+      top: 90px;
+      left: 130px;
+      padding: 5px 8px;
+      border: 1px solid var(--text-primary);
+      border-radius: var(--radius-xs);
+      background: var(--surface-raised);
+      color: var(--text-primary);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+    }
+    .opacity-ladder {
+      display: grid;
+      gap: 8px;
+    }
+    .opacity-ladder div {
+      display: grid;
+      grid-template-columns: 76px 1fr 36px;
+      gap: 8px;
+      align-items: center;
+      color: var(--text-secondary);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+    }
+    .opacity-ladder i {
+      height: 15px;
+      border-radius: 999px;
+      background: var(--interaction-accent);
+      opacity: var(--opacity-level);
+    }
+    .stroke-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(200px, .75fr);
+      gap: var(--space-5);
+      align-items: center;
+    }
+    .stroke-demo {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+    }
+    .stroke-demo .grid-line { stroke: var(--border-hairline); stroke-width: 1; }
+    .stroke-demo .data-line { fill: none; stroke: var(--series-primary); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .stroke-demo .boundary-line { fill: var(--map-selected-fill); stroke: var(--map-selected-stroke); stroke-width: 3; }
+    .stroke-demo .connector-line { fill: none; stroke: var(--text-metadata); stroke-width: 2; stroke-linecap: round; }
+    .stroke-key {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .stroke-key li {
+      display: grid;
+      grid-template-columns: 54px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      font-size: var(--type-body-sm);
+    }
+    .stroke-key i {
+      display: block;
+      border-top: var(--sample-width) solid var(--sample-color);
+      border-radius: 999px;
     }
 
     .matrix-wrap {
@@ -1854,8 +2559,9 @@
     .form-demo .button {
       width: fit-content;
       margin-top: 0;
-      background: var(--brand-blue);
-      color: #FFFFFF;
+      border: 2px solid var(--interaction-accent);
+      background: transparent;
+      color: var(--interaction-accent);
       text-decoration: none;
     }
     .state-strip {
@@ -2425,13 +3131,14 @@
     }
     .cta-proof button {
       min-height: 44px;
-      border: 1px solid var(--interaction-accent);
+      border: 2px solid var(--interaction-accent);
       border-radius: var(--radius-sm);
-      background: var(--brand-blue);
-      color: #FFFFFF;
+      background: transparent;
+      color: var(--interaction-accent);
       padding: 9px 14px;
       font-weight: 600;
     }
+    .cta-proof button:not(:disabled):hover { background: var(--surface-blue-tint); }
     .cta-proof button:disabled {
       border-color: var(--border-default);
       background: var(--surface-soft);
@@ -2601,10 +3308,11 @@
     }
     .intent-form button {
       width: fit-content;
-      background: var(--brand-blue);
-      color: #FFFFFF;
+      border: 2px solid var(--interaction-accent);
+      background: transparent;
+      color: var(--interaction-accent);
     }
-    .intent-form button:hover { background: var(--interaction-accent); }
+    .intent-form button:hover { background: var(--surface-blue-tint); }
     .label-correction {
       margin-top: var(--space-5);
       color: var(--text-secondary);
@@ -2662,6 +3370,7 @@
       .library-gateway-inner,
       .foundation-grid,
       .color-in-action-layout,
+      .color-system-grid,
       .component-demo-grid,
       .motion-layout,
       .pattern-grid,
@@ -2671,6 +3380,11 @@
       .resource-grid {
         grid-template-columns: 1fr;
       }
+      .color-plate--wide { grid-column: auto; }
+      .scale-triptych,
+      .overlap-layout,
+      .stroke-layout { grid-template-columns: 1fr; }
+      .surface-mode-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .opportunity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .citymeter-chart-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .library-group summary {
@@ -2705,6 +3419,24 @@
       .library-gateway-actions a { width: 100%; }
       .type-role-list li { grid-template-columns: 1fr; }
       .color-example-body { grid-template-columns: 1fr; }
+      .surface-stack,
+      .semantic-chip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .brand-interaction-split,
+      .surface-mode-strip { grid-template-columns: 1fr; }
+      .color-plate-head { grid-template-columns: 40px minmax(0, 1fr); }
+      .color-plate-head .color-status {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .value-contrast-card {
+        grid-template-columns: 34px minmax(0, 1fr);
+        align-items: start;
+      }
+      .value-contrast-card > .ui-icon { grid-row: 1 / 4; }
+      .value-contrast-card .value-name { grid-column: 2; }
+      .value-contrast-card .value-before { grid-column: 2; }
+      .value-contrast-card .value-arrow { display: none; }
+      .value-contrast-card .value-after { grid-column: 2; }
       .atmosphere-strip,
       .state-strip,
       .chart-chooser { grid-template-columns: 1fr; }
@@ -2908,7 +3640,7 @@
         align-items: flex-start;
         flex-direction: column;
       }
-      .recipe textarea { min-height: 340px; }
+      .recipe textarea.copy-fallback-text { min-height: 340px; }
       .closing { min-height: 560px; }
       .footer-inner { grid-template-columns: 1fr; }
       .footer-links {
@@ -3040,6 +3772,25 @@
     <symbol id="icon-micro" viewBox="0 0 24 24">
       <path d="M4 7h4l2-3 3 6 2-3h5M4 14h3l2 3 3-6 3 5h5M4 21h16"></path>
     </symbol>
+    <symbol id="icon-object" viewBox="0 0 24 24">
+      <rect x="3.5" y="4" width="17" height="16" rx="3"></rect><path d="M7 9h10M7 13h7M7 17h5"></path>
+    </symbol>
+    <symbol id="icon-handoff" viewBox="0 0 24 24">
+      <path d="M4 8h10M11 5l3 3-3 3"></path><path d="M20 16H10M13 13l-3 3 3 3"></path>
+    </symbol>
+    <symbol id="icon-voice" viewBox="0 0 24 24">
+      <path d="M5 5.5h14v10H9l-4 3v-13Z"></path><path d="M8.5 9.5h7M8.5 12.5h5"></path>
+    </symbol>
+    <symbol id="icon-palette" viewBox="0 0 24 24">
+      <path d="M12 3.5a8.5 8.5 0 1 0 0 17h1.3a1.7 1.7 0 0 0 1.2-2.9 1.7 1.7 0 0 1 1.2-2.9H18a3 3 0 0 0 3-3A8.2 8.2 0 0 0 12 3.5Z"></path>
+      <circle cx="8" cy="9" r="1"></circle><circle cx="12" cy="7" r="1"></circle><circle cx="16" cy="9" r="1"></circle>
+    </symbol>
+    <symbol id="icon-layers" viewBox="0 0 24 24">
+      <path d="m12 3 8 4-8 4-8-4 8-4Z"></path><path d="m4 12 8 4 8-4M4 17l8 4 8-4"></path>
+    </symbol>
+    <symbol id="icon-line" viewBox="0 0 24 24">
+      <path d="M4 18 9 8l5 6 6-10"></path><circle cx="4" cy="18" r="1.5"></circle><circle cx="9" cy="8" r="1.5"></circle><circle cx="14" cy="14" r="1.5"></circle><circle cx="20" cy="4" r="1.5"></circle>
+    </symbol>
   </svg>
   <a class="skip-link" href="#main" id="skip-main">
     <span data-th>ข้ามไปยังเนื้อหาหลัก</span>
@@ -3153,8 +3904,8 @@
             >
               <div class="proof-header">
                 <p class="fixture-label">
-                  <span data-th>ตัวอย่างให้ลอง · ไม่มีผลต่อระบบภายนอก</span>
-                  <span data-en>Practice fixture · no external effect</span>
+                  <span data-th>งานจำลองชิ้นเดิม · ข้อเท็จจริงไม่เปลี่ยน</span>
+                  <span data-en>Same synthetic work · facts unchanged</span>
                 </p>
                 <span class="proof-state" id="proof-state">ASSISTED</span>
               </div>
@@ -3162,6 +3913,11 @@
                 <p class="proof-object" id="proof-object">หน้าจอประกอบการตัดสินใจ</p>
                 <h3 class="proof-title" id="proof-title">ก่อนส่งหน้าจอนี้ต่อ ระบุว่าคนกำลังตัดสินใจเรื่องอะไร</h3>
                 <p class="proof-body" id="proof-body">แสดงสิ่งที่รู้ แหล่งข้อมูล วันที่ พื้นที่ ขอบเขต และข้อจำกัดไว้กับผลที่กำลังดู</p>
+                <ul class="proof-cues" id="proof-cues" aria-label="Design-system value cues">
+                  <li><svg class="ui-icon" aria-hidden="true"><use href="#icon-object"></use></svg><span id="proof-cue-1">เห็นงานชัด</span></li>
+                  <li><svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg><span id="proof-cue-2">พาที่มามาด้วย</span></li>
+                  <li><svg class="ui-icon" aria-hidden="true"><use href="#icon-handoff"></use></svg><span id="proof-cue-3">ไปต่อได้</span></li>
+                </ul>
                 <div class="mock-action">
                   <small><span data-th>ขั้นตอนถัดไป</span><span data-en>Next action</span></small>
                   <strong id="mock-action">เปิดจุดที่ต้องตรวจต่อ</strong>
@@ -3190,48 +3946,60 @@
             <section class="lens-explanation" id="panel-dna" role="tabpanel" aria-labelledby="lens-dna">
               <div>
                 <p class="eyebrow">Brand DNA</p>
-                <h3><span data-th>คนต้องเห็น เข้าใจ และไปต่อได้</span><span data-en>Three outcomes that work together</span></h3>
-                <p data-th>สามอย่างนี้ต้องมาด้วยกัน งานจึงจะช่วยคนได้จริง ไม่ใช่แค่ดูเหมือนเป็นแบรนด์เดียวกัน</p>
-                <p data-en>Brand energy does not come from adjectives. It comes from what people can see, understand, and do next.</p>
+                <h3><span data-th>ถ้าคนต้องเดา งานยังเดินทางไม่ครบ</span><span data-en>If people must guess, the work is not ready to travel.</span></h3>
+                <p data-th>สลับ “ก่อนปรับ–หลังปรับ” แล้วดูว่าอะไรใช้การได้ขึ้น โดยที่ข้อเท็จจริงของงานจำลองยังเท่าเดิม</p>
+                <p data-en>Switch Before and After. See what becomes usable while the synthetic facts stay exactly the same.</p>
               </div>
-              <ul class="outcome-list">
-                <li>
-                  <b>Clear</b>
-                  <span data-th>บอกให้รู้ทันทีว่ากำลังดูอะไร และทำอะไรต่อได้</span>
-                  <span data-en>Name the object and make the next step obvious.</span>
-                </li>
-                <li>
-                  <b>Grounded</b>
-                  <span data-th>วางแหล่งข้อมูล วันที่ พื้นที่ ขอบเขต และข้อจำกัดไว้ข้างผลที่เห็น</span>
-                  <span data-en>Keep source, date, place, boundary, and limitation with the result.</span>
-                </li>
-                <li>
-                  <b>Energetic</b>
-                  <span data-th>ใช้คำกริยาชัด ๆ พางานไปต่อ โดยไม่พูดเกินหลักฐาน</span>
-                  <span data-en>Use an active verb to move the work forward—without hype.</span>
-                </li>
-              </ul>
+              <div class="value-contrast-grid" aria-label="Brand DNA value before and after">
+                <div class="value-contrast-card">
+                  <svg class="ui-icon" aria-hidden="true"><use href="#icon-object"></use></svg>
+                  <span class="value-name">Clear</span>
+                  <span class="value-before"><span data-th>“ภาพรวมข้อมูลล่าสุด”</span><span data-en>“Latest overview”</span></span>
+                  <span class="value-arrow" aria-hidden="true">→</span>
+                  <span class="value-after"><span data-th>เห็นทันทีว่าพื้นที่ ข เปลี่ยนมากสุด</span><span data-en>See immediately that Area B changed most</span></span>
+                </div>
+                <div class="value-contrast-card">
+                  <svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg>
+                  <span class="value-name">Grounded</span>
+                  <span class="value-before"><span data-th>“อัปเดตแล้ว”</span><span data-en>“Updated”</span></span>
+                  <span class="value-arrow" aria-hidden="true">→</span>
+                  <span class="value-after"><span data-th>PRACTICE-01 · วันที่ · release · ข้อจำกัด</span><span data-en>PRACTICE-01 · date · release · limitation</span></span>
+                </div>
+                <div class="value-contrast-card">
+                  <svg class="ui-icon" aria-hidden="true"><use href="#icon-handoff"></use></svg>
+                  <span class="value-name">Energetic</span>
+                  <span class="value-before"><span data-th>“ดูเพิ่มเติม”</span><span data-en>“Explore”</span></span>
+                  <span class="value-arrow" aria-hidden="true">→</span>
+                  <span class="value-after"><span data-th>เปิดพื้นที่ ข พร้อมที่มา</span><span data-en>Open Area B with its source</span></span>
+                </div>
+              </div>
             </section>
 
             <section class="lens-explanation" id="panel-voice" role="tabpanel" aria-labelledby="lens-voice" hidden>
               <div>
                 <p class="eyebrow">Brand Voice</p>
-                <h3><span data-th>เล่าเรื่องของงานก่อน แล้วบอกว่าคนถัดไปทำอะไรได้</span><span data-en>Start with the work. Show who uses it next and what they can do.</span></h3>
-                <p data-th>เขียนไทยกับอังกฤษจากความหมายและหลักฐานชุดเดียวกัน แต่ให้แต่ละภาษาเป็นธรรมชาติของตัวเอง</p>
-                <p data-en>Author Thai and English independently from the same meaning and evidence. Neither language is the other's template.</p>
+                <h3><span data-th>พูดให้เห็นงาน ไม่ใช่พูดให้ดูเก่ง</span><span data-en>Make the work visible—not the writing impressive.</span></h3>
+                <p data-th>ไทยกับอังกฤษใช้ความจริงชุดเดียวกัน แต่เล่าให้เป็นธรรมชาติของแต่ละภาษา: เริ่มจากของจริง บอกสิ่งที่ข้อมูลยังตอบไม่ได้ แล้วจบด้วยคำกริยาที่พาไปต่อ</p>
+                <p data-en>Keep one truth, then write naturally in each language: start with the real object, name what the data cannot answer, and end with a useful verb.</p>
               </div>
-              <ol class="voice-path">
-                <li><span data-th>งานหรือการตัดสินใจ</span><span data-en>The work or decision</span></li>
-                <li><span data-th>สิ่งที่รู้หรือสิ่งที่เปลี่ยน</span><span data-en>What is known or changed</span></li>
-                <li><span data-th>รู้จากไหน</span><span data-en>Where it came from</span></li>
-                <li><span data-th>รู้อะไรได้แค่ไหน</span><span data-en>Its boundary and limitation</span></li>
-                <li><span data-th>ใครใช้ต่อ และใช้ทำอะไร</span><span data-en>Who uses it next, and for what</span></li>
-              </ol>
-              <p class="reject-fixture">
-                <b><span data-th>ภาษาที่ต้องแก้</span><span data-en>Language that needs revision</span></b>
-                <s data-th>ข้อมูลเมืองที่ขับเคลื่อนการตัดสินใจอย่างชาญฉลาด · เปลี่ยนข้อมูลให้เป็นผลลัพธ์ที่มีความหมาย · สำรวจ</s>
-                <s data-en>Urban intelligence that powers smarter decisions · Transform data into meaningful outcomes · Explore</s>
-              </p>
+              <div>
+                <ol class="voice-path">
+                  <li><span data-th>งานที่กำลังดู</span><span data-en>The work in front of us</span></li>
+                  <li><span data-th>สิ่งที่ข้อมูลบอก</span><span data-en>What the data says</span></li>
+                  <li><span data-th>สิ่งที่ยังบอกไม่ได้</span><span data-en>What it cannot establish</span></li>
+                  <li><span data-th>สิ่งที่ทำต่อได้</span><span data-en>What someone can do next</span></li>
+                </ol>
+                <div class="voice-rewrite" aria-label="Brand Voice rewrite example">
+                  <div class="voice-before">
+                    <svg class="ui-icon" aria-hidden="true"><use href="#icon-voice"></use></svg>
+                    <span><small><span data-th>ก่อนปรับ · กว้างและแทนกันได้</span><span data-en>Before · broad and interchangeable</span></small><strong><span data-th>ข้อมูลเชิงลึกล่าสุด เพื่อการตัดสินใจที่ชาญฉลาด</span><span data-en>Latest insights for smarter decisions</span></strong></span>
+                  </div>
+                  <div class="voice-after">
+                    <svg class="ui-icon" aria-hidden="true"><use href="#icon-voice"></use></svg>
+                    <span><small><span data-th>หลังปรับ · ชัด มีขอบเขต และชวนไปต่อ</span><span data-en>After · specific, bounded, actionable</span></small><strong><span data-th>พื้นที่ ข เปลี่ยนมากสุด—เปิดดูเหตุผลก่อนเลือกพื้นที่ถัดไป</span><span data-en>Area B changed most—check why before choosing what to inspect next</span></strong></span>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <section class="lens-explanation" id="panel-visual" role="tabpanel" aria-labelledby="lens-visual" hidden>
@@ -3432,7 +4200,25 @@
             <label class="sr-only" for="recipe-text">
               <span data-th>สูตรที่เลือกและคัดลอกได้</span><span data-en>Selectable recipe</span>
             </label>
-            <textarea id="recipe-text" readonly>งาน: หน้าจอประกอบการตัดสินใจ
+            <div class="recipe-display" id="recipe-display">
+              <p class="recipe-work">
+                <svg class="ui-icon" aria-hidden="true"><use href="#icon-object"></use></svg>
+                <span><span data-th>งานที่เลือก · </span><span data-en>Selected work · </span><strong id="recipe-work-label">หน้าจอประกอบการตัดสินใจ</strong></span>
+              </p>
+              <ol class="recipe-steps" id="recipe-steps">
+                <li>ระบุว่าใครกำลังตัดสินใจเรื่องอะไร</li>
+                <li>บอกสิ่งที่รู้ พร้อมแหล่งข้อมูล วันที่ พื้นที่ และสถานะ</li>
+                <li>บอกว่างานชิ้นนี้ใช้ตอบอะไรได้ และยังยืนยันอะไรไม่ได้</li>
+                <li>จัดหน้าให้มีเรื่องหลักหนึ่งเรื่อง หลักฐานที่อ่านได้ และที่พักสายตา</li>
+                <li>จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง</li>
+              </ol>
+              <p class="recipe-note">
+                <svg class="ui-icon" aria-hidden="true"><use href="#icon-handoff"></use></svg>
+                <span id="recipe-handoff">ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ</span>
+              </p>
+              <p class="recipe-source" id="recipe-source">ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending</p>
+            </div>
+            <textarea class="sr-only" id="recipe-text" readonly>งาน: หน้าจอประกอบการตัดสินใจ
 
 1. ระบุว่าใครกำลังตัดสินใจเรื่องอะไร
 2. บอกสิ่งที่รู้ พร้อมแหล่งข้อมูล วันที่ พื้นที่ และสถานะ
@@ -3496,7 +4282,7 @@
             <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg><span class="sr-only">01</span></span>
             <h3><span data-th>รากฐานภาพและภาษา</span><span data-en>Foundations</span></h3>
             <span class="library-summary-copy"><span data-th>โลโก้ ตัวอักษร สี พื้นผิวไล่สี ที่พักสายตา และหน้าที่ของค่ามาตรฐานแต่ละตัว</span><span data-en>Logo, type, color, gradients, quiet, and token ownership.</span></span>
-            <span class="library-count">4 foundations · 1 color case · 8 opportunities</span>
+            <span class="library-count">4 foundations · 6 color plates · 8 opportunities</span>
           </summary>
           <div class="library-content">
             <h4><span data-th>เริ่มจากบทบาท ไม่ใช่ความชอบเฉพาะหน้า</span><span data-en>Start with a role—not a one-off preference.</span></h4>
@@ -3511,6 +4297,7 @@
                   <li><span class="type-display-en">English display</span><small>Arvo · 700 · display/Product UI heading</small></li>
                   <li><span class="type-display-th">หัวเรื่องภาษาไทย</span><small>IBM Plex Sans Thai Looped · 700</small></li>
                   <li><span class="type-body-sample">เนื้อหาและ UI ที่อ่านต่อเนื่อง</span><small>Bai Jamjuree · 400/600</small></li>
+                  <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>Bai Jamjuree สำหรับป้ายเทคนิคภาษาไทย · self-hosted · ไม่ปล่อยให้เครื่องเลือก fallback เอง</span><span data-en>Bai Jamjuree for Thai technical labels · self-hosted · never device-selected fallback</span></small></li>
                   <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 500; reserve 700 for true emphasis</small></li>
                 </ul>
               </article>
@@ -3551,10 +4338,10 @@
             </div>
 
             <section class="color-in-action" aria-labelledby="color-in-action-title">
-              <p class="specimen-kicker">COLOR-01 · ONE SCREEN, CLEAR JOBS</p>
-              <h4 id="color-in-action-title"><span data-th>สีแต่ละสีมีงานของตัวเอง</span><span data-en>Give every color one job</span></h4>
-              <p data-th>ลองอ่านชิ้นงานนี้โดยไม่ดูรหัสสี: ใครเป็นเจ้าของงาน อะไรกำลังถูกเลือก สถานะเป็นอย่างไร ค่าไหนคือข้อมูล และตรงไหนยังไม่มีข้อมูล ทุกสีมีป้าย ค่า รูปร่าง หรือลายช่วยยืนยันความหมาย</p>
-              <p data-en>Read this work without looking at hex values: who owns it, what is selected, what state it is in, which marks encode data, and where data is missing. Labels, values, shapes, and patterns keep color from carrying meaning alone.</p>
+              <p class="specimen-kicker">COLOR-01 · SEE COLOR DO REAL WORK</p>
+              <h4 id="color-in-action-title"><span data-th>ดูสีทำงานกับชิ้นงานจริง</span><span data-en>See color do real work</span></h4>
+              <p data-th>ใช้ชิ้นงานเดียวกันดูให้ชัดว่าอะไรคือแบรนด์ อะไรกดได้ อะไรคือสถานะ อะไรคือข้อมูล และอะไรเป็นเพียงบรรยากาศ สีไม่ต้องพูดคนเดียว—มีคำ ค่า รูปร่าง หรือลายช่วยยืนยันเสมอ</p>
+              <p data-en>Use one work object to see what identifies the brand, what is interactive, what is state, what encodes data, and what is only atmosphere. Color never speaks alone; words, values, shapes, or patterns confirm its meaning.</p>
 
               <div class="color-in-action-layout">
                 <figure class="color-example-preview" aria-labelledby="color-example-question" aria-describedby="color-example-source">
@@ -3645,6 +4432,159 @@
                     <span><strong>Atmosphere</strong><small><span data-th>วางกรอบให้ฉาก ไม่เข้ารหัสค่า 68 หรือ 44</span><span data-en>Frames the scene; never encodes 68 or 44.</span></small></span>
                   </li>
                 </ul>
+              </div>
+
+              <div class="color-system-grid" aria-label="Complete color implementation reference">
+                <figure class="color-plate">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg></span>
+                    <h5><span data-th>พื้นผิวและสถานะ</span><span data-en>Solids & states</span></h5>
+                    <span class="color-status">DS 0.8.8</span>
+                  </div>
+                  <div class="color-plate-body">
+                    <div class="surface-stack" aria-label="Canvas, alt, card, and raised surface hierarchy">
+                      <span class="is-canvas">canvas</span>
+                      <span class="is-alt">alt</span>
+                      <span class="is-card">card</span>
+                      <span class="is-raised">raised</span>
+                    </div>
+                    <div class="semantic-chip-grid" aria-label="Semantic state colors paired with words and icons">
+                      <span class="is-success"><svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg><span data-th>สำเร็จ</span><span data-en>Success</span></span>
+                      <span class="is-warning"><svg class="ui-icon" aria-hidden="true"><use href="#icon-micro"></use></svg><span data-th>เตือน</span><span data-en>Warning</span></span>
+                      <span class="is-danger"><svg class="ui-icon" aria-hidden="true"><use href="#icon-micro"></use></svg><span data-th>อันตราย</span><span data-en>Danger</span></span>
+                      <span class="is-info"><svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg><span data-th>ข้อมูล</span><span data-en>Info</span></span>
+                      <span class="is-pending"><svg class="ui-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg><span data-th>รอดำเนินการ</span><span data-en>Pending</span></span>
+                      <span class="is-assisted"><svg class="ui-icon" aria-hidden="true"><use href="#icon-people"></use></svg><span data-th>มีตัวช่วย</span><span data-en>Assisted</span></span>
+                    </div>
+                  </div>
+                  <figcaption><span data-th>สีสถานะต้องมากับคำหรือไอคอนเสมอ; energy color ไม่ใช้แทน success, warning หรือ danger</span><span data-en>State color always travels with a word or icon; energy colors never substitute for semantic state.</span></figcaption>
+                </figure>
+
+                <figure class="color-plate">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg></span>
+                    <h5><span data-th>Brand Blue ไม่ใช่สีปุ่ม</span><span data-en>Brand Blue is not interaction</span></h5>
+                    <span class="color-status">DS 0.8.8</span>
+                  </div>
+                  <div class="color-plate-body brand-interaction-split">
+                    <div class="brand-identity-sample">
+                      <span class="brand-bar" aria-hidden="true"></span>
+                      <span><strong>Brand Blue · #1D4497</strong><small><span data-th>บอกว่าเป็น Landometer</span><span data-en>Identifies Landometer</span></small></span>
+                    </div>
+                    <div class="interaction-sample">
+                      <span class="interaction-control"><span data-th>เปิดหลักฐาน →</span><span data-en>Open evidence →</span></span>
+                      <span><strong>interaction.accent</strong><small><span data-th>บอกว่ากด เลือก หรือโฟกัสอะไรได้</span><span data-en>Shows action, selection, and focus</span></small></span>
+                    </div>
+                  </div>
+                  <figcaption><span data-th>ปุ่มหลักใช้ label/border ของ interaction.accent พร้อม surface.blueTint เมื่อ hover/selected—ไม่ใช้ปุ่มทึบ Brand Blue</span><span data-en>Primary actions use interaction.accent labels/borders and surface.blueTint for hover/selection—never a filled Brand Blue button.</span></figcaption>
+                </figure>
+
+                <figure class="color-plate color-plate--wide">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-layers"></use></svg></span>
+                    <h5><span data-th>Gradient ต้องมีหน้าที่</span><span data-en>A gradient needs a job</span></h5>
+                    <span class="color-status">SURFACE-01</span>
+                  </div>
+                  <div class="color-plate-body surface-mode-strip">
+                    <div class="surface-mode">
+                      <span><strong><span data-th>Flat evidence</span><span data-en>Flat evidence</span></strong><small><span data-th>หลักฐานนำ · ไม่ต้องใช้ gradient</span><span data-en>Evidence leads · no gradient needed</span></small></span>
+                    </div>
+                    <div class="surface-mode is-measure">
+                      <span><strong>Measure</strong><small>entry · orientation · closure<br>deterministic scrim</small></span>
+                    </div>
+                    <div class="surface-mode is-ground">
+                      <span><strong>Ground</strong><small>transition · context reveal<br>opaque panel</small></span>
+                    </div>
+                    <div class="surface-mode is-cultivate">
+                      <span><strong>Cultivate</strong><small>momentum · completion<br>opaque panel</small></span>
+                    </div>
+                  </div>
+                  <figcaption><span data-th>หนึ่ง viewport มี gradient เด่นได้ไม่เกินหนึ่งผืน ใช้ stop ตาม recipe เดิม ตรวจคอนทราสต์ใต้ตัวอักษรจริง และลบทิ้งถ้าความเข้าใจไม่ดีขึ้น</span><span data-en>Use at most one dominant gradient per viewport, preserve the exact recipe, sample contrast beneath real glyphs, and delete it when comprehension does not improve.</span></figcaption>
+                </figure>
+
+                <figure class="color-plate color-plate--wide">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span>
+                    <h5><span data-th>เลือก scale ให้ตรงคำถาม</span><span data-en>Match the scale to the question</span></h5>
+                    <span class="color-status">DATAVIZ-01</span>
+                  </div>
+                  <div class="color-plate-body">
+                    <div class="scale-triptych">
+                      <div class="scale-card">
+                        <strong><span data-th>หมวดอะไร?</span><span data-en>Which category?</span></strong>
+                        <small><span data-th>ใช้ categorical + ชื่อ/รูปทรงประจำหมวด</span><span data-en>Use categorical color + stable label/shape</span></small>
+                        <div class="category-marks" aria-label="Four categorical marks with stable shapes"><span>A</span><span>B</span><span>C</span><span><b>D</b></span></div>
+                      </div>
+                      <div class="scale-card">
+                        <strong><span data-th>มากน้อยแค่ไหน?</span><span data-en>How much?</span></strong>
+                        <small><span data-th>confidence · low → mid → high</span><span data-en>confidence · low → mid → high</span></small>
+                        <div class="scale-ramp is-sequential" aria-label="Confidence sequential anchor colors"><span></span><span></span><span></span></div>
+                        <div class="scale-extremes"><span>low</span><span>high</span></div>
+                      </div>
+                      <div class="scale-card">
+                        <strong><span data-th>เปลี่ยนไปทางไหน?</span><span data-en>Which direction?</span></strong>
+                        <small><span data-th>delta · ลบ / ศูนย์ / บวก ไม่ได้แปลว่าเลว/ดีเอง</span><span data-en>delta · negative / zero / positive is not bad/good by itself</span></small>
+                        <div class="scale-ramp is-diverging" aria-label="Delta diverging anchor colors"><span></span><span></span><span></span></div>
+                        <div class="scale-extremes"><span>−</span><span>0</span><span>+</span></div>
+                      </div>
+                    </div>
+                    <div class="no-data-zero">
+                      <span class="no-data-swatch" aria-hidden="true"></span><strong>No data</strong><span><span data-th>อยู่นอก ramp และมีคำกำกับ</span><span data-en>outside the ramp, directly labelled</span></span>
+                      <span class="zero-swatch" aria-hidden="true"></span><strong>Zero</strong><span><span data-th>เป็นข้อเท็จจริงคนละอย่าง</span><span data-en>a different fact</span></span>
+                    </div>
+                  </div>
+                  <figcaption><span data-th>หน้าเว็บนี้แสดงเพียง anchor ที่ DS กำหนด; 5/7/9 classes ต้องมาจาก LUT และ scaleVersion ที่ generate ไว้ล่วงหน้า ไม่ผสมสีตอน runtime</span><span data-en>This page shows only governed anchors; 5/7/9 classes require the generated LUT and scaleVersion—never runtime color mixing.</span></figcaption>
+                </figure>
+
+                <figure class="color-plate">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-layers"></use></svg></span>
+                    <h5><span data-th>ซ้อนชั้นโดยไม่สร้างความหมายใหม่</span><span data-en>Layer without inventing meaning</span></h5>
+                    <span class="color-status">A7</span>
+                  </div>
+                  <div class="color-plate-body overlap-layout">
+                    <div class="overlap-canvas" role="img" aria-label="Selected and hovered governed areas overlap while the intersection stays directly labelled">
+                      <span class="overlap-shape is-a" aria-hidden="true"></span>
+                      <span class="overlap-shape is-b" aria-hidden="true"></span>
+                      <span class="overlap-label"><span data-th>ส่วนซ้อน · 12</span><span data-en>Overlap · 12</span></span>
+                    </div>
+                    <div class="opacity-ladder" aria-label="Canonical opacity reference">
+                      <div><span>solid</span><i style="--opacity-level:var(--opacity-solid)"></i><b>1.00</b></div>
+                      <div><span>strong</span><i style="--opacity-level:var(--opacity-strong)"></i><b>.88</b></div>
+                      <div><span>medium</span><i style="--opacity-level:var(--opacity-medium)"></i><b>.72</b></div>
+                      <div><span>soft</span><i style="--opacity-level:var(--opacity-soft)"></i><b>.56</b></div>
+                      <div><span>subtle</span><i style="--opacity-level:var(--opacity-subtle)"></i><b>.40</b></div>
+                      <div><span>ghost</span><i style="--opacity-level:var(--opacity-ghost)"></i><b>.24</b></div>
+                      <div><span>watermark</span><i style="--opacity-level:var(--opacity-watermark)"></i><b>.12</b></div>
+                      <div><span>trace</span><i style="--opacity-level:var(--opacity-trace)"></i><b>.06</b></div>
+                    </div>
+                  </div>
+                  <figcaption><span data-th>opacity ช่วยจัดชั้น แต่ห้ามแบกความหมายสำคัญเพียงลำพัง สีที่เกิดจากการซ้อนไม่ใช่ token ใหม่; ส่วนซ้อนต้องมี label/ค่า/ลายช่วย</span><span data-en>Opacity may organize depth but never carry critical meaning alone. A blended result is not a new token; label or pattern the overlap.</span></figcaption>
+                </figure>
+
+                <figure class="color-plate">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-line"></use></svg></span>
+                    <h5><span data-th>ทุกเส้นต้องบอกหน้าที่</span><span data-en>Every line needs a meaning</span></h5>
+                    <span class="color-status color-status--candidate"><span data-th>บางส่วนรออนุมัติ</span><span data-en>Partly candidate</span></span>
+                  </div>
+                  <div class="color-plate-body stroke-layout">
+                    <svg class="stroke-demo" viewBox="0 0 360 210" role="img" aria-label="Reference diagram showing context grid, data line, selected boundary, and labelled handoff connector">
+                      <path class="grid-line" d="M28 42H332M28 82H332M28 122H332M28 162H332"></path>
+                      <path class="data-line" d="M32 150 92 118 146 132M204 96 262 78 328 46"></path>
+                      <path class="boundary-line" d="M60 34c44-24 98 1 100 45s-55 70-100 46-43-68 0-91Z"></path>
+                      <path class="connector-line" d="M176 160H300m-12-10 12 10-12 10"></path>
+                      <text x="210" y="187" fill="currentColor" font-size="12">handoff → next role</text>
+                    </svg>
+                    <ul class="stroke-key">
+                      <li><i style="--sample-width:1px;--sample-color:var(--border-hairline)"></i><span><b><span data-th>บริบท</span><span data-en>Context</span></b><br><span data-th>เส้นเงียบ ไม่แย่งข้อมูล</span><span data-en>Quiet, behind the data</span></span></li>
+                      <li><i style="--sample-width:3px;--sample-color:var(--series-primary)"></i><span><b><span data-th>ข้อมูล</span><span data-en>Data</span></b><br><span data-th>เห็นต่อเนื่องและมี label</span><span data-en>Continuous and labelled</span></span></li>
+                      <li><i style="--sample-width:3px;--sample-color:var(--map-selected-stroke)"></i><span><b><span data-th>ขอบเขตที่เลือก</span><span data-en>Selected boundary</span></b><br><span data-th>ใช้ map.selected.stroke</span><span data-en>Use map.selected.stroke</span></span></li>
+                      <li><i style="--sample-width:2px;--sample-color:var(--text-metadata)"></i><span><b><span data-th>ความสัมพันธ์</span><span data-en>Relationship</span></b><br><span data-th>ต้องระบุปลายทางและความหมาย</span><span data-en>Name endpoints and meaning</span></span></li>
+                    </ul>
+                  </div>
+                  <figcaption><span data-th>DS มี token เส้นสำหรับ map และมีกฎ connector แต่ยังไม่มี stroke-width scale กลางสำหรับ chart/axis—ตัวเลขความหนาในภาพเป็น candidate recipe ต้องขออนุมัติก่อนทำเป็น normative</span><span data-en>The DS governs map strokes and connector meaning, but has no universal chart/axis width scale. The shown widths are candidate recipes, not normative tokens.</span></figcaption>
+                </figure>
               </div>
             </section>
 
@@ -4443,8 +5383,8 @@
           <summary id="library-resources-toggle">
             <span class="library-index library-icon icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-download"></use></svg><span class="sr-only">06</span></span>
             <h3><span data-th>เอกสารและไฟล์อ้างอิง</span><span data-en>Resources & release records</span></h3>
-            <span class="library-summary-copy"><span data-th>คู่มือฉบับอ่านง่าย implementation note บันทึกการส่งมอบ SEO gate และตัวช่วยให้เครื่องค้นพบ</span><span data-en>Human-readable master, implementation note, release records, SEO gate, and machine-discovery aid.</span></span>
-            <span class="library-count">7 records + gates</span>
+            <span class="library-summary-copy"><span data-th>คู่มือฉบับอ่านง่าย normative patch, skill ใช้ซ้ำ บันทึกการส่งมอบ SEO gate และตัวช่วยให้เครื่องค้นพบ</span><span data-en>Human-readable master, normative patch, reusable skill, release records, SEO gate, and machine-discovery aid.</span></span>
+            <span class="library-count">9 records + gates</span>
           </summary>
           <div class="library-content">
             <h4><span data-th>ดาวน์โหลดคู่มือ และตรวจบันทึกของ release ได้จากที่เดียวกัน</span><span data-en>Keep the readable master and release records together.</span></h4>
@@ -4471,6 +5411,20 @@
                 <p data-th>อธิบายเพิ่มเรื่องตำแหน่งปุ่มแชร์ การค้นหาต่อจากบริบท ตัวอย่าง Intent → AHA และแนวคิดที่เริ่มจากโอกาส โดยไม่เปลี่ยนข้อความมาตรฐานใน authoring master</p>
                 <p data-en>Clarifies share placement, contextual external search, Intent → AHA cases, and opportunity-led examples without changing the authoring master’s normative text.</p>
                 <a href="implementation-notes.v0.8.8.md" id="resource-implementation-notes" type="text/markdown"><span data-th>อ่าน proposed clarification</span><span data-en>Read proposed clarification</span></a>
+              </article>
+              <article>
+                <p class="resource-meta">PROPOSED · NORMATIVE PATCH · MARKDOWN</p>
+                <h5><span data-th>Experience clarifications</span><span data-en>Experience clarifications</span></h5>
+                <p data-th>ข้อเสนอเรื่อง before/after value proof, contrast ของ component-owned surface, ฟอนต์ป้ายเทคนิคภาษาไทย, color reference และช่องว่างของ stroke/overlap ยังไม่เปลี่ยนอำนาจของ authoring master</p>
+                <p data-en>Proposes before/after value proof, component-owned surface contrast, Thai technical-label routing, complete color reference, and explicit stroke/overlap gaps. It does not change current authority.</p>
+                <a href="https://github.com/montri-th/Landometer/blob/main/normative-patches/landometer-design-system-v0.8.8-experience-clarifications.proposal.md" id="resource-normative-patch"><span data-th>เปิด normative patch proposal</span><span data-en>Open normative patch proposal</span></a>
+              </article>
+              <article>
+                <p class="resource-meta">REUSABLE SKILL · MODULAR WORKFLOW</p>
+                <h5>refine-landometer-experience</h5>
+                <p data-th>workflow ใช้ซ้ำสำหรับ value proof, theme/surface contrast, ฟอนต์สองภาษา, visual-first library, normative-gap classification และ release gate</p>
+                <p data-en>A reusable workflow for value proof, theme/surface contrast, bilingual type, visual-first references, normative-gap classification, and release gates.</p>
+                <a href="https://github.com/montri-th/Landometer/tree/main/skill/refine-landometer-experience" id="resource-refinement-skill"><span data-th>เปิด skill package</span><span data-en>Open skill package</span></a>
               </article>
               <article>
                 <p class="resource-meta">MACHINE DISCOVERY · NAVIGATION AID ONLY</p>
@@ -4561,31 +5515,112 @@
           works: {
             screen: {
               label: "หน้าจอประกอบการตัดสินใจ",
-              title: "ก่อนส่งหน้าจอนี้ต่อ ระบุว่าคนกำลังตัดสินใจเรื่องอะไร",
-              body: "วางสิ่งที่รู้ แหล่งข้อมูล วันที่ พื้นที่ ขอบเขต และข้อจำกัดไว้ข้างผลที่กำลังดู",
-              action: "เปิดจุดที่ต้องตรวจต่อ"
+              before: {
+                object: "หน้าจอเทียบพื้นที่ตัวอย่าง",
+                title: "ข้อมูลเชิงลึกล่าสุด เพื่อการตัดสินใจที่ชาญฉลาด",
+                body: "ภาพรวมความเปลี่ยนแปลงของพื้นที่ ก–ค",
+                action: "ดูเพิ่มเติม",
+                status: "อัปเดตแล้ว",
+                source: "ไม่แสดง",
+                boundary: "ไม่แสดง",
+                limit: "ไม่แสดง"
+              },
+              after: {
+                object: "พื้นที่ตัวอย่าง ก–ค · PRACTICE-01",
+                title: "พื้นที่ ข เปลี่ยนมากสุด—เปิดดูเหตุผลก่อนเลือกพื้นที่ถัดไป",
+                body: "เพิ่มขึ้น 18% จากรอบก่อนในข้อมูลจำลองชุดเดียวกัน ใช้ชี้จุดตรวจต่อ ไม่ได้ยืนยันสาเหตุ",
+                action: "เปิดพื้นที่ ข พร้อมที่มา",
+                status: "มีข้อจำกัด · source_limited",
+                source: "PRACTICE-01 · 25 ก.ค. 2569",
+                boundary: "เทียบเฉพาะพื้นที่ ก–ค ใน release เดียวกัน",
+                limit: "แสดงการเปลี่ยนแปลง ไม่ได้ยืนยันสาเหตุ"
+              }
             },
             map: {
               label: "แผนที่เปรียบเทียบพื้นที่",
-              title: "บอกก่อนว่ากำลังเทียบพื้นที่ไหน และข้อมูลชุดนี้เทียบกันได้หรือยัง",
-              body: "แสดง schema/release แหล่งข้อมูล วันที่ และจุดที่เข้ากันไม่ได้ ก่อนสรุปความต่าง",
-              action: "ตรวจความเข้ากันได้ของข้อมูล"
+              before: {
+                object: "แผนที่พื้นที่ตัวอย่าง ก–ค",
+                title: "เปรียบเทียบศักยภาพพื้นที่แบบครบมิติ",
+                body: "ดูความต่างของพื้นที่ทั้งหมดในแผนที่เดียว",
+                action: "สำรวจแผนที่",
+                status: "พร้อมใช้งาน",
+                source: "ไม่แสดง",
+                boundary: "ไม่แสดง",
+                limit: "ไม่แสดง"
+              },
+              after: {
+                object: "แผนที่พื้นที่ตัวอย่าง ก–ค · PRACTICE-01",
+                title: "พื้นที่ ค ยังเทียบกับ ก–ข ไม่ได้—ข้อมูลคนละ release",
+                body: "ก–ข ใช้ PRACTICE-01/R2 ส่วน ค ใช้ R1 ทำข้อมูลให้เข้าชุดก่อนสรุปความต่าง",
+                action: "ตรวจ release ของพื้นที่ ค",
+                status: "partial · comparison_blocked",
+                source: "PRACTICE-01 · R1/R2 · 25 ก.ค. 2569",
+                boundary: "เทียบ ก–ข ได้ใน R2; พื้นที่ ค ยังอยู่นอกชุดเทียบ",
+                limit: "ยังสรุปอันดับหรือความต่างของทั้งสามพื้นที่ไม่ได้"
+              }
             },
             report: {
               label: "รายงานข้อมูลพื้นที่",
-              title: "บอกสิ่งที่พบ แล้วพาไปดูหลักฐานและเรื่องที่ต้องตัดสินใจต่อ",
-              body: "วางสิ่งที่พบไว้ข้างแหล่งข้อมูล ช่วงเวลา ขอบเขต และเรื่องที่รายงานนี้ยังยืนยันไม่ได้",
-              action: "ตรวจข้อจำกัดก่อนส่งต่อ"
+              before: {
+                object: "รายงานพื้นที่ตัวอย่าง ก–ค",
+                title: "รายงานภาพรวมและแนวโน้มสำคัญ",
+                body: "สรุปข้อมูลสำหรับผู้บริหารและทีมที่เกี่ยวข้อง",
+                action: "อ่านรายงาน",
+                status: "ฉบับล่าสุด",
+                source: "ไม่แสดง",
+                boundary: "ไม่แสดง",
+                limit: "ไม่แสดง"
+              },
+              after: {
+                object: "รายงานพื้นที่ตัวอย่าง ก–ค · PRACTICE-01",
+                title: "2 ใน 3 พื้นที่ตัวอย่างเปลี่ยน—รายงานนี้ยังสรุปสาเหตุไม่ได้",
+                body: "ข้อมูลจำลองช่วง เม.ย.–มิ.ย. 2569 ครอบคลุมพื้นที่ ก–ค ใน release เดียวกัน",
+                action: "เปิดหลักฐานและข้อจำกัด",
+                status: "review_ready · source_limited",
+                source: "PRACTICE-01 · เม.ย.–มิ.ย. 2569",
+                boundary: "รายงานการเปลี่ยนแปลงของพื้นที่ ก–ค ใน R2",
+                limit: "บอกว่าค่าเปลี่ยน ไม่ได้พิสูจน์ว่าอะไรทำให้เปลี่ยน"
+              }
             },
             message: {
               label: "ข้อความสื่อสารผล",
-              title: "เริ่มจากคน สถานที่ หรืองาน ไม่ใช่คำอธิบายแพลตฟอร์ม",
-              body: "บอกว่าเกิดอะไรขึ้น รู้จากไหน เชื่อได้แค่ไหน และคนอ่านทำอะไรต่อได้",
-              action: "อ่านออกเสียงก่อนเผยแพร่"
+              before: {
+                object: "ข้อความสรุปผล",
+                title: "เปลี่ยนข้อมูลให้เป็นผลลัพธ์ที่มีความหมาย",
+                body: "ข้อมูลเชิงลึกที่ช่วยขับเคลื่อนการตัดสินใจอย่างชาญฉลาด",
+                action: "สำรวจ",
+                status: "พร้อมเผยแพร่",
+                source: "ไม่แสดง",
+                boundary: "ไม่แสดง",
+                limit: "ไม่แสดง"
+              },
+              after: {
+                object: "ข้อความพื้นที่ตัวอย่าง ข · PRACTICE-01",
+                title: "พื้นที่ ข เปลี่ยนมากสุดในรอบนี้ แต่ข้อมูลยังไม่บอกว่าเพราะอะไร",
+                body: "อ้างอิง PRACTICE-01 · 25 ก.ค. 2569 เปิดพื้นที่ ข ก่อนเลือกสิ่งที่จะตรวจต่อ",
+                action: "ดูพื้นที่ ข และที่มา",
+                status: "draft · source_limited",
+                source: "PRACTICE-01 · 25 ก.ค. 2569",
+                boundary: "สื่อสารเฉพาะการเปลี่ยนแปลงในข้อมูลจำลองรอบนี้",
+                limit: "ยังไม่ใช่คำอธิบายสาเหตุหรือคำแนะนำให้ตัดสินใจ"
+              }
             }
           },
-	          boundary: "หลักตัวตนที่ใช้ร่วมกัน · ข้อเท็จจริงของผลิตภัณฑ์ยังอยู่ในชั้น product-specific",
-	          limit: "ชุดข้อมูลสำหรับตรวจด้วยระบบและการตรวจคุณภาพของงานชิ้นนี้ยังไม่เสร็จ",
+          states: { before: "ก่อนปรับ", after: "หลังปรับ · DS 0.8.8" },
+          cues: {
+            dna: {
+              before: ["งานยังไม่ชัด", "ที่มาไม่แสดง", "ก้าวต่อกว้างเกินไป"],
+              after: ["เห็นงานชัด", "พาที่มามาด้วย", "ไปต่อได้จริง"]
+            },
+            voice: {
+              before: ["คำกว้าง", "ไม่บอกข้อจำกัด", "คำกริยาไม่ชัด"],
+              after: ["ใช้คำนามเฉพาะ", "พูดตามหลักฐาน", "คำกริยาพาไปต่อ"]
+            },
+            visual: {
+              before: ["จุดนำยังไม่ชัด", "สีไม่มีหน้าที่", "คอนทราสต์ไม่นิ่ง"],
+              after: ["จุดนำหนึ่งจุด", "สีมีหน้าที่", "อ่านได้ทุก surface"]
+            }
+          },
           stages: {
             frame: ["ตั้งโจทย์", "ลำดับความสำคัญ คำถามของผู้ใช้ และวัตถุที่ต้องตัดสินใจ"],
             write: ["เขียน", "ภาษา โครงประโยค และน้ำเสียงที่เป็นธรรมชาติของแต่ละภาษา"],
@@ -4594,12 +5629,21 @@
 	            verify: ["ตรวจ", "วิธีตรวจ ระดับความรุนแรงของปัญหา และหลักฐานการตรวจที่ผูกกับงานชิ้นนี้"],
 	            handoff: ["ส่งต่อ", "รูปแบบของช่องทางและบริบทที่คนถัดไปต้องใช้ทำงานต่อ"]
           },
+          recipeSteps: [
+            "ระบุว่าใครกำลังตัดสินใจเรื่องอะไร",
+            "บอกสิ่งที่รู้ พร้อมแหล่งข้อมูล วันที่ พื้นที่ และสถานะ",
+            "บอกว่างานชิ้นนี้ใช้ตอบอะไรได้ และยังยืนยันอะไรไม่ได้",
+            "จัดหน้าให้มีเรื่องหลักหนึ่งเรื่อง หลักฐานที่อ่านได้ และที่พักสายตา",
+            "จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง"
+          ],
+          recipeHandoff: "ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ",
+          recipeSource: "ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending",
           recipe: work => `งาน: ${work.label}
 
 1. ระบุว่าใครกำลังตัดสินใจเรื่องอะไร
 2. บอกสิ่งที่รู้ พร้อมแหล่งข้อมูล วันที่ พื้นที่ และสถานะ
 3. บอกว่างานชิ้นนี้ใช้ตอบอะไรได้ และยังยืนยันอะไรไม่ได้
-	4. จัดหน้าให้มีเรื่องหลักหนึ่งเรื่อง หลักฐานที่อ่านได้ และที่พักสายตา
+4. จัดหน้าให้มีเรื่องหลักหนึ่งเรื่อง หลักฐานที่อ่านได้ และที่พักสายตา
 5. จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง
 
 ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
@@ -4612,31 +5656,112 @@
           works: {
             screen: {
               label: "Decision-support screen",
-              title: "Before handoff, name the decision this screen helps someone make",
-              body: "Keep what is known with its source, date, place, boundary, and limitation.",
-              action: "Open the next evidence check"
+              before: {
+                object: "Sample-area comparison",
+                title: "Latest insights for smarter decisions",
+                body: "An overview of change across Areas A–C.",
+                action: "Explore",
+                status: "Updated",
+                source: "Not shown",
+                boundary: "Not shown",
+                limit: "Not shown"
+              },
+              after: {
+                object: "Sample Areas A–C · PRACTICE-01",
+                title: "Area B changed most—check why before choosing what to inspect next",
+                body: "Up 18% from the previous period in one synthetic dataset. Use it to direct the next check, not to claim a cause.",
+                action: "Open Area B with its source",
+                status: "Limited evidence · source_limited",
+                source: "PRACTICE-01 · 25 Jul 2026",
+                boundary: "Compare Areas A–C only within the same release",
+                limit: "Shows change, not its cause"
+              }
             },
             map: {
               label: "Area-comparison map",
-              title: "Name the areas being compared—and whether their data is compatible",
-              body: "Show schema/release, source, date, and incompatibility before interpreting a difference.",
-              action: "Check data compatibility"
+              before: {
+                object: "Sample Areas A–C map",
+                title: "Compare area potential across every dimension",
+                body: "See all area differences together on one map.",
+                action: "Explore map",
+                status: "Ready",
+                source: "Not shown",
+                boundary: "Not shown",
+                limit: "Not shown"
+              },
+              after: {
+                object: "Sample Areas A–C map · PRACTICE-01",
+                title: "Area C cannot yet be compared with A–B—the releases differ",
+                body: "A–B use PRACTICE-01/R2; C uses R1. Align the data before interpreting a difference.",
+                action: "Check Area C's release",
+                status: "partial · comparison_blocked",
+                source: "PRACTICE-01 · R1/R2 · 25 Jul 2026",
+                boundary: "A–B are comparable in R2; Area C is outside that set",
+                limit: "Do not rank or compare all three areas yet"
+              }
             },
             report: {
               label: "Place-data report",
-              title: "Move the reader from the finding to its evidence and next decision",
-              body: "Keep each finding with its source, period, boundary, and what the report still cannot establish.",
-              action: "Check limitations before handoff"
+              before: {
+                object: "Sample Areas A–C report",
+                title: "Key trends and executive overview",
+                body: "A complete summary for leaders and relevant teams.",
+                action: "Read report",
+                status: "Latest",
+                source: "Not shown",
+                boundary: "Not shown",
+                limit: "Not shown"
+              },
+              after: {
+                object: "Sample Areas A–C report · PRACTICE-01",
+                title: "Two of three sample areas changed; this report still cannot establish why",
+                body: "Synthetic PRACTICE-01 data for Apr–Jun 2026 covers Areas A–C under one release.",
+                action: "Open the evidence and limits",
+                status: "review_ready · source_limited",
+                source: "PRACTICE-01 · Apr–Jun 2026",
+                boundary: "Change across Areas A–C in R2",
+                limit: "Shows that values changed; it does not prove a cause"
+              }
             },
             message: {
               label: "Result message",
-              title: "Start with the person, place, or work—not the platform",
-              body: "Say what happened, where it came from, how far it can be trusted, and what the reader can do next.",
-              action: "Read aloud before publishing"
+              before: {
+                object: "Result message",
+                title: "Transform data into meaningful outcomes",
+                body: "Insights that power smarter decisions.",
+                action: "Explore",
+                status: "Ready to publish",
+                source: "Not shown",
+                boundary: "Not shown",
+                limit: "Not shown"
+              },
+              after: {
+                object: "Sample Area B message · PRACTICE-01",
+                title: "Area B changed most this period—but the data does not tell us why",
+                body: "PRACTICE-01 · 25 Jul 2026. Open Area B before choosing the next check.",
+                action: "See Area B and its source",
+                status: "draft · source_limited",
+                source: "PRACTICE-01 · 25 Jul 2026",
+                boundary: "Communicates this period's synthetic change only",
+                limit: "Not a causal explanation or decision recommendation"
+              }
             }
           },
-          boundary: "Shared identity guidance · product truth remains product-specific",
-          limit: "Machine package and artifact QA remain pending",
+          states: { before: "BEFORE", after: "AFTER · DS 0.8.8" },
+          cues: {
+            dna: {
+              before: ["Object unclear", "Source absent", "Next step too broad"],
+              after: ["Object is specific", "Source travels", "One useful next step"]
+            },
+            voice: {
+              before: ["Generic nouns", "Limits omitted", "Weak verb"],
+              after: ["Specific nouns", "Evidence-bounded", "Actionable verb"]
+            },
+            visual: {
+              before: ["No clear focus", "Color has no job", "Contrast drifts"],
+              after: ["One focal point", "Color has a job", "Surface-safe contrast"]
+            }
+          },
           stages: {
             frame: ["Frame", "Priority, the user's question, and the object that supports a decision"],
             write: ["Write", "Language, sentence structure, and natural voice authored for each locale"],
@@ -4645,6 +5770,15 @@
             verify: ["Verify", "Test method, issue severity, and QA evidence tied to this artifact"],
             handoff: ["Hand off", "Channel format and the context the next person needs to continue"]
           },
+          recipeSteps: [
+            "Name who is deciding what.",
+            "State what is known with its source, date, place, and status.",
+            "Say what this work can support—and what it still cannot establish.",
+            "Compose one focal idea, readable proof, and perceptual quiet.",
+            "End with one useful action for the next person."
+          ],
+          recipeHandoff: "Before handoff: preserve object/version, status, source, boundary, and limitation.",
+          recipeSource: "Source: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending",
           recipe: work => `Work: ${work.label}
 
 1. Name who is deciding what.
@@ -4666,6 +5800,10 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       const stageSelect = el("stage-select");
       const preview = el("proof-preview");
       const recipeText = el("recipe-text");
+      const recipeSteps = el("recipe-steps");
+      const recipeWorkLabel = el("recipe-work-label");
+      const recipeHandoff = el("recipe-handoff");
+      const recipeSource = el("recipe-source");
       const checks = [...document.querySelectorAll(".check-input")];
       const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
       const reducedMotionQuery = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -4920,19 +6058,35 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         const language = copy[state.locale];
         const work = language.works[state.work];
         const assisted = state.view === "assisted";
-        el("proof-object").textContent = work.label;
-        el("proof-title").textContent = work.title;
-        el("proof-body").textContent = work.body;
-        el("mock-action").textContent = work.action;
-        el("proof-state").textContent = assisted ? "ASSISTED" : "NEEDS REVISION";
-        el("meta-status").textContent = "source_limited";
-        el("meta-source").textContent = "v0.8.8 authoring master · 25 Jul 2026";
-        el("meta-boundary").textContent = language.boundary;
-        el("meta-limit").textContent = language.limit;
+        const variantKey = assisted ? "after" : "before";
+        const variant = work[variantKey];
+        const lensCues = language.cues[state.lens][variantKey];
+        el("proof-object").textContent = variant.object;
+        el("proof-title").textContent = variant.title;
+        el("proof-body").textContent = variant.body;
+        el("mock-action").textContent = variant.action;
+        el("proof-state").textContent = language.states[variantKey];
+        el("meta-status").textContent = variant.status;
+        el("meta-source").textContent = variant.source;
+        el("meta-boundary").textContent = variant.boundary;
+        el("meta-limit").textContent = variant.limit;
+        lensCues.forEach((cue, index) => {
+          el(`proof-cue-${index + 1}`).textContent = cue;
+        });
         preview.dataset.surface = state.surface;
+        preview.dataset.lens = state.lens;
         preview.classList.toggle("is-visual", state.lens === "visual");
         preview.classList.toggle("is-baseline", !assisted);
         el("handoff-object-label").textContent = work.label;
+        recipeWorkLabel.textContent = work.label;
+        recipeSteps.replaceChildren();
+        language.recipeSteps.forEach(step => {
+          const item = document.createElement("li");
+          item.textContent = step;
+          recipeSteps.append(item);
+        });
+        recipeHandoff.textContent = language.recipeHandoff;
+        recipeSource.textContent = language.recipeSource;
         recipeText.value = language.recipe(work);
       }
 
@@ -5073,6 +6227,12 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           recipeText.select();
           let copied = false;
           try { copied = document.execCommand("copy"); } catch (_) {}
+          if (!copied) {
+            recipeText.classList.remove("sr-only");
+            recipeText.classList.add("copy-fallback-text");
+            recipeText.focus();
+            recipeText.select();
+          }
           status.textContent = copied ? copy[state.locale].copied : copy[state.locale].copyFail;
         }
       });
@@ -5094,6 +6254,27 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         }, 280);
       });
       ctaReset.addEventListener("click", resetCtaFixture);
+
+      function decorateOpportunityCards() {
+        const iconIds = ["target", "components", "people", "source"];
+        document.querySelectorAll(".opportunity-card dl").forEach(list => {
+          if (list.previousElementSibling?.classList.contains("opportunity-flow")) return;
+          const flow = document.createElement("div");
+          flow.className = "opportunity-flow";
+          flow.setAttribute("aria-hidden", "true");
+          iconIds.forEach(iconId => {
+            const step = document.createElement("span");
+            const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+            icon.setAttribute("class", "ui-icon");
+            use.setAttribute("href", `#icon-${iconId}`);
+            icon.append(use);
+            step.append(icon);
+            flow.append(step);
+          });
+          list.before(flow);
+        });
+      }
 
       function revealDetails(id, shouldFocus = false, requestedBehavior = null) {
         const details = el(id);
@@ -5136,6 +6317,7 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           root.dataset.thaiLabelsReady = document.fonts.check('400 16px "Bai Jamjuree"', "ตอนนี้งานอยู่ช่วงไหน") ? "true" : "false";
         });
       }
+      decorateOpportunityCards();
       renderControls();
       if (document.readyState === "complete") {
         revealHashDetails();
