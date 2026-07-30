@@ -46,8 +46,8 @@
       "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
       "registryMarker": "data-color-registry=\"color-srgb-01\"",
       "buildChannelMarker": "data-build-channel=\"immutable-color-set\"",
-      "bytes": 2005092,
-      "sha256": "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832",
+      "bytes": 2005089,
+      "sha256": "69f2e2ca8b7bba6bc2ae1b8765112b4649d7fef63160a1c1aa2110fefd7baedb",
       "integrityMode": "derive SHA-256 and byte count from the built file during release validation; require byte-for-byte parity with the latest standalone except for the build-channel marker",
       "status": "built; static parity validated; two-device manual gate pending"
     }
@@ -396,16 +396,16 @@
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.html",
-      "bytes": 2005085,
-      "sha256": "2628893af23ba4b26359c3615372ee206e8485c69f1d8013f34b99119be230e4",
+      "bytes": 2005082,
+      "sha256": "2c9ac6296ac414e05a7459811c3028dc9f4053c2a5786c03408d4df114b78b46",
       "usageClass": "self-contained single-file playground snapshot",
       "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; linked release records still resolve to production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
-      "bytes": 2005092,
-      "sha256": "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832",
+      "bytes": 2005089,
+      "sha256": "69f2e2ca8b7bba6bc2ae1b8765112b4649d7fef63160a1c1aa2110fefd7baedb",
       "usageClass": "immutable self-contained color-set handoff and visual-QA authority",
       "registryId": "color-srgb-01",
       "integrityMode": "derived during release validation and compared with the latest standalone after normalizing only data-build-channel",
