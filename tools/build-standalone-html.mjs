@@ -11,6 +11,10 @@ const outputPath = path.join(
   deploymentDir,
   "landometer-design-system-v0.8.8-standalone.html",
 );
+const colorDeliveryPath = path.join(
+  deploymentDir,
+  "assets/data/color-delivery.v0.8.8.json",
+);
 const publicBase = "https://montri-th.github.io/Landometer/";
 
 const embeddedAssets = [
@@ -21,9 +25,10 @@ const embeddedAssets = [
   ["assets/fonts/bai-jamjuree-thai-600-normal.woff2", "font/woff2"],
   ["assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2", "font/woff2"],
   ["assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2", "font/woff2"],
-  ["assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2", "font/woff2"],
-  ["assets/fonts/jetbrains-mono-latin-500-normal.woff2", "font/woff2"],
+  ["assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2", "font/woff2"],
+  ["assets/fonts/jetbrains-mono-latin-400-normal.woff2", "font/woff2"],
   ["assets/images/landometer-logo-banner.png", "image/png"],
+  ["assets/images/landometer-symbol-transparent.png", "image/png"],
   ["assets/images/team-hero.jpg", "image/jpeg"],
 ];
 
@@ -40,7 +45,40 @@ async function dataUrl(relativePath, mime) {
   return `data:${mime};base64,${bytes.toString("base64")}`;
 }
 
+async function writePinnedColorSet(outputFile, contents) {
+  try {
+    const existing = await readFile(outputFile, "utf8");
+    assert(
+      existing === contents,
+      `pinned Color Set already exists with different bytes: ${path.basename(outputFile)}. Preserve it and mint a new color-set id plus filename instead of overwriting it.`,
+    );
+    return "preserved";
+  } catch (error) {
+    if (error?.code !== "ENOENT") throw error;
+    await writeFile(outputFile, contents, "utf8");
+    return "created";
+  }
+}
+
 let html = await readFile(sourcePath, "utf8");
+const colorDelivery = JSON.parse(await readFile(colorDeliveryPath, "utf8"));
+const pinnedOutputName = colorDelivery?.meta?.immutableStandalone;
+assert(
+  colorDelivery?.meta?.id === "color-srgb-01",
+  "unexpected color-delivery registry id",
+);
+assert(
+  /^landometer-design-system-v0\.8\.8-standalone\.[a-z0-9-]+\.html$/.test(
+    pinnedOutputName ?? "",
+  ),
+  "color-delivery registry must declare a safe immutable standalone filename",
+);
+const pinnedOutputPath = path.join(deploymentDir, pinnedOutputName);
+
+html = html.replace(
+  /\n\s*<link\s+rel="canonical"\s+href="[^"]+">\s*/i,
+  "\n",
+);
 
 for (const [relativePath, mime] of embeddedAssets) {
   const encoded = await dataUrl(relativePath, mime);
@@ -61,10 +99,11 @@ html = html.replace(
 );
 html = html.replace(
   "<head>",
-  "<head>\n  <!-- Self-contained snapshot generated from deployment/index.html. Display fonts and images are embedded. Linked release records remain canonical production URLs. -->",
+  "<head>\n  <!-- Self-contained noncanonical snapshot generated from deployment/index.html. Display fonts and images are embedded; linked release records still point to canonical production files. -->",
 );
 
 assert(html.includes('data-standalone="true"'), "standalone marker is missing");
+assert(!/<link\s+rel="canonical"\b/i.test(html), "standalone snapshot must not claim a live canonical URL");
 assert(!/(?:src|href)="assets\//.test(html), "relative display asset remains");
 assert(!/url\(["']?assets\//.test(html), "relative CSS asset remains");
 assert(
@@ -79,8 +118,27 @@ assert(
   [...html.matchAll(/class="atlas-class-cell"/g)].length === 18 * (5 + 7 + 9),
   "embedded color atlas does not contain every 5/7/9 class cell",
 );
+assert(
+  [...html.matchAll(/class="scale-family-card"/g)].length === 9,
+  "embedded scale sampler does not contain all nine families",
+);
+assert(
+  [...html.matchAll(/class="scale-family-class-cell"/g)].length === 9 * (5 + 7 + 9),
+  "embedded scale sampler does not contain every paired 5/7/9 class cell",
+);
+
+const pinnedHtml = html.replace(
+  'data-build-channel="latest-alias"',
+  'data-build-channel="immutable-color-set"',
+);
+assert(
+  pinnedHtml.includes('data-color-registry="color-srgb-01"') &&
+    pinnedHtml.includes('data-build-channel="immutable-color-set"'),
+  "immutable standalone color-set markers are missing",
+);
 
 await writeFile(outputPath, html, "utf8");
+const pinnedDisposition = await writePinnedColorSet(pinnedOutputPath, pinnedHtml);
 process.stdout.write(
-  `Wrote ${outputPath} (${Buffer.byteLength(html).toLocaleString("en-US")} bytes)\n`,
+  `Wrote ${outputPath} (${Buffer.byteLength(html).toLocaleString("en-US")} bytes) and ${pinnedDisposition} ${pinnedOutputPath} (${Buffer.byteLength(pinnedHtml).toLocaleString("en-US")} bytes)\n`,
 );

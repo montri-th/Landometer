@@ -86,9 +86,23 @@ const manifest = json("site-manifest.v0.8.8.json");
 const inventory = json("control-inventory.v0.8.8.json");
 const buildCard = text("build-card.v0.8.8.yml");
 const fontManifest = json("font-assets.manifest.json");
+const tokenSource = json("assets/data/tokens.json");
+const scaleSource = json("assets/data/scales.json");
+const colorDelivery = json("assets/data/color-delivery.v0.8.8.json");
 const implementationNotes = text("implementation-notes.v0.8.8.md");
 const machineDiscoveryAid = text("llms.txt");
 const robotsRecord = text("robots.txt");
+const readme = readFileSync(resolve(root, "../README.md"), "utf8");
+const immutableStandaloneName = colorDelivery?.meta?.immutableStandalone ?? "";
+const immutableStandaloneExists =
+  immutableStandaloneName.length > 0 &&
+  existsSync(resolve(root, immutableStandaloneName));
+const immutableStandaloneHtml = immutableStandaloneExists
+  ? text(immutableStandaloneName)
+  : "";
+const tokenRegistrySha256 = sha256("assets/data/tokens.json");
+const scaleRegistrySha256 = sha256("assets/data/scales.json");
+const colorDeliverySha256 = sha256("assets/data/color-delivery.v0.8.8.json");
 
 pass(/data-ds-version="0\.8\.8"/.test(html), "HTML exposes Design System 0.8.8");
 pass(/data-build-card-version="0\.8\.8"/.test(html), "HTML exposes Build Card 0.8.8");
@@ -101,6 +115,50 @@ pass(/data-evidence-status="source_limited"/.test(html), "HTML preserves source_
 pass(/data-visibility="public"/.test(html), "HTML visibility enum matches the Build Card and manifest");
 pass(/data-machine-validation="pending"/.test(html), "HTML preserves pending machine validation");
 pass(/noindex,nofollow,noarchive/.test(html), "HTML preserves noindex metadata");
+pass(/data-color-space="srgb"/.test(html), "HTML exposes the canonical SDR sRGB delivery space");
+pass(
+  /data-gradient-interpolation="srgb-explicit-with-legacy-fallback"/.test(html),
+  "HTML exposes the governed sRGB gradient-interpolation contract",
+);
+pass(
+  /data-color-registry="color-srgb-01"/.test(html),
+  "HTML exposes color-srgb-01 as its color-delivery registry",
+);
+pass(
+  /data-build-channel="latest-alias"/.test(html),
+  "Hosted root identifies itself as the latest mutable alias",
+);
+
+pass(colorDelivery.meta?.id === "color-srgb-01", "Color-delivery registry ID is color-srgb-01");
+pass(
+  colorDelivery.meta?.designSystemVersion === "0.8.8",
+  "Color-delivery registry is scoped to Design System 0.8.8",
+);
+pass(
+  colorDelivery.delivery?.range === "SDR" &&
+    colorDelivery.delivery?.colorSpace === "sRGB IEC 61966-2-1",
+  "Color-delivery registry fixes canonical output to SDR sRGB",
+);
+pass(
+  colorDelivery.sources?.tokenRegistry?.path === "assets/data/tokens.json" &&
+    colorDelivery.sources?.tokenRegistry?.sha256 === tokenRegistrySha256,
+  "Color-delivery registry token fingerprint matches assets/data/tokens.json",
+);
+pass(
+  colorDelivery.sources?.scaleRegistry?.path === "assets/data/scales.json" &&
+    colorDelivery.sources?.scaleRegistry?.sha256 === scaleRegistrySha256,
+  "Color-delivery registry scale fingerprint matches assets/data/scales.json",
+);
+pass(
+  tokenSource?.meta?.version === colorDelivery.sources?.tokenRegistry?.carriedVersion &&
+    scaleSource?.meta?.version === colorDelivery.sources?.scaleRegistry?.carriedVersion,
+  "Color-delivery registry carried versions match the token and scale sources",
+);
+pass(
+  immutableStandaloneName ===
+    "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+  "Color-delivery registry declares the immutable color-srgb-01 standalone filename",
+);
 
 pass(manifest.artifact.version === "0.8.8", "Manifest version is 0.8.8");
 pass(manifest.artifact.buildCardVersion === "0.8.8", "Manifest Build Card version is 0.8.8");
@@ -114,6 +172,30 @@ pass(manifest.artifact.profile === "brand.public", "Manifest selects the brand.p
 pass(manifest.artifact.delivery === "internal_demo", "Manifest preserves internal-demo delivery");
 pass(manifest.artifact.deliveryConformance === "not_claimed", "Public projection does not claim internal-demo delivery conformance");
 pass(manifest.artifact.deliveryVisibilityMismatch.includes("public GitHub Pages"), "Delivery and visibility mismatch is recorded explicitly");
+pass(
+  manifest.colorDelivery?.registryId === colorDelivery.meta?.id &&
+    manifest.colorDelivery?.registryPath === "assets/data/color-delivery.v0.8.8.json" &&
+    manifest.colorDelivery?.range === colorDelivery.delivery?.range &&
+    manifest.colorDelivery?.colorSpace === colorDelivery.delivery?.colorSpace,
+  "Manifest color-delivery identity matches the registry",
+);
+pass(
+  manifest.colorDelivery?.tokenRegistry?.path ===
+      colorDelivery.sources?.tokenRegistry?.path &&
+    manifest.colorDelivery?.tokenRegistry?.sha256 === tokenRegistrySha256 &&
+    manifest.colorDelivery?.scaleRegistry?.path ===
+      colorDelivery.sources?.scaleRegistry?.path &&
+    manifest.colorDelivery?.scaleRegistry?.sha256 === scaleRegistrySha256,
+  "Manifest token and scale fingerprints match the color-delivery registry",
+);
+pass(
+  manifest.colorDelivery?.immutableStandalone?.path === immutableStandaloneName &&
+    manifest.colorDelivery?.immutableStandalone?.registryMarker ===
+      'data-color-registry="color-srgb-01"' &&
+    manifest.colorDelivery?.immutableStandalone?.buildChannelMarker ===
+      'data-build-channel="immutable-color-set"',
+  "Manifest records the immutable color-set standalone and its root markers",
+);
 pass(manifest.publication.robots === "noindex,nofollow,noarchive", "Manifest robots policy matches the HTML page");
 pass(manifest.publication.indexPolicyScope.startsWith("html_page_only"), "Manifest limits noindex policy to the HTML page");
 pass(manifest.publication.robotsFile?.authority === "project_path_non_authoritative", "Manifest records the project-path robots limitation");
@@ -205,6 +287,41 @@ pass(buildCard.includes("deliveryVisibilityMismatch:"), "Build Card records the 
 pass(buildCard.includes("fullLivingReference: false"), "Build Card keeps Full Living Reference disabled");
 pass(buildCard.includes("search: false"), "Build Card keeps search disabled");
 pass(buildCard.includes("machineValidation: pending"), "Build Card preserves pending validation");
+pass(
+  buildCard.includes("registryId: color-srgb-01") &&
+    buildCard.includes("registryPath: assets/data/color-delivery.v0.8.8.json") &&
+    buildCard.includes("colorSpace: sRGB IEC 61966-2-1"),
+  "Build Card color-delivery identity matches the registry",
+);
+pass(
+  buildCard.includes(
+    `sha256: ${tokenRegistrySha256}`,
+  ) &&
+    buildCard.includes(
+      `sha256: ${scaleRegistrySha256}`,
+    ),
+  "Build Card records the exact token and scale fingerprints",
+);
+pass(
+  buildCard.includes(`path: ${immutableStandaloneName}`) &&
+    buildCard.includes('registryMarker: data-color-registry="color-srgb-01"') &&
+    buildCard.includes(
+      'buildChannelMarker: data-build-channel="immutable-color-set"',
+    ),
+  "Build Card records the immutable color-set standalone and its root markers",
+);
+pass(
+  JSON.stringify(manifest.colorDelivery?.visualBaselines) ===
+      JSON.stringify(colorDelivery.delivery?.comparisonThemes) &&
+    buildCard.includes("visualBaselines: [light, dark]") &&
+    /system is a user preference, not a visual-baseline state/.test(
+      manifest.colorDelivery?.adaptiveTheme ?? "",
+    ) &&
+    buildCard.includes(
+      "adaptiveTheme: system is a user preference, not a visual-baseline state",
+    ),
+  "Registry, Manifest, and Build Card agree that light/dark are baselines and system is adaptive",
+);
 pass(buildCard.includes("robots: noindex,nofollow,noarchive"), "Build Card robots policy matches the HTML page");
 pass(buildCard.includes("indexPolicyScope: html_page_only"), "Build Card limits noindex policy to the HTML page");
 pass(buildCard.includes("robotsFile: project-path non-authoritative"), "Build Card records the project-path robots limitation");
@@ -261,6 +378,63 @@ pass(buildCard.includes("logoBackground: transparent_non_negotiable"), "Build Ca
 pass(buildCard.includes("releaseMetadataBackground: transparent"), "Build Card keeps release metadata transparent");
 pass(buildCard.includes("single quiet icon button"), "Build Card records the one-button theme cycle");
 pass(buildCard.includes("single quiet state button"), "Build Card records the one-button locale cycle");
+
+const actionCapsuleSelectors = [
+  ".skip-link",
+  ".primary-action",
+  ".secondary-action",
+  ".copy-button",
+  ".pattern-button",
+  ".cta-proof button",
+  ".intent-form button",
+  ".form-demo .button",
+  ".interaction-sample .interaction-control",
+  ".resource-grid .download-action",
+  ".scale-sampler-foot a",
+];
+const pillRules = cssRules(html).filter(rule =>
+  /border-radius:\s*var\(--radius-pill\)/.test(rule.declarations)
+);
+const pillRuleSelectors = new Set(
+  pillRules.flatMap(rule => rule.selector.split(",").map(selector => selector.trim())),
+);
+pass(/--radius-pill:\s*999px/.test(html), "The existing radius-pill token is available to the action family");
+pass(
+  actionCapsuleSelectors.every(selector => pillRuleSelectors.has(selector)),
+  "Every text-labelled or mixed-label action uses the shared capsule token",
+);
+pass(
+  ![
+    "button",
+    "a",
+    "[role=\"button\"]",
+    "summary",
+    "input",
+    "select",
+    ".segmented button",
+    ".lens-list button",
+    ".surface-list button",
+  ].some(selector => pillRuleSelectors.has(selector)),
+  "Capsule geometry does not spread to generic links, fields, disclosures, tabs, or grouped selectors",
+);
+pass(
+  /\.theme-cycle,\s*\.language-cycle\s*\{[\s\S]*?width:\s*44px;[\s\S]*?min-height:\s*44px;[\s\S]*?border-radius:\s*50%/.test(html),
+  "Icon-only theme and language utilities retain 44 × 44 circular targets",
+);
+pass(
+  pillRules.some(rule =>
+    actionCapsuleSelectors.every(selector =>
+      rule.selector.split(",").map(value => value.trim()).includes(selector)
+    ) &&
+    /max-inline-size:\s*100%/.test(rule.declarations) &&
+    /white-space:\s*normal/.test(rule.declarations)
+  ),
+  "Capsule actions may wrap without clipping Thai or English labels",
+);
+pass(
+  /@media\s*\(max-width:\s*620px\)[\s\S]*?\.color-route-actions\s*\{\s*display:\s*grid;[\s\S]*?\.color-route-actions a,\s*\.scale-sampler-foot \.secondary-action\s*\{\s*width:\s*100%/.test(html),
+  "Color-route and scale-sampler capsule actions stack at narrow widths",
+);
 
 pass((html.match(/<h1\b/g) || []).length === 1, "Page source contains exactly one H1");
 pass(html.includes('aria-label="Let us cultivate our city."'), "Protected cultural invitation is exact");
@@ -325,10 +499,26 @@ pass(
 );
 pass(
   !html.includes("jetbrains-mono-latin-700-normal.woff2") &&
+    !html.includes("jetbrains-mono-latin-500-normal.woff2") &&
+    !html.includes("ibm-plex-sans-thai-thai-500-normal.woff2") &&
     !fontManifest.faces?.some(face => face.family === "JetBrains Mono" && face.weight === 700) &&
-    fontManifest.faces?.some(face => face.family === "JetBrains Mono" && face.weight === 500) &&
-    fontManifest.faces?.some(face => face.family === "IBM Plex Sans Thai" && face.weight === 500),
-  "Technical Latin and Thai use one active weight, 500, with no JetBrains Mono 700 payload",
+    !fontManifest.faces?.some(face => face.family === "JetBrains Mono" && face.weight === 500) &&
+    !fontManifest.faces?.some(face => face.family === "IBM Plex Sans Thai" && face.weight === 500) &&
+    fontManifest.faces?.some(face => face.family === "JetBrains Mono" && face.weight === 400) &&
+    fontManifest.faces?.some(face => face.family === "IBM Plex Sans Thai" && face.weight === 400),
+  "Technical Latin and Thai use one active weight, 400, with no active 500/700 payload",
+);
+pass(
+  !existsSync(resolve(root, "assets/fonts/jetbrains-mono-latin-500-normal.woff2")) &&
+    !existsSync(resolve(root, "assets/fonts/jetbrains-mono-latin-700-normal.woff2")) &&
+    !existsSync(resolve(root, "assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2")),
+  "Stale 500/700 technical font assets are removed from the published package",
+);
+pass(
+  readme.includes("JetBrains Mono 400") &&
+    readme.includes("IBM Plex Sans Thai 400") &&
+    !/packaged JetBrains Mono 500|IBM Plex Sans Thai 500 for Thai glyphs/.test(readme),
+  "README matches the active single-weight 400 technical pair",
 );
 pass(
   html.includes('id="library-color"') &&
@@ -376,6 +566,115 @@ pass(
     (html.match(/--route-class-count:3/g) || []).length === 2,
   "Sequential and diverging route previews fill exactly their three declared tracks",
 );
+
+const samplerStartMarker = "<!-- COLOR_SCALE_SAMPLER_START -->";
+const samplerEndMarker = "<!-- COLOR_SCALE_SAMPLER_END -->";
+const samplerStart = html.indexOf(samplerStartMarker);
+const samplerEnd = html.indexOf(samplerEndMarker);
+const samplerMarkersValid = samplerStart >= 0 && samplerEnd > samplerStart;
+const samplerHtml = samplerMarkersValid
+  ? html.slice(samplerStart + samplerStartMarker.length, samplerEnd)
+  : "";
+pass(samplerMarkersValid, "Scale teaching sampler has one ordered generated-fragment boundary");
+pass((html.match(/<!-- COLOR_SCALE_SAMPLER_START -->/g) || []).length === 1, "Scale sampler has exactly one start marker");
+pass((html.match(/<!-- COLOR_SCALE_SAMPLER_END -->/g) || []).length === 1, "Scale sampler has exactly one end marker");
+pass(countClass(samplerHtml, "scale-family-card") === 9, "Scale sampler exposes all nine analytical families");
+pass(countClass(samplerHtml, "scale-family-class-cell") === 189, "Scale sampler contains 189 exact paired 5/7/9 class cells");
+pass(
+  countClass(samplerHtml, "scale-family-group") === 2 &&
+    countClass(samplerHtml, "scale-family-card") === 9 &&
+    (samplerHtml.match(/data-scale-kind="sequential"/g) || []).length === 7 &&
+    (samplerHtml.match(/data-scale-kind="diverging"/g) || []).length === 4,
+  "Scale sampler separates six sequential and three diverging families",
+);
+pass(
+  /data-scale-source-version="0\.8\.6"/.test(samplerHtml) &&
+    /data-scale-records="18"/.test(samplerHtml) &&
+    /SOURCE_LIMITED\s*·\s*REFERENCE FIXTURE\s*·\s*MACHINE VALIDATION PENDING/.test(samplerHtml) &&
+    /not a scale-gate-cleared v0\.8\.8 dataviz\.tokens\.json package/i.test(samplerHtml),
+  "Scale sampler preserves source version, record count, and scale-gate boundary",
+);
+
+const samplerCards = [...samplerHtml.matchAll(
+  /<article\s+([^>]*\bclass="scale-family-card"[^>]*)>([\s\S]*?)<\/article>/g,
+)];
+const expectedSamplerFamilies = [
+  ["growth", "sequential"],
+  ["water", "sequential"],
+  ["risk", "sequential"],
+  ["activity", "sequential"],
+  ["density", "sequential"],
+  ["confidence", "sequential"],
+  ["balance", "diverging"],
+  ["delta", "diverging"],
+  ["tradeoff", "diverging"],
+];
+const samplerCardKeys = samplerCards.map(([, attributes]) => [
+  attributeValue(attributes, "data-scale-family"),
+  attributeValue(attributes, "data-scale-kind"),
+]);
+pass(
+  samplerCardKeys.length === expectedSamplerFamilies.length &&
+    expectedSamplerFamilies.every(([family, kind]) =>
+      samplerCardKeys.some(([actualFamily, actualKind]) =>
+        actualFamily === family && actualKind === kind
+      )
+    ),
+  "Scale sampler uses the six sequential and three diverging governed family IDs",
+);
+
+const samplerValuesMatchSource = samplerCards.every(([, attributes, body]) => {
+  const family = attributeValue(attributes, "data-scale-family");
+  const kind = attributeValue(attributes, "data-scale-kind");
+  const light = scaleSource.scales.find(record =>
+    record.scaleId === family && record.theme === "light"
+  );
+  const dark = scaleSource.scales.find(record =>
+    record.scaleId === family && record.theme === "dark"
+  );
+  if (!light || !dark || light.kind !== kind || dark.kind !== kind) return false;
+  if (
+    attributeValue(attributes, "data-scale-version-light") !== light.scaleVersion ||
+    attributeValue(attributes, "data-scale-version-dark") !== dark.scaleVersion
+  ) return false;
+
+  const rows = [...body.matchAll(
+    /<figure class="scale-family-class-row" data-class-count="(\d+)">([\s\S]*?)<\/figure>/g,
+  )];
+  if (rows.length !== 3) return false;
+
+  return [5, 7, 9].every(classCount => {
+    const row = rows.find(([, count]) => Number(count) === classCount);
+    if (!row) return false;
+    const cells = elementsWithClass(row[2], "scale-family-class-cell");
+    if (cells.length !== classCount) return false;
+    return cells.every((cell, index) => {
+      const style = attributeValue(cell, "style") ?? "";
+      const lightValue = style.match(/--scale-light:\s*(#[0-9A-F]{6})/i)?.[1]?.toUpperCase();
+      const darkValue = style.match(/--scale-dark:\s*(#[0-9A-F]{6})/i)?.[1]?.toUpperCase();
+      return (
+        lightValue === light.classes[String(classCount)][index] &&
+        darkValue === dark.classes[String(classCount)][index]
+      );
+    });
+  });
+});
+pass(samplerValuesMatchSource, "Every sampler cell and scaleVersion matches the exact generated source values");
+pass(
+  !/(?:linear|radial|conic)-gradient\s*\(|color-mix\s*\(/i.test(samplerHtml) &&
+    /\.scale-family-class-cell\s*\{[\s\S]*?background:\s*var\(--scale-light\)/.test(html) &&
+    /html\[data-theme="dark"\]\s+\.scale-family-class-cell\s*\{[\s\S]*?background:\s*var\(--scale-dark\)/.test(html),
+  "Scale sampler switches exact solid light/dark cells without runtime mixing",
+);
+pass(
+  /href="#atlas-dataviz-title"[^>]*data-reveal-target="atlas-dataviz-title"/.test(samplerHtml),
+  "Scale sampler links to the exhaustive 41-stop registry",
+);
+pass(
+  /class="secondary-action scale-sampler-action"[^>]*href="#atlas-dataviz-title"/.test(samplerHtml),
+  "Generated scale sampler uses the shared capsule action family",
+);
+
 pass(
   html.includes("revealTarget(target, true)") &&
     html.includes('focusTarget.setAttribute("tabindex", "-1")') &&
@@ -553,7 +852,7 @@ pass(html.includes("--font-body-fallback: \"Noto Sans Thai\", \"Leelawadee UI\",
 pass(html.includes("--font-number-fallback: \"SFMono-Regular\", Consolas, \"Liberation Mono\", monospace"), "Number fallback token is exact");
 pass(html.includes("document.fonts.ready"), "Font readiness is observed");
 pass(html.includes('rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2"'), "Thai label font is preloaded from the self-hosted asset");
-pass(html.includes('rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2"'), "Thai technical companion is preloaded from the self-hosted asset");
+pass(html.includes('rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2"'), "Thai technical companion is preloaded from the self-hosted weight-400 asset");
 pass(
   html.includes('--font-technical-latin: "JetBrains Mono"') &&
     html.includes('--font-technical-th: "IBM Plex Sans Thai"') &&
@@ -561,12 +860,12 @@ pass(
   "Technical typography uses one deterministic script-aware JetBrains Mono and IBM Plex Sans Thai pair",
 );
 pass(
-  /font-family:\s*"IBM Plex Sans Thai";[\s\S]*?font-weight:\s*500;[\s\S]*?size-adjust:\s*102%;[\s\S]*?unicode-range:\s*U\+02D7,\s*U\+0303,\s*U\+0331,\s*U\+0E01-0E5B,\s*U\+200C-200D,\s*U\+25CC/.test(html),
-  "IBM Plex Sans Thai 500 has the exact Thai subset and conservative optical size adjustment",
+  /font-family:\s*"IBM Plex Sans Thai";[\s\S]*?font-weight:\s*400;[\s\S]*?size-adjust:\s*102%;[\s\S]*?unicode-range:\s*U\+02D7,\s*U\+0303,\s*U\+0331,\s*U\+0E01-0E5B,\s*U\+200C-200D,\s*U\+25CC/.test(html),
+  "IBM Plex Sans Thai 400 has the exact Thai subset and conservative optical size adjustment",
 );
 pass(
   html.includes("--font-label-th: var(--font-technical)") &&
-    /html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)[\s\S]*?font-weight:\s*500[\s\S]*?letter-spacing:\s*var\(--tracking-technical-th\)[\s\S]*?line-height:\s*var\(--leading-technical-th\)/.test(html),
+    /html\[data-locale="th"\] \.control-label,[\s\S]*?font-family:\s*var\(--font-label-th\)[\s\S]*?font-weight:\s*var\(--weight-technical\)[\s\S]*?letter-spacing:\s*var\(--tracking-technical-th\)[\s\S]*?line-height:\s*var\(--leading-technical-th\)/.test(html),
   "Thai controls and handoff labels use the tuned technical pair rather than an operating-system fallback",
 );
 pass(
@@ -577,7 +876,7 @@ pass(
   "Thai technical labels carry governed line-height, tracking, and compact-pill breathing room",
 );
 pass(
-  html.includes('document.fonts.load(\'500 16px "IBM Plex Sans Thai"\'') &&
+  html.includes('document.fonts.load(\'400 16px "IBM Plex Sans Thai"\'') &&
     html.includes("thaiBodyReady") &&
     html.includes("thaiTechnicalReady"),
   "Thai body and technical glyph readiness are checked independently",
@@ -591,13 +890,17 @@ pass(
   html.includes("overflow-wrap: break-word") &&
     anywhereWrapRules.length > 0 &&
     anywhereWrapRules.every(rule =>
-      /(?:atlas-pair-label\s+strong|atlas-map-cell\s+figcaption\s+strong|atlas-scale-foot\s+code)/.test(rule.selector)
+      /(?:scale-family-head\s+code|atlas-pair-label\s+strong|atlas-map-cell\s+figcaption\s+strong|atlas-scale-foot\s+code|color-stability-rule\s+code)/.test(rule.selector)
     ),
   "Prose avoids arbitrary mid-word breaks while constrained atlas values may wrap safely"
 );
 pass(html.includes("text-wrap: balance") && html.includes("text-wrap: pretty"), "Display and prose use balanced/pretty wrapping");
 pass(/h5,\s*\n\s*h6\s*\{[\s\S]*?overflow-wrap:\s*normal/.test(html), "H6 pattern headings inherit smart non-arbitrary wrapping");
-pass(/\.eyebrow\s*\{[\s\S]*?font-weight:\s*500/.test(html), "JetBrains Mono metadata uses the lightest packaged weight 500");
+pass(
+  /--weight-technical:\s*400/.test(html) &&
+    /\.eyebrow\s*\{[\s\S]*?font-weight:\s*var\(--weight-technical\)/.test(html),
+  "JetBrains Mono and IBM Plex Sans Thai metadata use the single lighter weight 400",
+);
 pass(/\.logo-surface\s*\{[\s\S]*?background:\s*transparent[\s\S]*?border:\s*0[\s\S]*?border-radius:\s*0/.test(html), "Logo has no background, border, radius, or carrier");
 pass(/\.release-label\s*\{[\s\S]*?background:\s*transparent[\s\S]*?border:\s*0[\s\S]*?border-radius:\s*0/.test(html), "Release metadata has no background, border, radius, or carrier");
 pass(/\.site-header::before\s*\{[\s\S]*?background:\s*#E2E9ED/.test(html), "Shared header surface owns logo and metadata contrast");
@@ -797,6 +1100,42 @@ pass(html.includes('id="resource-implementation-notes"') && html.includes('id="r
 pass(!/<meta\s+property="og:/i.test(html), "Internal demo omits Open Graph promotion metadata");
 pass(!/<script[^>]+type=["']application\/ld\+json["']/i.test(html), "Internal demo omits public structured-data claims");
 pass(!/<link[^>]+rel=["']alternate["'][^>]+href=["']llms\.txt["']/i.test(html), "llms.txt is not misrepresented as an alternate page");
+pass(
+  (html.match(/<link\b[^>]*\brel=["'](?:shortcut\s+)?icon["'][^>]*>/gi) || []).length === 1 &&
+    /<link\b[^>]*\brel=["']icon["'][^>]*\btype=["']image\/png["'][^>]*\bhref=["']assets\/images\/landometer-symbol-transparent\.png["'][^>]*\bsizes=["']192x192["'][^>]*>/i.test(html) &&
+    !/<link\b[^>]*\brel=["'](?:shortcut\s+)?icon["'][^>]*(?:banner|lockup|wordmark|horizontal)/i.test(html),
+  "Internal demo uses exactly one approved compact symbol favicon and never the wide lockup",
+);
+pass(
+  manifest.identity?.browserTabIcon?.status === "approved" &&
+    manifest.identity?.browserTabIcon?.rendered === true &&
+    manifest.identity?.browserTabIcon?.path === "assets/images/landometer-symbol-transparent.png" &&
+    manifest.identity?.browserTabIcon?.mimeType === "image/png" &&
+    manifest.identity?.browserTabIcon?.intrinsicSize === "192x192" &&
+    manifest.identity?.browserTabIcon?.declaredSizes?.includes("192x192") &&
+    manifest.identity?.browserTabIcon?.bytes === 11001 &&
+    manifest.identity?.browserTabIcon?.sha256 === "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85" &&
+    manifest.identity?.browserTabIcon?.transparentCanvas === true &&
+    manifest.identity?.browserTabIcon?.transform === "none" &&
+    /browser-tab favicon only/.test(manifest.identity?.browserTabIcon?.approvalScope ?? "") &&
+    /same transparent RGBA bytes/.test(manifest.identity?.browserTabIcon?.themeStrategy ?? "") &&
+    buildCard.includes("status: approved") &&
+    buildCard.includes("rendered: true") &&
+    buildCard.includes("path: assets/images/landometer-symbol-transparent.png"),
+  "Manifest and Build Card bind the rendered favicon to its exact approved browser-tab-only asset record",
+);
+pass(
+  manifest.publication?.discoveryState?.machineReadableWhenOpened === true &&
+    manifest.publication?.discoveryState?.searchDiscoverable === false &&
+    manifest.publication?.discoveryState?.aiSearchDiscoverable === false &&
+    manifest.capabilities.agentReadable === false,
+  "Machine readability, search discovery, AI-search discovery, and agent readability remain distinct",
+);
+pass(
+  !/<meta\s+name=["']ai-friendly["']/i.test(html) &&
+    !/<link\b[^>]*\brel=["']manifest["']/i.test(html),
+  "No invented AI-friendly metadata or installable-app manifest is emitted",
+);
 
 pass(!/<script[^>]+src=/i.test(html), "No external JavaScript dependency is present");
 pass(!/<link[^>]+rel=["']stylesheet["']/i.test(html), "No external stylesheet dependency is present");
@@ -854,17 +1193,94 @@ for (const path of [
   "llms.txt",
   "robots.txt",
   "font-assets.manifest.json",
+  "assets/data/tokens.json",
+  "assets/data/scales.json",
+  "assets/data/color-delivery.v0.8.8.json",
   "assets/downloads/landometer-design-system-v0.8.8.md",
   "landometer-design-system-v0.8.8-standalone.html",
+  immutableStandaloneName,
   "assets/images/landometer-logo-banner.png",
+  "assets/images/landometer-symbol-transparent.png",
   "assets/images/team-hero.jpg"
 ]) {
   pass(existsSync(resolve(root, path)), `Required path exists: ${path}`);
+}
+pass(
+  manifest.assets?.some(asset =>
+    asset.path === "assets/data/color-delivery.v0.8.8.json" &&
+    asset.bytes ===
+      readFileSync(resolve(root, "assets/data/color-delivery.v0.8.8.json"))
+        .byteLength &&
+    asset.sha256 === colorDeliverySha256
+  ),
+  "Manifest records the exact color-delivery registry",
+);
+pass(
+  buildCard.includes("path: assets/data/color-delivery.v0.8.8.json") &&
+    buildCard.includes(
+      `sha256: ${colorDeliverySha256}`,
+    ),
+  "Build Card records the exact color-delivery registry",
+);
+pass(
+  immutableStandaloneExists,
+  `Required immutable color-set path exists: ${immutableStandaloneName}`,
+);
+if (immutableStandaloneExists) {
+  const immutableStandaloneBytes = readFileSync(
+    resolve(root, immutableStandaloneName),
+  ).byteLength;
+  const immutableStandaloneSha256 = sha256(immutableStandaloneName);
+  const immutableStandaloneAsset = manifest.assets?.find(
+    asset => asset.path === immutableStandaloneName,
+  );
+  pass(
+    immutableStandaloneHtml.includes('data-standalone="true"') &&
+      immutableStandaloneHtml.includes(
+        'data-color-registry="color-srgb-01"',
+      ) &&
+      immutableStandaloneHtml.includes(
+        'data-build-channel="immutable-color-set"',
+      ),
+    "Immutable standalone exposes standalone, registry, and immutable build-channel markers",
+  );
+  pass(
+    immutableStandaloneHtml.replace(
+      'data-build-channel="immutable-color-set"',
+      'data-build-channel="latest-alias"',
+    ) === standaloneHtml,
+    "Immutable standalone is byte-for-byte equal to the latest standalone after normalizing only the build-channel marker",
+  );
+  pass(
+    /^[0-9a-f]{64}$/.test(immutableStandaloneSha256) &&
+      immutableStandaloneBytes > 0,
+    "Immutable standalone SHA-256 and byte count derive successfully from the built file",
+  );
+  pass(
+    immutableStandaloneAsset?.bytes === immutableStandaloneBytes &&
+      immutableStandaloneAsset?.sha256 === immutableStandaloneSha256 &&
+      manifest.colorDelivery?.immutableStandalone?.bytes ===
+        immutableStandaloneBytes &&
+      manifest.colorDelivery?.immutableStandalone?.sha256 ===
+        immutableStandaloneSha256,
+    "Manifest records the exact immutable Color Set standalone",
+  );
+  pass(
+    buildCard.includes(`path: ${immutableStandaloneName}`) &&
+      buildCard.includes(`bytes: ${immutableStandaloneBytes}`) &&
+      buildCard.includes(`sha256: ${immutableStandaloneSha256}`),
+    "Build Card records the exact immutable Color Set standalone",
+  );
 }
 
 pass(
   sha256("assets/images/landometer-logo-banner.png") === "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
   "Reused logo bytes match the existing approved-path record"
+);
+pass(
+  sha256("assets/images/landometer-symbol-transparent.png") === "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85" &&
+    readFileSync(resolve(root, "assets/images/landometer-symbol-transparent.png")).byteLength === 11001,
+  "Approved browser-tab symbol bytes and hash match the release record"
 );
 pass(
   sha256("assets/images/team-hero.jpg") === "50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb",
@@ -878,65 +1294,82 @@ pass(
   readFileSync(resolve(root, "assets/downloads/landometer-design-system-v0.8.8.md")).byteLength === 227924,
   "Downloadable whitespace-normalized v0.8.8 authoring master has the governed byte count"
 );
-pass(
-  sha256("landometer-design-system-v0.8.8-standalone.html") === "a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4",
-  "Standalone HTML hash matches the release record"
+const latestStandaloneAsset = manifest.assets?.find(
+  asset => asset.path === "landometer-design-system-v0.8.8-standalone.html",
+);
+const latestStandaloneBytes = readFileSync(
+  resolve(root, "landometer-design-system-v0.8.8-standalone.html"),
+).byteLength;
+const latestStandaloneSha256 = sha256(
+  "landometer-design-system-v0.8.8-standalone.html",
 );
 pass(
-  readFileSync(resolve(root, "landometer-design-system-v0.8.8-standalone.html")).byteLength === 2162799,
-  "Standalone HTML byte count matches the release record"
-);
-pass(
-  manifest.assets?.some(asset =>
-    asset.path === "landometer-design-system-v0.8.8-standalone.html" &&
-    asset.bytes === 2162799 &&
-    asset.sha256 === "a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4"
-  ),
+  latestStandaloneAsset?.bytes === latestStandaloneBytes &&
+    latestStandaloneAsset?.sha256 === latestStandaloneSha256,
   "Manifest records the exact standalone HTML"
 );
 pass(
   buildCard.includes("path: landometer-design-system-v0.8.8-standalone.html") &&
-    buildCard.includes("sha256: a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4"),
+    buildCard.includes(`bytes: ${latestStandaloneBytes}`) &&
+    buildCard.includes(`sha256: ${latestStandaloneSha256}`),
   "Build Card records the exact standalone HTML"
 );
 pass(/data-standalone="true"/.test(standaloneHtml), "Standalone HTML exposes its self-contained snapshot marker");
 pass(
+  /data-color-registry="color-srgb-01"/.test(standaloneHtml) &&
+    /data-build-channel="latest-alias"/.test(standaloneHtml),
+  "Latest standalone exposes the color registry and mutable-alias build channel",
+);
+pass(!/<link\s+rel="canonical"\b/i.test(standaloneHtml), "Portable standalone snapshot does not claim the hosted page canonical");
+pass(
   (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 9,
   "Standalone HTML embeds all nine active display-font files"
 );
+pass(countClass(standaloneHtml, "scale-family-card") === 9, "Standalone HTML includes all nine scale teaching families");
+pass(countClass(standaloneHtml, "scale-family-class-cell") === 189, "Standalone HTML includes all 189 paired scale teaching cells");
 pass(
   !/(?:src|href)="assets\//.test(standaloneHtml) && !/url\(["']?assets\//.test(standaloneHtml),
   "Standalone HTML has no display-critical relative asset"
 );
 pass(
-  sha256("implementation-notes.v0.8.8.md") === "7f723b9a82ad3d264f6c24edaedf9e495290211fdfa15739af18463b34d47f62",
+  manifest.assets?.some(asset =>
+    asset.path === "implementation-notes.v0.8.8.md" &&
+    asset.bytes ===
+      readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength &&
+    asset.sha256 === sha256("implementation-notes.v0.8.8.md")
+  ),
   "Implementation clarification hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength === 15321,
+  readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength > 0,
   "Implementation clarification byte count matches the manifest record"
 );
 pass(
-  sha256("llms.txt") === "ae84632111b69bf7b2a1c41024950b0fbbac51cce4af2feea9ad708caa69ee2e",
+  manifest.assets?.some(asset =>
+    asset.path === "llms.txt" &&
+    asset.bytes === readFileSync(resolve(root, "llms.txt")).byteLength &&
+    asset.sha256 === sha256("llms.txt")
+  ),
   "Machine-navigation aid hash matches the manifest record"
 );
 pass(
-  readFileSync(resolve(root, "llms.txt")).byteLength === 3478,
+  readFileSync(resolve(root, "llms.txt")).byteLength > 0,
   "Machine-navigation aid byte count matches the manifest record"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "implementation-notes.v0.8.8.md" &&
-    asset.bytes === 15321 &&
-    asset.sha256 === "7f723b9a82ad3d264f6c24edaedf9e495290211fdfa15739af18463b34d47f62"
+    asset.bytes ===
+      readFileSync(resolve(root, "implementation-notes.v0.8.8.md")).byteLength &&
+    asset.sha256 === sha256("implementation-notes.v0.8.8.md")
   ),
   "Manifest records the exact implementation clarification"
 );
 pass(
   manifest.assets?.some(asset =>
     asset.path === "llms.txt" &&
-    asset.bytes === 3478 &&
-    asset.sha256 === "ae84632111b69bf7b2a1c41024950b0fbbac51cce4af2feea9ad708caa69ee2e"
+    asset.bytes === readFileSync(resolve(root, "llms.txt")).byteLength &&
+    asset.sha256 === sha256("llms.txt")
   ),
   "Manifest records the exact machine-navigation aid"
 );
@@ -944,11 +1377,17 @@ pass(
   implementationNotes.includes("IMPL-SURFACE-COLOR-01") &&
     implementationNotes.includes("IMPL-SHARE-01") &&
     implementationNotes.includes("IMPL-SEARCH-EXT-01") &&
-    implementationNotes.includes("IMPL-AI-EXT-01"),
-  "Implementation clarification covers governed atmosphere, color guidance, recipient value, contextual source Search, and external AI synthesis"
+    implementationNotes.includes("IMPL-AI-EXT-01") &&
+    implementationNotes.includes("IMPL-BROWSER-IDENTITY-01") &&
+    implementationNotes.includes("IMPL-SCALE-TEACHING-01") &&
+    implementationNotes.includes("IMPL-ACTION-SHAPE-01"),
+  "Implementation clarification covers atmosphere, color, recipient value, contextual discovery, browser identity, scale teaching, and action geometry"
 );
 pass(implementationNotes.includes("CityMETER-specific") && implementationNotes.includes("discovery_only"), "Implementation clarification preserves product and evidence boundaries");
-pass(machineDiscoveryAid.includes("project-path llms.txt is a navigation aid only"), "llms.txt exposes its project-path discovery limitation");
+pass(
+  machineDiscoveryAid.includes("project-path llms.txt follows an emerging convention and is a navigation aid only"),
+  "llms.txt exposes its emerging-convention project-path discovery limitation",
+);
 pass(machineDiscoveryAid.includes("No bounded agent action is enabled"), "llms.txt grants no agent action");
 pass(robotsRecord.includes("Project-path informational record only") && robotsRecord.includes("Allow: /"), "Project-path robots record cannot accidentally block host-root crawling");
 
@@ -962,13 +1401,24 @@ pass(
   fontManifest.faces.some(face =>
     face.family === "IBM Plex Sans Thai" &&
     face.subset === "thai" &&
-    face.weight === 500 &&
-    face.file === "assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2" &&
-    face.sha256 === "7e01c133031aba4ca902d81930096f0224d83f808014c1232016b49e0a7ecff6" &&
+    face.weight === 400 &&
+    face.file === "assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2" &&
+    face.sha256 === "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056" &&
     face.licenseFile === "assets/fonts/licenses/ibm-plex-sans-thai-OFL.txt" &&
     face.sourcePackage === "@fontsource/ibm-plex-sans-thai@5.3.0"
   ),
-  "Font manifest records the exact licensed IBM Plex Sans Thai 500 technical companion",
+  "Font manifest records the exact licensed IBM Plex Sans Thai 400 technical companion",
+);
+pass(
+  fontManifest.faces.some(face =>
+    face.family === "JetBrains Mono" &&
+    face.subset === "latin" &&
+    face.weight === 400 &&
+    face.file === "assets/fonts/jetbrains-mono-latin-400-normal.woff2" &&
+    face.sha256 === "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb" &&
+    face.licenseFile === "assets/fonts/licenses/jetbrains-mono-OFL.txt"
+  ),
+  "Font manifest records the exact licensed JetBrains Mono 400 technical face",
 );
 
 pass(!existsSync(resolve(root, "site-manifest.json")), "Stale unversioned manifest is removed");

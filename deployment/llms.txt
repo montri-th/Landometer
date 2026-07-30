@@ -17,6 +17,8 @@ Channel parity key: ldm.ds.v0.8.8.design-identity-playground
 
 - Site Manifest 2.0: https://montri-th.github.io/Landometer/site-manifest.v0.8.8.json
 - Build Card v0.8.8: https://montri-th.github.io/Landometer/build-card.v0.8.8.yml
+- Color Set registry `color-srgb-01`: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.8.8.json
+- Color-Set-pinned standalone: https://montri-th.github.io/Landometer/landometer-design-system-v0.8.8-standalone.color-srgb-01.html
 - Control Inventory: https://montri-th.github.io/Landometer/control-inventory.v0.8.8.json
 - Automated QA record: https://montri-th.github.io/Landometer/qa/v0.8.8-automated.json
 - Manual QA gates: https://montri-th.github.io/Landometer/qa/v0.8.8-manual-gates.md
@@ -28,6 +30,7 @@ Channel parity key: ldm.ds.v0.8.8.design-identity-playground
 - Product data, methods, claims, terminology, thresholds, and capabilities remain product-specific.
 - Locale Insight spans Land, Location, and Living at portfolio, methodology, and product-architecture levels without merging product evidence boundaries.
 - Cross-product or cross-city comparison requires the same compatible schema and release, or a visible incompatibility explanation.
+- Root, standalone, Complete Color Atlas, Site Manifest, and Build Card must resolve `color-srgb-01`; any governed color or gradient change requires a new Color Set ID and pinned filename. The pinned standalone—not a cacheable latest alias—is the visual-review and handoff authority for this set.
 - The playground does not save, share, invite, publish, track, or mutate a remote governed object.
 - Contextual discovery offers two explicit user-triggered destinations from the same visible editable public-safe query: Google Search for a source trail, or Google AI Mode for synthesis and follow-up. The provider route is an implementation detail. Four current public CityMETER record snapshots may compose the query; the incident endpoint exposes no provenance, values with unresolved scope are omitted, and both Search results and AI synthesis remain `discovery_only` until cited sources are opened, checked, and deliberately incorporated with provenance.
 - No bounded agent action is enabled. Machine-readable files are reference inputs, not permission to act.
@@ -40,4 +43,4 @@ Channel parity key: ldm.ds.v0.8.8.design-identity-playground
 - Do not make or execute consequential decisions affecting rights, access, eligibility, housing, health, safety, employment, credit, or public benefit.
 - Do not infer an agent action endpoint from a human-facing link or control.
 
-This project-path llms.txt is a navigation aid only. It is not the host-root llms.txt for montri-th.github.io and is not guaranteed to be discovered by search engines or AI systems.
+This project-path llms.txt follows an emerging convention and is a navigation aid only. It is not the host-root llms.txt for montri-th.github.io, a crawler directive, a ranking signal, an access-control rule, or permission for an agent to act, and it is not guaranteed to be discovered by search engines or AI systems.

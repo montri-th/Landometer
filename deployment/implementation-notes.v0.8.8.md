@@ -3,9 +3,9 @@
 **Status:** Proposed artifact-level clarification
 **Authority:** Non-normative until incorporated into an owner-approved Design System release
 **Applies to:** The v0.8.8 Design Identity Playground implementation
-**Preserves:** `[CORE-03]`, `[CORE-10]`, `[CTRL-01]`, `[STATE-01]`, `[SHARE-01]`, `[CONTEXT-01]`, `[PUB-01]`, and `[AGENT-OUT-01]`
+**Preserves:** `[CORE-03]`, `[CORE-10]`, `[CTRL-01]`, `[STATE-01]`, `[REFERENCE-01]`, `[DELIVERY-01]`, `[SHARE-01]`, `[CONTEXT-01]`, `[PUB-01]`, and `[AGENT-OUT-01]`
 
-This note makes six implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
+This note makes eleven implementation clarifications explicit without changing the normative text or ordering of the whitespace-normalized v0.8.8 authoring master.
 
 ## IMPL-SURFACE-COLOR-01 — Preserve governed atmosphere and make color guidance findable
 
@@ -27,6 +27,26 @@ Color guidance is a first-class Implementation Library route. Start by naming th
 The artifact does not mint new colors, generate analytical ramps at runtime, or promote candidate stroke widths, dash conventions, or overlap formulas into normative tokens. Categorical capacity remains: color alone up to six; add stable shape or pattern for seven to ten; above ten, group, filter, use small multiples, or provide a table.
 
 This corrects an artifact regression and improves discoverability. The existing v0.8.8 normative rules already require governed atmosphere, local contrast repair, role-separated color, generated scales, and redundant category encoding, so no normative patch is required for this change.
+
+## IMPL-COLOR-SET-PARITY-01 — Prove the same build before judging device color
+
+A report that two devices show a different Color Set is first a delivery-parity question, not evidence of a mere display shift. This artifact binds color delivery to `assets/data/color-delivery.v0.8.8.json` and registry ID `color-srgb-01`.
+
+The hosted root/latest alias, latest standalone alias, immutable standalone, Complete Color Atlas, Site Manifest, and Build Card must resolve one registry/build identity. For this artifact, that identity includes the Design System version, `data-color-registry`, token-registry path/version/SHA-256, scale-registry path/version/SHA-256, source-build relationship, and the expected SHA-256 for each delivered artifact. Different packaging may have its own file hash, but the manifest and Build Card must bind every channel to the same source Color Set. The latest and immutable standalone builds must be equivalent after normalizing only their declared `data-build-channel` marker.
+
+The immutable handoff URL is:
+
+```text
+https://montri-th.github.io/Landometer/landometer-design-system-v0.8.8-standalone.color-srgb-01.html
+```
+
+That immutable URL is the visual-QA and handoff authority for this Color Set. `index.html` and `landometer-design-system-v0.8.8-standalone.html` are latest aliases. GitHub Pages currently serves latest aliases with `Cache-Control: max-age=600`, so two devices can temporarily receive different releases after publication. A latest-alias mismatch is classified as cache/build skew; do not describe it as color drift and do not use it as cross-device approval evidence.
+
+After registry, build, and expected hashes match, pin the comparison theme explicitly to `light` or `dark` and record it. `system` is an adaptive user preference, not a reproducible visual-baseline state. Only then compare rendered color.
+
+The artifact declares SDR `sRGB IEC 61966-2-1`, serializes governed solids as sRGB hex/rgba, and requests explicit sRGB gradient interpolation where supported with a legacy sRGB-compatible fallback. This explicit sRGB delivery is secondary renderer stabilization: it reduces avoidable interpolation ambiguity after parity is proven, but it cannot reconcile different cached builds, replace the registry/hash check, or guarantee identical physical output across displays and color-management stacks.
+
+This is an artifact-level clarification and proposed delivery contract. It does not change the owner-approved v0.8.8 authoring master, mint a new raw color token, or promote the carried v0.8.6 token/scale registries to gated v0.8.8 package conformance.
 
 ## IMPL-SHARE-01 — Share by recipient value, never by repetition
 
@@ -144,15 +164,15 @@ The owner-approved v0.8.8 master assigns Bai Jamjuree 400/600 to Thai body and g
 
 Following the owner’s implementation direction, this artifact uses a script-aware technical pair:
 
-- JetBrains Mono 500 for Latin identifiers, numerals, and Latin technical labels;
-- IBM Plex Sans Thai 500 for Thai glyphs in the same technical role;
+- JetBrains Mono 400 for Latin identifiers, numerals, and Latin technical labels;
+- IBM Plex Sans Thai 400 for Thai glyphs in the same technical role;
 - Bai Jamjuree 400/600 remains the continuous-reading body and general UI family.
 
-The technical pair uses one active weight only: 500. The v0.8.8 playground does not declare, embed, or request JetBrains Mono 700, and `font-synthesis: none` prevents faux bold. Display headings remain a separate role and continue to use Arvo 700 or IBM Plex Sans Thai Looped 700.
+The technical pair uses one active weight only: 400. The v0.8.8 playground does not declare, embed, or request JetBrains Mono 500/700 or IBM Plex Sans Thai 500 inside this role, and `font-synthesis: none` prevents faux bold. Display headings remain a separate role and continue to use Arvo 700 or IBM Plex Sans Thai Looped 700.
 
 Both technical faces are self-hosted. The IBM Plex Sans Thai subset is recorded from `@fontsource/ibm-plex-sans-thai@5.3.0`, carries the SIL Open Font License 1.1 record, and has an exact SHA-256 entry in `font-assets.manifest.json`. The page preloads the Thai technical face and checks it explicitly after `document.fonts.ready`.
 
-The pairing is optically compact rather than mechanically monospaced. The reference applies `size-adjust: 102%` to the Thai face, weight 500, `.008em` tracking, `1.48` line-height, and one additional pixel of vertical padding in the smallest technical pills. These values keep Thai marks readable and visually closer to JetBrains Mono’s compact rhythm without forcing Thai clusters into fixed cells. IBM Plex Sans Thai remains proportionally spaced; any genuine fixed-cell requirement still needs a separately approved `font.code.th` role and font.
+The pairing is optically compact rather than mechanically monospaced. The reference applies `size-adjust: 102%` to the Thai face, weight 400, `.008em` tracking, `1.48` line-height, and one additional pixel of vertical padding in the smallest technical pills. These values keep Thai marks readable and let the letterforms breathe while remaining visually close to JetBrains Mono’s compact rhythm, without forcing Thai clusters into fixed cells. IBM Plex Sans Thai remains proportionally spaced; any genuine fixed-cell requirement still needs a separately approved `font.code.th` role and font.
 
 This is a documented artifact-level override and a proposed normative clarification, not a silent rewrite of the owner-approved v0.8.8 master. A future normative release should either adopt the companion role and its delivery record or replace it deliberately after cross-device review.
 
@@ -183,6 +203,46 @@ Guardrails are a runway: they preserve truth, privacy, and recovery while leavin
 
 The current playground is `source_limited`, `internal_demo`, `indexable: false`, and `machineValidation: pending`. Its `noindex` state is therefore deliberate.
 
-Do not switch to indexable public delivery by changing `robots` alone. Promotion requires verified public visibility and permissions, reachable canonical locale URLs, per-locale initial HTML and metadata, an approved social-preview asset, truthful structured data, private-state stripping, and completed release gates.
+Keep four contracts separate:
 
-An `llms.txt` file may provide a concise navigation aid to public-safe sources. It is not a ranking signal, access-control rule, permission grant, conformance claim, or substitute for semantic HTML and validated machine records.
+1. **Machine-readable when opened** — semantic initial HTML, real headings and landmarks, direct links, visible status, and durable release records.
+2. **Search-discoverable** — indexable delivery, stable crawlable URLs, localized initial metadata, canonical/hreflang correctness, and verified sitemap inclusion.
+3. **AI-search-discoverable** — provider crawler access and eligibility remain provider-specific; there is no universal `ai-friendly` meta tag.
+4. **Agent-readable/actionable** — bounded action, permission, parity, failure, and recovery remain governed by `[AGENT-OUT-01]`; readable content never grants permission to act.
+
+Do not switch to indexable public delivery by changing `robots` alone. Promotion requires verified public visibility and permissions, stable pre-rendered Thai and English URLs, per-locale initial HTML and metadata, self-canonical URLs, reciprocal `hreflang`, an approved social-preview asset, truthful structured data, private-state stripping, and completed release gates. Add sitemap entries only for verified indexable self-canonical URLs.
+
+The downloaded standalone is a portable snapshot, not a second hosted canonical page. Its builder removes the canonical link while keeping links to production release records.
+
+An `llms.txt` file may provide a concise navigation aid to public-safe sources under an emerging convention. It is not a ranking signal, access-control rule, permission grant, conformance claim, host-root discovery guarantee, or substitute for semantic HTML and validated machine records.
+
+## IMPL-BROWSER-IDENTITY-01 — Give the browser tab its own approved identity asset
+
+The header lockup and browser-tab icon are different delivery contexts. The available `landometer-logo-banner.png` is a transparent horizontal mark-and-wordmark lockup. Do not crop, mask, reconstruct, recolor, apply a CSS filter, or place it on an invented carrier to make a favicon.
+
+The current internal demo renders the separately approved transparent symbol at `assets/images/landometer-symbol-transparent.png` for browser-tab favicon duty only. The exact repository asset is a 192 × 192 RGBA PNG, 11,001 bytes, SHA-256 `35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85`, introduced for this context by repository main commit `ce785864e5341321e1957dce35a8326732764432`. It is delivered unchanged in hosted HTML and embedded unchanged as a data URL in the standalone snapshot.
+
+The release record names:
+
+- the approved compact-symbol variant and browser-tab-only context;
+- exact file path, MIME type, intrinsic dimensions, byte count, SHA-256, transparent canvas, alpha bounds, unchanged transform, and one transparent-canvas theme strategy;
+- the still-open small-size checks in browser tabs, bookmarks, shortcuts, and supported themes;
+- a separate approved social-preview/touch/maskable asset when those contexts are enabled.
+
+Header lockup, favicon, social image, touch icon, and maskable application icon are not interchangeable. Search-result favicon selection is also hostname-level; a GitHub Pages project subpath cannot independently guarantee a distinct search-result favicon without host-root or dedicated-hostname coordination.
+
+## IMPL-SCALE-TEACHING-01 — Show every governed scale family without synthesizing colors
+
+The concise Scale route renders all six sequential families—Growth, Water, Risk, Activity, Density, and Confidence—and all three diverging families—Balance, Delta, and Tradeoff. Each family shows exact 5-, 7-, and 9-class strips for the active light or dark theme. The complete disclosure retains both theme records, every 41-stop LUT cell, exact `scaleVersion`, and the source boundary.
+
+Every cell comes from `assets/data/scales.json`; CSS only switches between embedded light and dark values. Do not use a CSS gradient, `color-mix()`, interpolation, or opacity to manufacture analytical classes at runtime.
+
+The carried scale source reports `meta.version: 0.8.6` and is `source_limited`; it is not the gated v0.8.8 `dataviz.tokens.json` package. The consuming analysis still owns endpoint meaning, domain, thresholds, classification, outlier policy, legend, missingness, unit, geography, period, and accessible table. Do not infer those decisions from a palette name.
+
+## IMPL-ACTION-SHAPE-01 — Use capsule geometry for actions, not for every container
+
+Text-labelled action buttons and action links in this playground use one capsule geometry with enough horizontal padding for Thai and English. Icon-only theme and language controls remain circular. A mixed icon-and-label action is still a capsule.
+
+Do not apply the capsule token to cards, form fields, disclosures, tables, tooltips, or navigation rows merely because they are clickable. Tabs and segmented controls keep their own grouped-selection geometry; an individual tab is not restyled to impersonate a primary CTA. Shape reinforces semantic role, but label, hierarchy, focus, disabled state, and consequence remain the primary action contract.
+
+This is an artifact-level consistency choice and a proposed semantic-geometry clarification. It does not retroactively declare every rounded rectangle across Landometer a button or change product-owned component contracts without product review.

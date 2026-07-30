@@ -1,4 +1,4 @@
 interface:
   display_name: "Refine Landometer Experience"
-  short_description: "Audit and refine Landometer experience quality"
-  default_prompt: "Use $refine-landometer-experience to audit and improve this Landometer interface without crossing evidence or product boundaries."
+  short_description: "Audit Landometer identity, discovery, and UX"
+  default_prompt: "Use $refine-landometer-experience to audit this Landometer interface across identity assets, metadata, scales, typography, surfaces, and evidence boundaries."

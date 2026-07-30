@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "id": "color-srgb-01",
+    "designSystemVersion": "0.8.8",
+    "status": "artifact_contract_proposed_normative",
+    "createdAt": "2026-07-30",
+    "immutableStandalone": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+    "latestAliases": [
+      "index.html",
+      "landometer-design-system-v0.8.8-standalone.html"
+    ]
+  },
+  "delivery": {
+    "range": "SDR",
+    "colorSpace": "sRGB IEC 61966-2-1",
+    "cssEncoding": "six-digit sRGB hex plus declared-alpha sRGB rgba",
+    "gradientInterpolation": "explicit in srgb when supported; legacy sRGB-compatible syntax retained as fallback",
+    "comparisonThemes": [
+      "light",
+      "dark"
+    ],
+    "adaptiveTheme": "system is a user preference, not a visual-baseline state"
+  },
+  "sources": {
+    "tokenRegistry": {
+      "path": "assets/data/tokens.json",
+      "carriedVersion": "0.8.6",
+      "sha256": "085193279178089daca95019a34599cc79180dc24b26d873ced3be9b08bd13b2"
+    },
+    "scaleRegistry": {
+      "path": "assets/data/scales.json",
+      "carriedVersion": "0.8.6",
+      "sha256": "83bee2ed86f55c3a01914ce2826f294b90e8f7d77f7eef4dc02b9b1cc4d4cdb1"
+    }
+  },
+  "surfaceGradients": {
+    "measure": {
+      "angle": "135deg",
+      "light": [
+        ["#1D4497", "0%"],
+        ["#176B82", "54%"],
+        ["#08756F", "100%"]
+      ],
+      "dark": [
+        ["#68C4E2", "0%"],
+        ["#15919A", "52%"],
+        ["#08756F", "100%"]
+      ]
+    },
+    "ground": {
+      "angle": "135deg",
+      "lightAndDark": [
+        ["#147A9F", "0%"],
+        ["#3BD3CB", "52%"],
+        ["#3BD19B", "100%"]
+      ]
+    },
+    "cultivate": {
+      "angle": "135deg",
+      "lightAndDark": [
+        ["#C33F55", "0%"],
+        ["#FF8A4C", "52%"],
+        ["#F4C44E", "100%"]
+      ]
+    }
+  },
+  "motifGradients": {
+    "brandSignature": {
+      "angle": "135deg",
+      "stops": [
+        ["#1D4497", "0%"],
+        ["#176B82", "52%"],
+        ["#08756F", "100%"]
+      ]
+    },
+    "civicCool": {
+      "angle": "135deg",
+      "stops": [
+        ["#147A9F", "0%"],
+        ["#3BD3CB", "52%"],
+        ["#3BD19B", "100%"]
+      ]
+    },
+    "civicWarm": {
+      "angle": "135deg",
+      "stops": [
+        ["#C33F55", "0%"],
+        ["#FF8A4C", "52%"],
+        ["#F4C44E", "100%"]
+      ]
+    }
+  },
+  "productIdentityGradients": {
+    "citymeter": {
+      "light": ["#12669B", "#36BCE4"],
+      "dark": ["#4C99D5", "#59C7E8"]
+    },
+    "citywiki": {
+      "light": ["#176B82", "#007E79"],
+      "dark": ["#59C7E8", "#3BD3CB"]
+    },
+    "citychat": {
+      "light": ["#007A58", "#007E79"],
+      "dark": ["#3BD19B", "#3BD3CB"]
+    },
+    "ijji": {
+      "light": ["#C52C00", "#B23F74"],
+      "dark": ["#FF8A4C", "#F06FA6"]
+    }
+  },
+  "parity": {
+    "registryIdentityRule": "Any change to a governed solid, gradient angle, stop, position, theme mapping, series pair, or analytical source hash requires a new color-set id and a new pinned filename. Existing color-set ids are never redefined.",
+    "sameColorSetRequiredFor": [
+      "hosted root",
+      "latest standalone alias",
+      "immutable standalone",
+      "Complete Color Atlas",
+      "Build Card",
+      "Site Manifest",
+      "manual QA evidence"
+    ],
+    "compareFirst": [
+      "data-color-registry",
+      "resolved theme",
+      "token registry SHA-256",
+      "scale registry SHA-256"
+    ],
+    "cacheBoundary": "GitHub Pages currently serves latest aliases with Cache-Control max-age=600. Latest aliases may temporarily differ after publication; immutableStandalone is the handoff and visual-QA authority for this Color Set."
+  }
+}

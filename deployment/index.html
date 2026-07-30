@@ -17,6 +17,10 @@
   data-full-living-reference="false"
   data-data-visualization="fixtures_and_product_snapshots"
   data-machine-discovery="llms_navigation_aid"
+  data-color-space="srgb"
+  data-gradient-interpolation="srgb-explicit-with-legacy-fallback"
+  data-color-registry="color-srgb-01"
+  data-build-channel="latest-alias"
   data-theme="light"
   data-theme-preference="system"
   data-locale="th"
@@ -27,12 +31,12 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F6F7F3">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png?v=20260730" sizes="192x192">
+  <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png" sizes="192x192">
   <title>Landometer Design Identity Playground · v0.8.8</title>
   <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/">
   <link rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>
     (() => {
       const root = document.documentElement;
@@ -118,18 +122,18 @@
     }
     @font-face {
       font-family: "IBM Plex Sans Thai";
-      src: url("assets/fonts/ibm-plex-sans-thai-thai-500-normal.woff2") format("woff2");
+      src: url("assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2") format("woff2");
       font-style: normal;
-      font-weight: 500;
+      font-weight: 400;
       font-display: swap;
       size-adjust: 102%;
       unicode-range: U+02D7, U+0303, U+0331, U+0E01-0E5B, U+200C-200D, U+25CC;
     }
     @font-face {
       font-family: "JetBrains Mono";
-      src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+      src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
       font-style: normal;
-      font-weight: 500;
+      font-weight: 400;
       font-display: swap;
       unicode-range: U+0000-024F, U+1E00-1EFF;
     }
@@ -209,14 +213,30 @@
       --opacity-ghost: .24;
       --opacity-watermark: .12;
       --opacity-trace: .06;
-      --measure-surface: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
-      --ground-surface: linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
-      --cultivate-surface: linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
-      --motif-brand-signature: linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);
-      --product-citymeter: linear-gradient(135deg, #12669B 0%, #36BCE4 100%);
-      --product-citywiki: linear-gradient(135deg, #176B82 0%, #007E79 100%);
-      --product-citychat: linear-gradient(135deg, #007A58 0%, #007E79 100%);
-      --product-ijji: linear-gradient(135deg, #C52C00 0%, #B23F74 100%);
+      --measure-surface-legacy: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
+      --measure-surface-srgb: linear-gradient(135deg in srgb, #1D4497 0%, #176B82 54%, #08756F 100%);
+      --ground-surface-legacy: linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
+      --ground-surface-srgb: linear-gradient(135deg in srgb, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
+      --cultivate-surface-legacy: linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
+      --cultivate-surface-srgb: linear-gradient(135deg in srgb, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
+      --motif-brand-signature-legacy: linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);
+      --motif-brand-signature-srgb: linear-gradient(135deg in srgb, #1D4497 0%, #176B82 52%, #08756F 100%);
+      --product-citymeter-legacy: linear-gradient(135deg, #12669B 0%, #36BCE4 100%);
+      --product-citymeter-srgb: linear-gradient(135deg in srgb, #12669B 0%, #36BCE4 100%);
+      --product-citywiki-legacy: linear-gradient(135deg, #176B82 0%, #007E79 100%);
+      --product-citywiki-srgb: linear-gradient(135deg in srgb, #176B82 0%, #007E79 100%);
+      --product-citychat-legacy: linear-gradient(135deg, #007A58 0%, #007E79 100%);
+      --product-citychat-srgb: linear-gradient(135deg in srgb, #007A58 0%, #007E79 100%);
+      --product-ijji-legacy: linear-gradient(135deg, #C52C00 0%, #B23F74 100%);
+      --product-ijji-srgb: linear-gradient(135deg in srgb, #C52C00 0%, #B23F74 100%);
+      --measure-surface: var(--measure-surface-legacy);
+      --ground-surface: var(--ground-surface-legacy);
+      --cultivate-surface: var(--cultivate-surface-legacy);
+      --motif-brand-signature: var(--motif-brand-signature-legacy);
+      --product-citymeter: var(--product-citymeter-legacy);
+      --product-citywiki: var(--product-citywiki-legacy);
+      --product-citychat: var(--product-citychat-legacy);
+      --product-ijji: var(--product-ijji-legacy);
       --motion-duration-feedback: 120ms;
       --motion-duration-state: 200ms;
       --motion-duration-map: 280ms;
@@ -262,6 +282,7 @@
       --font-number: var(--font-technical);
       --font-label-th: var(--font-technical);
       --font-data-label: var(--font-technical);
+      --weight-technical: 400;
       --leading-technical-th: 1.48;
       --tracking-technical-th: .008em;
       --space-1: 4px;
@@ -279,6 +300,7 @@
       --radius-md: 16px;
       --radius-lg: 24px;
       --radius-xl: 32px;
+      --radius-pill: 999px;
       --gutter: clamp(16px, 3vw, 32px);
       --container-reading: 760px;
       --container-default: 1120px;
@@ -348,12 +370,30 @@
       --map-focus-stroke: #68C4E2;
       --map-marker-halo: #101318;
       --map-marker-stroke: #F1F4EF;
-      --measure-surface: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
-      --product-citymeter: linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);
-      --product-citywiki: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
-      --product-citychat: linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);
-      --product-ijji: linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);
+      --measure-surface-legacy: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
+      --measure-surface-srgb: linear-gradient(135deg in srgb, #68C4E2 0%, #15919A 52%, #08756F 100%);
+      --product-citymeter-legacy: linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);
+      --product-citymeter-srgb: linear-gradient(135deg in srgb, #4C99D5 0%, #59C7E8 100%);
+      --product-citywiki-legacy: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
+      --product-citywiki-srgb: linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%);
+      --product-citychat-legacy: linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);
+      --product-citychat-srgb: linear-gradient(135deg in srgb, #3BD19B 0%, #3BD3CB 100%);
+      --product-ijji-legacy: linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);
+      --product-ijji-srgb: linear-gradient(135deg in srgb, #FF8A4C 0%, #F06FA6 100%);
       color-scheme: dark;
+    }
+
+    @supports (background: linear-gradient(90deg in srgb, #000000, #FFFFFF)) {
+      :root {
+        --measure-surface: var(--measure-surface-srgb);
+        --ground-surface: var(--ground-surface-srgb);
+        --cultivate-surface: var(--cultivate-surface-srgb);
+        --motif-brand-signature: var(--motif-brand-signature-srgb);
+        --product-citymeter: var(--product-citymeter-srgb);
+        --product-citywiki: var(--product-citywiki-srgb);
+        --product-citychat: var(--product-citychat-srgb);
+        --product-ijji: var(--product-ijji-srgb);
+      }
     }
 
     * { box-sizing: border-box; }
@@ -443,7 +483,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .08em;
       line-height: var(--leading-label);
       text-transform: uppercase;
@@ -521,7 +561,7 @@
       color: #182327;
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: var(--leading-label);
       padding: 4px 0;
       background: transparent;
@@ -555,7 +595,7 @@
     .language-cycle {
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .04em;
     }
 
@@ -644,7 +684,7 @@
     .secondary-action::after {
       content: "→";
       font-family: var(--font-number);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .primary-action:hover,
     .secondary-action:hover {
@@ -713,7 +753,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .04em;
     }
     select {
@@ -767,7 +807,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .lens-hint {
       display: block;
@@ -775,7 +815,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: var(--leading-number);
     }
     .lens-list button[aria-selected="true"] {
@@ -865,18 +905,18 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: var(--leading-label);
       text-transform: uppercase;
     }
     .proof-state {
       flex: 0 0 auto;
       border: 1px solid currentColor;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       padding: 4px 9px;
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .proof-content {
       display: grid;
@@ -889,7 +929,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .proof-title {
       max-width: 720px;
@@ -958,7 +998,7 @@
       color: inherit;
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -1002,7 +1042,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -1120,7 +1160,7 @@
       content: counter(voice-step);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .reject-fixture {
       margin: var(--space-5) 0 0;
@@ -1165,7 +1205,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .045em;
       text-transform: uppercase;
     }
@@ -1218,7 +1258,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-transform: uppercase;
     }
     .voice-rewrite .voice-before strong {
@@ -1323,14 +1363,14 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-transform: uppercase;
     }
     html[data-locale="th"] .control-label,
     html[data-locale="th"] .control-block legend,
     html[data-locale="th"] .handoff-record dt {
       font-family: var(--font-label-th);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: var(--tracking-technical-th);
       line-height: var(--leading-technical-th);
       text-transform: none;
@@ -1349,7 +1389,7 @@
       margin: 0;
       font-family: var(--font-number);
       font-size: clamp(.85rem, 2vw, 1rem);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: 1.8;
     }
     .truth-lock small {
@@ -1451,7 +1491,7 @@
     .recipe-head b {
       font-family: var(--font-data-label);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .copy-button {
       min-height: 44px;
@@ -1513,7 +1553,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: 1;
     }
     .recipe-note {
@@ -1669,7 +1709,7 @@
       color: var(--interaction-accent);
       font-family: var(--font-number);
       font-size: 1.5rem;
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .library-group[open] summary::after { content: "−"; }
     .library-group[open] summary {
@@ -1685,7 +1725,7 @@
     .resource-meta {
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: var(--leading-number);
     }
     .library-index,
@@ -1789,7 +1829,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-transform: uppercase;
     }
     .opportunity-card dd {
@@ -1913,11 +1953,11 @@
     .type-body-sample { font-family: var(--font-body); }
     .type-mono-sample {
       font-family: var(--font-number);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .type-technical-th {
       font-family: var(--font-data-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: var(--tracking-technical-th);
       line-height: var(--leading-technical-th);
     }
@@ -1971,7 +2011,7 @@
       color: var(--text-secondary);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-align: center;
     }
     .color-role-map span:first-child {
@@ -2073,7 +2113,7 @@
       grid-template-columns: repeat(var(--route-class-count, 3), minmax(0, 1fr));
       overflow: hidden;
       height: 20px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
     }
     .color-route-visual.is-scale i {
       background: var(--scale-color);
@@ -2093,7 +2133,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .category-load span {
       display: grid;
@@ -2278,7 +2318,7 @@
     .color-example-topbar span {
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-align: right;
       text-transform: uppercase;
     }
@@ -2341,11 +2381,11 @@
     .color-example-bar > strong {
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .color-example-track {
       height: 14px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--surface-soft);
       overflow: hidden;
     }
@@ -2410,7 +2450,7 @@
       color: var(--text-metadata);
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .color-role-list {
       display: grid;
@@ -2520,7 +2560,7 @@
       color: var(--success-ink);
       font-family: var(--font-data-label);
       font-size: .68rem;
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .03em;
       text-transform: uppercase;
     }
@@ -2607,7 +2647,7 @@
     .brand-identity-sample .brand-bar {
       width: 68%;
       height: 16px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--brand-blue);
     }
     .interaction-sample {
@@ -2732,6 +2772,175 @@
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
     }
+    .scale-sampler {
+      display: grid;
+      gap: var(--space-5);
+      margin-top: var(--space-6);
+      padding: var(--space-5);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-alt);
+    }
+    .scale-sampler-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-4);
+      align-items: start;
+    }
+    .scale-sampler-head h6,
+    .scale-sampler-head p {
+      margin: 0;
+    }
+    .scale-sampler-head h6 {
+      margin-top: 3px;
+      font-family: var(--font-ui-heading-th);
+      font-size: var(--type-body-lg);
+      font-weight: 700;
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .scale-sampler-head h6 {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .scale-sampler-head > div > p:last-child {
+      max-width: 760px;
+      margin-top: 5px;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .scale-sampler-kicker,
+    .scale-sampler-theme,
+    .scale-family-group-head span,
+    .scale-family-head code,
+    .scale-family-class-row figcaption {
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: var(--weight-technical);
+    }
+    .scale-sampler-kicker {
+      color: var(--text-metadata);
+      letter-spacing: var(--tracking-technical);
+    }
+    .scale-sampler-theme {
+      padding: 5px 8px;
+      border: 1px solid var(--border-emphasis);
+      border-radius: var(--radius-pill);
+      color: var(--text-metadata);
+    }
+    .scale-sampler-theme [data-sampler-theme-dark] { display: none; }
+    html[data-theme="dark"] .scale-sampler-theme [data-sampler-theme-light] { display: none; }
+    html[data-theme="dark"] .scale-sampler-theme [data-sampler-theme-dark] { display: inline; }
+    .scale-sampler-boundary {
+      padding: var(--space-4);
+      border-left: 3px solid var(--border-emphasis);
+      background: var(--surface-card);
+    }
+    .scale-sampler-boundary strong {
+      color: var(--text-metadata);
+      font-family: var(--font-number);
+      font-size: var(--type-caption);
+      font-weight: var(--weight-technical);
+    }
+    .scale-sampler-boundary p {
+      margin: 5px 0 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .scale-family-group {
+      display: grid;
+      gap: var(--space-3);
+    }
+    .scale-family-group + .scale-family-group {
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-default);
+    }
+    .scale-family-group-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      align-items: baseline;
+    }
+    .scale-family-group-head span { color: var(--text-metadata); }
+    .scale-family-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+    .scale-family-card {
+      min-width: 0;
+      padding: var(--space-3);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-xs);
+      background: var(--surface-raised);
+    }
+    .scale-family-head {
+      display: grid;
+      gap: 2px;
+    }
+    .scale-family-head code {
+      color: var(--text-metadata);
+      overflow-wrap: anywhere;
+    }
+    .scale-family-class-stack {
+      display: grid;
+      gap: 7px;
+      margin-top: var(--space-3);
+    }
+    .scale-family-class-row {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      margin: 0;
+    }
+    .scale-family-class-row figcaption {
+      display: flex;
+      gap: 4px;
+      margin: 0;
+      color: var(--text-metadata);
+    }
+    .scale-family-class-cells {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      min-height: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-pill);
+    }
+    .scale-family-class-cell {
+      min-width: 0;
+      background: var(--scale-light);
+    }
+    .scale-family-class-cell + .scale-family-class-cell {
+      border-left: 1px solid var(--surface-raised);
+    }
+    html[data-theme="dark"] .scale-family-class-cell {
+      background: var(--scale-dark);
+    }
+    .scale-sampler-foot {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: var(--space-4);
+      align-items: end;
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--border-default);
+    }
+    .scale-sampler-foot p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--type-body-sm);
+    }
+    .scale-sampler-foot a {
+      color: var(--interaction-accent);
+      font-weight: 600;
+      text-underline-offset: 4px;
+    }
+    .scale-sampler-foot .secondary-action {
+      justify-self: start;
+      margin: 0;
+      text-decoration: none;
+    }
     .no-data-zero {
       display: flex;
       flex-wrap: wrap;
@@ -2821,7 +3030,7 @@
     }
     .opacity-ladder i {
       height: 15px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--interaction-accent);
       opacity: var(--opacity-level);
     }
@@ -2859,7 +3068,87 @@
     .stroke-key i {
       display: block;
       border-top: var(--sample-width) solid var(--sample-color);
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
+    }
+    .color-stability-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, .8fr);
+      gap: var(--space-5);
+      align-items: start;
+    }
+    .color-stability-scenes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      min-height: 240px;
+      overflow: hidden;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+    }
+    .color-stability-scene {
+      display: grid;
+      place-items: center;
+      padding: var(--space-3);
+    }
+    .color-stability-scene.is-measure { background: var(--measure-surface); }
+    .color-stability-scene.is-ground { background: var(--ground-surface); }
+    .color-stability-scene.is-cultivate { background: var(--cultivate-surface); }
+    .color-stability-component {
+      display: grid;
+      width: min(100%, 180px);
+      min-height: 118px;
+      align-content: space-between;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-card);
+      color: var(--text-primary);
+      box-shadow: 0 4px 12px rgba(30, 34, 48, .10);
+    }
+    html[data-theme="dark"] .color-stability-component {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .26);
+    }
+    .color-stability-component strong {
+      font-family: var(--font-ui-heading-th);
+      line-height: var(--leading-ui-heading-th);
+    }
+    html[data-locale="en"] .color-stability-component strong {
+      font-family: var(--font-ui-heading-en);
+      line-height: var(--leading-ui-heading-en);
+    }
+    .color-stability-component code,
+    .color-stability-rule code {
+      color: var(--text-metadata);
+      font-family: var(--font-data-label);
+      font-size: var(--type-caption);
+      font-weight: var(--weight-technical);
+      overflow-wrap: anywhere;
+    }
+    .color-stability-rules {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border-default);
+      list-style: none;
+    }
+    .color-stability-rule {
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr);
+      gap: var(--space-3);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .color-stability-rule .ui-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--interaction-accent);
+    }
+    .color-stability-rule strong,
+    .color-stability-rule small { display: block; }
+    .color-stability-rule small {
+      margin-top: 3px;
+      color: var(--text-secondary);
     }
 
     .complete-color-atlas {
@@ -2917,7 +3206,7 @@
       height: 36px;
       margin-left: -4px;
       border: 2px solid var(--surface-card);
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--mini);
     }
     .complete-color-atlas-body { min-width: 0; }
@@ -2932,7 +3221,7 @@
     .atlas-root .atlas-gradient-stops {
       font-family: var(--font-data-label);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: var(--leading-label);
       overflow-wrap: break-word;
     }
@@ -2948,7 +3237,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       letter-spacing: .04em;
       text-transform: uppercase;
     }
@@ -2982,7 +3271,7 @@
     .atlas-boundary > strong {
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .atlas-boundary > p { color: inherit; }
     .atlas-counts {
@@ -3286,7 +3575,7 @@
     }
     .atlas-series-cue--dash {
       height: 14px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
     }
     .atlas-series-cue--diagonal45 {
       background:
@@ -3333,7 +3622,7 @@
       color: #F1F4EF;
       font-family: var(--font-number);
       font-size: .64rem;
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .atlas-series-cue-label {
       margin-top: var(--space-2) !important;
@@ -3370,7 +3659,7 @@
     .atlas-scale-theme {
       padding: 3px 7px;
       border: 1px solid currentColor;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-family: var(--font-number);
       font-size: .68rem;
       text-transform: uppercase;
@@ -3547,7 +3836,7 @@
     .atlas-opacity-sample {
       display: block;
       height: 18px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: var(--interaction-accent);
     }
     .atlas-opacity-row figcaption {
@@ -3635,7 +3924,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-transform: uppercase;
     }
     .component-demo-grid { margin-top: var(--space-7); }
@@ -3661,7 +3950,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-transform: uppercase;
     }
     .decision-demo dd { margin: 0; }
@@ -3775,7 +4064,7 @@
       align-items: center;
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .dataviz-track {
       height: 16px;
@@ -3814,7 +4103,7 @@
       text-align: center;
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .dataviz-columns i {
       display: block;
@@ -3852,7 +4141,7 @@
       font-family: var(--font-number);
       font-size: var(--type-caption);
       font-style: normal;
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .dataviz-scatter .is-outlier {
       border-radius: 0;
@@ -3920,7 +4209,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .chart-thumbnail {
       width: 100%;
@@ -3967,7 +4256,7 @@
       fill: var(--text-secondary);
       font-family: var(--font-data-label);
       font-size: 9px;
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .chart-card-caption {
       min-height: 3.9em;
@@ -4006,7 +4295,7 @@
       color: var(--interaction-accent);
       font-family: var(--font-number);
       font-size: var(--type-label);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .experience-flow span {
       display: block;
@@ -4092,7 +4381,7 @@
       color: var(--text-metadata);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       text-transform: uppercase;
     }
     .intent-case dd { margin: 0; }
@@ -4117,7 +4406,7 @@
     .motion-token-table td:nth-child(2) {
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       white-space: nowrap;
     }
     .motion-lab {
@@ -4136,7 +4425,7 @@
     .motion-action-cue {
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .motion-object-name {
       margin: 0;
@@ -4222,7 +4511,7 @@
       color: var(--text-secondary);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .motion-log li + li { margin-top: 4px; }
     .cta-proof {
@@ -4286,7 +4575,7 @@
       color: var(--text-secondary);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       white-space: pre-line;
     }
     .cta-receipt[data-motion-phase="object"] {
@@ -4326,7 +4615,7 @@
       content: counter(pattern-step, decimal-leading-zero);
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .value-loop b,
     .recipient-ladder b { display: block; }
@@ -4507,7 +4796,7 @@
       color: var(--text-metadata);
       content: "→";
       font-family: var(--font-number);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
     }
     .product-boundary {
       margin-top: var(--space-4);
@@ -4530,6 +4819,22 @@
       padding: 10px 14px;
       text-decoration: none;
     }
+    .skip-link,
+    .primary-action,
+    .secondary-action,
+    .copy-button,
+    .pattern-button,
+    .cta-proof button,
+    .intent-form button,
+    .form-demo .button,
+    .interaction-sample .interaction-control,
+    .resource-grid .download-action,
+    .scale-sampler-foot a {
+      max-inline-size: 100%;
+      border-radius: var(--radius-pill);
+      white-space: normal;
+      text-align: center;
+    }
 
     @media (max-width: 980px) {
       .library-gateway-inner,
@@ -4548,6 +4853,7 @@
       }
       .color-route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .color-plate--wide { grid-column: auto; }
+      .scale-family-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .scale-triptych,
       .overlap-layout,
       .stroke-layout,
@@ -4598,6 +4904,12 @@
       .semantic-chip-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .brand-interaction-split,
       .surface-mode-strip { grid-template-columns: 1fr; }
+      .scale-family-grid,
+      .scale-sampler-foot { grid-template-columns: 1fr; }
+      .color-route-actions { display: grid; }
+      .color-route-actions a,
+      .scale-sampler-foot .secondary-action { width: 100%; }
+      .scale-sampler-head { grid-template-columns: minmax(0, 1fr) auto; }
       .color-plate-head { grid-template-columns: 40px minmax(0, 1fr); }
       .color-plate-head .color-status {
         grid-column: 2;
@@ -4729,7 +5041,7 @@
     .footer-meta {
       font-family: var(--font-number);
       font-size: var(--type-caption);
-      font-weight: 500;
+      font-weight: var(--weight-technical);
       line-height: 1.7;
     }
     .footer-links {
@@ -5009,7 +5321,7 @@
       <img src="assets/images/landometer-logo-banner.png" width="3818" height="1048" alt="Landometer">
     </a>
     <div class="release-label" aria-hidden="true">
-      DS 0.8.8<br>internal_demo
+      DS 0.8.8<br>internal_demo<br>COLOR SRGB-01
     </div>
     <button class="theme-cycle js-only" id="theme-cycle" type="button" aria-label="ธีม: ตามอุปกรณ์ / Theme: follow device">
       <svg data-theme-icon="system" viewBox="0 0 24 24" aria-hidden="true">
@@ -5668,8 +5980,8 @@
                   <li><span class="type-display-en">English display</span><small>Arvo · 700 · display/Product UI heading</small></li>
                   <li><span class="type-display-th">หัวเรื่องภาษาไทย</span><small>IBM Plex Sans Thai Looped · 700</small></li>
                   <li><span class="type-body-sample">เนื้อหาและ UI ที่อ่านต่อเนื่อง</span><small>Bai Jamjuree · 400/600</small></li>
-                  <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>IBM Plex Sans Thai · 500 · ปรับสัดส่วนให้เข้าคู่กับ JetBrains Mono · self-hosted</span><span data-en>IBM Plex Sans Thai · 500 · optically paired with JetBrains Mono · self-hosted</span></small></li>
-                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 500 · single technical weight</small></li>
+                  <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>IBM Plex Sans Thai · 400 · ปรับสัดส่วนให้เข้าคู่กับ JetBrains Mono · self-hosted</span><span data-en>IBM Plex Sans Thai · 400 · optically paired with JetBrains Mono · self-hosted</span></small></li>
+                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 400 · single technical weight</small></li>
                 </ul>
               </article>
 
@@ -5900,12 +6212,363 @@
                         <div class="scale-extremes"><span>−</span><span>0</span><span>+</span></div>
                       </div>
                     </div>
+                    <!-- COLOR_SCALE_SAMPLER_START -->
+<!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this sampler. -->
+      <section
+        class="scale-sampler"
+        data-color-registry="color-srgb-01"
+        data-scale-source-version="0.8.6"
+        data-scale-records="18"
+        aria-labelledby="scale-sampler-title"
+      >
+        <header class="scale-sampler-head">
+          <div>
+            <p class="scale-sampler-kicker">DATAVIZ-01 · 9 FAMILIES</p>
+            <h6 id="scale-sampler-title"><span data-th lang="th">เห็นทุกชุด ก่อนเลือกให้ตรงคำถาม</span><span data-en lang="en">See every family, then match it to the question</span></h6>
+            <p><span data-th lang="th">แต่ละชุดแสดง 5, 7 และ 9 ชั้นจาก LUT เดียวกัน สีบนจอจะสลับตามธีมที่กำลังใช้</span><span data-en lang="en">Each family shows 5, 7, and 9 classes from one LUT. The visible cells follow the active theme.</span></p>
+          </div>
+          <span class="scale-sampler-theme" aria-label="Resolved theme">
+            <span data-sampler-theme-light>LIGHT</span>
+            <span data-sampler-theme-dark>DARK</span>
+          </span>
+        </header>
+
+        <div class="scale-sampler-boundary" role="note">
+          <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
+          <p><span data-th lang="th">ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.8</span><span data-en lang="en">These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.8 dataviz.tokens.json package.</span></p>
+        </div>
+
+
+        <section class="scale-family-group" data-scale-kind="sequential">
+          <header class="scale-family-group-head">
+            <strong><span data-th lang="th">มาก–น้อย · Sequential</span><span data-en lang="en">Magnitude · Sequential</span></strong>
+            <span>6 families</span>
+          </header>
+          <div class="scale-family-grid">
+
+          <article
+            class="scale-family-card"
+            data-scale-family="growth"
+            data-scale-kind="sequential"
+            data-scale-version-light="21a5365eee71530e453b0af840b506cbbe60f207b63c095c9fa23793ed1dbcfd"
+            data-scale-version-dark="c3b414cd54d10422cffcf27f6c73bb54982707f000af6e56321dcbe15ff7a592"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">การเติบโต</span><span data-en lang="en">Growth</span></strong>
+              <code>growth · sequential</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="growth sequential 5 classes; light: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68; dark: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6F8984" title="growth 5 · light #F2F1DF · dark #6F8984" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#66A3AA" title="growth 5 · light #A9D5D1 · dark #66A3AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#53BDD0" title="growth 5 · light #55B8C2 · dark #53BDD0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#369394;--scale-dark:#6DCFC5" title="growth 5 · light #369394 · dark #6DCFC5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#126F68;--scale-dark:#86E0B8" title="growth 5 · light #126F68 · dark #86E0B8" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="growth sequential 7 classes; light: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68; dark: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6F8984" title="growth 7 · light #F2F1DF · dark #6F8984" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C0DDD5;--scale-dark:#699B9E" title="growth 7 · light #C0DDD5 · dark #699B9E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#92CCCD;--scale-dark:#61ABB5" title="growth 7 · light #92CCCD · dark #61ABB5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#53BDD0" title="growth 7 · light #55B8C2 · dark #53BDD0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3F9EA1;--scale-dark:#65C9C9" title="growth 7 · light #3F9EA1 · dark #65C9C9" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#2C8886;--scale-dark:#75D4C1" title="growth 7 · light #2C8886 · dark #75D4C1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#126F68;--scale-dark:#86E0B8" title="growth 7 · light #126F68 · dark #86E0B8" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="growth sequential 9 classes; light: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68; dark: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6F8984" title="growth 9 · light #F2F1DF · dark #6F8984" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CEE3D8;--scale-dark:#6B9697" title="growth 9 · light #CEE3D8 · dark #6B9697" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#66A3AA" title="growth 9 · light #A9D5D1 · dark #66A3AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#82C7CA;--scale-dark:#5EB0BD" title="growth 9 · light #82C7CA · dark #5EB0BD" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#53BDD0" title="growth 9 · light #55B8C2 · dark #53BDD0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#45A5AB;--scale-dark:#60C6CB" title="growth 9 · light #45A5AB · dark #60C6CB" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#369394;--scale-dark:#6DCFC5" title="growth 9 · light #369394 · dark #6DCFC5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#25817E;--scale-dark:#7AD7BF" title="growth 9 · light #25817E · dark #7AD7BF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#126F68;--scale-dark:#86E0B8" title="growth 9 · light #126F68 · dark #86E0B8" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="water"
+            data-scale-kind="sequential"
+            data-scale-version-light="be18b50b8496e9127a8c0c6e99bf8398974702258f8b8f138ed2f0dc1214377b"
+            data-scale-version-dark="a65ef232248253a372abf45eca7314fbc91aded406874d50441543bdbaaa26ec"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">น้ำ</span><span data-en lang="en">Water</span></strong>
+              <code>water · sequential</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="water sequential 5 classes; light: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A; dark: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6C838C" title="water 5 · light #F2F1DF · dark #6C838C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#659DA7" title="water 5 · light #A9D5D1 · dark #659DA7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#55B8C2" title="water 5 · light #55B8C2 · dark #55B8C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3A92AE;--scale-dark:#5FBED2" title="water 5 · light #3A92AE · dark #5FBED2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#206C9A;--scale-dark:#68C4E2" title="water 5 · light #206C9A · dark #68C4E2" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="water sequential 7 classes; light: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A; dark: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6C838C" title="water 7 · light #F2F1DF · dark #6C838C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C0DDD5;--scale-dark:#68959F" title="water 7 · light #C0DDD5 · dark #68959F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#92CCCD;--scale-dark:#61A5AF" title="water 7 · light #92CCCD · dark #61A5AF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#55B8C2" title="water 7 · light #55B8C2 · dark #55B8C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#429DB4;--scale-dark:#5CBCCD" title="water 7 · light #429DB4 · dark #5CBCCD" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3286A8;--scale-dark:#61C0D7" title="water 7 · light #3286A8 · dark #61C0D7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#206C9A;--scale-dark:#68C4E2" title="water 7 · light #206C9A · dark #68C4E2" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="water sequential 9 classes; light: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A; dark: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6C838C" title="water 9 · light #F2F1DF · dark #6C838C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CEE3D8;--scale-dark:#699099" title="water 9 · light #CEE3D8 · dark #699099" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#659DA7" title="water 9 · light #A9D5D1 · dark #659DA7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#82C7CA;--scale-dark:#5EABB4" title="water 9 · light #82C7CA · dark #5EABB4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#55B8C2" title="water 9 · light #55B8C2 · dark #55B8C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#47A5B8;--scale-dark:#5ABBCA" title="water 9 · light #47A5B8 · dark #5ABBCA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3A92AE;--scale-dark:#5FBED2" title="water 9 · light #3A92AE · dark #5FBED2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#2D7FA4;--scale-dark:#63C1DA" title="water 9 · light #2D7FA4 · dark #63C1DA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#206C9A;--scale-dark:#68C4E2" title="water 9 · light #206C9A · dark #68C4E2" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="risk"
+            data-scale-kind="sequential"
+            data-scale-version-light="b97fbdd43b32c5c295d86bf8aeac60c91909c66a002ccacce34b02184724fb87"
+            data-scale-version-dark="76a76d08d528d93487f6cc34b2c0923fffce8ed9df73f52569714431a7bd8788"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">ความเสี่ยง</span><span data-en lang="en">Risk</span></strong>
+              <code>risk · sequential</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="risk sequential 5 classes; light: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436; dark: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#85837A" title="risk 5 · light #F2F1DF · dark #85837A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E9D398;--scale-dark:#AA9460" title="risk 5 · light #E9D398 · dark #AA9460" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E0B443;--scale-dark:#D0A42F" title="risk 5 · light #E0B443 · dark #D0A42F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CE7E3E;--scale-dark:#E8995D" title="risk 5 · light #CE7E3E · dark #E8995D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#FF8C7D" title="risk 5 · light #B74436 · dark #FF8C7D" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="risk sequential 7 classes; light: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436; dark: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#85837A" title="risk 7 · light #F2F1DF · dark #85837A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ECDCAE;--scale-dark:#9F8F69" title="risk 7 · light #ECDCAE · dark #9F8F69" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E7CA82;--scale-dark:#B59955" title="risk 7 · light #E7CA82 · dark #B59955" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E0B443;--scale-dark:#D0A42F" title="risk 7 · light #E0B443 · dark #D0A42F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D48E40;--scale-dark:#E19D51" title="risk 7 · light #D48E40 · dark #E19D51" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C76D3C;--scale-dark:#EF9667" title="risk 7 · light #C76D3C · dark #EF9667" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#FF8C7D" title="risk 7 · light #B74436 · dark #FF8C7D" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="risk sequential 9 classes; light: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436; dark: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#85837A" title="risk 9 · light #F2F1DF · dark #85837A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EEE2BC;--scale-dark:#978C6E" title="risk 9 · light #EEE2BC · dark #978C6E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E9D398;--scale-dark:#AA9460" title="risk 9 · light #E9D398 · dark #AA9460" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E5C472;--scale-dark:#BD9C4D" title="risk 9 · light #E5C472 · dark #BD9C4D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E0B443;--scale-dark:#D0A42F" title="risk 9 · light #E0B443 · dark #D0A42F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D79941;--scale-dark:#DC9F49" title="risk 9 · light #D79941 · dark #DC9F49" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CE7E3E;--scale-dark:#E8995D" title="risk 9 · light #CE7E3E · dark #E8995D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C3623A;--scale-dark:#F4936E" title="risk 9 · light #C3623A · dark #F4936E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#FF8C7D" title="risk 9 · light #B74436 · dark #FF8C7D" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="activity"
+            data-scale-kind="sequential"
+            data-scale-version-light="b2a9c0d3d41737f16d4dd3e22baf7dca351ca13fe045b5882369981d264825cd"
+            data-scale-version-dark="d5a365c265d4c57e8d0294f26d1e81d2109bdd09701b8c7db2d5ddd3e0f3c8c8"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">กิจกรรม</span><span data-en lang="en">Activity</span></strong>
+              <code>activity · sequential</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="activity sequential 5 classes; light: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00; dark: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#808A96" title="activity 5 · light #F2F1DF · dark #808A96" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2B0B5;--scale-dark:#BB859C" title="activity 5 · light #F2B0B5 · dark #BB859C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E86A8C;--scale-dark:#F079A1" title="activity 5 · light #E86A8C · dark #F079A1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D74F55;--scale-dark:#F8968A" title="activity 5 · light #D74F55 · dark #F8968A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FFB06A" title="activity 5 · light #C52C00 · dark #FFB06A" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="activity sequential 7 classes; light: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00; dark: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#808A96" title="activity 7 · light #F2F1DF · dark #808A96" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F3C3C1;--scale-dark:#AA879A" title="activity 7 · light #F3C3C1 · dark #AA879A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F09BA8;--scale-dark:#CB829D" title="activity 7 · light #F09BA8 · dark #CB829D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E86A8C;--scale-dark:#F079A1" title="activity 7 · light #E86A8C · dark #F079A1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DC5766;--scale-dark:#F58E91" title="activity 7 · light #DC5766 · dark #F58E91" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D14543;--scale-dark:#FA9E81" title="activity 7 · light #D14543 · dark #FA9E81" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FFB06A" title="activity 7 · light #C52C00 · dark #FFB06A" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="activity sequential 9 classes; light: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00; dark: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#808A96" title="activity 9 · light #F2F1DF · dark #808A96" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F4D0CA;--scale-dark:#9F8899" title="activity 9 · light #F4D0CA · dark #9F8899" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2B0B5;--scale-dark:#BB859C" title="activity 9 · light #F2B0B5 · dark #BB859C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EE8EA0;--scale-dark:#D6809E" title="activity 9 · light #EE8EA0 · dark #D6809E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E86A8C;--scale-dark:#F079A1" title="activity 9 · light #E86A8C · dark #F079A1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DF5D71;--scale-dark:#F48896" title="activity 9 · light #DF5D71 · dark #F48896" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D74F55;--scale-dark:#F8968A" title="activity 9 · light #D74F55 · dark #F8968A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CE3F36;--scale-dark:#FBA37B" title="activity 9 · light #CE3F36 · dark #FBA37B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FFB06A" title="activity 9 · light #C52C00 · dark #FFB06A" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="density"
+            data-scale-kind="sequential"
+            data-scale-version-light="68556c7157ea216e471ac348a8a6b243515da389a75525bae650825e657e372f"
+            data-scale-version-dark="df1cc2c761bf66959acba1b63637200306690a790c0c7d4d6fddfe54357d6148"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">ความหนาแน่น</span><span data-en lang="en">Density</span></strong>
+              <code>density · sequential</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="density sequential 5 classes; light: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78; dark: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#728C9A" title="density 5 · light #F2F1DF · dark #728C9A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ACC4C8;--scale-dark:#6199AF" title="density 5 · light #ACC4C8 · dark #6199AF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6797AF;--scale-dark:#47A6C4" title="density 5 · light #6797AF · dark #47A6C4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#467B93;--scale-dark:#72C5DB" title="density 5 · light #467B93 · dark #72C5DB" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#225F78;--scale-dark:#9BE4F2" title="density 5 · light #225F78 · dark #9BE4F2" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="density sequential 7 classes; light: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78; dark: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#728C9A" title="density 7 · light #F2F1DF · dark #728C9A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C1D1CF;--scale-dark:#6795A9" title="density 7 · light #C1D1CF · dark #6795A9" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#97B6C0;--scale-dark:#5A9DB5" title="density 7 · light #97B6C0 · dark #5A9DB5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6797AF;--scale-dark:#47A6C4" title="density 7 · light #6797AF · dark #47A6C4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#50839B;--scale-dark:#66BBD4" title="density 7 · light #50839B · dark #66BBD4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3B728B;--scale-dark:#7FCEE2" title="density 7 · light #3B728B · dark #7FCEE2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#225F78;--scale-dark:#9BE4F2" title="density 7 · light #225F78 · dark #9BE4F2" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="density sequential 9 classes; light: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78; dark: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#728C9A" title="density 9 · light #F2F1DF · dark #728C9A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CFDAD3;--scale-dark:#6A93A4" title="density 9 · light #CFDAD3 · dark #6A93A4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ACC4C8;--scale-dark:#6199AF" title="density 9 · light #ACC4C8 · dark #6199AF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8AADBB;--scale-dark:#56A0B9" title="density 9 · light #8AADBB · dark #56A0B9" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6797AF;--scale-dark:#47A6C4" title="density 9 · light #6797AF · dark #47A6C4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#5689A1;--scale-dark:#5DB5CF" title="density 9 · light #5689A1 · dark #5DB5CF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#467B93;--scale-dark:#72C5DB" title="density 9 · light #467B93 · dark #72C5DB" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#346D85;--scale-dark:#87D4E6" title="density 9 · light #346D85 · dark #87D4E6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#225F78;--scale-dark:#9BE4F2" title="density 9 · light #225F78 · dark #9BE4F2" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="confidence"
+            data-scale-kind="sequential"
+            data-scale-version-light="1268541717adfca60a172d853fb380d65b372f10bc9824f7b22417cab7600452"
+            data-scale-version-dark="dfd4314cd09f7a2aa98f594611cbc4d65adb59ce79b2460a72973c050c22e30a"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">ความเชื่อมั่น</span><span data-en lang="en">Confidence</span></strong>
+              <code>confidence · sequential</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="confidence sequential 5 classes; light: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F; dark: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#7C8B8C" title="confidence 5 · light #F2F1DF · dark #7C8B8C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BBCAC0;--scale-dark:#889A9B" title="confidence 5 · light #BBCAC0 · dark #889A9B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#85A5A2;--scale-dark:#95A9AA" title="confidence 5 · light #85A5A2 · dark #95A9AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#548D88;--scale-dark:#B6C7C7" title="confidence 5 · light #548D88 · dark #B6C7C7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#08756F;--scale-dark:#D8E6E5" title="confidence 5 · light #08756F · dark #D8E6E5" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="confidence sequential 7 classes; light: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F; dark: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#7C8B8C" title="confidence 7 · light #F2F1DF · dark #7C8B8C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CBD6C9;--scale-dark:#859596" title="confidence 7 · light #CBD6C9 · dark #859596" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ABBFB7;--scale-dark:#8C9E9F" title="confidence 7 · light #ABBFB7 · dark #8C9E9F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#85A5A2;--scale-dark:#95A9AA" title="confidence 7 · light #85A5A2 · dark #95A9AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#639490;--scale-dark:#ACBEBE" title="confidence 7 · light #639490 · dark #ACBEBE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#438680;--scale-dark:#C0D0D0" title="confidence 7 · light #438680 · dark #C0D0D0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#08756F;--scale-dark:#D8E6E5" title="confidence 7 · light #08756F · dark #D8E6E5" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="confidence sequential 9 classes; light: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F; dark: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5">
+                  <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#7C8B8C" title="confidence 9 · light #F2F1DF · dark #7C8B8C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D6DED0;--scale-dark:#829293" title="confidence 9 · light #D6DED0 · dark #829293" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BBCAC0;--scale-dark:#889A9B" title="confidence 9 · light #BBCAC0 · dark #889A9B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A0B8B1;--scale-dark:#8FA1A2" title="confidence 9 · light #A0B8B1 · dark #8FA1A2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#85A5A2;--scale-dark:#95A9AA" title="confidence 9 · light #85A5A2 · dark #95A9AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6D9995;--scale-dark:#A5B8B8" title="confidence 9 · light #6D9995 · dark #A5B8B8" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#548D88;--scale-dark:#B6C7C7" title="confidence 9 · light #548D88 · dark #B6C7C7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#37817B;--scale-dark:#C7D6D6" title="confidence 9 · light #37817B · dark #C7D6D6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#08756F;--scale-dark:#D8E6E5" title="confidence 9 · light #08756F · dark #D8E6E5" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          </div>
+        </section>
+
+
+        <section class="scale-family-group" data-scale-kind="diverging">
+          <header class="scale-family-group-head">
+            <strong><span data-th lang="th">สองทิศทางรอบจุดกลาง · Diverging</span><span data-en lang="en">Two directions around a midpoint · Diverging</span></strong>
+            <span>3 families</span>
+          </header>
+          <div class="scale-family-grid">
+
+          <article
+            class="scale-family-card"
+            data-scale-family="balance"
+            data-scale-kind="diverging"
+            data-scale-version-light="a5360d21bc2cad17015077fce50ea2d3436b82579a6b9a26af2db56ef9da8b7f"
+            data-scale-version-dark="d3020f990d0c5b0fdc055400742fdcf1869d151c6dc14c72295e0b959a436019"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">สมดุล</span><span data-en lang="en">Balance</span></strong>
+              <code>balance · diverging</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="balance diverging 5 classes; light: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E; dark: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0">
+                  <i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FF8A4C" title="balance 5 · light #C52C00 · dark #FF8A4C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E4967B;--scale-dark:#C1855E" title="balance 5 · light #E4967B · dark #C1855E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="balance 5 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8AADC1;--scale-dark:#7096A4" title="balance 5 · light #8AADC1 · dark #7096A4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#186A9E;--scale-dark:#4FAFE0" title="balance 5 · light #186A9E · dark #4FAFE0" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="balance diverging 7 classes; light: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E; dark: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0">
+                  <i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FF8A4C" title="balance 7 · light #C52C00 · dark #FF8A4C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DC7A5D;--scale-dark:#D4875A" title="balance 7 · light #DC7A5D · dark #D4875A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EAB299;--scale-dark:#AF8362" title="balance 7 · light #EAB299 · dark #AF8362" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="balance 7 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9C1CA;--scale-dark:#778F92" title="balance 7 · light #A9C1CA · dark #778F92" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6C99B7;--scale-dark:#699EB6" title="balance 7 · light #6C99B7 · dark #699EB6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#186A9E;--scale-dark:#4FAFE0" title="balance 7 · light #186A9E · dark #4FAFE0" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="balance diverging 9 classes; light: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E; dark: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0">
+                  <i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FF8A4C" title="balance 9 · light #C52C00 · dark #FF8A4C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D66749;--scale-dark:#E08856" title="balance 9 · light #D66749 · dark #E08856" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E4967B;--scale-dark:#C1855E" title="balance 9 · light #E4967B · dark #C1855E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EDC4AD;--scale-dark:#A28164" title="balance 9 · light #EDC4AD · dark #A28164" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="balance 9 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BECFD0;--scale-dark:#7A8A86" title="balance 9 · light #BECFD0 · dark #7A8A86" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8AADC1;--scale-dark:#7096A4" title="balance 9 · light #8AADC1 · dark #7096A4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#578CB0;--scale-dark:#63A3C2" title="balance 9 · light #578CB0 · dark #63A3C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#186A9E;--scale-dark:#4FAFE0" title="balance 9 · light #186A9E · dark #4FAFE0" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="delta"
+            data-scale-kind="diverging"
+            data-scale-version-light="19e26f1dfa73af1ddc568ee7981150f92bb65f509cfdd66d8add180619ddcf6c"
+            data-scale-version-dark="ec49515d71c535c8a07032bfe80452988df5fc55edb48eb62590c5e834b956b2"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">การเปลี่ยนแปลง</span><span data-en lang="en">Delta</span></strong>
+              <code>delta · diverging</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="delta diverging 5 classes; light: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78; dark: #F28575, #BB826F, #827C68, #75A291, #55C8BC">
+                  <i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#F28575" title="delta 5 · light #B74436 · dark #F28575" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DA9C89;--scale-dark:#BB826F" title="delta 5 · light #DA9C89 · dark #BB826F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="delta 5 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8CB6AA;--scale-dark:#75A291" title="delta 5 · light #8CB6AA · dark #75A291" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007C78;--scale-dark:#55C8BC" title="delta 5 · light #007C78 · dark #55C8BC" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="delta diverging 7 classes; light: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78; dark: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC">
+                  <i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#F28575" title="delta 7 · light #B74436 · dark #F28575" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D18370;--scale-dark:#CB8371" title="delta 7 · light #D18370 · dark #CB8371" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E3B5A2;--scale-dark:#AA816D" title="delta 7 · light #E3B5A2 · dark #AA816D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="delta 7 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ABC7BA;--scale-dark:#7B9785" title="delta 7 · light #ABC7BA · dark #7B9785" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6DA49B;--scale-dark:#6FAD9E" title="delta 7 · light #6DA49B · dark #6FAD9E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007C78;--scale-dark:#55C8BC" title="delta 7 · light #007C78 · dark #55C8BC" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="delta diverging 9 classes; light: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78; dark: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC">
+                  <i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#F28575" title="delta 9 · light #B74436 · dark #F28575" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CA725F;--scale-dark:#D68472" title="delta 9 · light #CA725F · dark #D68472" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DA9C89;--scale-dark:#BB826F" title="delta 9 · light #DA9C89 · dark #BB826F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E8C6B3;--scale-dark:#9F806B" title="delta 9 · light #E8C6B3 · dark #9F806B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="delta 9 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BFD3C4;--scale-dark:#7D8F7D" title="delta 9 · light #BFD3C4 · dark #7D8F7D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8CB6AA;--scale-dark:#75A291" title="delta 9 · light #8CB6AA · dark #75A291" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#579991;--scale-dark:#69B5A6" title="delta 9 · light #579991 · dark #69B5A6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007C78;--scale-dark:#55C8BC" title="delta 9 · light #007C78 · dark #55C8BC" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          <article
+            class="scale-family-card"
+            data-scale-family="tradeoff"
+            data-scale-kind="diverging"
+            data-scale-version-light="cba76b7656e3d0540b2c344a4bc8da421eb249d46e7f0ab839f448431a6a9f31"
+            data-scale-version-dark="24f0c7b903dca96a98cc63578cebeeba987bce74484ac8f446bfbb8c824d9ea1"
+          >
+            <header class="scale-family-head">
+              <strong><span data-th lang="th">ทางเลือกที่ต้องแลก</span><span data-en lang="en">Trade-off</span></strong>
+              <code>tradeoff · diverging</code>
+            </header>
+            <div class="scale-family-class-stack">
+
+              <figure class="scale-family-class-row" data-class-count="5">
+                <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="tradeoff diverging 5 classes; light: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91; dark: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3">
+                  <i class="scale-family-class-cell" style="--scale-light:#9E476F;--scale-dark:#E982AE" title="tradeoff 5 · light #9E476F · dark #E982AE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CB9BA6;--scale-dark:#B6818B" title="tradeoff 5 · light #CB9BA6 · dark #B6818B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="tradeoff 5 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8DB7B8;--scale-dark:#789F9D" title="tradeoff 5 · light #8DB7B8 · dark #789F9D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007E91;--scale-dark:#61C2D3" title="tradeoff 5 · light #007E91 · dark #61C2D3" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="7">
+                <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="tradeoff diverging 7 classes; light: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91; dark: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3">
+                  <i class="scale-family-class-cell" style="--scale-light:#9E476F;--scale-dark:#E982AE" title="tradeoff 7 · light #9E476F · dark #E982AE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BE8295;--scale-dark:#C58295" title="tradeoff 7 · light #BE8295 · dark #C58295" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D8B5B6;--scale-dark:#A78080" title="tradeoff 7 · light #D8B5B6 · dark #A78080" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="tradeoff 7 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ABC8C4;--scale-dark:#7C958D" title="tradeoff 7 · light #ABC8C4 · dark #7C958D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6DA6AD;--scale-dark:#73AAAD" title="tradeoff 7 · light #6DA6AD · dark #73AAAD" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007E91;--scale-dark:#61C2D3" title="tradeoff 7 · light #007E91 · dark #61C2D3" aria-hidden="true"></i>
+                </div>
+              </figure>
+              <figure class="scale-family-class-row" data-class-count="9">
+                <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="tradeoff diverging 9 classes; light: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91; dark: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3">
+                  <i class="scale-family-class-cell" style="--scale-light:#9E476F;--scale-dark:#E982AE" title="tradeoff 9 · light #9E476F · dark #E982AE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B6718A;--scale-dark:#D0829C" title="tradeoff 9 · light #B6718A · dark #D0829C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CB9BA6;--scale-dark:#B6818B" title="tradeoff 9 · light #CB9BA6 · dark #B6818B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DFC6C2;--scale-dark:#9C7F79" title="tradeoff 9 · light #DFC6C2 · dark #9C7F79" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="tradeoff 9 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BFD4CC;--scale-dark:#7F8E82" title="tradeoff 9 · light #BFD4CC · dark #7F8E82" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8DB7B8;--scale-dark:#789F9D" title="tradeoff 9 · light #8DB7B8 · dark #789F9D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#579AA5;--scale-dark:#6FB1B8" title="tradeoff 9 · light #579AA5 · dark #6FB1B8" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007E91;--scale-dark:#61C2D3" title="tradeoff 9 · light #007E91 · dark #61C2D3" aria-hidden="true"></i>
+                </div>
+              </figure>
+            </div>
+          </article>
+          </div>
+        </section>
+
+        <footer class="scale-sampler-foot">
+          <p><span data-th lang="th">ชื่อชุดสีไม่ได้กำหนดความหมายของปลายสเกล งานวิเคราะห์ที่นำไปใช้ต้องระบุ domain, threshold, classification และ outlier policy เอง</span><span data-en lang="en">A family name does not define endpoint meaning. The consuming analysis still owns its domain, thresholds, classification, and outlier policy.</span></p>
+          <a class="secondary-action scale-sampler-action" href="#atlas-dataviz-title" data-reveal-target="atlas-dataviz-title"><span data-th lang="th">เปิดดู 41 stops, exact values และ scaleVersion</span><span data-en lang="en">Open all 41 stops, exact values, and scaleVersion</span></a>
+        </footer>
+      </section>
+                    <!-- COLOR_SCALE_SAMPLER_END -->
                     <div class="no-data-zero">
                       <span class="no-data-swatch" aria-hidden="true"></span><strong>No data</strong><span><span data-th>อยู่นอก ramp และมีคำกำกับ</span><span data-en>outside the ramp, directly labelled</span></span>
                       <span class="zero-swatch" aria-hidden="true"></span><strong>Zero</strong><span><span data-th>เป็นข้อเท็จจริงคนละอย่าง</span><span data-en>a different fact</span></span>
                     </div>
                   </div>
-                  <figcaption><span data-th>หน้าเว็บนี้แสดงเพียง anchor ที่ DS กำหนด; 5/7/9 classes ต้องมาจาก LUT และ scaleVersion ที่ generate ไว้ล่วงหน้า ไม่ผสมสีตอน runtime</span><span data-en>This page shows only governed anchors; 5/7/9 classes require the generated LUT and scaleVersion—never runtime color mixing.</span></figcaption>
+                  <figcaption><span data-th>ตัวอย่างนี้แสดงครบ 6 sequential และ 3 diverging families ทั้ง 5/7/9 ชั้น โดยอ่านค่าธีมสว่างและมืดจาก LUT/scaleVersion ที่ generate ไว้ล่วงหน้า—ไม่ผสมสีตอน runtime</span><span data-en>This fixture shows all six sequential and three diverging families at 5/7/9 classes, reading exact light/dark values from pre-generated LUTs and scaleVersions—never runtime color mixing.</span></figcaption>
                 </figure>
 
                 <figure class="color-plate" id="color-opacity-layers">
@@ -5957,6 +6620,55 @@
                   </div>
                   <figcaption><span data-th>DS มี token เส้นสำหรับ map และมีกฎ connector แต่ยังไม่มี stroke-width scale กลางสำหรับ chart/axis—ตัวเลขความหนาในภาพเป็น candidate recipe ต้องขออนุมัติก่อนทำเป็น normative</span><span data-en>The DS governs map strokes and connector meaning, but has no universal chart/axis width scale. The shown widths are candidate recipes, not normative tokens.</span></figcaption>
                 </figure>
+
+                <figure class="color-plate color-plate--wide" id="color-device-stability" data-color-contract="registry-pinned-build" data-color-registry="color-srgb-01">
+                  <div class="color-plate-head">
+                    <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compare"></use></svg></span>
+                    <h5><span data-th>ทุกอุปกรณ์ต้องได้ Color Set เดียวกัน</span><span data-en>Every device must receive the same Color Set</span></h5>
+                    <span class="color-status">COLOR SET · SRGB-01</span>
+                  </div>
+                  <div class="color-plate-body color-stability-layout">
+                    <div class="color-stability-scenes" aria-label="One opaque component remains on its governed surface over Measure, Ground, and Cultivate gradients">
+                      <div class="color-stability-scene is-measure">
+                        <span class="color-stability-component">
+                          <strong><span data-th>ส่วนประกอบเดิม</span><span data-en>Same component</span></strong>
+                          <code>surface.card + text.primary</code>
+                        </span>
+                      </div>
+                      <div class="color-stability-scene is-ground">
+                        <span class="color-stability-component">
+                          <strong><span data-th>ส่วนประกอบเดิม</span><span data-en>Same component</span></strong>
+                          <code>surface.card + text.primary</code>
+                        </span>
+                      </div>
+                      <div class="color-stability-scene is-cultivate">
+                        <span class="color-stability-component">
+                          <strong><span data-th>ส่วนประกอบเดิม</span><span data-en>Same component</span></strong>
+                          <code>surface.card + text.primary</code>
+                        </span>
+                      </div>
+                    </div>
+                    <ul class="color-stability-rules">
+                      <li class="color-stability-rule">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg>
+                        <span><strong><span data-th>หนึ่ง registry เท่านั้น</span><span data-en>One registry only</span></strong><small><code>color-delivery.v0.8.8.json · color-srgb-01</code><br><span data-th>root, standalone และ Atlas ต้องอ้าง token/gradient ชุดเดียวกัน</span><span data-en>Root, standalone, and Atlas must resolve the same token and gradient set.</span></small></span>
+                      </li>
+                      <li class="color-stability-rule">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-download"></use></svg>
+                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set แล้ว</span><span data-en>Share the pinned Color Set</span></strong><small><code>landometer-design-system-v0.8.8-standalone.color-srgb-01.html</code><br><span data-th>ลิงก์นี้ไม่เปลี่ยนชุดสีระหว่างตรวจงาน</span><span data-en>This URL does not change Color Set during review.</span></small></span>
+                      </li>
+                      <li class="color-stability-rule">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-compare"></use></svg>
+                        <span><strong><span data-th>ตรวจ Build ID ก่อนดูสี</span><span data-en>Check Build ID before color</span></strong><small><code>data-color-registry="color-srgb-01"</code><br><span data-th>ถ้า ID ต่างกัน คือได้คนละ build—not สีเพี้ยน</span><span data-en>Different IDs mean different builds—not color drift.</span></small></span>
+                      </li>
+                      <li class="color-stability-rule">
+                        <svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg>
+                        <span><strong><span data-th>แล้วค่อยล็อกวิธี render</span><span data-en>Then lock rendering</span></strong><small><code>SDR sRGB · explicit interpolation</code><br><span data-th>ใช้ <code>?theme=light</code> หรือ <code>?theme=dark</code> ตอนเทียบ ห้ามใช้ <code>system</code> เป็น baseline</span><span data-en>Use <code>?theme=light</code> or <code>?theme=dark</code> for comparison; never use <code>system</code> as a baseline.</span></small></span>
+                      </li>
+                    </ul>
+                  </div>
+                  <figcaption><span data-th>หากสองเครื่องเห็น “คนละชุดสี” ให้เทียบ Color Set ID ก่อน: ID ต่างกันคือ cache/build เก่า ส่วน ID เดียวกันแต่ภาพต่างจึงค่อยตรวจ theme และ color rendering หน้า latest บน GitHub Pages อาจถูก cache ได้ 10 นาที จึงใช้ไฟล์ pinned เมื่อต้อง review หรือส่งต่อ</span><span data-en>If two devices show different palettes, compare the Color Set ID first: different IDs indicate an older cached build. Only when IDs match should theme and rendering be investigated. GitHub Pages may cache the latest alias for 10 minutes, so use the pinned file for review and handoff.</span></figcaption>
+                </figure>
               </div>
 
               <details class="complete-color-atlas" id="complete-color-atlas">
@@ -5973,7 +6685,7 @@
                 <div class="complete-color-atlas-body">
                   <!-- COLOR_ATLAS_START -->
 <!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this fragment. -->
-<section class="atlas-root" aria-labelledby="atlas-title" data-atlas-version="0.8.8" data-atlas-source-version="0.8.6" data-atlas-records="18">
+<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="color-srgb-01" data-atlas-version="0.8.8" data-atlas-source-version="0.8.6" data-atlas-records="18">
   <header class="atlas-intro">
     <p class="atlas-kicker">TOKEN-01 · VIS-04 · SURFACE-01 · DATAVIZ-01 · MAP-01</p>
     <h4 class="atlas-title" id="atlas-title"><span data-th lang="th">สมุดสีฉบับเต็ม—เห็นทุกบทบาทก่อนหยิบไปใช้</span><span data-en lang="en">The complete color atlas—see every role before using it</span></h4>
@@ -6542,7 +7254,7 @@
     <div class="atlas-gradient-grid atlas-gradient-grid--shared">
 
           <figure class="atlas-gradient-card atlas-gradient-card--shared">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);background:linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);background:linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);background:linear-gradient(135deg in srgb, #1D4497 0%, #176B82 54%, #08756F 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">signature.gradient.closing.light</code>
               <strong class="atlas-gradient-stops">#1D4497 0% · #176B82 54% · #08756F 100%</strong>
@@ -6551,7 +7263,7 @@
             </figcaption>
           </figure>
           <figure class="atlas-gradient-card atlas-gradient-card--shared">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);background:linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);background:linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);background:linear-gradient(135deg in srgb, #68C4E2 0%, #15919A 52%, #08756F 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">signature.gradient.closing.dark</code>
               <strong class="atlas-gradient-stops">#68C4E2 0% · #15919A 52% · #08756F 100%</strong>
@@ -6561,28 +7273,28 @@
           </figure>
 
           <figure class="atlas-gradient-card atlas-gradient-card--motif">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #1D4497 0%, #176B82 50%, #08756F 100%);background:linear-gradient(135deg, #1D4497 0%, #176B82 50%, #08756F 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);background:linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);background:linear-gradient(135deg in srgb, #1D4497 0%, #176B82 52%, #08756F 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">motif.gradient.brandSignature</code>
-              <strong class="atlas-gradient-stops">#1D4497 → #176B82 → #08756F</strong>
+              <strong class="atlas-gradient-stops">#1D4497 0% → #176B82 52% → #08756F 100%</strong>
               <small><span data-th lang="th">เฉพาะ motif asset ที่ผ่าน gate แล้ว</span><span data-en lang="en">Only for a separately approved motif asset</span></small>
               <span class="atlas-gradient-meta"><b>asset-gated motif only</b><em>not a general-purpose surface token</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
           <figure class="atlas-gradient-card atlas-gradient-card--motif">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #147A9F 0%, #3BD3CB 50%, #3BD19B 100%);background:linear-gradient(135deg, #147A9F 0%, #3BD3CB 50%, #3BD19B 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);background:linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);background:linear-gradient(135deg in srgb, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">motif.gradient.civicCool</code>
-              <strong class="atlas-gradient-stops">#147A9F → #3BD3CB → #3BD19B</strong>
+              <strong class="atlas-gradient-stops">#147A9F 0% → #3BD3CB 52% → #3BD19B 100%</strong>
               <small><span data-th lang="th">Ground: เผยบริบทและทำให้หลักฐานเข้าใจง่ายขึ้น</span><span data-en lang="en">Ground: context reveal and evidence becoming understandable</span></small>
               <span class="atlas-gradient-meta"><b>Ground · context reveal / transition</b><em>sampled contrast → deterministic scrim or opaque panel</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
           <figure class="atlas-gradient-card atlas-gradient-card--motif">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C33F55 0%, #FF8A4C 50%, #F4C44E 100%);background:linear-gradient(135deg, #C33F55 0%, #FF8A4C 50%, #F4C44E 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);background:linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);background:linear-gradient(135deg in srgb, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">motif.gradient.civicWarm</code>
-              <strong class="atlas-gradient-stops">#C33F55 → #FF8A4C → #F4C44E</strong>
+              <strong class="atlas-gradient-stops">#C33F55 0% → #FF8A4C 52% → #F4C44E 100%</strong>
               <small><span data-th lang="th">Cultivate: การลงมือทำ โมเมนตัม และความสำเร็จ</span><span data-en lang="en">Cultivate: action, credible momentum, and completion</span></small>
               <span class="atlas-gradient-meta"><b>Cultivate · momentum / completion</b><em>sampled contrast → deterministic scrim or opaque panel</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
@@ -6607,7 +7319,7 @@
             <div class="atlas-product-pair">
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #12669B 0%, #36BCE4 100%);background:linear-gradient(135deg, #12669B 0%, #36BCE4 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #12669B 0%, #36BCE4 100%);background:linear-gradient(135deg, #12669B 0%, #36BCE4 100%);background:linear-gradient(135deg in srgb, #12669B 0%, #36BCE4 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Light</strong>
                   <code>#12669B → #36BCE4</code>
@@ -6615,7 +7327,7 @@
               </figure>
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);background:linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);background:linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);background:linear-gradient(135deg in srgb, #4C99D5 0%, #59C7E8 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Dark</strong>
                   <code>#4C99D5 → #59C7E8</code>
@@ -6633,7 +7345,7 @@
             <div class="atlas-product-pair">
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #176B82 0%, #007E79 100%);background:linear-gradient(135deg, #176B82 0%, #007E79 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #176B82 0%, #007E79 100%);background:linear-gradient(135deg, #176B82 0%, #007E79 100%);background:linear-gradient(135deg in srgb, #176B82 0%, #007E79 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Light</strong>
                   <code>#176B82 → #007E79</code>
@@ -6641,7 +7353,7 @@
               </figure>
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Dark</strong>
                   <code>#59C7E8 → #3BD3CB</code>
@@ -6659,7 +7371,7 @@
             <div class="atlas-product-pair">
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #007A58 0%, #007E79 100%);background:linear-gradient(135deg, #007A58 0%, #007E79 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #007A58 0%, #007E79 100%);background:linear-gradient(135deg, #007A58 0%, #007E79 100%);background:linear-gradient(135deg in srgb, #007A58 0%, #007E79 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Light</strong>
                   <code>#007A58 → #007E79</code>
@@ -6667,7 +7379,7 @@
               </figure>
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);background:linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);background:linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);background:linear-gradient(135deg in srgb, #3BD19B 0%, #3BD3CB 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Dark</strong>
                   <code>#3BD19B → #3BD3CB</code>
@@ -6685,7 +7397,7 @@
             <div class="atlas-product-pair">
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C52C00 0%, #B23F74 100%);background:linear-gradient(135deg, #C52C00 0%, #B23F74 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C52C00 0%, #B23F74 100%);background:linear-gradient(135deg, #C52C00 0%, #B23F74 100%);background:linear-gradient(135deg in srgb, #C52C00 0%, #B23F74 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Light</strong>
                   <code>#C52C00 → #B23F74</code>
@@ -6693,7 +7405,7 @@
               </figure>
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);background:linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);background:linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);background:linear-gradient(135deg in srgb, #FF8A4C 0%, #F06FA6 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Dark</strong>
                   <code>#FF8A4C → #F06FA6</code>
@@ -8876,11 +9588,11 @@
                 <a href="https://github.com/montri-th/Landometer/tree/main/skill/refine-landometer-experience" id="resource-refinement-skill"><span data-th>เปิด skill package</span><span data-en>Open skill package</span></a>
               </article>
               <article>
-                <p class="resource-meta">SELF-CONTAINED · HTML · V0.8.8</p>
-                <h5><span data-th>หน้าเว็บล่าสุดแบบเปิดเดี่ยว</span><span data-en>Latest standalone webpage</span></h5>
-                <p data-th>ไฟล์เดียวจบ ฝัง font และภาพที่ใช้แสดงผลไว้แล้ว เปิดจากเครื่อง ส่งต่อ หรือเก็บเป็น snapshot ได้โดยไม่ต้องมีโฟลเดอร์ assets ข้างๆ</p>
-                <p data-en>One self-contained file with its display fonts and images embedded—open locally, hand it off, or keep it as a snapshot without an assets folder.</p>
-                <a class="download-action" href="landometer-design-system-v0.8.8-standalone.html" id="resource-standalone" download><span data-th>ดาวน์โหลด Standalone HTML</span><span data-en>Download standalone HTML</span></a>
+                <p class="resource-meta">PINNED COLOR SET · SELF-CONTAINED · HTML</p>
+                <h5><span data-th>Standalone ที่ล็อกชุดสีแล้ว</span><span data-en>Color-Set-pinned standalone</span></h5>
+                <p data-th>ไฟล์เดียวจบ ฝัง font และภาพไว้ครบ พร้อมล็อก Color Set <code>color-srgb-01</code> สำหรับตรวจงานข้ามเครื่องและส่งต่อโดยไม่สลับไปคนละ palette ตาม cache ของหน้า latest</p>
+                <p data-en>One self-contained file with fonts, images, and Color Set <code>color-srgb-01</code> pinned for cross-device review and handoff—without drifting to a different palette through a cached latest alias.</p>
+                <a class="download-action" href="landometer-design-system-v0.8.8-standalone.color-srgb-01.html" id="resource-standalone" download><span data-th>ดาวน์โหลด Color Set SRGB-01</span><span data-en>Download Color Set SRGB-01</span></a>
               </article>
               <article>
                 <p class="resource-meta">MACHINE DISCOVERY · NAVIGATION AID ONLY</p>
@@ -8900,8 +9612,8 @@
                   <caption><span data-th>Release promotion recipe</span><span data-en>Release promotion recipe</span></caption>
                   <thead><tr><th>State</th><th>Human experience</th><th>Search / machine contract</th><th>Promotion gate</th></tr></thead>
                   <tbody>
-                    <tr><th>Current · source_limited</th><td>Complete initial HTML, semantic landmarks, exact download, visible status and boundaries</td><td>HTML page is noindex; linked public-safe files do not inherit that directive; llms.txt is a project-path navigation aid; agentReadable false</td><td>Keep pending gaps visible</td></tr>
-                    <tr><th>Public SEO candidate</th><td>Stable pre-rendered Thai and English URLs with real links between them</td><td>Self-canonical + reciprocal hreflang; localized title/description; approved OG/Twitter asset; truthful JSON-LD; sitemap</td><td>Verified evidence, permissions, metadata, private-state stripping, performance, and machine validation</td></tr>
+                    <tr><th>Current · source_limited</th><td>Complete initial HTML, semantic landmarks, exact download, visible status and boundaries</td><td>Readable when opened, but deliberately not discoverable through Search or AI Search: the HTML page is noindex; llms.txt is only a project-path navigation aid; agentReadable false</td><td>Use the approved transparent symbol for browser-tab duty only; keep social/touch/maskable assets and hostname-level search-favicon coordination separate; keep the downloaded standalone noncanonical</td></tr>
+                    <tr><th>Public SEO candidate</th><td>Stable pre-rendered Thai and English URLs with real links between them</td><td>Self-canonical + reciprocal hreflang; localized title/description; approved OG/Twitter and compact favicon assets; truthful JSON-LD; sitemap</td><td>Verified evidence, permissions, metadata, private-state stripping, performance, machine validation, and hostname-level search-favicon coordination</td></tr>
                     <tr><th>Agent-readable candidate</th><td>The same object, answer, source, missingness, limitation, and allowed use stay visible</td><td>channelParityKey + bounded action declaration + durable failure/recovery; readable never implies permission to act</td><td>Validated public-safe machine package and AGENT-OUT-01 parity evidence</td></tr>
                   </tbody>
                 </table>
@@ -9833,11 +10545,11 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         Promise.all([
           document.fonts.ready,
           document.fonts.load('400 16px "Bai Jamjuree"', "เนื้อหาที่อ่านต่อเนื่อง"),
-          document.fonts.load('500 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่")
+          document.fonts.load('400 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่")
         ]).then(() => {
           root.dataset.fontsReady = "true";
           root.dataset.thaiBodyReady = document.fonts.check('400 16px "Bai Jamjuree"', "เนื้อหาที่อ่านต่อเนื่อง") ? "true" : "false";
-          root.dataset.thaiTechnicalReady = document.fonts.check('500 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่") ? "true" : "false";
+          root.dataset.thaiTechnicalReady = document.fonts.check('400 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่") ? "true" : "false";
         });
       }
       decorateOpportunityCards();
