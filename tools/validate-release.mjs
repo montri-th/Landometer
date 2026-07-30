@@ -674,6 +674,11 @@ pass(
   /class="secondary-action scale-sampler-action"[^>]*href="#atlas-dataviz-title"/.test(samplerHtml),
   "Generated scale sampler uses the shared capsule action family",
 );
+pass(
+  /\.scale-family-class-row\s*\{[\s\S]*?grid-template-columns:\s*max-content minmax\(0,\s*1fr\)/.test(html) &&
+    /\.scale-family-class-row figcaption\s*\{[\s\S]*?white-space:\s*nowrap/.test(html),
+  "Localized sampler labels reserve intrinsic width before the color strip",
+);
 
 pass(
   html.includes("revealTarget(target, true)") &&
@@ -764,6 +769,12 @@ pass(
       );
   }),
   "Every quantitative scale record contains exact 5-, 7-, and 9-class strips"
+);
+pass(
+  /\.atlas-class-row\s*\{[\s\S]*?grid-template-columns:\s*max-content minmax\(0,\s*1fr\)/.test(html) &&
+    /\.atlas-class-row > figcaption\s*\{[\s\S]*?white-space:\s*nowrap/.test(html) &&
+    !/\.atlas-class-row\s*\{\s*grid-template-columns:\s*54px/.test(html),
+  "Localized Atlas class labels cannot collapse into the color strip at narrow widths",
 );
 
 const atlasScaleCellElements = [
