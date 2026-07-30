@@ -4,6 +4,30 @@ landometerBuild:
     buildCard: 0.8.8
     manifest: 2.0
     tokens: 6
+  colorDelivery:
+    registryId: color-srgb-01
+    registryPath: assets/data/color-delivery.v0.8.8.json
+    range: SDR
+    colorSpace: sRGB IEC 61966-2-1
+    tokenRegistry:
+      path: assets/data/tokens.json
+      carriedVersion: 0.8.6
+      sha256: 085193279178089daca95019a34599cc79180dc24b26d873ced3be9b08bd13b2
+    scaleRegistry:
+      path: assets/data/scales.json
+      carriedVersion: 0.8.6
+      sha256: 83bee2ed86f55c3a01914ce2826f294b90e8f7d77f7eef4dc02b9b1cc4d4cdb1
+    visualBaselines: [light, dark]
+    adaptiveTheme: system is a user preference, not a visual-baseline state
+    latestAliases: [index.html, landometer-design-system-v0.8.8-standalone.html]
+    immutableStandalone:
+      path: landometer-design-system-v0.8.8-standalone.color-srgb-01.html
+      registryMarker: data-color-registry="color-srgb-01"
+      buildChannelMarker: data-build-channel="immutable-color-set"
+      bytes: 2005092
+      sha256: d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832
+      integrityMode: derive SHA-256 and byte count from the built file during release validation; require byte-for-byte parity with the latest standalone except for the build-channel marker
+      status: built; static parity validated; two-device manual gate pending
   legacyReadOnlyBaseline:
     authoringMasterVersion: 0.8.7
     manifestVersion: 2.0
@@ -33,7 +57,21 @@ landometerBuild:
     socialPreviewMetadata: omitted while internal_demo and source_limited
     structuredData: false
     sitemap: false
-    machineDiscoveryAid: project-path llms.txt; navigation aid only, not ranking, access control, conformance, or agent permission
+    discoveryState:
+      machineReadableWhenOpened: true
+      searchDiscoverable: false
+      aiSearchDiscoverable: false
+      agentReadable: false
+      reason: semantic initial HTML and public-safe release records are directly readable; deliberate noindex keeps this source-limited internal demo out of search and AI-search discovery, and no bounded agent action is enabled
+    multilingualMetadata: blocked until stable pre-rendered Thai and English URLs provide localized initial HTML, self-canonical URLs, reciprocal hreflang, and real locale links
+    browserIdentity: approved transparent compact symbol rendered for browser-tab favicon duty only; the horizontal header lockup remains separate
+    machineDiscoveryAid: project-path llms.txt; optional emerging-convention navigation aid only, not ranking, access control, conformance, host-root discovery, or agent permission
+    publicPromotionBlockers:
+      - resolve public-delivery evidence, rights, privacy, and machine-validation gates
+      - publish stable crawlable locale URLs with localized initial HTML, self-canonical links, reciprocal hreflang, and real locale navigation
+      - approve dedicated social-preview, touch, and maskable assets separately from the browser-tab favicon
+      - add truthful JSON-LD and an indexable self-canonical sitemap only after the underlying claims and URLs are verified
+      - coordinate any search-result favicon at the hostname root or a dedicated hostname
   audience:
     primary: every Landometer function working with design identity and experience
     role: cross-functional adoption
@@ -263,11 +301,14 @@ landometerBuild:
         lutCellsTotal: 738
         classCounts: [5, 7, 9]
         classCellsTotal: 378
+        samplerFamilyCount: 9
+        samplerPairedThemeCells: 189
         mapPairs: 8
         opacityValues: 8
         depthRoles: 6
       scaleSource: assets/data/scales.json · meta.version 0.8.6 · carried reference fixture
       scaleGate: pending — source_limited; not the gated v0.8.8 dataviz.tokens.json package; hash, renderer/legend/export parity, contrast, and CVD review remain open
+      scaleTeaching: concise sampler renders all six sequential and three diverging families at exact 5/7/9 classes in the active theme; complete 41-stop light/dark LUT atlas remains available in a disclosure
       productGradientBoundary: product identity specimens only; never shared atmosphere, data, map, interaction, or semantic state
       externalEffect: false
     experiencePatterns:
@@ -403,6 +444,25 @@ landometerBuild:
     releaseMetadataBackground: transparent
     contrastStrategy: change the shared surrounding header surface; never add a logo or metadata box, plate, carrier, border, or radius
     logoApprovalBoundary: existing repository public-use record; formal current identity registry remains pending
+    browserTabIcon:
+      status: approved
+      rendered: true
+      path: assets/images/landometer-symbol-transparent.png
+      variant: transparent_compact_symbol
+      context: browser_tab_favicon_only
+      mimeType: image/png
+      intrinsicSize: 192x192
+      declaredSizes: [192x192]
+      bytes: 11001
+      sha256: 35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85
+      transparentCanvas: true
+      alphaBounds: x=4..187, y=0..191 on the approved 192x192 canvas
+      transform: none
+      themeStrategy: same transparent RGBA bytes for light, dark, and system; no carrier, recolor, filter, crop, mask, or reconstructed padding
+      approvalScope: browser-tab favicon only; not social-preview, touch, maskable application-icon, or horizontal-header-lockup approval
+      approvalSource: repository main commit ce785864e5341321e1957dce35a8326732764432 · Use transparent Landometer symbol favicon
+      manualReview: small-size browser-tab, bookmark, shortcut, and supported-theme review remains open
+      hostSearchFaviconControl: search-result favicon selection is hostname-level; a GitHub Pages project subpath cannot independently guarantee a distinct search-result favicon
     openingPhotoPath: assets/images/team-hero.jpg
     openingPhotoSha256: 50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb
     openingPhotoTransform: source bytes unchanged; responsive CSS crop uses object-fit cover and object-position 53% center
@@ -413,15 +473,27 @@ landometerBuild:
       sha256: 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776
       transform: trailing Markdown hard-break whitespace removed to satisfy repository whitespace checks; normative text and ordering unchanged
       status: source_limited; machineValidation pending
+    - path: assets/data/color-delivery.v0.8.8.json
+      bytes: 3606
+      sha256: 59234b88f00a2a614070eb614bf4f95b2e897d36afd2271df825f1488cbdd562
+      usageClass: artifact-level SDR sRGB delivery and build-parity registry
+      status: proposed normative color-delivery contract; source_limited
     - path: landometer-design-system-v0.8.8-standalone.html
-      bytes: 2162799
-      sha256: a182520f3ab421a37aa8da6fd057abfc4bcb635f87b10ac315fd92d7d019e2d4
+      bytes: 2005085
+      sha256: 2628893af23ba4b26359c3615372ee206e8485c69f1d8013f34b99119be230e4
       usageClass: self-contained single-file playground snapshot
-      transform: generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; linked release records remain canonical production URLs
+      transform: generated from deployment/index.html with nine display-font files, the official horizontal logo, the approved transparent browser-tab symbol, and the team image embedded as data URLs; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; linked release records still resolve to production URLs
       status: source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending
+    - path: landometer-design-system-v0.8.8-standalone.color-srgb-01.html
+      bytes: 2005092
+      sha256: d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832
+      usageClass: immutable self-contained color-set handoff and visual-QA authority
+      registryId: color-srgb-01
+      integrityMode: derived during release validation and compared with the latest standalone after normalizing only data-build-channel
+      status: built; static parity validated; two-device manual gate pending
     - path: implementation-notes.v0.8.8.md
       authority: proposed artifact-level clarification; non-normative until an owner-approved release incorporates it
-      covers: [governed atmosphere restoration, role-based color guidance, share placement, contextual source search, external AI synthesis, positive Intent-to-AHA examples, SEO and machine-discovery gates]
+      covers: [governed atmosphere restoration, role-based color guidance, complete 5/7/9 scale teaching, share placement, contextual source search, external AI synthesis, positive Intent-to-AHA examples, browser identity, SEO and machine-discovery gates]
     - path: llms.txt
       authority: optional project-path machine navigation aid only
       agentAction: none

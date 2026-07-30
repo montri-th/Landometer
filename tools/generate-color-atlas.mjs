@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
@@ -14,6 +15,20 @@ const SCALE_SOURCE = path.join(
   "data",
   "scales.json",
 );
+const COLOR_DELIVERY_SOURCE = path.join(
+  PROJECT_ROOT,
+  "deployment",
+  "assets",
+  "data",
+  "color-delivery.v0.8.8.json",
+);
+const TOKEN_SOURCE = path.join(
+  PROJECT_ROOT,
+  "deployment",
+  "assets",
+  "data",
+  "tokens.json",
+);
 const OUTPUT_PATH = path.join(
   tmpdir(),
   "landometer-color-atlas.fragment.html",
@@ -21,6 +36,8 @@ const OUTPUT_PATH = path.join(
 const INDEX_PATH = path.join(PROJECT_ROOT, "deployment", "index.html");
 const START_MARKER = "<!-- COLOR_ATLAS_START -->";
 const END_MARKER = "<!-- COLOR_ATLAS_END -->";
+const SAMPLER_START_MARKER = "<!-- COLOR_SCALE_SAMPLER_START -->";
+const SAMPLER_END_MARKER = "<!-- COLOR_SCALE_SAMPLER_END -->";
 
 const identityColors = [
   {
@@ -149,8 +166,8 @@ const sharedGradients = [
 const motifGradients = [
   {
     id: "motif.gradient.brandSignature",
-    css: "linear-gradient(135deg, #1D4497 0%, #176B82 50%, #08756F 100%)",
-    stops: "#1D4497 → #176B82 → #08756F",
+    css: "linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%)",
+    stops: "#1D4497 0% → #176B82 52% → #08756F 100%",
     th: "เฉพาะ motif asset ที่ผ่าน gate แล้ว",
     en: "Only for a separately approved motif asset",
     job: "asset-gated motif only",
@@ -158,8 +175,8 @@ const motifGradients = [
   },
   {
     id: "motif.gradient.civicCool",
-    css: "linear-gradient(135deg, #147A9F 0%, #3BD3CB 50%, #3BD19B 100%)",
-    stops: "#147A9F → #3BD3CB → #3BD19B",
+    css: "linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%)",
+    stops: "#147A9F 0% → #3BD3CB 52% → #3BD19B 100%",
     th: "Ground: เผยบริบทและทำให้หลักฐานเข้าใจง่ายขึ้น",
     en: "Ground: context reveal and evidence becoming understandable",
     job: "Ground · context reveal / transition",
@@ -167,8 +184,8 @@ const motifGradients = [
   },
   {
     id: "motif.gradient.civicWarm",
-    css: "linear-gradient(135deg, #C33F55 0%, #FF8A4C 50%, #F4C44E 100%)",
-    stops: "#C33F55 → #FF8A4C → #F4C44E",
+    css: "linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%)",
+    stops: "#C33F55 0% → #FF8A4C 52% → #F4C44E 100%",
     th: "Cultivate: การลงมือทำ โมเมนตัม และความสำเร็จ",
     en: "Cultivate: action, credible momentum, and completion",
     job: "Cultivate · momentum / completion",
@@ -323,6 +340,96 @@ function sameArray(left, right) {
     left.length === right.length &&
     left.every((value, index) => value === right[index])
   );
+}
+
+function sha256(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function gradientCss(angle, stops, interpolation = "") {
+  assert(
+    typeof angle === "string" &&
+      Array.isArray(stops) &&
+      stops.length >= 2 &&
+      stops.every(
+        (stop) =>
+          Array.isArray(stop) &&
+          stop.length === 2 &&
+          /^#[0-9A-F]{6}$/.test(stop[0]) &&
+          /^\d+(?:\.\d+)?%$/.test(stop[1]),
+      ),
+    "invalid gradient registry record",
+  );
+  const interpolationClause = interpolation ? ` ${interpolation}` : "";
+  return `linear-gradient(${angle}${interpolationClause}, ${stops
+    .map(([color, position]) => `${color} ${position}`)
+    .join(", ")})`;
+}
+
+function withExplicitSrgb(css) {
+  assert(
+    /^linear-gradient\([^,]+, .+\)$/.test(css),
+    `unsupported gradient syntax: ${css}`,
+  );
+  return css.replace(/^linear-gradient\(([^,]+), /, "linear-gradient($1 in srgb, ");
+}
+
+function gradientStyle(css) {
+  const legacy = escapeHtml(css);
+  const explicitSrgb = escapeHtml(withExplicitSrgb(css));
+  return `--atlas-gradient:${legacy};background:${legacy};background:${explicitSrgb}`;
+}
+
+function validateColorDelivery(registry, scaleText, tokenText) {
+  assert(registry?.meta?.id === "color-srgb-01", "unexpected color registry id");
+  assert(
+    registry?.meta?.immutableStandalone ===
+      "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+    "unexpected immutable standalone filename",
+  );
+  assert(
+    registry?.sources?.scaleRegistry?.sha256 === sha256(scaleText),
+    "scales.json hash does not match the color registry",
+  );
+  assert(
+    registry?.sources?.tokenRegistry?.sha256 === sha256(tokenText),
+    "tokens.json hash does not match the color registry",
+  );
+
+  const surfaces = registry.surfaceGradients;
+  assert(
+    sharedGradients[0].css ===
+      gradientCss(surfaces.measure.angle, surfaces.measure.light),
+    "Measure light gradient drift",
+  );
+  assert(
+    sharedGradients[1].css ===
+      gradientCss(surfaces.measure.angle, surfaces.measure.dark),
+    "Measure dark gradient drift",
+  );
+
+  const motifKeys = ["brandSignature", "civicCool", "civicWarm"];
+  motifKeys.forEach((key, index) => {
+    const record = registry.motifGradients?.[key];
+    assert(
+      motifGradients[index].css === gradientCss(record?.angle, record?.stops),
+      `${key} motif gradient drift`,
+    );
+  });
+
+  for (const product of productGradientPairs) {
+    const record = registry.productIdentityGradients?.[product.id];
+    for (const theme of ["light", "dark"]) {
+      assert(
+        product[theme].css ===
+          gradientCss("135deg", [
+            [record?.[theme]?.[0], "0%"],
+            [record?.[theme]?.[1], "100%"],
+          ]),
+        `${product.id} ${theme} gradient drift`,
+      );
+    }
+  }
 }
 
 function expectedClassIndices(count) {
@@ -481,7 +588,7 @@ function renderSemanticCard(record) {
 function renderGradientCard(record, variant) {
   return `
           <figure class="atlas-gradient-card atlas-gradient-card--${escapeHtml(variant)}">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:${escapeHtml(record.css)};background:${escapeHtml(record.css)}" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="${gradientStyle(record.css)}" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">${escapeHtml(record.id)}</code>
               <strong class="atlas-gradient-stops">${escapeHtml(record.stops)}</strong>
@@ -494,7 +601,7 @@ function renderGradientCard(record, variant) {
 function renderProductGradientCard(record) {
   const renderTheme = (theme) => `
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:${escapeHtml(record[theme].css)};background:${escapeHtml(record[theme].css)}" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="${gradientStyle(record[theme].css)}" aria-hidden="true"></span>
                 <figcaption>
                   <strong>${theme[0].toUpperCase()}${theme.slice(1)}</strong>
                   <code>${escapeHtml(record[theme].stops)}</code>
@@ -624,6 +731,152 @@ ${classes}
           </article>`;
 }
 
+function renderScaleSamplerCard(scaleId, lightRecord, darkRecord) {
+  assert(lightRecord, `missing light sampler record for ${scaleId}`);
+  assert(darkRecord, `missing dark sampler record for ${scaleId}`);
+  assert(lightRecord.kind === darkRecord.kind, `sampler kind mismatch for ${scaleId}`);
+
+  const [labelTh, labelEn] = scaleLabels[scaleId];
+  const classes = [5, 7, 9]
+    .map((classCount) => {
+      const lightColors = lightRecord.classes[String(classCount)];
+      const darkColors = darkRecord.classes[String(classCount)];
+      assert(
+        lightColors.length === darkColors.length,
+        `sampler class length mismatch for ${scaleId}:${classCount}`,
+      );
+      const cells = lightColors
+        .map(
+          (lightColor, index) =>
+            `<i class="scale-family-class-cell" style="--scale-light:${escapeHtml(lightColor)};--scale-dark:${escapeHtml(darkColors[index])}" title="${escapeHtml(`${scaleId} ${classCount} · light ${lightColor} · dark ${darkColors[index]}`)}" aria-hidden="true"></i>`,
+        )
+        .join("");
+
+      return `
+              <figure class="scale-family-class-row" data-class-count="${classCount}">
+                <figcaption><strong>${classCount}</strong><span>${bilingual(
+                  "ชั้น",
+                  "classes",
+                )}</span></figcaption>
+                <div class="scale-family-class-cells" role="img" aria-label="${escapeHtml(
+                  `${scaleId} ${lightRecord.kind} ${classCount} classes; light: ${lightColors.join(", ")}; dark: ${darkColors.join(", ")}`,
+                )}">
+                  ${cells}
+                </div>
+              </figure>`;
+    })
+    .join("");
+
+  return `
+          <article
+            class="scale-family-card"
+            data-scale-family="${escapeHtml(scaleId)}"
+            data-scale-kind="${escapeHtml(lightRecord.kind)}"
+            data-scale-version-light="${escapeHtml(lightRecord.scaleVersion)}"
+            data-scale-version-dark="${escapeHtml(darkRecord.scaleVersion)}"
+          >
+            <header class="scale-family-head">
+              <strong>${bilingual(labelTh, labelEn)}</strong>
+              <code>${escapeHtml(scaleId)} · ${escapeHtml(lightRecord.kind)}</code>
+            </header>
+            <div class="scale-family-class-stack">
+${classes}
+            </div>
+          </article>`;
+}
+
+function buildScaleSampler(scaleSource, colorDelivery) {
+  const recordsById = new Map(
+    Object.keys(expectedScaleAnchors).map((scaleId) => [
+      scaleId,
+      {
+        light: scaleSource.scales.find(
+          (record) => record.scaleId === scaleId && record.theme === "light",
+        ),
+        dark: scaleSource.scales.find(
+          (record) => record.scaleId === scaleId && record.theme === "dark",
+        ),
+      },
+    ]),
+  );
+
+  const renderGroup = (kind, scaleIds, headingTh, headingEn) => `
+        <section class="scale-family-group" data-scale-kind="${escapeHtml(kind)}">
+          <header class="scale-family-group-head">
+            <strong>${bilingual(headingTh, headingEn)}</strong>
+            <span>${scaleIds.length} families</span>
+          </header>
+          <div class="scale-family-grid">
+${scaleIds
+  .map((scaleId) => {
+    const pair = recordsById.get(scaleId);
+    return renderScaleSamplerCard(scaleId, pair?.light, pair?.dark);
+  })
+  .join("")}
+          </div>
+        </section>`;
+
+  return `<!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this sampler. -->
+      <section
+        class="scale-sampler"
+        data-color-registry="${escapeHtml(colorDelivery.meta.id)}"
+        data-scale-source-version="${escapeHtml(scaleSource.meta.version)}"
+        data-scale-records="${scaleSource.scales.length}"
+        aria-labelledby="scale-sampler-title"
+      >
+        <header class="scale-sampler-head">
+          <div>
+            <p class="scale-sampler-kicker">DATAVIZ-01 · 9 FAMILIES</p>
+            <h6 id="scale-sampler-title">${bilingual(
+              "เห็นทุกชุด ก่อนเลือกให้ตรงคำถาม",
+              "See every family, then match it to the question",
+            )}</h6>
+            <p>${bilingual(
+              "แต่ละชุดแสดง 5, 7 และ 9 ชั้นจาก LUT เดียวกัน สีบนจอจะสลับตามธีมที่กำลังใช้",
+              "Each family shows 5, 7, and 9 classes from one LUT. The visible cells follow the active theme.",
+            )}</p>
+          </div>
+          <span class="scale-sampler-theme" aria-label="Resolved theme">
+            <span data-sampler-theme-light>LIGHT</span>
+            <span data-sampler-theme-dark>DARK</span>
+          </span>
+        </header>
+
+        <div class="scale-sampler-boundary" role="note">
+          <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
+          <p>${bilingual(
+            "ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.8",
+            "These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.8 dataviz.tokens.json package.",
+          )}</p>
+        </div>
+
+${renderGroup(
+  "sequential",
+  ["growth", "water", "risk", "activity", "density", "confidence"],
+  "มาก–น้อย · Sequential",
+  "Magnitude · Sequential",
+)}
+
+${renderGroup(
+  "diverging",
+  ["balance", "delta", "tradeoff"],
+  "สองทิศทางรอบจุดกลาง · Diverging",
+  "Two directions around a midpoint · Diverging",
+)}
+
+        <footer class="scale-sampler-foot">
+          <p>${bilingual(
+            "ชื่อชุดสีไม่ได้กำหนดความหมายของปลายสเกล งานวิเคราะห์ที่นำไปใช้ต้องระบุ domain, threshold, classification และ outlier policy เอง",
+            "A family name does not define endpoint meaning. The consuming analysis still owns its domain, thresholds, classification, and outlier policy.",
+          )}</p>
+          <a class="secondary-action scale-sampler-action" href="#atlas-dataviz-title" data-reveal-target="atlas-dataviz-title">${bilingual(
+            "เปิดดู 41 stops, exact values และ scaleVersion",
+            "Open all 41 stops, exact values, and scaleVersion",
+          )}</a>
+        </footer>
+      </section>`;
+}
+
 function renderMapPair(record) {
   return `
           <article class="atlas-map-card">
@@ -661,7 +914,7 @@ function renderDepth(record, index) {
           </li>`;
 }
 
-function buildFragment(scaleSource) {
+function buildFragment(scaleSource, colorDelivery) {
   const groupedScaleRecords = Object.keys(expectedScaleAnchors)
     .flatMap((scaleId) =>
       ["light", "dark"].map((theme) =>
@@ -674,7 +927,7 @@ function buildFragment(scaleSource) {
     .join("");
 
   return `<!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this fragment. -->
-<section class="atlas-root" aria-labelledby="atlas-title" data-atlas-version="0.8.8" data-atlas-source-version="${escapeHtml(scaleSource.meta.version)}" data-atlas-records="${scaleSource.scales.length}">
+<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="${escapeHtml(colorDelivery.meta.id)}" data-atlas-version="0.8.8" data-atlas-source-version="${escapeHtml(scaleSource.meta.version)}" data-atlas-records="${scaleSource.scales.length}">
   <header class="atlas-intro">
     <p class="atlas-kicker">TOKEN-01 · VIS-04 · SURFACE-01 · DATAVIZ-01 · MAP-01</p>
     <h4 class="atlas-title" id="atlas-title">${bilingual(
@@ -933,11 +1186,24 @@ ${depthRoles.map(renderDepth).join("")}
 }
 
 async function main() {
-  const scaleSource = JSON.parse(await readFile(SCALE_SOURCE, "utf8"));
+  const [scaleText, tokenText, colorDeliveryText] = await Promise.all([
+    readFile(SCALE_SOURCE, "utf8"),
+    readFile(TOKEN_SOURCE, "utf8"),
+    readFile(COLOR_DELIVERY_SOURCE, "utf8"),
+  ]);
+  const scaleSource = JSON.parse(scaleText);
+  const colorDelivery = JSON.parse(colorDeliveryText);
   validateScaleSource(scaleSource);
+  validateColorDelivery(colorDelivery, scaleText, tokenText);
 
-  const fragment = buildFragment(scaleSource);
+  const fragment = buildFragment(scaleSource, colorDelivery);
+  const sampler = buildScaleSampler(scaleSource, colorDelivery);
   assert(!fragment.toLowerCase().includes("color-mix"), "runtime color mixing found");
+  assert(!sampler.toLowerCase().includes("color-mix"), "sampler runtime color mixing found");
+  assert(
+    !/(?:linear|radial|conic)-gradient\s*\(/i.test(sampler),
+    "sampler must use solid generated cells, not CSS gradients",
+  );
   assert(
     (fragment.match(/class="atlas-lut-cell"/g) ?? []).length === 18 * 41,
     "fragment must contain 738 LUT cells",
@@ -951,29 +1217,88 @@ async function main() {
     (fragment.match(/class="atlas-scale-record"/g) ?? []).length === 18,
     "fragment must contain all 18 scale records",
   );
+  assert(
+    (sampler.match(/class="scale-family-card"/g) ?? []).length === 9,
+    "sampler must contain all nine scale families",
+  );
+  assert(
+    (sampler.match(/class="scale-family-class-cell"/g) ?? []).length ===
+      9 * (5 + 7 + 9),
+    "sampler must contain 189 exact paired class cells",
+  );
+  assert(
+    /class="secondary-action scale-sampler-action"[^>]*href="#atlas-dataviz-title"/.test(
+      sampler,
+    ),
+    "sampler must route to the complete atlas through the shared action family",
+  );
 
   await writeFile(OUTPUT_PATH, fragment, "utf8");
 
   if (process.argv.includes("--inject") || process.argv.includes("--check-index")) {
-    const indexHtml = await readFile(INDEX_PATH, "utf8");
-    const start = indexHtml.indexOf(START_MARKER);
-    const end = indexHtml.indexOf(END_MARKER);
-    assert(start >= 0 && end > start, "index.html color-atlas markers are missing or out of order");
-    const fragmentStart = start + START_MARKER.length;
-    const embedded = indexHtml.slice(fragmentStart, end).trim();
+    let indexHtml = await readFile(INDEX_PATH, "utf8");
+
+    const inspectMarkedSection = (source, startMarker, endMarker, label) => {
+      const start = source.indexOf(startMarker);
+      const end = source.indexOf(endMarker);
+      assert(start >= 0 && end > start, `index.html ${label} markers are missing or out of order`);
+      const contentStart = start + startMarker.length;
+      return {
+        contentStart,
+        end,
+        embedded: source.slice(contentStart, end).trim(),
+      };
+    };
+
+    const atlasSection = inspectMarkedSection(
+      indexHtml,
+      START_MARKER,
+      END_MARKER,
+      "color-atlas",
+    );
+    const samplerSection = inspectMarkedSection(
+      indexHtml,
+      SAMPLER_START_MARKER,
+      SAMPLER_END_MARKER,
+      "scale-sampler",
+    );
 
     if (process.argv.includes("--check-index")) {
-      assert(embedded === fragment.trim(), "embedded index.html atlas is not current");
+      assert(
+        atlasSection.embedded === fragment.trim(),
+        "embedded index.html atlas is not current",
+      );
+      assert(
+        samplerSection.embedded === sampler.trim(),
+        "embedded index.html scale sampler is not current",
+      );
     }
 
     if (process.argv.includes("--inject")) {
-      const nextHtml = `${indexHtml.slice(0, fragmentStart)}\n${fragment.trim()}\n                  ${indexHtml.slice(end)}`;
-      await writeFile(INDEX_PATH, nextHtml, "utf8");
+      const replaceMarkedSection = (source, startMarker, endMarker, content, indent) => {
+        const section = inspectMarkedSection(source, startMarker, endMarker, "generated");
+        return `${source.slice(0, section.contentStart)}\n${content.trim()}\n${indent}${source.slice(section.end)}`;
+      };
+      indexHtml = replaceMarkedSection(
+        indexHtml,
+        START_MARKER,
+        END_MARKER,
+        fragment,
+        "                  ",
+      );
+      indexHtml = replaceMarkedSection(
+        indexHtml,
+        SAMPLER_START_MARKER,
+        SAMPLER_END_MARKER,
+        sampler,
+        "                    ",
+      );
+      await writeFile(INDEX_PATH, indexHtml, "utf8");
     }
   }
 
   process.stdout.write(
-    `Wrote ${OUTPUT_PATH} (${scaleSource.scales.length} scale records; 738 LUT cells)${process.argv.includes("--inject") ? " and injected deployment/index.html" : ""}\n`,
+    `Wrote ${OUTPUT_PATH} (${scaleSource.scales.length} scale records; 738 LUT cells; 9-family sampler with 189 paired class cells)${process.argv.includes("--inject") ? " and injected deployment/index.html" : ""}\n`,
   );
 }
 

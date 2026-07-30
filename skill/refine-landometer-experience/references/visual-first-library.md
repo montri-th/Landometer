@@ -33,3 +33,17 @@ Keep accessible text alternatives and direct labels. Do not replace essential ev
 - Keep long rationale inside the existing disclosure, not on the primary route.
 - Add an icon-led `Intent → Design move → Value → Boundary` preview to concept cards; preserve the full text as supporting detail.
 - Avoid identical icon cards for every principle. Vary the visual form according to the relationship being taught.
+
+## Action geometry
+
+Treat this geometry mapping as an artifact/reference pattern pending owner approval, not as a normative Landometer rule.
+
+Use the existing `--radius-pill` token for actions whose visible content is text or an icon-and-text label. Let the pill contain the label naturally: keep at least the 44 CSS px target floor, allow wrapping, and do not force a fixed width.
+
+Keep a quiet icon-only utility as a 44 × 44 CSS px circle. Preserve its accessible name, focus ring, and current-state announcement. Do not apply the text-action pill rule to:
+
+- tabs, lens lists, segmented controls, or surface selectors;
+- fields, text areas, selects, or filter inputs;
+- cards, panels, status chips, tags, or data marks.
+
+Choose geometry by interaction role, not by visual fashion. A component keeps its own governed radius and state contract when it is excluded from the action rule.
