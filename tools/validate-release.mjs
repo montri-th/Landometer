@@ -80,6 +80,12 @@ function cssRules(source) {
     }));
 }
 
+function cssDeclarations(source, selector) {
+  return (
+    cssRules(source).find(rule => rule.selector === selector)?.declarations ?? ""
+  );
+}
+
 const html = text("index.html");
 const standaloneHtml = text("landometer-design-system-v0.8.8-standalone.html");
 const manifest = json("site-manifest.v0.8.8.json");
@@ -90,15 +96,42 @@ const tokenSource = json("assets/data/tokens.json");
 const scaleSource = json("assets/data/scales.json");
 const colorDelivery = json("assets/data/color-delivery.v0.8.8.json");
 const implementationNotes = text("implementation-notes.v0.8.8.md");
+const automatedQa = json("qa/v0.8.8-automated.json");
+const scaleGeometryQa = json("qa/v0.8.8-scale-geometry.json");
 const machineDiscoveryAid = text("llms.txt");
 const robotsRecord = text("robots.txt");
 const readme = readFileSync(resolve(root, "../README.md"), "utf8");
-const immutableStandaloneName = colorDelivery?.meta?.immutableStandalone ?? "";
-const immutableStandaloneExists =
-  immutableStandaloneName.length > 0 &&
-  existsSync(resolve(root, immutableStandaloneName));
-const immutableStandaloneHtml = immutableStandaloneExists
-  ? text(immutableStandaloneName)
+const sourceValidationWorkflow = readFileSync(
+  resolve(root, "../.github/workflows/verify-v087.yml"),
+  "utf8",
+);
+const pagesWorkflow = readFileSync(
+  resolve(root, "../.github/workflows/pages.yml"),
+  "utf8",
+);
+const liveVerifier = readFileSync(
+  resolve(
+    root,
+    "../skill/publish-landometer-design-system-github-pages/scripts/verify-live.mjs",
+  ),
+  "utf8",
+);
+const immutableColorBaselineName =
+  colorDelivery?.meta?.immutableColorBaseline ?? "";
+const artifactBuildId = colorDelivery?.meta?.currentArtifactBuild?.id ?? "";
+const immutableArtifactBuildName =
+  colorDelivery?.meta?.currentArtifactBuild?.immutableStandalone ?? "";
+const immutableColorBaselineExists =
+  immutableColorBaselineName.length > 0 &&
+  existsSync(resolve(root, immutableColorBaselineName));
+const immutableArtifactBuildExists =
+  immutableArtifactBuildName.length > 0 &&
+  existsSync(resolve(root, immutableArtifactBuildName));
+const immutableColorBaselineHtml = immutableColorBaselineExists
+  ? text(immutableColorBaselineName)
+  : "";
+const immutableArtifactBuildHtml = immutableArtifactBuildExists
+  ? text(immutableArtifactBuildName)
   : "";
 const tokenRegistrySha256 = sha256("assets/data/tokens.json");
 const scaleRegistrySha256 = sha256("assets/data/scales.json");
@@ -123,6 +156,10 @@ pass(
 pass(
   /data-color-registry="color-srgb-01"/.test(html),
   "HTML exposes color-srgb-01 as its color-delivery registry",
+);
+pass(
+  new RegExp(`data-artifact-build="${artifactBuildId}"`).test(html),
+  "HTML exposes the current append-only UI artifact-build identity",
 );
 pass(
   /data-build-channel="latest-alias"/.test(html),
@@ -155,9 +192,15 @@ pass(
   "Color-delivery registry carried versions match the token and scale sources",
 );
 pass(
-  immutableStandaloneName ===
+  immutableColorBaselineName ===
     "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
-  "Color-delivery registry declares the immutable color-srgb-01 standalone filename",
+  "Color-delivery registry preserves the original immutable Color Set baseline filename",
+);
+pass(
+  /^ui-\d{8}-\d{2}$/.test(artifactBuildId) &&
+    immutableArtifactBuildName ===
+      `landometer-design-system-v0.8.8-standalone.color-srgb-01.${artifactBuildId}.html`,
+  "Color-delivery registry declares a separate append-only UI artifact-build identity",
 );
 
 pass(manifest.artifact.version === "0.8.8", "Manifest version is 0.8.8");
@@ -189,12 +232,17 @@ pass(
   "Manifest token and scale fingerprints match the color-delivery registry",
 );
 pass(
-  manifest.colorDelivery?.immutableStandalone?.path === immutableStandaloneName &&
-    manifest.colorDelivery?.immutableStandalone?.registryMarker ===
+  manifest.artifact?.artifactBuildId === artifactBuildId &&
+    manifest.colorDelivery?.immutableColorBaseline?.path ===
+      immutableColorBaselineName &&
+    manifest.colorDelivery?.immutableColorBaseline?.registryMarker ===
       'data-color-registry="color-srgb-01"' &&
-    manifest.colorDelivery?.immutableStandalone?.buildChannelMarker ===
-      'data-build-channel="immutable-color-set"',
-  "Manifest records the immutable color-set standalone and its root markers",
+    manifest.colorDelivery?.currentArtifactBuild?.id === artifactBuildId &&
+    manifest.colorDelivery?.currentArtifactBuild?.path ===
+      immutableArtifactBuildName &&
+    manifest.colorDelivery?.currentArtifactBuild?.artifactBuildMarker ===
+      `data-artifact-build="${artifactBuildId}"`,
+  "Manifest separates the immutable Color Set baseline from the current immutable UI build",
 );
 pass(manifest.publication.robots === "noindex,nofollow,noarchive", "Manifest robots policy matches the HTML page");
 pass(manifest.publication.indexPolicyScope.startsWith("html_page_only"), "Manifest limits noindex policy to the HTML page");
@@ -303,12 +351,14 @@ pass(
   "Build Card records the exact token and scale fingerprints",
 );
 pass(
-  buildCard.includes(`path: ${immutableStandaloneName}`) &&
+  buildCard.includes(`artifactBuildId: ${artifactBuildId}`) &&
+    buildCard.includes(`path: ${immutableColorBaselineName}`) &&
+    buildCard.includes(`path: ${immutableArtifactBuildName}`) &&
     buildCard.includes('registryMarker: data-color-registry="color-srgb-01"') &&
     buildCard.includes(
-      'buildChannelMarker: data-build-channel="immutable-color-set"',
+      'buildChannelMarker: data-build-channel="immutable-artifact-build"',
     ),
-  "Build Card records the immutable color-set standalone and its root markers",
+  "Build Card separates the immutable Color Set baseline from the current immutable UI build",
 );
 pass(
   JSON.stringify(manifest.colorDelivery?.visualBaselines) ===
@@ -675,9 +725,30 @@ pass(
   "Generated scale sampler uses the shared capsule action family",
 );
 pass(
-  /\.scale-family-class-row\s*\{[\s\S]*?grid-template-columns:\s*max-content minmax\(0,\s*1fr\)/.test(html) &&
-    /\.scale-family-class-row figcaption\s*\{[\s\S]*?white-space:\s*nowrap/.test(html),
-  "Localized sampler labels reserve intrinsic width before the color strip",
+  /display:\s*flex/.test(cssDeclarations(html, ".scale-family-class-row")) &&
+    /flex-wrap:\s*wrap/.test(cssDeclarations(html, ".scale-family-class-row")) &&
+    /white-space:\s*nowrap/.test(
+      cssDeclarations(html, ".scale-family-class-row figcaption"),
+    ) &&
+    /flex:\s*1 1 8rem/.test(
+      cssDeclarations(html, ".scale-family-class-cells"),
+    ) &&
+    /min-inline-size:\s*min\(8rem,\s*100%\)/.test(
+      cssDeclarations(html, ".scale-family-class-cells"),
+    ),
+  "Sampler rows keep labels intact and wrap a minimum-width color strip before collision",
+);
+pass(
+  samplerCards.every(([, , body]) =>
+    [...body.matchAll(/<div\s+class="scale-family-class-cells"([\s\S]*?)>/g)]
+      .every(([, attributes]) =>
+        ["th-light", "th-dark", "en-light", "en-dark"].every(key =>
+          new RegExp(`data-scale-aria-${key}="[^"]+"`).test(attributes)
+        )
+      )
+  ) &&
+    /data-scale-theme-label/.test(samplerHtml),
+  "Sampler accessible names declare locale- and resolved-theme-specific alternatives",
 );
 
 pass(
@@ -771,10 +842,28 @@ pass(
   "Every quantitative scale record contains exact 5-, 7-, and 9-class strips"
 );
 pass(
-  /\.atlas-class-row\s*\{[\s\S]*?grid-template-columns:\s*max-content minmax\(0,\s*1fr\)/.test(html) &&
-    /\.atlas-class-row > figcaption\s*\{[\s\S]*?white-space:\s*nowrap/.test(html) &&
-    !/\.atlas-class-row\s*\{\s*grid-template-columns:\s*54px/.test(html),
-  "Localized Atlas class labels cannot collapse into the color strip at narrow widths",
+  /display:\s*flex/.test(cssDeclarations(html, ".atlas-class-row")) &&
+    /flex-wrap:\s*wrap/.test(cssDeclarations(html, ".atlas-class-row")) &&
+    /white-space:\s*nowrap/.test(
+      cssDeclarations(html, ".atlas-class-row > figcaption"),
+    ) &&
+    /flex:\s*1 1 8rem/.test(
+      cssDeclarations(html, ".atlas-class-cells"),
+    ) &&
+    /min-inline-size:\s*min\(8rem,\s*100%\)/.test(
+      cssDeclarations(html, ".atlas-class-cells"),
+    ),
+  "Atlas rows keep labels intact and wrap a minimum-width color strip before collision",
+);
+pass(
+  !/<figcaption><strong>(5|7|9)<\/strong><span>[\s\S]*?<span data-l10n-en>\1 classes<\/span>/.test(
+    atlasHtml,
+  ) &&
+    elementsWithClass(atlasHtml, "atlas-class-cells").every(element =>
+      /\bdata-l10n-aria-th="[^"]+"/.test(element) &&
+      /\bdata-l10n-aria-en="[^"]+"/.test(element)
+    ),
+  "Atlas class labels avoid duplicate counts and expose localized accessible names",
 );
 
 const atlasScaleCellElements = [
@@ -901,7 +990,7 @@ pass(
   html.includes("overflow-wrap: break-word") &&
     anywhereWrapRules.length > 0 &&
     anywhereWrapRules.every(rule =>
-      /(?:scale-family-head\s+code|atlas-pair-label\s+strong|atlas-map-cell\s+figcaption\s+strong|atlas-scale-foot\s+code|color-stability-rule\s+code)/.test(rule.selector)
+      /(?:scale-sampler\s+code|scale-family-head\s+code|atlas-pair-label\s+strong|atlas-map-cell\s+figcaption\s+strong|atlas-scale-head\s+code|atlas-scale-foot\s+code|color-stability-rule\s+code)/.test(rule.selector)
     ),
   "Prose avoids arbitrary mid-word breaks while constrained atlas values may wrap safely"
 );
@@ -1113,14 +1202,17 @@ pass(!/<script[^>]+type=["']application\/ld\+json["']/i.test(html), "Internal de
 pass(!/<link[^>]+rel=["']alternate["'][^>]+href=["']llms\.txt["']/i.test(html), "llms.txt is not misrepresented as an alternate page");
 pass(
   (html.match(/<link\b[^>]*\brel=["'](?:shortcut\s+)?icon["'][^>]*>/gi) || []).length === 1 &&
-    /<link\b[^>]*\brel=["']icon["'][^>]*\btype=["']image\/png["'][^>]*\bhref=["']assets\/images\/landometer-symbol-transparent\.png["'][^>]*\bsizes=["']192x192["'][^>]*>/i.test(html) &&
+    /<link\b[^>]*\brel=["']icon["'][^>]*\btype=["']image\/png["'][^>]*\bhref=["']assets\/images\/landometer-symbol-transparent\.png\?v=35a1496f["'][^>]*\bsizes=["']192x192["'][^>]*>/i.test(html) &&
     !/<link\b[^>]*\brel=["'](?:shortcut\s+)?icon["'][^>]*(?:banner|lockup|wordmark|horizontal)/i.test(html),
-  "Internal demo uses exactly one approved compact symbol favicon and never the wide lockup",
+  "Internal demo uses exactly one cache-revisioned approved compact symbol favicon and never the wide lockup",
 );
 pass(
   manifest.identity?.browserTabIcon?.status === "approved" &&
     manifest.identity?.browserTabIcon?.rendered === true &&
     manifest.identity?.browserTabIcon?.path === "assets/images/landometer-symbol-transparent.png" &&
+    manifest.identity?.browserTabIcon?.href === "assets/images/landometer-symbol-transparent.png?v=35a1496f" &&
+    manifest.identity?.browserTabIcon?.standaloneHref === "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f" &&
+    manifest.identity?.browserTabIcon?.cacheRevision === "35a1496f" &&
     manifest.identity?.browserTabIcon?.mimeType === "image/png" &&
     manifest.identity?.browserTabIcon?.intrinsicSize === "192x192" &&
     manifest.identity?.browserTabIcon?.declaredSizes?.includes("192x192") &&
@@ -1132,8 +1224,11 @@ pass(
     /same transparent RGBA bytes/.test(manifest.identity?.browserTabIcon?.themeStrategy ?? "") &&
     buildCard.includes("status: approved") &&
     buildCard.includes("rendered: true") &&
-    buildCard.includes("path: assets/images/landometer-symbol-transparent.png"),
-  "Manifest and Build Card bind the rendered favicon to its exact approved browser-tab-only asset record",
+    buildCard.includes("path: assets/images/landometer-symbol-transparent.png") &&
+    buildCard.includes("href: assets/images/landometer-symbol-transparent.png?v=35a1496f") &&
+    buildCard.includes("standaloneHref: https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f") &&
+    buildCard.includes("cacheRevision: 35a1496f"),
+  "Manifest and Build Card bind the rendered favicon URL, cache revision, and exact browser-tab-only asset record",
 );
 pass(
   manifest.publication?.discoveryState?.machineReadableWhenOpened === true &&
@@ -1199,6 +1294,7 @@ for (const path of [
   "build-card.v0.8.8.yml",
   "control-inventory.v0.8.8.json",
   "qa/v0.8.8-automated.json",
+  "qa/v0.8.8-scale-geometry.json",
   "qa/v0.8.8-manual-gates.md",
   "implementation-notes.v0.8.8.md",
   "llms.txt",
@@ -1209,13 +1305,96 @@ for (const path of [
   "assets/data/color-delivery.v0.8.8.json",
   "assets/downloads/landometer-design-system-v0.8.8.md",
   "landometer-design-system-v0.8.8-standalone.html",
-  immutableStandaloneName,
+  immutableColorBaselineName,
+  immutableArtifactBuildName,
   "assets/images/landometer-logo-banner.png",
   "assets/images/landometer-symbol-transparent.png",
   "assets/images/team-hero.jpg"
 ]) {
   pass(existsSync(resolve(root, path)), `Required path exists: ${path}`);
 }
+const automatedQaSha256 = sha256("qa/v0.8.8-automated.json");
+const scaleGeometryQaSha256 = sha256("qa/v0.8.8-scale-geometry.json");
+const automatedQaAsset = manifest.assets?.find(
+  asset => asset.path === "qa/v0.8.8-automated.json",
+);
+const scaleGeometryQaAsset = manifest.assets?.find(
+  asset => asset.path === "qa/v0.8.8-scale-geometry.json",
+);
+pass(
+  automatedQa.artifactBuild?.id === artifactBuildId &&
+    automatedQa.artifactBuild?.latestStandalone?.sha256 ===
+      sha256("landometer-design-system-v0.8.8-standalone.html") &&
+    automatedQa.artifactBuild?.immutableUiArtifact?.sha256 ===
+      sha256(immutableArtifactBuildName) &&
+    automatedQa.artifactBuild?.immutableColorBaseline?.sha256 ===
+      sha256(immutableColorBaselineName) &&
+    automatedQa.buildReproducibility?.status === "passed" &&
+    automatedQa.scaleGeometry?.status === "passed",
+  "Automated QA evidence is current for the latest alias, immutable UI build, and Color Set baseline",
+);
+pass(
+  scaleGeometryQa.schemaVersion === 1 &&
+    scaleGeometryQa.artifactBuildId === artifactBuildId &&
+    scaleGeometryQa.artifactPath === immutableArtifactBuildName &&
+    scaleGeometryQa.artifactSha256 === sha256(immutableArtifactBuildName) &&
+    JSON.stringify(scaleGeometryQa.matrix?.widths) ===
+      JSON.stringify([320, 360, 390, 620, 621, 980, 981]) &&
+    JSON.stringify(scaleGeometryQa.matrix?.locales) ===
+      JSON.stringify(["th", "en"]) &&
+    JSON.stringify(scaleGeometryQa.matrix?.themes) ===
+      JSON.stringify(["light", "dark"]) &&
+    scaleGeometryQa.matrix?.totalCases === 36 &&
+    scaleGeometryQa.totals?.rows === 2916 &&
+    scaleGeometryQa.totals?.failures === 0 &&
+    scaleGeometryQa.assertions?.localeAndResolvedThemeAccessibleNames === true,
+  "Committed geometry evidence covers the required localized, themed, narrow-width, and 200% text-scale matrix",
+);
+pass(
+  automatedQa.scaleGeometry?.evidencePath ===
+      "qa/v0.8.8-scale-geometry.json" &&
+    automatedQa.scaleGeometry?.bytes ===
+      readFileSync(resolve(root, "qa/v0.8.8-scale-geometry.json")).byteLength &&
+    automatedQa.scaleGeometry?.sha256 === scaleGeometryQaSha256,
+  "Automated QA evidence fingerprints the exact geometry evidence file",
+);
+pass(
+  automatedQaAsset?.bytes ===
+      readFileSync(resolve(root, "qa/v0.8.8-automated.json")).byteLength &&
+    automatedQaAsset?.sha256 === automatedQaSha256 &&
+    scaleGeometryQaAsset?.bytes ===
+      readFileSync(resolve(root, "qa/v0.8.8-scale-geometry.json")).byteLength &&
+    scaleGeometryQaAsset?.sha256 === scaleGeometryQaSha256,
+  "Manifest fingerprints the exact automated and geometry QA evidence",
+);
+pass(
+  buildCard.includes("path: qa/v0.8.8-automated.json") &&
+    buildCard.includes(`sha256: ${automatedQaSha256}`) &&
+    buildCard.includes("path: qa/v0.8.8-scale-geometry.json") &&
+    buildCard.includes(`sha256: ${scaleGeometryQaSha256}`),
+  "Build Card fingerprints the exact automated and geometry QA evidence",
+);
+pass(
+  sourceValidationWorkflow.includes(
+    "node tools/build-standalone-html.mjs --check",
+  ) &&
+    sourceValidationWorkflow.includes(
+      "node tools/check-scale-geometry.mjs",
+    ) &&
+    !sourceValidationWorkflow.includes(
+      "Verify deployed v0.8.8 HTML and Manifest",
+    ),
+  "Pull-request workflow validates proposed source and rendered geometry without treating the current live endpoint as the proposal",
+);
+pass(
+  pagesWorkflow.includes("Verify deployed bytes match this release source") &&
+    pagesWorkflow.includes('VERIFY_EXACT_SOURCE: "true"') &&
+    pagesWorkflow.includes(`EXPECTED_ARTIFACT_BUILD: ${artifactBuildId}`) &&
+    liveVerifier.includes("requireExactBytes") &&
+    liveVerifier.includes("artifact.artifactBuildId") &&
+    liveVerifier.includes("Manifest asset record mismatch"),
+  "Pages workflow verifies exact post-deploy bytes, asset hashes, and artifact-build identity",
+);
 pass(
   manifest.assets?.some(asset =>
     asset.path === "assets/data/color-delivery.v0.8.8.json" &&
@@ -1234,55 +1413,128 @@ pass(
   "Build Card records the exact color-delivery registry",
 );
 pass(
-  immutableStandaloneExists,
-  `Required immutable color-set path exists: ${immutableStandaloneName}`,
+  immutableColorBaselineExists,
+  `Required immutable Color Set baseline exists: ${immutableColorBaselineName}`,
 );
-if (immutableStandaloneExists) {
-  const immutableStandaloneBytes = readFileSync(
-    resolve(root, immutableStandaloneName),
+if (immutableColorBaselineExists) {
+  const immutableColorBaselineBytes = readFileSync(
+    resolve(root, immutableColorBaselineName),
   ).byteLength;
-  const immutableStandaloneSha256 = sha256(immutableStandaloneName);
-  const immutableStandaloneAsset = manifest.assets?.find(
-    asset => asset.path === immutableStandaloneName,
+  const immutableColorBaselineSha256 = sha256(immutableColorBaselineName);
+  const immutableColorBaselineAsset = manifest.assets?.find(
+    asset => asset.path === immutableColorBaselineName,
+  );
+  const immutableColorBaselineRecord = colorDelivery.artifactBuilds?.find(
+    record => record.path === immutableColorBaselineName,
   );
   pass(
-    immutableStandaloneHtml.includes('data-standalone="true"') &&
-      immutableStandaloneHtml.includes(
+    immutableColorBaselineHtml.includes('data-standalone="true"') &&
+      immutableColorBaselineHtml.includes(
         'data-color-registry="color-srgb-01"',
       ) &&
-      immutableStandaloneHtml.includes(
+      immutableColorBaselineHtml.includes(
         'data-build-channel="immutable-color-set"',
       ),
-    "Immutable standalone exposes standalone, registry, and immutable build-channel markers",
+    "Immutable Color Set baseline preserves its original standalone, registry, and channel markers",
   );
   pass(
-    immutableStandaloneHtml.replace(
-      'data-build-channel="immutable-color-set"',
-      'data-build-channel="latest-alias"',
-    ) === standaloneHtml,
-    "Immutable standalone is byte-for-byte equal to the latest standalone after normalizing only the build-channel marker",
+    immutableColorBaselineSha256 ===
+      "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832" &&
+      immutableColorBaselineBytes === 2005092 &&
+      immutableColorBaselineRecord?.bytes === immutableColorBaselineBytes &&
+      immutableColorBaselineRecord?.sha256 === immutableColorBaselineSha256,
+    "Original immutable Color Set baseline remains byte-stable and append-only",
   );
   pass(
-    /^[0-9a-f]{64}$/.test(immutableStandaloneSha256) &&
-      immutableStandaloneBytes > 0,
-    "Immutable standalone SHA-256 and byte count derive successfully from the built file",
+    immutableColorBaselineAsset?.bytes === immutableColorBaselineBytes &&
+      immutableColorBaselineAsset?.sha256 === immutableColorBaselineSha256 &&
+      manifest.colorDelivery?.immutableColorBaseline?.bytes ===
+        immutableColorBaselineBytes &&
+      manifest.colorDelivery?.immutableColorBaseline?.sha256 ===
+        immutableColorBaselineSha256,
+    "Manifest records the exact immutable Color Set baseline",
   );
   pass(
-    immutableStandaloneAsset?.bytes === immutableStandaloneBytes &&
-      immutableStandaloneAsset?.sha256 === immutableStandaloneSha256 &&
-      manifest.colorDelivery?.immutableStandalone?.bytes ===
-        immutableStandaloneBytes &&
-      manifest.colorDelivery?.immutableStandalone?.sha256 ===
-        immutableStandaloneSha256,
-    "Manifest records the exact immutable Color Set standalone",
-  );
-  pass(
-    buildCard.includes(`path: ${immutableStandaloneName}`) &&
-      buildCard.includes(`bytes: ${immutableStandaloneBytes}`) &&
-      buildCard.includes(`sha256: ${immutableStandaloneSha256}`),
-    "Build Card records the exact immutable Color Set standalone",
+    buildCard.includes(`path: ${immutableColorBaselineName}`) &&
+      buildCard.includes(`bytes: ${immutableColorBaselineBytes}`) &&
+      buildCard.includes(`sha256: ${immutableColorBaselineSha256}`),
+    "Build Card records the exact immutable Color Set baseline",
   );
 }
+
+pass(
+  immutableArtifactBuildExists,
+  `Required immutable UI artifact build exists: ${immutableArtifactBuildName}`,
+);
+if (immutableArtifactBuildExists) {
+  const immutableArtifactBuildBytes = readFileSync(
+    resolve(root, immutableArtifactBuildName),
+  ).byteLength;
+  const immutableArtifactBuildSha256 = sha256(immutableArtifactBuildName);
+  const immutableArtifactBuildAsset = manifest.assets?.find(
+    asset => asset.path === immutableArtifactBuildName,
+  );
+  const immutableArtifactBuildRecord = colorDelivery.artifactBuilds?.find(
+    record =>
+      record.id === artifactBuildId &&
+      record.path === immutableArtifactBuildName,
+  );
+  pass(
+    immutableArtifactBuildHtml.includes('data-standalone="true"') &&
+      immutableArtifactBuildHtml.includes(
+        'data-color-registry="color-srgb-01"',
+      ) &&
+      immutableArtifactBuildHtml.includes(
+        `data-artifact-build="${artifactBuildId}"`,
+      ) &&
+      immutableArtifactBuildHtml.includes(
+        'data-build-channel="immutable-artifact-build"',
+      ),
+    "Immutable UI artifact exposes standalone, Color Set, artifact-build, and channel markers",
+  );
+  pass(
+    immutableArtifactBuildHtml.replace(
+      'data-build-channel="immutable-artifact-build"',
+      'data-build-channel="latest-alias"',
+    ) === standaloneHtml,
+    "Immutable UI artifact equals latest standalone after normalizing only the build-channel marker",
+  );
+  pass(
+    immutableArtifactBuildRecord?.bytes === immutableArtifactBuildBytes &&
+      immutableArtifactBuildRecord?.sha256 === immutableArtifactBuildSha256 &&
+      immutableArtifactBuildRecord?.status === "append_only",
+    "Color-delivery registry records the exact append-only UI artifact",
+  );
+  pass(
+    immutableArtifactBuildAsset?.bytes === immutableArtifactBuildBytes &&
+      immutableArtifactBuildAsset?.sha256 === immutableArtifactBuildSha256 &&
+      manifest.colorDelivery?.currentArtifactBuild?.bytes ===
+        immutableArtifactBuildBytes &&
+      manifest.colorDelivery?.currentArtifactBuild?.sha256 ===
+        immutableArtifactBuildSha256,
+    "Manifest records the exact immutable UI artifact build",
+  );
+  pass(
+    buildCard.includes(`path: ${immutableArtifactBuildName}`) &&
+      buildCard.includes(`bytes: ${immutableArtifactBuildBytes}`) &&
+      buildCard.includes(`sha256: ${immutableArtifactBuildSha256}`),
+    "Build Card records the exact immutable UI artifact build",
+  );
+}
+
+const standaloneBuilderCheck = spawnSync(
+  process.execPath,
+  [resolve(root, "../tools/build-standalone-html.mjs"), "--check"],
+  { cwd: resolve(root, ".."), encoding: "utf8" },
+);
+pass(
+  standaloneBuilderCheck.status === 0,
+  `Committed standalone artifacts reproduce from source without writes${
+    standaloneBuilderCheck.status === 0
+      ? ""
+      : `: ${(standaloneBuilderCheck.stderr || standaloneBuilderCheck.stdout).trim()}`
+  }`,
+);
 
 pass(
   sha256("assets/images/landometer-logo-banner.png") === "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
@@ -1332,6 +1584,12 @@ pass(
   "Latest standalone exposes the color registry and mutable-alias build channel",
 );
 pass(!/<link\s+rel="canonical"\b/i.test(standaloneHtml), "Portable standalone snapshot does not claim the hosted page canonical");
+pass(
+  (standaloneHtml.match(/<link\b[^>]*\brel=["'](?:shortcut\s+)?icon["'][^>]*>/gi) || []).length === 1 &&
+    /<link\b[^>]*\brel=["']icon["'][^>]*\btype=["']image\/png["'][^>]*\bhref=["']https:\/\/montri-th\.github\.io\/Landometer\/assets\/images\/landometer-symbol-transparent\.png\?v=35a1496f["'][^>]*\bsizes=["']192x192["'][^>]*>/i.test(standaloneHtml) &&
+    !/<link\b[^>]*\brel=["'](?:shortcut\s+)?icon["'][^>]*\bhref=["']data:/i.test(standaloneHtml),
+  "Standalone HTML keeps the approved browser-tab symbol on a stable cache-revisioned production URL",
+);
 pass(
   (standaloneHtml.match(/src:\s*url\(["']?data:font\/woff2/g) ?? []).length === 9,
   "Standalone HTML embeds all nine active display-font files"
@@ -1434,6 +1692,17 @@ pass(
 
 pass(!existsSync(resolve(root, "site-manifest.json")), "Stale unversioned manifest is removed");
 pass(!existsSync(resolve(root, "control-inventory.json")), "Stale unversioned control inventory is removed");
+
+const staticSummaryChecks = Number.parseInt(
+  automatedQa.staticValidator?.summary?.match(
+    /PASSED · (\d+) static checks/u,
+  )?.[1] ?? "",
+  10,
+);
+pass(
+  staticSummaryChecks === checks.length + 1,
+  "Automated QA static-check count matches the current validator",
+);
 
 if (errors.length) {
   console.error(`v0.8.8 validation FAILED (${errors.length} of ${checks.length} checks)`);

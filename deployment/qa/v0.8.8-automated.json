@@ -1,32 +1,44 @@
 {
   "artifact": "landometer-design-identity-playground-v0.8.8",
-  "testedAt": "2026-07-30",
+  "testedAt": "2026-08-04",
   "machineValidation": "pending",
+  "artifactBuild": {
+    "id": "ui-20260731-01",
+    "colorRegistryId": "color-srgb-01",
+    "sourceBaselineCommit": "b2202861fc0145b675fbdb90e3bcab1cc551e06d",
+    "releaseCommitCapture": "post-deploy workflow records GITHUB_SHA; the committed evidence binds the append-only build and exact file hashes instead of self-referencing its own future commit",
+    "latestStandalone": {
+      "path": "landometer-design-system-v0.8.8-standalone.html",
+      "bytes": 2035037,
+      "sha256": "7627a6617a26cfcf7838aded64370a76877180a04cd672b1fd83c37acf8424ef"
+    },
+    "immutableUiArtifact": {
+      "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html",
+      "bytes": 2035049,
+      "sha256": "f24c00d6ebc2f25d2d78eac61e5afc2c8e0b0f753711f249ae9142cc5e2cfe2a"
+    },
+    "immutableColorBaseline": {
+      "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+      "bytes": 2005092,
+      "sha256": "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832"
+    }
+  },
   "staticValidator": {
     "status": "passed",
-    "summary": "v0.8.8 validation PASSED · 725 static checks · 58 controls · machineValidation pending",
+    "summary": "v0.8.8 validation PASSED · 777 static checks · 58 controls · machineValidation pending",
     "scope": [
       "release identity and evidence boundary",
-      "Build Card and Manifest 2.0 alignment",
-      "disabled capability assertions, explicit user-triggered contextual discovery, and bounded reference fixtures",
-      "protected brand lines, Brand DNA, Locale Insight, and product-layer boundary",
-      "canonical color and gradient recipes",
-      "single H1, smart h1–h6 wrapping, seven progressive disclosures, and exact 58-control inventory parity",
-      "generated complete-color-atlas parity: 17 foundation pairs, seven semantic states, five shared/motif gradient cards, four product families/eight theme specimens, ten categorical pairs, 18 analytical records, 738 LUT cells, 378 class cells, eight map pairs, eight opacity values, and six depth roles",
-      "first-class concise scale sampler parity: all six sequential and three diverging families, exact 5/7/9 classes, 189 paired light/dark cells, source-matched scaleVersion, and a direct route to the preserved complete atlas",
-      "analytical scale source_limited boundary, product-gradient product-identity boundary, solid-cell/no-runtime-mixing guard, nominal-only outlier styling, and no parallax or generic scroll-reveal engine",
-      "15 positive opportunity cards with boundaries, three positive Intent-to-AHA cases, and one static deletion test",
-      "truthful 120ms/320ms semantic-motion sequence, neutral source_limited state, quiet live announcement, and reduced-motion change handling",
-      "local CTA eligibility, pending, duplicate prevention, receipt, reset, and no-external-effect contract",
-      "seven-stage static recipient-value ladder with no share control or network-outcome claim",
-      "four visible editable CityMETER current-record queries, inspectable source links, explicit Google Search and Google AI Mode GET choices, provenance limitation, and discovery-only boundary",
-      "nine CityMETER-derived dataviz treatments separated into public API snapshots and anatomy-only treatment sketches",
-      "33 outline icon symbols with rounded caps/joins; deterministic self-hosted Bai Jamjuree 400/600 for body/UI; and a single-weight IBM Plex Sans Thai 400 technical companion beside JetBrains Mono 400",
-      "semantic action geometry: text-labelled and mixed-label actions use radius-pill, icon-only utilities remain 44 × 44 circles, grouped selectors keep their own geometry, and narrow labels wrap/stack",
-      "truthful browser-identity and discovery states: exact approved transparent compact-symbol favicon, no wide-lockup reuse, noncanonical standalone, and machine-readable/search/AI-search/agent-readable separation",
-      "no external script, stylesheet, font host, telemetry, share, save, or remote governed-object mutation API",
-      "reused image, packaged font, whitespace-normalized authoring-master, implementation-note, and llms-aid byte hashes",
-      "no-JavaScript final meaning, clipboard recovery, transparent identity surfaces, and quiet-field source hooks"
+      "separate append-only Color Set baseline and UI artifact-build identity",
+      "non-writing standalone rebuild parity and immutable-target preflight",
+      "Build Card, Manifest 2.0, color-delivery registry, artifact hashes, QA evidence, and open manual-gate alignment",
+      "generated Complete Color Atlas and concise nine-family sampler parity",
+      "exact 5/7/9 classes, 738 LUT cells, 378 Atlas class cells, and 189 paired sampler cells",
+      "localized and theme-resolved accessible names for sampler and Atlas class strips",
+      "flex-wrap scale geometry with intact labels, minimum 8rem strips, and equal-width cells",
+      "single H1, responsive heading wrapping, exact 58-control inventory parity, and no external script or stylesheet",
+      "protected brand identity, evidence boundaries, explicit external discovery routes, no remote mutation, and no generic AI-friendly claim",
+      "deterministic self-hosted font and identity-asset records",
+      "capsule action geometry, semantic motion boundary, reduced motion, and no-JavaScript final meaning"
     ]
   },
   "scriptParse": {
@@ -34,91 +46,87 @@
     "inlineScriptsParsed": 2,
     "parser": "Node.js vm.Script"
   },
+  "buildReproducibility": {
+    "status": "passed",
+    "command": "node tools/build-standalone-html.mjs --check",
+    "writeEffect": "none",
+    "assertions": [
+      "latest standalone reproduces from deployment/index.html with embedded display assets and the cache-revisioned approved browser-tab symbol URL",
+      "current immutable UI artifact reproduces from the same source after changing only data-build-channel",
+      "original immutable Color Set baseline retains its declared byte length and SHA-256",
+      "an existing immutable UI artifact with different bytes fails before any mutable alias write"
+    ]
+  },
+  "scaleGeometry": {
+    "status": "passed",
+    "evidencePath": "qa/v0.8.8-scale-geometry.json",
+    "bytes": 11831,
+    "sha256": "0a7e56185c8bee4ce1c5891c6d60c488056c052428be3e3485e943f2904a7c29",
+    "matrix": {
+      "widths": [320, 360, 390, 620, 621, 980, 981],
+      "locales": ["th", "en"],
+      "themes": ["light", "dark"],
+      "baseCases": 28,
+      "textScale200Cases": 8,
+      "totalCases": 36,
+      "rowsMeasured": 2916,
+      "failures": 0
+    },
+    "assertions": [
+      "rendered caption range and strip do not overlap",
+      "same-line gap is at least 7.5 CSS pixels",
+      "wrapped block gap is at least 7.5 CSS pixels",
+      "strip width remains at least min(8rem, row width)",
+      "5/7/9 cells remain equal within 1 CSS pixel",
+      "sampler accessible name matches active locale and resolved theme",
+      "Atlas accessible name matches active locale and fixed record theme",
+      "scale containers do not create horizontal overflow"
+    ]
+  },
   "localHttpSmoke": {
     "status": "passed",
-    "passed": 20,
+    "passed": 24,
     "failed": 0,
     "checks": [
-      "HTML 200",
-      "Manifest 2.0 JSON 200",
-      "Build Card YAML 200",
-      "Control Inventory JSON 200",
-      "Automated QA JSON 200",
-      "Manual QA gates Markdown 200",
-      "Implementation clarification Markdown 200",
-      "llms.txt navigation aid 200",
-      "project-path robots record 200",
-      "v0.8.8 whitespace-normalized authoring-master Markdown 200 · 227,924 bytes",
-      "standalone HTML 200 · 1,978,322 bytes · embedded display fonts and images",
-      "logo PNG 200",
-      "browser-tab symbol PNG 200",
-      "team photo JPEG 200",
-      "Arvo 700 WOFF2 200",
-      "IBM Plex Sans Thai Looped 700 Thai WOFF2 200",
-      "IBM Plex Sans Thai 400 Thai WOFF2 200",
-      "Bai Jamjuree 400 Thai WOFF2 200",
-      "Bai Jamjuree 600 Thai WOFF2 200",
-      "JetBrains Mono 400 WOFF2 200"
+      "hosted index, Manifest, Build Card, Control Inventory, automated QA, geometry QA, manual gates, implementation note, llms.txt, and robots record returned 200",
+      "authoring-master download and mutable latest standalone returned 200",
+      "current immutable UI artifact and original immutable Color Set baseline returned 200",
+      "color-delivery registry returned 200",
+      "horizontal logo, approved transparent favicon symbol, and team image returned 200",
+      "Arvo 700, IBM Plex Sans Thai Looped 700, IBM Plex Sans Thai 400, Bai Jamjuree 400/600, and JetBrains Mono 400 representative font resources returned 200"
     ]
   },
   "sourceIntegrity": {
-    "status": "passed",
-    "gitDiffCheck": "passed",
+    "status": "passed_for_current_worktree",
+    "gitDiffCheck": "passed on 2026-08-04 for the complete local patch",
     "archiveUsed": false,
-    "forcePushUsed": false
+    "forcePushUsed": false,
+    "productionWritePerformed": false
   },
   "browserQA": {
-    "status": "previous_targeted_passed_current_delta_pending",
-    "testedBuild": "previous published build; current weight-400, capsule, scale-sampler, approved favicon, and discovery-record deltas remain in the manual matrix",
+    "status": "current_scale_delta_passed_broader_manual_gates_open",
+    "testedBuild": "ui-20260731-01 · immutable UI artifact SHA-256 f24c00d6ebc2f25d2d78eac61e5afc2c8e0b0f753711f249ae9142cc5e2cfe2a",
     "scope": [
-      "English and Thai computed font-family roles on the previous build: Arvo 700, IBM Plex Sans Thai Looped 700, Bai Jamjuree 400/600, and the prior JetBrains Mono/IBM Plex Sans Thai technical pair; current weight-400 face confirmation remains pending",
-      "Brand DNA resolves to the Measure gradient, Brand Voice resolves to muted Ground, and Brand Visual retains the explicit Measure/Ground/Cultivate chooser",
-      "Measure Brand Blue opening gradient and deterministic dark scrim",
-      "three deliberate hero line groups with no mid-word split or horizontal overflow",
-      "transparent logo and release metadata on one contrast-safe shared header surface",
-      "single-button theme cycle with one matching SVG icon and system/device default",
-      "single-button TH/EN locale cycle with URL and local-preference state",
-      "Brand Visual route opens the dataviz disclosure and focuses its summary",
-      "three dataviz fundamentals, three visible table alternatives, measured zero, no data, missing period, counter-signal, and nine CityMETER-derived chart cards",
-      "CityMETER gallery keeps public flood/vehicle snapshot values separate from clearly labelled treatment sketches in Thai/English and light/dark",
-      "seven native implementation-library disclosures at a 924 × 904 CSS-pixel viewport",
-      "15 positive opportunity cards across foundations, components, and dataviz; every card exposes a Boundary row",
-      "three positive Intent-to-AHA cases plus one deletion test with explicit evidence cues and clean completion",
-      "semantic motion ends in the complete final meaning, Pause/show final cancels the sequence, and visible history is separated from the polite status announcement",
-      "CTA state proof begins disabled with a reason, becomes eligible, produces a COMPLETE_LOCAL_REFERENCE receipt, prevents duplicate action, and resets cleanly",
-      "seven-stage recipient-value ladder separates preview, receipt, recipient landing, recipient AHA, useful action, and observed governed outcome",
-      "default context query contains ปี 2567 อุทกภัย, 27 พฤศจิกายน 2567, ยอดผู้เสียชีวิต, หมู่บ้านท่าไทร, องค์การบริหารส่วนตำบล เกาะยอ, อำเภอเมืองสงขลา, and จังหวัดสงขลา",
-      "four context presets update event, icon, date/cause, active topic, place hierarchy, source URL, and query without navigation; all query lengths remain below maxlength",
-      "context query is editable without navigation; Search, AI Mode, and source navigation were deliberately not invoked during QA; action/method/target/rel plus ordinary empty submitter and AI-only udm=50 were inspected",
-      "Search and AI Mode expose separate jobs from the same visible q; there are no hidden inputs or prompts, no automatic transmission, and AI output remains discovery_only pending cited-source review",
-      "AI disclosure names possible account/history/region influence and preserves a copyable-query fallback for the documented google.com/ai entry point",
-      "33 outline icon symbols use no fill with round line caps/joins; no horizontal overflow or broken image was found at the tested desktop viewport",
-      "all 20 local HTTP smoke resources returned 200",
-      "complete color atlas exact coverage: 17 foundation pairs, 7 semantic states, 5 shared/motif gradients, 4 product families/8 theme specimens, 10 categorical pairs, 18 scale records/738 LUT cells/378 class cells, 8 map pairs, 8 opacity values, and 6 depth roles",
-      "complete color atlas has no horizontal overflow at 390 × 844 or 320 × 700 CSS pixels in the tested light/dark states",
-      "dark no-data uses a visible light hatch, RGBA map fills composite on explicit light/dark fixture surfaces, and categorical shape/pattern cues retain their governed dark pairs",
-      "previous standalone HTML exposed data-standalone=true, embedded nine WOFF2 faces plus the logo and team image, contained no relative display asset, preserved exact atlas counts and both Search/AI Mode controls, and kept theme/language controls functional; current weight-400 and noncanonical snapshot deltas remain pending",
-      "semantic state motion uses a .56 minimum transition opacity; no parallax, scroll-linked reveal, logo/photo motion, or autoplay is present",
-      "browser console log inspection returned no errors"
+      "36 geometry cases across EN/TH, Light/Dark, seven required widths, and representative 200% text scale",
+      "2,916 sampler and Atlas class rows measured through rendered Range and element bounds",
+      "all 5/7/9 strips preserved with minimum width, equal cells, capsule geometry, and no horizontal overflow",
+      "sampler accessible names switch to only the visible theme and active locale",
+      "Atlas class accessible names switch locale and retain the fixed record theme",
+      "duplicate Atlas labels such as 5 5 classes and 5 5 ชั้น are absent",
+      "hosted and standalone browser-tab identity use the approved transparent Landometer symbol through one cache-revisioned stable URL rather than a data-URL favicon",
+      "Brand DNA Measure, Brand Voice muted Ground, Brand Visual surface choices, Complete Color Atlas values, and action capsules were not changed by this patch"
     ],
-    "remaining": "Full viewport, zoom, keyboard, assistive-technology, perceptual, color-vision, and human-review matrices remain manual gates."
+    "remaining": "Keyboard, supported screen readers, real browser text-only zoom controls, cross-device font metrics, perceptual, color-vision, and human-review matrices remain manual gates."
   },
   "openManualGates": [
-    "Thai read-aloud, bilingual parity, and cross-device mixed-script baseline/combining-mark review for JetBrains Mono 400 plus IBM Plex Sans Thai 400, tied to final copy hashes",
+    "Thai read-aloud, bilingual parity, and cross-device mixed-script baseline/combining-mark review for JetBrains Mono 400 plus IBM Plex Sans Thai 400",
     "five-reviewer recognition and 5-second/30-second/2-minute adoption checks",
-    "logo variant, delivered size, clear space, transparent-background invariant, and shared header-surface approval",
-    "photo owner, creator, context, rights, expiry, privacy, and rendition approval",
-    "perceptual quiet, gradient deletion, and worst-sample contrast",
-    "dataviz dark/light, color-vision, grayscale, direct-label, table-parity, and 200% zoom review",
-    "responsive, zoom, disclosure keyboard, theme/language cycle, clipboard recovery, and screen-reader matrix",
-    "Implementation Library findability, product-boundary, and download review",
-    "semantic-motion timing, reduced-motion preference change, no-JavaScript state, and assistive-technology review",
-    "CTA fixture keyboard/screen-reader pending and receipt/recovery wording review",
-    "context-query privacy, runtime composition, Search/AI request inspection, provider locale/account/personalization availability, cancellation/failure recovery, cited-source verification, and same-intent relevance study",
-    "recipient-value fixture remains static and any future share receives product-owned permission/receipt/recovery review",
-    "HTML-only noindex scope, internal-intent/public-projection mismatch, project-path robots limitation, approved browser-tab favicon small-size/theme/scope review, noncanonical standalone, separate machine/search/AI-search/agent states, and llms navigation-aid review",
-    "capsule-action geometry, icon-only circles, grouped-control exclusions, Thai/English wrapping, and narrow-width stacking",
-    "all nine scale families in the concise 5/7/9 sampler plus preservation and findability of the complete atlas",
-    "regenerated v0.8.8 public-safe machine package and release evidence"
+    "logo, photo rights/privacy, perceptual quiet, gradient deletion, and worst-sample contrast review",
+    "dataviz color-vision, grayscale, direct-label, table, export, and product snapshot-versus-sketch boundary review",
+    "responsive disclosure keyboard, theme/language cycle, clipboard recovery, and screen-reader matrix",
+    "Implementation Library findability, positive-case relevance, download, and product-boundary review",
+    "semantic motion, CTA, contextual discovery, recipient-value, and recovery wording review",
+    "SEO, noindex/public-projection, approved favicon scope, hostname-level favicon, standalone noncanonical, and llms navigation-aid review",
+    "localized scale-label geometry on the supported browser/font/device matrix, including real 200% zoom and assistive-technology announcement"
   ]
 }

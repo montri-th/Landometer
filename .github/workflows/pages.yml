@@ -27,7 +27,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,3 +46,31 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Verify deployed bytes match this release source
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+          TARGET_VERSION: "0.8.8"
+          MANIFEST_PATH: site-manifest.v0.8.8.json
+          EXPECTED_MANIFEST_VERSION: "2.0"
+          EXPECTED_TOKEN_SCHEMA_VERSION: "6"
+          EXPECTED_PROFILE: brand.public
+          EXPECTED_EVIDENCE_STATUS: source_limited
+          EXPECTED_INDEXABLE: "false"
+          EXPECTED_MACHINE_VALIDATION: pending
+          EXPECTED_ARTIFACT_BUILD: ui-20260731-01
+          VERIFY_EXACT_SOURCE: "true"
+          LOCAL_DEPLOYMENT_DIR: deployment
+          VERIFY_ATTEMPTS: "30"
+          VERIFY_DELAY_MS: "10000"
+          CRITICAL_ASSETS: >-
+            landometer-design-system-v0.8.8-standalone.html,
+            landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html,
+            landometer-design-system-v0.8.8-standalone.color-srgb-01.html,
+            assets/data/color-delivery.v0.8.8.json,
+            qa/v0.8.8-automated.json,
+            qa/v0.8.8-scale-geometry.json,
+            implementation-notes.v0.8.8.md,
+            llms.txt,
+            assets/images/landometer-symbol-transparent.png
+        run: node skill/publish-landometer-design-system-github-pages/scripts/verify-live.mjs

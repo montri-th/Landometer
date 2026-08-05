@@ -150,19 +150,32 @@ const colorDelivery = await readJsonBesideHtml(
   "assets/data/color-delivery.v0.8.8.json"
 );
 const colorRegistryId = colorDelivery?.meta?.id ?? "";
-const pinnedColorSetName = colorDelivery?.meta?.immutableStandalone ?? "";
+const pinnedColorSetName =
+  colorDelivery?.meta?.immutableColorBaseline ?? "";
+const currentArtifactBuildId =
+  colorDelivery?.meta?.currentArtifactBuild?.id ?? "";
+const currentArtifactBuildName =
+  colorDelivery?.meta?.currentArtifactBuild?.immutableStandalone ?? "";
 let pinnedColorSetHtml = "";
+let currentArtifactBuildHtml = "";
 let tokenRegistrySource = "";
 let scaleRegistrySource = "";
 try {
-  [pinnedColorSetHtml, tokenRegistrySource, scaleRegistrySource] =
+  [
+    pinnedColorSetHtml,
+    currentArtifactBuildHtml,
+    tokenRegistrySource,
+    scaleRegistrySource
+  ] =
     await Promise.all([
       readFile(path.join(htmlDirectory, pinnedColorSetName), "utf8"),
+      readFile(path.join(htmlDirectory, currentArtifactBuildName), "utf8"),
       readFile(path.join(htmlDirectory, "assets/data/tokens.json"), "utf8"),
       readFile(path.join(htmlDirectory, "assets/data/scales.json"), "utf8")
     ]);
 } catch {
   pinnedColorSetHtml = "";
+  currentArtifactBuildHtml = "";
   tokenRegistrySource = "";
   scaleRegistrySource = "";
 }
@@ -186,8 +199,20 @@ const pendingFaviconValid =
   browserTabIcon?.status === "pending_approved_compact_asset" &&
   browserTabIcon?.rendered === false;
 const approvedFaviconLink = faviconLinks[0] ?? "";
-const approvedFaviconHref = attributeOf(approvedFaviconLink, "href")
+const approvedFaviconDeclaredHref = attributeOf(approvedFaviconLink, "href");
+const approvedFaviconHref = approvedFaviconDeclaredHref
   .split(/[?#]/u)[0];
+const approvedFaviconStandaloneHref =
+  "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f";
+const currentArtifactFaviconLinks = tagsNamed(currentArtifactBuildHtml, "link")
+  .filter(tag => attributeOf(tag, "rel").split(/\s+/u).includes("icon"));
+const stableStandaloneFaviconValid =
+  currentArtifactFaviconLinks.length === 1 &&
+  attributeOf(currentArtifactFaviconLinks[0], "href") ===
+    approvedFaviconStandaloneHref &&
+  attributeOf(currentArtifactFaviconLinks[0], "type") === "image/png" &&
+  attributeOf(currentArtifactFaviconLinks[0], "sizes") === "192x192" &&
+  !/^data:/iu.test(attributeOf(currentArtifactFaviconLinks[0], "href"));
 const approvedFaviconRecordText = JSON.stringify(browserTabIcon ?? {});
 let approvedFaviconHash = "";
 let approvedFaviconBytes = null;
@@ -225,6 +250,11 @@ const approvedFaviconValid =
   ) &&
   browserTabIcon?.status === "approved" &&
   browserTabIcon?.rendered === true &&
+  approvedFaviconDeclaredHref === browserTabIcon?.href &&
+  browserTabIcon?.href ===
+    "assets/images/landometer-symbol-transparent.png?v=35a1496f" &&
+  browserTabIcon?.standaloneHref === approvedFaviconStandaloneHref &&
+  browserTabIcon?.cacheRevision === "35a1496f" &&
   [browserTabIcon?.path, browserTabIcon?.assetPath]
     .filter(Boolean)
     .includes(approvedFaviconHref) &&
@@ -243,6 +273,9 @@ const approvedFaviconValid =
   /no carrier[\s\S]*crop/iu.test(browserTabIcon?.themeStrategy ?? "") &&
   /(?:favicon|compact|symbol)/iu.test(approvedFaviconRecordText) &&
   /transparent/iu.test(approvedFaviconRecordText);
+const browserTabIdentityPairValid =
+  (pendingFaviconValid && currentArtifactFaviconLinks.length === 0) ||
+  (approvedFaviconValid && stableStandaloneFaviconValid);
 
 const robotsContent = attributeOf(
   metaTags.find(tag => attributeOf(tag, "name").toLowerCase() === "robots") ?? "",
@@ -566,7 +599,11 @@ const checks = [
   ],
   [
     "browser-tab identity uses approved compact asset or truthful pending state",
-    pendingFaviconValid || approvedFaviconValid
+    browserTabIdentityPairValid
+  ],
+  [
+    "standalone browser-tab identity uses the stable cache-revisioned production URL",
+    browserTabIdentityPairValid
   ],
   [
     "metadata and canonical agree with the release manifest",
@@ -646,6 +683,24 @@ const checks = [
         pinnedColorSetHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-build-channel"
       ) === "immutable-color-set"
+  ],
+  [
+    "UI-only changes mint a separate append-only artifact build without rewriting the Color Set baseline",
+    /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
+      currentArtifactBuildName ===
+        `landometer-design-system-v0.8.8-standalone.color-srgb-01.${currentArtifactBuildId}.html` &&
+      attributeOf(
+        currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
+        "data-color-registry"
+      ) === colorRegistryId &&
+      attributeOf(
+        currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
+        "data-artifact-build"
+      ) === currentArtifactBuildId &&
+      attributeOf(
+        currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
+        "data-build-channel"
+      ) === "immutable-artifact-build"
   ],
   [
     "Color Set source hashes match the packaged token and scale registries",

@@ -44,6 +44,9 @@ jobs:
           EXPECTED_EVIDENCE_STATUS: __EVIDENCE_STATUS__
           EXPECTED_INDEXABLE: "false"
           EXPECTED_MACHINE_VALIDATION: pending
+          EXPECTED_ARTIFACT_BUILD: __ARTIFACT_BUILD_ID__
+          VERIFY_EXACT_SOURCE: "true"
+          LOCAL_DEPLOYMENT_DIR: deployment
           VERIFY_ATTEMPTS: "30"
           VERIFY_DELAY_MS: "10000"
           CRITICAL_ASSETS: >-

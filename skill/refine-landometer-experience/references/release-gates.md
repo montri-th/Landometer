@@ -32,6 +32,10 @@ Label every proposal `candidate` and state that the active authoring master rema
 - Validate HTML, controls, fonts, theme/locale state, deep links, and downloaded references.
 - At narrow widths, measure rendered text bounds rather than only element boxes. Test EN and TH labels beside charts, scales, and color strips at 320/360/390 CSS pixels and 200% text zoom; require a visible gap and no horizontal scroll.
 - Pin the immutable filename or release URL used for QA and handoff, and record its build ID plus color-registry hash. Treat mutable root, `current`, and `latest` aliases as convenience routes, not parity evidence.
+- Keep Color Set identity separate from UI artifact-build identity. Reuse the Color Set ID for UI-only changes, but mint a new append-only artifact-build ID and immutable filename. Mint a new Color Set ID only when governed colors, gradients, token sources, or scale sources change.
+- Run a non-writing rebuild check before release. Validate all immutable targets before replacing a mutable alias, use atomic writes, and reject any committed standalone that cannot be reproduced from source.
+- Bind automated QA evidence to the artifact-build ID, exact artifact hashes, tested locale/theme/viewport/zoom matrix, and the matching manual-gate list. A file-exists check or version marker is not release evidence.
+- Keep pull-request source validation separate from production verification. After deployment succeeds, cache-bypass the live endpoint and compare the root, manifest, current immutable UI artifact, immutable Color Set baseline, QA evidence, and critical assets byte-for-byte with the deployed commit; also require every live asset to match its manifest byte count and SHA-256.
 - Open a pull request from a new branch, merge only after checks pass, and verify the exact production commit.
 - Verify the named manual-gate record exists and state whether it remains open. Its static presence is not evidence that the behavior was exercised or passed.
 - Record remaining machine or manual validation honestly.

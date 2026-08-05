@@ -20,6 +20,7 @@
   data-color-space="srgb"
   data-gradient-interpolation="srgb-explicit-with-legacy-fallback"
   data-color-registry="color-srgb-01"
+  data-artifact-build="ui-20260731-01"
   data-build-channel="latest-alias"
   data-theme="light"
   data-theme-preference="system"
@@ -31,7 +32,7 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F6F7F3">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png?v=35a1496f" sizes="192x192">
   <title>Landometer Design Identity Playground · v0.8.8</title>
   <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/">
@@ -2774,6 +2775,7 @@
     }
     .scale-sampler {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--space-5);
       margin-top: var(--space-6);
       padding: var(--space-5);
@@ -2781,11 +2783,25 @@
       border-radius: var(--radius-sm);
       background: var(--surface-alt);
     }
+    .scale-sampler > * {
+      min-width: 0;
+    }
+    .scale-sampler p,
+    .scale-sampler strong {
+      overflow-wrap: break-word;
+    }
+    .scale-sampler code {
+      overflow-wrap: anywhere;
+    }
     .scale-sampler-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      display: flex;
+      flex-wrap: wrap;
       gap: var(--space-4);
       align-items: start;
+    }
+    .scale-sampler-head > div {
+      flex: 1 1 16rem;
+      min-width: 0;
     }
     .scale-sampler-head h6,
     .scale-sampler-head p {
@@ -2848,7 +2864,9 @@
     }
     .scale-family-group {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: var(--space-3);
+      min-width: 0;
     }
     .scale-family-group + .scale-family-group {
       padding-top: var(--space-4);
@@ -2856,6 +2874,7 @@
     }
     .scale-family-group-head {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       gap: var(--space-3);
       align-items: baseline;
@@ -2887,8 +2906,8 @@
       margin-top: var(--space-3);
     }
     .scale-family-class-row {
-      display: grid;
-      grid-template-columns: max-content minmax(0, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
       align-items: center;
       margin: 0;
@@ -2904,6 +2923,8 @@
       display: grid;
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
+      flex: 1 1 8rem;
+      min-inline-size: min(8rem, 100%);
       min-height: 22px;
       overflow: hidden;
       border: 1px solid var(--border-default);
@@ -2924,6 +2945,7 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: var(--space-4);
       align-items: end;
+      min-width: 0;
       padding-top: var(--space-4);
       border-top: 1px solid var(--border-default);
     }
@@ -3643,6 +3665,7 @@
       background: #FCFCFA;
       color: #182327;
     }
+    .atlas-scale-record > * { min-width: 0; }
     .atlas-scale-record[data-atlas-theme="dark"] {
       border-color: #46524F;
       background: #172126;
@@ -3650,13 +3673,23 @@
     }
     .atlas-scale-head {
       display: flex;
+      flex-wrap: wrap;
       gap: var(--space-3);
       justify-content: space-between;
       align-items: start;
       margin-bottom: var(--space-4);
     }
-    .atlas-scale-head > span:first-child { display: grid; gap: 2px; }
-    .atlas-scale-head code { color: inherit; opacity: .75; }
+    .atlas-scale-head > span:first-child {
+      display: grid;
+      flex: 1 1 12rem;
+      gap: 2px;
+      min-width: 0;
+    }
+    .atlas-scale-head code {
+      color: inherit;
+      opacity: .75;
+      overflow-wrap: anywhere;
+    }
     .atlas-scale-theme {
       padding: 3px 7px;
       border: 1px solid currentColor;
@@ -3713,10 +3746,10 @@
       margin-top: var(--space-4);
     }
     .atlas-class-row {
-      display: grid;
-      grid-template-columns: max-content minmax(0, 1fr);
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      align-items: stretch;
+      align-items: center;
     }
     .atlas-class-row > figcaption {
       display: flex;
@@ -3730,6 +3763,8 @@
       display: grid;
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
+      flex: 1 1 8rem;
+      min-inline-size: min(8rem, 100%);
       min-height: 24px;
     }
     .atlas-scale-foot {
@@ -4907,11 +4942,11 @@
       .brand-interaction-split,
       .surface-mode-strip { grid-template-columns: 1fr; }
       .scale-family-grid,
-      .scale-sampler-foot { grid-template-columns: 1fr; }
+      .scale-sampler-foot { grid-template-columns: minmax(0, 1fr); }
       .color-route-actions { display: grid; }
       .color-route-actions a,
       .scale-sampler-foot .secondary-action { width: 100%; }
-      .scale-sampler-head { grid-template-columns: minmax(0, 1fr) auto; }
+      .scale-sampler-head > div { flex-basis: min(16rem, 100%); }
       .color-plate-head { grid-template-columns: 40px minmax(0, 1fr); }
       .color-plate-head .color-status {
         grid-column: 2;
@@ -6228,7 +6263,11 @@
             <h6 id="scale-sampler-title"><span data-th lang="th">เห็นทุกชุด ก่อนเลือกให้ตรงคำถาม</span><span data-en lang="en">See every family, then match it to the question</span></h6>
             <p><span data-th lang="th">แต่ละชุดแสดง 5, 7 และ 9 ชั้นจาก LUT เดียวกัน สีบนจอจะสลับตามธีมที่กำลังใช้</span><span data-en lang="en">Each family shows 5, 7, and 9 classes from one LUT. The visible cells follow the active theme.</span></p>
           </div>
-          <span class="scale-sampler-theme" aria-label="Resolved theme">
+          <span
+            class="scale-sampler-theme"
+            aria-label="ธีมที่แสดงอยู่: สว่าง"
+            data-scale-theme-label
+          >
             <span data-sampler-theme-light>LIGHT</span>
             <span data-sampler-theme-dark>DARK</span>
           </span>
@@ -6262,19 +6301,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="growth sequential 5 classes; light: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68; dark: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="การเติบโต 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68"
+                  data-scale-aria-th-light="การเติบโต 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68"
+                  data-scale-aria-th-dark="การเติบโต 5 ชั้น ธีมมืด: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8"
+                  data-scale-aria-en-light="Growth sequential, 5 classes in the light theme: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68"
+                  data-scale-aria-en-dark="Growth sequential, 5 classes in the dark theme: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6F8984" title="growth 5 · light #F2F1DF · dark #6F8984" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#66A3AA" title="growth 5 · light #A9D5D1 · dark #66A3AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#53BDD0" title="growth 5 · light #55B8C2 · dark #53BDD0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#369394;--scale-dark:#6DCFC5" title="growth 5 · light #369394 · dark #6DCFC5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#126F68;--scale-dark:#86E0B8" title="growth 5 · light #126F68 · dark #86E0B8" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="growth sequential 7 classes; light: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68; dark: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="การเติบโต 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68"
+                  data-scale-aria-th-light="การเติบโต 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68"
+                  data-scale-aria-th-dark="การเติบโต 7 ชั้น ธีมมืด: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8"
+                  data-scale-aria-en-light="Growth sequential, 7 classes in the light theme: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68"
+                  data-scale-aria-en-dark="Growth sequential, 7 classes in the dark theme: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6F8984" title="growth 7 · light #F2F1DF · dark #6F8984" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C0DDD5;--scale-dark:#699B9E" title="growth 7 · light #C0DDD5 · dark #699B9E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#92CCCD;--scale-dark:#61ABB5" title="growth 7 · light #92CCCD · dark #61ABB5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#53BDD0" title="growth 7 · light #55B8C2 · dark #53BDD0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3F9EA1;--scale-dark:#65C9C9" title="growth 7 · light #3F9EA1 · dark #65C9C9" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#2C8886;--scale-dark:#75D4C1" title="growth 7 · light #2C8886 · dark #75D4C1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#126F68;--scale-dark:#86E0B8" title="growth 7 · light #126F68 · dark #86E0B8" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="growth sequential 9 classes; light: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68; dark: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="การเติบโต 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68"
+                  data-scale-aria-th-light="การเติบโต 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68"
+                  data-scale-aria-th-dark="การเติบโต 9 ชั้น ธีมมืด: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8"
+                  data-scale-aria-en-light="Growth sequential, 9 classes in the light theme: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68"
+                  data-scale-aria-en-dark="Growth sequential, 9 classes in the dark theme: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6F8984" title="growth 9 · light #F2F1DF · dark #6F8984" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CEE3D8;--scale-dark:#6B9697" title="growth 9 · light #CEE3D8 · dark #6B9697" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#66A3AA" title="growth 9 · light #A9D5D1 · dark #66A3AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#82C7CA;--scale-dark:#5EB0BD" title="growth 9 · light #82C7CA · dark #5EB0BD" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#53BDD0" title="growth 9 · light #55B8C2 · dark #53BDD0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#45A5AB;--scale-dark:#60C6CB" title="growth 9 · light #45A5AB · dark #60C6CB" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#369394;--scale-dark:#6DCFC5" title="growth 9 · light #369394 · dark #6DCFC5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#25817E;--scale-dark:#7AD7BF" title="growth 9 · light #25817E · dark #7AD7BF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#126F68;--scale-dark:#86E0B8" title="growth 9 · light #126F68 · dark #86E0B8" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6295,19 +6358,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="water sequential 5 classes; light: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A; dark: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="น้ำ 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A"
+                  data-scale-aria-th-light="น้ำ 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A"
+                  data-scale-aria-th-dark="น้ำ 5 ชั้น ธีมมืด: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2"
+                  data-scale-aria-en-light="Water sequential, 5 classes in the light theme: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A"
+                  data-scale-aria-en-dark="Water sequential, 5 classes in the dark theme: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6C838C" title="water 5 · light #F2F1DF · dark #6C838C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#659DA7" title="water 5 · light #A9D5D1 · dark #659DA7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#55B8C2" title="water 5 · light #55B8C2 · dark #55B8C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3A92AE;--scale-dark:#5FBED2" title="water 5 · light #3A92AE · dark #5FBED2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#206C9A;--scale-dark:#68C4E2" title="water 5 · light #206C9A · dark #68C4E2" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="water sequential 7 classes; light: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A; dark: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="น้ำ 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A"
+                  data-scale-aria-th-light="น้ำ 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A"
+                  data-scale-aria-th-dark="น้ำ 7 ชั้น ธีมมืด: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2"
+                  data-scale-aria-en-light="Water sequential, 7 classes in the light theme: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A"
+                  data-scale-aria-en-dark="Water sequential, 7 classes in the dark theme: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6C838C" title="water 7 · light #F2F1DF · dark #6C838C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C0DDD5;--scale-dark:#68959F" title="water 7 · light #C0DDD5 · dark #68959F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#92CCCD;--scale-dark:#61A5AF" title="water 7 · light #92CCCD · dark #61A5AF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#55B8C2" title="water 7 · light #55B8C2 · dark #55B8C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#429DB4;--scale-dark:#5CBCCD" title="water 7 · light #429DB4 · dark #5CBCCD" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3286A8;--scale-dark:#61C0D7" title="water 7 · light #3286A8 · dark #61C0D7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#206C9A;--scale-dark:#68C4E2" title="water 7 · light #206C9A · dark #68C4E2" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="water sequential 9 classes; light: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A; dark: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="น้ำ 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A"
+                  data-scale-aria-th-light="น้ำ 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A"
+                  data-scale-aria-th-dark="น้ำ 9 ชั้น ธีมมืด: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2"
+                  data-scale-aria-en-light="Water sequential, 9 classes in the light theme: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A"
+                  data-scale-aria-en-dark="Water sequential, 9 classes in the dark theme: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#6C838C" title="water 9 · light #F2F1DF · dark #6C838C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CEE3D8;--scale-dark:#699099" title="water 9 · light #CEE3D8 · dark #699099" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9D5D1;--scale-dark:#659DA7" title="water 9 · light #A9D5D1 · dark #659DA7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#82C7CA;--scale-dark:#5EABB4" title="water 9 · light #82C7CA · dark #5EABB4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#55B8C2;--scale-dark:#55B8C2" title="water 9 · light #55B8C2 · dark #55B8C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#47A5B8;--scale-dark:#5ABBCA" title="water 9 · light #47A5B8 · dark #5ABBCA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3A92AE;--scale-dark:#5FBED2" title="water 9 · light #3A92AE · dark #5FBED2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#2D7FA4;--scale-dark:#63C1DA" title="water 9 · light #2D7FA4 · dark #63C1DA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#206C9A;--scale-dark:#68C4E2" title="water 9 · light #206C9A · dark #68C4E2" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6328,19 +6415,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="risk sequential 5 classes; light: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436; dark: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความเสี่ยง 5 ชั้น ธีมสว่าง: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436"
+                  data-scale-aria-th-light="ความเสี่ยง 5 ชั้น ธีมสว่าง: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436"
+                  data-scale-aria-th-dark="ความเสี่ยง 5 ชั้น ธีมมืด: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D"
+                  data-scale-aria-en-light="Risk sequential, 5 classes in the light theme: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436"
+                  data-scale-aria-en-dark="Risk sequential, 5 classes in the dark theme: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#85837A" title="risk 5 · light #F2F1DF · dark #85837A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E9D398;--scale-dark:#AA9460" title="risk 5 · light #E9D398 · dark #AA9460" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E0B443;--scale-dark:#D0A42F" title="risk 5 · light #E0B443 · dark #D0A42F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CE7E3E;--scale-dark:#E8995D" title="risk 5 · light #CE7E3E · dark #E8995D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#FF8C7D" title="risk 5 · light #B74436 · dark #FF8C7D" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="risk sequential 7 classes; light: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436; dark: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความเสี่ยง 7 ชั้น ธีมสว่าง: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436"
+                  data-scale-aria-th-light="ความเสี่ยง 7 ชั้น ธีมสว่าง: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436"
+                  data-scale-aria-th-dark="ความเสี่ยง 7 ชั้น ธีมมืด: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D"
+                  data-scale-aria-en-light="Risk sequential, 7 classes in the light theme: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436"
+                  data-scale-aria-en-dark="Risk sequential, 7 classes in the dark theme: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#85837A" title="risk 7 · light #F2F1DF · dark #85837A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ECDCAE;--scale-dark:#9F8F69" title="risk 7 · light #ECDCAE · dark #9F8F69" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E7CA82;--scale-dark:#B59955" title="risk 7 · light #E7CA82 · dark #B59955" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E0B443;--scale-dark:#D0A42F" title="risk 7 · light #E0B443 · dark #D0A42F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D48E40;--scale-dark:#E19D51" title="risk 7 · light #D48E40 · dark #E19D51" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C76D3C;--scale-dark:#EF9667" title="risk 7 · light #C76D3C · dark #EF9667" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#FF8C7D" title="risk 7 · light #B74436 · dark #FF8C7D" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="risk sequential 9 classes; light: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436; dark: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความเสี่ยง 9 ชั้น ธีมสว่าง: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436"
+                  data-scale-aria-th-light="ความเสี่ยง 9 ชั้น ธีมสว่าง: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436"
+                  data-scale-aria-th-dark="ความเสี่ยง 9 ชั้น ธีมมืด: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D"
+                  data-scale-aria-en-light="Risk sequential, 9 classes in the light theme: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436"
+                  data-scale-aria-en-dark="Risk sequential, 9 classes in the dark theme: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#85837A" title="risk 9 · light #F2F1DF · dark #85837A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EEE2BC;--scale-dark:#978C6E" title="risk 9 · light #EEE2BC · dark #978C6E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E9D398;--scale-dark:#AA9460" title="risk 9 · light #E9D398 · dark #AA9460" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E5C472;--scale-dark:#BD9C4D" title="risk 9 · light #E5C472 · dark #BD9C4D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E0B443;--scale-dark:#D0A42F" title="risk 9 · light #E0B443 · dark #D0A42F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D79941;--scale-dark:#DC9F49" title="risk 9 · light #D79941 · dark #DC9F49" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CE7E3E;--scale-dark:#E8995D" title="risk 9 · light #CE7E3E · dark #E8995D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C3623A;--scale-dark:#F4936E" title="risk 9 · light #C3623A · dark #F4936E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#FF8C7D" title="risk 9 · light #B74436 · dark #FF8C7D" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6361,19 +6472,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="activity sequential 5 classes; light: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00; dark: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="กิจกรรม 5 ชั้น ธีมสว่าง: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00"
+                  data-scale-aria-th-light="กิจกรรม 5 ชั้น ธีมสว่าง: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00"
+                  data-scale-aria-th-dark="กิจกรรม 5 ชั้น ธีมมืด: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A"
+                  data-scale-aria-en-light="Activity sequential, 5 classes in the light theme: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00"
+                  data-scale-aria-en-dark="Activity sequential, 5 classes in the dark theme: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#808A96" title="activity 5 · light #F2F1DF · dark #808A96" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2B0B5;--scale-dark:#BB859C" title="activity 5 · light #F2B0B5 · dark #BB859C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E86A8C;--scale-dark:#F079A1" title="activity 5 · light #E86A8C · dark #F079A1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D74F55;--scale-dark:#F8968A" title="activity 5 · light #D74F55 · dark #F8968A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FFB06A" title="activity 5 · light #C52C00 · dark #FFB06A" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="activity sequential 7 classes; light: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00; dark: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="กิจกรรม 7 ชั้น ธีมสว่าง: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00"
+                  data-scale-aria-th-light="กิจกรรม 7 ชั้น ธีมสว่าง: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00"
+                  data-scale-aria-th-dark="กิจกรรม 7 ชั้น ธีมมืด: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A"
+                  data-scale-aria-en-light="Activity sequential, 7 classes in the light theme: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00"
+                  data-scale-aria-en-dark="Activity sequential, 7 classes in the dark theme: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#808A96" title="activity 7 · light #F2F1DF · dark #808A96" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F3C3C1;--scale-dark:#AA879A" title="activity 7 · light #F3C3C1 · dark #AA879A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F09BA8;--scale-dark:#CB829D" title="activity 7 · light #F09BA8 · dark #CB829D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E86A8C;--scale-dark:#F079A1" title="activity 7 · light #E86A8C · dark #F079A1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DC5766;--scale-dark:#F58E91" title="activity 7 · light #DC5766 · dark #F58E91" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D14543;--scale-dark:#FA9E81" title="activity 7 · light #D14543 · dark #FA9E81" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FFB06A" title="activity 7 · light #C52C00 · dark #FFB06A" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="activity sequential 9 classes; light: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00; dark: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="กิจกรรม 9 ชั้น ธีมสว่าง: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00"
+                  data-scale-aria-th-light="กิจกรรม 9 ชั้น ธีมสว่าง: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00"
+                  data-scale-aria-th-dark="กิจกรรม 9 ชั้น ธีมมืด: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A"
+                  data-scale-aria-en-light="Activity sequential, 9 classes in the light theme: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00"
+                  data-scale-aria-en-dark="Activity sequential, 9 classes in the dark theme: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#808A96" title="activity 9 · light #F2F1DF · dark #808A96" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F4D0CA;--scale-dark:#9F8899" title="activity 9 · light #F4D0CA · dark #9F8899" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2B0B5;--scale-dark:#BB859C" title="activity 9 · light #F2B0B5 · dark #BB859C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EE8EA0;--scale-dark:#D6809E" title="activity 9 · light #EE8EA0 · dark #D6809E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E86A8C;--scale-dark:#F079A1" title="activity 9 · light #E86A8C · dark #F079A1" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DF5D71;--scale-dark:#F48896" title="activity 9 · light #DF5D71 · dark #F48896" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D74F55;--scale-dark:#F8968A" title="activity 9 · light #D74F55 · dark #F8968A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CE3F36;--scale-dark:#FBA37B" title="activity 9 · light #CE3F36 · dark #FBA37B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FFB06A" title="activity 9 · light #C52C00 · dark #FFB06A" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6394,19 +6529,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="density sequential 5 classes; light: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78; dark: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความหนาแน่น 5 ชั้น ธีมสว่าง: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78"
+                  data-scale-aria-th-light="ความหนาแน่น 5 ชั้น ธีมสว่าง: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78"
+                  data-scale-aria-th-dark="ความหนาแน่น 5 ชั้น ธีมมืด: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2"
+                  data-scale-aria-en-light="Density sequential, 5 classes in the light theme: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78"
+                  data-scale-aria-en-dark="Density sequential, 5 classes in the dark theme: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#728C9A" title="density 5 · light #F2F1DF · dark #728C9A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ACC4C8;--scale-dark:#6199AF" title="density 5 · light #ACC4C8 · dark #6199AF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6797AF;--scale-dark:#47A6C4" title="density 5 · light #6797AF · dark #47A6C4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#467B93;--scale-dark:#72C5DB" title="density 5 · light #467B93 · dark #72C5DB" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#225F78;--scale-dark:#9BE4F2" title="density 5 · light #225F78 · dark #9BE4F2" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="density sequential 7 classes; light: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78; dark: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความหนาแน่น 7 ชั้น ธีมสว่าง: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78"
+                  data-scale-aria-th-light="ความหนาแน่น 7 ชั้น ธีมสว่าง: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78"
+                  data-scale-aria-th-dark="ความหนาแน่น 7 ชั้น ธีมมืด: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2"
+                  data-scale-aria-en-light="Density sequential, 7 classes in the light theme: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78"
+                  data-scale-aria-en-dark="Density sequential, 7 classes in the dark theme: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#728C9A" title="density 7 · light #F2F1DF · dark #728C9A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#C1D1CF;--scale-dark:#6795A9" title="density 7 · light #C1D1CF · dark #6795A9" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#97B6C0;--scale-dark:#5A9DB5" title="density 7 · light #97B6C0 · dark #5A9DB5" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6797AF;--scale-dark:#47A6C4" title="density 7 · light #6797AF · dark #47A6C4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#50839B;--scale-dark:#66BBD4" title="density 7 · light #50839B · dark #66BBD4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#3B728B;--scale-dark:#7FCEE2" title="density 7 · light #3B728B · dark #7FCEE2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#225F78;--scale-dark:#9BE4F2" title="density 7 · light #225F78 · dark #9BE4F2" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="density sequential 9 classes; light: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78; dark: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความหนาแน่น 9 ชั้น ธีมสว่าง: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78"
+                  data-scale-aria-th-light="ความหนาแน่น 9 ชั้น ธีมสว่าง: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78"
+                  data-scale-aria-th-dark="ความหนาแน่น 9 ชั้น ธีมมืด: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2"
+                  data-scale-aria-en-light="Density sequential, 9 classes in the light theme: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78"
+                  data-scale-aria-en-dark="Density sequential, 9 classes in the dark theme: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#728C9A" title="density 9 · light #F2F1DF · dark #728C9A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CFDAD3;--scale-dark:#6A93A4" title="density 9 · light #CFDAD3 · dark #6A93A4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ACC4C8;--scale-dark:#6199AF" title="density 9 · light #ACC4C8 · dark #6199AF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8AADBB;--scale-dark:#56A0B9" title="density 9 · light #8AADBB · dark #56A0B9" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6797AF;--scale-dark:#47A6C4" title="density 9 · light #6797AF · dark #47A6C4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#5689A1;--scale-dark:#5DB5CF" title="density 9 · light #5689A1 · dark #5DB5CF" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#467B93;--scale-dark:#72C5DB" title="density 9 · light #467B93 · dark #72C5DB" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#346D85;--scale-dark:#87D4E6" title="density 9 · light #346D85 · dark #87D4E6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#225F78;--scale-dark:#9BE4F2" title="density 9 · light #225F78 · dark #9BE4F2" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6427,19 +6586,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="confidence sequential 5 classes; light: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F; dark: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความเชื่อมั่น 5 ชั้น ธีมสว่าง: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F"
+                  data-scale-aria-th-light="ความเชื่อมั่น 5 ชั้น ธีมสว่าง: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F"
+                  data-scale-aria-th-dark="ความเชื่อมั่น 5 ชั้น ธีมมืด: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5"
+                  data-scale-aria-en-light="Confidence sequential, 5 classes in the light theme: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F"
+                  data-scale-aria-en-dark="Confidence sequential, 5 classes in the dark theme: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#7C8B8C" title="confidence 5 · light #F2F1DF · dark #7C8B8C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BBCAC0;--scale-dark:#889A9B" title="confidence 5 · light #BBCAC0 · dark #889A9B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#85A5A2;--scale-dark:#95A9AA" title="confidence 5 · light #85A5A2 · dark #95A9AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#548D88;--scale-dark:#B6C7C7" title="confidence 5 · light #548D88 · dark #B6C7C7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#08756F;--scale-dark:#D8E6E5" title="confidence 5 · light #08756F · dark #D8E6E5" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="confidence sequential 7 classes; light: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F; dark: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความเชื่อมั่น 7 ชั้น ธีมสว่าง: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F"
+                  data-scale-aria-th-light="ความเชื่อมั่น 7 ชั้น ธีมสว่าง: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F"
+                  data-scale-aria-th-dark="ความเชื่อมั่น 7 ชั้น ธีมมืด: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5"
+                  data-scale-aria-en-light="Confidence sequential, 7 classes in the light theme: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F"
+                  data-scale-aria-en-dark="Confidence sequential, 7 classes in the dark theme: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#7C8B8C" title="confidence 7 · light #F2F1DF · dark #7C8B8C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CBD6C9;--scale-dark:#859596" title="confidence 7 · light #CBD6C9 · dark #859596" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ABBFB7;--scale-dark:#8C9E9F" title="confidence 7 · light #ABBFB7 · dark #8C9E9F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#85A5A2;--scale-dark:#95A9AA" title="confidence 7 · light #85A5A2 · dark #95A9AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#639490;--scale-dark:#ACBEBE" title="confidence 7 · light #639490 · dark #ACBEBE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#438680;--scale-dark:#C0D0D0" title="confidence 7 · light #438680 · dark #C0D0D0" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#08756F;--scale-dark:#D8E6E5" title="confidence 7 · light #08756F · dark #D8E6E5" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="confidence sequential 9 classes; light: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F; dark: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ความเชื่อมั่น 9 ชั้น ธีมสว่าง: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F"
+                  data-scale-aria-th-light="ความเชื่อมั่น 9 ชั้น ธีมสว่าง: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F"
+                  data-scale-aria-th-dark="ความเชื่อมั่น 9 ชั้น ธีมมืด: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5"
+                  data-scale-aria-en-light="Confidence sequential, 9 classes in the light theme: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F"
+                  data-scale-aria-en-dark="Confidence sequential, 9 classes in the dark theme: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#7C8B8C" title="confidence 9 · light #F2F1DF · dark #7C8B8C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D6DED0;--scale-dark:#829293" title="confidence 9 · light #D6DED0 · dark #829293" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BBCAC0;--scale-dark:#889A9B" title="confidence 9 · light #BBCAC0 · dark #889A9B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A0B8B1;--scale-dark:#8FA1A2" title="confidence 9 · light #A0B8B1 · dark #8FA1A2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#85A5A2;--scale-dark:#95A9AA" title="confidence 9 · light #85A5A2 · dark #95A9AA" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6D9995;--scale-dark:#A5B8B8" title="confidence 9 · light #6D9995 · dark #A5B8B8" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#548D88;--scale-dark:#B6C7C7" title="confidence 9 · light #548D88 · dark #B6C7C7" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#37817B;--scale-dark:#C7D6D6" title="confidence 9 · light #37817B · dark #C7D6D6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#08756F;--scale-dark:#D8E6E5" title="confidence 9 · light #08756F · dark #D8E6E5" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6471,19 +6654,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="balance diverging 5 classes; light: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E; dark: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="สมดุล 5 ชั้น ธีมสว่าง: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E"
+                  data-scale-aria-th-light="สมดุล 5 ชั้น ธีมสว่าง: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E"
+                  data-scale-aria-th-dark="สมดุล 5 ชั้น ธีมมืด: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0"
+                  data-scale-aria-en-light="Balance diverging, 5 classes in the light theme: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E"
+                  data-scale-aria-en-dark="Balance diverging, 5 classes in the dark theme: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FF8A4C" title="balance 5 · light #C52C00 · dark #FF8A4C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E4967B;--scale-dark:#C1855E" title="balance 5 · light #E4967B · dark #C1855E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="balance 5 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8AADC1;--scale-dark:#7096A4" title="balance 5 · light #8AADC1 · dark #7096A4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#186A9E;--scale-dark:#4FAFE0" title="balance 5 · light #186A9E · dark #4FAFE0" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="balance diverging 7 classes; light: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E; dark: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="สมดุล 7 ชั้น ธีมสว่าง: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E"
+                  data-scale-aria-th-light="สมดุล 7 ชั้น ธีมสว่าง: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E"
+                  data-scale-aria-th-dark="สมดุล 7 ชั้น ธีมมืด: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0"
+                  data-scale-aria-en-light="Balance diverging, 7 classes in the light theme: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E"
+                  data-scale-aria-en-dark="Balance diverging, 7 classes in the dark theme: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FF8A4C" title="balance 7 · light #C52C00 · dark #FF8A4C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DC7A5D;--scale-dark:#D4875A" title="balance 7 · light #DC7A5D · dark #D4875A" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EAB299;--scale-dark:#AF8362" title="balance 7 · light #EAB299 · dark #AF8362" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="balance 7 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#A9C1CA;--scale-dark:#778F92" title="balance 7 · light #A9C1CA · dark #778F92" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6C99B7;--scale-dark:#699EB6" title="balance 7 · light #6C99B7 · dark #699EB6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#186A9E;--scale-dark:#4FAFE0" title="balance 7 · light #186A9E · dark #4FAFE0" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="balance diverging 9 classes; light: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E; dark: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="สมดุล 9 ชั้น ธีมสว่าง: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E"
+                  data-scale-aria-th-light="สมดุล 9 ชั้น ธีมสว่าง: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E"
+                  data-scale-aria-th-dark="สมดุล 9 ชั้น ธีมมืด: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0"
+                  data-scale-aria-en-light="Balance diverging, 9 classes in the light theme: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E"
+                  data-scale-aria-en-dark="Balance diverging, 9 classes in the dark theme: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#C52C00;--scale-dark:#FF8A4C" title="balance 9 · light #C52C00 · dark #FF8A4C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D66749;--scale-dark:#E08856" title="balance 9 · light #D66749 · dark #E08856" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E4967B;--scale-dark:#C1855E" title="balance 9 · light #E4967B · dark #C1855E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#EDC4AD;--scale-dark:#A28164" title="balance 9 · light #EDC4AD · dark #A28164" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="balance 9 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BECFD0;--scale-dark:#7A8A86" title="balance 9 · light #BECFD0 · dark #7A8A86" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8AADC1;--scale-dark:#7096A4" title="balance 9 · light #8AADC1 · dark #7096A4" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#578CB0;--scale-dark:#63A3C2" title="balance 9 · light #578CB0 · dark #63A3C2" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#186A9E;--scale-dark:#4FAFE0" title="balance 9 · light #186A9E · dark #4FAFE0" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6504,19 +6711,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="delta diverging 5 classes; light: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78; dark: #F28575, #BB826F, #827C68, #75A291, #55C8BC">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="การเปลี่ยนแปลง 5 ชั้น ธีมสว่าง: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78"
+                  data-scale-aria-th-light="การเปลี่ยนแปลง 5 ชั้น ธีมสว่าง: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78"
+                  data-scale-aria-th-dark="การเปลี่ยนแปลง 5 ชั้น ธีมมืด: #F28575, #BB826F, #827C68, #75A291, #55C8BC"
+                  data-scale-aria-en-light="Delta diverging, 5 classes in the light theme: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78"
+                  data-scale-aria-en-dark="Delta diverging, 5 classes in the dark theme: #F28575, #BB826F, #827C68, #75A291, #55C8BC"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#F28575" title="delta 5 · light #B74436 · dark #F28575" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DA9C89;--scale-dark:#BB826F" title="delta 5 · light #DA9C89 · dark #BB826F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="delta 5 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8CB6AA;--scale-dark:#75A291" title="delta 5 · light #8CB6AA · dark #75A291" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007C78;--scale-dark:#55C8BC" title="delta 5 · light #007C78 · dark #55C8BC" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="delta diverging 7 classes; light: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78; dark: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="การเปลี่ยนแปลง 7 ชั้น ธีมสว่าง: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78"
+                  data-scale-aria-th-light="การเปลี่ยนแปลง 7 ชั้น ธีมสว่าง: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78"
+                  data-scale-aria-th-dark="การเปลี่ยนแปลง 7 ชั้น ธีมมืด: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC"
+                  data-scale-aria-en-light="Delta diverging, 7 classes in the light theme: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78"
+                  data-scale-aria-en-dark="Delta diverging, 7 classes in the dark theme: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#F28575" title="delta 7 · light #B74436 · dark #F28575" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D18370;--scale-dark:#CB8371" title="delta 7 · light #D18370 · dark #CB8371" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E3B5A2;--scale-dark:#AA816D" title="delta 7 · light #E3B5A2 · dark #AA816D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="delta 7 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ABC7BA;--scale-dark:#7B9785" title="delta 7 · light #ABC7BA · dark #7B9785" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6DA49B;--scale-dark:#6FAD9E" title="delta 7 · light #6DA49B · dark #6FAD9E" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007C78;--scale-dark:#55C8BC" title="delta 7 · light #007C78 · dark #55C8BC" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="delta diverging 9 classes; light: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78; dark: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="การเปลี่ยนแปลง 9 ชั้น ธีมสว่าง: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78"
+                  data-scale-aria-th-light="การเปลี่ยนแปลง 9 ชั้น ธีมสว่าง: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78"
+                  data-scale-aria-th-dark="การเปลี่ยนแปลง 9 ชั้น ธีมมืด: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC"
+                  data-scale-aria-en-light="Delta diverging, 9 classes in the light theme: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78"
+                  data-scale-aria-en-dark="Delta diverging, 9 classes in the dark theme: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#B74436;--scale-dark:#F28575" title="delta 9 · light #B74436 · dark #F28575" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CA725F;--scale-dark:#D68472" title="delta 9 · light #CA725F · dark #D68472" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DA9C89;--scale-dark:#BB826F" title="delta 9 · light #DA9C89 · dark #BB826F" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#E8C6B3;--scale-dark:#9F806B" title="delta 9 · light #E8C6B3 · dark #9F806B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="delta 9 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BFD3C4;--scale-dark:#7D8F7D" title="delta 9 · light #BFD3C4 · dark #7D8F7D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8CB6AA;--scale-dark:#75A291" title="delta 9 · light #8CB6AA · dark #75A291" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#579991;--scale-dark:#69B5A6" title="delta 9 · light #579991 · dark #69B5A6" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007C78;--scale-dark:#55C8BC" title="delta 9 · light #007C78 · dark #55C8BC" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -6537,19 +6768,43 @@
 
               <figure class="scale-family-class-row" data-class-count="5">
                 <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="tradeoff diverging 5 classes; light: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91; dark: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ทางเลือกที่ต้องแลก 5 ชั้น ธีมสว่าง: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91"
+                  data-scale-aria-th-light="ทางเลือกที่ต้องแลก 5 ชั้น ธีมสว่าง: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91"
+                  data-scale-aria-th-dark="ทางเลือกที่ต้องแลก 5 ชั้น ธีมมืด: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3"
+                  data-scale-aria-en-light="Trade-off diverging, 5 classes in the light theme: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91"
+                  data-scale-aria-en-dark="Trade-off diverging, 5 classes in the dark theme: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#9E476F;--scale-dark:#E982AE" title="tradeoff 5 · light #9E476F · dark #E982AE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CB9BA6;--scale-dark:#B6818B" title="tradeoff 5 · light #CB9BA6 · dark #B6818B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="tradeoff 5 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8DB7B8;--scale-dark:#789F9D" title="tradeoff 5 · light #8DB7B8 · dark #789F9D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007E91;--scale-dark:#61C2D3" title="tradeoff 5 · light #007E91 · dark #61C2D3" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="7">
                 <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="tradeoff diverging 7 classes; light: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91; dark: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ทางเลือกที่ต้องแลก 7 ชั้น ธีมสว่าง: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91"
+                  data-scale-aria-th-light="ทางเลือกที่ต้องแลก 7 ชั้น ธีมสว่าง: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91"
+                  data-scale-aria-th-dark="ทางเลือกที่ต้องแลก 7 ชั้น ธีมมืด: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3"
+                  data-scale-aria-en-light="Trade-off diverging, 7 classes in the light theme: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91"
+                  data-scale-aria-en-dark="Trade-off diverging, 7 classes in the dark theme: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#9E476F;--scale-dark:#E982AE" title="tradeoff 7 · light #9E476F · dark #E982AE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BE8295;--scale-dark:#C58295" title="tradeoff 7 · light #BE8295 · dark #C58295" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#D8B5B6;--scale-dark:#A78080" title="tradeoff 7 · light #D8B5B6 · dark #A78080" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="tradeoff 7 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#ABC8C4;--scale-dark:#7C958D" title="tradeoff 7 · light #ABC8C4 · dark #7C958D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#6DA6AD;--scale-dark:#73AAAD" title="tradeoff 7 · light #6DA6AD · dark #73AAAD" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007E91;--scale-dark:#61C2D3" title="tradeoff 7 · light #007E91 · dark #61C2D3" aria-hidden="true"></i>
                 </div>
               </figure>
               <figure class="scale-family-class-row" data-class-count="9">
                 <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="tradeoff diverging 9 classes; light: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91; dark: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="ทางเลือกที่ต้องแลก 9 ชั้น ธีมสว่าง: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91"
+                  data-scale-aria-th-light="ทางเลือกที่ต้องแลก 9 ชั้น ธีมสว่าง: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91"
+                  data-scale-aria-th-dark="ทางเลือกที่ต้องแลก 9 ชั้น ธีมมืด: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3"
+                  data-scale-aria-en-light="Trade-off diverging, 9 classes in the light theme: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91"
+                  data-scale-aria-en-dark="Trade-off diverging, 9 classes in the dark theme: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3"
+                >
                   <i class="scale-family-class-cell" style="--scale-light:#9E476F;--scale-dark:#E982AE" title="tradeoff 9 · light #9E476F · dark #E982AE" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#B6718A;--scale-dark:#D0829C" title="tradeoff 9 · light #B6718A · dark #D0829C" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#CB9BA6;--scale-dark:#B6818B" title="tradeoff 9 · light #CB9BA6 · dark #B6818B" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#DFC6C2;--scale-dark:#9C7F79" title="tradeoff 9 · light #DFC6C2 · dark #9C7F79" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#F2F1DF;--scale-dark:#827C68" title="tradeoff 9 · light #F2F1DF · dark #827C68" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#BFD4CC;--scale-dark:#7F8E82" title="tradeoff 9 · light #BFD4CC · dark #7F8E82" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#8DB7B8;--scale-dark:#789F9D" title="tradeoff 9 · light #8DB7B8 · dark #789F9D" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#579AA5;--scale-dark:#6FB1B8" title="tradeoff 9 · light #579AA5 · dark #6FB1B8" aria-hidden="true"></i><i class="scale-family-class-cell" style="--scale-light:#007E91;--scale-dark:#61C2D3" title="tradeoff 9 · light #007E91 · dark #61C2D3" aria-hidden="true"></i>
                 </div>
               </figure>
@@ -7607,20 +7862,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="growth light 5-class strip: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเติบโต 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68"
+                    data-l10n-aria-th="การเติบโต 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68"
+                    data-l10n-aria-en="Growth sequential, 5 classes in the light theme: #F2F1DF, #A9D5D1, #55B8C2, #369394, #126F68"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="growth light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A9D5D1;background:#A9D5D1" title="growth light class 1 · #A9D5D1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="growth light class 2 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#369394;background:#369394" title="growth light class 3 · #369394" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#126F68;background:#126F68" title="growth light class 4 · #126F68" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="growth light 7-class strip: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเติบโต 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68"
+                    data-l10n-aria-th="การเติบโต 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68"
+                    data-l10n-aria-en="Growth sequential, 7 classes in the light theme: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #3F9EA1, #2C8886, #126F68"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="growth light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C0DDD5;background:#C0DDD5" title="growth light class 1 · #C0DDD5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#92CCCD;background:#92CCCD" title="growth light class 2 · #92CCCD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="growth light class 3 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#3F9EA1;background:#3F9EA1" title="growth light class 4 · #3F9EA1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#2C8886;background:#2C8886" title="growth light class 5 · #2C8886" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#126F68;background:#126F68" title="growth light class 6 · #126F68" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="growth light 9-class strip: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเติบโต 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68"
+                    data-l10n-aria-th="การเติบโต 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68"
+                    data-l10n-aria-en="Growth sequential, 9 classes in the light theme: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #45A5AB, #369394, #25817E, #126F68"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="growth light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CEE3D8;background:#CEE3D8" title="growth light class 1 · #CEE3D8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A9D5D1;background:#A9D5D1" title="growth light class 2 · #A9D5D1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#82C7CA;background:#82C7CA" title="growth light class 3 · #82C7CA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="growth light class 4 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#45A5AB;background:#45A5AB" title="growth light class 5 · #45A5AB" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#369394;background:#369394" title="growth light class 6 · #369394" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#25817E;background:#25817E" title="growth light class 7 · #25817E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#126F68;background:#126F68" title="growth light class 8 · #126F68" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7657,20 +7930,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="growth dark 5-class strip: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเติบโต 5 ชั้น ธีมมืด: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8"
+                    data-l10n-aria-th="การเติบโต 5 ชั้น ธีมมืด: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8"
+                    data-l10n-aria-en="Growth sequential, 5 classes in the dark theme: #6F8984, #66A3AA, #53BDD0, #6DCFC5, #86E0B8"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#6F8984;background:#6F8984" title="growth dark class 0 · #6F8984" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#66A3AA;background:#66A3AA" title="growth dark class 1 · #66A3AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#53BDD0;background:#53BDD0" title="growth dark class 2 · #53BDD0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6DCFC5;background:#6DCFC5" title="growth dark class 3 · #6DCFC5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#86E0B8;background:#86E0B8" title="growth dark class 4 · #86E0B8" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="growth dark 7-class strip: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเติบโต 7 ชั้น ธีมมืด: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8"
+                    data-l10n-aria-th="การเติบโต 7 ชั้น ธีมมืด: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8"
+                    data-l10n-aria-en="Growth sequential, 7 classes in the dark theme: #6F8984, #699B9E, #61ABB5, #53BDD0, #65C9C9, #75D4C1, #86E0B8"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#6F8984;background:#6F8984" title="growth dark class 0 · #6F8984" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#699B9E;background:#699B9E" title="growth dark class 1 · #699B9E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#61ABB5;background:#61ABB5" title="growth dark class 2 · #61ABB5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#53BDD0;background:#53BDD0" title="growth dark class 3 · #53BDD0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#65C9C9;background:#65C9C9" title="growth dark class 4 · #65C9C9" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#75D4C1;background:#75D4C1" title="growth dark class 5 · #75D4C1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#86E0B8;background:#86E0B8" title="growth dark class 6 · #86E0B8" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="growth dark 9-class strip: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเติบโต 9 ชั้น ธีมมืด: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8"
+                    data-l10n-aria-th="การเติบโต 9 ชั้น ธีมมืด: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8"
+                    data-l10n-aria-en="Growth sequential, 9 classes in the dark theme: #6F8984, #6B9697, #66A3AA, #5EB0BD, #53BDD0, #60C6CB, #6DCFC5, #7AD7BF, #86E0B8"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#6F8984;background:#6F8984" title="growth dark class 0 · #6F8984" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6B9697;background:#6B9697" title="growth dark class 1 · #6B9697" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#66A3AA;background:#66A3AA" title="growth dark class 2 · #66A3AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5EB0BD;background:#5EB0BD" title="growth dark class 3 · #5EB0BD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#53BDD0;background:#53BDD0" title="growth dark class 4 · #53BDD0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#60C6CB;background:#60C6CB" title="growth dark class 5 · #60C6CB" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6DCFC5;background:#6DCFC5" title="growth dark class 6 · #6DCFC5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7AD7BF;background:#7AD7BF" title="growth dark class 7 · #7AD7BF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#86E0B8;background:#86E0B8" title="growth dark class 8 · #86E0B8" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7707,20 +7998,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="water light 5-class strip: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="น้ำ 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A"
+                    data-l10n-aria-th="น้ำ 5 ชั้น ธีมสว่าง: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A"
+                    data-l10n-aria-en="Water sequential, 5 classes in the light theme: #F2F1DF, #A9D5D1, #55B8C2, #3A92AE, #206C9A"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="water light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A9D5D1;background:#A9D5D1" title="water light class 1 · #A9D5D1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="water light class 2 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#3A92AE;background:#3A92AE" title="water light class 3 · #3A92AE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#206C9A;background:#206C9A" title="water light class 4 · #206C9A" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="water light 7-class strip: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="น้ำ 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A"
+                    data-l10n-aria-th="น้ำ 7 ชั้น ธีมสว่าง: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A"
+                    data-l10n-aria-en="Water sequential, 7 classes in the light theme: #F2F1DF, #C0DDD5, #92CCCD, #55B8C2, #429DB4, #3286A8, #206C9A"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="water light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C0DDD5;background:#C0DDD5" title="water light class 1 · #C0DDD5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#92CCCD;background:#92CCCD" title="water light class 2 · #92CCCD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="water light class 3 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#429DB4;background:#429DB4" title="water light class 4 · #429DB4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#3286A8;background:#3286A8" title="water light class 5 · #3286A8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#206C9A;background:#206C9A" title="water light class 6 · #206C9A" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="water light 9-class strip: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="น้ำ 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A"
+                    data-l10n-aria-th="น้ำ 9 ชั้น ธีมสว่าง: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A"
+                    data-l10n-aria-en="Water sequential, 9 classes in the light theme: #F2F1DF, #CEE3D8, #A9D5D1, #82C7CA, #55B8C2, #47A5B8, #3A92AE, #2D7FA4, #206C9A"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="water light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CEE3D8;background:#CEE3D8" title="water light class 1 · #CEE3D8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A9D5D1;background:#A9D5D1" title="water light class 2 · #A9D5D1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#82C7CA;background:#82C7CA" title="water light class 3 · #82C7CA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="water light class 4 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#47A5B8;background:#47A5B8" title="water light class 5 · #47A5B8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#3A92AE;background:#3A92AE" title="water light class 6 · #3A92AE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#2D7FA4;background:#2D7FA4" title="water light class 7 · #2D7FA4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#206C9A;background:#206C9A" title="water light class 8 · #206C9A" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7757,20 +8066,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="water dark 5-class strip: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="น้ำ 5 ชั้น ธีมมืด: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2"
+                    data-l10n-aria-th="น้ำ 5 ชั้น ธีมมืด: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2"
+                    data-l10n-aria-en="Water sequential, 5 classes in the dark theme: #6C838C, #659DA7, #55B8C2, #5FBED2, #68C4E2"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#6C838C;background:#6C838C" title="water dark class 0 · #6C838C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#659DA7;background:#659DA7" title="water dark class 1 · #659DA7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="water dark class 2 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5FBED2;background:#5FBED2" title="water dark class 3 · #5FBED2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#68C4E2;background:#68C4E2" title="water dark class 4 · #68C4E2" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="water dark 7-class strip: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="น้ำ 7 ชั้น ธีมมืด: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2"
+                    data-l10n-aria-th="น้ำ 7 ชั้น ธีมมืด: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2"
+                    data-l10n-aria-en="Water sequential, 7 classes in the dark theme: #6C838C, #68959F, #61A5AF, #55B8C2, #5CBCCD, #61C0D7, #68C4E2"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#6C838C;background:#6C838C" title="water dark class 0 · #6C838C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#68959F;background:#68959F" title="water dark class 1 · #68959F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#61A5AF;background:#61A5AF" title="water dark class 2 · #61A5AF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="water dark class 3 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5CBCCD;background:#5CBCCD" title="water dark class 4 · #5CBCCD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#61C0D7;background:#61C0D7" title="water dark class 5 · #61C0D7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#68C4E2;background:#68C4E2" title="water dark class 6 · #68C4E2" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="water dark 9-class strip: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="น้ำ 9 ชั้น ธีมมืด: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2"
+                    data-l10n-aria-th="น้ำ 9 ชั้น ธีมมืด: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2"
+                    data-l10n-aria-en="Water sequential, 9 classes in the dark theme: #6C838C, #699099, #659DA7, #5EABB4, #55B8C2, #5ABBCA, #5FBED2, #63C1DA, #68C4E2"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#6C838C;background:#6C838C" title="water dark class 0 · #6C838C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#699099;background:#699099" title="water dark class 1 · #699099" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#659DA7;background:#659DA7" title="water dark class 2 · #659DA7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5EABB4;background:#5EABB4" title="water dark class 3 · #5EABB4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55B8C2;background:#55B8C2" title="water dark class 4 · #55B8C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5ABBCA;background:#5ABBCA" title="water dark class 5 · #5ABBCA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5FBED2;background:#5FBED2" title="water dark class 6 · #5FBED2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#63C1DA;background:#63C1DA" title="water dark class 7 · #63C1DA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#68C4E2;background:#68C4E2" title="water dark class 8 · #68C4E2" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7807,20 +8134,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="risk light 5-class strip: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเสี่ยง 5 ชั้น ธีมสว่าง: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436"
+                    data-l10n-aria-th="ความเสี่ยง 5 ชั้น ธีมสว่าง: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436"
+                    data-l10n-aria-en="Risk sequential, 5 classes in the light theme: #F2F1DF, #E9D398, #E0B443, #CE7E3E, #B74436"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="risk light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E9D398;background:#E9D398" title="risk light class 1 · #E9D398" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E0B443;background:#E0B443" title="risk light class 2 · #E0B443" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CE7E3E;background:#CE7E3E" title="risk light class 3 · #CE7E3E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B74436;background:#B74436" title="risk light class 4 · #B74436" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="risk light 7-class strip: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเสี่ยง 7 ชั้น ธีมสว่าง: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436"
+                    data-l10n-aria-th="ความเสี่ยง 7 ชั้น ธีมสว่าง: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436"
+                    data-l10n-aria-en="Risk sequential, 7 classes in the light theme: #F2F1DF, #ECDCAE, #E7CA82, #E0B443, #D48E40, #C76D3C, #B74436"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="risk light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ECDCAE;background:#ECDCAE" title="risk light class 1 · #ECDCAE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E7CA82;background:#E7CA82" title="risk light class 2 · #E7CA82" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E0B443;background:#E0B443" title="risk light class 3 · #E0B443" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D48E40;background:#D48E40" title="risk light class 4 · #D48E40" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C76D3C;background:#C76D3C" title="risk light class 5 · #C76D3C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B74436;background:#B74436" title="risk light class 6 · #B74436" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="risk light 9-class strip: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเสี่ยง 9 ชั้น ธีมสว่าง: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436"
+                    data-l10n-aria-th="ความเสี่ยง 9 ชั้น ธีมสว่าง: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436"
+                    data-l10n-aria-en="Risk sequential, 9 classes in the light theme: #F2F1DF, #EEE2BC, #E9D398, #E5C472, #E0B443, #D79941, #CE7E3E, #C3623A, #B74436"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="risk light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#EEE2BC;background:#EEE2BC" title="risk light class 1 · #EEE2BC" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E9D398;background:#E9D398" title="risk light class 2 · #E9D398" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E5C472;background:#E5C472" title="risk light class 3 · #E5C472" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E0B443;background:#E0B443" title="risk light class 4 · #E0B443" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D79941;background:#D79941" title="risk light class 5 · #D79941" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CE7E3E;background:#CE7E3E" title="risk light class 6 · #CE7E3E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C3623A;background:#C3623A" title="risk light class 7 · #C3623A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B74436;background:#B74436" title="risk light class 8 · #B74436" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7857,20 +8202,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="risk dark 5-class strip: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเสี่ยง 5 ชั้น ธีมมืด: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D"
+                    data-l10n-aria-th="ความเสี่ยง 5 ชั้น ธีมมืด: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D"
+                    data-l10n-aria-en="Risk sequential, 5 classes in the dark theme: #85837A, #AA9460, #D0A42F, #E8995D, #FF8C7D"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#85837A;background:#85837A" title="risk dark class 0 · #85837A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#AA9460;background:#AA9460" title="risk dark class 1 · #AA9460" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D0A42F;background:#D0A42F" title="risk dark class 2 · #D0A42F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E8995D;background:#E8995D" title="risk dark class 3 · #E8995D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FF8C7D;background:#FF8C7D" title="risk dark class 4 · #FF8C7D" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="risk dark 7-class strip: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเสี่ยง 7 ชั้น ธีมมืด: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D"
+                    data-l10n-aria-th="ความเสี่ยง 7 ชั้น ธีมมืด: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D"
+                    data-l10n-aria-en="Risk sequential, 7 classes in the dark theme: #85837A, #9F8F69, #B59955, #D0A42F, #E19D51, #EF9667, #FF8C7D"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#85837A;background:#85837A" title="risk dark class 0 · #85837A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9F8F69;background:#9F8F69" title="risk dark class 1 · #9F8F69" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B59955;background:#B59955" title="risk dark class 2 · #B59955" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D0A42F;background:#D0A42F" title="risk dark class 3 · #D0A42F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E19D51;background:#E19D51" title="risk dark class 4 · #E19D51" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#EF9667;background:#EF9667" title="risk dark class 5 · #EF9667" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FF8C7D;background:#FF8C7D" title="risk dark class 6 · #FF8C7D" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="risk dark 9-class strip: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเสี่ยง 9 ชั้น ธีมมืด: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D"
+                    data-l10n-aria-th="ความเสี่ยง 9 ชั้น ธีมมืด: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D"
+                    data-l10n-aria-en="Risk sequential, 9 classes in the dark theme: #85837A, #978C6E, #AA9460, #BD9C4D, #D0A42F, #DC9F49, #E8995D, #F4936E, #FF8C7D"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#85837A;background:#85837A" title="risk dark class 0 · #85837A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#978C6E;background:#978C6E" title="risk dark class 1 · #978C6E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#AA9460;background:#AA9460" title="risk dark class 2 · #AA9460" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BD9C4D;background:#BD9C4D" title="risk dark class 3 · #BD9C4D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D0A42F;background:#D0A42F" title="risk dark class 4 · #D0A42F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DC9F49;background:#DC9F49" title="risk dark class 5 · #DC9F49" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E8995D;background:#E8995D" title="risk dark class 6 · #E8995D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F4936E;background:#F4936E" title="risk dark class 7 · #F4936E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FF8C7D;background:#FF8C7D" title="risk dark class 8 · #FF8C7D" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7907,20 +8270,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="activity light 5-class strip: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="กิจกรรม 5 ชั้น ธีมสว่าง: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00"
+                    data-l10n-aria-th="กิจกรรม 5 ชั้น ธีมสว่าง: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00"
+                    data-l10n-aria-en="Activity sequential, 5 classes in the light theme: #F2F1DF, #F2B0B5, #E86A8C, #D74F55, #C52C00"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="activity light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2B0B5;background:#F2B0B5" title="activity light class 1 · #F2B0B5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E86A8C;background:#E86A8C" title="activity light class 2 · #E86A8C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D74F55;background:#D74F55" title="activity light class 3 · #D74F55" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C52C00;background:#C52C00" title="activity light class 4 · #C52C00" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="activity light 7-class strip: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="กิจกรรม 7 ชั้น ธีมสว่าง: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00"
+                    data-l10n-aria-th="กิจกรรม 7 ชั้น ธีมสว่าง: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00"
+                    data-l10n-aria-en="Activity sequential, 7 classes in the light theme: #F2F1DF, #F3C3C1, #F09BA8, #E86A8C, #DC5766, #D14543, #C52C00"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="activity light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F3C3C1;background:#F3C3C1" title="activity light class 1 · #F3C3C1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F09BA8;background:#F09BA8" title="activity light class 2 · #F09BA8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E86A8C;background:#E86A8C" title="activity light class 3 · #E86A8C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DC5766;background:#DC5766" title="activity light class 4 · #DC5766" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D14543;background:#D14543" title="activity light class 5 · #D14543" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C52C00;background:#C52C00" title="activity light class 6 · #C52C00" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="activity light 9-class strip: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="กิจกรรม 9 ชั้น ธีมสว่าง: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00"
+                    data-l10n-aria-th="กิจกรรม 9 ชั้น ธีมสว่าง: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00"
+                    data-l10n-aria-en="Activity sequential, 9 classes in the light theme: #F2F1DF, #F4D0CA, #F2B0B5, #EE8EA0, #E86A8C, #DF5D71, #D74F55, #CE3F36, #C52C00"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="activity light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F4D0CA;background:#F4D0CA" title="activity light class 1 · #F4D0CA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2B0B5;background:#F2B0B5" title="activity light class 2 · #F2B0B5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#EE8EA0;background:#EE8EA0" title="activity light class 3 · #EE8EA0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E86A8C;background:#E86A8C" title="activity light class 4 · #E86A8C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DF5D71;background:#DF5D71" title="activity light class 5 · #DF5D71" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D74F55;background:#D74F55" title="activity light class 6 · #D74F55" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CE3F36;background:#CE3F36" title="activity light class 7 · #CE3F36" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C52C00;background:#C52C00" title="activity light class 8 · #C52C00" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -7957,20 +8338,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="activity dark 5-class strip: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="กิจกรรม 5 ชั้น ธีมมืด: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A"
+                    data-l10n-aria-th="กิจกรรม 5 ชั้น ธีมมืด: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A"
+                    data-l10n-aria-en="Activity sequential, 5 classes in the dark theme: #808A96, #BB859C, #F079A1, #F8968A, #FFB06A"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#808A96;background:#808A96" title="activity dark class 0 · #808A96" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BB859C;background:#BB859C" title="activity dark class 1 · #BB859C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F079A1;background:#F079A1" title="activity dark class 2 · #F079A1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F8968A;background:#F8968A" title="activity dark class 3 · #F8968A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FFB06A;background:#FFB06A" title="activity dark class 4 · #FFB06A" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="activity dark 7-class strip: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="กิจกรรม 7 ชั้น ธีมมืด: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A"
+                    data-l10n-aria-th="กิจกรรม 7 ชั้น ธีมมืด: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A"
+                    data-l10n-aria-en="Activity sequential, 7 classes in the dark theme: #808A96, #AA879A, #CB829D, #F079A1, #F58E91, #FA9E81, #FFB06A"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#808A96;background:#808A96" title="activity dark class 0 · #808A96" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#AA879A;background:#AA879A" title="activity dark class 1 · #AA879A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CB829D;background:#CB829D" title="activity dark class 2 · #CB829D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F079A1;background:#F079A1" title="activity dark class 3 · #F079A1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F58E91;background:#F58E91" title="activity dark class 4 · #F58E91" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FA9E81;background:#FA9E81" title="activity dark class 5 · #FA9E81" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FFB06A;background:#FFB06A" title="activity dark class 6 · #FFB06A" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="activity dark 9-class strip: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="กิจกรรม 9 ชั้น ธีมมืด: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A"
+                    data-l10n-aria-th="กิจกรรม 9 ชั้น ธีมมืด: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A"
+                    data-l10n-aria-en="Activity sequential, 9 classes in the dark theme: #808A96, #9F8899, #BB859C, #D6809E, #F079A1, #F48896, #F8968A, #FBA37B, #FFB06A"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#808A96;background:#808A96" title="activity dark class 0 · #808A96" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9F8899;background:#9F8899" title="activity dark class 1 · #9F8899" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BB859C;background:#BB859C" title="activity dark class 2 · #BB859C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D6809E;background:#D6809E" title="activity dark class 3 · #D6809E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F079A1;background:#F079A1" title="activity dark class 4 · #F079A1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F48896;background:#F48896" title="activity dark class 5 · #F48896" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F8968A;background:#F8968A" title="activity dark class 6 · #F8968A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FBA37B;background:#FBA37B" title="activity dark class 7 · #FBA37B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#FFB06A;background:#FFB06A" title="activity dark class 8 · #FFB06A" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8007,20 +8406,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="density light 5-class strip: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความหนาแน่น 5 ชั้น ธีมสว่าง: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78"
+                    data-l10n-aria-th="ความหนาแน่น 5 ชั้น ธีมสว่าง: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78"
+                    data-l10n-aria-en="Density sequential, 5 classes in the light theme: #F2F1DF, #ACC4C8, #6797AF, #467B93, #225F78"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="density light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ACC4C8;background:#ACC4C8" title="density light class 1 · #ACC4C8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6797AF;background:#6797AF" title="density light class 2 · #6797AF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#467B93;background:#467B93" title="density light class 3 · #467B93" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#225F78;background:#225F78" title="density light class 4 · #225F78" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="density light 7-class strip: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความหนาแน่น 7 ชั้น ธีมสว่าง: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78"
+                    data-l10n-aria-th="ความหนาแน่น 7 ชั้น ธีมสว่าง: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78"
+                    data-l10n-aria-en="Density sequential, 7 classes in the light theme: #F2F1DF, #C1D1CF, #97B6C0, #6797AF, #50839B, #3B728B, #225F78"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="density light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C1D1CF;background:#C1D1CF" title="density light class 1 · #C1D1CF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#97B6C0;background:#97B6C0" title="density light class 2 · #97B6C0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6797AF;background:#6797AF" title="density light class 3 · #6797AF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#50839B;background:#50839B" title="density light class 4 · #50839B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#3B728B;background:#3B728B" title="density light class 5 · #3B728B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#225F78;background:#225F78" title="density light class 6 · #225F78" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="density light 9-class strip: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความหนาแน่น 9 ชั้น ธีมสว่าง: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78"
+                    data-l10n-aria-th="ความหนาแน่น 9 ชั้น ธีมสว่าง: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78"
+                    data-l10n-aria-en="Density sequential, 9 classes in the light theme: #F2F1DF, #CFDAD3, #ACC4C8, #8AADBB, #6797AF, #5689A1, #467B93, #346D85, #225F78"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="density light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CFDAD3;background:#CFDAD3" title="density light class 1 · #CFDAD3" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ACC4C8;background:#ACC4C8" title="density light class 2 · #ACC4C8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8AADBB;background:#8AADBB" title="density light class 3 · #8AADBB" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6797AF;background:#6797AF" title="density light class 4 · #6797AF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5689A1;background:#5689A1" title="density light class 5 · #5689A1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#467B93;background:#467B93" title="density light class 6 · #467B93" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#346D85;background:#346D85" title="density light class 7 · #346D85" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#225F78;background:#225F78" title="density light class 8 · #225F78" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8057,20 +8474,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="density dark 5-class strip: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความหนาแน่น 5 ชั้น ธีมมืด: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2"
+                    data-l10n-aria-th="ความหนาแน่น 5 ชั้น ธีมมืด: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2"
+                    data-l10n-aria-en="Density sequential, 5 classes in the dark theme: #728C9A, #6199AF, #47A6C4, #72C5DB, #9BE4F2"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#728C9A;background:#728C9A" title="density dark class 0 · #728C9A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6199AF;background:#6199AF" title="density dark class 1 · #6199AF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#47A6C4;background:#47A6C4" title="density dark class 2 · #47A6C4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#72C5DB;background:#72C5DB" title="density dark class 3 · #72C5DB" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9BE4F2;background:#9BE4F2" title="density dark class 4 · #9BE4F2" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="density dark 7-class strip: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความหนาแน่น 7 ชั้น ธีมมืด: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2"
+                    data-l10n-aria-th="ความหนาแน่น 7 ชั้น ธีมมืด: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2"
+                    data-l10n-aria-en="Density sequential, 7 classes in the dark theme: #728C9A, #6795A9, #5A9DB5, #47A6C4, #66BBD4, #7FCEE2, #9BE4F2"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#728C9A;background:#728C9A" title="density dark class 0 · #728C9A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6795A9;background:#6795A9" title="density dark class 1 · #6795A9" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5A9DB5;background:#5A9DB5" title="density dark class 2 · #5A9DB5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#47A6C4;background:#47A6C4" title="density dark class 3 · #47A6C4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#66BBD4;background:#66BBD4" title="density dark class 4 · #66BBD4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7FCEE2;background:#7FCEE2" title="density dark class 5 · #7FCEE2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9BE4F2;background:#9BE4F2" title="density dark class 6 · #9BE4F2" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="density dark 9-class strip: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความหนาแน่น 9 ชั้น ธีมมืด: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2"
+                    data-l10n-aria-th="ความหนาแน่น 9 ชั้น ธีมมืด: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2"
+                    data-l10n-aria-en="Density sequential, 9 classes in the dark theme: #728C9A, #6A93A4, #6199AF, #56A0B9, #47A6C4, #5DB5CF, #72C5DB, #87D4E6, #9BE4F2"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#728C9A;background:#728C9A" title="density dark class 0 · #728C9A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6A93A4;background:#6A93A4" title="density dark class 1 · #6A93A4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6199AF;background:#6199AF" title="density dark class 2 · #6199AF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#56A0B9;background:#56A0B9" title="density dark class 3 · #56A0B9" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#47A6C4;background:#47A6C4" title="density dark class 4 · #47A6C4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#5DB5CF;background:#5DB5CF" title="density dark class 5 · #5DB5CF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#72C5DB;background:#72C5DB" title="density dark class 6 · #72C5DB" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#87D4E6;background:#87D4E6" title="density dark class 7 · #87D4E6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9BE4F2;background:#9BE4F2" title="density dark class 8 · #9BE4F2" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8107,20 +8542,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="confidence light 5-class strip: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเชื่อมั่น 5 ชั้น ธีมสว่าง: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F"
+                    data-l10n-aria-th="ความเชื่อมั่น 5 ชั้น ธีมสว่าง: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F"
+                    data-l10n-aria-en="Confidence sequential, 5 classes in the light theme: #F2F1DF, #BBCAC0, #85A5A2, #548D88, #08756F"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="confidence light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BBCAC0;background:#BBCAC0" title="confidence light class 1 · #BBCAC0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#85A5A2;background:#85A5A2" title="confidence light class 2 · #85A5A2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#548D88;background:#548D88" title="confidence light class 3 · #548D88" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#08756F;background:#08756F" title="confidence light class 4 · #08756F" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="confidence light 7-class strip: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเชื่อมั่น 7 ชั้น ธีมสว่าง: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F"
+                    data-l10n-aria-th="ความเชื่อมั่น 7 ชั้น ธีมสว่าง: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F"
+                    data-l10n-aria-en="Confidence sequential, 7 classes in the light theme: #F2F1DF, #CBD6C9, #ABBFB7, #85A5A2, #639490, #438680, #08756F"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="confidence light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CBD6C9;background:#CBD6C9" title="confidence light class 1 · #CBD6C9" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ABBFB7;background:#ABBFB7" title="confidence light class 2 · #ABBFB7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#85A5A2;background:#85A5A2" title="confidence light class 3 · #85A5A2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#639490;background:#639490" title="confidence light class 4 · #639490" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#438680;background:#438680" title="confidence light class 5 · #438680" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#08756F;background:#08756F" title="confidence light class 6 · #08756F" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="confidence light 9-class strip: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเชื่อมั่น 9 ชั้น ธีมสว่าง: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F"
+                    data-l10n-aria-th="ความเชื่อมั่น 9 ชั้น ธีมสว่าง: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F"
+                    data-l10n-aria-en="Confidence sequential, 9 classes in the light theme: #F2F1DF, #D6DED0, #BBCAC0, #A0B8B1, #85A5A2, #6D9995, #548D88, #37817B, #08756F"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="confidence light class 0 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D6DED0;background:#D6DED0" title="confidence light class 1 · #D6DED0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BBCAC0;background:#BBCAC0" title="confidence light class 2 · #BBCAC0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A0B8B1;background:#A0B8B1" title="confidence light class 3 · #A0B8B1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#85A5A2;background:#85A5A2" title="confidence light class 4 · #85A5A2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6D9995;background:#6D9995" title="confidence light class 5 · #6D9995" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#548D88;background:#548D88" title="confidence light class 6 · #548D88" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#37817B;background:#37817B" title="confidence light class 7 · #37817B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#08756F;background:#08756F" title="confidence light class 8 · #08756F" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8157,20 +8610,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="confidence dark 5-class strip: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเชื่อมั่น 5 ชั้น ธีมมืด: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5"
+                    data-l10n-aria-th="ความเชื่อมั่น 5 ชั้น ธีมมืด: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5"
+                    data-l10n-aria-en="Confidence sequential, 5 classes in the dark theme: #7C8B8C, #889A9B, #95A9AA, #B6C7C7, #D8E6E5"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#7C8B8C;background:#7C8B8C" title="confidence dark class 0 · #7C8B8C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#889A9B;background:#889A9B" title="confidence dark class 1 · #889A9B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#95A9AA;background:#95A9AA" title="confidence dark class 2 · #95A9AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B6C7C7;background:#B6C7C7" title="confidence dark class 3 · #B6C7C7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D8E6E5;background:#D8E6E5" title="confidence dark class 4 · #D8E6E5" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="confidence dark 7-class strip: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเชื่อมั่น 7 ชั้น ธีมมืด: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5"
+                    data-l10n-aria-th="ความเชื่อมั่น 7 ชั้น ธีมมืด: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5"
+                    data-l10n-aria-en="Confidence sequential, 7 classes in the dark theme: #7C8B8C, #859596, #8C9E9F, #95A9AA, #ACBEBE, #C0D0D0, #D8E6E5"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#7C8B8C;background:#7C8B8C" title="confidence dark class 0 · #7C8B8C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#859596;background:#859596" title="confidence dark class 1 · #859596" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8C9E9F;background:#8C9E9F" title="confidence dark class 2 · #8C9E9F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#95A9AA;background:#95A9AA" title="confidence dark class 3 · #95A9AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ACBEBE;background:#ACBEBE" title="confidence dark class 4 · #ACBEBE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C0D0D0;background:#C0D0D0" title="confidence dark class 5 · #C0D0D0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D8E6E5;background:#D8E6E5" title="confidence dark class 6 · #D8E6E5" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="confidence dark 9-class strip: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ความเชื่อมั่น 9 ชั้น ธีมมืด: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5"
+                    data-l10n-aria-th="ความเชื่อมั่น 9 ชั้น ธีมมืด: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5"
+                    data-l10n-aria-en="Confidence sequential, 9 classes in the dark theme: #7C8B8C, #829293, #889A9B, #8FA1A2, #95A9AA, #A5B8B8, #B6C7C7, #C7D6D6, #D8E6E5"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#7C8B8C;background:#7C8B8C" title="confidence dark class 0 · #7C8B8C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#829293;background:#829293" title="confidence dark class 1 · #829293" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#889A9B;background:#889A9B" title="confidence dark class 2 · #889A9B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8FA1A2;background:#8FA1A2" title="confidence dark class 3 · #8FA1A2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#95A9AA;background:#95A9AA" title="confidence dark class 4 · #95A9AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A5B8B8;background:#A5B8B8" title="confidence dark class 5 · #A5B8B8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B6C7C7;background:#B6C7C7" title="confidence dark class 6 · #B6C7C7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C7D6D6;background:#C7D6D6" title="confidence dark class 7 · #C7D6D6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D8E6E5;background:#D8E6E5" title="confidence dark class 8 · #D8E6E5" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8207,20 +8678,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="balance light 5-class strip: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="สมดุล 5 ชั้น ธีมสว่าง: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E"
+                    data-l10n-aria-th="สมดุล 5 ชั้น ธีมสว่าง: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E"
+                    data-l10n-aria-en="Balance diverging, 5 classes in the light theme: #C52C00, #E4967B, #F2F1DF, #8AADC1, #186A9E"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#C52C00;background:#C52C00" title="balance light class 0 · #C52C00" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E4967B;background:#E4967B" title="balance light class 1 · #E4967B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="balance light class 2 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8AADC1;background:#8AADC1" title="balance light class 3 · #8AADC1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#186A9E;background:#186A9E" title="balance light class 4 · #186A9E" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="balance light 7-class strip: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="สมดุล 7 ชั้น ธีมสว่าง: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E"
+                    data-l10n-aria-th="สมดุล 7 ชั้น ธีมสว่าง: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E"
+                    data-l10n-aria-en="Balance diverging, 7 classes in the light theme: #C52C00, #DC7A5D, #EAB299, #F2F1DF, #A9C1CA, #6C99B7, #186A9E"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#C52C00;background:#C52C00" title="balance light class 0 · #C52C00" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DC7A5D;background:#DC7A5D" title="balance light class 1 · #DC7A5D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#EAB299;background:#EAB299" title="balance light class 2 · #EAB299" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="balance light class 3 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A9C1CA;background:#A9C1CA" title="balance light class 4 · #A9C1CA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6C99B7;background:#6C99B7" title="balance light class 5 · #6C99B7" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#186A9E;background:#186A9E" title="balance light class 6 · #186A9E" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="balance light 9-class strip: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="สมดุล 9 ชั้น ธีมสว่าง: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E"
+                    data-l10n-aria-th="สมดุล 9 ชั้น ธีมสว่าง: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E"
+                    data-l10n-aria-en="Balance diverging, 9 classes in the light theme: #C52C00, #D66749, #E4967B, #EDC4AD, #F2F1DF, #BECFD0, #8AADC1, #578CB0, #186A9E"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#C52C00;background:#C52C00" title="balance light class 0 · #C52C00" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D66749;background:#D66749" title="balance light class 1 · #D66749" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E4967B;background:#E4967B" title="balance light class 2 · #E4967B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#EDC4AD;background:#EDC4AD" title="balance light class 3 · #EDC4AD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="balance light class 4 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BECFD0;background:#BECFD0" title="balance light class 5 · #BECFD0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8AADC1;background:#8AADC1" title="balance light class 6 · #8AADC1" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#578CB0;background:#578CB0" title="balance light class 7 · #578CB0" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#186A9E;background:#186A9E" title="balance light class 8 · #186A9E" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8257,20 +8746,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="balance dark 5-class strip: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="สมดุล 5 ชั้น ธีมมืด: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0"
+                    data-l10n-aria-th="สมดุล 5 ชั้น ธีมมืด: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0"
+                    data-l10n-aria-en="Balance diverging, 5 classes in the dark theme: #FF8A4C, #C1855E, #827C68, #7096A4, #4FAFE0"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#FF8A4C;background:#FF8A4C" title="balance dark class 0 · #FF8A4C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C1855E;background:#C1855E" title="balance dark class 1 · #C1855E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="balance dark class 2 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7096A4;background:#7096A4" title="balance dark class 3 · #7096A4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#4FAFE0;background:#4FAFE0" title="balance dark class 4 · #4FAFE0" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="balance dark 7-class strip: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="สมดุล 7 ชั้น ธีมมืด: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0"
+                    data-l10n-aria-th="สมดุล 7 ชั้น ธีมมืด: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0"
+                    data-l10n-aria-en="Balance diverging, 7 classes in the dark theme: #FF8A4C, #D4875A, #AF8362, #827C68, #778F92, #699EB6, #4FAFE0"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#FF8A4C;background:#FF8A4C" title="balance dark class 0 · #FF8A4C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D4875A;background:#D4875A" title="balance dark class 1 · #D4875A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#AF8362;background:#AF8362" title="balance dark class 2 · #AF8362" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="balance dark class 3 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#778F92;background:#778F92" title="balance dark class 4 · #778F92" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#699EB6;background:#699EB6" title="balance dark class 5 · #699EB6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#4FAFE0;background:#4FAFE0" title="balance dark class 6 · #4FAFE0" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="balance dark 9-class strip: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="สมดุล 9 ชั้น ธีมมืด: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0"
+                    data-l10n-aria-th="สมดุล 9 ชั้น ธีมมืด: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0"
+                    data-l10n-aria-en="Balance diverging, 9 classes in the dark theme: #FF8A4C, #E08856, #C1855E, #A28164, #827C68, #7A8A86, #7096A4, #63A3C2, #4FAFE0"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#FF8A4C;background:#FF8A4C" title="balance dark class 0 · #FF8A4C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E08856;background:#E08856" title="balance dark class 1 · #E08856" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C1855E;background:#C1855E" title="balance dark class 2 · #C1855E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A28164;background:#A28164" title="balance dark class 3 · #A28164" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="balance dark class 4 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7A8A86;background:#7A8A86" title="balance dark class 5 · #7A8A86" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7096A4;background:#7096A4" title="balance dark class 6 · #7096A4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#63A3C2;background:#63A3C2" title="balance dark class 7 · #63A3C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#4FAFE0;background:#4FAFE0" title="balance dark class 8 · #4FAFE0" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8307,20 +8814,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="delta light 5-class strip: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเปลี่ยนแปลง 5 ชั้น ธีมสว่าง: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78"
+                    data-l10n-aria-th="การเปลี่ยนแปลง 5 ชั้น ธีมสว่าง: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78"
+                    data-l10n-aria-en="Delta diverging, 5 classes in the light theme: #B74436, #DA9C89, #F2F1DF, #8CB6AA, #007C78"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#B74436;background:#B74436" title="delta light class 0 · #B74436" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DA9C89;background:#DA9C89" title="delta light class 1 · #DA9C89" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="delta light class 2 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8CB6AA;background:#8CB6AA" title="delta light class 3 · #8CB6AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#007C78;background:#007C78" title="delta light class 4 · #007C78" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="delta light 7-class strip: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเปลี่ยนแปลง 7 ชั้น ธีมสว่าง: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78"
+                    data-l10n-aria-th="การเปลี่ยนแปลง 7 ชั้น ธีมสว่าง: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78"
+                    data-l10n-aria-en="Delta diverging, 7 classes in the light theme: #B74436, #D18370, #E3B5A2, #F2F1DF, #ABC7BA, #6DA49B, #007C78"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#B74436;background:#B74436" title="delta light class 0 · #B74436" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D18370;background:#D18370" title="delta light class 1 · #D18370" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E3B5A2;background:#E3B5A2" title="delta light class 2 · #E3B5A2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="delta light class 3 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ABC7BA;background:#ABC7BA" title="delta light class 4 · #ABC7BA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6DA49B;background:#6DA49B" title="delta light class 5 · #6DA49B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#007C78;background:#007C78" title="delta light class 6 · #007C78" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="delta light 9-class strip: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเปลี่ยนแปลง 9 ชั้น ธีมสว่าง: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78"
+                    data-l10n-aria-th="การเปลี่ยนแปลง 9 ชั้น ธีมสว่าง: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78"
+                    data-l10n-aria-en="Delta diverging, 9 classes in the light theme: #B74436, #CA725F, #DA9C89, #E8C6B3, #F2F1DF, #BFD3C4, #8CB6AA, #579991, #007C78"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#B74436;background:#B74436" title="delta light class 0 · #B74436" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CA725F;background:#CA725F" title="delta light class 1 · #CA725F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DA9C89;background:#DA9C89" title="delta light class 2 · #DA9C89" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#E8C6B3;background:#E8C6B3" title="delta light class 3 · #E8C6B3" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="delta light class 4 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BFD3C4;background:#BFD3C4" title="delta light class 5 · #BFD3C4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8CB6AA;background:#8CB6AA" title="delta light class 6 · #8CB6AA" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#579991;background:#579991" title="delta light class 7 · #579991" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#007C78;background:#007C78" title="delta light class 8 · #007C78" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8357,20 +8882,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="delta dark 5-class strip: #F28575, #BB826F, #827C68, #75A291, #55C8BC">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเปลี่ยนแปลง 5 ชั้น ธีมมืด: #F28575, #BB826F, #827C68, #75A291, #55C8BC"
+                    data-l10n-aria-th="การเปลี่ยนแปลง 5 ชั้น ธีมมืด: #F28575, #BB826F, #827C68, #75A291, #55C8BC"
+                    data-l10n-aria-en="Delta diverging, 5 classes in the dark theme: #F28575, #BB826F, #827C68, #75A291, #55C8BC"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F28575;background:#F28575" title="delta dark class 0 · #F28575" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BB826F;background:#BB826F" title="delta dark class 1 · #BB826F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="delta dark class 2 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#75A291;background:#75A291" title="delta dark class 3 · #75A291" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55C8BC;background:#55C8BC" title="delta dark class 4 · #55C8BC" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="delta dark 7-class strip: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเปลี่ยนแปลง 7 ชั้น ธีมมืด: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC"
+                    data-l10n-aria-th="การเปลี่ยนแปลง 7 ชั้น ธีมมืด: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC"
+                    data-l10n-aria-en="Delta diverging, 7 classes in the dark theme: #F28575, #CB8371, #AA816D, #827C68, #7B9785, #6FAD9E, #55C8BC"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F28575;background:#F28575" title="delta dark class 0 · #F28575" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CB8371;background:#CB8371" title="delta dark class 1 · #CB8371" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#AA816D;background:#AA816D" title="delta dark class 2 · #AA816D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="delta dark class 3 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7B9785;background:#7B9785" title="delta dark class 4 · #7B9785" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6FAD9E;background:#6FAD9E" title="delta dark class 5 · #6FAD9E" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55C8BC;background:#55C8BC" title="delta dark class 6 · #55C8BC" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="delta dark 9-class strip: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="การเปลี่ยนแปลง 9 ชั้น ธีมมืด: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC"
+                    data-l10n-aria-th="การเปลี่ยนแปลง 9 ชั้น ธีมมืด: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC"
+                    data-l10n-aria-en="Delta diverging, 9 classes in the dark theme: #F28575, #D68472, #BB826F, #9F806B, #827C68, #7D8F7D, #75A291, #69B5A6, #55C8BC"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#F28575;background:#F28575" title="delta dark class 0 · #F28575" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D68472;background:#D68472" title="delta dark class 1 · #D68472" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BB826F;background:#BB826F" title="delta dark class 2 · #BB826F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9F806B;background:#9F806B" title="delta dark class 3 · #9F806B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="delta dark class 4 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7D8F7D;background:#7D8F7D" title="delta dark class 5 · #7D8F7D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#75A291;background:#75A291" title="delta dark class 6 · #75A291" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#69B5A6;background:#69B5A6" title="delta dark class 7 · #69B5A6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#55C8BC;background:#55C8BC" title="delta dark class 8 · #55C8BC" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8407,20 +8950,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="tradeoff light 5-class strip: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ทางเลือกที่ต้องแลก 5 ชั้น ธีมสว่าง: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91"
+                    data-l10n-aria-th="ทางเลือกที่ต้องแลก 5 ชั้น ธีมสว่าง: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91"
+                    data-l10n-aria-en="Trade-off diverging, 5 classes in the light theme: #9E476F, #CB9BA6, #F2F1DF, #8DB7B8, #007E91"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#9E476F;background:#9E476F" title="tradeoff light class 0 · #9E476F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CB9BA6;background:#CB9BA6" title="tradeoff light class 1 · #CB9BA6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="tradeoff light class 2 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8DB7B8;background:#8DB7B8" title="tradeoff light class 3 · #8DB7B8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#007E91;background:#007E91" title="tradeoff light class 4 · #007E91" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="tradeoff light 7-class strip: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ทางเลือกที่ต้องแลก 7 ชั้น ธีมสว่าง: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91"
+                    data-l10n-aria-th="ทางเลือกที่ต้องแลก 7 ชั้น ธีมสว่าง: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91"
+                    data-l10n-aria-en="Trade-off diverging, 7 classes in the light theme: #9E476F, #BE8295, #D8B5B6, #F2F1DF, #ABC8C4, #6DA6AD, #007E91"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#9E476F;background:#9E476F" title="tradeoff light class 0 · #9E476F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BE8295;background:#BE8295" title="tradeoff light class 1 · #BE8295" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D8B5B6;background:#D8B5B6" title="tradeoff light class 2 · #D8B5B6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="tradeoff light class 3 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#ABC8C4;background:#ABC8C4" title="tradeoff light class 4 · #ABC8C4" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6DA6AD;background:#6DA6AD" title="tradeoff light class 5 · #6DA6AD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#007E91;background:#007E91" title="tradeoff light class 6 · #007E91" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="tradeoff light 9-class strip: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ทางเลือกที่ต้องแลก 9 ชั้น ธีมสว่าง: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91"
+                    data-l10n-aria-th="ทางเลือกที่ต้องแลก 9 ชั้น ธีมสว่าง: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91"
+                    data-l10n-aria-en="Trade-off diverging, 9 classes in the light theme: #9E476F, #B6718A, #CB9BA6, #DFC6C2, #F2F1DF, #BFD4CC, #8DB7B8, #579AA5, #007E91"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#9E476F;background:#9E476F" title="tradeoff light class 0 · #9E476F" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B6718A;background:#B6718A" title="tradeoff light class 1 · #B6718A" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#CB9BA6;background:#CB9BA6" title="tradeoff light class 2 · #CB9BA6" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#DFC6C2;background:#DFC6C2" title="tradeoff light class 3 · #DFC6C2" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#F2F1DF;background:#F2F1DF" title="tradeoff light class 4 · #F2F1DF" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#BFD4CC;background:#BFD4CC" title="tradeoff light class 5 · #BFD4CC" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#8DB7B8;background:#8DB7B8" title="tradeoff light class 6 · #8DB7B8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#579AA5;background:#579AA5" title="tradeoff light class 7 · #579AA5" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#007E91;background:#007E91" title="tradeoff light class 8 · #007E91" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -8457,20 +9018,38 @@
             <div class="atlas-class-stack">
 
                 <figure class="atlas-class-row">
-                  <figcaption><strong>5</strong><span><span data-th lang="th">5 ชั้น</span><span data-en lang="en">5 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="tradeoff dark 5-class strip: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3">
+                  <figcaption><strong>5</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ทางเลือกที่ต้องแลก 5 ชั้น ธีมมืด: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3"
+                    data-l10n-aria-th="ทางเลือกที่ต้องแลก 5 ชั้น ธีมมืด: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3"
+                    data-l10n-aria-en="Trade-off diverging, 5 classes in the dark theme: #E982AE, #B6818B, #827C68, #789F9D, #61C2D3"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#E982AE;background:#E982AE" title="tradeoff dark class 0 · #E982AE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B6818B;background:#B6818B" title="tradeoff dark class 1 · #B6818B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="tradeoff dark class 2 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#789F9D;background:#789F9D" title="tradeoff dark class 3 · #789F9D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#61C2D3;background:#61C2D3" title="tradeoff dark class 4 · #61C2D3" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>7</strong><span><span data-th lang="th">7 ชั้น</span><span data-en lang="en">7 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="tradeoff dark 7-class strip: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3">
+                  <figcaption><strong>7</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ทางเลือกที่ต้องแลก 7 ชั้น ธีมมืด: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3"
+                    data-l10n-aria-th="ทางเลือกที่ต้องแลก 7 ชั้น ธีมมืด: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3"
+                    data-l10n-aria-en="Trade-off diverging, 7 classes in the dark theme: #E982AE, #C58295, #A78080, #827C68, #7C958D, #73AAAD, #61C2D3"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#E982AE;background:#E982AE" title="tradeoff dark class 0 · #E982AE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#C58295;background:#C58295" title="tradeoff dark class 1 · #C58295" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#A78080;background:#A78080" title="tradeoff dark class 2 · #A78080" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="tradeoff dark class 3 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7C958D;background:#7C958D" title="tradeoff dark class 4 · #7C958D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#73AAAD;background:#73AAAD" title="tradeoff dark class 5 · #73AAAD" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#61C2D3;background:#61C2D3" title="tradeoff dark class 6 · #61C2D3" aria-hidden="true"></i>
                   </div>
                 </figure>
                 <figure class="atlas-class-row">
-                  <figcaption><strong>9</strong><span><span data-th lang="th">9 ชั้น</span><span data-en lang="en">9 classes</span></span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="tradeoff dark 9-class strip: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3">
+                  <figcaption><strong>9</strong><span><span data-th lang="th">ชั้น</span><span data-en lang="en">classes</span></span></figcaption>
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="ทางเลือกที่ต้องแลก 9 ชั้น ธีมมืด: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3"
+                    data-l10n-aria-th="ทางเลือกที่ต้องแลก 9 ชั้น ธีมมืด: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3"
+                    data-l10n-aria-en="Trade-off diverging, 9 classes in the dark theme: #E982AE, #D0829C, #B6818B, #9C7F79, #827C68, #7F8E82, #789F9D, #6FB1B8, #61C2D3"
+                  >
                     <i class="atlas-class-cell" style="--atlas-color:#E982AE;background:#E982AE" title="tradeoff dark class 0 · #E982AE" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#D0829C;background:#D0829C" title="tradeoff dark class 1 · #D0829C" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#B6818B;background:#B6818B" title="tradeoff dark class 2 · #B6818B" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#9C7F79;background:#9C7F79" title="tradeoff dark class 3 · #9C7F79" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#827C68;background:#827C68" title="tradeoff dark class 4 · #827C68" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#7F8E82;background:#7F8E82" title="tradeoff dark class 5 · #7F8E82" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#789F9D;background:#789F9D" title="tradeoff dark class 6 · #789F9D" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#6FB1B8;background:#6FB1B8" title="tradeoff dark class 7 · #6FB1B8" aria-hidden="true"></i><i class="atlas-class-cell" style="--atlas-color:#61C2D3;background:#61C2D3" title="tradeoff dark class 8 · #61C2D3" aria-hidden="true"></i>
                   </div>
                 </figure>
@@ -10236,6 +10815,27 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         if (meta) meta.content = dark ? "#11191D" : "#F6F7F3";
       }
 
+      function updateScaleAccessibleNames() {
+        const resolvedTheme = root.dataset.theme === "dark" ? "dark" : "light";
+        document.querySelectorAll("[data-l10n-aria-th][data-l10n-aria-en]").forEach(node => {
+          const label = node.getAttribute(`data-l10n-aria-${state.locale}`);
+          if (label) node.setAttribute("aria-label", label);
+        });
+        document.querySelectorAll("[data-scale-aria-th-light][data-scale-aria-th-dark][data-scale-aria-en-light][data-scale-aria-en-dark]").forEach(node => {
+          const label = node.getAttribute(`data-scale-aria-${state.locale}-${resolvedTheme}`);
+          if (label) node.setAttribute("aria-label", label);
+        });
+        const themeLabel = document.querySelector("[data-scale-theme-label]");
+        if (themeLabel) {
+          themeLabel.setAttribute(
+            "aria-label",
+            state.locale === "th"
+              ? `ธีมที่แสดงอยู่: ${resolvedTheme === "dark" ? "มืด" : "สว่าง"}`
+              : `Visible theme: ${resolvedTheme}`
+          );
+        }
+      }
+
       function syncUrl() {
         const url = new URL(location.href);
         url.searchParams.set("lang", state.locale);
@@ -10346,6 +10946,7 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
         renderCtaFixture();
         renderProof(proofMotion);
         resolveTheme();
+        updateScaleAccessibleNames();
         syncUrl();
       }
 
@@ -10413,7 +11014,10 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       });
       if (mediaQuery) {
         mediaQuery.addEventListener("change", () => {
-          if (state.theme === "system") resolveTheme();
+          if (state.theme === "system") {
+            resolveTheme();
+            updateScaleAccessibleNames();
+          }
         });
       }
       if (reducedMotionQuery) {
