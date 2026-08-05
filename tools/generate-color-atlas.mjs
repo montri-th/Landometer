@@ -383,9 +383,16 @@ function gradientStyle(css) {
 function validateColorDelivery(registry, scaleText, tokenText) {
   assert(registry?.meta?.id === "color-srgb-01", "unexpected color registry id");
   assert(
-    registry?.meta?.immutableStandalone ===
+    registry?.meta?.immutableColorBaseline ===
       "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
-    "unexpected immutable standalone filename",
+    "unexpected immutable Color Set baseline filename",
+  );
+  assert(
+    /^ui-\d{8}-\d{2}$/.test(registry?.meta?.currentArtifactBuild?.id ?? "") &&
+      /^landometer-design-system-v0\.8\.8-standalone\.color-srgb-01\.ui-\d{8}-\d{2}\.html$/.test(
+        registry?.meta?.currentArtifactBuild?.immutableStandalone ?? "",
+      ),
+    "unexpected immutable UI artifact-build identity",
   );
   assert(
     registry?.sources?.scaleRegistry?.sha256 === sha256(scaleText),
@@ -666,12 +673,22 @@ function renderScaleRecord(record) {
       return `
                 <figure class="atlas-class-row">
                   <figcaption><strong>${classCount}</strong><span>${bilingual(
-                    `${classCount} ชั้น`,
-                    `${classCount} classes`,
+                    "ชั้น",
+                    "classes",
                   )}</span></figcaption>
-                  <div class="atlas-class-cells" role="img" aria-label="${escapeHtml(
-                    `${record.scaleId} ${record.theme} ${classCount}-class strip: ${colors.join(", ")}`,
-                  )}">
+                  <div
+                    class="atlas-class-cells"
+                    role="img"
+                    aria-label="${escapeHtml(
+                      `${labelTh} ${classCount} ชั้น ธีม${record.theme === "dark" ? "มืด" : "สว่าง"}: ${colors.join(", ")}`,
+                    )}"
+                    data-l10n-aria-th="${escapeHtml(
+                      `${labelTh} ${classCount} ชั้น ธีม${record.theme === "dark" ? "มืด" : "สว่าง"}: ${colors.join(", ")}`,
+                    )}"
+                    data-l10n-aria-en="${escapeHtml(
+                      `${labelEn} ${record.kind}, ${classCount} classes in the ${record.theme} theme: ${colors.join(", ")}`,
+                    )}"
+                  >
                     ${renderCells(
                       colors,
                       "atlas-class-cell",
@@ -758,9 +775,25 @@ function renderScaleSamplerCard(scaleId, lightRecord, darkRecord) {
                   "ชั้น",
                   "classes",
                 )}</span></figcaption>
-                <div class="scale-family-class-cells" role="img" aria-label="${escapeHtml(
-                  `${scaleId} ${lightRecord.kind} ${classCount} classes; light: ${lightColors.join(", ")}; dark: ${darkColors.join(", ")}`,
-                )}">
+                <div
+                  class="scale-family-class-cells"
+                  role="img"
+                  aria-label="${escapeHtml(
+                    `${labelTh} ${classCount} ชั้น ธีมสว่าง: ${lightColors.join(", ")}`,
+                  )}"
+                  data-scale-aria-th-light="${escapeHtml(
+                    `${labelTh} ${classCount} ชั้น ธีมสว่าง: ${lightColors.join(", ")}`,
+                  )}"
+                  data-scale-aria-th-dark="${escapeHtml(
+                    `${labelTh} ${classCount} ชั้น ธีมมืด: ${darkColors.join(", ")}`,
+                  )}"
+                  data-scale-aria-en-light="${escapeHtml(
+                    `${labelEn} ${lightRecord.kind}, ${classCount} classes in the light theme: ${lightColors.join(", ")}`,
+                  )}"
+                  data-scale-aria-en-dark="${escapeHtml(
+                    `${labelEn} ${darkRecord.kind}, ${classCount} classes in the dark theme: ${darkColors.join(", ")}`,
+                  )}"
+                >
                   ${cells}
                 </div>
               </figure>`;
@@ -836,7 +869,11 @@ ${scaleIds
               "Each family shows 5, 7, and 9 classes from one LUT. The visible cells follow the active theme.",
             )}</p>
           </div>
-          <span class="scale-sampler-theme" aria-label="Resolved theme">
+          <span
+            class="scale-sampler-theme"
+            aria-label="ธีมที่แสดงอยู่: สว่าง"
+            data-scale-theme-label
+          >
             <span data-sampler-theme-light>LIGHT</span>
             <span data-sampler-theme-dark>DARK</span>
           </span>

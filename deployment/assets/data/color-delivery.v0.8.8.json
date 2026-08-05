@@ -4,7 +4,11 @@
     "designSystemVersion": "0.8.8",
     "status": "artifact_contract_proposed_normative",
     "createdAt": "2026-07-30",
-    "immutableStandalone": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+    "immutableColorBaseline": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+    "currentArtifactBuild": {
+      "id": "ui-20260731-01",
+      "immutableStandalone": "landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html"
+    },
     "latestAliases": [
       "index.html",
       "landometer-design-system-v0.8.8-standalone.html"
@@ -33,6 +37,26 @@
       "sha256": "83bee2ed86f55c3a01914ce2826f294b90e8f7d77f7eef4dc02b9b1cc4d4cdb1"
     }
   },
+  "artifactBuilds": [
+    {
+      "id": "color-baseline-20260730",
+      "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+      "role": "immutable_color_baseline",
+      "colorRegistryId": "color-srgb-01",
+      "bytes": 2005092,
+      "sha256": "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832",
+      "status": "append_only"
+    },
+    {
+      "id": "ui-20260731-01",
+      "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-01",
+      "bytes": 2035049,
+      "sha256": "f24c00d6ebc2f25d2d78eac61e5afc2c8e0b0f753711f249ae9142cc5e2cfe2a",
+      "status": "append_only"
+    }
+  ],
   "surfaceGradients": {
     "measure": {
       "angle": "135deg",
@@ -109,11 +133,12 @@
     }
   },
   "parity": {
-    "registryIdentityRule": "Any change to a governed solid, gradient angle, stop, position, theme mapping, series pair, or analytical source hash requires a new color-set id and a new pinned filename. Existing color-set ids are never redefined.",
+    "registryIdentityRule": "Any change to a governed solid, gradient angle, stop, position, theme mapping, series pair, or analytical source hash requires a new color-set id. Existing color-set ids and immutable artifact-build paths are never redefined. A UI-only change keeps the Color Set id and mints a new append-only artifact-build id and filename.",
     "sameColorSetRequiredFor": [
       "hosted root",
       "latest standalone alias",
-      "immutable standalone",
+      "current immutable UI artifact",
+      "immutable Color Set baseline",
       "Complete Color Atlas",
       "Build Card",
       "Site Manifest",
@@ -125,6 +150,6 @@
       "token registry SHA-256",
       "scale registry SHA-256"
     ],
-    "cacheBoundary": "GitHub Pages currently serves latest aliases with Cache-Control max-age=600. Latest aliases may temporarily differ after publication; immutableStandalone is the handoff and visual-QA authority for this Color Set."
+    "cacheBoundary": "GitHub Pages currently serves latest aliases with Cache-Control max-age=600. Latest aliases may temporarily differ after publication. The current immutable UI artifact-build path is the handoff and visual-QA authority; immutableColorBaseline remains the byte-stable Color Set baseline and is not rewritten for UI-only changes."
   }
 }

@@ -19,7 +19,8 @@
     "indexable": false,
     "canonicalUrl": "https://montri-th.github.io/Landometer/",
     "machineValidation": "pending",
-    "fullLivingReference": false
+    "fullLivingReference": false,
+    "artifactBuildId": "ui-20260731-01"
   },
   "colorDelivery": {
     "registryId": "color-srgb-01",
@@ -42,14 +43,25 @@
       "index.html",
       "landometer-design-system-v0.8.8-standalone.html"
     ],
-    "immutableStandalone": {
+    "immutableColorBaseline": {
       "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
       "registryMarker": "data-color-registry=\"color-srgb-01\"",
       "buildChannelMarker": "data-build-channel=\"immutable-color-set\"",
-      "bytes": 2005089,
-      "sha256": "69f2e2ca8b7bba6bc2ae1b8765112b4649d7fef63160a1c1aa2110fefd7baedb",
-      "integrityMode": "derive SHA-256 and byte count from the built file during release validation; require byte-for-byte parity with the latest standalone except for the build-channel marker",
-      "status": "built; static parity validated; two-device manual gate pending"
+      "bytes": 2005092,
+      "sha256": "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832",
+      "integrityMode": "append-only Color Set baseline; never rewritten for a UI-only change",
+      "status": "preserved byte-for-byte"
+    },
+    "currentArtifactBuild": {
+      "id": "ui-20260731-01",
+      "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html",
+      "registryMarker": "data-color-registry=\"color-srgb-01\"",
+      "artifactBuildMarker": "data-artifact-build=\"ui-20260731-01\"",
+      "buildChannelMarker": "data-build-channel=\"immutable-artifact-build\"",
+      "bytes": 2035049,
+      "sha256": "f24c00d6ebc2f25d2d78eac61e5afc2c8e0b0f753711f249ae9142cc5e2cfe2a",
+      "integrityMode": "append-only UI artifact; byte parity with latest standalone after normalizing only data-build-channel",
+      "status": "built; reproducibility check and browser geometry evidence required"
     }
   },
   "experience": {
@@ -139,6 +151,9 @@
       "status": "approved",
       "rendered": true,
       "path": "assets/images/landometer-symbol-transparent.png",
+      "href": "assets/images/landometer-symbol-transparent.png?v=35a1496f",
+      "standaloneHref": "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f",
+      "cacheRevision": "35a1496f",
       "variant": "transparent_compact_symbol",
       "context": "browser_tab_favicon_only",
       "mimeType": "image/png",
@@ -389,41 +404,65 @@
     },
     {
       "path": "assets/data/color-delivery.v0.8.8.json",
-      "bytes": 3606,
-      "sha256": "59234b88f00a2a614070eb614bf4f95b2e897d36afd2271df825f1488cbdd562",
+      "bytes": 4786,
+      "sha256": "be251e9ab88b0d224ab72dd45139be5bf42f72d080f2d9758096e4a1c579e4ee",
       "usageClass": "artifact-level SDR sRGB delivery and build-parity registry",
       "status": "proposed normative color-delivery contract; source_limited"
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.html",
-      "bytes": 2005082,
-      "sha256": "2c9ac6296ac414e05a7459811c3028dc9f4053c2a5786c03408d4df114b78b46",
+      "bytes": 2035037,
+      "sha256": "7627a6617a26cfcf7838aded64370a76877180a04cd672b1fd83c37acf8424ef",
       "usageClass": "self-contained single-file playground snapshot",
-      "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; linked release records still resolve to production URLs",
+      "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; the approved browser-tab symbol and linked release records use stable cache-revisioned production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; direct file manual gate pending; machineValidation pending"
     },
     {
       "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
-      "bytes": 2005089,
-      "sha256": "69f2e2ca8b7bba6bc2ae1b8765112b4649d7fef63160a1c1aa2110fefd7baedb",
-      "usageClass": "immutable self-contained color-set handoff and visual-QA authority",
+      "bytes": 2005092,
+      "sha256": "d772e6c9d2402060f15b8f709f2803bd420a2a7bee5afe8eeddf471a17f69832",
+      "usageClass": "immutable self-contained Color Set baseline",
       "registryId": "color-srgb-01",
-      "integrityMode": "derived during release validation and compared with the latest standalone after normalizing only data-build-channel",
-      "status": "built; static parity validated; two-device manual gate pending"
+      "integrityMode": "append-only; preserved byte-for-byte across UI-only changes",
+      "status": "preserved byte-for-byte"
+    },
+    {
+      "path": "landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html",
+      "bytes": 2035049,
+      "sha256": "f24c00d6ebc2f25d2d78eac61e5afc2c8e0b0f753711f249ae9142cc5e2cfe2a",
+      "usageClass": "immutable self-contained UI artifact-build handoff and visual-QA authority",
+      "registryId": "color-srgb-01",
+      "artifactBuildId": "ui-20260731-01",
+      "integrityMode": "append-only; compared with latest standalone after normalizing only data-build-channel",
+      "status": "built; source reproducibility and browser geometry evidence required"
     },
     {
       "path": "implementation-notes.v0.8.8.md",
-      "bytes": 22805,
-      "sha256": "f2d8a15300c594559ff9ba71b1b02e14d7c76d260e4a75e1e842320297ba0bfd",
+      "bytes": 23981,
+      "sha256": "fff3b5f3637e684817c5d9a648313603781576845630a529aa28f44403cfdb76",
       "usageClass": "proposed artifact-level implementation clarification",
       "authority": "non-normative until incorporated into an owner-approved Design System release"
     },
     {
       "path": "llms.txt",
-      "bytes": 4164,
-      "sha256": "f97c0cb4de14dc2bfa6327149fa06bac8144aa657a12f9a89edb978aaf708f78",
+      "bytes": 4507,
+      "sha256": "3c228340af46f18990f09fdb104e6d3acb122b63620f83ef1fc91c192123e78b",
       "usageClass": "optional project-path machine discovery navigation aid",
       "authority": "not a ranking signal, access-control rule, conformance claim, host-root discovery guarantee, or agent-action permission"
+    },
+    {
+      "path": "qa/v0.8.8-automated.json",
+      "bytes": 7600,
+      "sha256": "7246bcd109108ad316a411055e28de89a26659cc60f9b03c53a12595800ac398",
+      "usageClass": "current automated release evidence bound to ui-20260731-01",
+      "status": "targeted browser geometry and source validation passed; manual gates remain open"
+    },
+    {
+      "path": "qa/v0.8.8-scale-geometry.json",
+      "bytes": 11831,
+      "sha256": "0a7e56185c8bee4ce1c5891c6d60c488056c052428be3e3485e943f2904a7c29",
+      "usageClass": "deterministic Playwright geometry evidence for localized 5/7/9 scale rows",
+      "status": "36 cases; 2,916 rows; zero failures"
     }
   ],
   "publication": {
@@ -479,7 +518,8 @@
       "four CityMETER context-record sources, missing provenance, value-scope omission, query composition, privacy, destination, recovery, discovery-only, and same-intent relevance study",
       "recipient-value fixture remains static with no share, delivery, or network-outcome claim",
       "HTML-only noindex scope, project-path robots limitation, machine-readable-versus-discoverable separation, noncanonical standalone snapshot, approved browser-tab favicon small-size/theme review, hostname-level search-favicon ownership, and llms navigation-aid boundary review",
-      "all nine source-limited scale families at exact 5/7/9 classes in light/dark, plus full 41-stop atlas parity, contrast, CVD, grayscale, direct labels, and export review"
+      "all nine source-limited scale families at exact 5/7/9 classes in light/dark, plus full 41-stop atlas parity, contrast, CVD, grayscale, direct labels, and export review",
+      "localized scale-label geometry at 320/360/390/620/621/980/981 CSS pixels in EN/TH and light/dark, including 200% text zoom, minimum 8rem strips, equal-width cells, and locale/theme-correct accessible names"
     ]
   }
 }

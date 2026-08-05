@@ -30,6 +30,10 @@ For every family:
 
 Keep one concise, directly labelled preview on the primary route. Put 41-stop LUTs, exact cells, hashes, source boundary, and parity evidence in the existing disclosure.
 
+At narrow widths and text zoom, let each class row wrap as a unit: keep the localized class label intact and move the full color strip to the next line before either can overlap or shrink the strip below a useful minimum. Do not solve a collision by clipping, painting text over color, hiding cells, or changing the governed palette.
+
+The accessible name follows the active locale and the actually rendered theme. A light-theme sampler must not announce the hidden dark values, and vice versa. A full Atlas record may announce its fixed record theme, class count, family, kind, and exact values.
+
 ## Preserve generated parity
 
 Generate the sampler and complete atlas from the same source values. Never hand-copy cells, interpolate in the browser, use a continuous CSS gradient, or run a chart-library palette afterward.
@@ -57,3 +61,5 @@ node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs d
 ```
 
 Treat `--check-index` as required evidence for full-atlas exactness. Static HTML presence or a successful experience-contract check does not replace it.
+
+For collision regression, use browser geometry rather than source-text matching: measure the rendered text range, strip bounds, horizontal overflow, and equal-width 5/7/9 cells across EN/TH, light/dark, required viewports, and representative 200% text zoom.

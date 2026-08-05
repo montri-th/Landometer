@@ -193,7 +193,9 @@ Check at minimum:
 - HTTP success for HTML, manifest, CSS, JavaScript, logo, approved photos, and required fonts;
 - HTML target version, Manifest 2.0, Token Schema 6, selected profile, evidence status, `indexable`, and `machineValidation`;
 - deployed manifest values match the release Build Card and HTML identity;
-- live HTML and manifest bytes match `main` when Pages serves them without transformation;
+- live HTML and manifest bytes match the deployed commit when Pages serves them without transformation;
+- each critical live asset matches both the deployed source bytes and its manifest byte count plus SHA-256;
+- the live HTML and manifest expose the expected append-only artifact-build ID, not merely the same Design System version;
 - no browser page errors, failed critical requests, dead controls, or horizontal overflow;
 - Adopt/Reference/Lab, locale, theme, selected role/proof, and deep-link restoration when those capabilities are enabled.
 

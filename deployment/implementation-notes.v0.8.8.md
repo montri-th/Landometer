@@ -32,15 +32,19 @@ This corrects an artifact regression and improves discoverability. The existing 
 
 A report that two devices show a different Color Set is first a delivery-parity question, not evidence of a mere display shift. This artifact binds color delivery to `assets/data/color-delivery.v0.8.8.json` and registry ID `color-srgb-01`.
 
-The hosted root/latest alias, latest standalone alias, immutable standalone, Complete Color Atlas, Site Manifest, and Build Card must resolve one registry/build identity. For this artifact, that identity includes the Design System version, `data-color-registry`, token-registry path/version/SHA-256, scale-registry path/version/SHA-256, source-build relationship, and the expected SHA-256 for each delivered artifact. Different packaging may have its own file hash, but the manifest and Build Card must bind every channel to the same source Color Set. The latest and immutable standalone builds must be equivalent after normalizing only their declared `data-build-channel` marker.
+Color identity and UI-build identity are separate. The Color Set remains `color-srgb-01` while each UI-only change mints a new append-only `artifactBuild` ID and immutable filename. A governed color, gradient, token-source, or scale-source change requires a new Color Set ID; a responsive, accessibility, copy, or release-tool change does not.
+
+The hosted root/latest alias, latest standalone alias, current immutable UI artifact build, Complete Color Atlas, Site Manifest, and Build Card must resolve one registry/build relationship. For this artifact, that relationship includes the Design System version, `data-color-registry`, `data-artifact-build`, token-registry path/version/SHA-256, scale-registry path/version/SHA-256, and the expected SHA-256 for each delivered artifact. Different packaging may have its own file hash, but the manifest and Build Card must bind every channel to the same source Color Set and UI build.
 
 The immutable handoff URL is:
 
 ```text
-https://montri-th.github.io/Landometer/landometer-design-system-v0.8.8-standalone.color-srgb-01.html
+https://montri-th.github.io/Landometer/landometer-design-system-v0.8.8-standalone.color-srgb-01.ui-20260731-01.html
 ```
 
-That immutable URL is the visual-QA and handoff authority for this Color Set. `index.html` and `landometer-design-system-v0.8.8-standalone.html` are latest aliases. GitHub Pages currently serves latest aliases with `Cache-Control: max-age=600`, so two devices can temporarily receive different releases after publication. A latest-alias mismatch is classified as cache/build skew; do not describe it as color drift and do not use it as cross-device approval evidence.
+That immutable artifact-build URL is the visual-QA and handoff authority for the current UI build. The earlier `landometer-design-system-v0.8.8-standalone.color-srgb-01.html` remains a byte-stable Color Set baseline and is not rewritten when UI code changes. `index.html` and `landometer-design-system-v0.8.8-standalone.html` are latest aliases. GitHub Pages currently serves latest aliases with `Cache-Control: max-age=600`, so two devices can temporarily receive different releases after publication. A latest-alias mismatch is classified as cache/build skew; do not describe it as color drift and do not use it as cross-device approval evidence.
+
+Standalone generation is fail-closed. `tools/build-standalone-html.mjs --check` rebuilds in memory and compares committed latest and immutable UI artifacts without writing. A normal build preflights the original Color Set baseline and the target append-only artifact path before atomically replacing the mutable latest alias. CI must run the check mode from source; post-deploy verification must compare exact expected hashes after Pages completes, not merely detect a `0.8.8` marker.
 
 After registry, build, and expected hashes match, pin the comparison theme explicitly to `light` or `dark` and record it. `system` is an adaptive user preference, not a reproducible visual-baseline state. Only then compare rendered color.
 
@@ -220,7 +224,7 @@ An `llms.txt` file may provide a concise navigation aid to public-safe sources u
 
 The header lockup and browser-tab icon are different delivery contexts. The available `landometer-logo-banner.png` is a transparent horizontal mark-and-wordmark lockup. Do not crop, mask, reconstruct, recolor, apply a CSS filter, or place it on an invented carrier to make a favicon.
 
-The current internal demo renders the separately approved transparent symbol at `assets/images/landometer-symbol-transparent.png` for browser-tab favicon duty only. The exact repository asset is a 192 × 192 RGBA PNG, 11,001 bytes, SHA-256 `35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85`, introduced for this context by repository main commit `ce785864e5341321e1957dce35a8326732764432`. It is delivered unchanged in hosted HTML and embedded unchanged as a data URL in the standalone snapshot.
+The current internal demo renders the separately approved transparent symbol at `assets/images/landometer-symbol-transparent.png` for browser-tab favicon duty only. The exact repository asset is a 192 × 192 RGBA PNG, 11,001 bytes, SHA-256 `35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85`, introduced for this context by repository main commit `ce785864e5341321e1957dce35a8326732764432`. Hosted HTML uses the unchanged same-origin asset with cache revision `?v=35a1496f`. The standalone snapshot uses the corresponding absolute production URL instead of a `data:` favicon because browser support and cache replacement for data-URL tab icons are inconsistent; this exception affects browser chrome only, not page content or offline meaning.
 
 The release record names:
 

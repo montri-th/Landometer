@@ -1,4 +1,6 @@
 import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 const env = process.env;
 const site = String(env.SITE_URL || "https://montri-th.github.io/Landometer/").replace(/\/?$/, "/");
@@ -9,7 +11,12 @@ const tokenSchemaVersion = Number(env.EXPECTED_TOKEN_SCHEMA_VERSION || 6);
 const expectedProfile = String(env.EXPECTED_PROFILE || "");
 const expectedEvidenceStatus = String(env.EXPECTED_EVIDENCE_STATUS || "");
 const expectedMachineValidation = String(env.EXPECTED_MACHINE_VALIDATION || "pending");
+const expectedArtifactBuild = String(env.EXPECTED_ARTIFACT_BUILD || "").trim();
 const expectedIndexable = String(env.EXPECTED_INDEXABLE || "false") === "true";
+const verifyExactSource = String(env.VERIFY_EXACT_SOURCE || "false") === "true";
+const localDeploymentDir = path.resolve(
+  env.LOCAL_DEPLOYMENT_DIR || "deployment",
+);
 const attempts = Number(env.VERIFY_ATTEMPTS || 30);
 const delayMs = Number(env.VERIFY_DELAY_MS || 10000);
 const criticalAssets = String(env.CRITICAL_ASSETS || "")
@@ -20,9 +27,31 @@ const criticalAssets = String(env.CRITICAL_ASSETS || "")
 if (!version) throw new Error("TARGET_VERSION is required.");
 if (!manifestPath) throw new Error("MANIFEST_PATH is required when it cannot be derived from TARGET_VERSION.");
 if (!Number.isInteger(attempts) || attempts < 1) throw new Error("VERIFY_ATTEMPTS must be a positive integer.");
+if (verifyExactSource && !env.LOCAL_DEPLOYMENT_DIR) {
+  throw new Error("LOCAL_DEPLOYMENT_DIR is required when VERIFY_EXACT_SOURCE=true.");
+}
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const sha256 = value => createHash("sha256").update(value).digest("hex");
+
+function localPath(relativePath) {
+  const cleanPath = relativePath.replace(/^\//, "");
+  const resolved = path.resolve(localDeploymentDir, cleanPath);
+  if (
+    resolved !== localDeploymentDir &&
+    !resolved.startsWith(`${localDeploymentDir}${path.sep}`)
+  ) {
+    throw new Error(`Critical asset escapes LOCAL_DEPLOYMENT_DIR: ${relativePath}`);
+  }
+  return resolved;
+}
+
+function requireExactBytes(actual, expected, label) {
+  if (actual.equals(expected)) return;
+  throw new Error(
+    `${label} byte mismatch: expected ${expected.length} bytes / ${sha256(expected)}, observed ${actual.length} bytes / ${sha256(actual)}`,
+  );
+}
 
 function withCacheBust(url, attempt) {
   const value = new URL(url);
@@ -50,6 +79,9 @@ function requireHtml(html) {
   ];
   if (expectedProfile) checks.push([`data-ds-profile="${expectedProfile}"`, "profile"]);
   if (expectedEvidenceStatus) checks.push([`data-evidence-status="${expectedEvidenceStatus}"`, "evidence status"]);
+  if (expectedArtifactBuild) {
+    checks.push([`data-artifact-build="${expectedArtifactBuild}"`, "artifact build"]);
+  }
   checks.push([`data-indexable="${expectedIndexable}"`, "indexability"]);
   checks.push([`data-machine-validation="${expectedMachineValidation}"`, "machine validation"]);
 
@@ -71,11 +103,33 @@ function requireManifest(value) {
   ];
   if (expectedProfile) checks.push([String(artifact.profile), expectedProfile, "artifact.profile"]);
   if (expectedEvidenceStatus) checks.push([String(artifact.evidenceStatus), expectedEvidenceStatus, "artifact.evidenceStatus"]);
+  if (expectedArtifactBuild) {
+    checks.push([
+      String(artifact.artifactBuildId),
+      expectedArtifactBuild,
+      "artifact.artifactBuildId",
+    ]);
+  }
 
   for (const [actual, expected, label] of checks) {
     if (actual !== expected) throw new Error(`${label} mismatch: expected ${expected}, observed ${actual}`);
   }
 }
+
+const expectedLocal = verifyExactSource
+  ? {
+      html: await readFile(localPath("index.html")),
+      manifest: await readFile(localPath(manifestPath)),
+      assets: new Map(
+        await Promise.all(
+          criticalAssets.map(async assetPath => [
+            assetPath,
+            await readFile(localPath(assetPath)),
+          ]),
+        ),
+      ),
+    }
+  : null;
 
 let lastError;
 for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -88,11 +142,42 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
 
     requireHtml(html);
     requireManifest(manifest);
+    if (expectedLocal) {
+      requireExactBytes(htmlBytes, expectedLocal.html, "Live index.html");
+      requireExactBytes(
+        manifestBytes,
+        expectedLocal.manifest,
+        `Live ${manifestPath}`,
+      );
+    }
 
     const assetResults = [];
-    for (const path of criticalAssets) {
-      const bytes = await fetchBytes(new URL(path.replace(/^\//, ""), site), attempt);
-      assetResults.push({ path, bytes: bytes.length, sha256: sha256(bytes) });
+    for (const assetPath of criticalAssets) {
+      const bytes = await fetchBytes(
+        new URL(assetPath.replace(/^\//, ""), site),
+        attempt,
+      );
+      const hash = sha256(bytes);
+      const manifestRecord = manifest.assets?.find(
+        record => record.path === assetPath,
+      );
+      if (
+        !manifestRecord ||
+        manifestRecord.bytes !== bytes.length ||
+        manifestRecord.sha256 !== hash
+      ) {
+        throw new Error(
+          `Manifest asset record mismatch for ${assetPath}: observed ${bytes.length} bytes / ${hash}`,
+        );
+      }
+      if (expectedLocal) {
+        requireExactBytes(
+          bytes,
+          expectedLocal.assets.get(assetPath),
+          `Live ${assetPath}`,
+        );
+      }
+      assetResults.push({ path: assetPath, bytes: bytes.length, sha256: hash });
     }
 
     console.log(JSON.stringify({
@@ -100,6 +185,8 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
       site,
       version,
       manifestPath,
+      sourceCommit: env.GITHUB_SHA || null,
+      exactSourceMatch: Boolean(expectedLocal),
       html: { bytes: htmlBytes.length, sha256: sha256(htmlBytes) },
       manifest: { bytes: manifestBytes.length, sha256: sha256(manifestBytes) },
       criticalAssets: assetResults,
@@ -108,6 +195,7 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
         evidenceStatus: expectedEvidenceStatus || null,
         indexable: expectedIndexable,
         machineValidation: expectedMachineValidation,
+        artifactBuildId: expectedArtifactBuild || null,
       },
     }, null, 2));
     process.exit(0);
