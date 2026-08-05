@@ -33,7 +33,7 @@ jobs:
         run: node tools/validate-release.mjs
 
       - name: Verify experience contracts
-        run: node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs
+        run: node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs deployment/index.html
 
       - name: Verify rendered scale geometry and accessible names
         run: node tools/check-scale-geometry.mjs > /tmp/v0.8.8-scale-geometry-current.json
