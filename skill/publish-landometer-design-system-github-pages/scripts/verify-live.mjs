@@ -12,6 +12,7 @@ const expectedProfile = String(env.EXPECTED_PROFILE || "");
 const expectedEvidenceStatus = String(env.EXPECTED_EVIDENCE_STATUS || "");
 const expectedMachineValidation = String(env.EXPECTED_MACHINE_VALIDATION || "pending");
 const expectedArtifactBuild = String(env.EXPECTED_ARTIFACT_BUILD || "").trim();
+const expectedSourceCommit = String(env.EXPECTED_SOURCE_COMMIT || env.GITHUB_SHA || "").trim();
 const expectedIndexable = String(env.EXPECTED_INDEXABLE || "false") === "true";
 const verifyExactSource = String(env.VERIFY_EXACT_SOURCE || "false") === "true";
 const localDeploymentDir = path.resolve(
@@ -33,6 +34,10 @@ if (verifyExactSource && !env.LOCAL_DEPLOYMENT_DIR) {
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const sha256 = value => createHash("sha256").update(value).digest("hex");
+const normalizeMime = value => String(value || "")
+  .split(";", 1)[0]
+  .trim()
+  .toLowerCase();
 
 function localPath(relativePath) {
   const cleanPath = relativePath.replace(/^\//, "");
@@ -59,7 +64,7 @@ function withCacheBust(url, attempt) {
   return value;
 }
 
-async function fetchBytes(url, attempt) {
+async function fetchResource(url, attempt) {
   const response = await fetch(withCacheBust(url, attempt), {
     redirect: "follow",
     cache: "no-store",
@@ -67,7 +72,11 @@ async function fetchBytes(url, attempt) {
     headers: { "cache-control": "no-cache" },
   });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
-  return Buffer.from(await response.arrayBuffer());
+  return {
+    bytes: Buffer.from(await response.arrayBuffer()),
+    finalUrl: response.url,
+    mimeType: normalizeMime(response.headers.get("content-type")),
+  };
 }
 
 function requireHtml(html) {
@@ -135,8 +144,10 @@ let lastError;
 for (let attempt = 1; attempt <= attempts; attempt += 1) {
   try {
     console.log(`Live verification attempt ${attempt}/${attempts}`);
-    const htmlBytes = await fetchBytes(site, attempt);
-    const manifestBytes = await fetchBytes(new URL(manifestPath, site), attempt);
+    const htmlResponse = await fetchResource(site, attempt);
+    const manifestResponse = await fetchResource(new URL(manifestPath, site), attempt);
+    const htmlBytes = htmlResponse.bytes;
+    const manifestBytes = manifestResponse.bytes;
     const html = htmlBytes.toString("utf8");
     const manifest = JSON.parse(manifestBytes.toString("utf8"));
 
@@ -153,10 +164,11 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
 
     const assetResults = [];
     for (const assetPath of criticalAssets) {
-      const bytes = await fetchBytes(
+      const assetResponse = await fetchResource(
         new URL(assetPath.replace(/^\//, ""), site),
         attempt,
       );
+      const bytes = assetResponse.bytes;
       const hash = sha256(bytes);
       const manifestRecord = manifest.assets?.find(
         record => record.path === assetPath,
@@ -170,6 +182,14 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
           `Manifest asset record mismatch for ${assetPath}: observed ${bytes.length} bytes / ${hash}`,
         );
       }
+      if (
+        manifestRecord.mimeType &&
+        normalizeMime(manifestRecord.mimeType) !== assetResponse.mimeType
+      ) {
+        throw new Error(
+          `Manifest media type mismatch for ${assetPath}: expected ${manifestRecord.mimeType}, observed ${assetResponse.mimeType || "missing"}`,
+        );
+      }
       if (expectedLocal) {
         requireExactBytes(
           bytes,
@@ -177,7 +197,13 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
           `Live ${assetPath}`,
         );
       }
-      assetResults.push({ path: assetPath, bytes: bytes.length, sha256: hash });
+      assetResults.push({
+        path: assetPath,
+        finalUrl: assetResponse.finalUrl,
+        mimeType: assetResponse.mimeType || null,
+        bytes: bytes.length,
+        sha256: hash,
+      });
     }
 
     console.log(JSON.stringify({
@@ -185,10 +211,20 @@ for (let attempt = 1; attempt <= attempts; attempt += 1) {
       site,
       version,
       manifestPath,
-      sourceCommit: env.GITHUB_SHA || null,
+      sourceCommit: expectedSourceCommit || null,
       exactSourceMatch: Boolean(expectedLocal),
-      html: { bytes: htmlBytes.length, sha256: sha256(htmlBytes) },
-      manifest: { bytes: manifestBytes.length, sha256: sha256(manifestBytes) },
+      html: {
+        finalUrl: htmlResponse.finalUrl,
+        mimeType: htmlResponse.mimeType || null,
+        bytes: htmlBytes.length,
+        sha256: sha256(htmlBytes),
+      },
+      manifest: {
+        finalUrl: manifestResponse.finalUrl,
+        mimeType: manifestResponse.mimeType || null,
+        bytes: manifestBytes.length,
+        sha256: sha256(manifestBytes),
+      },
       criticalAssets: assetResults,
       evidenceBoundary: {
         profile: expectedProfile || null,

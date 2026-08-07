@@ -1,5 +1,20 @@
 # Value proof: Brand DNA and Brand Voice
 
+## Begin with a recognisable moment
+
+Make the problem felt before explaining the rule:
+
+```text
+felt friction
+→ consequence for a person or the next piece of work
+→ credible possibility
+→ guided design move
+→ visible AHA
+→ one useful next action
+```
+
+Use only consequences that the same evidence fixture can demonstrate. Do not add fear, shame, invented urgency, or a broken baseline.
+
 ## Brand DNA
 
 Use the same synthetic work and facts in both states.
@@ -34,6 +49,22 @@ real person/place/object/work/decision
 ```
 
 Prefer exact nouns and direct verbs. Draft Thai and English independently from the same evidence record. Do not mirror sentence structure.
+
+For Thai, use spoken work language, one main thought per sentence, and concrete verbs. Remove bureaucratic noun stacks, translation-shaped phrases, filler politeness, and technical English that the team does not naturally use. Read every primary line aloud.
+
+For English, remove generic AI phrasing, inflated adjectives, abstract stacks, and vague “learn more” actions. Name what changed and what the person can do next.
+
+## Case coverage
+
+When a section claims broad Brand DNA or Brand Voice value, show at least three constructive cases with meaningfully different intents, work objects, or formats, plus one clearly labelled rejected case with a recovery path.
+
+Use this anatomy:
+
+```text
+Intent → context/evidence → design move → AHA → value → boundary → next action
+```
+
+Keep named product, place, event, and dataset examples inside their product-specific evidence boundary. Do not generalize them into shared Landometer truth. Cross-product or cross-place comparison requires a compatible schema and release or an explicit incompatibility note.
 
 ## Interaction
 

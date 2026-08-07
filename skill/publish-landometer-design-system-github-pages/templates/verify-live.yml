@@ -12,6 +12,11 @@ on:
     types:
       - completed
   workflow_dispatch:
+    inputs:
+      source_commit:
+        description: "Exact deployed source commit to verify"
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -28,7 +33,7 @@ jobs:
       - name: Checkout deployed source boundary
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || inputs.source_commit }}
 
       - name: Validate repository release
         run: node tools/validate-release.mjs
@@ -45,6 +50,7 @@ jobs:
           EXPECTED_INDEXABLE: "false"
           EXPECTED_MACHINE_VALIDATION: pending
           EXPECTED_ARTIFACT_BUILD: __ARTIFACT_BUILD_ID__
+          EXPECTED_SOURCE_COMMIT: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || inputs.source_commit }}
           VERIFY_EXACT_SOURCE: "true"
           LOCAL_DEPLOYMENT_DIR: deployment
           VERIFY_ATTEMPTS: "30"
@@ -52,6 +58,7 @@ jobs:
           CRITICAL_ASSETS: >-
             __ENTRY_CSS__,
             __ENTRY_JS__,
+            __FAVICON_PATH__,
             assets/images/landometer-logo-banner.png,
             assets/images/team-hero.jpg
         run: node skill/publish-landometer-design-system-github-pages/scripts/verify-live.mjs
@@ -61,6 +68,9 @@ jobs:
           printf '%s\n' \
             "version=__VERSION__" \
             "manifest=__MANIFEST_PATH__" \
+            "sourceCommit=${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || inputs.source_commit }}" \
             "archiveUsed=false" \
+            "broadStageUsed=false" \
             "forcePushUsed=false" \
+            "destructiveCleanupUsed=false" \
             "machineValidation=pending"

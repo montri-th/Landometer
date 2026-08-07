@@ -1,0 +1,4 @@
+interface:
+  display_name: "Govern Web Identity & Discovery"
+  short_description: "Audit web identity, SEO, and AI discovery contracts"
+  default_prompt: "Use $govern-web-identity-and-discovery to audit this website’s identity assets, metadata, indexing, and machine-discovery boundaries."

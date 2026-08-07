@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shape Inspiring DS Guidance"
+  short_description: "Turn design-system rules into inviting learning"
+  default_prompt: "Use $shape-inspiring-design-system-guidance to turn these design-system rules into a human, visual, action-oriented learning experience."

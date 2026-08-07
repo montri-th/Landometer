@@ -56,6 +56,10 @@ Never mix canonical dataviz ramps at runtime. Render LUT and 5/7/9 class cells f
 
 Treat `deployment/assets/data/scales.json` as a carried `source_limited` reference because its `meta.version` is `0.8.6`. Do not call it the gated v0.8.8 `dataviz.tokens.json`, and do not claim v0.8.8 scale conformance until hash parity, renderer/legend/export parity, contrast, color-vision-deficiency, grayscale, and product implementation gates pass.
 
+Pair the complete inventory with a practical selection map and one realistic consumer for each governed family: solid foundation, semantic state, categorical data, sequential/diverging data, shared atmosphere gradient, product-owned gradient, opacity/depth, overlap, and line/stroke. Show when to choose it, the exact source boundary, and one misuse to avoid. Keep unresolved stroke widths, dash meanings, and overlap compositing explicitly `candidate`.
+
+Measure contrast from the rendered foreground through the actual alpha stack onto the component-owned surface. Static token pairing or CSS source inspection cannot prove the final contrast.
+
 Verify the atlas in light and dark themes at 320 and 390 CSS pixels. Confirm that color-vision-deficiency simulation and grayscale preserve meaning through labels, shapes, patterns, measured-zero treatment, and no-data treatment.
 
 Generate and check the deterministic atlas before release:
@@ -78,6 +82,14 @@ Use script-aware routing:
 
 Never let a generic `monospace` fallback choose the Thai face by device. Package the selected face, license record, hashes, and Thai subset; verify computed family after `document.fonts.ready` with third-party requests blocked.
 
+### Direct-file Safari delivery
+
+Treat a hosted source and a portable standalone as two explicit delivery modes. A hosted source may create font preloads only after confirming `http:` or `https:`. Do not ship declarative cross-origin font preloads into a page that may be opened through `file://`; Safari/WebKit can fail the preload at the null origin and poison the later `@font-face` request for the same local file ([WebKit issue 249887](https://bugs.webkit.org/show_bug.cgi?id=249887)).
+
+Embed every governed font face in the portable standalone. If someone opens the hosted source directly from disk, hand off to that embedded standalone while preserving query parameters and the fragment. Mark the standalone so the handoff and hosted-only preload logic self-disable there.
+
+Do not treat `document.fonts.ready` or a computed family name as proof by itself. Load representative glyphs for each governed role; require a non-empty returned face list whose members report `loaded`, confirm `document.fonts.check`, and record explicit `pending`, `ready`, `failed`, `timeout`, or `unavailable` states. Catch rejected and timed-out loads. If the page exposes one global readiness flag, it must cover every active subset/role—not only the two roles currently visible. For this package that means Thai Bai Jamjuree 400/600, Thai IBM Plex Sans Thai 400, Thai IBM Plex Sans Thai Looped 700, and their governed Latin companions across Bai Jamjuree 400/600, IBM Plex Sans Thai Looped 700, JetBrains Mono 400, and Arvo 700. Keep the declared fallback chain for resilience; do not remove fallback faces to disguise a delivery defect.
+
 Treat IBM Plex Sans Thai as an optical companion, not a true monospace face. Use weight 400 with `size-adjust: 102%`, `.008em` tracking, `1.48` compact-label line-height, and enough vertical padding to protect Thai marks. Then review mixed-script baselines, combining marks, 12–16 CSS px labels, 130% Thai, 200% zoom, export, and all supported devices. Record any tuning as an implementation value until a normative release approves it.
 
-Use one technical weight across the script-aware pair. For this reference that weight is 400: declare and embed only JetBrains Mono 400 and non-Looped IBM Plex Sans Thai 400 in the technical role. Do not request or package 500/700 for those two technical faces, and keep `font-synthesis: none` so emphasis comes from hierarchy, color, spacing, or wording rather than faux bold. The separately governed IBM Plex Sans Thai Looped 700 and Arvo 700 display roles remain valid.
+Use one technical weight across the script-aware pair. Landometer v0.8.8-r3 authoring preserves JetBrains Mono 400 and non-Looped IBM Plex Sans Thai 400; keep `font-synthesis: none` so emphasis comes from hierarchy, color, spacing, or wording rather than faux bold. A thinner paired weight such as 300 remains a candidate until both exact self-hosted faces, font-manifest records, size-adjust/tracking/leading/padding tuning, mixed-script baselines, combining marks, small labels, 130% Thai, 200% zoom, export, and cross-device QA pass. Do not silently rewrite the active 400 contract or package 500/700 in this technical role. The separately governed IBM Plex Sans Thai Looped 700 and Arvo 700 display roles remain valid.

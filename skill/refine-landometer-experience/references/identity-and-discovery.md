@@ -9,6 +9,8 @@ Use the exact approved variant for its declared context:
 - preserve the approved bytes, proportions, clear space, colors, canvas, and surface strategy;
 - change the governed surrounding surface when header contrast fails.
 
+Treat the header lockup, favicon/tab icon, apple-touch icon, maskable/install icon, and social preview as separate approval scopes. Record exact role, path, MIME, dimensions, byte length, SHA-256, transparent-canvas behavior, theme strategy, and source version for each used asset. Do not silently reuse one role for another.
+
 Never crop, trace, reconstruct, recolor, filter, or place the horizontal lockup on an invented carrier to make a browser icon. Do not use a wide banner, wordmark, or header lockup as `rel="icon"`.
 
 For a browser-tab icon, require an adjacent manifest record with:
@@ -19,6 +21,8 @@ For a browser-tab icon, require an adjacent manifest record with:
 - rendered state matching the HTML.
 
 When no approved compact asset exists, omit `rel="icon"` and record `pending_approved_compact_asset`; never manufacture a substitute. Treat search-result favicon selection as host-level behavior that a project subpath may not control.
+
+Use a stable same-origin favicon URL for the hosted page when possible. A portable standalone may use an explicitly governed stable absolute production URL when offline identity delivery is not promised. Add a content-derived cache revision and verify source, built artifact, final response URL, media type, dimensions, bytes, SHA-256, cold/warm cache behavior, tab, and bookmark states before comparing devices.
 
 ## Match metadata to release state
 

@@ -4,6 +4,7 @@
 
 Fix in the artifact when the current source already determines the answer, including:
 
+- a protected brand line that truncates or contradicts the current master-brand source of truth;
 - inherited foreground on a component-owned surface;
 - theme or locale leakage;
 - malformed list indentation;
@@ -23,13 +24,14 @@ Write a normative patch proposal when the source lacks an authoritative role or 
 - mandatory worked-example coverage;
 - a compact/favicon asset role, exact approval record, or delivery recipe that the current identity source does not define.
 
-Label every proposal `candidate` and state that the active authoring master remains authoritative until owner approval and package generation.
+Label every proposal `candidate`. Owner approval plus integration into the owning rules can advance the human-readable authoring authority. Generated schemas, manifests, recipes, rule ledgers, hashes, release lock, fixtures, and preflight must still be regenerated and validated before claiming machine-package conformance; artifact conformance remains independent.
 
 ## Publication
 
 - Preserve unrelated working-tree changes.
 - Publish only explicit files.
-- Validate HTML, controls, fonts, theme/locale state, deep links, and downloaded references.
+- Validate HTML, controls, fonts, theme/locale state, deep links, downloaded references, browser-computed contrast, clipping, list indentation/alignment, reduced motion, and Thai/English language quality.
+- Run `node tools/check-scale-geometry.mjs` for the declared viewport/theme/locale/zoom matrix when scale or label-and-mark geometry is in scope.
 - At narrow widths, measure rendered text bounds rather than only element boxes. Test EN and TH labels beside charts, scales, and color strips at 320/360/390 CSS pixels and 200% text zoom; require a visible gap and no horizontal scroll.
 - Pin the immutable filename or release URL used for QA and handoff, and record its build ID plus color-registry hash. Treat mutable root, `current`, and `latest` aliases as convenience routes, not parity evidence.
 - Keep Color Set identity separate from UI artifact-build identity. Reuse the Color Set ID for UI-only changes, but mint a new append-only artifact-build ID and immutable filename. Mint a new Color Set ID only when governed colors, gradients, token sources, or scale sources change.

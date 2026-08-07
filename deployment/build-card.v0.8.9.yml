@@ -1,0 +1,925 @@
+landometerBuild:
+  dsVersion: 0.8.9
+  authoringRevision: v0.8.9-r1
+  schemas:
+    buildCard: 0.8.9
+    manifest: 2.0
+    tokens: 6
+  colorDelivery:
+    registryId: color-srgb-02
+    registryPath: assets/data/color-delivery.v0.8.9.json
+    range: SDR
+    colorSpace: sRGB IEC 61966-2-1
+    tokenRegistry:
+      path: assets/data/tokens.json
+      carriedVersion: 0.8.6
+      sha256: 085193279178089daca95019a34599cc79180dc24b26d873ced3be9b08bd13b2
+    scaleRegistry:
+      path: assets/data/scales.json
+      carriedVersion: 0.8.6
+      sha256: 83bee2ed86f55c3a01914ce2826f294b90e8f7d77f7eef4dc02b9b1cc4d4cdb1
+    gradientRegistry:
+      id: landometer-atmosphere-gradient-v2
+      colorSetId: color-srgb-02
+      delivery: exact six-digit SDR sRGB; explicit in srgb interpolation where supported with byte-equivalent legacy fallback
+      canonicalAngle: 135deg
+      gradientStopOnlyValues:
+        - {value: "#89CEF6", group: cool_luminous}
+        - {value: "#5ECAD6", group: cool_luminous}
+        - {value: "#6CD5B3", group: cool_luminous}
+        - {value: "#0F5773", group: ground_current}
+        - {value: "#006A6A", group: ground_current}
+        - {value: "#1F744F", group: ground_current}
+        - {value: "#C4E0EE", group: ground_mist}
+        - {value: "#B2E2E2", group: ground_mist}
+        - {value: "#CCE6D0", group: ground_mist}
+        - {value: "#EB8182", group: cultivate_glow}
+        - {value: "#F5A06F", group: cultivate_glow}
+        - {value: "#EBC573", group: cultivate_glow}
+        - {value: "#F7CBC7", group: cultivate_mist}
+        - {value: "#FBD1B6", group: cultivate_mist}
+        - {value: "#F1E0B4", group: cultivate_mist}
+      gradientStopOnlyBoundary: these fifteen values are governed only as exact stops in the shared atmosphere recipes; never reuse them as solid, data, state, map, interaction, product, or official-asset color
+      sharedRecipes:
+        - id: atmosphere.gradient.measure.deep
+          exactCss: "linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)"
+          stops: [{value: "#1D4497", position: 0}, {value: "#176B82", position: 54}, {value: "#08756F", position: 100}]
+          themeDefault: measure.light
+          foregroundContractRef: surfaceForeground.onDeep
+        - id: atmosphere.gradient.measure.luminous
+          exactCss: "linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%)"
+          stops: [{value: "#89CEF6", position: 0}, {value: "#5ECAD6", position: 50}, {value: "#6CD5B3", position: 100}]
+          themeDefault: measure.dark
+          foregroundContractRef: surfaceForeground.onLight
+        - id: atmosphere.gradient.ground.current
+          exactCss: "linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%)"
+          stops: [{value: "#0F5773", position: 0}, {value: "#006A6A", position: 50}, {value: "#1F744F", position: 100}]
+          themeDefault: ground.dark
+          foregroundContractRef: surfaceForeground.onDeep
+        - id: atmosphere.gradient.ground.mist
+          exactCss: "linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%)"
+          stops: [{value: "#C4E0EE", position: 0}, {value: "#B2E2E2", position: 50}, {value: "#CCE6D0", position: 100}]
+          themeDefault: ground.light
+          foregroundContractRef: surfaceForeground.onLight
+        - id: atmosphere.gradient.cultivate.glow
+          exactCss: "linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%)"
+          stops: [{value: "#EB8182", position: 0}, {value: "#F5A06F", position: 50}, {value: "#EBC573", position: 100}]
+          themeDefault: cultivate.light
+          foregroundContractRef: surfaceForeground.onLight
+        - id: atmosphere.gradient.cultivate.mist
+          exactCss: "linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%)"
+          stops: [{value: "#F7CBC7", position: 0}, {value: "#FBD1B6", position: 50}, {value: "#F1E0B4", position: 100}]
+          themeDefault: cultivate.dark
+          foregroundContractRef: surfaceForeground.onLight
+        - id: atmosphere.gradient.diversity.spectrum
+          exactCss: "linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%)"
+          stops: [{value: "#89CEF6", position: 0}, {value: "#6CD5B3", position: 34}, {value: "#EBC573", position: 67}, {value: "#EB8182", position: 100}]
+          themeDefault: theme_invariant_rare
+          foregroundContractRef: surfaceForeground.onLight
+      themeDefaults:
+        surfaceAtmosphere.measure: {light: atmosphere.gradient.measure.deep, dark: atmosphere.gradient.measure.luminous}
+        surfaceAtmosphere.ground: {light: atmosphere.gradient.ground.mist, dark: atmosphere.gradient.ground.current}
+        surfaceAtmosphere.cultivate: {light: atmosphere.gradient.cultivate.glow, dark: atmosphere.gradient.cultivate.mist}
+      rareDiversityRestriction:
+        recipe: atmosphere.gradient.diversity.spectrum
+        maximum: once per genuinely long route
+        placement: inside an existing Ground or Cultivate moment with visible evidence of different perspectives, contributors, or co-creation roles
+        forbidden: [hero_default, fourth_semantic_stage, product_identity, category, magnitude, state, map, interaction, official_logo, routine_button, hue_cycle_animation, decoration_only]
+        deletionGate: neutral or worsened removes the recipe
+      foregroundContracts:
+        surfaceForeground.onDeep:
+          primary: "#FFFFFF"
+          secondary: "#F1F4EF"
+          metadata: "#F1F4EF"
+          icon: "#FFFFFF"
+          meaningfulSeparator: "#F1F4EF"
+          interactiveSurface: "#FFFFFF"
+          interactiveInk: "#182327"
+          focusRingInner: "#182327"
+          focusRingOuter: "#FFFFFF"
+        surfaceForeground.onLight:
+          primary: "#182327"
+          secondary: "#293337"
+          metadata: "#293337"
+          icon: "#182327"
+          meaningfulSeparator: "#182327"
+          interactiveSurface: "#FFFFFF"
+          interactiveInk: "#182327"
+          focusRingInner: "#FFFFFF"
+          focusRingOuter: "#182327"
+      contrastEvidence:
+        path: qa/v0.8.9-gradient-contrast.json
+        bytes: 5935
+        sha256: c9a1c5340d324d197a5a55a28222980f816d74cf6f39d6bc52588b598b5447ed
+        status: passed · 7 gradients × 1001 samples × 2 foregrounds · 14014 comparisons · 0 failures
+        tokenPreflightMethod: 1001 positions under exact sRGB interpolation
+        floors:
+          atmosphere.gradient.measure.deep: {primary: "5.54:1", secondary: "4.99:1"}
+          atmosphere.gradient.measure.luminous: {primary: "8.32:1", secondary: "6.71:1"}
+          atmosphere.gradient.ground.current: {primary: "5.72:1", secondary: "5.16:1"}
+          atmosphere.gradient.ground.mist: {primary: "11.36:1", secondary: "9.16:1"}
+          atmosphere.gradient.cultivate.glow: {primary: "6.11:1", secondary: "4.93:1"}
+          atmosphere.gradient.cultivate.mist: {primary: "10.94:1", secondary: "8.82:1"}
+          atmosphere.gradient.diversity.spectrum: {primary: "6.11:1", secondary: "4.93:1"}
+        renderedGate: glyph, alpha-stack, photograph, focus, export, and device validation remain pending per artifact
+      overlayPolicy: a passing standalone governed gradient remains visible without a blanket white or black scrim; add a deterministic scrim or opaque panel only when the exact photograph, nested alpha layer, altered geometry, or rendered glyph sample fails
+      inventory:
+        sharedAtmosphere: 7
+        assetOnlyMotif: 3
+        productIdentityThemeSpecimens: 8
+        totalGradientRecords: 18
+    visualBaselines: [light, dark]
+    adaptiveTheme: system is a user preference, not a visual-baseline state
+    latestAliases: [index.html, landometer-design-system-v0.8.9-standalone.html]
+    immutableColorBaseline:
+      path: landometer-design-system-v0.8.9-standalone.color-srgb-02.html
+      registryMarker: data-color-registry="color-srgb-02"
+      buildChannelMarker: data-build-channel="immutable-color-set"
+      bytes: 2023033
+      sha256: cc5cdd8fa7b0e1a06fe4095b0e8cff7ed3c4b21e7dda3537b472289711a1e8eb
+      integrityMode: append-only Color Set baseline; never rewritten for a UI-only change
+      status: preserved byte-for-byte
+    currentArtifactBuild:
+      id: ui-20260807-07
+      path: landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html
+      registryMarker: data-color-registry="color-srgb-02"
+      artifactBuildMarker: data-artifact-build="ui-20260807-07"
+      buildChannelMarker: data-build-channel="immutable-artifact-build"
+      bytes: 2023038
+      sha256: afdd838e30f4e944877f997498a33d7ebd7411134bea2ebd85be9b00493e2ec2
+      integrityMode: append-only UI artifact; byte parity with latest standalone after normalizing only data-build-channel
+      status: built; reproducibility and browser geometry checks passed; broader manual gates remain open
+  deliveryIdentity:
+    colorSetId: color-srgb-02
+    artifactBuildId: ui-20260807-07
+    tokenRegistry:
+      path: assets/data/tokens.json
+      version: 0.8.6
+      sha256: 085193279178089daca95019a34599cc79180dc24b26d873ced3be9b08bd13b2
+    scaleRegistry:
+      path: assets/data/scales.json
+      version: 0.8.6
+      sha256: 83bee2ed86f55c3a01914ce2826f294b90e8f7d77f7eef4dc02b9b1cc4d4cdb1
+    artifactHashes:
+      - channel: hosted_root
+        path: index.html
+        bytes: 875081
+        sha256: f413ee533d124cad23885cb9e9a2c9261fe06190eb55319c3e355204d8d33c2e
+        colorSetId: color-srgb-02
+        artifactBuildId: ui-20260807-07
+        derivationRef: deployment/index.html source artifact
+        evidenceRef: qa/v0.8.9-automated.json#source-integrity
+      - channel: latest_standalone
+        path: landometer-design-system-v0.8.9-standalone.html
+        bytes: 2023026
+        sha256: 7549a529883feea260cf1eb87c2c39febb740007116c5ab686ffa11ebd9198bc
+        colorSetId: color-srgb-02
+        artifactBuildId: ui-20260807-07
+        derivationRef: tools/build-standalone-html.mjs from deployment/index.html
+        evidenceRef: qa/v0.8.9-automated.json#standalone-build
+      - channel: immutable_artifact
+        path: landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html
+        bytes: 2023038
+        sha256: afdd838e30f4e944877f997498a33d7ebd7411134bea2ebd85be9b00493e2ec2
+        colorSetId: color-srgb-02
+        artifactBuildId: ui-20260807-07
+        derivationRef: tools/build-standalone-html.mjs with immutable-artifact-build channel marker
+        evidenceRef: qa/v0.8.9-automated.json#standalone-build
+    visualBaselineTheme: light
+  legacyReadOnlyBaseline:
+    authoringMasterVersion: 0.8.7
+    manifestVersion: 2.0
+    tokenSchemaVersion: 6
+  artifact:
+    name: Landometer Design Identity Playground + Implementation Library
+    product: landometer
+    profile: brand.public
+    pageKind: design_identity_playground_with_implementation_library
+    pageKindSourceRef: current owner instructions through 2026-08-07 + BRAND-01 + ADOPT-01 + VALUE-PROOF-01 + FLOW-02 + MOTION-01 + SHARE-01 + CONTEXT-01 + DATAVIZ-01 + CTRL-02
+    delivery: internal_demo
+    language: th
+    additionalLanguages: [en]
+    generationMode: not_applicable
+    outputType: webpage
+    deliveryConformance: not_claimed
+    deliveryVisibilityMismatch: internal_demo intent is projected through a public GitHub Pages URL; public-delivery gates remain open
+    artifactBuildId: ui-20260807-07
+  publication:
+    evidenceStatus: source_limited
+    visibility: public
+    repositoryVisibility: public
+    indexable: false
+    canonicalUrl: https://montri-th.github.io/Landometer/
+    robots: noindex,nofollow,noarchive
+    indexPolicyScope: html_page_only; linked public-safe artifacts do not inherit the page directive
+    robotsFile: project-path non-authoritative record; crawlers use the host-root robots.txt
+    socialPreviewMetadata: omitted while internal_demo and source_limited
+    structuredData: false
+    sitemap: false
+    discoveryStates:
+      machineReadableWhenOpened:
+        status: candidate
+        evidenceRefs: [qa/v0.8.9-automated.json#machine-readable-initial-html]
+      searchDiscoverable:
+        status: not_claimed
+        evidenceRefs: []
+      aiSearchDiscoverable:
+        status: not_claimed
+        evidenceRefs: []
+      agentReadableOrActionable:
+        status: not_claimed
+        evidenceRefs: []
+      reason: semantic initial HTML and public-safe release records are directly readable; deliberate noindex keeps this source-limited internal demo out of search and AI-search discovery, and no bounded agent action is enabled
+    multilingualMetadata: blocked until stable pre-rendered Thai and English URLs provide localized initial HTML, self-canonical URLs, reciprocal hreflang, and real locale links
+    browserIdentity: approved transparent compact symbol rendered for browser-tab favicon duty only; the horizontal header lockup remains separate
+    machineDiscoveryAid: project-path llms.txt; optional emerging-convention navigation aid only, not ranking, access control, conformance, host-root discovery, or agent permission
+    publicPromotionBlockers:
+      - resolve public-delivery evidence, rights, privacy, and machine-validation gates
+      - publish stable crawlable locale URLs with localized initial HTML, self-canonical links, reciprocal hreflang, and real locale navigation
+      - approve dedicated social-preview, touch, and maskable assets separately from the browser-tab favicon
+      - add truthful JSON-LD and an indexable self-canonical sitemap only after the underlying claims and URLs are verified
+      - coordinate any search-result favicon at the hostname root or a dedicated hostname
+  audience:
+    primary: every Landometer function working with design identity and experience
+    role: cross-functional adoption
+    roleRegistry:
+      owner: not_applicable
+      version: not_applicable
+      roles: []
+      uiStatus: not_applicable to brand.public; no role-specific proof or claim is rendered
+  voice:
+    applies: true
+    locales:
+      - locale: th
+        ruleRefs: [VOICE-01, COPY-01, LDM-VOICE-01, LOCALE-TH-01]
+        normativeSourceRef: Landometer Design System v0.8.9 authoring master
+        authoringBasisRef: current owner instruction + product-neutral shared-layer fixture
+        fixtureSetRef: Appendix D
+        copyHash: pending final publication parity record
+        naturalnessReviewRef: pending Thai read-aloud review
+        parityReviewRef: pending bilingual parity review
+      - locale: en
+        ruleRefs: [VOICE-01, COPY-01, LDM-VOICE-01]
+        normativeSourceRef: Landometer Design System v0.8.9 authoring master
+        authoringBasisRef: current owner instruction + product-neutral shared-layer fixture
+        fixtureSetRef: Appendix D
+        copyHash: pending final publication parity record
+        naturalnessReviewRef: pending editorial review
+        parityReviewRef: pending bilingual parity review
+  experience:
+    route: [Cultivate, Try, Align, Takeaway, Library, Closure]
+    trigger: a team member needs to apply Landometer design identity to a screen, map, report, or message
+    oneJob: improve one real work object and prepare it for the next person without changing its truth
+    promisedOutcome: a 60-second recipe plus expandable Intent → AHA cases, creative application opportunities, component ensembles, dataviz patterns, and governed evidence boundaries
+    firstAha: the same source-grounded object and facts become easier to scan and hand off when Assisted hierarchy is applied
+    ahaEvidenceCue: identical object, status, source, boundary, limitation, and next action remain visible in both comparison states
+    primaryAction: Open the practice fixture
+    nextUsefulAction: Copy the recipe, inspect a positive implementation case, try a local fixture, open a release record, or download the v0.8.9 authoring master
+    nextTriggerOrCleanCompletion: take the recipe into the real work tool or leave without saving
+    dominantObject: landometer-design-system@0.8.9
+    channelParityKey: ldm.ds.v0.8.9.design-identity-playground
+    brandSignatures: [Measure, Ground, Cultivate]
+    cleanCompletion: reader leaves with a selectable recipe, multiple positive design directions, a downloadable master, and a truthful release boundary
+    valueProof:
+      applies: true
+      invariantObjectAndEvidence: the selected practice work object, status, source, boundary, limitation, and authoritative result remain unchanged across Baseline and Assisted
+      selectedLenses: [brand_dna, brand_voice, brand_visual]
+      intentionalChangedVariables: [object and decision hierarchy, nouns and verbs, copy order and tone, local foreground hierarchy, atmosphere selection]
+      observableOutcome: the reader can identify the object, evidence boundary, meaning, and next action more quickly without losing truth
+  composition:
+    quietRegions:
+      - id: hero-message
+        selector: .hero-copy
+        job: keep the cultural invitation, one support sentence, and one action as the only focal group
+        desktopThreshold: 0.30
+        mobileThreshold: 0.20
+        minimumDimensionRatio: 0.25
+        secondaryUI: false
+        focalPreservation: source inspection passed
+        measuredRectangles: pending internal-demo manual review
+      - id: assisted-proof
+        selector: .proof-content
+        job: keep one work object, its proof, and its next action readable without a literal empty component
+        desktopThreshold: 0.30
+        mobileThreshold: 0.20
+        minimumDimensionRatio: 0.25
+        secondaryUI: false
+        focalPreservation: source inspection passed
+        measuredRectangles: pending internal-demo manual review
+      - id: closing-measure
+        selector: .closing-inner
+        job: close the route with the Brand Promise and one return action
+        desktopThreshold: 0.30
+        mobileThreshold: 0.20
+        minimumDimensionRatio: 0.25
+        secondaryUI: false
+        focalPreservation: source inspection passed
+        measuredRectangles: pending internal-demo manual review
+    gradientSurfaces:
+      - id: hero-measure
+        sceneId: top
+        recipe: surfaceAtmosphere.measure
+        resolvedThemeRecipes: {light: atmosphere.gradient.measure.deep, dark: atmosphere.gradient.measure.luminous}
+        job: entry
+        sourceTokenRefs: [atmosphere.gradient.measure.deep, atmosphere.gradient.measure.luminous]
+        angle: 135deg
+        focalTarget: cultural invitation + practice-fixture action
+        readingDirection: invitation to real team context
+        foregroundStrategy: bare_tested
+        foregroundContractRef: proof-measure-local-foreground
+        logoPairing: logo and release metadata stay transparent on a shared contrast-safe header surface
+        contrastEvidence: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-measure
+        deletionTest: pending manual review
+      - id: visual-measure
+        sceneId: play
+        recipe: surfaceAtmosphere.measure
+        resolvedThemeRecipes: {light: atmosphere.gradient.measure.deep, dark: atmosphere.gradient.measure.luminous}
+        job: orientation
+        teachingPreset: brand-dna
+        visualChooserOption: true
+        sourceTokenRefs: [atmosphere.gradient.measure.deep, atmosphere.gradient.measure.luminous]
+        angle: 135deg
+        focalTarget: active work object
+        readingDirection: same object under one selected signature
+        foregroundStrategy: bare_tested
+        foregroundContractRef: proof-measure-local-foreground
+        logoPairing: none
+        contrastEvidence: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-measure
+        deletionTest: pending manual review
+      - id: visual-ground
+        sceneId: play
+        recipe: surfaceAtmosphere.ground
+        resolvedThemeRecipes: {light: atmosphere.gradient.ground.mist, dark: atmosphere.gradient.ground.current}
+        job: transition
+        teachingPreset: brand-voice
+        visualChooserOption: true
+        sourceTokenRefs: [atmosphere.gradient.ground.mist, atmosphere.gradient.ground.current]
+        angle: 135deg
+        focalTarget: active work object
+        readingDirection: same object under one selected signature
+        foregroundStrategy: bare_tested
+        foregroundContractRef: proof-ground-local-foreground
+        logoPairing: none
+        contrastEvidence: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-ground
+        deletionTest: pending manual review
+      - id: visual-cultivate
+        sceneId: play
+        recipe: surfaceAtmosphere.cultivate
+        resolvedThemeRecipes: {light: atmosphere.gradient.cultivate.glow, dark: atmosphere.gradient.cultivate.mist}
+        job: momentum
+        visualChooserOption: true
+        sourceTokenRefs: [atmosphere.gradient.cultivate.glow, atmosphere.gradient.cultivate.mist]
+        angle: 135deg
+        focalTarget: active work object
+        readingDirection: same object under one selected signature
+        foregroundStrategy: bare_tested
+        foregroundContractRef: proof-cultivate-local-foreground
+        logoPairing: none
+        contrastEvidence: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-cultivate
+        deletionTest: pending manual review
+      - id: closing-measure
+        sceneId: closing
+        recipe: surfaceAtmosphere.measure
+        resolvedThemeRecipes: {light: atmosphere.gradient.measure.deep, dark: atmosphere.gradient.measure.luminous}
+        job: closure
+        sourceTokenRefs: [atmosphere.gradient.measure.deep, atmosphere.gradient.measure.luminous]
+        angle: 135deg
+        focalTarget: Brand Promise + return action
+        readingDirection: promise to final handoff test
+        foregroundStrategy: bare_tested
+        foregroundContractRef: proof-measure-local-foreground
+        logoPairing: none
+        contrastEvidence: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-measure
+        deletionTest: pending manual review
+    scrims: []
+    scrimPolicy: a passing standalone governed gradient remains unscreened; add a recorded deterministic scrim or opaque panel only when a photograph, nested alpha layer, altered geometry, or rendered glyph sample fails the applicable local contract
+    connectors: []
+    localForegroundContracts:
+      - id: proof-measure-local-foreground
+        surfaceRefs: [visual-measure, hero-measure, closing-measure]
+        surfaceKind: gradient
+        variants:
+          - theme: light
+            canonicalContractRef: surfaceForeground.onDeep
+            locale: all
+            state: all
+            viewport: all
+            stacking: all
+            primary: {tokenRef: surfaceForeground.onDeep.primary, resolvedValue: "#FFFFFF", localValueReason: not_applicable}
+            secondary: {tokenRef: surfaceForeground.onDeep.secondary, resolvedValue: "#F1F4EF", localValueReason: not_applicable}
+            metadata: {tokenRef: surfaceForeground.onDeep.metadata, resolvedValue: "#F1F4EF", localValueReason: not_applicable}
+            separator: {tokenRef: surfaceForeground.onDeep.meaningfulSeparator, resolvedValue: "#F1F4EF", localValueReason: not_applicable}
+            icon: {tokenRef: surfaceForeground.onDeep.icon, resolvedValue: "#FFFFFF", localValueReason: not_applicable}
+            focus: {tokenRef: surfaceForeground.onDeep.focusRing, resolvedValue: "inner #182327 / outer #FFFFFF", localValueReason: not_applicable}
+            interaction: {tokenRef: surfaceForeground.onDeep.interaction, resolvedValue: "surface #FFFFFF / ink #182327", localValueReason: not_applicable}
+            contrastEvidenceRef: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-measure-deep
+          - theme: dark
+            canonicalContractRef: surfaceForeground.onLight
+            locale: all
+            state: all
+            viewport: all
+            stacking: all
+            primary: {tokenRef: surfaceForeground.onLight.primary, resolvedValue: "#182327", localValueReason: not_applicable}
+            secondary: {tokenRef: surfaceForeground.onLight.secondary, resolvedValue: "#293337", localValueReason: not_applicable}
+            metadata: {tokenRef: surfaceForeground.onLight.metadata, resolvedValue: "#293337", localValueReason: not_applicable}
+            separator: {tokenRef: surfaceForeground.onLight.meaningfulSeparator, resolvedValue: "#182327", localValueReason: not_applicable}
+            icon: {tokenRef: surfaceForeground.onLight.icon, resolvedValue: "#182327", localValueReason: not_applicable}
+            focus: {tokenRef: surfaceForeground.onLight.focusRing, resolvedValue: "inner #FFFFFF / outer #182327", localValueReason: not_applicable}
+            interaction: {tokenRef: surfaceForeground.onLight.interaction, resolvedValue: "surface #FFFFFF / ink #182327", localValueReason: not_applicable}
+            contrastEvidenceRef: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-measure-luminous
+        evidenceRefs: [qa/v0.8.9-gradient-contrast.json]
+        status: exact normative floors and token-level evidence passed; rendered glyph, alpha-stack, photograph, focus, export, and device review remain pending
+      - id: proof-ground-local-foreground
+        surfaceRefs: [visual-ground]
+        surfaceKind: gradient
+        variants:
+          - theme: light
+            canonicalContractRef: surfaceForeground.onLight
+            locale: all
+            state: all
+            viewport: all
+            stacking: all
+            primary: {tokenRef: surfaceForeground.onLight.primary, resolvedValue: "#182327", localValueReason: not_applicable}
+            secondary: {tokenRef: surfaceForeground.onLight.secondary, resolvedValue: "#293337", localValueReason: not_applicable}
+            metadata: {tokenRef: surfaceForeground.onLight.metadata, resolvedValue: "#293337", localValueReason: not_applicable}
+            separator: {tokenRef: surfaceForeground.onLight.meaningfulSeparator, resolvedValue: "#182327", localValueReason: not_applicable}
+            icon: {tokenRef: surfaceForeground.onLight.icon, resolvedValue: "#182327", localValueReason: not_applicable}
+            focus: {tokenRef: surfaceForeground.onLight.focusRing, resolvedValue: "inner #FFFFFF / outer #182327", localValueReason: not_applicable}
+            interaction: {tokenRef: surfaceForeground.onLight.interaction, resolvedValue: "surface #FFFFFF / ink #182327", localValueReason: not_applicable}
+            contrastEvidenceRef: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-ground-mist
+          - theme: dark
+            canonicalContractRef: surfaceForeground.onDeep
+            locale: all
+            state: all
+            viewport: all
+            stacking: all
+            primary: {tokenRef: surfaceForeground.onDeep.primary, resolvedValue: "#FFFFFF", localValueReason: not_applicable}
+            secondary: {tokenRef: surfaceForeground.onDeep.secondary, resolvedValue: "#F1F4EF", localValueReason: not_applicable}
+            metadata: {tokenRef: surfaceForeground.onDeep.metadata, resolvedValue: "#F1F4EF", localValueReason: not_applicable}
+            separator: {tokenRef: surfaceForeground.onDeep.meaningfulSeparator, resolvedValue: "#F1F4EF", localValueReason: not_applicable}
+            icon: {tokenRef: surfaceForeground.onDeep.icon, resolvedValue: "#FFFFFF", localValueReason: not_applicable}
+            focus: {tokenRef: surfaceForeground.onDeep.focusRing, resolvedValue: "inner #182327 / outer #FFFFFF", localValueReason: not_applicable}
+            interaction: {tokenRef: surfaceForeground.onDeep.interaction, resolvedValue: "surface #FFFFFF / ink #182327", localValueReason: not_applicable}
+            contrastEvidenceRef: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-ground-current
+        evidenceRefs: [qa/v0.8.9-gradient-contrast.json]
+        status: exact normative floors and token-level evidence passed; rendered glyph, alpha-stack, photograph, focus, export, and device review remain pending
+      - id: proof-cultivate-local-foreground
+        surfaceRefs: [visual-cultivate]
+        surfaceKind: gradient
+        variants:
+          - theme: light
+            canonicalContractRef: surfaceForeground.onLight
+            locale: all
+            state: all
+            viewport: all
+            stacking: all
+            primary: {tokenRef: surfaceForeground.onLight.primary, resolvedValue: "#182327", localValueReason: not_applicable}
+            secondary: {tokenRef: surfaceForeground.onLight.secondary, resolvedValue: "#293337", localValueReason: not_applicable}
+            metadata: {tokenRef: surfaceForeground.onLight.metadata, resolvedValue: "#293337", localValueReason: not_applicable}
+            separator: {tokenRef: surfaceForeground.onLight.meaningfulSeparator, resolvedValue: "#182327", localValueReason: not_applicable}
+            icon: {tokenRef: surfaceForeground.onLight.icon, resolvedValue: "#182327", localValueReason: not_applicable}
+            focus: {tokenRef: surfaceForeground.onLight.focusRing, resolvedValue: "inner #FFFFFF / outer #182327", localValueReason: not_applicable}
+            interaction: {tokenRef: surfaceForeground.onLight.interaction, resolvedValue: "surface #FFFFFF / ink #182327", localValueReason: not_applicable}
+            contrastEvidenceRef: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-cultivate-glow
+          - theme: dark
+            canonicalContractRef: surfaceForeground.onLight
+            locale: all
+            state: all
+            viewport: all
+            stacking: all
+            primary: {tokenRef: surfaceForeground.onLight.primary, resolvedValue: "#182327", localValueReason: not_applicable}
+            secondary: {tokenRef: surfaceForeground.onLight.secondary, resolvedValue: "#293337", localValueReason: not_applicable}
+            metadata: {tokenRef: surfaceForeground.onLight.metadata, resolvedValue: "#293337", localValueReason: not_applicable}
+            separator: {tokenRef: surfaceForeground.onLight.meaningfulSeparator, resolvedValue: "#182327", localValueReason: not_applicable}
+            icon: {tokenRef: surfaceForeground.onLight.icon, resolvedValue: "#182327", localValueReason: not_applicable}
+            focus: {tokenRef: surfaceForeground.onLight.focusRing, resolvedValue: "inner #FFFFFF / outer #182327", localValueReason: not_applicable}
+            interaction: {tokenRef: surfaceForeground.onLight.interaction, resolvedValue: "surface #FFFFFF / ink #182327", localValueReason: not_applicable}
+            contrastEvidenceRef: qa/v0.8.9-gradient-contrast.json#atmosphere-gradient-cultivate-mist
+        evidenceRefs: [qa/v0.8.9-gradient-contrast.json]
+        status: exact normative floors and token-level evidence passed; rendered glyph, alpha-stack, photograph, focus, export, and device review remain pending
+  brandAlignment:
+    productStatement: shared Landometer design identity only; no product capability statement
+    proofObject: landometer-design-system@0.8.9
+    ahaProvesPromise: true
+    networkAdvancesObjective: false
+  investment:
+    mode: none_no_honest_investment
+  proof:
+    kind: brand
+    object: landometer-design-system@0.8.9
+    sourceStatus: source_limited
+    limitation: owner-approved authoring master; regenerated public-safe machine package and artifact gates remain pending
+  theme:
+    mode: interactive_auto
+    support: dual
+    default: system
+    visibleOverride: true
+    control: single quiet icon button
+    cycle: [system, light, dark]
+  localeControls:
+    control: single quiet state button
+    cycle: [th, en]
+  motion:
+    intensity: guided
+    motionEnhancement: false
+    referenceFixture: MOTION-FIXTURE-0.1
+    behavior: user-triggered local semantic sequence; final meaning is the default, reduced-motion, and no-JavaScript state
+  capabilities:
+    analyticalEvidence: true
+    motionEnhancement: false
+    personalization: false
+    search: false
+    share: false
+    map: false
+    dataVisualization: true
+    coCreation: false
+    persistence: false
+    externalSideEffect: false
+    authentication: false
+    permissions: false
+    contextDiscovery: true
+    externalNavigation: true
+    thirdPartyRequest: explicit_user_triggered_visible_query_plus_selected_route
+    agentReadable: false
+    boundedAgentAction: false
+    agentActionEffect: none
+    fullLivingReference: false
+  contextDiscoveryActions:
+    - id: context-source-search-google
+      kind: source_search
+      job: find source pages for the exact visible CityMETER disaster context without retyping it
+      provider: Google Search
+      composedFields: [event display name, event date, known cause when present, active public-safe field label, intent keyword, village, municipality or subdistrict administration, district, province]
+      exactEditableQueryOrPrompt:
+        runtimeSourceRef: '#context-query'
+        variants:
+          - '"ปี 2567 อุทกภัย" 27 พฤศจิกายน 2567 น้ำป่าไหลหลาก น้ำท่วมฉับพลัน "ยอดผู้เสียชีวิต" ข่าว "หมู่บ้านท่าไทร" "องค์การบริหารส่วนตำบล เกาะยอ" "อำเภอเมืองสงขลา" "จังหวัดสงขลา"'
+          - '"ปี 2567 อัคคีภัย" 26 ธันวาคม 2567 "ผู้เสียชีวิต 3 ราย" ข่าว "หมู่บ้านโกรกพระ" "เทศบาลตำบล โกรกพระ" "อำเภอโกรกพระ" "จังหวัดนครสวรรค์"'
+          - '"ปี 2567 วาตภัย" พายุฤดูร้อน 3 พฤษภาคม 2567 "บ้านเรือนเสียหาย" ข่าว "หมู่บ้านบึงหลัก" "เทศบาลตำบล ป่าเซ่า" "อำเภอเมืองอุตรดิตถ์" "จังหวัดอุตรดิตถ์"'
+          - '"ปี 2567 ดินถล่ม" 17 สิงหาคม 2567 "ผู้ได้รับผลกระทบ" ข่าว "หมู่บ้านนาโต่" "องค์การบริหารส่วนตำบล แม่สลองใน" "อำเภอแม่ฟ้าหลวง" "จังหวัดเชียงราย"'
+      publicSafe: true
+      activation: explicit_user_action
+      privacyRemovedFields: []
+      destinationOrProviderRoute: https://www.google.com/search?q={visible-editable-query}
+      recovery: keep the exact query visible and copyable; remain on the current page if the external route is blocked
+      evidenceStatus: discovery_only
+      evidencePromotionBoundary: open and review source pages, preserve provenance, and deliberately incorporate only checked claims
+      evidenceRef: implementation-notes.v0.8.9.md#context-discovery
+    - id: context-ai-synthesis-google
+      kind: ai_synthesis
+      job: synthesize and ask follow-up questions about the exact visible CityMETER disaster context
+      provider: Google AI Mode
+      composedFields: [event display name, event date, known cause when present, active public-safe field label, intent keyword, village, municipality or subdistrict administration, district, province]
+      exactEditableQueryOrPrompt:
+        runtimeSourceRef: '#context-query'
+        variants:
+          - '"ปี 2567 อุทกภัย" 27 พฤศจิกายน 2567 น้ำป่าไหลหลาก น้ำท่วมฉับพลัน "ยอดผู้เสียชีวิต" ข่าว "หมู่บ้านท่าไทร" "องค์การบริหารส่วนตำบล เกาะยอ" "อำเภอเมืองสงขลา" "จังหวัดสงขลา"'
+          - '"ปี 2567 อัคคีภัย" 26 ธันวาคม 2567 "ผู้เสียชีวิต 3 ราย" ข่าว "หมู่บ้านโกรกพระ" "เทศบาลตำบล โกรกพระ" "อำเภอโกรกพระ" "จังหวัดนครสวรรค์"'
+          - '"ปี 2567 วาตภัย" พายุฤดูร้อน 3 พฤษภาคม 2567 "บ้านเรือนเสียหาย" ข่าว "หมู่บ้านบึงหลัก" "เทศบาลตำบล ป่าเซ่า" "อำเภอเมืองอุตรดิตถ์" "จังหวัดอุตรดิตถ์"'
+          - '"ปี 2567 ดินถล่ม" 17 สิงหาคม 2567 "ผู้ได้รับผลกระทบ" ข่าว "หมู่บ้านนาโต่" "องค์การบริหารส่วนตำบล แม่สลองใน" "อำเภอแม่ฟ้าหลวง" "จังหวัดเชียงราย"'
+      publicSafe: true
+      activation: explicit_user_action
+      privacyRemovedFields: []
+      destinationOrProviderRoute: https://www.google.com/search?udm=50&q={visible-editable-query}
+      recovery: keep the exact query copyable and identify https://google.com/ai when direct AI routing is unavailable; never switch modes silently
+      evidenceStatus: discovery_only
+      evidencePromotionBoundary: AI synthesis is not evidence; open citations, check important claims across more than one source, preserve provenance, and incorporate deliberately
+      evidenceRef: implementation-notes.v0.8.9.md#context-discovery
+  fixtureCapabilities:
+    dataVisualization:
+      status: enabled_for_training_and_product_specific_snapshots
+      fixtureId: DV-FIXTURE-0.1
+      snapshotId: CITYMETER-DV-SNAPSHOT-2026-07-29
+      patterns: [compare, change, relationship]
+      productSnapshotPatterns: [choropleth anatomy, flood time series, flood ranking, flood overlap profile, vehicle ranking, brand-model treemap, composition and trend, two-brand compare, micro trends]
+      sourceStatus: mixed_source_limited
+      limitation: DV-FIXTURE-0.1 remains synthetic; CITYMETER-DV-SNAPSHOT-2026-07-29 is a product-specific public API snapshot plus labelled treatment sketches, not a portfolio claim or evidence of live-product conformance
+      mapResult: false
+      externalEffect: false
+    colorAtlas:
+      status: enabled_for_reference_training_only
+      fixtureId: COLOR-ATLAS-0.8.9
+      coverage:
+        identityAndLogoRecords: 14
+        foundationPairs: 17
+        semanticStates: 7
+        sharedGradients: 7
+        motifGradients: 3
+        productGradientFamilies: 4
+        productGradientThemeSpecimens: 8
+        gradientRecords: 18
+        categoricalPairs: 10
+        scaleRecords: 18
+        lutCellsPerScale: 41
+        lutCellsTotal: 738
+        classCounts: [5, 7, 9]
+        classCellsTotal: 378
+        samplerFamilyCount: 9
+        samplerPairedThemeCells: 189
+        mapPairs: 8
+        opacityValues: 8
+        depthRoles: 6
+      scaleSource: assets/data/scales.json · meta.version 0.8.6 · carried reference fixture
+      scaleGate: pending — source_limited; not the gated v0.8.9 dataviz.tokens.json package; hash, renderer/legend/export parity, contrast, and CVD review remain open
+      scaleTeaching: concise sampler renders all six sequential and three diverging families at exact 5/7/9 classes in the active theme; complete 41-stop light/dark LUT atlas remains available in a disclosure
+      productGradientBoundary: product identity specimens only; never shared atmosphere, data, map, interaction, or semantic state
+      externalEffect: false
+    experiencePatterns:
+      status: enabled_for_reference_training_only
+      fixtureId: UX-FIXTURE-0.1
+      patterns: [three_intent_aha_design_cases, one_static_rejected_case, four_component_ensembles, eight_creative_application_sketches, three_dataviz_extensions, deterministic_local_cta_fixture]
+      localStateOnly: true
+      limitation: examples teach design reasoning and do not claim enabled product features or outcomes
+    motion:
+      status: enabled_for_local_reference_only
+      fixtureId: MOTION-FIXTURE-0.1
+      sequence: [object_immediate, meaning_120ms, action_320ms, final]
+      reducedMotion: final meaning immediately
+      noJavaScript: final meaning immediately; replay controls omitted
+      externalEffect: false
+    recipientValue:
+      status: static_reference_only
+      fixtureId: NETWORK-FIXTURE-0.1
+      sequence: [source_aha, exact_object_handoff_preview, delivery_receipt, recipient_lands_same_object, recipient_aha, recipient_useful_action, observed_governed_outcome]
+      shareControl: false
+      telemetry: false
+      externalEffect: false
+      limitation: no delivery, recipient behavior, product network effect, or network outcome is simulated or claimed
+    contextualDiscovery:
+      status: enabled_explicit_user_triggered_reference_action
+      fixtureId: CONTEXT-FIXTURE-0.1
+      productContext: four current public CityMETER disaster-record snapshots retrieved 29 Jul 2026; product-specific reference, not independent ground-truth verification
+      activeObject: one of Tha Sai flood, Krok Phra fire, Bueng Lak storm, or Na To landslide
+      activeFilter: visible field label; a numeric value appears only for the independently corroborated Krok Phra fire case
+      publicPlaceHierarchy: event-specific village → municipality or subdistrict administrative organisation → district → province
+      composition: event display name + event date + known cause + active public-safe field label + intent keyword + public place hierarchy
+      supportedModes: [source_search, ai_synthesis]
+      destination: explicit user-confirmed Google Search or Google AI Mode GET in a new tab
+      thirdPartyRequest: true
+      outboundData: visible editable q value plus the explicitly selected destination mode; no hidden context
+      remoteMutation: false
+      resultStatus: discovery_only until provenance review and deliberate incorporation
+      aiBoundary: AI synthesis is a discovery aid, not a source or evidence; open cited sources, check important claims across more than one source, and preserve provenance before incorporation
+      providerRouting: the Google AI Mode route is an implementation detail, not a normative contract; availability can vary by locale, account, and provider state
+      providerInfluence: provider account, search history, and personalization may affect returned results outside this artifact
+      fallback: keep the exact query copyable and identify the documented provider entry point if the direct AI route is unavailable; never silently switch modes
+      telemetry: false
+      persistence: false
+      externalSideEffect: false
+      limitation: public incident endpoint exposes no provenance; records remain CityMETER snapshots, values with unresolved geographic scope are omitted, and no superior-relevance claim is made for Search or AI Mode
+    machineDiscovery:
+      status: navigation_aid_only
+      path: llms.txt
+      agentReadableCapability: false
+      boundedAgentAction: false
+      limitation: project-path optional proposal; not a host-root discovery guarantee, ranking signal, conformance claim, access control, or permission to act
+  referenceFixtures:
+    - id: COLOR-ATLAS-0.8.9
+      sourceAndDate: Landometer Design System v0.8.9 Appendix A + carried scales.json reference fixture · 29 Jul 2026
+      methodOrRecipe: render every active-authoring color role as exact light/dark swatches; render all analytical LUT and 5/7/9 classes from pre-generated cells without runtime mixing
+      signalClass: source_limited design-system reference fixture
+      confidence: exact authoring values; generated v0.8.9 package conformance not claimed
+      limitation: scales.json carries meta.version 0.8.6 and is not the gated v0.8.9 dataviz.tokens.json package; hash parity, renderer/legend/export parity, contrast, CVD, and product implementation evidence remain pending
+      allowedUses: [design-system training, color-role review, implementation planning, accessibility preparation]
+      nextSafeAction: generate and validate the v0.8.9 public-safe token package before claiming production scale conformance
+    - id: DV-FIXTURE-0.1
+      sourceAndDate: Landometer synthetic training fixture · 28 Jul 2026
+      methodOrRecipe: fixed hand-authored values for Compare, Change, Relationship, measured zero, no data, missing period, and counter-signal treatment
+      signalClass: calculated synthetic fixture
+      confidence: not applicable — non-empirical fixture
+      limitation: not evidence about a real place, city, product, person, or outcome; compare only within one example under the declared unit and method
+      missingness: Area E and Q3 are intentionally no-data; Area D is an intentional measured zero
+      allowedUses: [design-system training, accessibility review, implementation reference]
+      nextSafeAction: replace with product-owned evidence, method, unit, period, boundary, and allowed use before product reuse
+    - id: CITYMETER-DV-SNAPSHOT-2026-07-29
+      sourceAndDate: public CityMETER runtime and API snapshots checked 29 Jul 2026
+      methodOrRecipe: preserve current product chart forms, attach date/unit/geography/type, use direct labels and non-colour cues, and separate public API values from anatomy-only treatment sketches
+      signalClass: product-specific public snapshot plus design-treatment reference
+      confidence: source_limited — API responses observed; product provenance and release metadata are not exposed by the endpoints
+      limitation: flood and vehicle values are CityMETER-specific snapshots; map geometry and treatment sketches do not claim a real rendered result or live-product conformance
+      allowedUses: [CityMETER dataviz critique, design-system treatment review, accessibility review]
+      nextSafeAction: resolve product-owned source, schema/release, method, allowed use, and accessible table before production adoption
+    - id: UX-FIXTURE-0.1
+      sourceAndDate: v0.8.9 owner-directed implementation examples · 28 Jul 2026
+      methodOrRecipe: Intent → useful AHA → design response → moment of value → evidence/privacy boundary → next useful action or clean completion
+      signalClass: non-empirical design reference
+      confidence: not applicable
+      limitation: concept sketches and component ensembles are not live product features, performance evidence, or outcome claims
+      allowedUses: [design critique, concept generation, bounded product-adaptation planning]
+      nextSafeAction: resolve a product-owned Build Card and evidence record before implementation
+    - id: MOTION-FIXTURE-0.1
+      sourceAndDate: canonical v0.8.9 motion roles · 28 Jul 2026
+      methodOrRecipe: user-triggered object → meaning → action sequence with Replay, Pause/show final, and visible event log
+      signalClass: local interaction reference
+      confidence: not applicable
+      limitation: not a Full Living Reference motion sandbox and not a product behavior claim
+      allowedUses: [semantic-motion training, reduced-motion review, component implementation reference]
+      nextSafeAction: test real product state transitions with reduced-motion and no-JavaScript evidence before release
+    - id: NETWORK-FIXTURE-0.1
+      sourceAndDate: CORE-10 + SHARE-01 recipient-value sequence · 28 Jul 2026
+      methodOrRecipe: static evidence ladder from source AHA to observed governed outcome
+      signalClass: static reference
+      confidence: not applicable
+      limitation: no share, delivery, recipient action, telemetry, or product network effect occurs
+      allowedUses: [recipient-value design training, share-readiness review]
+      nextSafeAction: require product-owned recipient, permission, route, receipt, and recovery before enabling share; govern telemetry only if separately enabled, and require observed outcome evidence before claiming network effect
+    - id: CONTEXT-FIXTURE-0.1
+      sourceAndDate: four public CityMETER disaster-record snapshots + CONTEXT-01 · checked 29 Jul 2026
+      methodOrRecipe: compose one visible editable query from current event name, date, known cause, active public-safe field label, user intent, and event-specific place hierarchy; then let the user explicitly choose source Search or AI synthesis
+      signalClass: product-specific current-record reference
+      confidence: source_limited — public endpoint exposes records but no provenance
+      limitation: not independent ground-truth verification; values with unresolved geographic scope are omitted and Search results and AI synthesis remain discovery_only
+      allowedUses: [context-discovery design training, source-search and AI-synthesis mode review, CTA integrity review, query-privacy review]
+      nextSafeAction: open and review cited sources, preserve provenance before deliberate incorporation, confirm governed runtime provenance, and measure same-intent relevance before making a comparative performance claim
+  privacy:
+    personalData: false
+    sensitivity: public
+    redactedPublicProjection: false
+  telemetry:
+    enabled: false
+    scope: none
+    purpose: ""
+    dataClasses: []
+    retention: ""
+    privacyBasis: ""
+  network:
+    mode: reference_ready
+    action: none
+    networkAdvancesObjective: false
+    recipientOutcome: not_observed — reference target only; a future recipient should receive the same object/version/boundary
+    policyReason: not_applicable — no network action is enabled
+  assets:
+    officialLogo: available
+    officialLogoAsset:
+      id: landometer-horizontal-lockup
+      variant: horizontal_lockup_transparent
+      sha256: f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535
+      canvas: transparent
+      placement: direct_surface
+      surfacePairingRef: site-header-shared-blue-tint
+      identityApproval:
+        id: repository-public-use-ce785864
+        authorityRole: brand_identity_authority
+        delegatedAuthorityRecordId: none
+        decision: direct_surface
+        assetId: landometer-horizontal-lockup
+        variant: horizontal_lockup_transparent
+        sha256: f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535
+        canvas: transparent
+        placement: direct_surface
+        surfaceRef: site-header-shared-blue-tint
+        themesOrBackdrops: [fixed_blue_tint_in_light, fixed_blue_tint_in_dark]
+        recordVersion: ce785864e5341321e1957dce35a8326732764432
+        validFrom: 2026-07-31
+        expiresAt: null
+        evidenceRef: repository main commit ce785864e5341321e1957dce35a8326732764432
+    identityDelivery:
+      - id: header-horizontal-lockup
+        context: header
+        assetId: landometer-horizontal-lockup
+        variant: horizontal_lockup_transparent
+        mimeType: image/png
+        sha256: f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535
+        intrinsicSizePx: 3818x1048
+        deliveredSizesPx: [138x38, 184x51]
+        canvas: transparent
+        backgroundRef: site-header-shared-blue-tint
+        clearSpaceRef: logo-surface-min-height-52-padding-block-4
+        themeStrategy: fixed
+        stableUrl: none
+        cacheRevision: none
+        approvalId: repository-public-use-ce785864
+        approvalScope: exact horizontal lockup on the shared contrast-safe header surface only
+        evidenceRef: repository main commit ce785864e5341321e1957dce35a8326732764432
+      - id: browser-tab-compact-symbol
+        context: browser_tab
+        assetId: landometer-compact-symbol
+        variant: transparent_compact_symbol
+        mimeType: image/png
+        sha256: 35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85
+        intrinsicSizePx: 192x192
+        deliveredSizesPx: [16x16, 32x32, 192x192]
+        canvas: transparent
+        backgroundRef: browser-provided-tab-surface
+        clearSpaceRef: approved-transparent-canvas-alpha-bounds-x4-187-y0-191
+        themeStrategy: fixed
+        stableUrl: https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f
+        cacheRevision: 35a1496f
+        approvalId: repository-public-use-ce785864
+        approvalScope: browser-tab favicon only; not search-result, social-preview, touch, maskable, or header approval
+        evidenceRef: repository main commit ce785864e5341321e1957dce35a8326732764432
+    approvedPhotography: [team-hero-existing-public-rendition]
+    approvedWorkProof: []
+    mediaAssets:
+      - assetId: team-hero-existing-public-rendition
+        variant: exact_repository_jpeg
+        sha256: 50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb
+        permissionRecordId: team-hero-owner-use
+        sourceOrOwner: Landometer owner
+        creatorCredit: not recorded — open release gate
+        context: Landometer team portrait used as culture context, not product-outcome evidence
+        capturedAt: not recorded — open release gate
+        dimensionsPx: exact repository rendition
+        cropOrRedaction: source bytes unchanged; responsive CSS object-fit cover at 53% center
+        altText: Landometer team members together in their workspace
+        displayedCredit: none recorded — open release gate
+        privacyScreenReview: pending current release review
+        approvedUse: existing public design-system page rendition only
+    permissionRecords:
+      - id: team-hero-owner-use
+        owner: Landometer owner
+        assetIds: [team-hero-existing-public-rendition]
+        permittedUse: existing public design-system page rendition only; not transferable to another context by implication
+        variantsAndHashes: [team-hero-existing-public-rendition@50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb]
+        expiry: not recorded — open release gate
+  artifactIdentityEvidence:
+    logoPath: assets/images/landometer-logo-banner.png
+    logoSha256: f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535
+    logoTransform: none
+    logoBackground: transparent_non_negotiable
+    logoCarrier: prohibited
+    releaseMetadataBackground: transparent
+    contrastStrategy: change the shared surrounding header surface; never add a logo or metadata box, plate, carrier, border, or radius
+    logoApprovalBoundary: existing repository public-use record; formal current identity registry remains pending
+    browserTabIcon:
+      status: approved
+      rendered: true
+      path: assets/images/landometer-symbol-transparent.png
+      href: assets/images/landometer-symbol-transparent.png?v=35a1496f
+      standaloneHref: https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f
+      cacheRevision: 35a1496f
+      variant: transparent_compact_symbol
+      context: browser_tab_favicon_only
+      mimeType: image/png
+      intrinsicSize: 192x192
+      declaredSizes: [192x192]
+      bytes: 11001
+      sha256: 35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85
+      transparentCanvas: true
+      alphaBounds: x=4..187, y=0..191 on the approved 192x192 canvas
+      transform: none
+      themeStrategy: same transparent RGBA bytes for light, dark, and system; no carrier, recolor, filter, crop, mask, or reconstructed padding
+      approvalScope: browser-tab favicon only; not social-preview, touch, maskable application-icon, or horizontal-header-lockup approval
+      approvalSource: repository main commit ce785864e5341321e1957dce35a8326732764432 · Use transparent Landometer symbol favicon
+      manualReview: small-size browser-tab, bookmark, shortcut, and supported-theme review remains open
+      hostSearchFaviconControl: search-result favicon selection is hostname-level; a GitHub Pages project subpath cannot independently guarantee a distinct search-result favicon
+    openingPhotoPath: assets/images/team-hero.jpg
+    openingPhotoSha256: 50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb
+    openingPhotoTransform: source bytes unchanged; responsive CSS crop uses object-fit cover and object-position 53% center
+    photoApprovalBoundary: exact existing public repository rendition reused; formal rights and expiry record remains pending
+  referenceDocuments:
+    - path: assets/downloads/landometer-design-system-v0.8.9.md
+      bytes: 269767
+      sha256: 00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68
+      transform: v0.8.9-r1 integrates the complete v0.8.8-r3 authoring authority and the owner-approved harmonized gradient-diversity family; exact bytes and hash are frozen in this release record
+      status: source_limited; machineValidation pending
+    - path: assets/data/color-delivery.v0.8.9.json
+      bytes: 11471
+      sha256: 31573fd8d50f0d702dd5fe43f89d8e00c38fb0170788f7e0cb658cc161298bd8
+      usageClass: artifact-level SDR sRGB delivery and build-parity registry
+      status: owner-approved authoring contract with artifact evidence; source_limited
+    - path: landometer-design-system-v0.8.9-standalone.html
+      bytes: 2023026
+      sha256: 7549a529883feea260cf1eb87c2c39febb740007116c5ab686ffa11ebd9198bc
+      usageClass: self-contained single-file playground snapshot
+      transform: generated from deployment/index.html with nine display-font files, the official horizontal logo, and the team image embedded as data URLs; hosted-only font preloads are protocol-gated and opening the hosted source through file:// hands off to this embedded standalone while preserving URL state; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; the approved browser-tab symbol and linked release records use stable cache-revisioned production URLs
+      status: source_limited; self-contained build and local HTTP interaction verified; Safari direct-file handoff and font-readiness manual gate pending; machineValidation pending
+    - path: landometer-design-system-v0.8.9-standalone.color-srgb-02.html
+      bytes: 2023033
+      sha256: cc5cdd8fa7b0e1a06fe4095b0e8cff7ed3c4b21e7dda3537b472289711a1e8eb
+      usageClass: immutable self-contained Color Set baseline
+      registryId: color-srgb-02
+      integrityMode: append-only; preserved byte-for-byte across UI-only changes
+      status: preserved byte-for-byte
+    - path: landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html
+      bytes: 2023038
+      sha256: afdd838e30f4e944877f997498a33d7ebd7411134bea2ebd85be9b00493e2ec2
+      usageClass: immutable self-contained UI artifact-build handoff and visual-QA authority
+      registryId: color-srgb-02
+      artifactBuildId: ui-20260807-07
+      integrityMode: append-only; compared with latest standalone after normalizing only data-build-channel
+      status: built; source reproducibility and browser geometry checks passed; broader manual gates remain open
+    - path: implementation-notes.v0.8.9.md
+      bytes: 26768
+      sha256: 6c38f114fb625bbfb597281e0e63366d70c000d56e87d5e64ee158e3767bc070
+      authority: accepted non-normative artifact application record; v0.8.9-r1 authoring master governs
+      covers: [governed atmosphere restoration, role-based color guidance, complete 5/7/9 scale teaching, share placement, contextual source search, external AI synthesis, positive Intent-to-AHA examples, browser identity, SEO and machine-discovery gates]
+    - path: llms.txt
+      bytes: 5039
+      sha256: 6264c871ac0be414cbda3e6de66bab679b30d58e28b3f227724d771bdd415b1e
+      authority: optional project-path machine navigation aid only
+      agentAction: none
+    - path: qa/v0.8.9-automated.json
+      bytes: 6579
+      sha256: 077b087b831f7a227c6c473d0d913c61ee5897e56dc370783bc8f09fc262cfd6
+      usageClass: current automated release evidence bound to ui-20260807-07
+      status: targeted browser geometry and source validation passed; manual gates remain open
+    - path: qa/v0.8.9-scale-geometry.json
+      bytes: 28924
+      sha256: 22a0ea627bbe2e6a1e317619feb1a2391a06995dc5a67da825562534049f850d
+      usageClass: deterministic Playwright geometry evidence for localized 5/7/9 scale rows
+      status: 36 cases; 2,916 rows; all nine embedded font probes ready; zero failures
+  qa:
+    evidencePath: deployment/qa/
+    controlInventoryPath: deployment/control-inventory.v0.8.9.json
+    machineValidation: pending

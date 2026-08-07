@@ -1,0 +1,6 @@
+interface:
+  display_name: "Landometer DS v0.8.9"
+  short_description: "Apply the approved v0.8.9 authoring master"
+  default_prompt: "Use $apply-landometer-design-system-v0-8-9 to apply or audit this artifact against the owner-approved v0.8.9-r1 authoring master and report every open machine and artifact gate."
+policy:
+  allow_implicit_invocation: false

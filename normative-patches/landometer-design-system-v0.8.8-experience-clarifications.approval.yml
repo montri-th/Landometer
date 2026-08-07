@@ -1,0 +1,31 @@
+decision: approved_for_authoring_integration
+approvedAt: 2026-08-06
+authority: Landometer owner
+approvedProposal:
+  path: normative-patches/landometer-design-system-v0.8.8-experience-clarifications.proposal.md
+  bytes: 21420
+  sha256: 7cefbc3ef6afaa04082ab6ec6173f16ec448bcefbeb6830c956f9a960361dfb1
+baselineAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.8.md
+  gitCommit: 7775dbffc716a4dd02c500c5f13f66135751af72
+  authoringRevision: v0.8.8-r1
+  bytes: 227924
+  sha256: 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776
+integratedAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.8.md
+  authoringRevision: v0.8.8-r2
+  bytes: 259519
+  sha256: c7315de4d284b42c52414403334c8c4380ca2b52705454235f650108176c6445
+scope:
+  - changes_1_through_11
+nonPromotions:
+  - universal_chart_stroke_widths
+  - universal_solid_dashed_dotted_evidence_convention
+  - general_overlap_compositing_or_blend_algorithm
+  - fixed_depth_role_to_opacity_role_mapping
+  - tlwgmono_active_role
+  - universal_font_size_adjust_or_tracking_metrics
+  - unapproved_identity_assets_or_pairings
+machinePackageStatus: pending_regeneration_and_validation
+artifactMachineValidation: unchanged_pending_until_artifact_gates_pass
+publicationAuthorized: false

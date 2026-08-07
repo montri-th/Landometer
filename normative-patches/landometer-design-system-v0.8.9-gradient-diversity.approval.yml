@@ -1,0 +1,58 @@
+decision: approved_for_authoring_integration
+approvedAt: 2026-08-07
+authority: Landometer owner
+authorityEvidence:
+  instruction: "ออก normative ใหม่เป็น 0.8.9 เลยได้มั้ย แล้ว publish เลย ส่วน gradient อยากให้มีหลายๆแบบที่เข้ากันมากกว่า"
+  interpretation: Approve the exact harmonized gradient-diversity proposal as the bounded v0.8.9 authoring change and authorize publication after required package and artifact gates pass.
+approvedProposal:
+  path: normative-patches/landometer-design-system-v0.8.9-gradient-diversity.proposal.md
+  bytes: 10520
+  sha256: f92d7989b570239ac59cedd71cd0d9ad30d63fa4d36e73b332c644073c7d8580
+baselineAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.8.md
+  authoringRevision: v0.8.8-r3
+  bytes: 260855
+  sha256: 9429a52c59c8ef61ed9efb1466db3e1ee49e568ba9afb7e90b39f04ab3facae1
+integratedAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.9.md
+  authoringRevision: v0.8.9-r1
+  bytes: 269767
+  sha256: 00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68
+releaseIdentity:
+  designSystemVersion: 0.8.9
+  gradientRegistry: landometer-atmosphere-gradient-v2
+  colorSet: color-srgb-02
+  deliverySpace: SDR_sRGB_IEC_61966_2_1
+  canonicalAngle: 135deg
+  canonicalInterpolation: srgb
+scope:
+  - fifteen_exact_gradient_only_srgb_values
+  - seven_shared_atmosphere_recipes
+  - measure_ground_cultivate_theme_defaults
+  - rare_evidence_bound_diversity_spectrum
+  - component_owned_foreground_contracts
+  - sampled_contrast_acceptance_floors
+  - alias_deprecation_and_motif_separation
+  - immutable_color_set_append_only_migration
+  - complete_color_atlas_delivery_contract
+preservedBoundaries:
+  - Manifest 2.0 and Token Schema 6 structures remain unchanged.
+  - Master Brand Brief v0.5.2 remains the brand-level source of truth and the cultural invitation remains exact.
+  - Protected Brand Blue and official logo artwork remain narrowly role-bound and are not runtime-derived or recolored.
+  - Product identity, semantic state, categorical, analytical, map, and interaction registries remain independently governed.
+  - Product-specific facts, datasets, scores, workflows, claims, and color remain in their owning product layers.
+  - source_limited, internal_demo, noindex, evidence, rights, readiness, privacy, and publication boundaries do not improve merely because the palette is approved.
+  - color-srgb-01 and every immutable v0.8.8 artifact remain read-only historical evidence.
+nonPromotions:
+  - new_profile_trigger_pack_optional_capability_or_default_route
+  - reusable_solid_roles_for_gradient_only_values
+  - generated_brand_blue_palette
+  - atmosphere_values_as_data_state_map_interaction_or_product_color
+  - motif_permission_from_shared_surface_aliases
+  - product_truth_or_evidence_authority
+  - blanket_scrim_or_unreviewed_photo_overlay_approval
+  - machine_or_artifact_conformance_by_authoring_approval
+machinePackageStatus: pending_regeneration_and_validation
+artifactMachineValidation: pending_until_artifact_gates_pass
+publicationAuthorized: true
+publicationAuthorizationScope: prepared_v0.8.9_release_after_package_and_artifact_gates_pass

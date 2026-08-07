@@ -1,0 +1,41 @@
+decision: approved_for_authoring_integration
+approvedAt: 2026-08-07
+authority: Landometer owner
+authoritySource:
+  document: Landometer Master Brand Brief
+  version: v0.5.2
+  section: "1.1 Highlight · Brand Stack · Culture / Rally Cry"
+  sourceName: Landometer_Master_Brand_Brief_v0_5_2_brand_statement_restored_product_brief_order.md
+  sourceScope: read_only_project_source
+  bytes: 49821
+  sha256: e532406eec0b3d8d08eae65a71afaeecfac0ed215a836f2547653e6aa52fc08a
+  exactLine: Let us cultivate our city with data.
+authorityConflict:
+  rule: "Landometer Design System v0.8.8 §3.2 [BRAND-01]"
+  supersededLine: Let us cultivate our city.
+  decision: Preserve the Master Brand Brief line exactly; the words "with data" must not be removed.
+  rationale: Data is the defining means that makes this cultural invitation specific to Landometer rather than a generic city slogan.
+baseAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.8.md
+  authoringRevision: v0.8.8-r2
+  bytes: 259519
+  sha256: c7315de4d284b42c52414403334c8c4380ca2b52705454235f650108176c6445
+  recordScope: historical_fingerprint_before_correction
+integratedAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.8.md
+  authoringRevision: v0.8.8-r3
+  bytes: 260855
+  sha256: 9429a52c59c8ef61ed9efb1466db3e1ee49e568ba9afb7e90b39f04ab3facae1
+scope:
+  - protected_cultural_activation_line
+  - authority_order_reconciliation
+  - active_authoring_examples_and_acceptance_checks
+  - current_designsystem_adoption_artifacts
+preservedBoundaries:
+  - Master Brand Brief remains the brand-level source of truth.
+  - Frozen v0.8.6 and read-only project sources remain historical evidence and are not rewritten.
+  - Product-specific facts and claims remain in their product-owned layers.
+  - The correction changes no governed color, token, profile, capability, or product evidence.
+machinePackageStatus: pending_regeneration_and_validation
+artifactMachineValidation: pending_until_refreshed_artifact_gates_pass
+publicationAuthorized: false

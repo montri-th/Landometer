@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Complete Color Atlas"
+  short_description: "Build exact, accessible design-system color atlases"
+  default_prompt: "Use $build-complete-design-system-color-atlas to inventory, build, and verify a complete color atlas from this design system."
