@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Landometer Design System"
+  short_description: "Safely publish and verify Landometer Pages releases"
+  default_prompt: "Use $publish-landometer-design-system-github-pages to publish this prepared Landometer release through an allowlisted PR and verify the exact live artifact."

@@ -1,0 +1,1123 @@
+{
+  "schemaVersion": 1,
+  "artifactBuildId": "ui-20260807-07",
+  "artifactPath": "landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html",
+  "artifactSha256": "afdd838e30f4e944877f997498a33d7ebd7411134bea2ebd85be9b00493e2ec2",
+  "matrix": {
+    "widths": [
+      320,
+      360,
+      390,
+      620,
+      621,
+      980,
+      981
+    ],
+    "locales": [
+      "th",
+      "en"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "baseCases": 28,
+    "textScale200Cases": 8,
+    "totalCases": 36
+  },
+  "assertions": {
+    "minimumGapCssPx": 7.5,
+    "minimumStripRem": 8,
+    "maximumEqualCellDeltaCssPx": 1,
+    "localeAndResolvedThemeAccessibleNames": true,
+    "protectedCulturalActivationExactAndUnclipped": true,
+    "embeddedNineFaceFontReadiness": true
+  },
+  "totals": {
+    "cases": 36,
+    "rows": 2916,
+    "failures": 0
+  },
+  "cases": [
+    {
+      "width": 320,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 360,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 144.5625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 360,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 144.5625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 360,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 214,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 360,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 214,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 174.5625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 174.5625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 138.390625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 138.390625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 620,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 398.171875,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 620,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 398.171875,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 620,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 362,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 620,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 362,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 621,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 145.796875,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 621,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 145.796875,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 621,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 215.234375,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 621,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 54,
+      "wrappedRows": 27,
+      "minInlineGap": 8,
+      "minBlockGap": 20,
+      "minStripWidth": 215.234375,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 980,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 307.15625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 980,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 307.15625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 980,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 270.984375,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 980,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 270.984375,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 981,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 169.265625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 981,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 169.265625,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 981,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 133.09375,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 981,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 1,
+      "rowCount": 81,
+      "inlineRows": 81,
+      "wrappedRows": 0,
+      "minInlineGap": 8,
+      "minBlockGap": null,
+      "minStripWidth": 133.09375,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 0,
+      "wrappedRows": 81,
+      "minInlineGap": null,
+      "minBlockGap": 8,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 0,
+      "wrappedRows": 81,
+      "minInlineGap": null,
+      "minBlockGap": 8,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 0,
+      "wrappedRows": 81,
+      "minInlineGap": null,
+      "minBlockGap": 8,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 0,
+      "wrappedRows": 81,
+      "minInlineGap": null,
+      "minBlockGap": 8,
+      "minStripWidth": 174,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "th",
+      "theme": "light",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 18,
+      "wrappedRows": 63,
+      "minInlineGap": 8,
+      "minBlockGap": 8,
+      "minStripWidth": 244,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "th",
+      "theme": "dark",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 18,
+      "wrappedRows": 63,
+      "minInlineGap": 8,
+      "minBlockGap": 8,
+      "minStripWidth": 244,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "en",
+      "theme": "light",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 0,
+      "wrappedRows": 81,
+      "minInlineGap": null,
+      "minBlockGap": 8,
+      "minStripWidth": 244,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "locale": "en",
+      "theme": "dark",
+      "textScale": 2,
+      "rowCount": 81,
+      "inlineRows": 0,
+      "wrappedRows": 81,
+      "minInlineGap": null,
+      "minBlockGap": 8,
+      "minStripWidth": 244,
+      "maxCellDelta": 0.015625,
+      "protectedBrandLine": "Let us cultivate our city with data.",
+      "protectedBrandLineRows": [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data."
+      ],
+      "protectedBrandLineMaxOverflow": 0,
+      "fontReadiness": {
+        "fontsReady": "true",
+        "thaiBodyReady": "true",
+        "thaiTechnicalReady": "true",
+        "thaiDisplayReady": "true",
+        "latinCompanionsReady": "true",
+        "delivery": "ready"
+      },
+      "passed": true
+    }
+  ]
+}

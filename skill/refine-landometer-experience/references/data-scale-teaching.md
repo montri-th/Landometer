@@ -10,6 +10,8 @@ Use one product-neutral fixture and ask:
 
 Do not use an atmosphere or product-identity gradient as a quantitative scale. Do not imply that negative/positive automatically means bad/good.
 
+When the section claims broad analytical guidance, show three constructive questions—magnitude, meaningful direction around a midpoint, and category or map assignment—plus one rejected use with a visible repair. Name the fixture's source and product boundary for every case.
+
 ## Show complete family coverage
 
 For the current carried reference fixture, show all nine families:
@@ -31,6 +33,8 @@ For every family:
 Keep one concise, directly labelled preview on the primary route. Put 41-stop LUTs, exact cells, hashes, source boundary, and parity evidence in the existing disclosure.
 
 At narrow widths and text zoom, let each class row wrap as a unit: keep the localized class label intact and move the full color strip to the next line before either can overlap or shrink the strip below a useful minimum. Do not solve a collision by clipping, painting text over color, hiding cells, or changing the governed palette.
+
+Apply the same label-and-mark rule to legends, mini charts, diagrams, and map keys elsewhere in the Implementation Library.
 
 The accessible name follows the active locale and the actually rendered theme. A light-theme sampler must not announce the hidden dark values, and vice versa. A full Atlas record may announce its fixed record theme, class count, family, kind, and exact values.
 

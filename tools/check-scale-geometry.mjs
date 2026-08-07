@@ -22,7 +22,7 @@ const repositoryRoot = path.resolve(toolDir, "..");
 const deploymentDir = path.join(repositoryRoot, "deployment");
 const registry = JSON.parse(
   await readFile(
-    path.join(deploymentDir, "assets/data/color-delivery.v0.8.8.json"),
+    path.join(deploymentDir, "assets/data/color-delivery.v0.8.9.json"),
     "utf8",
   ),
 );
@@ -214,6 +214,83 @@ try {
         }
       }
 
+      const protectedBrandLine = "Let us cultivate our city with data.";
+      const protectedBrandLineRows = [
+        "Let us",
+        "cultivate",
+        "our city",
+        "with data.",
+      ];
+      const heroTitle = document.querySelector("#hero-title");
+      const heroCopy = document.querySelector(".hero-copy");
+      const heroLines = heroTitle
+        ? [...heroTitle.querySelectorAll(".hero-line")]
+        : [];
+      const normalizedHeroText = (heroTitle?.innerText || "")
+        .trim()
+        .split(/\s+/u)
+        .join(" ");
+      const heroCopyRect = heroCopy?.getBoundingClientRect();
+      const heroLineOverflows = heroLines.map((line) => {
+        const rect = line.getBoundingClientRect();
+        if (!heroCopyRect) return Number.POSITIVE_INFINITY;
+        return Math.max(
+          0,
+          heroCopyRect.left - rect.left,
+          rect.right - heroCopyRect.right,
+        );
+      });
+      const heroMaxOverflow = heroLineOverflows.length
+        ? Math.max(...heroLineOverflows)
+        : Number.POSITIVE_INFINITY;
+
+      if (normalizedHeroText !== protectedBrandLine) {
+        failures.push("protected brand line text is not exact");
+      }
+      if (heroTitle?.getAttribute("aria-label") !== protectedBrandLine) {
+        failures.push("protected brand line accessible name is not exact");
+      }
+      if (
+        heroLines.length !== protectedBrandLineRows.length ||
+        heroLines.some(
+          (line, index) =>
+            (line.textContent || "").trim() !== protectedBrandLineRows[index],
+        )
+      ) {
+        failures.push("protected brand line does not preserve its four rows");
+      }
+      if (!heroCopyRect || heroMaxOverflow > 1) {
+        failures.push(
+          `protected brand line clips by ${Number.isFinite(heroMaxOverflow) ? heroMaxOverflow.toFixed(2) : "unknown"}px`,
+        );
+      }
+
+      const fontReadiness = {
+        fontsReady: document.documentElement.dataset.fontsReady || "missing",
+        thaiBodyReady:
+          document.documentElement.dataset.thaiBodyReady || "missing",
+        thaiTechnicalReady:
+          document.documentElement.dataset.thaiTechnicalReady || "missing",
+        thaiDisplayReady:
+          document.documentElement.dataset.thaiDisplayReady || "missing",
+        latinCompanionsReady:
+          document.documentElement.dataset.latinCompanionsReady || "missing",
+        delivery:
+          document.documentElement.dataset.fontDelivery || "missing",
+      };
+      if (
+        fontReadiness.fontsReady !== "true" ||
+        fontReadiness.thaiBodyReady !== "true" ||
+        fontReadiness.thaiTechnicalReady !== "true" ||
+        fontReadiness.thaiDisplayReady !== "true" ||
+        fontReadiness.latinCompanionsReady !== "true" ||
+        fontReadiness.delivery !== "ready"
+      ) {
+        failures.push(
+          `embedded Thai font readiness is ${JSON.stringify(fontReadiness)}`,
+        );
+      }
+
       return {
         locale,
         theme,
@@ -239,6 +316,12 @@ try {
         maxCellDelta: Math.max(
           ...metrics.map((metric) => metric.maxCellDelta),
         ),
+        protectedBrandLine: normalizedHeroText,
+        protectedBrandLineRows: heroLines.map((line) =>
+          (line.textContent || "").trim(),
+        ),
+        protectedBrandLineMaxOverflow: heroMaxOverflow,
+        fontReadiness,
         failures,
       };
     }, testCase);
@@ -276,6 +359,8 @@ const evidence = {
     minimumStripRem: 8,
     maximumEqualCellDeltaCssPx: 1,
     localeAndResolvedThemeAccessibleNames: true,
+    protectedCulturalActivationExactAndUnclipped: true,
+    embeddedNineFaceFontReadiness: true,
   },
   totals: {
     cases: results.length,

@@ -1,6 +1,6 @@
 ---
 name: publish-landometer-design-system-github-pages
-description: Publish a prepared Landometer Design System static release to montri-th/Landometer GitHub Pages by writing source files directly to GitHub, verifying exact content/blob parity, validating a clean release branch, merging through a pull request, and verifying the deployed HTML and manifest. Use only when the user explicitly asks to publish or replace the current Landometer GitHub Pages release. Never use ZIP/TAR as release transport, never force-push main, never merge scratch artifacts, and never upgrade evidence or machine-validation status without the applicable artifact gates.
+description: Publish, merge, and verify a prepared Landometer Design System release on montri-th/Landometer GitHub Pages. Use only after explicit publish, deploy, or merge authorization, including GitHub CLI authentication recovery during that release. Verify an allowlisted diff, required checks, exact deployed bytes and identity assets, immutable build and Color Set relationships, and remaining gates. Never force-push, discard unrelated work, merge scratch artifacts, or upgrade evidence status without applicable gates.
 ---
 
 # Publish Landometer Design System to GitHub Pages
@@ -63,6 +63,25 @@ release:
 
 Every `intendedFiles` record names path, operation (`create`, `replace`, `delete`, `preserve`), source, UTF-8/binary class, expected byte length, expected SHA-256, and why it belongs in the release.
 
+## Choose the execution route
+
+Use one route deliberately:
+
+- **Local Git + GitHub CLI** when a clean repository checkout is available. This is the preferred route for ordinary revisions because local tests, exact staging, CI-log inspection, and browser QA remain close to the source.
+- **GitHub contents/Git Data API** when only a connector is available or exact remote writes are required. Keep the existing direct-write parity rules below.
+
+For the local route:
+
+1. Confirm `git` and `gh` exist.
+2. Run `gh auth status -h github.com` and confirm the active account with `gh api user`. If unauthenticated, start browser/device login. An expired code means request a new code; never expose a token or log out unless intentionally changing accounts.
+3. Inspect the current branch and dirty files. Preserve unrelated user work; do not auto-stash, hard reset, clean, or discard it.
+4. Fetch current `origin/main` and create a fresh scoped branch from that exact commit. Detect already-merged or duplicate commits before replaying changes.
+5. Stage only frozen allowlist paths with `git add -- <paths>`. Never use `git add -A` or `git add .`.
+6. Review `git diff --cached --name-status` and `git diff --cached --check` before committing.
+7. Push without force, open a draft pull request, monitor required checks, inspect failed-job logs, make the smallest targeted correction, and rerun the complete local validation set before pushing again.
+
+Read [references/v0.8.8-release-lessons.md](references/v0.8.8-release-lessons.md) when authentication, branch divergence, CI repair, standalone delivery, favicon revision, or exact live parity is in scope.
+
 ## Execution workflow
 
 ### 1. Orient the repository
@@ -91,9 +110,11 @@ Create `release/design-system-<version>` from the current `main` head. If that n
 
 Scratch branches may be used to test API behavior, but they are quarantined and never become the release PR head.
 
-### 4. Write source directly to GitHub
+### 4. Write exact source through the chosen route
 
-Prefer one atomic Git Data commit when the connector supports it:
+For Local Git + GitHub CLI, edit only allowlisted paths, run the non-writing rebuild and validation checks before staging, and preserve generated/source parity. Use the explicit staging and draft-PR rules above.
+
+For connector/API delivery, prefer one atomic Git Data commit when the connector supports it:
 
 ```txt
 create_blob for every exact file
@@ -138,6 +159,8 @@ Compare `main...releaseBranch` and require:
 
 If the diff is noisy, create another clean branch from `main` and rewrite only the allowlist. Do not repair a polluted branch by rationalizing its extra files.
 
+For a local branch, compare both the working tree and staged diff. A clean commit does not excuse unrelated uncommitted changes, and an apparently clean tree does not prove the commit allowlist.
+
 ### 7. Validate before merge
 
 Run the repository validator against the actual release files:
@@ -152,7 +175,7 @@ When operating connector-only, require a pull-request workflow that validates pr
 
 A validator failure blocks merge. An open manual gate remains open and is disclosed; it is not converted to `passed` for convenience.
 
-### 8. Open a release pull request
+### 8. Open a draft release pull request and close CI
 
 Use the template in `templates/pr-body.md`. The PR must state:
 
@@ -166,6 +189,8 @@ Use the template in `templates/pr-body.md`. The PR must state:
 - that no archive transport was used.
 
 Re-read the PR until `mergeable: true`. Resolve conflicts and required checks before merge.
+
+Keep the PR in draft while required validation is incomplete. On failure, inspect the exact failed job and log, make the smallest scoped fix, rerun every applicable local check, and push normally. Do not bypass branch protection or treat a retried green subset as evidence that the full set passed.
 
 ### 9. Merge without rewriting history
 
@@ -199,6 +224,10 @@ Check at minimum:
 - no browser page errors, failed critical requests, dead controls, or horizontal overflow;
 - Adopt/Reference/Lab, locale, theme, selected role/proof, and deep-link restoration when those capabilities are enabled.
 
+Bind post-deploy verification to the exact commit deployed by the successful Pages run. Do not check out mutable `main` during a delayed `workflow_run`; use the workflow run head SHA. For manual verification, require an explicit source commit. Compare prepared bytes, staged Git blob, branch bytes, final merged-commit bytes, and live bytes for every critical path.
+
+For critical assets, also verify the final response URL after redirects, media type, manifest dimensions when present, byte length, SHA-256, and cache revision. Include the approved favicon/symbol and open manual-gate evidence in the critical release set.
+
 Use `scripts/verify-live.mjs` or the workflow template in this skill. Fail closed when the endpoint does not converge. Do not phrase a queued workflow or stale CDN response as success.
 
 ### 11. Clean up verification artifacts
@@ -223,6 +252,10 @@ Use `scripts/verify-live.mjs` or the workflow template in this skill. Fail close
 | A QA marker PR is merged | Close it unmerged after the reusable workflow/check has served its purpose |
 | New binary cannot be sent by text API | Use direct base64 Git blob/tree/commit; never hide it in an archive |
 | Package checks pass, so set machine validation to passed | Preserve `pending` until all applicable artifact-level automated and manual gates pass |
+| GitHub device code expires | Start a fresh `gh auth login`; never reuse or expose the expired code |
+| Stage everything for convenience | Stage only frozen allowlist paths and inspect the cached diff |
+| Workflow verification checks mutable `main` | Check out the exact Pages run head SHA or an explicit manual source commit |
+| Two devices show different palettes | Prove artifact build, Color Set/registry, commit, bytes, and hash parity before color-science diagnosis |
 
 ## Completion report
 
@@ -236,7 +269,8 @@ Report only observed facts:
 6. Pages workflow result;
 7. live endpoint verification and hashes;
 8. preserved disabled capabilities and open manual gates;
-9. confirmation that no archive transport or force-push was used.
+9. final URLs, MIME types, bytes, hashes, and cache revisions for critical identity assets;
+10. confirmation that no archive transport, broad staging, force-push, or destructive worktree cleanup was used.
 
 ## Definition of done
 

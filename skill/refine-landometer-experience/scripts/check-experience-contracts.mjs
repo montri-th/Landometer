@@ -136,7 +136,7 @@ let inventory = null;
 try {
   inventory = JSON.parse(
     await readFile(
-      path.join(htmlDirectory, "control-inventory.v0.8.8.json"),
+      path.join(htmlDirectory, "control-inventory.v0.8.9.json"),
       "utf8"
     )
   );
@@ -144,10 +144,10 @@ try {
   inventory = null;
 }
 
-const siteManifest = await readJsonBesideHtml("site-manifest.v0.8.8.json");
+const siteManifest = await readJsonBesideHtml("site-manifest.v0.8.9.json");
 const scaleFixture = await readJsonBesideHtml("assets/data/scales.json");
 const colorDelivery = await readJsonBesideHtml(
-  "assets/data/color-delivery.v0.8.8.json"
+  "assets/data/color-delivery.v0.8.9.json"
 );
 const colorRegistryId = colorDelivery?.meta?.id ?? "";
 const pinnedColorSetName =
@@ -548,6 +548,14 @@ const fullAtlasRouteValid =
   );
 
 const checks = [
+  [
+    "protected Cultural activation keeps ‘with data’",
+    /aria-label="Let us cultivate our city with data\."/u.test(html) &&
+      /<span class="hero-line">Let us<\/span><span class="hero-line">cultivate<\/span><span class="hero-line">our city<\/span><span class="hero-line">with data\.<\/span>/u.test(html) &&
+      !/aria-label="Let us cultivate our city\."/u.test(html) &&
+      !html.includes("source_limited · authoring master r2 · 6 Aug 2026") &&
+      html.includes("source_limited · authoring master r1 · approved 7 Aug 2026")
+  ],
   ["before/after data", /\bbefore:\s*\{/u.test(html) && /\bafter:\s*\{/u.test(html)],
   ["governed surface owns metadata colors", /\.proof-preview\.has-brand-surface\s+\.proof-meta/u.test(html)],
   ["governed surface owns object color", /\.proof-preview\.has-brand-surface\s+\.proof-object/u.test(html)],
@@ -567,6 +575,35 @@ const checks = [
     /size-adjust:\s*102%/u.test(html) &&
       /--tracking-technical-th:\s*\.008em/u.test(html) &&
       /--leading-technical-th:\s*1\.48/u.test(html)
+  ],
+  [
+    "direct-file Safari delivery hands off safely and exposes font failure",
+    !/<link\b[^>]*\brel="preload"[^>]*\bas="font"/iu.test(html) &&
+      html.includes('location.protocol === "file:"') &&
+      html.includes('root.dataset.standalone !== "true"') &&
+      html.includes('new URL("landometer-design-system-v0.8.9-standalone.html", location.href)') &&
+      html.includes("target.search = location.search") &&
+      html.includes("target.hash = location.hash") &&
+      html.includes('location.replace(target.href)') &&
+      html.includes('!["http:", "https:"].includes(location.protocol)') &&
+      html.includes('{ key: "bodyThai400", descriptor: \'400 16px "Bai Jamjuree"\'') &&
+      html.includes('{ key: "bodyThai600", descriptor: \'600 16px "Bai Jamjuree"\'') &&
+      html.includes('{ key: "technicalThai400", descriptor: \'400 16px "IBM Plex Sans Thai"\'') &&
+      html.includes('{ key: "displayThai700", descriptor: \'700 16px "IBM Plex Sans Thai Looped"\'') &&
+      html.includes('{ key: "technicalLatin400", descriptor: \'400 16px "JetBrains Mono"\'') &&
+      html.includes('{ key: "editorialLatin700", descriptor: \'700 16px "Arvo"\'') &&
+      html.includes('root.dataset.fontDelivery = "pending"') &&
+      html.includes("Promise.race([loadFonts, fontTimeout])") &&
+      html.includes('reject(new Error("font-timeout"))') &&
+      html.includes('faceGroups[index].every(face => face.status === "loaded")') &&
+      html.includes('setFontFailureState(error?.message === "font-timeout" ? "timeout" : "failed")') &&
+      html.includes('setFontFailureState("unavailable")') &&
+      attributeOf(
+        currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
+        "data-standalone"
+      ) === "true" &&
+      (currentArtifactBuildHtml.match(/src:\s*url\(["']?data:font\/woff2/giu) ?? []).length === 9 &&
+      !/<link\b[^>]*\brel=["']preload["'][^>]*\bas=["']font["']/iu.test(currentArtifactBuildHtml)
   ],
   [
     "technical pair exposes only active 400 while display 700 remains separate",
@@ -658,7 +695,7 @@ const checks = [
   ],
   [
     "one Color Set identity spans the page, sampler, atlas, and manifest",
-    colorRegistryId === "color-srgb-01" &&
+    colorRegistryId === "color-srgb-02" &&
       attributeOf(htmlTag, "data-color-registry") === colorRegistryId &&
       attributeOf(samplerElement, "data-color-registry") === colorRegistryId &&
       attributeOf(
@@ -668,12 +705,12 @@ const checks = [
       siteManifest?.colorDelivery?.registryId === colorRegistryId
   ],
   [
-    "the Color-Set-pinned handoff is linked and carries immutable markers",
+    "the Color Set baseline stays immutable and handoff links the current immutable UI build",
     pinnedColorSetName ===
-      "landometer-design-system-v0.8.8-standalone.color-srgb-01.html" &&
+      "landometer-design-system-v0.8.9-standalone.color-srgb-02.html" &&
       tagsNamed(html, "a").some(tag =>
         attributeOf(tag, "id") === "resource-standalone" &&
-        attributeOf(tag, "href") === pinnedColorSetName
+        attributeOf(tag, "href") === currentArtifactBuildName
       ) &&
       attributeOf(
         pinnedColorSetHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
@@ -688,7 +725,7 @@ const checks = [
     "UI-only changes mint a separate append-only artifact build without rewriting the Color Set baseline",
     /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
       currentArtifactBuildName ===
-        `landometer-design-system-v0.8.8-standalone.color-srgb-01.${currentArtifactBuildId}.html` &&
+        `landometer-design-system-v0.8.9-standalone.color-srgb-02.${currentArtifactBuildId}.html` &&
       attributeOf(
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-color-registry"
@@ -774,9 +811,10 @@ const checks = [
   ["17 foundation pairs", countClass(atlasHtml, "atlas-pair-card") === 17],
   ["seven semantic-state cards", countClass(atlasHtml, "atlas-state-card") === 7],
   [
-    "five shared and motif gradient cards",
-    countClass(atlasHtml, "atlas-gradient-card") === 5 &&
-      countClass(atlasHtml, "atlas-gradient-card--shared") === 2 &&
+    "ten shared and motif gradient cards",
+    countClass(atlasHtml, "atlas-gradient-card") === 10 &&
+      countClass(atlasHtml, "atlas-gradient-card--shared") === 6 &&
+      countClass(atlasHtml, "atlas-gradient-card--rare") === 1 &&
       countClass(atlasHtml, "atlas-gradient-card--motif") === 3
   ],
   [

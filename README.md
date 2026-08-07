@@ -1,4 +1,4 @@
-# Landometer Design Identity Playground v0.8.8
+# Landometer Design Identity Playground v0.8.9
 
 The GitHub Pages root is `deployment/` and publishes a product-neutral, source-limited playground with internal-team intent through a public projection at:
 
@@ -6,7 +6,7 @@ The GitHub Pages root is `deployment/` and publishes a product-neutral, source-l
 
 ## What team members can do
 
-The page turns the v0.8.8 authoring master into one short route:
+The page turns the v0.8.9 authoring master into one short route:
 
 1. **Cultivate** — begin with one screen, map, report, or message.
 2. **Try** — compare the same object in Needs-revision and Assisted states.
@@ -21,18 +21,21 @@ The contextual-discovery specimen now offers four current public CityMETER recor
 
 Three synthetic dataviz fundamentals—Compare, Change, and Relationship—keep units, source, no-data, measured-zero, limitation, and visible table alternatives attached. Nine additional CityMETER-derived cards cover choropleth anatomy, flood time series/ranking/overlap, vehicle ranking/treemap/composition/compare/micro-trends. Public API snapshots are visibly separated from treatment sketches and remain product-specific.
 
-Download the whitespace-normalized human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.8.8.md`](deployment/assets/downloads/landometer-design-system-v0.8.8.md). Its normative text and ordering are unchanged; trailing Markdown hard-break spaces were removed to satisfy repository whitespace checks.
+Download the owner-approved human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.8.9.md`](deployment/assets/downloads/landometer-design-system-v0.8.9.md). Authoring revision `v0.8.9-r1` carries forward the approved v0.8.8 experience and protected brand-line decisions, preserves the exact Culture / Rally Cry from Master Brand Brief v0.5.2 §1.1 — **Let us cultivate our city with data.** — and adds the approved v0.8.9 gradient-family authority. The v0.8.8 records remain frozen historical evidence, and the generated public-safe v0.8.9 machine package is still pending.
 
-The artifact-level additions remain separate from that owner-approved authority in [`deployment/implementation-notes.v0.8.8.md`](deployment/implementation-notes.v0.8.8.md). This proposed, non-normative clarification covers governed atmosphere restoration, role-based color guidance, contextual source Search and external AI synthesis, share placement, positive examples, and release-gated SEO/machine discovery. [`deployment/llms.txt`](deployment/llms.txt) is an optional project-path navigation aid—not a ranking signal, host-root discovery guarantee, access-control rule, conformance claim, or permission for an agent to act.
+Artifact-specific choices and evidence remain separate from that authority in [`deployment/implementation-notes.v0.8.9.md`](deployment/implementation-notes.v0.8.9.md). This accepted, non-normative application record covers the playground's atmosphere presets, exact assets and hashes, contextual Source Search and external AI routing, share placement, positive examples, and release-gated discovery. [`deployment/llms.txt`](deployment/llms.txt) is an optional project-path navigation aid—not a ranking signal, host-root discovery guarantee, access-control rule, conformance claim, or permission for an agent to act.
 
 The shared Landometer layer covers portfolio, methodology, and product architecture across **Land · Location · Living**. Product data, workflows, scores, models, claims, voice, and capabilities remain product-specific. Cross-product or cross-city comparison requires a compatible schema/release; otherwise incompatibility must remain visible.
 
 ## Release boundary
 
-- Design System `0.8.8` owner-approved authoring master
-- Build Card `0.8.8`
+- Design System `0.8.9`, owner-approved authoring revision `v0.8.9-r1`
+- Build Card `0.8.9`
 - Manifest `2.0`
 - Token Schema `6`
+- Color Set `color-srgb-02`
+- artifact build `ui-20260807-07`
+- portable latest alias `deployment/landometer-design-system-v0.8.9-standalone.html`; immutable handoff `deployment/landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html`
 - profile `brand.public`
 - internal-team delivery intent through a public GitHub Pages projection; delivery conformance is not claimed while public-delivery gates remain open
 - `fullLivingReference: false`
@@ -67,7 +70,7 @@ node tools/validate-release.mjs
 python3 -m http.server 8000 --directory deployment
 ```
 
-Historical v0.8.7 and v0.8.6 files remain versioned migration and compatibility evidence. They are not the current page authority.
+Historical v0.8.8, v0.8.7, and v0.8.6 files remain frozen versioned migration and compatibility evidence. They are not the current page authority and must not be silently relabelled as v0.8.9.
 
 ## Publishing
 

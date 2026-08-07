@@ -2,8 +2,8 @@
 <html
   lang="th"
   data-ds="landometer"
-  data-ds-version="0.8.8"
-  data-build-card-version="0.8.8"
+  data-ds-version="0.8.9"
+  data-build-card-version="0.8.9"
   data-manifest-version="2.0"
   data-token-schema-version="6"
   data-ds-profile="brand.public"
@@ -19,8 +19,9 @@
   data-machine-discovery="llms_navigation_aid"
   data-color-space="srgb"
   data-gradient-interpolation="srgb-explicit-with-legacy-fallback"
-  data-color-registry="color-srgb-01"
-  data-artifact-build="ui-20260731-01"
+  data-color-registry="color-srgb-02"
+  data-atmosphere-gradient-registry="landometer-atmosphere-gradient-v2"
+  data-artifact-build="ui-20260807-07"
   data-build-channel="latest-alias"
   data-theme="light"
   data-theme-preference="system"
@@ -33,11 +34,35 @@
   <meta name="theme-color" content="#F6F7F3">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png?v=35a1496f" sizes="192x192">
-  <title>Landometer Design Identity Playground · v0.8.8</title>
+  <title>Landometer Design Identity Playground · v0.8.9</title>
   <meta name="description" content="พื้นที่ลองใช้ Brand DNA, Brand Voice และ Brand Visual ของ Landometer กับงานจริง ก่อนส่งต่อโดยไม่ทำความหมายหรือหลักฐานหล่นหาย">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/">
-  <link rel="preload" href="assets/fonts/bai-jamjuree-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      if (location.protocol === "file:" && root.dataset.standalone !== "true") {
+        const target = new URL("landometer-design-system-v0.8.9-standalone.html", location.href);
+        target.search = location.search;
+        target.hash = location.hash;
+        location.replace(target.href);
+        return;
+      }
+      if (root.dataset.standalone === "true" || !["http:", "https:"].includes(location.protocol)) return;
+      const fontRoot = "assets/fonts/";
+      [
+        "bai-jamjuree-thai-400-normal.woff2",
+        "ibm-plex-sans-thai-thai-400-normal.woff2"
+      ].forEach(file => {
+        const preload = document.createElement("link");
+        preload.rel = "preload";
+        preload.as = "font";
+        preload.type = "font/woff2";
+        preload.crossOrigin = "anonymous";
+        preload.href = `${fontRoot}${file}`;
+        document.head.append(preload);
+      });
+    })();
+  </script>
   <script>
     (() => {
       const root = document.documentElement;
@@ -46,8 +71,8 @@
       let locale = params.get("lang");
       let theme = params.get("theme");
       try {
-        locale = locale || localStorage.getItem("ldm88-lang");
-        theme = theme || localStorage.getItem("ldm88-theme");
+        locale = locale || localStorage.getItem("ldm89-lang") || localStorage.getItem("ldm89-lang");
+        theme = theme || localStorage.getItem("ldm89-theme") || localStorage.getItem("ldm89-theme");
       } catch (_) {}
       if (!["th", "en"].includes(locale)) {
         locale = (navigator.language || "th").toLowerCase().startsWith("en") ? "en" : "th";
@@ -214,14 +239,6 @@
       --opacity-ghost: .24;
       --opacity-watermark: .12;
       --opacity-trace: .06;
-      --measure-surface-legacy: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
-      --measure-surface-srgb: linear-gradient(135deg in srgb, #1D4497 0%, #176B82 54%, #08756F 100%);
-      --ground-surface-legacy: linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
-      --ground-surface-srgb: linear-gradient(135deg in srgb, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%);
-      --cultivate-surface-legacy: linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
-      --cultivate-surface-srgb: linear-gradient(135deg in srgb, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%);
-      --motif-brand-signature-legacy: linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);
-      --motif-brand-signature-srgb: linear-gradient(135deg in srgb, #1D4497 0%, #176B82 52%, #08756F 100%);
       --product-citymeter-legacy: linear-gradient(135deg, #12669B 0%, #36BCE4 100%);
       --product-citymeter-srgb: linear-gradient(135deg in srgb, #12669B 0%, #36BCE4 100%);
       --product-citywiki-legacy: linear-gradient(135deg, #176B82 0%, #007E79 100%);
@@ -233,6 +250,7 @@
       --measure-surface: var(--measure-surface-legacy);
       --ground-surface: var(--ground-surface-legacy);
       --cultivate-surface: var(--cultivate-surface-legacy);
+      --diversity-surface: var(--diversity-surface-legacy);
       --motif-brand-signature: var(--motif-brand-signature-legacy);
       --product-citymeter: var(--product-citymeter-legacy);
       --product-citywiki: var(--product-citywiki-legacy);
@@ -371,8 +389,6 @@
       --map-focus-stroke: #68C4E2;
       --map-marker-halo: #101318;
       --map-marker-stroke: #F1F4EF;
-      --measure-surface-legacy: linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);
-      --measure-surface-srgb: linear-gradient(135deg in srgb, #68C4E2 0%, #15919A 52%, #08756F 100%);
       --product-citymeter-legacy: linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);
       --product-citymeter-srgb: linear-gradient(135deg in srgb, #4C99D5 0%, #59C7E8 100%);
       --product-citywiki-legacy: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
@@ -384,11 +400,50 @@
       color-scheme: dark;
     }
 
+    /* ATMOSPHERE_GRADIENT_CSS_START */
+:root {
+    --atmosphere-measure-deep-legacy: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
+    --atmosphere-measure-deep-srgb: linear-gradient(135deg in srgb, #1D4497 0%, #176B82 54%, #08756F 100%);
+    --atmosphere-measure-luminous-legacy: linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);
+    --atmosphere-measure-luminous-srgb: linear-gradient(135deg in srgb, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);
+    --atmosphere-ground-current-legacy: linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%);
+    --atmosphere-ground-current-srgb: linear-gradient(135deg in srgb, #0F5773 0%, #006A6A 50%, #1F744F 100%);
+    --atmosphere-ground-mist-legacy: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+    --atmosphere-ground-mist-srgb: linear-gradient(135deg in srgb, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+    --atmosphere-cultivate-glow-legacy: linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%);
+    --atmosphere-cultivate-glow-srgb: linear-gradient(135deg in srgb, #EB8182 0%, #F5A06F 50%, #EBC573 100%);
+    --atmosphere-cultivate-mist-legacy: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+    --atmosphere-cultivate-mist-srgb: linear-gradient(135deg in srgb, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+    --atmosphere-diversity-spectrum-legacy: linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%);
+    --atmosphere-diversity-spectrum-srgb: linear-gradient(135deg in srgb, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%);
+    --measure-surface-legacy: var(--atmosphere-measure-deep-legacy);
+    --measure-surface-srgb: var(--atmosphere-measure-deep-srgb);
+    --ground-surface-legacy: var(--atmosphere-ground-mist-legacy);
+    --ground-surface-srgb: var(--atmosphere-ground-mist-srgb);
+    --cultivate-surface-legacy: var(--atmosphere-cultivate-glow-legacy);
+    --cultivate-surface-srgb: var(--atmosphere-cultivate-glow-srgb);
+    --diversity-surface-legacy: var(--atmosphere-diversity-spectrum-legacy);
+    --diversity-surface-srgb: var(--atmosphere-diversity-spectrum-srgb);
+    --motif-brand-signature-legacy: var(--atmosphere-measure-deep-legacy);
+    --motif-brand-signature-srgb: var(--atmosphere-measure-deep-srgb);
+  }
+
+  html[data-theme="dark"] {
+    --measure-surface-legacy: var(--atmosphere-measure-luminous-legacy);
+    --measure-surface-srgb: var(--atmosphere-measure-luminous-srgb);
+    --ground-surface-legacy: var(--atmosphere-ground-current-legacy);
+    --ground-surface-srgb: var(--atmosphere-ground-current-srgb);
+    --cultivate-surface-legacy: var(--atmosphere-cultivate-mist-legacy);
+    --cultivate-surface-srgb: var(--atmosphere-cultivate-mist-srgb);
+  }
+    /* ATMOSPHERE_GRADIENT_CSS_END */
+
     @supports (background: linear-gradient(90deg in srgb, #000000, #FFFFFF)) {
       :root {
         --measure-surface: var(--measure-surface-srgb);
         --ground-surface: var(--ground-surface-srgb);
         --cultivate-surface: var(--cultivate-surface-srgb);
+        --diversity-surface: var(--diversity-surface-srgb);
         --motif-brand-signature: var(--motif-brand-signature-srgb);
         --product-citymeter: var(--product-citymeter-srgb);
         --product-citywiki: var(--product-citywiki-srgb);
@@ -448,8 +503,9 @@
     html[data-locale="en"] [data-th] { display: none !important; }
     html:not(.js) .js-only { display: none !important; }
     :focus-visible {
-      outline: 3px solid var(--focus-ring);
-      outline-offset: 3px;
+      outline: 2px solid #FFFFFF;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 5px #182327;
     }
     ::selection {
       background: var(--energy-yellow);
@@ -621,16 +677,21 @@
       position: absolute;
       z-index: -1;
       inset: 0;
-      background: rgba(17, 25, 29, .52);
+      background: transparent;
       content: "";
     }
     html[data-theme="dark"] .hero-copy::before {
-      background: rgba(17, 25, 29, .52);
+      background: transparent;
     }
     .hero .eyebrow,
     .hero h1,
     .hero-support {
       color: #FFFFFF;
+    }
+    html[data-theme="dark"] .hero .eyebrow,
+    html[data-theme="dark"] .hero h1,
+    html[data-theme="dark"] .hero-support {
+      color: #182327;
     }
     .hero .eyebrow {
       margin-bottom: var(--space-5);
@@ -850,32 +911,51 @@
     .proof-preview.has-brand-surface[data-surface="measure"] {
       --proof-subtle: #E8EFEE;
       --proof-meta-ink: #FFFFFF;
-      --proof-meta-surface: rgba(17, 25, 29, .78);
+      --proof-meta-surface: rgba(17, 25, 29, .72);
       --proof-separator: rgba(255, 255, 255, .35);
       background: var(--measure-surface);
       color: #FFFFFF;
     }
-    .proof-preview.has-brand-surface[data-surface="measure"]::before {
-      background: rgba(17, 25, 29, .63);
-    }
+    .proof-preview.has-brand-surface[data-surface="measure"]::before { background: transparent; }
     .proof-preview.has-brand-surface[data-surface="ground"] {
       --proof-subtle: #46524F;
       --proof-meta-ink: #182327;
-      --proof-meta-surface: rgba(246, 247, 243, .93);
+      --proof-meta-surface: rgba(255, 255, 255, .78);
       --proof-separator: rgba(24, 35, 39, .50);
       background: var(--ground-surface);
       color: #182327;
     }
     .proof-preview.has-brand-surface[data-surface="ground"]::before,
     .proof-preview.has-brand-surface[data-surface="cultivate"]::before {
-      background: rgba(246, 247, 243, .84);
+      background: transparent;
     }
     .proof-preview.has-brand-surface[data-surface="cultivate"] {
       --proof-subtle: #46524F;
       --proof-meta-ink: #182327;
-      --proof-meta-surface: rgba(246, 247, 243, .93);
+      --proof-meta-surface: rgba(255, 255, 255, .78);
       --proof-separator: rgba(24, 35, 39, .50);
       background: var(--cultivate-surface);
+      color: #182327;
+    }
+    html[data-theme="dark"] .proof-preview.has-brand-surface[data-surface="measure"] {
+      --proof-subtle: #293337;
+      --proof-meta-ink: #182327;
+      --proof-meta-surface: rgba(255, 255, 255, .78);
+      --proof-separator: rgba(24, 35, 39, .50);
+      color: #182327;
+    }
+    html[data-theme="dark"] .proof-preview.has-brand-surface[data-surface="ground"] {
+      --proof-subtle: #F1F4EF;
+      --proof-meta-ink: #FFFFFF;
+      --proof-meta-surface: rgba(17, 25, 29, .72);
+      --proof-separator: rgba(255, 255, 255, .35);
+      color: #FFFFFF;
+    }
+    html[data-theme="dark"] .proof-preview.has-brand-surface[data-surface="cultivate"] {
+      --proof-subtle: #293337;
+      --proof-meta-ink: #182327;
+      --proof-meta-surface: rgba(255, 255, 255, .78);
+      --proof-separator: rgba(24, 35, 39, .50);
       color: #182327;
     }
     .proof-preview.has-brand-surface .fixture-label,
@@ -2051,8 +2131,9 @@
       background: var(--surface-raised);
     }
     .color-route-card:focus-visible {
-      outline: 3px solid var(--focus-ring);
-      outline-offset: 3px;
+      outline: 2px solid #FFFFFF;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 5px #182327;
     }
     .color-route-card-head {
       display: flex;
@@ -2665,7 +2746,7 @@
     }
     .surface-mode-strip {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 10px;
     }
     .surface-mode {
@@ -2680,6 +2761,7 @@
     .surface-mode.is-measure { background: var(--measure-surface); color: #FFFFFF; }
     .surface-mode.is-ground { background: var(--ground-surface); color: #182327; }
     .surface-mode.is-cultivate { background: var(--cultivate-surface); color: #182327; }
+    .surface-mode.is-diversity { background: var(--diversity-surface); color: #182327; }
     .surface-mode > span {
       display: block;
       padding: 10px;
@@ -2692,9 +2774,19 @@
       color: #FFFFFF;
     }
     .surface-mode.is-ground > span,
-    .surface-mode.is-cultivate > span {
+    .surface-mode.is-cultivate > span,
+    .surface-mode.is-diversity > span {
       background: rgba(246, 247, 243, .92);
       color: #182327;
+    }
+    html[data-theme="dark"] .surface-mode.is-measure > span,
+    html[data-theme="dark"] .surface-mode.is-cultivate > span {
+      background: rgba(246, 247, 243, .82);
+      color: #182327;
+    }
+    html[data-theme="dark"] .surface-mode.is-ground > span {
+      background: rgba(17, 25, 29, .72);
+      color: #FFFFFF;
     }
     .surface-mode strong,
     .surface-mode small { display: block; }
@@ -3504,6 +3596,19 @@
       display: block;
       min-height: 132px;
     }
+    .atlas-gradient-alias {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: var(--space-3);
+      align-items: center;
+      min-height: 132px;
+      padding: var(--space-4);
+      background: var(--surface-blue-tint);
+      color: var(--text-primary);
+      text-align: center;
+    }
+    .atlas-gradient-alias code { overflow-wrap: anywhere; }
+    .atlas-gradient-alias b { color: var(--interaction-accent); }
     .atlas-gradient-caption {
       display: grid;
       gap: 5px;
@@ -3523,6 +3628,7 @@
     .atlas-gradient-meta em,
     .atlas-gradient-meta i { font-style: normal; }
     .atlas-gradient-card--motif { border-style: dashed; }
+    .atlas-gradient-card--rare { border-color: var(--interaction-accent); }
     .atlas-boundary--motif { margin-top: var(--space-4); }
     .atlas-product-card { padding: var(--space-4); }
     .atlas-product-head {
@@ -5027,7 +5133,7 @@
       position: absolute;
       z-index: -1;
       inset: 0;
-      background: rgba(17, 25, 29, .52);
+      background: transparent;
       content: "";
     }
     .closing-inner {
@@ -5054,6 +5160,12 @@
       background: #FFFFFF;
       color: #182327;
     }
+    html[data-theme="dark"] .closing,
+    html[data-theme="dark"] .closing .eyebrow,
+    html[data-theme="dark"] .closing h2 {
+      color: #182327;
+    }
+    html[data-theme="dark"] .closing p:not(.eyebrow) { color: #293337; }
 
     .site-footer {
       background: #11191D;
@@ -5156,7 +5268,7 @@
       .hero-media {
         min-height: 54svh;
       }
-      .hero h1 { font-size: clamp(3.15rem, 16vw, 5rem); }
+      .hero h1 { font-size: clamp(1.65rem, 16vw, 5rem); }
       .section-heading { margin-bottom: var(--space-7); }
       .play-controls { grid-template-columns: 1fr; }
       .control-block:last-child { grid-column: auto; }
@@ -5357,7 +5469,7 @@
       <img src="assets/images/landometer-logo-banner.png" width="3818" height="1048" alt="Landometer">
     </a>
     <div class="release-label" aria-hidden="true">
-      DS 0.8.8<br>internal_demo<br>COLOR SRGB-01
+      DS 0.8.9<br>internal_demo<br>COLOR SRGB-02
     </div>
     <button class="theme-cycle js-only" id="theme-cycle" type="button" aria-label="ธีม: ตามอุปกรณ์ / Theme: follow device">
       <svg data-theme-icon="system" viewBox="0 0 24 24" aria-hidden="true">
@@ -5380,8 +5492,8 @@
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-copy" data-quiet-field>
-        <p class="eyebrow">Design identity playground · v0.8.8 authoring master</p>
-        <h1 id="hero-title" lang="en" aria-label="Let us cultivate our city."><span class="hero-line">Let us</span><span class="hero-line">cultivate</span><span class="hero-line">our city.</span></h1>
+        <p class="eyebrow">Design identity playground · v0.8.9-r1 authoring master</p>
+        <h1 id="hero-title" lang="en" aria-label="Let us cultivate our city with data."><span class="hero-line">Let us</span><span class="hero-line">cultivate</span><span class="hero-line">our city</span><span class="hero-line">with data.</span></h1>
         <p class="hero-support" data-th>เคยไหม—งานชัดในหัวเรา พอส่งต่อ คนถัดไปถามว่า ตัวเลขมาจากไหน ยังขาดอะไร แล้วทำอะไรต่อ? หยิบงานมาหนึ่งชิ้น แล้วให้ความหมาย หลักฐาน และก้าวถัดไปเดินทางไปด้วยกัน</p>
         <p class="hero-support" data-en>Work feels clear in your hands—then turns into questions when it moves on. Bring one screen, map, report, or message. Let meaning, evidence, limits, and next steps travel together.</p>
         <a class="primary-action" href="#play" id="start">
@@ -5453,7 +5565,7 @@
             <article
               class="proof-preview has-brand-surface"
               id="proof-preview"
-              data-object="landometer-design-system@0.8.8"
+              data-object="landometer-design-system@0.8.9"
               data-surface="measure"
               data-motion-phase="final"
               aria-live="polite"
@@ -5486,7 +5598,7 @@
                 </div>
                 <div>
                   <dt><span data-th>แหล่งอ้างอิง</span><span data-en>Source</span></dt>
-                  <dd id="meta-source">v0.8.8 authoring master · 25 Jul 2026</dd>
+                  <dd id="meta-source">v0.8.9-r1 authoring master · approved 7 Aug 2026</dd>
                 </div>
                 <div>
                   <dt><span data-th>ขอบเขต</span><span data-en>Boundary</span></dt>
@@ -5633,11 +5745,11 @@
             </div>
             <div>
               <dt><span data-th>รหัสและรุ่นอ้างอิง</span><span data-en>Identity and version</span></dt>
-              <dd>landometer-design-system@0.8.8</dd>
+              <dd>landometer-design-system@0.8.9</dd>
             </div>
             <div>
               <dt><span data-th>สถานะและแหล่งข้อมูล</span><span data-en>Status and source</span></dt>
-              <dd>source_limited · authoring master · 25 Jul 2026</dd>
+              <dd>source_limited · authoring master r1 · approved 7 Aug 2026</dd>
             </div>
             <div>
               <dt><span data-th>ขอบเขตและข้อจำกัด</span><span data-en>Boundary and limitation</span></dt>
@@ -5776,7 +5888,7 @@
                 <svg class="ui-icon" aria-hidden="true"><use href="#icon-handoff"></use></svg>
                 <span id="recipe-handoff">ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ</span>
               </p>
-              <p class="recipe-source" id="recipe-source">ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending</p>
+              <p class="recipe-source" id="recipe-source">ที่มา: Landometer Design System v0.8.9-r1 authoring master · source_limited · machineValidation pending</p>
             </div>
             <textarea class="sr-only" id="recipe-text" readonly>งาน: หน้าจอประกอบการตัดสินใจ
 
@@ -5788,7 +5900,7 @@
 
 ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
 
-ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending</textarea>
+ที่มา: Landometer Design System v0.8.9-r1 authoring master · source_limited · machineValidation pending</textarea>
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
           </div>
         </div>
@@ -5803,7 +5915,7 @@
             <span data-th>ดูคำตอบหลักให้ชัดก่อน แล้วค่อยเปิดรายละเอียดที่ต้องใช้</span>
             <span data-en>Keep the first path simple. Expand the detail when you build.</span>
           </h2>
-          <p data-th>กำลังทำส่วนไหนอยู่? เปิดคู่มือสีและพื้นผิวโดยตรง หรือเลือกดูรากฐาน ส่วนประกอบ กราฟ และรูปแบบประสบการณ์ทีละกลุ่ม หากต้องทำงานต่อในเครื่องมืออื่น ดาวน์โหลดต้นฉบับ v0.8.8 ไปวางข้างงานได้เลย</p>
+          <p data-th>กำลังทำส่วนไหนอยู่? เปิดคู่มือสีและพื้นผิวโดยตรง หรือเลือกดูรากฐาน ส่วนประกอบ กราฟ และรูปแบบประสบการณ์ทีละกลุ่ม หากต้องทำงานต่อในเครื่องมืออื่น ดาวน์โหลดต้นฉบับ v0.8.9 ไปวางข้างงานได้เลย</p>
           <p data-en>Open color and surface guidance directly, or browse foundations, components, dataviz, experience patterns, and product-adaptation examples one group at a time.</p>
         </div>
         <div class="library-gateway-actions">
@@ -5815,9 +5927,9 @@
             <span data-th>เลือกตัวอย่างที่ใกล้งานของฉัน</span>
             <span data-en>Open the Implementation Library</span>
           </a>
-          <a class="secondary-action" href="assets/downloads/landometer-design-system-v0.8.8.md" id="download-system" download>
-            <span data-th>ดาวน์โหลดคู่มือ Design System v0.8.8</span>
-            <span data-en>Download Design System v0.8.8</span>
+          <a class="secondary-action" href="assets/downloads/landometer-design-system-v0.8.9.md" id="download-system" download>
+            <span data-th>ดาวน์โหลดคู่มือ Design System v0.8.9</span>
+            <span data-en>Download Design System v0.8.9</span>
           </a>
         </div>
       </div>
@@ -5837,8 +5949,8 @@
 
         <aside class="library-boundary" role="note">
           <p><strong><span data-th>ขอบเขตของคลังนี้</span><span data-en>Library boundary</span></strong></p>
-          <p data-th>คลังนี้นำตัวอย่างจาก authoring master v0.8.8 มาให้ฝึกและอ้างอิงวิธีทำงาน ไม่ใช่หลักฐานจริงของเมือง พื้นที่ ผลิตภัณฑ์ หรือผลลัพธ์ และยังไม่ใช่ Full Living Reference</p>
-          <p data-en>These v0.8.8 authoring-master examples support training and implementation. They are not evidence about a city, place, product, or outcome, and do not claim Full Living Reference status.</p>
+          <p data-th>คลังนี้นำตัวอย่างจาก authoring master v0.8.9 มาให้ฝึกและอ้างอิงวิธีทำงาน ไม่ใช่หลักฐานจริงของเมือง พื้นที่ ผลิตภัณฑ์ หรือผลลัพธ์ และยังไม่ใช่ Full Living Reference</p>
+          <p data-en>These v0.8.9 authoring-master examples support training and implementation. They are not evidence about a city, place, product, or outcome, and do not claim Full Living Reference status.</p>
         </aside>
 
         <details class="library-group" id="library-color">
@@ -6017,7 +6129,7 @@
                   <li><span class="type-display-th">หัวเรื่องภาษาไทย</span><small>IBM Plex Sans Thai Looped · 700</small></li>
                   <li><span class="type-body-sample">เนื้อหาและ UI ที่อ่านต่อเนื่อง</span><small>Bai Jamjuree · 400/600</small></li>
                   <li><span class="type-technical-th">สถานะ · วันที่ · พื้นที่</span><small><span data-th>IBM Plex Sans Thai · 400 · ปรับสัดส่วนให้เข้าคู่กับ JetBrains Mono · self-hosted</span><span data-en>IBM Plex Sans Thai · 400 · optically paired with JetBrains Mono · self-hosted</span></small></li>
-                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.8</span><small>JetBrains Mono · 400 · single technical weight</small></li>
+                  <li><span class="type-mono-sample">SOURCE · 2026 · 0.8.9</span><small>JetBrains Mono · 400 · single technical weight</small></li>
                 </ul>
               </article>
 
@@ -6158,7 +6270,7 @@
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg></span>
                     <h5><span data-th>พื้นผิวและสถานะ</span><span data-en>Solids & states</span></h5>
-                    <span class="color-status">DS 0.8.8</span>
+                    <span class="color-status">DS 0.8.9</span>
                   </div>
                   <div class="color-plate-body">
                     <div class="surface-stack" aria-label="Canvas, alt, card, and raised surface hierarchy">
@@ -6184,7 +6296,7 @@
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-foundation"></use></svg></span>
                     <h5><span data-th>Brand Blue ไม่ใช่สีปุ่ม</span><span data-en>Brand Blue is not interaction</span></h5>
-                    <span class="color-status">DS 0.8.8</span>
+                    <span class="color-status">DS 0.8.9</span>
                   </div>
                   <div class="color-plate-body brand-interaction-split">
                     <div class="brand-identity-sample">
@@ -6217,6 +6329,9 @@
                     </div>
                     <div class="surface-mode is-cultivate">
                       <span><strong>Cultivate</strong><small>momentum · completion<br>opaque panel</small></span>
+                    </div>
+                    <div class="surface-mode is-diversity">
+                      <span><strong>Diversity</strong><small>multiple perspectives<br>rare · evidence required</small></span>
                     </div>
                   </div>
                   <figcaption><span data-th>หนึ่ง viewport มี gradient เด่นได้ไม่เกินหนึ่งผืน ใช้ stop ตาม recipe เดิม ตรวจคอนทราสต์ใต้ตัวอักษรจริง และลบทิ้งถ้าความเข้าใจไม่ดีขึ้น</span><span data-en>Use at most one dominant gradient per viewport, preserve the exact recipe, sample contrast beneath real glyphs, and delete it when comprehension does not improve.</span></figcaption>
@@ -6252,7 +6367,7 @@
 <!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this sampler. -->
       <section
         class="scale-sampler"
-        data-color-registry="color-srgb-01"
+        data-color-registry="color-srgb-02"
         data-scale-source-version="0.8.6"
         data-scale-records="18"
         aria-labelledby="scale-sampler-title"
@@ -6275,7 +6390,7 @@
 
         <div class="scale-sampler-boundary" role="note">
           <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
-          <p><span data-th lang="th">ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.8</span><span data-en lang="en">These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.8 dataviz.tokens.json package.</span></p>
+          <p><span data-th lang="th">ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.9</span><span data-en lang="en">These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.9 dataviz.tokens.json package.</span></p>
         </div>
 
 
@@ -6877,7 +6992,7 @@
                   <figcaption><span data-th>DS มี token เส้นสำหรับ map และมีกฎ connector แต่ยังไม่มี stroke-width scale กลางสำหรับ chart/axis—ตัวเลขความหนาในภาพเป็น candidate recipe ต้องขออนุมัติก่อนทำเป็น normative</span><span data-en>The DS governs map strokes and connector meaning, but has no universal chart/axis width scale. The shown widths are candidate recipes, not normative tokens.</span></figcaption>
                 </figure>
 
-                <figure class="color-plate color-plate--wide" id="color-device-stability" data-color-contract="registry-pinned-build" data-color-registry="color-srgb-01">
+                <figure class="color-plate color-plate--wide" id="color-device-stability" data-color-contract="registry-pinned-build" data-color-registry="color-srgb-02">
                   <div class="color-plate-head">
                     <span class="icon-well"><svg class="ui-icon" aria-hidden="true"><use href="#icon-compare"></use></svg></span>
                     <h5><span data-th>ทุกอุปกรณ์ต้องได้ Color Set เดียวกัน</span><span data-en>Every device must receive the same Color Set</span></h5>
@@ -6907,15 +7022,15 @@
                     <ul class="color-stability-rules">
                       <li class="color-stability-rule">
                         <svg class="ui-icon" aria-hidden="true"><use href="#icon-source"></use></svg>
-                        <span><strong><span data-th>หนึ่ง registry เท่านั้น</span><span data-en>One registry only</span></strong><small><code>color-delivery.v0.8.8.json · color-srgb-01</code><br><span data-th>root, standalone และ Atlas ต้องอ้าง token/gradient ชุดเดียวกัน</span><span data-en>Root, standalone, and Atlas must resolve the same token and gradient set.</span></small></span>
+                        <span><strong><span data-th>หนึ่ง registry เท่านั้น</span><span data-en>One registry only</span></strong><small><code>color-delivery.v0.8.9.json · color-srgb-02</code><br><span data-th>root, standalone และ Atlas ต้องอ้าง token/gradient ชุดเดียวกัน</span><span data-en>Root, standalone, and Atlas must resolve the same token and gradient set.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <svg class="ui-icon" aria-hidden="true"><use href="#icon-download"></use></svg>
-                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set แล้ว</span><span data-en>Share the pinned Color Set</span></strong><small><code>landometer-design-system-v0.8.8-standalone.color-srgb-01.html</code><br><span data-th>ลิงก์นี้ไม่เปลี่ยนชุดสีระหว่างตรวจงาน</span><span data-en>This URL does not change Color Set during review.</span></small></span>
+                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <svg class="ui-icon" aria-hidden="true"><use href="#icon-compare"></use></svg>
-                        <span><strong><span data-th>ตรวจ Build ID ก่อนดูสี</span><span data-en>Check Build ID before color</span></strong><small><code>data-color-registry="color-srgb-01"</code><br><span data-th>ถ้า ID ต่างกัน คือได้คนละ build—not สีเพี้ยน</span><span data-en>Different IDs mean different builds—not color drift.</span></small></span>
+                        <span><strong><span data-th>ตรวจ Build ID ก่อนดูสี</span><span data-en>Check Build ID before color</span></strong><small><code>data-color-registry="color-srgb-02"</code><br><span data-th>ถ้า ID ต่างกัน คือได้คนละ build—not สีเพี้ยน</span><span data-en>Different IDs mean different builds—not color drift.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <svg class="ui-icon" aria-hidden="true"><use href="#icon-palette"></use></svg>
@@ -6941,14 +7056,14 @@
                 <div class="complete-color-atlas-body">
                   <!-- COLOR_ATLAS_START -->
 <!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this fragment. -->
-<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="color-srgb-01" data-atlas-version="0.8.8" data-atlas-source-version="0.8.6" data-atlas-records="18">
+<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="color-srgb-02" data-atlas-version="0.8.9" data-atlas-source-version="0.8.6" data-atlas-records="18">
   <header class="atlas-intro">
     <p class="atlas-kicker">TOKEN-01 · VIS-04 · SURFACE-01 · DATAVIZ-01 · MAP-01</p>
     <h4 class="atlas-title" id="atlas-title"><span data-th lang="th">สมุดสีฉบับเต็ม—เห็นทุกบทบาทก่อนหยิบไปใช้</span><span data-en lang="en">The complete color atlas—see every role before using it</span></h4>
     <p class="atlas-lede"><span data-th lang="th">เปิดดูได้ตั้งแต่สีอัตลักษณ์ พื้นผิว สถานะ gradient ชุดข้อมูล แผนที่ ไปจนถึงการซ้อนชั้น โดยแยกหน้าที่ของแต่ละสีให้ชัด</span><span data-en lang="en">Inspect identity, surfaces, states, gradients, data scales, map layers, and depth—with every color kept in its governed role.</span></p>
     <div class="atlas-boundary atlas-boundary--source" role="note">
       <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
-      <p><span data-th lang="th">LUT ด้านล่างอ่านจาก scales.json ซึ่งเป็น reference fixture ที่สืบทอดเข้า v0.8.8 ไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate แล้ว จึงใช้เรียนรู้ ตรวจแบบ และเทียบค่าล่วงหน้าได้ แต่ห้ามอ้างว่า production conform จน hash, legend/renderer parity, contrast และ CVD gate ผ่านครบ</span><span data-en lang="en">The LUTs below come from the scales.json reference fixture carried into v0.8.8. They are not a scale-gate-cleared dataviz.tokens.json package. Use them to learn, review, and compare—not to claim production conformance until hash, legend/renderer parity, contrast, and CVD gates pass.</span></p>
+      <p><span data-th lang="th">LUT ด้านล่างอ่านจาก scales.json ซึ่งเป็น reference fixture ที่สืบทอดเข้า v0.8.9 ไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate แล้ว จึงใช้เรียนรู้ ตรวจแบบ และเทียบค่าล่วงหน้าได้ แต่ห้ามอ้างว่า production conform จน hash, legend/renderer parity, contrast และ CVD gate ผ่านครบ</span><span data-en lang="en">The LUTs below come from the scales.json reference fixture carried into v0.8.9. They are not a scale-gate-cleared dataviz.tokens.json package. Use them to learn, review, and compare—not to claim production conformance until hash, legend/renderer parity, contrast, and CVD gates pass.</span></p>
     </div>
     <div class="atlas-counts" aria-label="Atlas coverage">
       <span><strong>14</strong><small>identity + logo</small></span>
@@ -7104,7 +7219,7 @@
     <header class="atlas-family-head">
       <p class="atlas-family-index">02 · FOUNDATION</p>
       <h5 id="atlas-foundation-title"><span data-th lang="th">พื้นผิว ตัวอักษร เส้น และ interaction ครบทั้งสองธีม</span><span data-en lang="en">Every governed surface, text, border, and interaction pair</span></h5>
-      <p><span data-th lang="th">17 คู่ด้านล่างคือ active authoring subset ของ v0.8.8 เลือกตามบทบาท ไม่เลือกเพราะชอบรหัสสี</span><span data-en lang="en">These 17 light/dark pairs are the v0.8.8 active authoring subset. Choose by role, never by favorite hex.</span></p>
+      <p><span data-th lang="th">17 คู่ด้านล่างคือ active authoring subset ของ v0.8.9 เลือกตามบทบาท ไม่เลือกเพราะชอบรหัสสี</span><span data-en lang="en">These 17 light/dark pairs are the v0.8.9 active authoring subset. Choose by role, never by favorite hex.</span></p>
     </header>
     <div class="atlas-pair-grid">
 
@@ -7504,37 +7619,92 @@
       <p><span data-th lang="th">หนึ่ง viewport มี gradient เด่นได้ไม่เกินหนึ่งผืน เก็บ stop order เดิม ตรวจคอนทราสต์ใต้ glyph จริง และลบทิ้งเมื่อไม่ได้ช่วยให้เข้าใจดีขึ้น</span><span data-en lang="en">Allow at most one dominant gradient per viewport, preserve stop order, test beneath real glyphs, and remove it when comprehension does not improve.</span></p>
     </header>
     <div class="atlas-signature-support">
-      <span class="atlas-swatch" style="--atlas-color:#68C4E2;background:#68C4E2" aria-hidden="true"></span>
-      <span><code>dark.signature.sky</code><strong>#68C4E2</strong><small><span data-th lang="th">ใช้เป็นจุดเริ่มต้นของ closing signature บนธีมมืดเท่านั้น</span><span data-en lang="en">Approved dark closing-signature start only</span></small></span>
+      <span class="atlas-swatch" style="--atlas-color:#1D4497;background:#1D4497" aria-hidden="true"></span>
+      <span><code>landometer-atmosphere-gradient-v2</code><strong>3 tonal pairs + 1 rare spectrum</strong><small><span data-th lang="th">Measure, Ground และ Cultivate มีคู่ deep/light คนละหน้าที่ ส่วน Diversity ใช้เมื่อเรื่องนั้นมีหลายมุมมองจริง</span><span data-en lang="en">Measure, Ground, and Cultivate each have a distinct deep/light pair; Diversity is reserved for truthful multi-perspective scenes.</span></small></span>
     </div>
     <div class="atlas-gradient-grid atlas-gradient-grid--shared">
 
           <figure class="atlas-gradient-card atlas-gradient-card--shared">
             <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);background:linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);background:linear-gradient(135deg in srgb, #1D4497 0%, #176B82 54%, #08756F 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
-              <code class="atlas-token-id">signature.gradient.closing.light</code>
+              <code class="atlas-token-id">atmosphere.gradient.measure.deep</code>
               <strong class="atlas-gradient-stops">#1D4497 0% · #176B82 54% · #08756F 100%</strong>
-              <small><span data-th lang="th">ฉาก Measure และช่วงปิดงานบนธีมสว่าง</span><span data-en lang="en">Measure atmosphere and closing scene in light theme</span></small>
-              <span class="atlas-gradient-meta"><b>Measure · entry / orientation / closure</b><em>glyph sampling → deterministic scrim or opaque panel when needed</em><i>deletion test · keep only when comprehension improves</i></span>
+              <small><span data-th lang="th">Brand DNA, จุดเริ่มต้น และช่วงปิดงานที่ต้องการน้ำหนักน่าเชื่อถือ</span><span data-en lang="en">Brand DNA, entry, and closure when a confident directional field is needed</span></small>
+              <span class="atlas-gradient-meta"><b>Measure · entry, direction, high-confidence orientation, or closure</b><em>surfaceForeground.onDeep · #FFFFFF / #F1F4EF · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
           <figure class="atlas-gradient-card atlas-gradient-card--shared">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);background:linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%);background:linear-gradient(135deg in srgb, #68C4E2 0%, #15919A 52%, #08756F 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);background:linear-gradient(135deg, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%);background:linear-gradient(135deg in srgb, #89CEF6 0%, #5ECAD6 50%, #6CD5B3 100%)" aria-hidden="true"></span>
             <figcaption class="atlas-gradient-caption">
-              <code class="atlas-token-id">signature.gradient.closing.dark</code>
-              <strong class="atlas-gradient-stops">#68C4E2 0% · #15919A 52% · #08756F 100%</strong>
-              <small><span data-th lang="th">ฉาก Measure และช่วงปิดงานบนธีมมืด</span><span data-en lang="en">Measure atmosphere and closing scene in dark theme</span></small>
-              <span class="atlas-gradient-meta"><b>Measure · entry / orientation / closure</b><em>glyph sampling → deterministic scrim or opaque panel when needed</em><i>deletion test · keep only when comprehension improves</i></span>
+              <code class="atlas-token-id">atmosphere.gradient.measure.luminous</code>
+              <strong class="atlas-gradient-stops">#89CEF6 0% · #5ECAD6 50% · #6CD5B3 100%</strong>
+              <small><span data-th lang="th">Measure โทนสว่างสำหรับฉากมืด โดยยังอ่านด้วยหมึก Mineral ได้ชัด</span><span data-en lang="en">A luminous Measure companion for dark mode with Mineral foreground</span></small>
+              <span class="atlas-gradient-meta"><b>Measure · orientation and measurement becoming action</b><em>surfaceForeground.onLight · #182327 / #293337 · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
+          <figure class="atlas-gradient-card atlas-gradient-card--shared">
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%);background:linear-gradient(135deg, #0F5773 0%, #006A6A 50%, #1F744F 100%);background:linear-gradient(135deg in srgb, #0F5773 0%, #006A6A 50%, #1F744F 100%)" aria-hidden="true"></span>
+            <figcaption class="atlas-gradient-caption">
+              <code class="atlas-token-id">atmosphere.gradient.ground.current</code>
+              <strong class="atlas-gradient-stops">#0F5773 0% · #006A6A 50% · #1F744F 100%</strong>
+              <small><span data-th lang="th">บริบท หลักฐาน และการไหลของเรื่องในฉากมืด</span><span data-en lang="en">Context, evidence, and narrative current in dark mode</span></small>
+              <span class="atlas-gradient-meta"><b>Ground · context reveal and evidence becoming understandable</b><em>surfaceForeground.onDeep · #FFFFFF / #F1F4EF · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
+            </figcaption>
+          </figure>
+          <figure class="atlas-gradient-card atlas-gradient-card--shared">
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);background:linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);background:linear-gradient(135deg in srgb, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%)" aria-hidden="true"></span>
+            <figcaption class="atlas-gradient-caption">
+              <code class="atlas-token-id">atmosphere.gradient.ground.mist</code>
+              <strong class="atlas-gradient-stops">#C4E0EE 0% · #B2E2E2 50% · #CCE6D0 100%</strong>
+              <small><span data-th lang="th">Brand Voice สีฟ้าอ่อนแบบ muted ช่วยให้คำและหลักฐานเป็นพระเอก</span><span data-en lang="en">A muted light-blue Brand Voice field that lets language and evidence lead</span></small>
+              <span class="atlas-gradient-meta"><b>Ground · calm context, collaboration, and Brand Voice proof</b><em>surfaceForeground.onLight · #182327 / #293337 · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
+            </figcaption>
+          </figure>
+          <figure class="atlas-gradient-card atlas-gradient-card--shared">
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%);background:linear-gradient(135deg, #EB8182 0%, #F5A06F 50%, #EBC573 100%);background:linear-gradient(135deg in srgb, #EB8182 0%, #F5A06F 50%, #EBC573 100%)" aria-hidden="true"></span>
+            <figcaption class="atlas-gradient-caption">
+              <code class="atlas-token-id">atmosphere.gradient.cultivate.glow</code>
+              <strong class="atlas-gradient-stops">#EB8182 0% · #F5A06F 50% · #EBC573 100%</strong>
+              <small><span data-th lang="th">พลังของการลงมือทำและความคืบหน้าที่จับต้องได้</span><span data-en lang="en">Human energy for action and credible momentum</span></small>
+              <span class="atlas-gradient-meta"><b>Cultivate · action and credible momentum</b><em>surfaceForeground.onLight · #182327 / #293337 · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
+            </figcaption>
+          </figure>
+          <figure class="atlas-gradient-card atlas-gradient-card--shared">
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);background:linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);background:linear-gradient(135deg in srgb, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%)" aria-hidden="true"></span>
+            <figcaption class="atlas-gradient-caption">
+              <code class="atlas-token-id">atmosphere.gradient.cultivate.mist</code>
+              <strong class="atlas-gradient-stops">#F7CBC7 0% · #FBD1B6 50% · #F1E0B4 100%</strong>
+              <small><span data-th lang="th">Cultivate โทนอ่อนสำหรับฉากมืดที่ต้องการความอบอุ่นโดยไม่เร่งเร้า</span><span data-en lang="en">A light Cultivate companion for dark mode—warm without urgency</span></small>
+              <span class="atlas-gradient-meta"><b>Cultivate · completion and handoff</b><em>surfaceForeground.onLight · #182327 / #293337 · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
+            </figcaption>
+          </figure>
+    </div>
+    <div class="atlas-boundary atlas-boundary--diversity" role="note">
+      <strong>DIVERSITY · RARE · EVIDENCE REQUIRED</strong>
+      <p><span data-th lang="th">ใช้ไม่เกินหนึ่งครั้งต่อ long route และใช้เมื่อฉากนั้นพูดถึงหลายมุมมองหรือการร่วมสร้างจริงเท่านั้น ห้ามใช้กับ data, status, product, button หรือ logo</span><span data-en lang="en">Use at most once per long route and only for a truthful multiple-perspective or co-creation scene. Never use it for data, status, product, button, or logo.</span></p>
+
+          <figure class="atlas-gradient-card atlas-gradient-card--rare">
+            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%);background:linear-gradient(135deg, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%);background:linear-gradient(135deg in srgb, #89CEF6 0%, #6CD5B3 34%, #EBC573 67%, #EB8182 100%)" aria-hidden="true"></span>
+            <figcaption class="atlas-gradient-caption">
+              <code class="atlas-token-id">atmosphere.gradient.diversity.spectrum</code>
+              <strong class="atlas-gradient-stops">#89CEF6 0% · #6CD5B3 34% · #EBC573 67% · #EB8182 100%</strong>
+              <small><span data-th lang="th">ใช้เฉพาะฉากที่มีหลายมุมมองหรือการร่วมสร้างจริง ไม่เกินหนึ่งครั้งต่อ long route</span><span data-en lang="en">Rare use for a truthful multiple-perspective or co-creation scene—once per long route</span></small>
+              <span class="atlas-gradient-meta"><b>Diversity · rare evidenced diverse participation or co-creation</b><em>surfaceForeground.onLight · #182327 / #293337 · ≥4.5:1</em><i>deletion test · keep only when comprehension improves</i></span>
+            </figcaption>
+          </figure>
+    </div>
+    <div class="atlas-boundary atlas-boundary--motif" role="note">
+      <strong>MOTIF-01 · GATE STILL APPLIES</strong>
+      <p><span data-th lang="th">brandSignature เป็น alias ของ Measure Deep ไม่ใช่ palette อีกชุด ส่วน civicCool และ civicWarm เป็น asset-only legacy motif ชื่อ motif gradient ไม่ได้อนุญาตให้วาดหรือ trace โลโก้ขึ้นใหม่</span><span data-en lang="en">brandSignature is an alias of Measure Deep, not another palette. civicCool and civicWarm remain asset-only legacy motifs. A motif gradient ID never authorizes rebuilding or tracing the logo.</span></p>
+      <div class="atlas-gradient-grid atlas-gradient-grid--motif">
 
           <figure class="atlas-gradient-card atlas-gradient-card--motif">
-            <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);background:linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%);background:linear-gradient(135deg in srgb, #1D4497 0%, #176B82 52%, #08756F 100%)" aria-hidden="true"></span>
+            <span class="atlas-gradient-alias" aria-hidden="true"><code>motif.gradient.brandSignature</code><b>→</b><code>atmosphere.gradient.measure.deep</code></span>
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">motif.gradient.brandSignature</code>
-              <strong class="atlas-gradient-stops">#1D4497 0% → #176B82 52% → #08756F 100%</strong>
-              <small><span data-th lang="th">เฉพาะ motif asset ที่ผ่าน gate แล้ว</span><span data-en lang="en">Only for a separately approved motif asset</span></small>
-              <span class="atlas-gradient-meta"><b>asset-gated motif only</b><em>not a general-purpose surface token</em><i>deletion test · keep only when comprehension improves</i></span>
+              <strong class="atlas-gradient-stops">alias → atmosphere.gradient.measure.deep</strong>
+              <small><span data-th lang="th">เป็น semantic alias ของ Measure Deep เท่านั้น—ไม่ใช่ swatch ชุดที่สอง</span><span data-en lang="en">Semantic alias of Measure Deep—not a second palette specimen</span></small>
+              <span class="atlas-gradient-meta"><b>exact alias · separately approved motif asset only</b><em>not a general-purpose surface token</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
           <figure class="atlas-gradient-card atlas-gradient-card--motif">
@@ -7542,8 +7712,8 @@
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">motif.gradient.civicCool</code>
               <strong class="atlas-gradient-stops">#147A9F 0% → #3BD3CB 52% → #3BD19B 100%</strong>
-              <small><span data-th lang="th">Ground: เผยบริบทและทำให้หลักฐานเข้าใจง่ายขึ้น</span><span data-en lang="en">Ground: context reveal and evidence becoming understandable</span></small>
-              <span class="atlas-gradient-meta"><b>Ground · context reveal / transition</b><em>sampled contrast → deterministic scrim or opaque panel</em><i>deletion test · keep only when comprehension improves</i></span>
+              <small><span data-th lang="th">สีเดิมสำหรับ motif asset ที่ผ่าน gate แล้วเท่านั้น ไม่ใช่ surface</span><span data-en lang="en">Legacy color for a separately approved motif asset only—not a surface</span></small>
+              <span class="atlas-gradient-meta"><b>asset-gated legacy motif only</b><em>not a general-purpose surface token</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
           <figure class="atlas-gradient-card atlas-gradient-card--motif">
@@ -7551,14 +7721,11 @@
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">motif.gradient.civicWarm</code>
               <strong class="atlas-gradient-stops">#C33F55 0% → #FF8A4C 52% → #F4C44E 100%</strong>
-              <small><span data-th lang="th">Cultivate: การลงมือทำ โมเมนตัม และความสำเร็จ</span><span data-en lang="en">Cultivate: action, credible momentum, and completion</span></small>
-              <span class="atlas-gradient-meta"><b>Cultivate · momentum / completion</b><em>sampled contrast → deterministic scrim or opaque panel</em><i>deletion test · keep only when comprehension improves</i></span>
+              <small><span data-th lang="th">สีเดิมสำหรับ motif asset ที่ผ่าน gate แล้วเท่านั้น ไม่ใช่ surface</span><span data-en lang="en">Legacy color for a separately approved motif asset only—not a surface</span></small>
+              <span class="atlas-gradient-meta"><b>asset-gated legacy motif only</b><em>not a general-purpose surface token</em><i>deletion test · keep only when comprehension improves</i></span>
             </figcaption>
           </figure>
-    </div>
-    <div class="atlas-boundary atlas-boundary--motif" role="note">
-      <strong>MOTIF-01 · GATE STILL APPLIES</strong>
-      <p><span data-th lang="th">ชื่อ motif gradient ที่เห็นไม่ได้อนุญาตให้วาดหรือ trace โลโก้ขึ้นใหม่ และใช้สีให้ motif asset ได้ต่อเมื่อ vector/hash gate ผ่านแล้วเท่านั้น</span><span data-en lang="en">A motif gradient ID does not authorize rebuilding or tracing the logo. It may color only a separately approved motif asset after its vector/hash gate passes.</span></p>
+      </div>
     </div>
     <div class="atlas-subfamily">
       <header class="atlas-subfamily-head">
@@ -9300,7 +9467,7 @@
   <footer class="atlas-footer">
     <p><strong><span data-th lang="th">จำง่ายๆ: เริ่มจากหน้าที่ แล้วค่อยหยิบสี</span><span data-en lang="en">One rule to remember: start with the role, then choose the color</span></strong></p>
     <p><span data-th lang="th">ถ้าสีเดียวกำลังพยายามบอกทั้งแบรนด์ สถานะ ขนาดข้อมูล และสิ่งที่กดได้พร้อมกัน แปลว่าต้องแยกบทบาทก่อน</span><span data-en lang="en">When one color is trying to say brand, state, magnitude, and action at once, separate the roles before styling.</span></p>
-    <code>landometer-design-system@0.8.8 · active authoring subset · SOURCE_LIMITED</code>
+    <code>landometer-design-system@0.8.9 · active authoring subset · SOURCE_LIMITED</code>
   </footer>
 </section>
                   <!-- COLOR_ATLAS_END -->
@@ -9900,7 +10067,7 @@
                 <div class="motion-lab" id="motion-lab" data-phase="final">
                   <h6><span data-th>ลองดูว่า motion ช่วยเล่าการเปลี่ยนสถานะอย่างไร</span><span data-en>Try the semantic motion sequence</span></h6>
                   <div class="motion-object">
-                    <p class="motion-object-name">landometer-design-system@0.8.8</p>
+                    <p class="motion-object-name">landometer-design-system@0.8.9</p>
                     <strong class="motion-answer"><span data-th>คำตอบหลักเห็นได้ทันที</span><span data-en>The primary answer is immediate.</span></strong>
                     <div class="motion-status">source_limited</div>
                     <p class="motion-context"><span data-th>บริบท แหล่งข้อมูล และข้อจำกัดมีไว้ช่วยอธิบายคำตอบ ไม่ใช่ซ่อนคำตอบไว้รอ animation</span><span data-en>Context, source, and limitation clarify the answer; they never hide it behind animation.</span></p>
@@ -10129,50 +10296,50 @@
           </summary>
           <div class="library-content">
             <h4><span data-th>ดาวน์โหลดคู่มือ และตรวจบันทึกของ release ได้จากที่เดียวกัน</span><span data-en>Keep the readable master and release records together.</span></h4>
-            <p class="library-content-intro" data-th>ไฟล์ดาวน์โหลดคือ authoring master v0.8.8 ข้อความและลำดับที่เป็นมาตรฐานยังเหมือนเดิม มีเพียงการจัดช่องว่างท้ายบรรทัด สถานะยังเป็น source_limited และ machineValidation pending และไม่มี ZIP หรือ archive เพิ่ม</p>
-            <p class="library-content-intro" data-en>The download is the v0.8.8 authoring master with trailing whitespace normalized; normative text and ordering are unchanged. It remains source_limited and machineValidation pending, with no added ZIP or archive.</p>
+            <p class="library-content-intro" data-th>ไฟล์ดาวน์โหลดคือ authoring master v0.8.9 revision r1 ซึ่งรักษาประโยค Culture / Rally Cry ตาม Master Brand Brief v0.5.2 §1.1 ไว้ครบ และเพิ่ม gradient atmosphere ที่หลากหลายภายใต้หน้าที่และ contrast contract ที่ชัดเจน ส่วน machine package และการรับรองตัว webpage ยังเป็น pending แยกกัน</p>
+            <p class="library-content-intro" data-en>The download is the owner-approved v0.8.9 authoring revision r1. It preserves the complete Culture / Rally Cry from Master Brand Brief v0.5.2 §1.1 and adds a more diverse atmosphere-gradient family with explicit jobs and contrast contracts. Machine-package and webpage conformance remain separate pending gates.</p>
             <div class="resource-grid">
               <article>
-                <p class="resource-meta">HUMAN-READABLE · MARKDOWN · V0.8.8</p>
+                <p class="resource-meta">HUMAN-READABLE · MARKDOWN · V0.8.9-R1</p>
                 <h5><span data-th>Design System authoring master</span><span data-en>Design System authoring master</span></h5>
-                <p>227,924 bytes · SHA-256 19d901fe76b7f50ffa16ae7c6d9b918c7de42718fad897448e6107793e146776</p>
-                <a class="download-action" href="assets/downloads/landometer-design-system-v0.8.8.md" id="resource-download-system" download><span data-th>ดาวน์โหลด Markdown</span><span data-en>Download Markdown</span></a>
+                <p>269,767 bytes · SHA-256 00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68</p>
+                <a class="download-action" href="assets/downloads/landometer-design-system-v0.8.9.md" id="resource-download-system" download><span data-th>ดาวน์โหลด Markdown</span><span data-en>Download Markdown</span></a>
               </article>
               <article>
                 <p class="resource-meta">MACHINE-READABLE · RELEASE CONTEXT</p>
                 <h5><span data-th>ไฟล์กำกับการส่งมอบ</span><span data-en>Delivery records</span></h5>
-                <a href="site-manifest.v0.8.8.json" id="resource-manifest">Site Manifest 2.0</a><br>
-                <a href="build-card.v0.8.8.yml" id="resource-build-card">Build Card v0.8.8</a><br>
-                <a href="control-inventory.v0.8.8.json" id="resource-control-inventory">Control Inventory</a><br>
-                <a href="qa/v0.8.8-manual-gates.md" id="resource-manual-gates">Manual QA gates</a>
+                <a href="site-manifest.v0.8.9.json" id="resource-manifest">Site Manifest 2.0</a><br>
+                <a href="build-card.v0.8.9.yml" id="resource-build-card">Build Card v0.8.9</a><br>
+                <a href="control-inventory.v0.8.9.json" id="resource-control-inventory">Control Inventory</a><br>
+                <a href="qa/v0.8.9-manual-gates.md" id="resource-manual-gates">Manual QA gates</a>
               </article>
               <article>
-                <p class="resource-meta">PROPOSED · NON-NORMATIVE CLARIFICATION</p>
+                <p class="resource-meta">ACCEPTED · ARTIFACT APPLICATION RECORD</p>
                 <h5><span data-th>Implementation notes</span><span data-en>Implementation notes</span></h5>
-                <p data-th>อธิบายเพิ่มเรื่องตำแหน่งปุ่มแชร์ การค้นหาแหล่งข้อมูล การสังเคราะห์ด้วย AI จากบริบท ตัวอย่าง Intent → AHA และแนวคิดที่เริ่มจากโอกาส โดยไม่เปลี่ยนข้อความมาตรฐานใน authoring master</p>
-                <p data-en>Clarifies share placement, contextual source Search and AI synthesis, Intent → AHA cases, and opportunity-led examples without changing the authoring master’s normative text.</p>
-                <a href="implementation-notes.v0.8.8.md" id="resource-implementation-notes" type="text/markdown"><span data-th>อ่าน proposed clarification</span><span data-en>Read proposed clarification</span></a>
+                <p data-th>บันทึกว่า webpage นี้นำกฎที่อนุมัติแล้วไปใช้อย่างไร รวมทั้งทางเลือกที่เป็น implementation เฉพาะหน้านี้ โดยไม่ใช้บันทึกนี้แทน normative master</p>
+                <p data-en>Records how this webpage applies the approved rules and which choices remain artifact-specific; it does not replace the normative master.</p>
+                <a href="implementation-notes.v0.8.9.md" id="resource-implementation-notes" type="text/markdown"><span data-th>อ่านบันทึกการนำไปใช้</span><span data-en>Read application record</span></a>
               </article>
               <article>
-                <p class="resource-meta">PROPOSED · NORMATIVE PATCH · MARKDOWN</p>
-                <h5><span data-th>Experience clarifications</span><span data-en>Experience clarifications</span></h5>
-                <p data-th>ข้อเสนอเรื่อง before/after value proof, contrast ของ component-owned surface, ฟอนต์ป้ายเทคนิคภาษาไทย, color reference, stroke/overlap และกติกาแยก Search ออกจาก AI synthesis ยังไม่เปลี่ยนอำนาจของ authoring master</p>
-                <p data-en>Proposes before/after value proof, component-owned surface contrast, Thai technical-label routing, complete color reference, stroke/overlap gaps, and the Search-versus-AI-synthesis contract. It does not change current authority.</p>
-                <a href="https://github.com/montri-th/Landometer/blob/main/normative-patches/landometer-design-system-v0.8.8-experience-clarifications.proposal.md" id="resource-normative-patch"><span data-th>เปิด normative patch proposal</span><span data-en>Open normative patch proposal</span></a>
+                <p class="resource-meta">OWNER-APPROVED · INTEGRATED 7 AUG 2026</p>
+                <h5><span data-th>Gradient diversity</span><span data-en>Gradient diversity</span></h5>
+                <p data-th>ข้อเสนอ v0.8.9 เพิ่มสีใหม่ที่ใช้ได้เฉพาะ atmosphere gradient แยกหน้าที่ Measure, Ground, Cultivate และ Diversity พร้อมล็อก foreground และ contrast โดยไม่เปลี่ยน data scale, semantic state, product identity หรือโลโก้</p>
+                <p data-en>The v0.8.9 proposal adds gradient-only atmosphere colors for Measure, Ground, Cultivate, and Diversity with frozen foreground and contrast contracts. Data scales, semantic states, product identity, and logo colors remain unchanged.</p>
+                <a href="https://github.com/montri-th/Landometer/blob/main/normative-patches/landometer-design-system-v0.8.9-gradient-diversity.proposal.md" id="resource-normative-patch"><span data-th>เปิดข้อเสนอที่อนุมัติแล้ว</span><span data-en>Open approved proposal</span></a>
               </article>
               <article>
-                <p class="resource-meta">REUSABLE SKILL · MODULAR WORKFLOW</p>
-                <h5>refine-landometer-experience</h5>
-                <p data-th>workflow ใช้ซ้ำสำหรับ value proof, theme/surface contrast, ฟอนต์สองภาษา, visual-first library, normative-gap classification และ release gate</p>
-                <p data-en>A reusable workflow for value proof, theme/surface contrast, bilingual type, visual-first references, normative-gap classification, and release gates.</p>
-                <a href="https://github.com/montri-th/Landometer/tree/main/skill/refine-landometer-experience" id="resource-refinement-skill"><span data-th>เปิด skill package</span><span data-en>Open skill package</span></a>
+                <p class="resource-meta">VERSION-LOCKED AUTHORING SKILL · V0.8.9</p>
+                <h5>apply-landometer-design-system-v0-8-9</h5>
+                <p data-th>ใช้ authoring master r1 ที่อนุมัติแล้ว พร้อม Build Card และ release lock รักษาประโยค Culture / Rally Cry ครบถ้วน และบอกตรงๆ ว่า machine package ยังรอการรับรอง</p>
+                <p data-en>Uses the approved r1 authoring master with its Build Card and release lock, preserves the complete Culture / Rally Cry, and keeps machine-package conformance explicitly pending.</p>
+                <a href="https://github.com/montri-th/Landometer/tree/main/skill/apply-landometer-design-system-v0-8-9" id="resource-refinement-skill"><span data-th>เปิด skill v0.8.9</span><span data-en>Open v0.8.9 skill</span></a>
               </article>
               <article>
                 <p class="resource-meta">PINNED COLOR SET · SELF-CONTAINED · HTML</p>
                 <h5><span data-th>Standalone ที่ล็อกชุดสีแล้ว</span><span data-en>Color-Set-pinned standalone</span></h5>
-                <p data-th>ไฟล์เดียวจบ ฝัง font และภาพไว้ครบ พร้อมล็อก Color Set <code>color-srgb-01</code> สำหรับตรวจงานข้ามเครื่องและส่งต่อโดยไม่สลับไปคนละ palette ตาม cache ของหน้า latest</p>
-                <p data-en>One self-contained file with fonts, images, and Color Set <code>color-srgb-01</code> pinned for cross-device review and handoff—without drifting to a different palette through a cached latest alias.</p>
-                <a class="download-action" href="landometer-design-system-v0.8.8-standalone.color-srgb-01.html" id="resource-standalone" download><span data-th>ดาวน์โหลด Color Set SRGB-01</span><span data-en>Download Color Set SRGB-01</span></a>
+                <p data-th>ไฟล์เดียวจบ ฝัง font และภาพไว้ครบ พร้อมล็อก Color Set <code>color-srgb-02</code> สำหรับตรวจงานข้ามเครื่องและส่งต่อโดยไม่สลับไปคนละ palette ตาม cache ของหน้า latest</p>
+                <p data-en>One self-contained file with fonts, images, and Color Set <code>color-srgb-02</code> pinned for cross-device review and handoff—without drifting to a different palette through a cached latest alias.</p>
+                <a class="download-action" href="landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html" id="resource-standalone" download><span data-th>ดาวน์โหลด build ที่ล็อกแล้ว</span><span data-en>Download pinned build</span></a>
               </article>
               <article>
                 <p class="resource-meta">MACHINE DISCOVERY · NAVIGATION AID ONLY</p>
@@ -10221,7 +10388,7 @@
     <div class="container footer-inner">
       <div>
         <b>Landometer Design Identity Playground</b>
-        <p>Based on the v0.8.8 owner-approved authoring master.</p>
+        <p>Based on the owner-approved v0.8.9-r1 authoring master.</p>
       </div>
       <div class="footer-meta">
         internal-team intent · public projection · noindex<br>
@@ -10231,7 +10398,7 @@
         explicit contextual Google Search or AI Mode GET after user activation
       </div>
       <nav class="footer-links" aria-label="Release references">
-        <a href="site-manifest.v0.8.8.json" id="manifest-link">Manifest 2.0</a>
+        <a href="site-manifest.v0.8.9.json" id="manifest-link">Manifest 2.0</a>
         <a href="https://github.com/montri-th/Landometer" id="github-link">GitHub source</a>
       </nav>
     </div>
@@ -10354,7 +10521,7 @@
               }
             }
           },
-          states: { before: "ก่อนปรับ", after: "หลังปรับ · DS 0.8.8" },
+          states: { before: "ก่อนปรับ", after: "หลังปรับ · DS 0.8.9" },
           cues: {
             dna: {
               before: ["งานยังไม่ชัด", "ที่มาไม่แสดง", "ก้าวต่อกว้างเกินไป"],
@@ -10385,7 +10552,7 @@
             "จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง"
           ],
           recipeHandoff: "ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ",
-          recipeSource: "ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending",
+          recipeSource: "ที่มา: Landometer Design System v0.8.9-r1 authoring master · source_limited · machineValidation pending",
           recipe: work => `งาน: ${work.label}
 
 1. ระบุว่าใครกำลังตัดสินใจเรื่องอะไร
@@ -10396,7 +10563,7 @@
 
 ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
 
-ที่มา: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending`,
+ที่มา: Landometer Design System v0.8.9-r1 authoring master · source_limited · machineValidation pending`,
           copied: "คัดลอกสูตรแล้ว นำไปวางข้างงานที่กำลังทำได้เลย",
           copyFail: "คัดลอกอัตโนมัติไม่ได้ ระบบเลือกข้อความไว้ให้แล้ว กดคัดลอกจากอุปกรณ์ของคุณได้เลย"
         },
@@ -10495,7 +10662,7 @@
               }
             }
           },
-          states: { before: "BEFORE", after: "AFTER · DS 0.8.8" },
+          states: { before: "BEFORE", after: "AFTER · DS 0.8.9" },
           cues: {
             dna: {
               before: ["Object unclear", "Source absent", "Next step too broad"],
@@ -10526,7 +10693,7 @@
             "End with one useful action for the next person."
           ],
           recipeHandoff: "Before handoff: preserve object/version, status, source, boundary, and limitation.",
-          recipeSource: "Source: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending",
+          recipeSource: "Source: Landometer Design System v0.8.9-r1 authoring master · source_limited · machineValidation pending",
           recipe: work => `Work: ${work.label}
 
 1. Name who is deciding what.
@@ -10537,7 +10704,7 @@
 
 Before handoff: preserve object/version, status, source, boundary, and limitation.
 
-Source: Landometer Design System v0.8.8 authoring master · source_limited · machineValidation pending`,
+Source: Landometer Design System v0.8.9-r1 authoring master · source_limited · machineValidation pending`,
           copied: "Recipe copied. Place it beside the work you are doing.",
           copyFail: "Automatic copy was unavailable. The recipe is selected so you can copy it from your device."
         }
@@ -10606,7 +10773,7 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
 	          noAction: "ยังไม่มีการทำงาน · ไม่มีการส่ง บันทึก หรือติดต่อระบบภายนอก",
 	          eligible: "ผ่านเงื่อนไขแล้ว · เปิดใช้ CTA ได้ และยังเห็นสิ่งที่จะเกิดขึ้น",
 	          pendingReceipt: "PENDING_LOCAL · ยังไม่สำเร็จ · ปิดปุ่มไว้เพื่อป้องกันการทำซ้ำ",
-	          completeReceipt: "object · landometer-design-system@0.8.8\nstatus · COMPLETE_LOCAL_REFERENCE\nexternal effect · none\nrecovery · ล้างตัวอย่างและลองใหม่"
+	          completeReceipt: "object · landometer-design-system@0.8.9\nstatus · COMPLETE_LOCAL_REFERENCE\nexternal effect · none\nrecovery · ล้างตัวอย่างและลองใหม่"
         },
         en: {
           requirementMissing: "Missing requirement: review the evidence boundary before creating a receipt.",
@@ -10617,7 +10784,7 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
           noAction: "No action yet · nothing is sent, saved, or delivered externally.",
           eligible: "Eligibility met · the CTA is enabled and its consequence remains visible.",
           pendingReceipt: "PENDING_LOCAL · not success yet · duplicate execution is disabled",
-          completeReceipt: "object · landometer-design-system@0.8.8\nstatus · COMPLETE_LOCAL_REFERENCE\nexternal effect · none\nrecovery · reset the fixture and try again"
+          completeReceipt: "object · landometer-design-system@0.8.9\nstatus · COMPLETE_LOCAL_REFERENCE\nexternal effect · none\nrecovery · reset the fixture and try again"
         }
       };
 
@@ -10952,8 +11119,8 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
 
       function rememberPreferences() {
         try {
-          localStorage.setItem("ldm88-lang", state.locale);
-          localStorage.setItem("ldm88-theme", state.theme);
+          localStorage.setItem("ldm89-lang", state.locale);
+          localStorage.setItem("ldm89-theme", state.theme);
         } catch (_) {}
       }
 
@@ -11146,16 +11313,65 @@ Source: Landometer Design System v0.8.8 authoring master · source_limited · ma
       }
       window.addEventListener("hashchange", revealHashTarget);
 
+      const setFontFailureState = state => {
+        root.dataset.fontsReady = "false";
+        root.dataset.thaiBodyReady = "false";
+        root.dataset.thaiTechnicalReady = "false";
+        root.dataset.thaiDisplayReady = "false";
+        root.dataset.latinCompanionsReady = "false";
+        root.dataset.fontDelivery = state;
+      };
       if (document.fonts) {
-        Promise.all([
+        const fontProbes = [
+          { key: "bodyThai400", descriptor: '400 16px "Bai Jamjuree"', sample: "เนื้อหาที่อ่านต่อเนื่อง" },
+          { key: "bodyThai600", descriptor: '600 16px "Bai Jamjuree"', sample: "หัวข้อที่อ่านต่อเนื่อง" },
+          { key: "technicalThai400", descriptor: '400 16px "IBM Plex Sans Thai"', sample: "สถานะ วันที่ พื้นที่" },
+          { key: "displayThai700", descriptor: '700 16px "IBM Plex Sans Thai Looped"', sample: "งานเปลี่ยนมือได้" },
+          { key: "bodyLatin400", descriptor: '400 16px "Bai Jamjuree"', sample: "Body copy" },
+          { key: "bodyLatin600", descriptor: '600 16px "Bai Jamjuree"', sample: "Interface label" },
+          { key: "displayLatin700", descriptor: '700 16px "IBM Plex Sans Thai Looped"', sample: "Display" },
+          { key: "technicalLatin400", descriptor: '400 16px "JetBrains Mono"', sample: "source_limited" },
+          { key: "editorialLatin700", descriptor: '700 16px "Arvo"', sample: "Evidence" }
+        ];
+        root.dataset.fontDelivery = "pending";
+        let fontTimeoutId;
+        const loadFonts = Promise.all([
           document.fonts.ready,
-          document.fonts.load('400 16px "Bai Jamjuree"', "เนื้อหาที่อ่านต่อเนื่อง"),
-          document.fonts.load('400 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่")
-        ]).then(() => {
-          root.dataset.fontsReady = "true";
-          root.dataset.thaiBodyReady = document.fonts.check('400 16px "Bai Jamjuree"', "เนื้อหาที่อ่านต่อเนื่อง") ? "true" : "false";
-          root.dataset.thaiTechnicalReady = document.fonts.check('400 16px "IBM Plex Sans Thai"', "สถานะ วันที่ พื้นที่") ? "true" : "false";
+          ...fontProbes.map(probe => document.fonts.load(probe.descriptor, probe.sample))
+        ]);
+        const fontTimeout = new Promise((_, reject) => {
+          fontTimeoutId = window.setTimeout(() => reject(new Error("font-timeout")), 5000);
         });
+        Promise.race([loadFonts, fontTimeout]).then(([, ...faceGroups]) => {
+          window.clearTimeout(fontTimeoutId);
+          const readiness = Object.fromEntries(fontProbes.map((probe, index) => [
+            probe.key,
+            faceGroups[index].length > 0 &&
+              faceGroups[index].every(face => face.status === "loaded") &&
+              document.fonts.check(probe.descriptor, probe.sample)
+          ]));
+          const thaiBodyReady = readiness.bodyThai400 && readiness.bodyThai600;
+          const thaiTechnicalReady = readiness.technicalThai400;
+          const thaiDisplayReady = readiness.displayThai700;
+          const latinCompanionsReady = readiness.bodyLatin400 &&
+            readiness.bodyLatin600 &&
+            readiness.displayLatin700 &&
+            readiness.technicalLatin400 &&
+            readiness.editorialLatin700;
+          const fontsReady = thaiBodyReady && thaiTechnicalReady &&
+            thaiDisplayReady && latinCompanionsReady;
+          root.dataset.thaiBodyReady = String(thaiBodyReady);
+          root.dataset.thaiTechnicalReady = String(thaiTechnicalReady);
+          root.dataset.thaiDisplayReady = String(thaiDisplayReady);
+          root.dataset.latinCompanionsReady = String(latinCompanionsReady);
+          root.dataset.fontsReady = String(fontsReady);
+          root.dataset.fontDelivery = fontsReady ? "ready" : "failed";
+        }).catch(error => {
+          window.clearTimeout(fontTimeoutId);
+          setFontFailureState(error?.message === "font-timeout" ? "timeout" : "failed");
+        });
+      } else {
+        setFontFailureState("unavailable");
       }
       decorateOpportunityCards();
       renderControls();

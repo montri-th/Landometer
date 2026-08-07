@@ -11,11 +11,11 @@ const deploymentDir = path.resolve(toolDir, "../deployment");
 const sourcePath = path.join(deploymentDir, "index.html");
 const outputPath = path.join(
   deploymentDir,
-  "landometer-design-system-v0.8.8-standalone.html",
+  "landometer-design-system-v0.8.9-standalone.html",
 );
 const colorDeliveryPath = path.join(
   deploymentDir,
-  "assets/data/color-delivery.v0.8.8.json",
+  "assets/data/color-delivery.v0.8.9.json",
 );
 const publicBase = "https://montri-th.github.io/Landometer/";
 const faviconPath = "assets/images/landometer-symbol-transparent.png";
@@ -81,12 +81,12 @@ const currentArtifactBuild = colorDelivery?.meta?.currentArtifactBuild;
 const artifactBuildId = currentArtifactBuild?.id;
 const pinnedOutputName = currentArtifactBuild?.immutableStandalone;
 assert(
-  colorDelivery?.meta?.id === "color-srgb-01",
+  colorDelivery?.meta?.id === "color-srgb-02",
   "unexpected color-delivery registry id",
 );
 assert(
   colorBaselineName ===
-    "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+    "landometer-design-system-v0.8.9-standalone.color-srgb-02.html",
   "color-delivery registry must preserve the original immutable Color Set baseline",
 );
 assert(
@@ -94,7 +94,7 @@ assert(
   "color-delivery registry must declare a safe append-only artifact-build id",
 );
 assert(
-  /^landometer-design-system-v0\.8\.8-standalone\.color-srgb-01\.ui-\d{8}-\d{2}\.html$/.test(
+  /^landometer-design-system-v0\.8\.9-standalone\.color-srgb-02\.ui-\d{8}-\d{2}\.html$/.test(
     pinnedOutputName ?? "",
   ),
   "color-delivery registry must declare a safe immutable UI build filename",
@@ -109,21 +109,29 @@ const currentArtifactRecord = colorDelivery?.artifactBuilds?.find(
 );
 assert(
   colorBaselineRecord?.role === "immutable_color_baseline" &&
-    colorBaselineRecord?.status === "append_only",
-  "immutable Color Set baseline record is missing",
+    ["prepared", "append_only"].includes(colorBaselineRecord?.status),
+  "immutable Color Set baseline record is missing or has an invalid state",
 );
 assert(
   currentArtifactRecord?.role === "immutable_ui_build" &&
-    currentArtifactRecord?.status === "append_only",
-  "current immutable UI build record is missing",
+    ["prepared", "append_only"].includes(currentArtifactRecord?.status),
+  "current immutable UI build record is missing or has an invalid state",
 );
 
-const colorBaselineBytes = await readFile(colorBaselinePath);
-assert(
-  colorBaselineBytes.byteLength === colorBaselineRecord.bytes &&
-    sha256(colorBaselineBytes) === colorBaselineRecord.sha256,
-  `immutable Color Set baseline changed: ${colorBaselineName}`,
-);
+const committedColorBaseline = await readIfPresent(colorBaselinePath);
+if (colorBaselineRecord.status === "append_only") {
+  assert(committedColorBaseline !== null, `immutable Color Set baseline is missing: ${colorBaselineName}`);
+  assert(
+    Buffer.byteLength(committedColorBaseline) === colorBaselineRecord.bytes &&
+      sha256(committedColorBaseline) === colorBaselineRecord.sha256,
+    `immutable Color Set baseline changed: ${colorBaselineName}`,
+  );
+} else {
+  assert(
+    committedColorBaseline === null,
+    `prepared Color Set baseline path already exists: ${colorBaselineName}. Finalize its registry record before rebuilding.`,
+  );
+}
 
 html = html.replace(
   /\n\s*<link\s+rel="canonical"\s+href="[^"]+">\s*/i,
@@ -153,6 +161,31 @@ html = html.replace(
 );
 
 assert(html.includes('data-standalone="true"'), "standalone marker is missing");
+assert(
+  !/<link\b[^>]*\brel="preload"[^>]*\bas="font"/i.test(html),
+  "standalone snapshot must not retain declarative font preloads",
+);
+assert(
+  html.includes('location.protocol === "file:"') &&
+    html.includes('root.dataset.standalone !== "true"') &&
+    html.includes('location.replace(target.href)') &&
+    html.includes('!["http:", "https:"].includes(location.protocol)'),
+  "direct-file handoff and hosted-only font-preload guard are missing",
+);
+assert(
+  (html.match(/data:font\/woff2;base64,/g) ?? []).length === 9,
+  "standalone snapshot must embed exactly nine governed WOFF2 faces",
+);
+assert(
+  html.includes('root.dataset.fontDelivery = "pending"') &&
+    html.includes("Promise.race([loadFonts, fontTimeout])") &&
+    html.includes('reject(new Error("font-timeout"))') &&
+    html.includes('faceGroups[index].every(face => face.status === "loaded")') &&
+    html.includes("thaiDisplayReady") &&
+    html.includes("latinCompanionsReady") &&
+    html.includes('setFontFailureState(error?.message === "font-timeout" ? "timeout" : "failed")'),
+  "font readiness must cover all governed faces and expose pending, success, failure, timeout, and unavailable states",
+);
 assert(!/<link\s+rel="canonical"\b/i.test(html), "standalone snapshot must not claim a live canonical URL");
 assert(
   html.includes(`href="${publicFaviconUrl}"`) &&
@@ -186,8 +219,12 @@ const pinnedHtml = html.replace(
   'data-build-channel="latest-alias"',
   'data-build-channel="immutable-artifact-build"',
 );
+const colorBaselineHtml = html.replace(
+  'data-build-channel="latest-alias"',
+  'data-build-channel="immutable-color-set"',
+);
 assert(
-  pinnedHtml.includes('data-color-registry="color-srgb-01"') &&
+  pinnedHtml.includes('data-color-registry="color-srgb-02"') &&
     pinnedHtml.includes(`data-artifact-build="${artifactBuildId}"`) &&
     pinnedHtml.includes('data-build-channel="immutable-artifact-build"'),
   "immutable UI artifact-build markers are missing",
@@ -205,6 +242,10 @@ if (checkOnly) {
     committedPinned === pinnedHtml,
     `immutable UI artifact build is missing or stale: ${pinnedOutputName}`,
   );
+  assert(
+    committedColorBaseline === colorBaselineHtml,
+    `immutable Color Set baseline is missing or stale: ${colorBaselineName}`,
+  );
   process.stdout.write(
     `Standalone check passed for ${path.basename(outputPath)} and ${pinnedOutputName} (${artifactBuildId})\n`,
   );
@@ -214,8 +255,9 @@ if (checkOnly) {
     `immutable UI artifact build already exists with different bytes: ${pinnedOutputName}. Preserve it and mint a new artifact-build id plus filename. Mint a new Color Set id only when governed color changes.`,
   );
   await atomicWrite(outputPath, html);
+  if (committedColorBaseline === null) await atomicWrite(colorBaselinePath, colorBaselineHtml);
   if (committedPinned === null) await atomicWrite(pinnedOutputPath, pinnedHtml);
   process.stdout.write(
-    `Wrote ${outputPath} (${Buffer.byteLength(html).toLocaleString("en-US")} bytes) and ${committedPinned === null ? "created" : "preserved"} ${pinnedOutputPath} (${Buffer.byteLength(pinnedHtml).toLocaleString("en-US")} bytes; ${artifactBuildId})\n`,
+    `Wrote ${outputPath} (${Buffer.byteLength(html).toLocaleString("en-US")} bytes), ${committedColorBaseline === null ? "created" : "preserved"} ${colorBaselinePath}, and ${committedPinned === null ? "created" : "preserved"} ${pinnedOutputPath} (${Buffer.byteLength(pinnedHtml).toLocaleString("en-US")} bytes; ${artifactBuildId})\n`,
   );
 }

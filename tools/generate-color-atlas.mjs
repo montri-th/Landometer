@@ -20,7 +20,7 @@ const COLOR_DELIVERY_SOURCE = path.join(
   "deployment",
   "assets",
   "data",
-  "color-delivery.v0.8.8.json",
+  "color-delivery.v0.8.9.json",
 );
 const TOKEN_SOURCE = path.join(
   PROJECT_ROOT,
@@ -38,6 +38,8 @@ const START_MARKER = "<!-- COLOR_ATLAS_START -->";
 const END_MARKER = "<!-- COLOR_ATLAS_END -->";
 const SAMPLER_START_MARKER = "<!-- COLOR_SCALE_SAMPLER_START -->";
 const SAMPLER_END_MARKER = "<!-- COLOR_SCALE_SAMPLER_END -->";
+const GRADIENT_CSS_START_MARKER = "/* ATMOSPHERE_GRADIENT_CSS_START */";
+const GRADIENT_CSS_END_MARKER = "/* ATMOSPHERE_GRADIENT_CSS_END */";
 
 const identityColors = [
   {
@@ -140,78 +142,47 @@ const semanticPairs = [
   icon,
 }));
 
-const sharedGradients = [
-  {
-    id: "signature.gradient.closing.light",
-    theme: "light",
-    css: "linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)",
-    stops: "#1D4497 0% · #176B82 54% · #08756F 100%",
-    th: "ฉาก Measure และช่วงปิดงานบนธีมสว่าง",
-    en: "Measure atmosphere and closing scene in light theme",
-    job: "Measure · entry / orientation / closure",
-    foreground: "glyph sampling → deterministic scrim or opaque panel when needed",
-  },
-  {
-    id: "signature.gradient.closing.dark",
-    theme: "dark",
-    css: "linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%)",
-    stops: "#68C4E2 0% · #15919A 52% · #08756F 100%",
-    th: "ฉาก Measure และช่วงปิดงานบนธีมมืด",
-    en: "Measure atmosphere and closing scene in dark theme",
-    job: "Measure · entry / orientation / closure",
-    foreground: "glyph sampling → deterministic scrim or opaque panel when needed",
-  },
-];
+let sharedGradients = [];
+let motifGradients = [];
+let productGradientPairs = [];
 
-const motifGradients = [
-  {
-    id: "motif.gradient.brandSignature",
-    css: "linear-gradient(135deg, #1D4497 0%, #176B82 52%, #08756F 100%)",
-    stops: "#1D4497 0% → #176B82 52% → #08756F 100%",
-    th: "เฉพาะ motif asset ที่ผ่าน gate แล้ว",
-    en: "Only for a separately approved motif asset",
-    job: "asset-gated motif only",
-    foreground: "not a general-purpose surface token",
+const atmosphereCopy = {
+  "atmosphere.gradient.measure.deep": {
+    th: "Brand DNA, จุดเริ่มต้น และช่วงปิดงานที่ต้องการน้ำหนักน่าเชื่อถือ",
+    en: "Brand DNA, entry, and closure when a confident directional field is needed",
   },
-  {
-    id: "motif.gradient.civicCool",
-    css: "linear-gradient(135deg, #147A9F 0%, #3BD3CB 52%, #3BD19B 100%)",
-    stops: "#147A9F 0% → #3BD3CB 52% → #3BD19B 100%",
-    th: "Ground: เผยบริบทและทำให้หลักฐานเข้าใจง่ายขึ้น",
-    en: "Ground: context reveal and evidence becoming understandable",
-    job: "Ground · context reveal / transition",
-    foreground: "sampled contrast → deterministic scrim or opaque panel",
+  "atmosphere.gradient.measure.luminous": {
+    th: "Measure โทนสว่างสำหรับฉากมืด โดยยังอ่านด้วยหมึก Mineral ได้ชัด",
+    en: "A luminous Measure companion for dark mode with Mineral foreground",
   },
-  {
-    id: "motif.gradient.civicWarm",
-    css: "linear-gradient(135deg, #C33F55 0%, #FF8A4C 52%, #F4C44E 100%)",
-    stops: "#C33F55 0% → #FF8A4C 52% → #F4C44E 100%",
-    th: "Cultivate: การลงมือทำ โมเมนตัม และความสำเร็จ",
-    en: "Cultivate: action, credible momentum, and completion",
-    job: "Cultivate · momentum / completion",
-    foreground: "sampled contrast → deterministic scrim or opaque panel",
+  "atmosphere.gradient.ground.current": {
+    th: "บริบท หลักฐาน และการไหลของเรื่องในฉากมืด",
+    en: "Context, evidence, and narrative current in dark mode",
   },
-];
+  "atmosphere.gradient.ground.mist": {
+    th: "Brand Voice สีฟ้าอ่อนแบบ muted ช่วยให้คำและหลักฐานเป็นพระเอก",
+    en: "A muted light-blue Brand Voice field that lets language and evidence lead",
+  },
+  "atmosphere.gradient.cultivate.glow": {
+    th: "พลังของการลงมือทำและความคืบหน้าที่จับต้องได้",
+    en: "Human energy for action and credible momentum",
+  },
+  "atmosphere.gradient.cultivate.mist": {
+    th: "Cultivate โทนอ่อนสำหรับฉากมืดที่ต้องการความอบอุ่นโดยไม่เร่งเร้า",
+    en: "A light Cultivate companion for dark mode—warm without urgency",
+  },
+  "atmosphere.gradient.diversity.spectrum": {
+    th: "ใช้เฉพาะฉากที่มีหลายมุมมองหรือการร่วมสร้างจริง ไม่เกินหนึ่งครั้งต่อ long route",
+    en: "Rare use for a truthful multiple-perspective or co-creation scene—once per long route",
+  },
+};
 
-const productGradientPairs = [
-  ["citymeter", "#12669B", "#36BCE4", "#4C99D5", "#59C7E8", "CityMETER", "Light: ห้ามวางตัวอักษรเปล่า ใช้ opaque panel/scrim · Dark: mineral ≥5.22:1", "Light: no bare foreground; use an opaque panel/scrim · Dark: mineral ≥5.22:1"],
-  ["citywiki", "#176B82", "#007E79", "#59C7E8", "#3BD3CB", "CityWiki", "Light: white ≥4.93:1 · Dark: mineral ≥8.22:1", "Light: white ≥4.93:1 · Dark: mineral ≥8.22:1"],
-  ["citychat", "#007A58", "#007E79", "#3BD19B", "#3BD3CB", "CityChat", "Light: white ≥4.93:1 · Dark: mineral ≥8.24:1", "Light: white ≥4.93:1 · Dark: mineral ≥8.24:1"],
-  ["ijji", "#C52C00", "#B23F74", "#FF8A4C", "#F06FA6", "ijji", "Light: white ≥5.45:1 · Dark: mineral ≥5.75:1", "Light: white ≥5.45:1 · Dark: mineral ≥5.75:1"],
-].map(([id, lightStart, lightEnd, darkStart, darkEnd, label, foregroundTh, foregroundEn]) => ({
-  id,
-  label,
-  foregroundTh,
-  foregroundEn,
-  light: {
-    css: `linear-gradient(135deg, ${lightStart} 0%, ${lightEnd} 100%)`,
-    stops: `${lightStart} → ${lightEnd}`,
-  },
-  dark: {
-    css: `linear-gradient(135deg, ${darkStart} 0%, ${darkEnd} 100%)`,
-    stops: `${darkStart} → ${darkEnd}`,
-  },
-}));
+const productCopy = {
+  citymeter: ["CityMETER", "Light: ห้ามวางตัวอักษรเปล่า ใช้ opaque panel/scrim · Dark: mineral ≥5.22:1", "Light: no bare foreground; use an opaque panel/scrim · Dark: mineral ≥5.22:1"],
+  citywiki: ["CityWiki", "Light: white ≥4.93:1 · Dark: mineral ≥8.22:1", "Light: white ≥4.93:1 · Dark: mineral ≥8.22:1"],
+  citychat: ["CityChat", "Light: white ≥4.93:1 · Dark: mineral ≥8.24:1", "Light: white ≥4.93:1 · Dark: mineral ≥8.24:1"],
+  ijji: ["ijji", "Light: white ≥5.45:1 · Dark: mineral ≥5.75:1", "Light: white ≥5.45:1 · Dark: mineral ≥5.75:1"],
+};
 
 const categoricalSeries = [
   ["01", "Coral", "#C33F55", "#FF6B7F", "circle", "solid"],
@@ -380,16 +351,125 @@ function gradientStyle(css) {
   return `--atlas-gradient:${legacy};background:${legacy};background:${explicitSrgb}`;
 }
 
+function stopsLabel(stops, separator = " · ") {
+  return stops.map(([color, position]) => `${color} ${position}`).join(separator);
+}
+
+function hydrateGradientRecords(registry) {
+  const shared = registry.sharedAtmosphereGradients;
+  assert(Array.isArray(shared) && shared.length === 7, "expected seven shared atmosphere gradients");
+  sharedGradients = shared.map((record) => {
+    const localized = atmosphereCopy[record.id];
+    assert(localized, `missing Atlas copy for ${record.id}`);
+    return {
+      id: record.id,
+      css: gradientCss(record.angle, record.stops),
+      stops: stopsLabel(record.stops),
+      th: localized.th,
+      en: localized.en,
+      job: `${record.family} · ${record.job}`,
+      foreground: `${record.foreground.contract} · ${record.foreground.primary} / ${record.foreground.secondary} · ≥${record.foreground.minimumContrast}:1`,
+      rare: record.id === "atmosphere.gradient.diversity.spectrum",
+    };
+  });
+
+  const motifCopy = {
+    brandSignature: [
+      "เป็น semantic alias ของ Measure Deep เท่านั้น—ไม่ใช่ swatch ชุดที่สอง",
+      "Semantic alias of Measure Deep—not a second palette specimen",
+      "exact alias · separately approved motif asset only",
+    ],
+    civicCool: [
+      "สีเดิมสำหรับ motif asset ที่ผ่าน gate แล้วเท่านั้น ไม่ใช่ surface",
+      "Legacy color for a separately approved motif asset only—not a surface",
+      "asset-gated legacy motif only",
+    ],
+    civicWarm: [
+      "สีเดิมสำหรับ motif asset ที่ผ่าน gate แล้วเท่านั้น ไม่ใช่ surface",
+      "Legacy color for a separately approved motif asset only—not a surface",
+      "asset-gated legacy motif only",
+    ],
+  };
+  motifGradients = Object.entries(registry.motifGradients ?? {}).map(([key, record]) => {
+    const copy = motifCopy[key];
+    assert(copy, `unknown motif gradient ${key}`);
+    const resolved = record.aliasOf
+      ? shared.find((gradient) => gradient.id === record.aliasOf)
+      : record;
+    assert(resolved, `motif alias target is missing for ${key}`);
+    return {
+      id: `motif.gradient.${key}`,
+      css: gradientCss(resolved.angle, resolved.stops),
+      stops: record.aliasOf ? `alias → ${record.aliasOf}` : stopsLabel(record.stops, " → "),
+      th: copy[0],
+      en: copy[1],
+      job: copy[2],
+      foreground: "not a general-purpose surface token",
+      aliasOf: record.aliasOf ?? null,
+    };
+  });
+
+  productGradientPairs = Object.entries(registry.productIdentityGradients ?? {}).map(
+    ([id, record]) => {
+      const copy = productCopy[id];
+      assert(copy, `unknown product identity gradient ${id}`);
+      const buildTheme = (theme) => ({
+        css: gradientCss("135deg", [
+          [record[theme][0], "0%"],
+          [record[theme][1], "100%"],
+        ]),
+        stops: `${record[theme][0]} → ${record[theme][1]}`,
+      });
+      return {
+        id,
+        label: copy[0],
+        foregroundTh: copy[1],
+        foregroundEn: copy[2],
+        light: buildTheme("light"),
+        dark: buildTheme("dark"),
+      };
+    },
+  );
+}
+
+function buildGradientCssTokens(registry) {
+  const records = new Map(
+    registry.sharedAtmosphereGradients.map((record) => [record.id, record]),
+  );
+  const variableName = (id) => `--${id.replace("atmosphere.gradient.", "atmosphere-").replaceAll(".", "-")}`;
+  const declarations = registry.sharedAtmosphereGradients
+    .map((record) => {
+      const base = variableName(record.id);
+      const legacy = gradientCss(record.angle, record.stops);
+      const srgb = withExplicitSrgb(legacy);
+      return `    ${base}-legacy: ${legacy};\n    ${base}-srgb: ${srgb};`;
+    })
+    .join("\n");
+  const defaults = registry.atmosphereThemeDefaults;
+  const reference = (id, suffix) => {
+    assert(records.has(id), `theme default points to unknown gradient ${id}`);
+    return `var(${variableName(id)}-${suffix})`;
+  };
+  const themeLines = (theme) => ["measure", "ground", "cultivate"]
+    .map((family) => {
+      const id = defaults[theme][family];
+      return `    --${family}-surface-legacy: ${reference(id, "legacy")};\n    --${family}-surface-srgb: ${reference(id, "srgb")};`;
+    })
+    .join("\n");
+  const diversityId = registry.rareUsage.diversity.gradient;
+  return `:root {\n${declarations}\n${themeLines("light")}\n    --diversity-surface-legacy: ${reference(diversityId, "legacy")};\n    --diversity-surface-srgb: ${reference(diversityId, "srgb")};\n    --motif-brand-signature-legacy: ${reference("atmosphere.gradient.measure.deep", "legacy")};\n    --motif-brand-signature-srgb: ${reference("atmosphere.gradient.measure.deep", "srgb")};\n  }\n\n  html[data-theme="dark"] {\n${themeLines("dark")}\n  }`;
+}
+
 function validateColorDelivery(registry, scaleText, tokenText) {
-  assert(registry?.meta?.id === "color-srgb-01", "unexpected color registry id");
+  assert(registry?.meta?.id === "color-srgb-02", "unexpected color registry id");
   assert(
     registry?.meta?.immutableColorBaseline ===
-      "landometer-design-system-v0.8.8-standalone.color-srgb-01.html",
+      "landometer-design-system-v0.8.9-standalone.color-srgb-02.html",
     "unexpected immutable Color Set baseline filename",
   );
   assert(
     /^ui-\d{8}-\d{2}$/.test(registry?.meta?.currentArtifactBuild?.id ?? "") &&
-      /^landometer-design-system-v0\.8\.8-standalone\.color-srgb-01\.ui-\d{8}-\d{2}\.html$/.test(
+      /^landometer-design-system-v0\.8\.9-standalone\.color-srgb-02\.ui-\d{8}-\d{2}\.html$/.test(
         registry?.meta?.currentArtifactBuild?.immutableStandalone ?? "",
       ),
     "unexpected immutable UI artifact-build identity",
@@ -403,40 +483,44 @@ function validateColorDelivery(registry, scaleText, tokenText) {
     "tokens.json hash does not match the color registry",
   );
 
-  const surfaces = registry.surfaceGradients;
   assert(
-    sharedGradients[0].css ===
-      gradientCss(surfaces.measure.angle, surfaces.measure.light),
-    "Measure light gradient drift",
+    registry?.gradientRegistry?.schema === "landometer-atmosphere-gradient-v2" ||
+      registry?.delivery?.gradientRegistrySchema === "landometer-atmosphere-gradient-v2",
+    "unexpected atmosphere-gradient registry schema",
+  );
+  const expectedIds = [
+    "atmosphere.gradient.measure.deep",
+    "atmosphere.gradient.measure.luminous",
+    "atmosphere.gradient.ground.current",
+    "atmosphere.gradient.ground.mist",
+    "atmosphere.gradient.cultivate.glow",
+    "atmosphere.gradient.cultivate.mist",
+    "atmosphere.gradient.diversity.spectrum",
+  ];
+  assert(
+    sameArray(registry.sharedAtmosphereGradients?.map((record) => record.id), expectedIds),
+    "shared atmosphere gradient order or identity drift",
+  );
+  const defaults = registry.atmosphereThemeDefaults;
+  assert(defaults?.light?.measure === expectedIds[0], "light Measure default drift");
+  assert(defaults?.dark?.measure === expectedIds[1], "dark Measure default drift");
+  assert(defaults?.dark?.ground === expectedIds[2], "dark Ground default drift");
+  assert(defaults?.light?.ground === expectedIds[3], "light Ground default drift");
+  assert(defaults?.light?.cultivate === expectedIds[4], "light Cultivate default drift");
+  assert(defaults?.dark?.cultivate === expectedIds[5], "dark Cultivate default drift");
+  assert(
+    registry.rareUsage?.diversity?.gradient === expectedIds[6],
+    "rare Diversity pointer drift",
   );
   assert(
-    sharedGradients[1].css ===
-      gradientCss(surfaces.measure.angle, surfaces.measure.dark),
-    "Measure dark gradient drift",
+    registry.motifGradients?.brandSignature?.aliasOf === expectedIds[0],
+    "brandSignature must be an exact semantic alias of Measure Deep",
   );
-
-  const motifKeys = ["brandSignature", "civicCool", "civicWarm"];
-  motifKeys.forEach((key, index) => {
-    const record = registry.motifGradients?.[key];
-    assert(
-      motifGradients[index].css === gradientCss(record?.angle, record?.stops),
-      `${key} motif gradient drift`,
-    );
-  });
-
-  for (const product of productGradientPairs) {
-    const record = registry.productIdentityGradients?.[product.id];
-    for (const theme of ["light", "dark"]) {
-      assert(
-        product[theme].css ===
-          gradientCss("135deg", [
-            [record?.[theme]?.[0], "0%"],
-            [record?.[theme]?.[1], "100%"],
-          ]),
-        `${product.id} ${theme} gradient drift`,
-      );
-    }
-  }
+  assert(
+    Array.isArray(registry.gradientOnlyColors) && registry.gradientOnlyColors.length === 15,
+    "expected fifteen governed gradient-only colors",
+  );
+  hydrateGradientRecords(registry);
 }
 
 function expectedClassIndices(count) {
@@ -593,9 +677,12 @@ function renderSemanticCard(record) {
 }
 
 function renderGradientCard(record, variant) {
+  const sample = record.aliasOf
+    ? `<span class="atlas-gradient-alias" aria-hidden="true"><code>${escapeHtml(record.id)}</code><b>→</b><code>${escapeHtml(record.aliasOf)}</code></span>`
+    : `<span class="atlas-gradient-sample" style="${gradientStyle(record.css)}" aria-hidden="true"></span>`;
   return `
           <figure class="atlas-gradient-card atlas-gradient-card--${escapeHtml(variant)}">
-            <span class="atlas-gradient-sample" style="${gradientStyle(record.css)}" aria-hidden="true"></span>
+            ${sample}
             <figcaption class="atlas-gradient-caption">
               <code class="atlas-token-id">${escapeHtml(record.id)}</code>
               <strong class="atlas-gradient-stops">${escapeHtml(record.stops)}</strong>
@@ -882,8 +969,8 @@ ${scaleIds
         <div class="scale-sampler-boundary" role="note">
           <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
           <p>${bilingual(
-            "ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.8",
-            "These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.8 dataviz.tokens.json package.",
+            "ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.9",
+            "These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.9 dataviz.tokens.json package.",
           )}</p>
         </div>
 
@@ -964,7 +1051,7 @@ function buildFragment(scaleSource, colorDelivery) {
     .join("");
 
   return `<!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this fragment. -->
-<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="${escapeHtml(colorDelivery.meta.id)}" data-atlas-version="0.8.8" data-atlas-source-version="${escapeHtml(scaleSource.meta.version)}" data-atlas-records="${scaleSource.scales.length}">
+<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="${escapeHtml(colorDelivery.meta.id)}" data-atlas-version="0.8.9" data-atlas-source-version="${escapeHtml(scaleSource.meta.version)}" data-atlas-records="${scaleSource.scales.length}">
   <header class="atlas-intro">
     <p class="atlas-kicker">TOKEN-01 · VIS-04 · SURFACE-01 · DATAVIZ-01 · MAP-01</p>
     <h4 class="atlas-title" id="atlas-title">${bilingual(
@@ -978,8 +1065,8 @@ function buildFragment(scaleSource, colorDelivery) {
     <div class="atlas-boundary atlas-boundary--source" role="note">
       <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
       <p>${bilingual(
-        "LUT ด้านล่างอ่านจาก scales.json ซึ่งเป็น reference fixture ที่สืบทอดเข้า v0.8.8 ไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate แล้ว จึงใช้เรียนรู้ ตรวจแบบ และเทียบค่าล่วงหน้าได้ แต่ห้ามอ้างว่า production conform จน hash, legend/renderer parity, contrast และ CVD gate ผ่านครบ",
-        "The LUTs below come from the scales.json reference fixture carried into v0.8.8. They are not a scale-gate-cleared dataviz.tokens.json package. Use them to learn, review, and compare—not to claim production conformance until hash, legend/renderer parity, contrast, and CVD gates pass.",
+        "LUT ด้านล่างอ่านจาก scales.json ซึ่งเป็น reference fixture ที่สืบทอดเข้า v0.8.9 ไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate แล้ว จึงใช้เรียนรู้ ตรวจแบบ และเทียบค่าล่วงหน้าได้ แต่ห้ามอ้างว่า production conform จน hash, legend/renderer parity, contrast และ CVD gate ผ่านครบ",
+        "The LUTs below come from the scales.json reference fixture carried into v0.8.9. They are not a scale-gate-cleared dataviz.tokens.json package. Use them to learn, review, and compare—not to claim production conformance until hash, legend/renderer parity, contrast, and CVD gates pass.",
       )}</p>
     </div>
     <div class="atlas-counts" aria-label="Atlas coverage">
@@ -1030,8 +1117,8 @@ ${logoAssetColors.map(renderLogoCard).join("")}
         "Every governed surface, text, border, and interaction pair",
       )}</h5>
       <p>${bilingual(
-        "17 คู่ด้านล่างคือ active authoring subset ของ v0.8.8 เลือกตามบทบาท ไม่เลือกเพราะชอบรหัสสี",
-        "These 17 light/dark pairs are the v0.8.8 active authoring subset. Choose by role, never by favorite hex.",
+        "17 คู่ด้านล่างคือ active authoring subset ของ v0.8.9 เลือกตามบทบาท ไม่เลือกเพราะชอบรหัสสี",
+        "These 17 light/dark pairs are the v0.8.9 active authoring subset. Choose by role, never by favorite hex.",
       )}</p>
     </header>
     <div class="atlas-pair-grid">
@@ -1069,22 +1156,32 @@ ${semanticPairs.map(renderSemanticCard).join("")}
       )}</p>
     </header>
     <div class="atlas-signature-support">
-      <span class="atlas-swatch" style="--atlas-color:#68C4E2;background:#68C4E2" aria-hidden="true"></span>
-      <span><code>dark.signature.sky</code><strong>#68C4E2</strong><small>${bilingual(
-        "ใช้เป็นจุดเริ่มต้นของ closing signature บนธีมมืดเท่านั้น",
-        "Approved dark closing-signature start only",
+      <span class="atlas-swatch" style="--atlas-color:#1D4497;background:#1D4497" aria-hidden="true"></span>
+      <span><code>landometer-atmosphere-gradient-v2</code><strong>3 tonal pairs + 1 rare spectrum</strong><small>${bilingual(
+        "Measure, Ground และ Cultivate มีคู่ deep/light คนละหน้าที่ ส่วน Diversity ใช้เมื่อเรื่องนั้นมีหลายมุมมองจริง",
+        "Measure, Ground, and Cultivate each have a distinct deep/light pair; Diversity is reserved for truthful multi-perspective scenes.",
       )}</small></span>
     </div>
     <div class="atlas-gradient-grid atlas-gradient-grid--shared">
-${sharedGradients.map((record) => renderGradientCard(record, "shared")).join("")}
-${motifGradients.map((record) => renderGradientCard(record, "motif")).join("")}
+${sharedGradients.filter((record) => !record.rare).map((record) => renderGradientCard(record, "shared")).join("")}
+    </div>
+    <div class="atlas-boundary atlas-boundary--diversity" role="note">
+      <strong>DIVERSITY · RARE · EVIDENCE REQUIRED</strong>
+      <p>${bilingual(
+        "ใช้ไม่เกินหนึ่งครั้งต่อ long route และใช้เมื่อฉากนั้นพูดถึงหลายมุมมองหรือการร่วมสร้างจริงเท่านั้น ห้ามใช้กับ data, status, product, button หรือ logo",
+        "Use at most once per long route and only for a truthful multiple-perspective or co-creation scene. Never use it for data, status, product, button, or logo.",
+      )}</p>
+${sharedGradients.filter((record) => record.rare).map((record) => renderGradientCard(record, "rare")).join("")}
     </div>
     <div class="atlas-boundary atlas-boundary--motif" role="note">
       <strong>MOTIF-01 · GATE STILL APPLIES</strong>
       <p>${bilingual(
-        "ชื่อ motif gradient ที่เห็นไม่ได้อนุญาตให้วาดหรือ trace โลโก้ขึ้นใหม่ และใช้สีให้ motif asset ได้ต่อเมื่อ vector/hash gate ผ่านแล้วเท่านั้น",
-        "A motif gradient ID does not authorize rebuilding or tracing the logo. It may color only a separately approved motif asset after its vector/hash gate passes.",
+        "brandSignature เป็น alias ของ Measure Deep ไม่ใช่ palette อีกชุด ส่วน civicCool และ civicWarm เป็น asset-only legacy motif ชื่อ motif gradient ไม่ได้อนุญาตให้วาดหรือ trace โลโก้ขึ้นใหม่",
+        "brandSignature is an alias of Measure Deep, not another palette. civicCool and civicWarm remain asset-only legacy motifs. A motif gradient ID never authorizes rebuilding or tracing the logo.",
       )}</p>
+      <div class="atlas-gradient-grid atlas-gradient-grid--motif">
+${motifGradients.map((record) => renderGradientCard(record, "motif")).join("")}
+      </div>
     </div>
     <div class="atlas-subfamily">
       <header class="atlas-subfamily-head">
@@ -1216,7 +1313,7 @@ ${depthRoles.map(renderDepth).join("")}
       "ถ้าสีเดียวกำลังพยายามบอกทั้งแบรนด์ สถานะ ขนาดข้อมูล และสิ่งที่กดได้พร้อมกัน แปลว่าต้องแยกบทบาทก่อน",
       "When one color is trying to say brand, state, magnitude, and action at once, separate the roles before styling.",
     )}</p>
-    <code>landometer-design-system@0.8.8 · active authoring subset · SOURCE_LIMITED</code>
+    <code>landometer-design-system@0.8.9 · active authoring subset · SOURCE_LIMITED</code>
   </footer>
 </section>
 `;
@@ -1235,6 +1332,7 @@ async function main() {
 
   const fragment = buildFragment(scaleSource, colorDelivery);
   const sampler = buildScaleSampler(scaleSource, colorDelivery);
+  const gradientCssTokens = buildGradientCssTokens(colorDelivery);
   assert(!fragment.toLowerCase().includes("color-mix"), "runtime color mixing found");
   assert(!sampler.toLowerCase().includes("color-mix"), "sampler runtime color mixing found");
   assert(
@@ -1299,6 +1397,12 @@ async function main() {
       SAMPLER_END_MARKER,
       "scale-sampler",
     );
+    const gradientCssSection = inspectMarkedSection(
+      indexHtml,
+      GRADIENT_CSS_START_MARKER,
+      GRADIENT_CSS_END_MARKER,
+      "atmosphere-gradient-css",
+    );
 
     if (process.argv.includes("--check-index")) {
       assert(
@@ -1308,6 +1412,10 @@ async function main() {
       assert(
         samplerSection.embedded === sampler.trim(),
         "embedded index.html scale sampler is not current",
+      );
+      assert(
+        gradientCssSection.embedded === gradientCssTokens.trim(),
+        "embedded index.html atmosphere gradient CSS is not current",
       );
     }
 
@@ -1329,6 +1437,13 @@ async function main() {
         SAMPLER_END_MARKER,
         sampler,
         "                    ",
+      );
+      indexHtml = replaceMarkedSection(
+        indexHtml,
+        GRADIENT_CSS_START_MARKER,
+        GRADIENT_CSS_END_MARKER,
+        gradientCssTokens,
+        "    ",
       );
       await writeFile(INDEX_PATH, indexHtml, "utf8");
     }

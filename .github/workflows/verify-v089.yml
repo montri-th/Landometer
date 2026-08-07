@@ -1,12 +1,14 @@
-name: Validate proposed v0.8.8 release source
+name: Validate approved v0.8.9 release source
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - ".github/workflows/verify-v087.yml"
+      - ".github/workflows/verify-v089.yml"
       - "deployment/**"
+      - "normative-patches/**"
+      - "skill/**"
       - "tools/**"
   workflow_dispatch:
 
@@ -18,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout proposed source
+      - name: Checkout approved source
         uses: actions/checkout@v4
 
       - name: Install browser geometry dependency
@@ -29,6 +31,9 @@ jobs:
       - name: Verify generated standalone artifacts are reproducible
         run: node tools/build-standalone-html.mjs --check
 
+      - name: Verify every governed atmosphere gradient foreground
+        run: node tools/check-gradient-contrast.mjs --check
+
       - name: Validate repository release
         run: node tools/validate-release.mjs
 
@@ -36,4 +41,6 @@ jobs:
         run: node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs deployment/index.html
 
       - name: Verify rendered scale geometry and accessible names
-        run: node tools/check-scale-geometry.mjs > /tmp/v0.8.8-scale-geometry-current.json
+        run: |
+          node tools/check-scale-geometry.mjs > /tmp/v0.8.9-scale-geometry-current.json
+          cmp deployment/qa/v0.8.9-scale-geometry.json /tmp/v0.8.9-scale-geometry-current.json
