@@ -28,6 +28,7 @@ Resolve these values from the repository before acting. Stop if the repository, 
 
 ## Non-negotiable release invariants
 
+- Never use ZIP/TAR as release transport.
 - Do not ask the user to upload a ZIP, TAR, TAR.XZ, or other archive into the repository.
 - Do not expect GitHub Pages or GitHub Actions to unpack a release archive unless an explicit reviewed workflow owns that behavior.
 - Do not transport UTF-8 source through chat attachments when GitHub's contents or Git Data API can write the source directly.
