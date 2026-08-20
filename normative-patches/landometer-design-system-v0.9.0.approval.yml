@@ -7,8 +7,8 @@ authorityEvidence:
   interpretation: Approve v0.9.0-r1 exactly as submitted as the binding authoring master, authorize the root release and publication after required package and artifact gates pass, and mint Color Set color-srgb-03.
 approvedProposal:
   path: normative-patches/landometer-design-system-v0.9.0.proposal.md
-  bytes: 5888
-  sha256: 900a4488ffbd4e428877865aec9f35668ee7b1672ef121fe87ccb74f7c8827dd
+  bytes: 6051
+  sha256: dd9a2a266ec062ee7bcda0e1e00ac35865306312be5c4d49f038561f65a5ca80
 baselineAuthoringMaster:
   path: deployment/assets/downloads/landometer-design-system-v0.8.9.md
   authoringRevision: v0.8.9-r1

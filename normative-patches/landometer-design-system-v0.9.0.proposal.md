@@ -4,7 +4,7 @@
 - **Prepared for:** owner approval per DS v0.9.0 §C9 and Master Brand Brief v0.5.3 §0.4
 - **Predecessor:** Landometer Design System v0.8.9-r1 · SHA-256 `827f4d85381f980dba43c319cd74762e2745a522232936630fa65ed4b54679d6`
 - **Proposed master:** `Landometer Design System v0.9.0.md` · SHA-256 `87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48`
-- **Status:** PROPOSAL — not in force. v0.8.9-r1 remains the binding master until §C9 records an approval.
+- **Status:** owner-approved for authoring integration on 2026-08-20 (`normative-patches/landometer-design-system-v0.9.0.approval.yml`, DS v0.9.0 §C9). v0.9.0-r1 replaces v0.8.9-r1 as the binding authoring master; generated package and artifact validation remain pending.
 
 ## 1. What is proposed
 
