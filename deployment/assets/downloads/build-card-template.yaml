@@ -1,66 +1,63 @@
-# Landometer Design System v0.8.6 — public-safe Build Card
-# Required blanks intentionally block accidental publication.
+# Landometer Design System v0.8.6 — Build Card starter
+# Complete every required blank before writing UI.
 landometerBuild:
   dsVersion: 0.8.6
-  publicPackageRevision: 2
+  schemas:
+    buildCard: 0.8.6
+    manifest: pending_0.8.6_generation
+    tokens: 6
   artifact:
     name: ""
-    product: ""
-    profile: ""
+    product: landometer
+    profile: designsystem.adoption
     pageKind: ""
     pageKindSourceRef: ""
-    delivery: internal_demo
-    language: ""
-    additionalLanguages: []
-    outputType: ""
+    delivery: deployable_public
+    language: th
+    additionalLanguages: [en]
+    generationMode: not_applicable
+    outputType: webpage
   publication:
-    evidenceStatus: source_limited
-    visibility: private
+    evidenceStatus: provisional
+    visibility: public
     indexable: false
     canonicalUrl: ""
-  destination:
-    required: false
-    url: ""
-    publicSafe: false
-    status: unavailable
   audience:
     primary: ""
     role: ""
   experience:
+    trigger: ""
     oneJob: ""
-    dominantObject: ""
     promisedOutcome: ""
     firstAha: ""
+    ahaEvidenceCue: ""
     primaryAction: ""
     nextUsefulAction: ""
+    nextTriggerOrCleanCompletion: ""
+    dominantObject: ""
+    channelParityKey: ""
+    brandSignatures: []
     cleanCompletion: ""
   brandAlignment:
-    approvedBrandSource: ""
-    approvedProductSource: ""
+    productStatement: ""
     proofObject: ""
+    ahaProvesPromise: false
+    networkAdvancesObjective: false
   proof:
-    kind: none
+    kind: brand
     object: ""
-    sourceStatus: not_applicable
-    sourceAndDate: ""
-    boundary: ""
+    sourceStatus: official
     limitation: ""
-  assets:
-    officialLogo: missing
-    approvedPhotography: []
-    approvedWorkProof: []
-    permissionStatus: unresolved
   theme:
-    mode: static_light
-    support: light_only
-    default: light
-    visibleOverride: false
+    mode: interactive_auto
+    support: dual
+    default: system
+    visibleOverride: true
   motion:
-    intensity: restrained
+    intensity: guided
   capabilities:
     analyticalEvidence: false
-    motionEnhancement: false
-    personalization: false
+    motionEnhancement: true
     search: false
     share: false
     map: false
@@ -74,18 +71,17 @@ landometerBuild:
     agentReadable: false
     boundedAgentAction: false
     fullLivingReference: false
-    agentActionEffect: none
   privacy:
     personalData: false
-    sensitivity: internal
+    sensitivity: public
     redactedPublicProjection: false
   telemetry:
     enabled: false
     scope: none
   network:
-    mode: private_by_policy
+    mode: reference_ready
     action: none
-    policyReason: "Draft until explicit publication review"
+    recipientOutcome: ""
   qa:
-    status: not_run
-    notes: ""
+    evidencePath: ""
+    controlInventoryPath: "control-inventory.json"
