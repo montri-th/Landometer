@@ -17,10 +17,10 @@ baselineAuthoringMaster:
 integratedAuthoringMaster:
   path: deployment/assets/downloads/landometer-design-system-v0.9.0.md
   authoringRevision: v0.9.0-r1
-  bytes: 378851
-  sha256: 206e1f812715fe1830b63572d8eaa010aa584998fb49e6207fc0544c29481756
+  bytes: 379865
+  sha256: e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3
   submittedForApprovalSha256: 87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48
-  note: The submitted hash is the file as reviewed. The integrated file adds the §C9 approval record and the status-line change, so its own hash differs and is recorded here.
+  note: The submitted hash is the file as reviewed. The integrated file adds the §C9 approval record and the status-line change, and the same-day owner-instructed Master Brand Brief v0.5.3 alignment (§C9 Post-approval alignment record), so its own hash differs and is recorded here.
 releaseIdentity:
   designSystemVersion: 0.9.0
   gradientRegistry: landometer-atmosphere-gradient-v2
