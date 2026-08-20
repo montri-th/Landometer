@@ -41,8 +41,8 @@
     "authoringMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.0.md",
       "revision": "v0.9.0-r1",
-      "bytes": 378851,
-      "sha256": "206e1f812715fe1830b63572d8eaa010aa584998fb49e6207fc0544c29481756"
+      "bytes": 379865,
+      "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
@@ -61,8 +61,8 @@
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
       "role": "immutable_color_baseline",
       "colorRegistryId": "color-srgb-03",
-      "bytes": 2128702,
-      "sha256": "2abbf7ddecad650df7ccea221d3e8b65f858845f524587f7c6b31d30c736c921",
+      "bytes": 2129389,
+      "sha256": "88a65d8678dcf8a08b2c942bfc0298a53a14c09c4cf697c600d6d029c6367020",
       "status": "append_only"
     },
     {
@@ -70,8 +70,8 @@
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
       "role": "immutable_ui_build",
       "colorRegistryId": "color-srgb-03",
-      "bytes": 2128707,
-      "sha256": "67f1bdf8ecae71588c599107b41675a3b945d44e41fb764ac8227cca14253164",
+      "bytes": 2129394,
+      "sha256": "db186208abddfebf8957f4f8b2373f4c4fcf2ccfcd3c7201aa94145b6e661202",
       "status": "append_only"
     }
   ],
