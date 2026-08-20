@@ -1,9 +1,9 @@
 landometerBuild:
-  dsVersion: 0.8.9
-  authoringRevision: v0.8.9-r1
+  dsVersion: 0.9.0
+  authoringRevision: v0.9.0-r1
   schemas:
-    buildCard: 0.8.9
-    manifest: 2.0
+    buildCard: 0.9.0
+    manifest: 2.1
     tokens: 6
   legacyReadOnlyBaseline:
     authoringMasterVersion: 0.8.7
@@ -69,7 +69,7 @@ landometerBuild:
     locales:
       - locale: th | en
         ruleRefs: []
-        normativeSourceRef: references/landometer-design-system-v0.8.9-authoring-master.md
+        normativeSourceRef: references/landometer-design-system-v0.9.0-authoring-master.md
         authoringBasisRef: ""
         fixtureSetRef: none
         copyHash: ""
@@ -211,3 +211,33 @@ landometerBuild:
     evidencePath: ""
     controlInventoryPath: ""
     machineValidation: pending
+  determinism:
+    buildKitSource: Appendix E
+    buildKitCopiedVerbatim: false
+    kitFiles:
+      - lds-tokens.css
+      - lds-base.css
+      - skeleton.html
+    kitExtensionLayer: ""
+    selfCheck:
+      run: false
+      rowsTotal: 19
+      rowsPassed: 0
+      resultPath: ""
+  iconSystem:
+    family: material-symbols-rounded
+    axes: "FILL 0, wght 300, GRAD 0, opsz 24"
+    selfHostedSubsetPath: ""
+    spriteUseReferences: 0
+    secondFamilyPresent: false
+  actionGeometry:
+    capsuleActions: 0
+    circularIconOnlyActions: 0
+    thirdShapePresent: false
+  disclosure:
+    firstViewCaveatProse: none
+    disclosureLayersPath: ""
+    mediaLadderTop: video | image | icon | text
+  colorSetPurge:
+    retiredTonesPresent: false
+    colorSetId: color-srgb-03
