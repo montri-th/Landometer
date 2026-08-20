@@ -20,9 +20,9 @@ const foundation = {
   "surface.beigeTint": ["#F2F1DF", "#2C2A22"],
   "text.primary": ["#182327", "#F1F4EF"],
   "text.secondary": ["#5F635A", "#C4CECA"],
-  "text.metadata": ["#686354", "#A6B5B1"],
-  "text.muted": ["#8B877A", "#8D9D99"],
-  "text.disabled": ["#B6AD98", "#71817D"],
+  "text.metadata": ["#5C6A61", "#A6B5B1"],
+  "text.muted": ["#7B877D", "#8D9D99"],
+  "text.disabled": ["#A7B3A9", "#71817D"],
   "border.hairline": ["#DCE1DD", "#33403D"],
   "border.default": ["#C9D0CB", "#46524F"],
   "border.emphasis": ["#7D877F", "#7C8A84"],
@@ -32,18 +32,18 @@ const foundation = {
 
 const semantic = {
   success: { light: ["#E2F4E5", "#126B49"], dark: ["#17362D", "#72E8C4"] },
-  warning: { light: ["#FFF1D1", "#795300"], dark: ["#3B2E16", "#F5C15C"] },
+  warning: { light: ["#FFF1D1", "#A64A00"], dark: ["#3B2E16", "#F5C15C"] },
   danger: { light: ["#FCE5DF", "#B43A3A"], dark: ["#3A1F21", "#FF7C72"] },
   info: { light: ["#E8EEF0", "#176B82"], dark: ["#18333E", "#68C4E2"] },
   neutral: { light: ["#ECE4D2", "#5F635A"], dark: ["#2B3534", "#C4CECA"] },
-  pending: { light: ["#F3EEDB", "#686354"], dark: ["#2C2A22", "#D8CFB2"] },
+  pending: { light: ["#F3EEDB", "#5C6A61"], dark: ["#2C2A22", "#D8CFB2"] },
   assisted: { light: ["#DFF3F1", "#176C67"], dark: ["#163331", "#79D9D1"] }
 };
 
 const series = [
   ["series.01", "Coral", "#C33F55", "#FF6B7F", "circle / solid"],
   ["series.02", "Signal Orange", "#C52C00", "#FF8A4C", "square / solid"],
-  ["series.03", "Marigold", "#846100", "#F4C44E", "triangle / solid"],
+  ["series.03", "Marigold", "#A87B00", "#F4C44E", "triangle / solid"],
   ["series.04", "Lime", "#5D7400", "#B5E34E", "diamond / solid"],
   ["series.05", "Green", "#007A58", "#3BD19B", "cross / solid"],
   ["series.06", "Aqua", "#007E79", "#3BD3CB", "star / solid"],
@@ -56,13 +56,13 @@ const series = [
 const scales = {
   growth: { kind: "sequential", light: ["#F2F1DF", "#55B8C2", "#126F68"], dark: ["#6F8984", "#53BDD0", "#86E0B8"] },
   water: { kind: "sequential", light: ["#F2F1DF", "#55B8C2", "#206C9A"], dark: ["#6C838C", "#55B8C2", "#68C4E2"] },
-  risk: { kind: "sequential", light: ["#F2F1DF", "#E0B443", "#B74436"], dark: ["#85837A", "#D0A42F", "#FF8C7D"] },
+  risk: { kind: "sequential", light: ["#F2F1DF", "#E0B443", "#B74436"], dark: ["#8D9D99", "#D0A42F", "#FF8C7D"] },
   activity: { kind: "sequential", light: ["#F2F1DF", "#E86A8C", "#C52C00"], dark: ["#808A96", "#F079A1", "#FFB06A"] },
   density: { kind: "sequential", light: ["#F2F1DF", "#6797AF", "#225F78"], dark: ["#728C9A", "#47A6C4", "#9BE4F2"] },
   confidence: { kind: "sequential", light: ["#F2F1DF", "#85A5A2", "#08756F"], dark: ["#7C8B8C", "#95A9AA", "#D8E6E5"] },
-  balance: { kind: "diverging", light: ["#C52C00", "#F2F1DF", "#186A9E"], dark: ["#FF8A4C", "#827C68", "#4FAFE0"] },
-  delta: { kind: "diverging", light: ["#B74436", "#F2F1DF", "#007C78"], dark: ["#F28575", "#827C68", "#55C8BC"] },
-  tradeoff: { kind: "diverging", light: ["#9E476F", "#F2F1DF", "#007E91"], dark: ["#E982AE", "#827C68", "#61C2D3"] }
+  balance: { kind: "diverging", light: ["#C52C00", "#F2F1DF", "#186A9E"], dark: ["#FF8A4C", "#7C8A84", "#4FAFE0"] },
+  delta: { kind: "diverging", light: ["#B74436", "#F2F1DF", "#007C78"], dark: ["#F28575", "#7C8A84", "#55C8BC"] },
+  tradeoff: { kind: "diverging", light: ["#B23F74", "#F2F1DF", "#007E91"], dark: ["#F06FA6", "#7C8A84", "#61C2D3"] }
 };
 
 const tokens = {
@@ -92,7 +92,7 @@ const tokens = {
   scales: Object.fromEntries(Object.entries(scales).map(([id, value]) => [id, { ...value, sourceRule: "DATAVIZ-01 / TOKEN-01" }])),
   dataState: {
     noData: { light: "#D5DAD6", dark: "#404844", cue: "diagonal pattern + label" },
-    zero: { light: "#7D877F", dark: "#A59A80", cue: "distinct outline only when zero is a fact" }
+    zero: { light: "#7D877F", dark: "#93A398", cue: "distinct outline only when zero is a fact" }
   },
   map: {
     activeLayer: ["#347DA8", "#65B6DB"],
@@ -225,7 +225,7 @@ for (const [id, definition] of Object.entries(scales)) {
       lut,
       classes,
       noData: theme === "light" ? "#D5DAD6" : "#404844",
-      zero: theme === "light" ? "#7D877F" : "#A59A80",
+      zero: theme === "light" ? "#7D877F" : "#93A398",
       classificationMethod: "reference fixture; domain and thresholds supplied by consuming analysis",
       outlierPolicy: "explicit; never silently clamp a material outlier"
     };

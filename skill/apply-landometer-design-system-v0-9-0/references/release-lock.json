@@ -1,0 +1,158 @@
+{
+  "skillName": "apply-landometer-design-system-v0-9-0",
+  "designSystemVersion": "0.9.0",
+  "skillRevision": 1,
+  "invocation": "explicit_only",
+  "schemas": {
+    "buildCard": "0.9.0",
+    "manifest": "2.1",
+    "tokens": 6
+  },
+  "authority": {
+    "status": "owner-approved-integrated-authoring-master",
+    "authoringRevision": "v0.9.0-r1",
+    "activePath": "references/landometer-design-system-v0.9.0-authoring-master.md",
+    "approvedThrough": "2026-08-20",
+    "bytes": 379865,
+    "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3",
+    "submittedForApprovalSha256": "87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48",
+    "submittedForApprovalBytes": 378063,
+    "note": "The submitted hash is the file the owner reviewed. The integrated file adds the §C9 approval record and the status-line change, so its own hash differs and is recorded above."
+  },
+  "lineage": {
+    "baselineAuthoringMaster": {
+      "designSystemVersion": "0.8.9",
+      "skillName": "apply-landometer-design-system-v0-8-9",
+      "path": "skill/apply-landometer-design-system-v0-8-9/references/landometer-design-system-v0.8.9-authoring-master.md",
+      "authoringRevision": "v0.8.9-r1",
+      "status": "frozen_legacy",
+      "bytes": 269767,
+      "sha256": "00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68"
+    },
+    "canonicalPredecessorDocument": {
+      "designSystemVersion": "0.8.9",
+      "authoringRevision": "v0.8.9-r1",
+      "sourceName": "/01 Landometer core/Landometer Design System v0.8.9.md",
+      "verificationScope": "external project source fingerprint; the document is not bundled in this skill",
+      "bytes": 270146,
+      "sha256": "827f4d85381f980dba43c319cd74762e2745a522232936630fa65ed4b54679d6"
+    },
+    "masterBrandBrief": {
+      "version": "v0.5.3",
+      "section": "1.1 Highlight · Brand Stack · Culture / Rally Cry",
+      "verificationScope": "read-only project source fingerprint; the source is not bundled in this skill",
+      "exactLine": "Let us cultivate our city with data.",
+      "resolution": "2026-08-20 owner-directed check: Master Brand Brief v0.5.3 (2026-08-20) §1.1 carries the Cultural activation unchanged — Let us cultivate our city with data. — and v0.5.3 §4.3/§4.4 store no colour or font values, pointing to the current approved Design System instead. The master's forward-looking citations now cite v0.5.3; historical v0.8.8/v0.8.9 lineage records keep their v0.5.2 citations as history. Verified by project-source read; no repository copy is bundled."
+    },
+    "v090OwnerApproval": {
+      "approvedAt": "2026-08-20",
+      "authority": "Landometer owner",
+      "authoringRevision": "v0.9.0-r1",
+      "scope": "determinism release over the complete v0.8.9-r1 authoring authority plus the 2026-08-20 owner amendment items 1-16",
+      "approvalPath": "normative-patches/landometer-design-system-v0.9.0.approval.yml",
+      "approvalBytes": 3483,
+      "approvalSha256": "b89f402539271d57891160ee11011ce6960d92ae5b41657eaef65cff72dda626",
+      "proposalPath": "normative-patches/landometer-design-system-v0.9.0.proposal.md",
+      "bytes": 6051,
+      "sha256": "dd9a2a266ec062ee7bcda0e1e00ac35865306312be5c4d49f038561f65a5ca80",
+      "gradientRegistry": "landometer-atmosphere-gradient-v2",
+      "colorSetId": "color-srgb-03",
+      "activeAuthorityPath": "references/landometer-design-system-v0.9.0-authoring-master.md"
+    }
+  },
+  "approvedAmendments": [
+    "Deterministic Build Kit (Appendix E) copied byte-for-byte for web builds [KIT-01]",
+    "nineteen-row binary self-check whose result rows ship in the artifact manifest [SELFCHECK-01]",
+    "two-shape action geometry: capsule for labelled actions, 44px circle for icon-only utilities, no third shape [BTN-GEOM-01]",
+    "named Riddim motion signature over unchanged v0.8.9 durations; two new easing tokens only [MOTION-01]",
+    "default-present governed atmosphere with an explicit scene-to-recipe mapping [SURFACE-01] [VIS-02]",
+    "layered translucent named fields for problem complexity [LAYER-FIELD-01]",
+    "Material Symbols Rounded icon lock at FILL 0, wght 300, GRAD 0, opsz 24, and persistent icon-plus-color category identity [ICON-01] [CATEGORY-ID-01]",
+    "media-first ladder video > image > icon/symbol > text with expand-on-demand [MEDIA-LADDER-01]",
+    "three-layer human-facing disclosure: no caveat or caution prose in a first view [DISCLOSURE-01]",
+    "purple and muddy-brown purge replacing ten token values and minting Color Set color-srgb-03 [COLOR-01]",
+    "prohibition of decorative edge rails, bracket spines, and ornamental frame borders [VIS-04]",
+    "honest growth packs for hook loop, friend invitation, cross-product journey, free-tool handoff, and web/AI discovery [HOOK-01] [XPRODUCT-01] [TOOL-HANDOFF-01] [WEB-DISCOVERY-01]",
+    "abuse and integrity gate for direct-send, post, invite, co-creation, and feedback learning [ABUSE-INTEGRITY-01]",
+    "release receipt in delivered HTML, per-page favicon truth, and per-destination social previews [PUB-01]",
+    "[SEARCH-01] renamed [INTERNAL-SEARCH-01] with the old ID a deprecated alias for one release",
+    "protected Cultural activation preserved exactly: Let us cultivate our city with data."
+  ],
+  "explicitUnpromotedGaps": [
+    "universal chart axis, grid, data, selection, and focus stroke widths",
+    "universal solid, dashed, and dotted evidence convention",
+    "general overlap compositing or blend algorithm",
+    "fixed depth-role to opacity-role mapping",
+    "TlwgMono active semantic role",
+    "universal font size-adjust, tracking, or line-height metrics",
+    "unapproved identity assets, contexts, transforms, or surface pairings"
+  ],
+  "machinePackage": {
+    "status": "pending_regeneration_and_validation",
+    "packageConformance": "not_claimed",
+    "requiredRegeneration": [
+      "build-card.schema.json",
+      "manifest.schema.json",
+      "surface-recipes.json",
+      "connector.schema.json",
+      "color-delivery.json",
+      "font-assets.manifest.json",
+      "media-assets.manifest.json",
+      "identity-approvals.manifest.json",
+      "components.json",
+      "page-kinds.json",
+      "profiles and trigger packs",
+      "preflight.yml",
+      "fixtures.json",
+      "v0.8.9-to-v0.9.0 rule ledger",
+      "selfcheck.manifest.json [SELFCHECK-01]",
+      "source fingerprint and validation report"
+    ]
+  },
+  "releaseIdentity": {
+    "designSystemVersion": "0.9.0",
+    "authoringRevision": "v0.9.0-r1",
+    "colorSetId": "color-srgb-03",
+    "artifactBuildId": "ui-20260820-01",
+    "latestStandalonePath": "deployment/landometer-design-system-v0.9.0-standalone.html",
+    "immutableColorSetPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
+    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
+    "evidenceStatus": "source_limited",
+    "indexable": false,
+    "machineValidation": "pending"
+  },
+  "boundaries": {
+    "publicationAuthorized": true,
+    "publicationAuthorizationScope": "prepared v0.9.0 release through a separate publishing workflow after package and artifact gates pass",
+    "thisSkillMayPublish": false,
+    "externalEffectsAuthorized": false,
+    "artifactConformancePrepassed": false,
+    "sharedLayer": "product-neutral across Land, Location, and Living",
+    "productClaims": "require a current product-owned brief and evidence",
+    "crossProductOrPlaceComparison": "requires the same schema and release or an explicit incompatibility statement",
+    "carriedTokenAndScaleFiles": "remain v0.8.6 and must not be relabelled v0.9.0",
+    "selfCheckRecord": "[SELFCHECK-01] result rows ship in site-manifest.v0.9.0.json (run 2026-08-20): 15 pass, SC-12/SC-13 n/a, SC-02/SC-03 fail with recorded [EXCEPTION-01] because the playground is a pre-Kit build upgraded in place; kit consolidation is the recorded migration path and every new artifact runs the check itself"
+  },
+  "integrity": [
+    {
+      "path": "SKILL.md",
+      "bytes": 10924,
+      "sha256": "a86151029ac3d5987b784232737db759797cb5d8eff2bf33120f1e3576783759"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "bytes": 446,
+      "sha256": "9779f51b3ed324eb51d75b486a215065f0423b59976d16b61bcfbe7beef2b7f4"
+    },
+    {
+      "path": "assets/build-card-template.yaml",
+      "bytes": 7328,
+      "sha256": "e6e6f8df30ed552cf279e5e09aa9268c8ac60ed417b1706ecaba18f8a9922497"
+    },
+    {
+      "path": "references/landometer-design-system-v0.9.0-authoring-master.md",
+      "bytes": 379865,
+      "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3"
+    }
+  ]
+}

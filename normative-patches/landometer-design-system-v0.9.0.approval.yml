@@ -1,0 +1,55 @@
+decision: approved_for_authoring_integration
+approvedAt: 2026-08-20
+authority: Landometer owner
+authorityEvidence:
+  instruction: "อนุมัติ"
+  context: "Given after reading the one-page pre-approval summary covering the 16 amendment items, the ten replaced colour values, the Color Set change to color-srgb-03, the temporary cross-artifact colour drift while other repositories migrate, and the boundary that approval records the authoring decision only."
+  interpretation: Approve v0.9.0-r1 exactly as submitted as the binding authoring master, authorize the root release and publication after required package and artifact gates pass, and mint Color Set color-srgb-03.
+approvedProposal:
+  path: normative-patches/landometer-design-system-v0.9.0.proposal.md
+  bytes: 6051
+  sha256: dd9a2a266ec062ee7bcda0e1e00ac35865306312be5c4d49f038561f65a5ca80
+baselineAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.8.9.md
+  authoringRevision: v0.8.9-r1
+  bytes: 270146
+  sha256: 827f4d85381f980dba43c319cd74762e2745a522232936630fa65ed4b54679d6
+integratedAuthoringMaster:
+  path: deployment/assets/downloads/landometer-design-system-v0.9.0.md
+  authoringRevision: v0.9.0-r1
+  bytes: 379865
+  sha256: e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3
+  submittedForApprovalSha256: 87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48
+  note: The submitted hash is the file as reviewed. The integrated file adds the §C9 approval record and the status-line change, and the same-day owner-instructed Master Brand Brief v0.5.3 alignment (§C9 Post-approval alignment record), so its own hash differs and is recorded here.
+releaseIdentity:
+  designSystemVersion: 0.9.0
+  gradientRegistry: landometer-atmosphere-gradient-v2
+  colorSet: color-srgb-03
+  deliverySpace: SDR_sRGB_IEC_61966_2_1
+  canonicalAngle: 135deg
+  canonicalInterpolation: srgb
+scope:
+  - deterministic_build_kit_and_binary_self_check
+  - two_shape_action_geometry_capsule_and_circle
+  - named_riddim_motion_signature_over_unchanged_durations
+  - default_present_governed_atmosphere_scene_mapping
+  - layered_translucent_complexity_fields
+  - material_symbols_rounded_icon_lock_and_category_identity
+  - media_first_ladder_and_three_layer_disclosure
+  - honest_growth_packs_hook_invite_crossproduct_tool_handoff_web_discovery
+  - abuse_integrity_gate_for_send_post_invite_and_learning
+  - release_receipt_favicon_truth_and_social_preview_records
+  - purple_and_muddy_brown_purge_with_oklch_ban_windows
+  - immutable_color_set_append_only_migration_to_color_srgb_03
+preservedBoundaries:
+  - Token Schema 6 remains unchanged; every gradient recipe, stop, angle, and foreground contract is carried unchanged from color-srgb-02.
+  - Typography is unchanged by explicit owner instruction: the same six text faces, weights, roles, and leading.
+  - Master Brand Brief remains the brand-level source of truth and the cultural invitation remains exact.
+  - v0.8.9-r1, Color Set color-srgb-02, and every earlier immutable artifact remain frozen migration evidence.
+publicationAuthorized: true
+artifactMachineValidation: pending_until_artifact_gates_pass
+conditionsCarriedForward:
+  - Thai display leading 1.16 still requires rendered stress fixtures before machine-package sign-off.
+  - Media and identity assets remain approval_missing or internal_only until their manifests ship inside a validated package.
+  - Gated growth mechanics stay at their ungated fallback until ABUSE-INTEGRITY-01 contracts exist.
+  - Skills and instructions pinned to v0.8.8 are re-pinned to v0.9.0.

@@ -136,7 +136,7 @@ let inventory = null;
 try {
   inventory = JSON.parse(
     await readFile(
-      path.join(htmlDirectory, "control-inventory.v0.8.9.json"),
+      path.join(htmlDirectory, "control-inventory.v0.9.0.json"),
       "utf8"
     )
   );
@@ -144,10 +144,10 @@ try {
   inventory = null;
 }
 
-const siteManifest = await readJsonBesideHtml("site-manifest.v0.8.9.json");
+const siteManifest = await readJsonBesideHtml("site-manifest.v0.9.0.json");
 const scaleFixture = await readJsonBesideHtml("assets/data/scales.json");
 const colorDelivery = await readJsonBesideHtml(
-  "assets/data/color-delivery.v0.8.9.json"
+  "assets/data/color-delivery.v0.9.0.json"
 );
 const colorRegistryId = colorDelivery?.meta?.id ?? "";
 const pinnedColorSetName =
@@ -581,7 +581,7 @@ const checks = [
     !/<link\b[^>]*\brel="preload"[^>]*\bas="font"/iu.test(html) &&
       html.includes('location.protocol === "file:"') &&
       html.includes('root.dataset.standalone !== "true"') &&
-      html.includes('new URL("landometer-design-system-v0.8.9-standalone.html", location.href)') &&
+      html.includes('new URL("landometer-design-system-v0.9.0-standalone.html", location.href)') &&
       html.includes("target.search = location.search") &&
       html.includes("target.hash = location.hash") &&
       html.includes('location.replace(target.href)') &&
@@ -602,7 +602,7 @@ const checks = [
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-standalone"
       ) === "true" &&
-      (currentArtifactBuildHtml.match(/src:\s*url\(["']?data:font\/woff2/giu) ?? []).length === 9 &&
+      (currentArtifactBuildHtml.match(/src:\s*url\(["']?data:font\/woff2/giu) ?? []).length === 10 &&
       !/<link\b[^>]*\brel=["']preload["'][^>]*\bas=["']font["']/iu.test(currentArtifactBuildHtml)
   ],
   [
@@ -695,7 +695,7 @@ const checks = [
   ],
   [
     "one Color Set identity spans the page, sampler, atlas, and manifest",
-    colorRegistryId === "color-srgb-02" &&
+    colorRegistryId === "color-srgb-03" &&
       attributeOf(htmlTag, "data-color-registry") === colorRegistryId &&
       attributeOf(samplerElement, "data-color-registry") === colorRegistryId &&
       attributeOf(
@@ -707,7 +707,7 @@ const checks = [
   [
     "the Color Set baseline stays immutable and handoff links the current immutable UI build",
     pinnedColorSetName ===
-      "landometer-design-system-v0.8.9-standalone.color-srgb-02.html" &&
+      "landometer-design-system-v0.9.0-standalone.color-srgb-03.html" &&
       tagsNamed(html, "a").some(tag =>
         attributeOf(tag, "id") === "resource-standalone" &&
         attributeOf(tag, "href") === currentArtifactBuildName
@@ -725,7 +725,7 @@ const checks = [
     "UI-only changes mint a separate append-only artifact build without rewriting the Color Set baseline",
     /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
       currentArtifactBuildName ===
-        `landometer-design-system-v0.8.9-standalone.color-srgb-02.${currentArtifactBuildId}.html` &&
+        `landometer-design-system-v0.9.0-standalone.color-srgb-03.${currentArtifactBuildId}.html` &&
       attributeOf(
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-color-registry"

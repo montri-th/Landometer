@@ -22,7 +22,7 @@ const repositoryRoot = path.resolve(toolDir, "..");
 const deploymentDir = path.join(repositoryRoot, "deployment");
 const registry = JSON.parse(
   await readFile(
-    path.join(deploymentDir, "assets/data/color-delivery.v0.8.9.json"),
+    path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json"),
     "utf8",
   ),
 );

@@ -56,15 +56,15 @@ export const landometerTokens = {
       "#C4CECA"
     ],
     "text.metadata": [
-      "#686354",
+      "#5C6A61",
       "#A6B5B1"
     ],
     "text.muted": [
-      "#8B877A",
+      "#7B877D",
       "#8D9D99"
     ],
     "text.disabled": [
-      "#B6AD98",
+      "#A7B3A9",
       "#71817D"
     ],
     "border.hairline": [
@@ -102,7 +102,7 @@ export const landometerTokens = {
     "warning": {
       "light": [
         "#FFF1D1",
-        "#795300"
+        "#A64A00"
       ],
       "dark": [
         "#3B2E16",
@@ -142,7 +142,7 @@ export const landometerTokens = {
     "pending": {
       "light": [
         "#F3EEDB",
-        "#686354"
+        "#5C6A61"
       ],
       "dark": [
         "#2C2A22",
@@ -226,7 +226,7 @@ export const landometerTokens = {
       {
         "id": "series.03",
         "name": "Marigold",
-        "light": "#846100",
+        "light": "#A87B00",
         "dark": "#F4C44E",
         "cue": "triangle / solid"
       },
@@ -318,7 +318,7 @@ export const landometerTokens = {
         "#B74436"
       ],
       "dark": [
-        "#85837A",
+        "#8D9D99",
         "#D0A42F",
         "#FF8C7D"
       ],
@@ -375,7 +375,7 @@ export const landometerTokens = {
       ],
       "dark": [
         "#FF8A4C",
-        "#827C68",
+        "#7C8A84",
         "#4FAFE0"
       ],
       "sourceRule": "DATAVIZ-01 / TOKEN-01"
@@ -389,7 +389,7 @@ export const landometerTokens = {
       ],
       "dark": [
         "#F28575",
-        "#827C68",
+        "#7C8A84",
         "#55C8BC"
       ],
       "sourceRule": "DATAVIZ-01 / TOKEN-01"
@@ -397,13 +397,13 @@ export const landometerTokens = {
     "tradeoff": {
       "kind": "diverging",
       "light": [
-        "#9E476F",
+        "#B23F74",
         "#F2F1DF",
         "#007E91"
       ],
       "dark": [
-        "#E982AE",
-        "#827C68",
+        "#F06FA6",
+        "#7C8A84",
         "#61C2D3"
       ],
       "sourceRule": "DATAVIZ-01 / TOKEN-01"
@@ -417,7 +417,7 @@ export const landometerTokens = {
     },
     "zero": {
       "light": "#7D877F",
-      "dark": "#A59A80",
+      "dark": "#93A398",
       "cue": "distinct outline only when zero is a fact"
     }
   },

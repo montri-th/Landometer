@@ -11,11 +11,11 @@ const deploymentDir = path.resolve(toolDir, "../deployment");
 const sourcePath = path.join(deploymentDir, "index.html");
 const outputPath = path.join(
   deploymentDir,
-  "landometer-design-system-v0.8.9-standalone.html",
+  "landometer-design-system-v0.9.0-standalone.html",
 );
 const colorDeliveryPath = path.join(
   deploymentDir,
-  "assets/data/color-delivery.v0.8.9.json",
+  "assets/data/color-delivery.v0.9.0.json",
 );
 const publicBase = "https://montri-th.github.io/Landometer/";
 const faviconPath = "assets/images/landometer-symbol-transparent.png";
@@ -81,12 +81,12 @@ const currentArtifactBuild = colorDelivery?.meta?.currentArtifactBuild;
 const artifactBuildId = currentArtifactBuild?.id;
 const pinnedOutputName = currentArtifactBuild?.immutableStandalone;
 assert(
-  colorDelivery?.meta?.id === "color-srgb-02",
+  colorDelivery?.meta?.id === "color-srgb-03",
   "unexpected color-delivery registry id",
 );
 assert(
   colorBaselineName ===
-    "landometer-design-system-v0.8.9-standalone.color-srgb-02.html",
+    "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
   "color-delivery registry must preserve the original immutable Color Set baseline",
 );
 assert(
@@ -94,7 +94,7 @@ assert(
   "color-delivery registry must declare a safe append-only artifact-build id",
 );
 assert(
-  /^landometer-design-system-v0\.8\.9-standalone\.color-srgb-02\.ui-\d{8}-\d{2}\.html$/.test(
+  /^landometer-design-system-v0\.9\.0-standalone\.color-srgb-03\.ui-\d{8}-\d{2}\.html$/.test(
     pinnedOutputName ?? "",
   ),
   "color-delivery registry must declare a safe immutable UI build filename",
@@ -173,8 +173,8 @@ assert(
   "direct-file handoff and hosted-only font-preload guard are missing",
 );
 assert(
-  (html.match(/data:font\/woff2;base64,/g) ?? []).length === 9,
-  "standalone snapshot must embed exactly nine governed WOFF2 faces",
+  (html.match(/data:font\/woff2;base64,/g) ?? []).length === 10,
+  "standalone snapshot must embed exactly ten governed WOFF2 faces: the nine text faces plus the [ICON-01] Material Symbols Rounded subset",
 );
 assert(
   html.includes('root.dataset.fontDelivery = "pending"') &&
@@ -224,7 +224,7 @@ const colorBaselineHtml = html.replace(
   'data-build-channel="immutable-color-set"',
 );
 assert(
-  pinnedHtml.includes('data-color-registry="color-srgb-02"') &&
+  pinnedHtml.includes('data-color-registry="color-srgb-03"') &&
     pinnedHtml.includes(`data-artifact-build="${artifactBuildId}"`) &&
     pinnedHtml.includes('data-build-channel="immutable-artifact-build"'),
   "immutable UI artifact-build markers are missing",
