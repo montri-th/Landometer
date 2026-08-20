@@ -61,8 +61,8 @@
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
       "role": "immutable_color_baseline",
       "colorRegistryId": "color-srgb-03",
-      "bytes": 2128442,
-      "sha256": "757c895df6fc51870146b6a25a329d3fddb9b52098c6428a3ca2959c0c9063bd",
+      "bytes": 2128702,
+      "sha256": "2abbf7ddecad650df7ccea221d3e8b65f858845f524587f7c6b31d30c736c921",
       "status": "append_only"
     },
     {
@@ -70,8 +70,8 @@
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
       "role": "immutable_ui_build",
       "colorRegistryId": "color-srgb-03",
-      "bytes": 2128447,
-      "sha256": "d403886f4802bd03bbf475f4d1062ecdf9902cc8dc941e0324eb95b49f34e7ef",
+      "bytes": 2128707,
+      "sha256": "67f1bdf8ecae71588c599107b41675a3b945d44e41fb764ac8227cca14253164",
       "status": "append_only"
     }
   ],
