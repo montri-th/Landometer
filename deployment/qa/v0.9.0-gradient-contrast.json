@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "designSystemVersion": "0.9.0",
+  "authoringRevision": "v0.9.0-r1",
+  "colorRegistryId": "color-srgb-03",
+  "gradientRegistrySchema": "landometer-atmosphere-gradient-v2",
+  "testedAt": "2026-08-07",
+  "registryPath": "assets/data/color-delivery.v0.9.0.json",
+  "registrySha256": "7eea13387d2d6beeb75c3e62e99f8a8d612cd0577e704afcb32cfc061310ef48",
+  "method": {
+    "colorSpace": "sRGB IEC 61966-2-1",
+    "interpolation": "CSS Color 4 explicit in srgb; encoded-channel piecewise interpolation",
+    "positions": "0.0% through 100.0% inclusive",
+    "sampleCountPerGradient": 1001,
+    "foregroundsPerGradient": 2,
+    "contrastFormula": "WCAG 2 relative luminance contrast ratio",
+    "acceptanceFloor": 4.5
+  },
+  "status": "passed",
+  "totals": {
+    "gradients": 7,
+    "contrastComparisons": 14014,
+    "failures": 0
+  },
+  "results": [
+    {
+      "id": "atmosphere.gradient.measure.deep",
+      "family": "Measure",
+      "variant": "deep",
+      "foregroundContract": "surfaceForeground.onDeep",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#FFFFFF",
+        "minimumRatio": 5.5407,
+        "minimumAtPercent": 97.7,
+        "sampledBackground": "#097570"
+      },
+      "secondary": {
+        "ink": "#F1F4EF",
+        "minimumRatio": 4.9938,
+        "minimumAtPercent": 97.7,
+        "sampledBackground": "#097570"
+      },
+      "passed": true
+    },
+    {
+      "id": "atmosphere.gradient.measure.luminous",
+      "family": "Measure",
+      "variant": "luminous",
+      "foregroundContract": "surfaceForeground.onLight",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#182327",
+        "minimumRatio": 8.3184,
+        "minimumAtPercent": 50.8,
+        "sampledBackground": "#5ECAD5"
+      },
+      "secondary": {
+        "ink": "#293337",
+        "minimumRatio": 6.7068,
+        "minimumAtPercent": 50.8,
+        "sampledBackground": "#5ECAD5"
+      },
+      "passed": true
+    },
+    {
+      "id": "atmosphere.gradient.ground.current",
+      "family": "Ground",
+      "variant": "current",
+      "foregroundContract": "surfaceForeground.onDeep",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#FFFFFF",
+        "minimumRatio": 5.7231,
+        "minimumAtPercent": 99.2,
+        "sampledBackground": "#1F744F"
+      },
+      "secondary": {
+        "ink": "#F1F4EF",
+        "minimumRatio": 5.1581,
+        "minimumAtPercent": 99.2,
+        "sampledBackground": "#1F744F"
+      },
+      "passed": true
+    },
+    {
+      "id": "atmosphere.gradient.ground.mist",
+      "family": "Ground",
+      "variant": "mist",
+      "foregroundContract": "surfaceForeground.onLight",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#182327",
+        "minimumRatio": 11.3635,
+        "minimumAtPercent": 48.7,
+        "sampledBackground": "#B2E2E2"
+      },
+      "secondary": {
+        "ink": "#293337",
+        "minimumRatio": 9.162,
+        "minimumAtPercent": 48.7,
+        "sampledBackground": "#B2E2E2"
+      },
+      "passed": true
+    },
+    {
+      "id": "atmosphere.gradient.cultivate.glow",
+      "family": "Cultivate",
+      "variant": "glow",
+      "foregroundContract": "surfaceForeground.onLight",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#182327",
+        "minimumRatio": 6.1097,
+        "minimumAtPercent": 0,
+        "sampledBackground": "#EB8182"
+      },
+      "secondary": {
+        "ink": "#293337",
+        "minimumRatio": 4.926,
+        "minimumAtPercent": 0,
+        "sampledBackground": "#EB8182"
+      },
+      "passed": true
+    },
+    {
+      "id": "atmosphere.gradient.cultivate.mist",
+      "family": "Cultivate",
+      "variant": "mist",
+      "foregroundContract": "surfaceForeground.onLight",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#182327",
+        "minimumRatio": 10.9378,
+        "minimumAtPercent": 1.5,
+        "sampledBackground": "#F7CBC6"
+      },
+      "secondary": {
+        "ink": "#293337",
+        "minimumRatio": 8.8187,
+        "minimumAtPercent": 1.5,
+        "sampledBackground": "#F7CBC6"
+      },
+      "passed": true
+    },
+    {
+      "id": "atmosphere.gradient.diversity.spectrum",
+      "family": "Diversity",
+      "variant": "spectrum",
+      "foregroundContract": "surfaceForeground.onLight",
+      "requiredMinimum": 4.5,
+      "sampleCount": 1001,
+      "interpolation": "sRGB encoded-channel interpolation",
+      "primary": {
+        "ink": "#182327",
+        "minimumRatio": 6.1097,
+        "minimumAtPercent": 99.8,
+        "sampledBackground": "#EB8182"
+      },
+      "secondary": {
+        "ink": "#293337",
+        "minimumRatio": 4.926,
+        "minimumAtPercent": 99.8,
+        "sampledBackground": "#EB8182"
+      },
+      "passed": true
+    }
+  ],
+  "excludedInventories": [
+    {
+      "registry": "motifGradients",
+      "reason": "asset-only recipes have no general-purpose bare-text foreground contract"
+    },
+    {
+      "registry": "productIdentityGradients",
+      "reason": "product-owned identity specimens are unchanged and retain product-specific foreground/panel contracts"
+    },
+    {
+      "registry": "scales.json",
+      "reason": "analytical scale QA is separate and remains source_limited"
+    }
+  ],
+  "boundary": "Token-level sampling does not replace rendered glyph, alpha-stack, photo-overlay, focus, export, CVD, or device QA. machineValidation remains pending."
+}
