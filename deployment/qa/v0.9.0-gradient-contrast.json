@@ -6,7 +6,7 @@
   "gradientRegistrySchema": "landometer-atmosphere-gradient-v2",
   "testedAt": "2026-08-07",
   "registryPath": "assets/data/color-delivery.v0.9.0.json",
-  "registrySha256": "a22c807592bdaba3a58835e4e4a29a4be7607e82569310f33982775b7a8b6fb5",
+  "registrySha256": "3545fbfe1fef964058e281f0dc802e509b0aad167810736e91f7a3dce5840ffe",
   "method": {
     "colorSpace": "sRGB IEC 61966-2-1",
     "interpolation": "CSS Color 4 explicit in srgb; encoded-channel piecewise interpolation",
