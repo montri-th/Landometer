@@ -13,8 +13,8 @@
     "authoringRevision": "v0.9.0-r1",
     "activePath": "references/landometer-design-system-v0.9.0-authoring-master.md",
     "approvedThrough": "2026-08-20",
-    "bytes": 378851,
-    "sha256": "206e1f812715fe1830b63572d8eaa010aa584998fb49e6207fc0544c29481756",
+    "bytes": 379865,
+    "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3",
     "submittedForApprovalSha256": "87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48",
     "submittedForApprovalBytes": 378063,
     "note": "The submitted hash is the file the owner reviewed. The integrated file adds the §C9 approval record and the status-line change, so its own hash differs and is recorded above."
@@ -38,11 +38,11 @@
       "sha256": "827f4d85381f980dba43c319cd74762e2745a522232936630fa65ed4b54679d6"
     },
     "masterBrandBrief": {
-      "version": "v0.5.2",
+      "version": "v0.5.3",
       "section": "1.1 Highlight · Brand Stack · Culture / Rally Cry",
       "verificationScope": "read-only project source fingerprint; the source is not bundled in this skill",
       "exactLine": "Let us cultivate our city with data.",
-      "openConflict": "Project instruction names Master Brand Brief v0.5.3 as current authority; the v0.9.0-r1 master still cites v0.5.2 §1.1. Reconcile before the next revision; do not silently re-label."
+      "resolution": "2026-08-20 owner-directed check: Master Brand Brief v0.5.3 (2026-08-20) §1.1 carries the Cultural activation unchanged — Let us cultivate our city with data. — and v0.5.3 §4.3/§4.4 store no colour or font values, pointing to the current approved Design System instead. The master's forward-looking citations now cite v0.5.3; historical v0.8.8/v0.8.9 lineage records keep their v0.5.2 citations as history. Verified by project-source read; no repository copy is bundled."
     },
     "v090OwnerApproval": {
       "approvedAt": "2026-08-20",
@@ -131,13 +131,13 @@
     "productClaims": "require a current product-owned brief and evidence",
     "crossProductOrPlaceComparison": "requires the same schema and release or an explicit incompatibility statement",
     "carriedTokenAndScaleFiles": "remain v0.8.6 and must not be relabelled v0.9.0",
-    "selfCheckRecord": "the artifact-level [SELFCHECK-01] result rows are not yet emitted into site-manifest.v0.9.0.json; run and record the check by hand until they are"
+    "selfCheckRecord": "[SELFCHECK-01] result rows ship in site-manifest.v0.9.0.json (run 2026-08-20): 15 pass, SC-12/SC-13 n/a, SC-02/SC-03 fail with recorded [EXCEPTION-01] because the playground is a pre-Kit build upgraded in place; kit consolidation is the recorded migration path and every new artifact runs the check itself"
   },
   "integrity": [
     {
       "path": "SKILL.md",
-      "bytes": 10866,
-      "sha256": "ac91f61618a64fb19a24d7572a6386410f355aa2c6e3cf692194d836366947b1"
+      "bytes": 10924,
+      "sha256": "a86151029ac3d5987b784232737db759797cb5d8eff2bf33120f1e3576783759"
     },
     {
       "path": "agents/openai.yaml",
@@ -151,8 +151,8 @@
     },
     {
       "path": "references/landometer-design-system-v0.9.0-authoring-master.md",
-      "bytes": 378851,
-      "sha256": "206e1f812715fe1830b63572d8eaa010aa584998fb49e6207fc0544c29481756"
+      "bytes": 379865,
+      "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3"
     }
   ]
 }
