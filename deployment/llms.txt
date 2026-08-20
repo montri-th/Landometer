@@ -19,7 +19,7 @@ Channel parity key: ldm.ds.v0.9.0.design-identity-playground
 
 ## Machine-readable release context
 
-- Site Manifest 2.0: https://montri-th.github.io/Landometer/site-manifest.v0.9.0.json
+- Site Manifest 2.1: https://montri-th.github.io/Landometer/site-manifest.v0.9.0.json
 - Build Card v0.9.0: https://montri-th.github.io/Landometer/build-card.v0.9.0.yml
 - Color Set registry `color-srgb-03`: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.0.json
 - Portable latest standalone: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.html

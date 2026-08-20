@@ -1,6 +1,6 @@
 {
   "version": "0.9.0",
-  "artifact": "landometer-design-identity-playground-v0.8.9",
+  "artifact": "landometer-design-identity-playground-v0.9.0",
   "controls": [
     {
       "id": "skip-main",
@@ -316,13 +316,13 @@
     },
     {
       "id": "download-system",
-      "accessibleName": "Download Design System v0.8.9",
+      "accessibleName": "Download Design System v0.9.0",
       "userJob": "Keep the human-readable authoring master beside the work",
-      "effect": "Download assets/downloads/landometer-design-system-v0.8.9.md",
+      "effect": "Download assets/downloads/landometer-design-system-v0.9.0.md",
       "keyboardTouch": "Enter or touch",
       "feedback": "Browser download starts for the exact Markdown master",
       "recovery": "Open the same-origin href directly",
-      "finalState": "The 269,767-byte owner-approved v0.8.9-r1 Markdown file is available locally",
+      "finalState": "The 378,851-byte owner-approved v0.9.0-r1 Markdown file is available locally",
       "failureRecovery": "Open the same-origin href directly or use the Resources group",
       "browserTest": "Inspect #download-system href and download attribute; request the href and assert HTTP 200, 269767 bytes, and SHA-256 00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68."
     },
@@ -540,13 +540,13 @@
       "recovery": "Activate the same summary again",
       "finalState": "The native open state matches the user's choice",
       "failureRecovery": "All summary controls remain usable without JavaScript",
-      "browserTest": "Invoke #library-resources-toggle; assert parent details.open, governed authoring-master bytes/hash, resource records, llms disclosure, v0.8.9 authoring skill, approved patch history, and publication discovery-state table."
+      "browserTest": "Invoke #library-resources-toggle; assert parent details.open, governed authoring-master bytes/hash, resource records, llms disclosure, v0.9.0 authoring skill, approved patch history, and publication discovery-state table."
     },
     {
       "id": "resource-download-system",
       "accessibleName": "Download Markdown",
       "userJob": "Download the authoring master from the Resources group",
-      "effect": "Download assets/downloads/landometer-design-system-v0.8.9.md",
+      "effect": "Download assets/downloads/landometer-design-system-v0.9.0.md",
       "keyboardTouch": "Enter or touch",
       "feedback": "Browser download starts for the exact Markdown master",
       "recovery": "Use #download-system or open the href directly",
@@ -556,33 +556,33 @@
     },
     {
       "id": "resource-manifest",
-      "accessibleName": "Site Manifest 2.0",
+      "accessibleName": "Site Manifest 2.1",
       "userJob": "Inspect machine-readable artifact identity and evidence boundary",
-      "effect": "Navigate to site-manifest.v0.8.9.json",
+      "effect": "Navigate to site-manifest.v0.9.0.json",
       "keyboardTouch": "Enter or touch",
       "feedback": "Manifest resource opens",
       "recovery": "Use browser Back",
-      "finalState": "The versioned Manifest 2.0 JSON is visible",
+      "finalState": "The versioned Manifest 2.1 JSON is visible",
       "failureRecovery": "Use #manifest-link in the footer",
-      "browserTest": "Inspect #resource-manifest href; request it and assert HTTP 200 plus artifact version 0.8.9."
+      "browserTest": "Inspect #resource-manifest href; request it and assert HTTP 200 plus artifact version 0.9.0."
     },
     {
       "id": "resource-build-card",
-      "accessibleName": "Build Card v0.8.9",
+      "accessibleName": "Build Card v0.9.0",
       "userJob": "Inspect authoring and publication decisions",
-      "effect": "Navigate to build-card.v0.8.9.yml",
+      "effect": "Navigate to build-card.v0.9.0.yml",
       "keyboardTouch": "Enter or touch",
       "feedback": "Build Card resource opens",
       "recovery": "Use browser Back",
       "finalState": "The versioned Build Card YAML is visible",
       "failureRecovery": "Open the path directly from the repository",
-      "browserTest": "Inspect #resource-build-card href; request it and assert HTTP 200 plus dsVersion 0.8.9."
+      "browserTest": "Inspect #resource-build-card href; request it and assert HTTP 200 plus dsVersion 0.9.0."
     },
     {
       "id": "resource-control-inventory",
       "accessibleName": "Control Inventory",
       "userJob": "Inspect every focusable control contract",
-      "effect": "Navigate to control-inventory.v0.8.9.json",
+      "effect": "Navigate to control-inventory.v0.9.0.json",
       "keyboardTouch": "Enter or touch",
       "feedback": "Control Inventory resource opens",
       "recovery": "Use browser Back",
@@ -594,7 +594,7 @@
       "id": "resource-manual-gates",
       "accessibleName": "Manual QA gates",
       "userJob": "Inspect what still blocks a conformance claim",
-      "effect": "Navigate to qa/v0.8.9-manual-gates.md",
+      "effect": "Navigate to qa/v0.9.0-manual-gates.md",
       "keyboardTouch": "Enter or touch",
       "feedback": "Manual gate document opens",
       "recovery": "Use browser Back",
@@ -606,11 +606,11 @@
       "id": "resource-implementation-notes",
       "accessibleName": "Read application record",
       "userJob": "Inspect how the artifact applies the approved share, contextual source-search, external AI-synthesis, and positive-example guidance",
-      "effect": "Navigate to implementation-notes.v0.8.9.md",
+      "effect": "Navigate to implementation-notes.v0.9.0.md",
       "keyboardTouch": "Enter or touch",
       "feedback": "The same-origin non-normative artifact application record opens",
       "recovery": "Use browser Back",
-      "finalState": "The note visibly distinguishes artifact-specific implementation evidence from the owner-approved v0.8.9-r1 master",
+      "finalState": "The note visibly distinguishes artifact-specific implementation evidence from the owner-approved v0.9.0-r1 master",
       "failureRecovery": "Open the same-origin path directly from the repository",
       "browserTest": "Inspect #resource-implementation-notes href/type; request it and assert HTTP 200, accepted artifact-record/non-normative authority, IMPL-SHARE-01, IMPL-SEARCH-EXT-01, IMPL-AI-EXT-01, and IMPL-EXAMPLE-01."
     },
@@ -624,7 +624,7 @@
       "recovery": "Use browser Back or open the human-readable master",
       "finalState": "Current version, status, canonical object, sources, product boundary, and no-agent-action rule are visible",
       "failureRecovery": "Use the Manifest, Build Card, or authoring master directly",
-      "browserTest": "Inspect #resource-llms href/type; request it and assert HTTP 200 plus version 0.8.9, source_limited, DV-FIXTURE-0.1, contextual-search boundary, and no bounded agent action."
+      "browserTest": "Inspect #resource-llms href/type; request it and assert HTTP 200 plus version 0.9.0, source_limited, DV-FIXTURE-0.1, contextual-search boundary, and no bounded agent action."
     },
     {
       "id": "resource-normative-patch",
@@ -635,26 +635,26 @@
       "feedback": "The original hash-locked proposal Markdown opens in a new tab",
       "recovery": "Close the tab or return to the implementation library",
       "finalState": "The approved value-proof, surface-contrast, Thai-type, color-reference, visual-first, and Source-Search-versus-AI-synthesis input is available for audit",
-      "failureRecovery": "Open normative-patches/landometer-design-system-v0.8.9-gradient-diversity.proposal.md directly in the repository",
+      "failureRecovery": "Open normative-patches/landometer-design-system-v0.9.0.proposal.md directly in the repository",
       "browserTest": "Inspect #resource-normative-patch href/target/rel; assert it points to the immutable proposal path and describes it as approved integration input rather than a separate active authority."
     },
     {
       "id": "resource-refinement-skill",
-      "accessibleName": "Open v0.8.9 skill",
-      "userJob": "Apply or audit work against the owner-approved v0.8.9-r1 authoring master",
+      "accessibleName": "Open v0.9.0 skill",
+      "userJob": "Apply or audit work against the owner-approved v0.9.0-r1 authoring master",
       "effect": "Navigate to the project-versioned skill folder in the public repository",
       "keyboardTouch": "Enter or touch",
       "feedback": "The version-locked authoring skill folder opens in a new tab",
       "recovery": "Close the tab or return to the implementation library",
       "finalState": "The integrated master, Build Card template, release lock, and pending machine-package boundary are available for reuse",
-      "failureRecovery": "Open skill/apply-landometer-design-system-v0-8-9 directly in the repository",
-      "browserTest": "Inspect #resource-refinement-skill href/target/rel; assert it points to the v0.8.9 skill folder and opens without changing the playground state."
+      "failureRecovery": "Open skill/apply-landometer-design-system-v0-9-0 directly in the repository",
+      "browserTest": "Inspect #resource-refinement-skill href/target/rel; assert it points to the v0.9.0 skill folder and opens without changing the playground state."
     },
     {
       "id": "resource-standalone",
       "accessibleName": "Download standalone HTML",
       "userJob": "Keep or hand off the exact current Color Set and UI build as one self-contained file",
-      "effect": "Download landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html",
+      "effect": "Download landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
       "keyboardTouch": "Enter or touch",
       "feedback": "The browser downloads the single-file snapshot",
       "recovery": "Open the same-origin href directly or return to Resources",
@@ -676,15 +676,15 @@
     },
     {
       "id": "manifest-link",
-      "accessibleName": "Manifest 2.0",
+      "accessibleName": "Manifest 2.1",
       "userJob": "Inspect release identity and evidence boundary",
-      "effect": "Navigate to site-manifest.v0.8.9.json",
+      "effect": "Navigate to site-manifest.v0.9.0.json",
       "keyboardTouch": "Enter or touch",
       "feedback": "Manifest resource opens",
       "recovery": "Use browser Back",
       "finalState": "Manifest resource opens",
       "failureRecovery": "Use browser Back",
-      "browserTest": "Invoke #manifest-link using Enter or touch; assert: Navigate to site-manifest.v0.8.9.json; then verify: Manifest resource opens; recovery: Use browser Back."
+      "browserTest": "Invoke #manifest-link using Enter or touch; assert: Navigate to site-manifest.v0.9.0.json; then verify: Manifest resource opens; recovery: Use browser Back."
     },
     {
       "id": "github-link",
