@@ -37,7 +37,7 @@ v0.9.0 exists because the same master produced materially different results per 
 
 v0.9.0-r1 inherits the complete v0.8.9-r1 rule set. No v0.8.9 rule is removed; the only rename is `[SEARCH-01]` → `[INTERNAL-SEARCH-01]` (§7.6), with the old ID a deprecated alias for one release. Use the owning rules in the integrated master, especially:
 
-- `[BRAND-01]` §3.2: preserve the exact Cultural activation from Master Brand Brief v0.5.2 §1.1 — `Let us cultivate our city with data.` Never remove `with data` or substitute the earlier shortened reconciliation.
+- `[BRAND-01]` §3.2: preserve the exact Cultural activation from Master Brand Brief v0.5.3 §1.1 (verified 2026-08-20 carried unchanged from v0.5.2 §1.1) — `Let us cultivate our city with data.` Never remove `with data` or substitute the earlier shortened reconciliation.
 - `[VALUE-PROOF-01]`: keep one work object and its evidence constant while making DNA, Voice, or Visual value observable; never make the baseline inaccessible to make the assisted state look better.
 - `[SURFACE-01]` + `[A11Y-01]`: fixed flat, photo, gradient, scrim, and panel surfaces own complete local foreground contracts across theme, locale, state, and narrow layouts. Governed atmosphere is default-present, not optional decoration.
 - `[TYPE-01]` + Appendix A11: use JetBrains Mono 400 for Latin/numerals and IBM Plex Sans Thai 400 for Thai technical glyphs; retain Bai Jamjuree for body/UI and the separate 700-weight display families.
