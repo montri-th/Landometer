@@ -54,28 +54,28 @@ jobs:
       - name: Verify deployed bytes match this release source
         env:
           SITE_URL: ${{ steps.deployment.outputs.page_url }}
-          TARGET_VERSION: "0.8.9"
-          MANIFEST_PATH: site-manifest.v0.8.9.json
-          EXPECTED_MANIFEST_VERSION: "2.0"
+          TARGET_VERSION: "0.9.0"
+          MANIFEST_PATH: site-manifest.v0.9.0.json
+          EXPECTED_MANIFEST_VERSION: "2.1"
           EXPECTED_TOKEN_SCHEMA_VERSION: "6"
           EXPECTED_PROFILE: brand.public
           EXPECTED_EVIDENCE_STATUS: source_limited
           EXPECTED_INDEXABLE: "false"
           EXPECTED_MACHINE_VALIDATION: pending
-          EXPECTED_ARTIFACT_BUILD: ui-20260807-07
+          EXPECTED_ARTIFACT_BUILD: ui-20260820-01
           VERIFY_EXACT_SOURCE: "true"
           LOCAL_DEPLOYMENT_DIR: deployment
           VERIFY_ATTEMPTS: "30"
           VERIFY_DELAY_MS: "10000"
           CRITICAL_ASSETS: >-
-            landometer-design-system-v0.8.9-standalone.html,
-            landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html,
-            landometer-design-system-v0.8.9-standalone.color-srgb-02.html,
-            assets/data/color-delivery.v0.8.9.json,
-            qa/v0.8.9-automated.json,
-            qa/v0.8.9-scale-geometry.json,
-            qa/v0.8.9-gradient-contrast.json,
-            implementation-notes.v0.8.9.md,
+            landometer-design-system-v0.9.0-standalone.html,
+            landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html,
+            landometer-design-system-v0.9.0-standalone.color-srgb-03.html,
+            assets/data/color-delivery.v0.9.0.json,
+            qa/v0.9.0-automated.json,
+            qa/v0.9.0-scale-geometry.json,
+            qa/v0.9.0-gradient-contrast.json,
+            implementation-notes.v0.9.0.md,
             llms.txt,
             assets/images/landometer-symbol-transparent.png
         run: node skill/publish-landometer-design-system-github-pages/scripts/verify-live.mjs
