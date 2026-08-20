@@ -322,7 +322,7 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "Browser download starts for the exact Markdown master",
       "recovery": "Open the same-origin href directly",
-      "finalState": "The 378,851-byte owner-approved v0.9.0-r1 Markdown file is available locally",
+      "finalState": "The 379,865-byte owner-approved v0.9.0-r1 Markdown file is available locally",
       "failureRecovery": "Open the same-origin href directly or use the Resources group",
       "browserTest": "Inspect #download-system href and download attribute; request the href and assert HTTP 200, 269767 bytes, and SHA-256 00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68."
     },
@@ -775,19 +775,6 @@
       "failureRecovery": "on clipboard denial: fallback message tells the user to copy the URL manually; nothing lost",
       "browserTest": "playwright: click yields 'คัดลอกแล้ว…' status; clipboard text contains canonical URL + receipt",
       "navigationOrEffect": "writes URL + receipt line to clipboard; no send occurs"
-    },
-    {
-      "id": "resource-download-system-v090",
-      "accessibleName": "ดาวน์โหลด Markdown (v0.9.0 draft)",
-      "userJob": "download the v0.9.0 draft authoring master",
-      "effect": "",
-      "keyboardTouch": "",
-      "feedback": "",
-      "recovery": "",
-      "finalState": "file downloads; page state unchanged",
-      "failureRecovery": "standard browser download recovery",
-      "browserTest": "curl 200 on the asset path",
-      "navigationOrEffect": "navigates to assets/downloads/landometer-design-system-v0.9.0.md (download)"
     },
     {
       "id": "v090-citymeter-link",

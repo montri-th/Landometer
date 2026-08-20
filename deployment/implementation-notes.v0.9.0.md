@@ -5,7 +5,7 @@
 
 ## What changed at the root
 
-The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, control, and evidence boundary. All 66 controls remain; 8 new ones are added for the v0.9.0 specimen section.
+The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, control, and evidence boundary. Every carried v0.8.9 control remains; 7 new controls are added for the v0.9.0 specimen section (65 controls total in the inventory).
 
 | Area | Change |
 |---|---|
