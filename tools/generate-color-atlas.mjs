@@ -20,7 +20,7 @@ const COLOR_DELIVERY_SOURCE = path.join(
   "deployment",
   "assets",
   "data",
-  "color-delivery.v0.8.9.json",
+  "color-delivery.v0.9.0.json",
 );
 const TOKEN_SOURCE = path.join(
   PROJECT_ROOT,
@@ -113,9 +113,9 @@ const foundationPairs = [
   ["surface.beigeTint", "#F2F1DF", "#2C2A22"],
   ["text.primary", "#182327", "#F1F4EF"],
   ["text.secondary", "#5F635A", "#C4CECA"],
-  ["text.metadata", "#686354", "#A6B5B1"],
-  ["text.muted", "#8B877A", "#8D9D99"],
-  ["text.disabled", "#B6AD98", "#71817D"],
+  ["text.metadata", "#5C6A61", "#A6B5B1"],
+  ["text.muted", "#7B877D", "#8D9D99"],
+  ["text.disabled", "#A7B3A9", "#71817D"],
   ["border.hairline", "#DCE1DD", "#33403D"],
   ["border.default", "#C9D0CB", "#46524F"],
   ["border.emphasis", "#7D877F", "#7C8A84"],
@@ -123,13 +123,21 @@ const foundationPairs = [
   ["interaction.focus.ring", "#176B82", "#68C4E2"],
 ].map(([id, light, dark]) => ({ id, light, dark }));
 
+const MATERIAL_ICON = {
+  source: { name: "description", cp: "E683" },
+  micro: { name: "texture", cp: "E421" },
+  people: { name: "groups", cp: "F233" },
+  calendar: { name: "calendar_month", cp: "EBCC" },
+  layers: { name: "layers", cp: "E53B" },
+};
+
 const semanticPairs = [
   ["success", "#E2F4E5", "#126B49", "#17362D", "#72E8C4", "สำเร็จ", "Success", "source"],
-  ["warning", "#FFF1D1", "#795300", "#3B2E16", "#F5C15C", "เตือน", "Warning", "micro"],
+  ["warning", "#FFF1D1", "#A64A00", "#3B2E16", "#F5C15C", "เตือน", "Warning", "micro"],
   ["danger", "#FCE5DF", "#B43A3A", "#3A1F21", "#FF7C72", "อันตราย", "Danger", "micro"],
   ["info", "#E8EEF0", "#176B82", "#18333E", "#68C4E2", "ข้อมูล", "Info", "source"],
   ["neutral", "#ECE4D2", "#5F635A", "#2B3534", "#C4CECA", "เป็นกลาง", "Neutral", "layers"],
-  ["pending", "#F3EEDB", "#686354", "#2C2A22", "#D8CFB2", "รอดำเนินการ", "Pending", "calendar"],
+  ["pending", "#F3EEDB", "#5C6A61", "#2C2A22", "#D8CFB2", "รอดำเนินการ", "Pending", "calendar"],
   ["assisted", "#DFF3F1", "#176C67", "#163331", "#79D9D1", "มีตัวช่วย", "Assisted", "people"],
 ].map(([id, lightFill, lightInk, darkFill, darkInk, th, en, icon]) => ({
   id,
@@ -187,7 +195,7 @@ const productCopy = {
 const categoricalSeries = [
   ["01", "Coral", "#C33F55", "#FF6B7F", "circle", "solid"],
   ["02", "Signal Orange", "#C52C00", "#FF8A4C", "square", "solid"],
-  ["03", "Marigold", "#846100", "#F4C44E", "triangle", "solid"],
+  ["03", "Marigold", "#A87B00", "#F4C44E", "triangle", "solid"],
   ["04", "Lime", "#5D7400", "#B5E34E", "diamond", "solid"],
   ["05", "Green", "#007A58", "#3BD19B", "cross", "solid"],
   ["06", "Aqua", "#007E79", "#3BD3CB", "star", "solid"],
@@ -258,7 +266,7 @@ const expectedScaleAnchors = {
   },
   risk: {
     light: ["#F2F1DF", "#E0B443", "#B74436"],
-    dark: ["#85837A", "#D0A42F", "#FF8C7D"],
+    dark: ["#8D9D99", "#D0A42F", "#FF8C7D"],
   },
   activity: {
     light: ["#F2F1DF", "#E86A8C", "#C52C00"],
@@ -274,15 +282,15 @@ const expectedScaleAnchors = {
   },
   balance: {
     light: ["#C52C00", "#F2F1DF", "#186A9E"],
-    dark: ["#FF8A4C", "#827C68", "#4FAFE0"],
+    dark: ["#FF8A4C", "#7C8A84", "#4FAFE0"],
   },
   delta: {
     light: ["#B74436", "#F2F1DF", "#007C78"],
-    dark: ["#F28575", "#827C68", "#55C8BC"],
+    dark: ["#F28575", "#7C8A84", "#55C8BC"],
   },
   tradeoff: {
-    light: ["#9E476F", "#F2F1DF", "#007E91"],
-    dark: ["#E982AE", "#827C68", "#61C2D3"],
+    light: ["#B23F74", "#F2F1DF", "#007E91"],
+    dark: ["#F06FA6", "#7C8A84", "#61C2D3"],
   },
 };
 
@@ -461,15 +469,15 @@ function buildGradientCssTokens(registry) {
 }
 
 function validateColorDelivery(registry, scaleText, tokenText) {
-  assert(registry?.meta?.id === "color-srgb-02", "unexpected color registry id");
+  assert(registry?.meta?.id === "color-srgb-03", "unexpected color registry id");
   assert(
     registry?.meta?.immutableColorBaseline ===
-      "landometer-design-system-v0.8.9-standalone.color-srgb-02.html",
+      "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
     "unexpected immutable Color Set baseline filename",
   );
   assert(
     /^ui-\d{8}-\d{2}$/.test(registry?.meta?.currentArtifactBuild?.id ?? "") &&
-      /^landometer-design-system-v0\.8\.9-standalone\.color-srgb-02\.ui-\d{8}-\d{2}\.html$/.test(
+      /^landometer-design-system-v0\.9\.0-standalone\.color-srgb-03\.ui-\d{8}-\d{2}\.html$/.test(
         registry?.meta?.currentArtifactBuild?.immutableStandalone ?? "",
       ),
     "unexpected immutable UI artifact-build identity",
@@ -572,7 +580,7 @@ function validateScaleSource(source) {
     }
 
     const expectedNoData = record.theme === "light" ? "#D5DAD6" : "#404844";
-    const expectedZero = record.theme === "light" ? "#7D877F" : "#A59A80";
+    const expectedZero = record.theme === "light" ? "#7D877F" : "#93A398";
     assert(record.noData === expectedNoData, `noData mismatch in ${recordKey}`);
     assert(record.zero === expectedZero, `zero mismatch in ${recordKey}`);
     assert(
@@ -659,14 +667,14 @@ function renderSemanticCard(record) {
             </header>
             <div class="atlas-state-pair">
               <figure class="atlas-state-sample" style="--atlas-fill:${escapeHtml(record.lightFill)};--atlas-ink:${escapeHtml(record.lightInk)};background:${escapeHtml(record.lightFill)};color:${escapeHtml(record.lightInk)}">
-                <span class="atlas-state-icon" aria-hidden="true"><svg class="ui-icon"><use href="#icon-${escapeHtml(record.icon)}"></use></svg></span>
+                <span class="atlas-state-icon" aria-hidden="true"><span class="icon-symbol icon-symbol--sm" data-icon="${escapeHtml(MATERIAL_ICON[record.icon].name)}">&#x${MATERIAL_ICON[record.icon].cp};</span></span>
                 <figcaption>
                   <strong>Light</strong>
                   <code>${escapeHtml(record.lightFill)} / ${escapeHtml(record.lightInk)}</code>
                 </figcaption>
               </figure>
               <figure class="atlas-state-sample" style="--atlas-fill:${escapeHtml(record.darkFill)};--atlas-ink:${escapeHtml(record.darkInk)};background:${escapeHtml(record.darkFill)};color:${escapeHtml(record.darkInk)}">
-                <span class="atlas-state-icon" aria-hidden="true"><svg class="ui-icon"><use href="#icon-${escapeHtml(record.icon)}"></use></svg></span>
+                <span class="atlas-state-icon" aria-hidden="true"><span class="icon-symbol icon-symbol--sm" data-icon="${escapeHtml(MATERIAL_ICON[record.icon].name)}">&#x${MATERIAL_ICON[record.icon].cp};</span></span>
                 <figcaption>
                   <strong>Dark</strong>
                   <code>${escapeHtml(record.darkFill)} / ${escapeHtml(record.darkInk)}</code>
@@ -969,8 +977,8 @@ ${scaleIds
         <div class="scale-sampler-boundary" role="note">
           <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
           <p>${bilingual(
-            "ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.8.9",
-            "These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.8.9 dataviz.tokens.json package.",
+            "ชุดสีนี้สืบทอดจาก scales.json v0.8.6 เพื่อใช้เรียนรู้และตรวจแบบ ยังไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate ของ v0.9.0",
+            "These families are carried from scales.json v0.8.6 for teaching and review. They are not a scale-gate-cleared v0.9.0 dataviz.tokens.json package.",
           )}</p>
         </div>
 
@@ -1051,7 +1059,7 @@ function buildFragment(scaleSource, colorDelivery) {
     .join("");
 
   return `<!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this fragment. -->
-<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="${escapeHtml(colorDelivery.meta.id)}" data-atlas-version="0.8.9" data-atlas-source-version="${escapeHtml(scaleSource.meta.version)}" data-atlas-records="${scaleSource.scales.length}">
+<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="${escapeHtml(colorDelivery.meta.id)}" data-atlas-version="0.9.0" data-atlas-source-version="${escapeHtml(scaleSource.meta.version)}" data-atlas-records="${scaleSource.scales.length}">
   <header class="atlas-intro">
     <p class="atlas-kicker">TOKEN-01 · VIS-04 · SURFACE-01 · DATAVIZ-01 · MAP-01</p>
     <h4 class="atlas-title" id="atlas-title">${bilingual(
@@ -1065,8 +1073,8 @@ function buildFragment(scaleSource, colorDelivery) {
     <div class="atlas-boundary atlas-boundary--source" role="note">
       <strong>SOURCE_LIMITED · REFERENCE FIXTURE · MACHINE VALIDATION PENDING</strong>
       <p>${bilingual(
-        "LUT ด้านล่างอ่านจาก scales.json ซึ่งเป็น reference fixture ที่สืบทอดเข้า v0.8.9 ไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate แล้ว จึงใช้เรียนรู้ ตรวจแบบ และเทียบค่าล่วงหน้าได้ แต่ห้ามอ้างว่า production conform จน hash, legend/renderer parity, contrast และ CVD gate ผ่านครบ",
-        "The LUTs below come from the scales.json reference fixture carried into v0.8.9. They are not a scale-gate-cleared dataviz.tokens.json package. Use them to learn, review, and compare—not to claim production conformance until hash, legend/renderer parity, contrast, and CVD gates pass.",
+        "LUT ด้านล่างอ่านจาก scales.json ซึ่งเป็น reference fixture ที่สืบทอดเข้า v0.9.0 ไม่ใช่ dataviz.tokens.json ที่ผ่าน scale gate แล้ว จึงใช้เรียนรู้ ตรวจแบบ และเทียบค่าล่วงหน้าได้ แต่ห้ามอ้างว่า production conform จน hash, legend/renderer parity, contrast และ CVD gate ผ่านครบ",
+        "The LUTs below come from the scales.json reference fixture carried into v0.9.0. They are not a scale-gate-cleared dataviz.tokens.json package. Use them to learn, review, and compare—not to claim production conformance until hash, legend/renderer parity, contrast, and CVD gates pass.",
       )}</p>
     </div>
     <div class="atlas-counts" aria-label="Atlas coverage">
@@ -1117,8 +1125,8 @@ ${logoAssetColors.map(renderLogoCard).join("")}
         "Every governed surface, text, border, and interaction pair",
       )}</h5>
       <p>${bilingual(
-        "17 คู่ด้านล่างคือ active authoring subset ของ v0.8.9 เลือกตามบทบาท ไม่เลือกเพราะชอบรหัสสี",
-        "These 17 light/dark pairs are the v0.8.9 active authoring subset. Choose by role, never by favorite hex.",
+        "17 คู่ด้านล่างคือ active authoring subset ของ v0.9.0 เลือกตามบทบาท ไม่เลือกเพราะชอบรหัสสี",
+        "These 17 light/dark pairs are the v0.9.0 active authoring subset. Choose by role, never by favorite hex.",
       )}</p>
     </header>
     <div class="atlas-pair-grid">
@@ -1246,7 +1254,7 @@ ${groupedScaleRecords}
         <h6>Zero</h6>
         <div class="atlas-special-pair">
           <span class="atlas-special-swatch atlas-special-swatch--zero atlas-special-swatch--zero-light" style="--atlas-color:#7D877F;border-color:#7D877F"><b>Light</b><code>#7D877F</code></span>
-          <span class="atlas-special-swatch atlas-special-swatch--zero atlas-special-swatch--zero-dark" style="--atlas-color:#A59A80;border-color:#A59A80"><b>Dark</b><code>#A59A80</code></span>
+          <span class="atlas-special-swatch atlas-special-swatch--zero atlas-special-swatch--zero-dark" style="--atlas-color:#93A398;border-color:#93A398"><b>Dark</b><code>#93A398</code></span>
         </div>
         <p>${bilingual(
           "ใช้เส้น outline เฉพาะเมื่อศูนย์เป็นข้อเท็จจริงที่ต้องแยก",
@@ -1313,7 +1321,7 @@ ${depthRoles.map(renderDepth).join("")}
       "ถ้าสีเดียวกำลังพยายามบอกทั้งแบรนด์ สถานะ ขนาดข้อมูล และสิ่งที่กดได้พร้อมกัน แปลว่าต้องแยกบทบาทก่อน",
       "When one color is trying to say brand, state, magnitude, and action at once, separate the roles before styling.",
     )}</p>
-    <code>landometer-design-system@0.8.9 · active authoring subset · SOURCE_LIMITED</code>
+    <code>landometer-design-system@0.9.0 · active authoring subset · SOURCE_LIMITED</code>
   </footer>
 </section>
 `;

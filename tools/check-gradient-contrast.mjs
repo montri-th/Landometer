@@ -9,11 +9,11 @@ const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(toolDir, "..");
 const registryPath = path.join(
   repositoryRoot,
-  "deployment/assets/data/color-delivery.v0.8.9.json",
+  "deployment/assets/data/color-delivery.v0.9.0.json",
 );
 const evidencePath = path.join(
   repositoryRoot,
-  "deployment/qa/v0.8.9-gradient-contrast.json",
+  "deployment/qa/v0.9.0-gradient-contrast.json",
 );
 const SAMPLE_INTERVALS = 1000;
 
@@ -84,7 +84,7 @@ function minimumForInk(record, ink) {
 
 const registryText = await readFile(registryPath, "utf8");
 const registry = JSON.parse(registryText);
-assert(registry.meta?.id === "color-srgb-02", "unexpected Color Set id");
+assert(registry.meta?.id === "color-srgb-03", "unexpected Color Set id");
 assert(
   registry.delivery?.gradientRegistrySchema === "landometer-atmosphere-gradient-v2",
   "unexpected gradient registry schema",
@@ -120,12 +120,12 @@ const results = registry.sharedAtmosphereGradients.map((record) => {
 const failures = results.filter((result) => !result.passed);
 const evidence = {
   schemaVersion: 1,
-  designSystemVersion: "0.8.9",
-  authoringRevision: "v0.8.9-r1",
-  colorRegistryId: "color-srgb-02",
+  designSystemVersion: "0.9.0",
+  authoringRevision: "v0.9.0-r1",
+  colorRegistryId: "color-srgb-03",
   gradientRegistrySchema: "landometer-atmosphere-gradient-v2",
   testedAt: "2026-08-07",
-  registryPath: "assets/data/color-delivery.v0.8.9.json",
+  registryPath: "assets/data/color-delivery.v0.9.0.json",
   registrySha256: sha256(registryText),
   method: {
     colorSpace: "sRGB IEC 61966-2-1",

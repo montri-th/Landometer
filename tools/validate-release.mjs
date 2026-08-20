@@ -7,29 +7,29 @@ const repositoryRoot = resolve(import.meta.dirname, "..");
 const deploymentRoot = resolve(repositoryRoot, "deployment");
 
 const RELEASE = Object.freeze({
-  version: "0.8.9",
-  authoringRevision: "v0.8.9-r1",
-  manifestVersion: "2.0",
+  version: "0.9.0",
+  authoringRevision: "v0.9.0-r1",
+  manifestVersion: "2.1",
   tokenSchemaVersion: 6,
-  colorSetId: "color-srgb-02",
+  colorSetId: "color-srgb-03",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260807-07",
-  latest: "landometer-design-system-v0.8.9-standalone.html",
-  baseline: "landometer-design-system-v0.8.9-standalone.color-srgb-02.html",
+  artifactBuildId: "ui-20260820-01",
+  latest: "landometer-design-system-v0.9.0-standalone.html",
+  baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
   immutableUi:
-    "landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html",
-  authoringMaster: "assets/downloads/landometer-design-system-v0.8.9.md",
+    "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
+  authoringMaster: "assets/downloads/landometer-design-system-v0.9.0.md",
   skillMaster:
-    "skill/apply-landometer-design-system-v0-8-9/references/landometer-design-system-v0.8.9-authoring-master.md",
+    "skill/apply-landometer-design-system-v0-9-0/references/landometer-design-system-v0.9.0-authoring-master.md",
   proposal:
-    "normative-patches/landometer-design-system-v0.8.9-gradient-diversity.proposal.md",
+    "normative-patches/landometer-design-system-v0.9.0.proposal.md",
   approval:
-    "normative-patches/landometer-design-system-v0.8.9-gradient-diversity.approval.yml",
-  registry: "assets/data/color-delivery.v0.8.9.json",
-  contrastEvidence: "qa/v0.8.9-gradient-contrast.json",
-  scaleEvidence: "qa/v0.8.9-scale-geometry.json",
-  manifest: "site-manifest.v0.8.9.json",
-  buildCard: "build-card.v0.8.9.yml",
+    "normative-patches/landometer-design-system-v0.9.0.approval.yml",
+  registry: "assets/data/color-delivery.v0.9.0.json",
+  contrastEvidence: "qa/v0.9.0-gradient-contrast.json",
+  scaleEvidence: "qa/v0.9.0-scale-geometry.json",
+  manifest: "site-manifest.v0.9.0.json",
+  buildCard: "build-card.v0.9.0.yml",
 });
 
 const EXPECTED_GRADIENTS = Object.freeze({
@@ -248,7 +248,7 @@ for (const path of requiredRepositoryFiles) {
 }
 
 if (failures.length > 0) {
-  console.error(`v0.8.9 release validation FAIL (${failures.length}/${checkCount})`);
+  console.error(`v0.9.0 release validation FAIL (${failures.length}/${checkCount})`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
@@ -306,8 +306,8 @@ check(hasAttribute(immutableUiHtml, "data-standalone", "true"), "identity:immuta
 const masterRecord = fileRecordAbsolute(deploymentPath(RELEASE.authoringMaster));
 check(Buffer.compare(readAbsolute(deploymentPath(RELEASE.authoringMaster)), readAbsolute(repoPath(RELEASE.skillMaster))) === 0, "normative:master-byte-parity");
 check(masterRecord.sha256 === sha256Absolute(repoPath(RELEASE.skillMaster)), "normative:master-hash-parity");
-check(authoringMaster.includes("**Release:** v0.8.9"), "normative:master-version");
-check(authoringMaster.includes("**Authoring revision:** v0.8.9-r1"), "normative:master-revision");
+check(authoringMaster.includes("**Release:** v0.9.0"), "normative:master-version");
+check(authoringMaster.includes("**Authoring revision:** v0.9.0-r1"), "normative:master-revision");
 check(authoringMaster.includes("Let us cultivate our city with data."), "normative:brand-line-with-data");
 
 // Approval binds the exact proposal and integrated master while leaving artifact gates truthful.
@@ -412,7 +412,7 @@ check(deepEqual(
 
 // Immutable build records bind bytes and hashes; aliases differ only by channel marker.
 const artifactExpectations = [
-  { path: RELEASE.baseline, id: "color-baseline-20260807", role: "immutable_color_baseline" },
+  { path: RELEASE.baseline, id: "color-baseline-20260820", role: "immutable_color_baseline" },
   { path: RELEASE.immutableUi, id: RELEASE.artifactBuildId, role: "immutable_ui_build" },
 ];
 for (const expected of artifactExpectations) {
@@ -498,7 +498,7 @@ check(buildCard.includes(`path: ${RELEASE.contrastEvidence}`), "build-card:contr
 check(/contrastEvidence:\s*[\s\S]{0,180}?status:\s*passed\b/.test(buildCard), "build-card:contrast-status-passed");
 check(/scrims:\s*\[\]/.test(buildCard), "build-card:no-default-scrims");
 check(/passing standalone governed gradient remains (?:visible|unscreened)/i.test(buildCard), "build-card:no-blanket-scrim-policy");
-check(!/v0\.8\.9-r[23]\b/.test(buildCard), "build-card:no-stale-v089-r2-r3");
+check(!/v0\.9\.0-r[23]\b/.test(buildCard), "build-card:no-stale-v089-r2-r3");
 for (const path of [
   "index.html",
   RELEASE.authoringMaster,
@@ -582,7 +582,7 @@ for (const id of [
 ]) {
   check(new RegExp(`\\bid="${escapeRegExp(id)}"`).test(html), `atlas:section:${id}`);
 }
-check(/data-atlas-version="0\.8\.9"/.test(html), "atlas:version");
+check(/data-atlas-version="0\.9\.0"/.test(html), "atlas:version");
 check(/data-atlas-records="18"/.test(html), "atlas:eighteen-gradient-records");
 check((html.match(/<figure class="atlas-gradient-card atlas-gradient-card--shared"/g) ?? []).length === 6, "atlas:six-tonal-shared-cards");
 check((html.match(/<figure class="atlas-gradient-card atlas-gradient-card--rare"/g) ?? []).length === 1, "atlas:one-diversity-card");
@@ -596,7 +596,7 @@ for (const [id, expected] of Object.entries(EXPECTED_GRADIENTS)) {
   check(html.includes(stopText), `atlas:exact-gradient-css:${id}`);
 }
 
-// Active v0.8.9 surfaces may describe v0.8.8-r3 as history, but never an active v0.8.9-r2/r3.
+// Active v0.9.0 surfaces may describe v0.8.9-r1 as history, but never an active v0.9.0-r2/r3.
 for (const [name, source] of [
   ["html", html],
   ["manifest", JSON.stringify(manifest)],
@@ -605,7 +605,7 @@ for (const [name, source] of [
   ["approval", approval],
   ["master", authoringMaster],
 ]) {
-  check(!/v0\.8\.9-r[23]\b/.test(source), `revision:no-stale-r2-r3:${name}`);
+  check(!/v0\.9\.0-r[23]\b/.test(source), `revision:no-stale-r2-r3:${name}`);
 }
 
 // Reuse deterministic generators/checkers instead of duplicating their derivation logic.
@@ -614,9 +614,9 @@ runNodeCheck("tools/generate-color-atlas.mjs", ["--check-index"], "generator:col
 runNodeCheck("tools/build-standalone-html.mjs", ["--check"], "generator:standalone");
 
 if (failures.length > 0) {
-  console.error(`v0.8.9 release validation FAIL (${failures.length}/${checkCount})`);
+  console.error(`v0.9.0 release validation FAIL (${failures.length}/${checkCount})`);
   for (const failure of failures) console.error(`- ${failure}`);
   process.exit(1);
 }
 
-console.log(`v0.8.9 release validation PASS (${checkCount} checks)`);
+console.log(`v0.9.0 release validation PASS (${checkCount} checks)`);
