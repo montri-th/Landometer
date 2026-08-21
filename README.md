@@ -21,7 +21,7 @@ The contextual-discovery specimen now offers four current public CityMETER recor
 
 Three synthetic dataviz fundamentals—Compare, Change, and Relationship—keep units, source, no-data, measured-zero, limitation, and visible table alternatives attached. Nine additional CityMETER-derived cards cover choropleth anatomy, flood time series/ranking/overlap, vehicle ranking/treemap/composition/compare/micro-trends. Public API snapshots are visibly separated from treatment sketches and remain product-specific.
 
-Download the owner-approved human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.9.0.md`](deployment/assets/downloads/landometer-design-system-v0.9.0.md). Authoring revision `v0.9.0-r6` retains the complete v0.8.9-r1 rule set, preserves the exact Culture / Rally Cry from Master Brand Brief v0.5.3 §1.1 — **Let us cultivate our city with data.** — and adds the determinism layer (Appendix E Build Kit, the `[SELFCHECK-01]` binary self-check, two-shape action geometry, the Material Symbols Rounded icon lock, the media-first disclosure model, and the purple/brown purge that mints Color Set `color-srgb-03`). The v0.8.9 and v0.8.8 records remain frozen historical evidence, and the generated public-safe v0.9.0 machine package is still pending.
+Download the owner-approved human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.9.0.md`](deployment/assets/downloads/landometer-design-system-v0.9.0.md). Authoring revision `v0.9.0-r7` retains the complete v0.8.9-r1 rule set, preserves the exact Culture / Rally Cry from Master Brand Brief v0.5.3 §1.1 — **Let us cultivate our city with data.** — and adds the determinism layer (Appendix E Build Kit, the `[SELFCHECK-01]` binary self-check, two-shape action geometry, the Material Symbols Rounded icon lock, the media-first disclosure model, and the purple/brown purge that mints Color Set `color-srgb-03`). The v0.8.9 and v0.8.8 records remain frozen historical evidence. The public-safe machine specification package `v0.9.0-mp1` is generated at `deployment/machine/v0.9.0/` (schemas, rule ledgers, preflight, build-kit bytes, source fingerprint, validator + validation report); package-level validation is an internal-consistency statement — artifact `machineValidation` stays honestly pending while manual gates remain open.
 
 Artifact-specific choices and evidence remain separate from that authority in [`deployment/implementation-notes.v0.9.0.md`](deployment/implementation-notes.v0.9.0.md). This accepted, non-normative application record covers the playground's atmosphere presets, exact assets and hashes, contextual Source Search and external AI routing, share placement, positive examples, and release-gated discovery. [`deployment/llms.txt`](deployment/llms.txt) is an optional project-path navigation aid—not a ranking signal, host-root discovery guarantee, access-control rule, conformance claim, or permission for an agent to act.
 
@@ -29,13 +29,13 @@ The shared Landometer layer covers portfolio, methodology, and product architect
 
 ## Release boundary
 
-- Design System `0.9.0`, owner-approved authoring revision `v0.9.0-r6`
+- Design System `0.9.0`, owner-approved authoring revision `v0.9.0-r7`
 - Build Card `0.9.0`
 - Manifest `2.1`
 - Token Schema `6`
 - Color Set `color-srgb-05` (minted by the 2026-08-21 rise refinement — a token-source change with every colour value byte-identical to `color-srgb-04`; `color-srgb-03` and `color-srgb-04` stay frozen evidence)
-- artifact build `ui-20260821-04`
-- portable latest alias `deployment/landometer-design-system-v0.9.0-standalone.html`; immutable handoff `deployment/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html`
+- artifact build `ui-20260821-05`
+- portable latest alias `deployment/landometer-design-system-v0.9.0-standalone.html`; immutable handoff `deployment/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html`
 - profile `brand.public`
 - internal-team delivery intent through a public GitHub Pages projection; delivery conformance is not claimed while public-delivery gates remain open
 - `fullLivingReference: false`
@@ -48,7 +48,7 @@ The shared Landometer layer covers portfolio, methodology, and product architect
 - two explicit external Google GET modes exist only inside `CONTEXT-FIXTURE-0.1`: Search for a source trail and AI Mode for synthesis/follow-up. Both send the same visible user-confirmed query in a new tab, do not persist it locally, and never promote returned material into evidence without source review
 - `network.mode: reference_ready`, `share: false`; share click, send, open, and handoff are never labelled network effect
 - motion, recipient value, creative examples, and machine navigation remain fixture/reference scoped; contextual discovery is enabled only as the explicit reference GET described above and does not claim a current product capability
-- regenerated public-safe machine package remains pending; no role-specific adoption proof is claimed
+- machine specification package v0.9.0-mp1 generated (package-level internal consistency only); artifact machineValidation remains pending; no role-specific adoption proof is claimed
 
 The page reuses the existing repository logo and team-photo without alteration. Logo and release metadata backgrounds are always transparent; contrast is managed by their shared surrounding header surface, never by adding a box, plate, or carrier. Browser tabs use the separately approved transparent 192 × 192 symbol asset from repository commit `ce785864`; the horizontal lockup is never cropped or reconstructed, and the compact symbol is not silently promoted to social-preview, touch, maskable, or header duty. Technical metadata uses a deterministic, single-weight script-aware pair at 400/400: packaged JetBrains Mono 400 for Latin identifiers and numerals, plus self-hosted IBM Plex Sans Thai 400 for Thai glyphs. Stale 500/700 technical assets are removed from the published package. The Thai face is optically tuned with a 102% face-level size adjustment, compact 1.48 line-height, restrained `.008em` tracking, and one additional pixel of vertical space in the smallest technical pills. It is a proportional companion—not a fixed-cell Thai monospace. Bai Jamjuree 400/600 remains the continuous-reading body and general UI family. Text-labelled actions use the existing `radius-pill` token; icon-only theme/language utilities stay circular, while tabs, fields, cards, and segmented choices keep their own geometry.
 
