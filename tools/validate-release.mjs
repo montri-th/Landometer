@@ -734,6 +734,21 @@ check(buildCard.includes(`  deliveryIdentity:\n    colorSetId: ${RELEASE.colorSe
   }
 }
 
+// verify-live checks every CRITICAL asset against its manifest record, so a critical asset
+// with no record can never verify (run #29 failed exactly this way on the archived registry).
+{
+  const wf = readUtf8Absolute(repoPath(".github/workflows/pages.yml"));
+  const cm = wf.match(/CRITICAL_ASSETS:\s*>-([\s\S]*?)\n\s*run:/);
+  check(Boolean(cm), "pages-workflow:critical-assets-present");
+  if (cm) {
+    const critical = cm[1].split(",").map(x => x.trim()).filter(Boolean);
+    const manifestPaths = new Set((manifest.assets ?? []).map(a => a.path));
+    for (const asset of critical) {
+      check(manifestPaths.has(asset), `pages-workflow:critical-in-manifest:${asset}`);
+    }
+  }
+}
+
 // llms.txt is a machine channel too: pin its release identity so it can never drift again
 // (ui-20260821-02 shipped with llms.txt still declaring ui-20260821-01 as the release build).
 {
