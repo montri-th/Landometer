@@ -10,11 +10,11 @@
     "SC-23"
   ],
   "dsVersion": "0.9.0",
-  "authoringRevision": "v0.9.0-r5",
-  "colorRegistryId": "color-srgb-04",
-  "artifactBuild": "ui-20260821-03",
-  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-03.html",
-  "artifactFingerprint": "47456ec716fcce37",
+  "authoringRevision": "v0.9.0-r6",
+  "colorRegistryId": "color-srgb-05",
+  "artifactBuild": "ui-20260821-04",
+  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
+  "artifactFingerprint": "f21ffb5db26170f2",
   "assertions": {
     "minCapsuleInlinePaddingCssPx": 24,
     "minTargetCssPx": 44,

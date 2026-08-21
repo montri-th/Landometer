@@ -5,28 +5,28 @@
   "machineValidation": "pending",
   "evidenceBoundary": "Automated release checks for this source-limited internal demo, re-recorded at every rebuild for the artifact build named below. They do not replace the open rendered-glyph, assistive-technology, perceptual, product-evidence, privacy, or public-conformance gates.",
   "artifactBuild": {
-    "id": "ui-20260821-03",
-    "colorRegistryId": "color-srgb-04",
-    "authoringRevision": "v0.9.0-r5",
+    "id": "ui-20260821-04",
+    "colorRegistryId": "color-srgb-05",
+    "authoringRevision": "v0.9.0-r6",
     "hostedSource": {
       "path": "index.html",
-      "bytes": 993393,
-      "sha256": "d6492930572503d8a0cc194f2cecb5b10f19d0fc627c1b968b790c55a3bd030d"
+      "bytes": 993477,
+      "sha256": "0eb1e24a062319edb322f2bff3c2937cb4202f9f69d331937959d568d7afd7f3"
     },
     "latestStandalone": {
       "path": "landometer-design-system-v0.9.0-standalone.html",
-      "bytes": 2141338,
-      "sha256": "c495e2f571a0a81bf5a1ba65e07a5ef32232629bb12003a28370231ab4faab75"
+      "bytes": 2141422,
+      "sha256": "36e29d507bc3c6323d51965fbeb6531efb25980310d072cb260dc4df51841b32"
     },
     "immutableColorBaseline": {
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
-      "bytes": 2129858,
-      "sha256": "65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01"
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+      "bytes": 2141429,
+      "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a"
     },
     "currentImmutableUiBuild": {
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-03.html",
-      "bytes": 2141350,
-      "sha256": "47456ec716fcce377f92163835025a116c077a3eb361f09b4b4b1ef361766e60"
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
+      "bytes": 2141434,
+      "sha256": "f21ffb5db26170f25af0a551243003b8d3f98f7ca0bc74b683da4c3bbb09d19c"
     }
   },
   "staticValidator": {
@@ -64,8 +64,8 @@
     "result": "pass"
   },
   "sourceIntegrity": {
-    "hostedSourceSha256": "d6492930572503d8a0cc194f2cecb5b10f19d0fc627c1b968b790c55a3bd030d",
-    "registrySha256": "a1bf11365170ab14b18af90e58a10181c160ca439ec2d6fc501c3d7219f5dbfb",
+    "hostedSourceSha256": "0eb1e24a062319edb322f2bff3c2937cb4202f9f69d331937959d568d7afd7f3",
+    "registrySha256": "1dff417161ac8646a05c520191c251347f701f6a88c839e7213d4cbd611d1150",
     "manifestPath": "site-manifest.v0.9.0.json"
   },
   "browserQA": {
