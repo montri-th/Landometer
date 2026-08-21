@@ -1,6 +1,6 @@
 landometerBuild:
   dsVersion: 0.9.0
-  authoringRevision: v0.9.0-r1
+  authoringRevision: v0.9.0-r2
   schemas:
     buildCard: 0.9.0
     manifest: 2.1
@@ -240,4 +240,4 @@ landometerBuild:
     mediaLadderTop: video | image | icon | text
   colorSetPurge:
     retiredTonesPresent: false
-    colorSetId: color-srgb-03
+    colorSetId: color-srgb-04
