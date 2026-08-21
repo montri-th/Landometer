@@ -52,6 +52,12 @@ jobs:
           # so neither item is dischargeable by source review.
           node tools/check-rendered-affordances.mjs > /tmp/v0.9.0-rendered-affordances-current.json
 
+      - name: Thai display-leading stress fixture (machine-package sign-off condition)
+        run: node tools/check-thai-display-leading.mjs > /tmp/v0.9.0-thai-leading-current.json
+
+      - name: Validate machine specification package
+        run: node tools/validate-machine-package.mjs
+
       - name: Verify rendered scale geometry and accessible names
         run: |
           # The checker owns the pass/fail thresholds. Raw subpixel diagnostics
