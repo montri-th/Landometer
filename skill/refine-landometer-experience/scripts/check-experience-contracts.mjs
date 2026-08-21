@@ -892,9 +892,40 @@ const checks = [
       )
   ],
   [
+    // The master (5.13) omits generic scroll reveal "unless it expresses a real reading or
+    // decision order", and 5.13A [REVEAL-01] is the only entrance that qualifies. This check
+    // previously banned the mechanism (IntersectionObserver, scroll listeners) outright, which
+    // was stricter than the rule it enforces. It now bans decoration and requires that any
+    // scroll mechanism present is the [REVEAL-01] contract with its reader guards intact.
     "no parallax or generic scroll-reveal engine",
-    !/\bIntersectionObserver\b|\bScrollTimeline\b|animation-timeline\s*:|scroll-timeline\s*:|addEventListener\(\s*["']scroll["']/iu.test(scriptSource) &&
-      !/\b(?:data-parallax|class="[^"]*\bparallax\b|id="[^"]*\bparallax\b|data-scroll-reveal|class="[^"]*\bscroll-reveal\b)/iu.test(html)
+    !/\bScrollTimeline\b|animation-timeline\s*:|scroll-timeline\s*:/iu.test(scriptSource) &&
+      !/\b(?:data-parallax|class="[^"]*\bparallax\b|id="[^"]*\bparallax\b|data-scroll-reveal|class="[^"]*\bscroll-reveal\b)/iu.test(html) &&
+      (
+        !/\bIntersectionObserver\b|addEventListener\(\s*["']scroll["']/iu.test(scriptSource) ||
+        (
+          /data-riddim-reveal/u.test(html) &&
+          /data-riddim-landed/u.test(html) &&
+          /reducedMotionQuery\s*&&\s*reducedMotionQuery\.matches/u.test(scriptSource) &&
+          /self\.unobserve\(entry\.target\)/u.test(scriptSource) &&
+          /riddimLandReached/u.test(scriptSource) &&
+          /details:not\(\[open\]\)/u.test(scriptSource)
+        )
+      )
+  ],
+  [
+    // [REVEAL-01] rule 5: the hidden state is gated so reduce and no-JS never receive it.
+    "reveal entrance is gated on script and reduced motion",
+    /html\[data-reveal="on"\]\s*\[data-riddim-reveal\]/u.test(html) &&
+      /prefers-reduced-motion:\s*reduce[\s\S]{0,400}data-riddim-reveal/u.test(html)
+  ],
+  [
+    // [REVEAL-01] rule 4: opacity and transform only — no layout property may be animated.
+    "reveal entrance moves nothing but opacity and transform",
+    (() => {
+      const block = html.match(/html\[data-reveal="on"\] \[data-riddim-reveal\] \{([\s\S]*?)\}/u);
+      if (!block) return false;
+      return !/\b(height|width|margin|padding|top|left|right|bottom|inset|display|position)\s*:/u.test(block[1]);
+    })()
   ],
   ["opportunity cards receive visual flow", /decorateOpportunityCards\(\)/u.test(html)],
   ["rounded outline icon contract", /stroke-linecap:\s*round/u.test(html) && /stroke-linejoin:\s*round/u.test(html)]
