@@ -8,16 +8,16 @@ const deploymentRoot = resolve(repositoryRoot, "deployment");
 
 const RELEASE = Object.freeze({
   version: "0.9.0",
-  authoringRevision: "v0.9.0-r4",
+  authoringRevision: "v0.9.0-r6",
   manifestVersion: "2.1",
   tokenSchemaVersion: 6,
-  colorSetId: "color-srgb-04",
+  colorSetId: "color-srgb-05",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260821-02",
+  artifactBuildId: "ui-20260821-04",
   latest: "landometer-design-system-v0.9.0-standalone.html",
-  baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
+  baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
   immutableUi:
-    "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html",
+    "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.0.md",
   skillMaster:
     "skill/apply-landometer-design-system-v0-9-0/references/landometer-design-system-v0.9.0-authoring-master.md",
@@ -316,7 +316,7 @@ const masterRecord = fileRecordAbsolute(deploymentPath(RELEASE.authoringMaster))
 check(Buffer.compare(readAbsolute(deploymentPath(RELEASE.authoringMaster)), readAbsolute(repoPath(RELEASE.skillMaster))) === 0, "normative:master-byte-parity");
 check(masterRecord.sha256 === sha256Absolute(repoPath(RELEASE.skillMaster)), "normative:master-hash-parity");
 check(authoringMaster.includes("**Release:** v0.9.0"), "normative:master-version");
-check(authoringMaster.includes("**Authoring revision:** v0.9.0-r4"), "normative:master-revision");
+check(authoringMaster.includes("**Authoring revision:** v0.9.0-r6"), "normative:master-revision");
 check(authoringMaster.includes("Let us cultivate our city with data."), "normative:brand-line-with-data");
 
 // Approval binds the exact proposal and integrated master while leaving artifact gates truthful.
@@ -421,9 +421,11 @@ check(deepEqual(
 
 // Immutable build records bind bytes and hashes; aliases differ only by channel marker.
 const artifactExpectations = [
-  { path: RELEASE.baseline, id: "color-baseline-20260820-02", role: "immutable_color_baseline", colorSet: RELEASE.colorSetId },
+  { path: RELEASE.baseline, id: "color-baseline-20260821", role: "immutable_color_baseline", colorSet: RELEASE.colorSetId },
   { path: RELEASE.immutableUi, id: RELEASE.artifactBuildId, role: "immutable_ui_build", colorSet: RELEASE.colorSetId },
-  // frozen same-Color-Set predecessors: superseded by UI-only changes, never redefined
+  // frozen color-srgb-04 evidence: superseded by the token-source mint, never redefined
+  { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.html", id: "color-baseline-20260820-02", role: "immutable_color_baseline", colorSet: "color-srgb-04" },
+  { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html", id: "ui-20260821-02", role: "immutable_ui_build", colorSet: "color-srgb-04" },
   { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html", id: "ui-20260821-01", role: "immutable_ui_build", colorSet: "color-srgb-04" },
   { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html", id: "ui-20260820-02", role: "immutable_ui_build", colorSet: "color-srgb-04" },
   // frozen color-srgb-03 evidence: never redefined, still byte-verified against disk
@@ -441,7 +443,7 @@ for (const expected of artifactExpectations) {
   check(record?.bytes === actualFile.bytes, `artifact-record-bytes:${expected.path}`);
   check(record?.sha256 === actualFile.sha256, `artifact-record-hash:${expected.path}`);
 }
-check((registry?.artifactBuilds ?? []).length === 6, "artifact-record:four-frozen-plus-two-current-builds");
+check((registry?.artifactBuilds ?? []).length === 8, "artifact-record:six-frozen-plus-two-current");
 check(normalizeBuildChannel(latestHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:latest-to-immutable-ui");
 // A Color Set baseline is never rewritten for a later UI-only change, so it stays byte-identical
 // to the UI build it was minted with — not to whatever the current build is.
@@ -593,7 +595,7 @@ check(buildCard.includes(`path: ${RELEASE.contrastEvidence}`), "build-card:contr
 check(/contrastEvidence:\s*[\s\S]{0,180}?status:\s*passed\b/.test(buildCard), "build-card:contrast-status-passed");
 check(/scrims:\s*\[\]/.test(buildCard), "build-card:no-default-scrims");
 check(/passing standalone governed gradient remains (?:visible|unscreened)/i.test(buildCard), "build-card:no-blanket-scrim-policy");
-check(!/v0\.9\.0-r[56]\b/.test(buildCard), "build-card:no-stale-r3-r4");
+check(!/v0\.9\.0-r[78]\b/.test(buildCard), "build-card:no-future-r7-r8");
 for (const path of [
   "index.html",
   RELEASE.authoringMaster,
@@ -630,7 +632,8 @@ check(/--weight-technical:\s*400/.test(html), "font:technical-token-400");
 check(!/font-family:\s*"(?:JetBrains Mono|IBM Plex Sans Thai)";[\s\S]{0,220}?font-weight:\s*700/.test(html), "font:no-technical-700-face");
 
 // Action controls share one capsule rule; quiet state controls remain circular capsules.
-const capsuleRule = html.match(/\.skip-link,\s*[\s\S]*?\.scale-sampler-foot a\s*\{([\s\S]*?)\}/)?.[0] ?? "";
+// The skip link left this rule in r5: Appendix E gives it --radius-sm — it is a link, not a button.
+const capsuleRule = html.match(/\.primary-action,\s*\n\s*\.secondary-action,\s*\n\s*\.copy-button,\s*\n\s*\.pattern-button,[\s\S]*?\.scale-sampler-foot a\s*\{([\s\S]*?)\}/)?.[0] ?? "";
 for (const selector of [
   ".primary-action",
   ".secondary-action",
@@ -646,6 +649,13 @@ for (const selector of [
   check(capsuleRule.includes(selector), `capsule:${selector}`);
 }
 check(capsuleRule.includes("border-radius: var(--radius-pill)"), "capsule:pill-radius");
+// [BTN-GEOM-01] kit anatomy — ui-20260821-02 shipped the box contract without it (SC-23)
+check(capsuleRule.includes("display: inline-flex"), "capsule:anatomy-inline-flex");
+check(capsuleRule.includes("align-items: center"), "capsule:anatomy-align");
+check(capsuleRule.includes("justify-content: center"), "capsule:anatomy-justify");
+check(capsuleRule.includes("gap: var(--space-2)"), "capsule:anatomy-gap");
+check(!capsuleRule.includes(".skip-link"), "capsule:skip-link-not-a-button");
+check(/\.skip-link\s*\{[\s\S]{0,700}?border-radius:\s*var\(--radius-sm\)/.test(html), "skip-link:kit-radius-sm");
 check(/\.theme-cycle,\s*\n\s*\.language-cycle\s*\{[\s\S]{0,240}?border-radius:\s*50%/.test(html), "capsule:quiet-controls-circular");
 
 // Browser identity and discovery metadata stay truthful for source_limited internal_demo.
@@ -691,7 +701,7 @@ for (const [id, expected] of Object.entries(EXPECTED_GRADIENTS)) {
   check(html.includes(stopText), `atlas:exact-gradient-css:${id}`);
 }
 
-// Active v0.9.0 surfaces are r2 (2026-08-20 product-identity amendment); r3/r4 would be drift.
+// Active v0.9.0 surfaces are r6 (2026-08-21 rise refinement); r7/r8 would be drift.
 for (const [name, source] of [
   ["html", html],
   ["manifest", JSON.stringify(manifest)],
@@ -700,7 +710,64 @@ for (const [name, source] of [
   ["approval", approval],
   ["master", authoringMaster],
 ]) {
-  check(!/v0\.9\.0-r[56]\b/.test(source), `revision:no-stale-r3-r4:${name}`);
+  check(!/v0\.9\.0-r[78]\b/.test(source), `revision:no-future-r7-r8:${name}`);
+}
+
+// The Build Card deliveryIdentity block shipped stale (color-srgb-04 / ui-20260820-02 with
+// old hashes) from r2 through r5 while currentArtifactBuild advanced. Pin it.
+check(buildCard.includes(`  deliveryIdentity:\n    colorSetId: ${RELEASE.colorSetId}\n    artifactBuildId: ${RELEASE.artifactBuildId}`), "build-card:delivery-identity-current");
+{
+  const tokensSha = fileRecordAbsolute(deploymentPath("assets/data/tokens.json")).sha256;
+  const shaMentions = (buildCard.match(new RegExp(tokensSha, "g")) ?? []).length;
+  check(shaMentions >= 2, "build-card:token-registry-sha-current");
+}
+// README's release boundary shipped stale build ids twice; pin it to the release identity.
+{
+  const readmePath = repoPath("README.md");
+  check(existsSync(readmePath), "readme:present");
+  if (existsSync(readmePath)) {
+    const readme = readUtf8Absolute(readmePath);
+    check(readme.includes(RELEASE.authoringRevision), "readme:authoring-revision");
+    check(readme.includes(RELEASE.artifactBuildId), "readme:artifact-build");
+    check(readme.includes(RELEASE.colorSetId), "readme:color-set");
+    check(readme.includes(RELEASE.immutableUi), "readme:immutable-filename");
+  }
+}
+
+// llms.txt is a machine channel too: pin its release identity so it can never drift again
+// (ui-20260821-02 shipped with llms.txt still declaring ui-20260821-01 as the release build).
+{
+  const llmsPath = deploymentPath("llms.txt");
+  check(existsSync(llmsPath), "llms:present");
+  if (existsSync(llmsPath)) {
+    const llms = readUtf8Absolute(llmsPath);
+    check(llms.includes(`Authoring revision: ${RELEASE.authoringRevision};`), "llms:authoring-revision");
+    check(llms.includes(`Release build: ${RELEASE.artifactBuildId};`), "llms:release-build");
+    check(llms.includes(`Immutable UI build \`${RELEASE.artifactBuildId}\`:`), "llms:immutable-ui-link");
+    check(llms.includes(RELEASE.immutableUi), "llms:immutable-ui-filename");
+    check(llms.includes(`the prepared UI artifact build \`${RELEASE.artifactBuildId}\``), "llms:parity-clause");
+  }
+}
+
+// The skill release-lock shipped drifted in r3/r4 (stale artifactBuildId, r2-era authority
+// hashes, and a falsified product-identity lineage revision). Pin it to the release identity.
+{
+  const lockPath = repoPath("skill/apply-landometer-design-system-v0-9-0/references/release-lock.json");
+  check(existsSync(lockPath), "release-lock:present");
+  if (existsSync(lockPath)) {
+    const lock = JSON.parse(readUtf8Absolute(lockPath));
+    check(lock?.releaseIdentity?.authoringRevision === RELEASE.authoringRevision, "release-lock:authoring-revision");
+    check(lock?.releaseIdentity?.artifactBuildId === RELEASE.artifactBuildId, "release-lock:artifact-build");
+    check(lock?.releaseIdentity?.immutableArtifactPath === `deployment/${RELEASE.immutableUi}`, "release-lock:immutable-path");
+    const masterFile = fileRecordAbsolute(deploymentPath(RELEASE.authoringMaster));
+    check(lock?.authority?.bytes === masterFile.bytes, "release-lock:authority-bytes");
+    check(lock?.authority?.sha256 === masterFile.sha256, "release-lock:authority-hash");
+    check(lock?.lineage?.v090ProductIdentityGradientAmendment?.authoringRevision === "v0.9.0-r2", "release-lock:lineage-history-not-rewritten");
+    for (const entry of lock?.integrity ?? []) {
+      const f = fileRecordAbsolute(repoPath(`skill/apply-landometer-design-system-v0-9-0/${entry.path}`));
+      check(entry.bytes === f.bytes && entry.sha256 === f.sha256, `release-lock:integrity:${entry.path}`);
+    }
+  }
 }
 
 // Reuse deterministic generators/checkers instead of duplicating their derivation logic.

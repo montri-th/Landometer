@@ -1,128 +1,80 @@
 {
-  "schemaVersion": "1.0",
-  "artifact": "landometer-design-identity-playground-v0.8.9",
-  "testedAt": "2026-08-07",
+  "schemaVersion": "1.1",
+  "artifact": "landometer-design-identity-playground-v0.9.0",
+  "testedAt": "2026-08-21",
   "machineValidation": "pending",
-  "evidenceBoundary": "Automated release checks passed for this source-limited internal demo. They do not replace the open rendered-glyph, assistive-technology, perceptual, product-evidence, privacy, or public-conformance gates.",
+  "evidenceBoundary": "Automated release checks for this source-limited internal demo, re-recorded at every rebuild for the artifact build named below. They do not replace the open rendered-glyph, assistive-technology, perceptual, product-evidence, privacy, or public-conformance gates.",
   "artifactBuild": {
-    "id": "ui-20260807-07",
-    "colorRegistryId": "color-srgb-02",
-    "sourceBaselineCommit": "87bf80edb87c5ffd07d504a4b2d3c87a8fac5601",
-    "releaseCommitCapture": "The publication workflow records GITHUB_SHA after commit; this pre-publication record binds exact append-only artifacts without self-referencing a future commit.",
+    "id": "ui-20260821-04",
+    "colorRegistryId": "color-srgb-05",
+    "authoringRevision": "v0.9.0-r6",
     "hostedSource": {
       "path": "index.html",
-      "bytes": 875081,
-      "sha256": "f413ee533d124cad23885cb9e9a2c9261fe06190eb55319c3e355204d8d33c2e"
+      "bytes": 993477,
+      "sha256": "0eb1e24a062319edb322f2bff3c2937cb4202f9f69d331937959d568d7afd7f3"
     },
     "latestStandalone": {
-      "path": "landometer-design-system-v0.8.9-standalone.html",
-      "bytes": 2023026,
-      "sha256": "7549a529883feea260cf1eb87c2c39febb740007116c5ab686ffa11ebd9198bc"
+      "path": "landometer-design-system-v0.9.0-standalone.html",
+      "bytes": 2141422,
+      "sha256": "36e29d507bc3c6323d51965fbeb6531efb25980310d072cb260dc4df51841b32"
     },
     "immutableColorBaseline": {
-      "path": "landometer-design-system-v0.8.9-standalone.color-srgb-02.html",
-      "bytes": 2023033,
-      "sha256": "cc5cdd8fa7b0e1a06fe4095b0e8cff7ed3c4b21e7dda3537b472289711a1e8eb"
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+      "bytes": 2141429,
+      "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a"
     },
-    "immutableUiArtifact": {
-      "path": "landometer-design-system-v0.8.9-standalone.color-srgb-02.ui-20260807-07.html",
-      "bytes": 2023038,
-      "sha256": "afdd838e30f4e944877f997498a33d7ebd7411134bea2ebd85be9b00493e2ec2"
+    "currentImmutableUiBuild": {
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
+      "bytes": 2141434,
+      "sha256": "f21ffb5db26170f25af0a551243003b8d3f98f7ca0bc74b683da4c3bbb09d19c"
     }
   },
   "staticValidator": {
-    "status": "passed",
-    "checks": 320,
-    "command": "node tools/validate-release.mjs",
-    "scope": [
-      "release identity, normative master parity, approval receipts, and evidence boundary",
-      "seven exact shared atmosphere gradients, fifteen gradient-stop-only values, eighteen-record inventory, theme defaults, motif alias, and no-blanket-scrim rule",
-      "immutable Color Set baseline, append-only UI artifact, latest alias reproduction, byte counts, and SHA-256 records",
-      "single-weight JetBrains Mono 400 and IBM Plex Sans Thai 400 technical pair, capsule actions, favicon/SEO/noindex boundaries, and Complete Color Atlas coverage"
-    ]
+    "tool": "tools/validate-release.mjs",
+    "enforcement": "pre-publish local run and the CI pages.yml gate; publication is blocked on failure"
   },
   "gradientContrast": {
-    "status": "passed",
-    "evidencePath": "qa/v0.8.9-gradient-contrast.json",
-    "registryPath": "assets/data/color-delivery.v0.8.9.json",
-    "registrySha256": "31573fd8d50f0d702dd5fe43f89d8e00c38fb0170788f7e0cb658cc161298bd8",
+    "evidence": "qa/v0.9.0-gradient-contrast.json",
     "gradients": 7,
-    "samplesPerGradient": 1001,
-    "foregroundsPerSample": 2,
-    "comparisons": 14014,
-    "failures": 0,
-    "minimumRecordedRatios": {
-      "atmosphere.gradient.measure.deep": {"primary": 5.5407, "secondary": 4.9938},
-      "atmosphere.gradient.measure.luminous": {"primary": 8.3184, "secondary": 6.7068},
-      "atmosphere.gradient.ground.current": {"primary": 5.7231, "secondary": 5.1581},
-      "atmosphere.gradient.ground.mist": {"primary": 11.3635, "secondary": 9.162},
-      "atmosphere.gradient.cultivate.glow": {"primary": 6.1097, "secondary": 4.926},
-      "atmosphere.gradient.cultivate.mist": {"primary": 10.9378, "secondary": 8.8187},
-      "atmosphere.gradient.diversity.spectrum": {"primary": 6.1097, "secondary": 4.926}
-    },
-    "boundary": "Token-level sRGB floors only; rendered glyph, alpha-stack, photograph, focus, export, theme, locale, device, and CVD review remain applicable."
-  },
-  "buildReproducibility": {
-    "status": "passed",
-    "command": "node tools/build-standalone-html.mjs --check",
-    "writeEffect": "none",
-    "assertions": [
-      "latest standalone reproduces from deployment/index.html with embedded display assets",
-      "immutable UI artifact differs from latest only by the declared build-channel marker",
-      "immutable Color Set baseline and UI artifact match their append-only registry records",
-      "existing immutable targets fail closed on unexpected bytes"
-    ]
+    "result": "pass"
   },
   "scaleGeometry": {
-    "status": "passed",
-    "evidencePath": "qa/v0.8.9-scale-geometry.json",
-    "bytes": 28924,
-    "sha256": "22a0ea627bbe2e6a1e317619feb1a2391a06995dc5a67da825562534049f850d",
-    "matrix": {
-      "widths": [320, 360, 390, 620, 621, 980, 981],
-      "locales": ["th", "en"],
-      "themes": ["light", "dark"],
-      "baseCases": 28,
-      "textScale200Cases": 8,
-      "totalCases": 36,
-      "rowsMeasured": 2916,
-      "failures": 0
-    },
-    "assertions": [
-      "caption labels never overlap the color strips at narrow viewports",
-      "5/7/9 cells remain equal-width and strips retain their minimum width",
-      "scale containers create no horizontal overflow",
-      "Thai and Latin governed font probes report ready in every deterministic case",
-      "the protected Culture / Rally Cry remains complete and unclipped"
-    ]
+    "evidence": "qa/v0.9.0-scale-geometry.json",
+    "result": "pass"
   },
-  "localHttpSmoke": {
-    "status": "passed",
-    "testedAt": "2026-08-07",
-    "requests": 24,
-    "http200": 24,
-    "failures": 0,
-    "scope": "Hosted source, versioned records, normative download, mutable and immutable standalones, color registry, approved identity images, team image, and representative governed font files."
+  "containerFit": {
+    "evidence": "qa/v0.9.0-container-fit.json",
+    "selfCheckItem": "SC-20",
+    "cases": 8,
+    "containersMeasured": 64,
+    "failures": 0
+  },
+  "renderedAffordances": {
+    "evidence": "qa/v0.9.0-rendered-affordances.json",
+    "selfCheckItems": [
+      "SC-21",
+      "SC-22",
+      "SC-23"
+    ],
+    "cases": 7,
+    "failures": 0
+  },
+  "buildReproducibility": {
+    "tool": "tools/build-standalone-html.mjs --check",
+    "result": "pass"
   },
   "sourceIntegrity": {
-    "status": "passed_for_prepared_worktree",
-    "branch": "release/design-system-0.8.9",
-    "gitDiffCheck": "passed",
-    "archiveUsed": false,
-    "forcePushUsed": false,
-    "productionWritePerformedAtCapture": false
+    "hostedSourceSha256": "0eb1e24a062319edb322f2bff3c2937cb4202f9f69d331937959d568d7afd7f3",
+    "registrySha256": "1dff417161ac8646a05c520191c251347f701f6a88c839e7213d4cbd611d1150",
+    "manifestPath": "site-manifest.v0.9.0.json"
   },
   "browserQA": {
-    "status": "deterministic_geometry_passed_live_visual_review_pending",
-    "testedBuild": "ui-20260807-07",
-    "scope": "36 rendered geometry cases across English/Thai, Light/Dark, seven required widths, and representative 200% text scale.",
-    "limitation": "The in-app browser blocks direct navigation to a newly generated file:// target. Final visual and console review is therefore performed against the deployed HTTPS artifact before publication is declared complete."
+    "renderedGates": [
+      "qa/v0.9.0-container-fit.json",
+      "qa/v0.9.0-rendered-affordances.json"
+    ],
+    "engine": "chromium (playwright)",
+    "viewports": "per gate record"
   },
-  "openManualGates": [
-    "Thai read-aloud, bilingual parity, mixed-script baselines, combining marks, and supported-device font metrics",
-    "keyboard, screen-reader, real browser zoom, reduced-motion, and no-JavaScript matrices",
-    "perceptual quiet, gradient deletion, rendered foreground contracts, color-vision, grayscale, direct-label, table, and export review",
-    "logo/media rights and privacy, product snapshot-versus-sketch, contextual discovery, provider influence, and recipient-outcome boundaries",
-    "public-delivery conformance, hostname-level favicon/search coordination, and indexability remain explicitly not claimed"
-  ]
+  "openManualGates": "qa/v0.9.0-manual-gates.md"
 }

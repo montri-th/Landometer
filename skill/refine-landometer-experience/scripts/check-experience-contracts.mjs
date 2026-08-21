@@ -477,7 +477,6 @@ const samplerCellsAreSolid = samplerCells.length === 189 &&
     !/(?:linear|radial|conic)-gradient\s*\(/iu.test(cell)
   );
 const requiredPillActionSelectors = [
-  ".skip-link",
   ".primary-action",
   ".secondary-action",
   ".copy-button",
@@ -624,6 +623,26 @@ const checks = [
       /text-align:\s*center/u.test(pillActionRule?.declarations ?? "")
   ],
   [
+    // [BTN-GEOM-01] kit anatomy: the r4 build shipped the box contract without it, so an
+    // icon-bearing capsule laid its glyph on the text baseline (SC-23's defect class).
+    "pill actions carry the kit anatomy, not only the box contract",
+    Boolean(pillActionRule) &&
+      /display:\s*inline-flex/u.test(pillActionRule?.declarations ?? "") &&
+      /align-items:\s*center/u.test(pillActionRule?.declarations ?? "") &&
+      /justify-content:\s*center/u.test(pillActionRule?.declarations ?? "") &&
+      /gap:\s*var\(--space-2\)/u.test(pillActionRule?.declarations ?? "")
+  ],
+  [
+    // Appendix E gives the skip link --radius-sm; it is a link, not a button, so it does not
+    // ride the capsule rule (r5 resolution of the reported shape divergence).
+    "skip link keeps the kit radius-sm shape outside the pill set",
+    !pillActionSelectors.has(".skip-link") &&
+      styleRules.some(rule =>
+        rule.selector.trim() === ".skip-link" &&
+        /border-radius:\s*var\(--radius-sm\)/u.test(rule.declarations)
+      )
+  ],
+  [
     "quiet header utilities remain 44 by 44 circles",
     /width:\s*44px/u.test(quietUtilityRule?.declarations ?? "") &&
       /min-height:\s*44px/u.test(quietUtilityRule?.declarations ?? "") &&
@@ -695,7 +714,7 @@ const checks = [
   ],
   [
     "one Color Set identity spans the page, sampler, atlas, and manifest",
-    colorRegistryId === "color-srgb-04" &&
+    /^color-srgb-\d{2}$/u.test(colorRegistryId ?? "") &&
       attributeOf(htmlTag, "data-color-registry") === colorRegistryId &&
       attributeOf(samplerElement, "data-color-registry") === colorRegistryId &&
       attributeOf(
@@ -707,7 +726,7 @@ const checks = [
   [
     "the Color Set baseline stays immutable and handoff links the current immutable UI build",
     pinnedColorSetName ===
-      "landometer-design-system-v0.9.0-standalone.color-srgb-04.html" &&
+      `landometer-design-system-v0.9.0-standalone.${colorRegistryId}.html` &&
       tagsNamed(html, "a").some(tag =>
         attributeOf(tag, "id") === "resource-standalone" &&
         attributeOf(tag, "href") === currentArtifactBuildName
@@ -725,7 +744,7 @@ const checks = [
     "UI-only changes mint a separate append-only artifact build without rewriting the Color Set baseline",
     /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
       currentArtifactBuildName ===
-        `landometer-design-system-v0.9.0-standalone.color-srgb-04.${currentArtifactBuildId}.html` &&
+        `landometer-design-system-v0.9.0-standalone.${colorRegistryId}.${currentArtifactBuildId}.html` &&
       attributeOf(
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-color-registry"

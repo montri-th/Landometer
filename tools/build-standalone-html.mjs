@@ -80,14 +80,15 @@ const colorBaselineName = colorDelivery?.meta?.immutableColorBaseline;
 const currentArtifactBuild = colorDelivery?.meta?.currentArtifactBuild;
 const artifactBuildId = currentArtifactBuild?.id;
 const pinnedOutputName = currentArtifactBuild?.immutableStandalone;
+const currentColorSetId = colorDelivery?.meta?.id;
 assert(
-  colorDelivery?.meta?.id === "color-srgb-04",
+  /^color-srgb-\d{2}$/.test(currentColorSetId ?? ""),
   "unexpected color-delivery registry id",
 );
 assert(
   colorBaselineName ===
-    "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
-  // color-srgb-03 baseline stays on disk as frozen evidence; the registry meta points at the current set.
+    `landometer-design-system-v0.9.0-standalone.${currentColorSetId}.html`,
+  // predecessor baselines stay on disk as frozen evidence; the registry meta points at the current set.
   "color-delivery registry must declare the current immutable Color Set baseline",
 );
 assert(
@@ -95,9 +96,9 @@ assert(
   "color-delivery registry must declare a safe append-only artifact-build id",
 );
 assert(
-  /^landometer-design-system-v0\.9\.0-standalone\.color-srgb-04\.ui-\d{8}-\d{2}\.html$/.test(
-    pinnedOutputName ?? "",
-  ),
+  new RegExp(
+    `^landometer-design-system-v0\\.9\\.0-standalone\\.${currentColorSetId}\\.ui-\\d{8}-\\d{2}\\.html$`,
+  ).test(pinnedOutputName ?? ""),
   "color-delivery registry must declare a safe immutable UI build filename",
 );
 const pinnedOutputPath = path.join(deploymentDir, pinnedOutputName);
@@ -225,7 +226,7 @@ const colorBaselineHtml = html.replace(
   'data-build-channel="immutable-color-set"',
 );
 assert(
-  pinnedHtml.includes('data-color-registry="color-srgb-04"') &&
+  pinnedHtml.includes(`data-color-registry="${currentColorSetId}"`) &&
     pinnedHtml.includes(`data-artifact-build="${artifactBuildId}"`) &&
     pinnedHtml.includes('data-build-channel="immutable-artifact-build"'),
   "immutable UI artifact-build markers are missing",

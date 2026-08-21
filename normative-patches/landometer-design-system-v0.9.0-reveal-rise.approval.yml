@@ -1,0 +1,70 @@
+# Owner approval record — Landometer Design System v0.9.0
+# Amendment: rise refinement of [REVEAL-01], minting Color Set color-srgb-05 / kit lds-kit-0.9.0-r4
+amendment:
+  id: v0.9.0-reveal-rise
+  approvedAt: "2026-08-21"
+  authority: Landometer owner
+  evidenceLabel: Owner-stated
+  authoringRevision: v0.9.0-r5 -> v0.9.0-r6
+  dsVersion: "0.9.0"
+  colorSet: color-srgb-04 -> color-srgb-05   # token-source mint; zero colour values change
+  kitVersion: lds-kit-0.9.0-r3 -> lds-kit-0.9.0-r4
+  firstImplementingArtifactBuild: ui-20260821-04
+
+trigger:
+  report: >-
+    Reviewing the entrance before publication, the owner directed that each component should
+    load the way Canva calls "rise" — drifting upward gently, sequenced piece by piece,
+    separately per item — and reported the shipped profile as much too fast
+    ("ตอนนี้เร็วไปมาก").
+  instruction: Re-tune the entrance to that profile before republishing.
+
+changes:
+  - section: motion token values (assets/data/tokens.json, kit E1, page :root)
+    values:
+      - "--motion-duration-reveal: 400ms -> 640ms"
+      - "--motion-delay-stagger: 60ms -> 120ms"
+      - "--motion-delay-stagger-cap: 240ms -> 600ms"
+      - "--motion-distance-reveal: 12px -> 20px"
+    unchanged: >-
+      Both eases (--motion-ease-enter for opacity, --motion-ease-settle for the one-drop
+      landing), every other duration, and every semantic motion alias. No token is added or
+      renamed, so [REVEAL-01] rule 6 (existing tokens only) still holds.
+  - section: page failsafe and SC-22 probes
+    detail: >-
+      RIDDIM_SAFETY_MS 1200 -> 2400 (above cap + duration, so the failsafe can never snap a
+      running entrance); the SC-22 probes wait out the longer profile before measuring.
+
+whyThisMintsAColorSet: >-
+  The values live in the token registry (assets/data/tokens.json). The master's identity rule
+  is written wider than colour on purpose: "A governed color, gradient, token source, or
+  analytical scale source change MUST mint a new Color Set ID" — the Color Set ID is the
+  parity key for the whole token delivery. color-srgb-05 is minted on the letter of that
+  rule with every colour, gradient, and analytical scale value byte-identical to
+  color-srgb-04; the color-srgb-04 registry is archived at
+  assets/data/color-delivery.v0.9.0.color-srgb-04.json.
+
+withdrawnBeforePublication: >-
+  ui-20260821-03, prepared for the icon-anatomy amendment, was never merged, deployed, or
+  published; it is withdrawn rather than frozen (immutability attaches at publication) and
+  its id is not reused. This amendment's build is ui-20260821-04, superseding the last
+  published build ui-20260821-02.
+
+alsoRepairedShippedDrift:
+  - id: kit-headers
+    finding: >-
+      Appendix E kit headers still declared lds-kit-0.9.0-r3 · Color Set color-srgb-03 in
+      every revision since the r2 amendment minted color-srgb-04 — a builder copying the kit
+      verbatim stamped a wrong Color Set into new work.
+    fix: r4 kit headers carry lds-kit-0.9.0-r4 · Color Set color-srgb-05.
+  - id: build-card-delivery-identity
+    finding: >-
+      The Build Card deliveryIdentity block still declared color-srgb-04 / ui-20260820-02
+      with hashes from that era while currentArtifactBuild advanced (stale r2 through r5).
+    fix: repaired to the current identity; validate-release now pins it, the token-registry
+      sha, and the README release boundary (which had shipped stale build ids twice).
+
+scopeOfApproval: >-
+  Makes the re-tuned values binding and authorizes Color Set color-srgb-05 and kit
+  lds-kit-0.9.0-r4. Does not certify package-level conformance, does not pre-pass any
+  artifact QA, and raises no artifact's evidenceStatus, indexable, or machineValidation state.

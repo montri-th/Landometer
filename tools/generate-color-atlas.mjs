@@ -475,15 +475,15 @@ function buildGradientCssTokens(registry) {
 }
 
 function validateColorDelivery(registry, scaleText, tokenText) {
-  assert(registry?.meta?.id === "color-srgb-04", "unexpected color registry id");
+  assert(/^color-srgb-\d{2}$/.test(registry?.meta?.id ?? ""), "unexpected color registry id");
   assert(
     registry?.meta?.immutableColorBaseline ===
-      "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
+      `landometer-design-system-v0.9.0-standalone.${registry.meta.id}.html`,
     "unexpected immutable Color Set baseline filename",
   );
   assert(
     /^ui-\d{8}-\d{2}$/.test(registry?.meta?.currentArtifactBuild?.id ?? "") &&
-      /^landometer-design-system-v0\.9\.0-standalone\.color-srgb-04\.ui-\d{8}-\d{2}\.html$/.test(
+      new RegExp(`^landometer-design-system-v0\\.9\\.0-standalone\\.${registry.meta.id}\\.ui-\\d{8}-\\d{2}\\.html$`).test(
         registry?.meta?.currentArtifactBuild?.immutableStandalone ?? "",
       ),
     "unexpected immutable UI artifact-build identity",

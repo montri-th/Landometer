@@ -1,7 +1,7 @@
 # Landometer Design System v0.9.0
 
 **Release:** v0.9.0
-**Authoring revision:** v0.9.0-r4 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9); same-day owner amendment adding `[REVEAL-01]` and self-check items SC-21 and SC-22 (§5.13A, §C9)
+**Authoring revision:** v0.9.0-r6 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9); same-day owner amendment adding `[REVEAL-01]` and self-check items SC-21 and SC-22 (§5.13A, §C9); third owner amendment of the same day adding self-check item SC-23 — rendered icon anatomy inside actions — after `ui-20260821-02` passed SC-21 while icon-bearing capsules still laid the glyph on the text baseline, together with four recorded resolutions: page-wide kit anatomy adoption, the skip-link return to the kit shape, the dead pre-`[ICON-01]` rule purge, and the automated-evidence re-record (§6.2A, §C9); fourth owner amendment of the same day re-tuning the `[REVEAL-01]` entrance to the rise profile — slower, farther, sequenced piece by piece — which changes the token source and therefore mints Color Set `color-srgb-05` and kit `lds-kit-0.9.0-r4` with every colour, gradient, and scale value byte-identical to `color-srgb-04` (§C9)
 **Manifest version:** 2.1 — closed extension of Manifest 2.0 carrying the new v0.9.0 records; Manifest 2.0 artifacts remain readable historical evidence and MUST NOT be emitted as current conformance
 **Token schema version:** 6 — unchanged. Per the 2026-08-20 purple/brown purge, v0.9.0 replaces ten brown/plum-toned token values (six new raw values + four reassignments of existing registry values) and therefore mints Color Set `color-srgb-03`; `color-srgb-02` and `color-srgb-01` remain immutable evidence. All other values, including every gradient recipe, are unchanged (ledger in §C9)
 **Build Card schema version:** 0.9.0
@@ -1602,8 +1602,8 @@ Any conflict in those fields is P0. A Thai-only naturalness review occurs first;
 Motion explains feedback, state, sequence, or cause → effect. It does not manufacture energy. When `motionEnhancement: false`, nonessential reveal/stagger motion is omitted; feedback and reduced-motion/no-JavaScript meaning still work.
 
 - Primary proof is visible immediately.
-- Use 2–5 items for a meaningful stagger, `60ms` apart, `240ms` maximum group delay.
-- Default reveal duration is `400ms`, distance `12px`, and it runs once.
+- Use 2–5 items for a meaningful stagger, `120ms` apart, `600ms` maximum group delay, so the sequence reads piece by piece (owner amendment 2026-08-21, rise refinement).
+- Default reveal duration is `640ms`, distance `20px`, and it runs once.
 - State changes normally finish in `120–280ms`.
 - Motion MUST NOT use bounce, repeated pulse, shimmer, orbit, map parallax, or decorative autoplay.
 - No-JavaScript and reduced-motion states show the complete final meaning immediately.
@@ -1628,7 +1628,7 @@ Landometer motion has one recognizable signature, internally named **Riddim**: r
 
 | Signature pattern | Exact recipe | Where it applies |
 |---|---|---|
-| **Skank stagger** | 2–5 items, `--motion-delay-stagger` 60ms apart, group cap `--motion-delay-stagger-cap` 240ms, each item `--motion-duration-reveal` 400ms with `--motion-ease-enter`, runs once | list/card/evidence reveals under `guided` or `expressive_short` intensity |
+| **Skank stagger** | 2–5 items, `--motion-delay-stagger` 120ms apart, group cap `--motion-delay-stagger-cap` 600ms, each item `--motion-duration-reveal` 640ms with `--motion-ease-enter`, runs once | list/card/evidence reveals under `guided` or `expressive_short` intensity |
 | **One-drop settle** | the arriving panel, receipt, or result lands once with `--motion-ease-settle` (single soft ≤8% overshoot, one pass, never a loop) over 200–400ms | receipts, result panels, dialog entry; the moving form of `motion.depth.receiptStack` and `motion.hook.rewardReveal` |
 | **Downbeat press** | `motion.cta.depthPress` 120ms, translate ≤ `--motion-distance-feedback` 2px, immediate return | every button press acknowledgement |
 | **Offbeat count-up** | a metric/score pauses one `--motion-delay-stagger` beat after its object appears, then resolves within `--motion-duration-chart` 360ms | `motion.meter.sweep` contexts |
@@ -1719,6 +1719,8 @@ Buttons are a Landometer identity device (20 August 2026 amendment). Every rende
 No third button shape exists: rectangles, rounded rectangles, squircles, cut corners, and per-build radii on buttons all fail this rule. Labels may wrap without truncation, keep a minimum 44 px target, and stack or become full-width at narrow viewports. The color/state recipe is unchanged from `[VIS-04]`: `interaction.accent` label/border, `surface.blueTint` hover, `surface.soft` active, the separate focus-ring token, and no filled Brand Blue. The canonical implementation is `lds-base.css` in Appendix E; copy it rather than re-deriving it.
 
 **Verification `[SELFCHECK-01]` SC-21.** The inline padding, label centring, and 44 px minimum target in this rule are geometry that only exists once rendered, so a rendered check MUST measure them on the shipped artifact: every capsule action carries at least the `--space-5` inline padding on both sides, centres its label on both axes, meets the minimum target, and does not clip or overrun its own shape. A capsule that received only the pill radius, without the padding and centring this rule requires, is a `[BTN-GEOM-01]` failure even though its shape looks correct.
+
+**Verification `[SELFCHECK-01]` SC-23.** The capsule's internal anatomy is rendered-only geometry too. The kit anatomy — `display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2)` in Appendix E `.btn` — is what makes an icon share the label's centre; a build that adopts only the box contract (`min-height`, `padding-inline`, `--radius-pill`) passes SC-21, because the label box still centres, while the icon sits on the text baseline. `ui-20260821-02` shipped exactly this: its icon-bearing capsules measured the glyph 3 px above the label centre with a 0 px icon–label gap. SC-23 therefore measures the anatomy's rendered result on the shipped artifact: every icon inside a labelled capsule centres with its label, keeps the `--space-2` gap to it, and stays inside the capsule box; every icon inside a circle action centres on the circle. An equivalent computed result passes — the mechanism is not prescribed, the rendered anatomy is.
 
 Scope: the two-shape rule governs buttons only. Shape never replaces visible intent, hierarchy, focus, disabled/pending state, real effect, receipt, or recovery. Cards, form fields, disclosures, table rows, tooltips, navigation rows, tabs, and segmented selectors keep their own semantic geometry even when interactive; do not apply the action capsule to every clickable or rounded container. A non-interactive status/tag capsule is distinguished from a button by tint-plus-border styling, smaller height, and the absence of hover/press/busy states. Product-specific component geometry remains product-owned but MUST NOT introduce a third button shape.
 
@@ -2576,6 +2578,7 @@ Before delivery, every web artifact runs this binary checklist. The checks are t
 | SC-20 | No bounded container (card, tile, panel sharing a grid row) overflows its own box or exceeds the tallest sibling in its row beyond the stated tolerance, at every governed breakpoint and in both visual baselines; any enumeration past the §4.4C threshold carries an answer-first summary and a bounded expander | `[CONTAINER-FIT-01]` |
 | SC-21 | Every rendered capsule action carries at least `--space-5` inline padding on both sides, centres its label on both axes, meets the 44 px minimum target, and neither clips nor overruns its shape | `[BTN-GEOM-01]` |
 | SC-22 | No group the reader has reached is left invisible by an entrance; no group inside a closed disclosure or hidden panel carries the hidden state; a landed group stays landed after scrolling away and back; reduced-motion and no-JavaScript never apply the hidden state | `[REVEAL-01]` |
+| SC-23 | Every icon inside a labelled capsule centres with the label, keeps the `--space-2` gap to it, and stays inside the capsule box; every icon inside a circle action centres on the circle | `[BTN-GEOM-01]` |
 
 The self-check never replaces the scoped QA in §10 — it removes the small-detail drift that previously forced repeated redeploys, before §10 runs.
 
@@ -3307,12 +3310,12 @@ Breakpoints: `xs 360`, `sm 600`, `md 900`, `lg 1200`, `xl 1600`.
   --motion-duration-state: 200ms;
   --motion-duration-map: 280ms;
   --motion-duration-chart: 360ms;
-  --motion-duration-reveal: 400ms;
+  --motion-duration-reveal: 640ms;
   --motion-duration-emphasis: 560ms;
-  --motion-delay-stagger: 60ms;
-  --motion-delay-stagger-cap: 240ms;
+  --motion-delay-stagger: 120ms;
+  --motion-delay-stagger-cap: 600ms;
   --motion-distance-feedback: 2px;
-  --motion-distance-reveal: 12px;
+  --motion-distance-reveal: 20px;
   --motion-ease-state: cubic-bezier(.2,0,0,1);
   --motion-ease-enter: cubic-bezier(.16,1,.3,1);
   --motion-ease-settle: cubic-bezier(.2,.9,.25,1.08); /* Riddim one-drop settle — single soft landing, one pass; guided/expressive_short only */
@@ -3320,7 +3323,7 @@ Breakpoints: `xs 360`, `sm 600`, `md 900`, `lg 1200`, `xl 1600`.
 }
 ```
 
-The two `--motion-ease-*` additions are the only v0.9.0 motion changes; every duration, stagger, distance, and semantic alias value is unchanged, so approved v0.8.9 deployments remain timing-identical. The Riddim signature recipes in `[MOTION-01]` consume these tokens; no build defines its own curves.
+The two `--motion-ease-*` additions were the only motion changes at v0.9.0-r1. The 2026-08-21 rise refinement (§C9, fourth round) then re-tuned the four entrance values — `--motion-duration-reveal` 400→640ms, `--motion-delay-stagger` 60→120ms, `--motion-delay-stagger-cap` 240→600ms, `--motion-distance-reveal` 12→20px — so approved v0.8.9 deployments remain timing-identical everywhere except the entrance profile. Every other duration and every semantic alias value is unchanged. The Riddim signature recipes in `[MOTION-01]` consume these tokens; no build defines its own curves.
 
 Semantic motion aliases preserve the exact Schema 5 meanings:
 
@@ -3705,6 +3708,8 @@ CityMETER and CityChat are unchanged. Computed WCAG floors over 1,001 linear-sRG
 
 **Same-day second item: theme-pinned product identity specimens.** The owner also directed that specimens of the four product identity gradients (CityMETER, CityWiki, CityChat, ijji) show the `.light` value on a light surface and the `.dark` value on a dark surface regardless of the page theme, so a reader sees what each value does in the theme a real product user would have selected. Recorded in §A4. Before this, an atlas card rendered both values on whichever surface the page theme supplied, which showed the dark value on a light surface — a specimen that misrepresents its own application. No gradient value changes; only the surface the specimen is drawn on.
 
+**Scope of the first-round amendment.** It changes presentation rules and the self-check ledger only. No token, gradient, scale, colour, or typography value changes, so Color Set `color-srgb-04` is unchanged and no new Color Set is minted. The kit token block is unchanged, so the kit version stays `lds-kit-0.9.0-r3`; only the kit's self-check comment block gains its SC-20 line. Artifact build `ui-20260821-01` carries the first implementation of this rule. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r3**.
+
 **Owner amendment (2026-08-21, same day, second round): `[REVEAL-01]` and self-check items SC-21 and SC-22.** After `ui-20260821-01` published, the owner reported that a labelled capsule action still placed its text and icon badly, and asked for an entrance as the reader scrolls or swipes — "ค่อย ๆ ปรากฏ" — with the explicit brief that it be enjoyable in the reggae sense **and serve the reader's benefit**, and that the rule be raised to normative level (Owner-stated instruction, recorded in `normative-patches/landometer-design-system-v0.9.0-reveal.approval.yml`).
 
 **The button was already governed; nothing verified it.** `[BTN-GEOM-01]` has required locale-aware inline padding of at least `--space-5` since the 2026-08-20 amendment. The specimen capsule had received the pill radius and the accent border but never the padding, the inline-flex centring, or the target height, so its label sat flush against the 2px border and the rounded ends cut into the text: measured inline padding was **2 px against a required 24 px**, and the label was top-aligned in a 47 px block box. This is a conformance failure of an existing rule, not a new rule — so the amendment adds no button geometry, only **SC-21**, which measures the rendered padding, centring, target, and clipping. Corrected to `11px var(--space-5)` with inline-flex centring: 26 px on both sides, 53 px tall, label centred.
@@ -3715,7 +3720,34 @@ CityMETER and CityChat are unchanged. Computed WCAG floors over 1,001 linear-sRG
 
 **Conflict found and resolved in the open, not silently.** The shipped experience-contract checker carried a rule named "no parallax or generic scroll-reveal engine" that failed on the mere presence of `IntersectionObserver` or a scroll listener — it banned the mechanism. §5.13 of this master bans something narrower and conditional: "Generic scroll reveal is omitted **unless it expresses a real reading or decision order**." The checker was therefore stricter than the authority it enforces, and under that checker no conforming entrance could ever ship. Resolution, on owner authority: the master's condition stands unchanged and `[REVEAL-01]` is the only entrance that meets it; parallax, scroll-driven CSS timelines, and generic reveal markers remain banned outright; and a scroll mechanism now passes only when it is the `[REVEAL-01]` contract with its reader guards present — the reduced-motion gate, the land-once unobserve, the closed-disclosure exclusion, and the reached-content failsafe. Two further contract checks were added at the same time: the entrance layer must be gated on script and reduced motion, and its hidden state must animate nothing but opacity and transform.
 
-**Scope of this amendment.** It changes presentation rules and the self-check ledger only. No token, gradient, scale, colour, or typography value changes, so Color Set `color-srgb-04` is unchanged and no new Color Set is minted. The kit token block is unchanged, so the kit version stays `lds-kit-0.9.0-r3`; only the kit's self-check comment block gains its SC-20 line. Artifact build `ui-20260821-01` carries the first implementation of this rule. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r3**.
+**Scope of the second-round amendment.** Presentation rules and the self-check ledger only: `[REVEAL-01]` (§5.13A), ledger items SC-21 and SC-22, and the page-wide capsule box-contract correction. No governed value changes, so Color Set `color-srgb-04` is unchanged and the kit stays `lds-kit-0.9.0-r3`; the kit's self-check comment block gains its SC-21 and SC-22 lines. Artifact build `ui-20260821-02` carries the first `[REVEAL-01]` implementation. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r4**.
+
+**Owner amendment (2026-08-21, same day, third round): self-check item SC-23 and four recorded resolutions.** After `ui-20260821-02` published, the owner checked the live page and reported that icon and text inside buttons still did not sit together properly, and directed that the remaining reported divergences be resolved and the release republished (Owner-stated, recorded in `normative-patches/landometer-design-system-v0.9.0-icon-anatomy.approval.yml`).
+
+**Why SC-21 passed while the owner was right.** SC-21 measures the label: inline padding, label centring, target, clipping — and `ui-20260821-02` genuinely satisfied all four. But the second-round correction adopted only the kit's *box* contract onto the page's capsule classes (`min-height`, `padding-inline`, `--radius-pill`), not the kit's *anatomy* — `display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2)` — which Appendix E `.btn` has carried from the start. A block-display capsule lays its content on the text baseline, so every icon-bearing `.copy-button` rendered its glyph **3 px above the label centre with a 0 px icon–label gap** (Observed fact, rendered measurement at both governed viewports). The correction copies the kit anatomy onto every page capsule class — no new geometry is invented — and **SC-23** measures the anatomy's rendered result, so a box-only adoption can never pass again.
+
+**Resolved with the same approval, on the owner's direction to close every reported divergence:**
+
+1. **The skip link returns to the kit's shape.** `ui-20260821-02` rendered the skip link as a capsule; Appendix E `.skip-link` is `--radius-sm` with `--space-3`/`--space-4` padding. The kit file is canonical and `[BTN-GEOM-01]`'s two shapes govern buttons, which a skip link is not — so the page follows the kit (files win; the divergence was reported with that release rather than silently normalized).
+2. **Sixteen dead pre-`[ICON-01]` style rules purged.** After the Material Symbols migration, `.ui-icon` matched nothing in the markup, yet sixteen rules for it survived. A dead selector invites edits that appear to work — the `.value-contrast-card > .ui-icon` case, which silently broke that card's grid in `ui-20260820-02`, is the recorded precedent. All sixteen are removed; zero `.ui-icon` references remain.
+3. **`qa/v0.9.0-automated.json` re-recorded for the build it ships with.** The file had carried v0.8.9 evidence tested 2026-08-07 against `ui-20260807-07` / `color-srgb-02` under a v0.9.0 filename — declared honestly in the manifest's `usageClass`, but still a stale channel a machine reader could mistake for current. It is now generated at every rebuild from the gates this release actually runs (static validator, gradient contrast, scale geometry, container fit, rendered affordances, build reproducibility), so it cannot silently go stale again; the open manual gates remain open and `machineValidation` remains `pending`.
+4. **The page's `[SELFCHECK-01]` specimen card had gone stale.** `ui-20260821-02` shipped the card still declaring "all 20 items · 16 pass" after this master's ledger had grown to 22 — a truth defect in the shipped specimen that no gate caught, because no gate compares the rendered card to the ledger. Corrected to the full 23-item ledger. Recorded as an open coverage gap: a future check should compare the rendered card's row set and totals against this ledger.
+
+Also recorded: **a §C9 sequencing defect in the r4 revision of this file.** The second-round record was inserted between the first-round record and its scope paragraph, and the second round shipped without a scope paragraph of its own. Both are corrected in this revision; no record's content changed, only its position and the missing paragraph.
+
+**Scope of the third-round amendment.** Presentation conformance, evidence records, and the self-check ledger only. No token, gradient, scale, colour, or typography value changes, so Color Set `color-srgb-04` is unchanged and no new Color Set is minted; the kit token block is unchanged, so the kit stays `lds-kit-0.9.0-r3` (the page adopts kit bytes; the kit itself gains only its SC-23 comment line). Artifact build **`ui-20260821-03`** is minted append-only; `ui-20260821-02` and every predecessor remain immutable evidence. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r5**.
+
+**Owner amendment (2026-08-21, same day, fourth round): the rise refinement of `[REVEAL-01]`, minting Color Set `color-srgb-05` and kit `lds-kit-0.9.0-r4`.** Reviewing the entrance before publication, the owner directed that each component should rise the way Canva's "Rise" behaves — drifting upward gently, sequenced piece by piece — and reported the shipped profile as much too fast ("ตอนนี้เร็วไปมาก") (Owner-stated, recorded in `normative-patches/landometer-design-system-v0.9.0-reveal-rise.approval.yml`).
+
+**What changed, exactly.** Four existing motion token values are re-tuned; no token is added or renamed, so `[REVEAL-01]` rule 6 — existing tokens only — still holds: `--motion-duration-reveal` 400→**640ms**, `--motion-delay-stagger` 60→**120ms**, `--motion-delay-stagger-cap` 240→**600ms**, `--motion-distance-reveal` 12→**20px**. The eases are untouched: `--motion-ease-enter` still carries opacity and `--motion-ease-settle` still lands the one-drop, so the signature keeps its character at the slower tempo. The page failsafe grew with it (2400ms, above cap + duration) so it can never snap a running entrance, and the SC-22 probes wait out the longer profile before measuring.
+
+**Why this mints a Color Set with no colour change.** These values live in the token registry (`assets/data/tokens.json`), and the identity rule in this master is written wider than colour on purpose: *"A governed color, gradient, token source, or analytical scale source change MUST mint a new Color Set ID"* — the Color Set ID is the parity key for the whole token delivery, and two artifacts with different token bytes must never claim the same delivery identity. So this amendment mints **`color-srgb-05`** on the letter of that rule, with every colour, gradient, and analytical scale value byte-identical to `color-srgb-04`; the registry records the mint reason as the motion token source. The kit token block changes with it, so the kit advances to **`lds-kit-0.9.0-r4`**. `color-srgb-04`, its baseline, and its published builds remain immutable evidence, and the `color-srgb-04` registry is archived at `assets/data/color-delivery.v0.9.0.color-srgb-04.json`.
+
+**A prepared build withdrawn before publication.** `ui-20260821-03` had been prepared for the third-round amendment but was never merged, deployed, or published anywhere. It is withdrawn rather than frozen — immutability attaches at publication — and its id is not reused: this amendment's build is **`ui-20260821-04`**, pinned as `landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html`, superseding the last published build `ui-20260821-02`.
+
+**Also repaired: a shipped kit-header drift.** The Appendix E kit headers still declared `lds-kit-0.9.0-r3 · Color Set color-srgb-03` in every revision since the r2 amendment minted `color-srgb-04` — the kit version advanced while its own headers did not, so a builder copying the kit verbatim stamped a wrong Color Set into new work. The r4 kit headers now carry `lds-kit-0.9.0-r4 · Color Set color-srgb-05`, and keeping them true is part of the kit bump this amendment performs. The Build Card carried the same class of defect: its `deliveryIdentity` block still declared `color-srgb-04 / ui-20260820-02` with hashes from that era while `currentArtifactBuild` advanced — repaired to the current identity here, and the validator now pins both.
+
+**Scope of the fourth-round amendment.** Motion token values, the kit headers, the entrance profile, and the release identity only. No colour, gradient, scale, typography, spacing, or rule text beyond the values named above changes. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r6**.
 
 **Scope of this approval.** It makes the rules binding and authorizes Color Set `color-srgb-03`. It does **not** certify package-level conformance, does not pre-pass any artifact QA, does not approve any media, identity, or font asset, and raises no artifact's `evidenceStatus`, `indexable`, or `machineValidation` state. Conditions carried forward: Thai display leading `1.16` still needs rendered stress fixtures before machine-package sign-off; media and identity assets remain `approval_missing`/`internal_only` until their manifests ship inside a validated package; gated growth mechanics stay at their ungated fallback until `[ABUSE-INTEGRITY-01]` contracts exist; skills and instructions pinned to v0.8.8 are re-pinned to v0.9.0.
 
@@ -3804,7 +3836,7 @@ Fixture review asks:
 An approved fixture may use `ยืนยันได้` only when the governed truth state is explicitly verified. It MUST NOT convert provisional, modelled, proxy, or recommendation status into verified fact.
 # Appendix E — Deterministic Build Kit `[KIT-01]`
 
-**Kit version:** `lds-kit-0.9.0-r3` · **Color Set:** `color-srgb-03` · **Token Schema:** 6
+**Kit version:** `lds-kit-0.9.0-r4` · **Color Set:** `color-srgb-05` · **Token Schema:** 6
 
 This appendix exists because the same master produced different builds: theme init, focus styles, button geometry, token-name mappings, and receipt metadata were re-derived from prose every time, and the small differences forced redeploys. The kit ships those decisions as **canonical bytes**. It is build material, not reading material.
 
@@ -3823,7 +3855,7 @@ This appendix exists because the same master produced different builds: theme in
 ```css
 /* ============================================================
    Landometer Design System v0.9.0 — lds-tokens.css
-   Kit lds-kit-0.9.0-r3 · Color Set color-srgb-03 · Token Schema 6
+   Kit lds-kit-0.9.0-r4 · Color Set color-srgb-05 · Token Schema 6
    Copy verbatim. Do not edit values. [TOKEN-01]
    ============================================================ */
 :root {
@@ -3973,12 +4005,12 @@ This appendix exists because the same master produced different builds: theme in
   --motion-duration-state: 200ms;
   --motion-duration-map: 280ms;
   --motion-duration-chart: 360ms;
-  --motion-duration-reveal: 400ms;
+  --motion-duration-reveal: 640ms;
   --motion-duration-emphasis: 560ms;
-  --motion-delay-stagger: 60ms;
-  --motion-delay-stagger-cap: 240ms;
+  --motion-delay-stagger: 120ms;
+  --motion-delay-stagger-cap: 600ms;
   --motion-distance-feedback: 2px;
-  --motion-distance-reveal: 12px;
+  --motion-distance-reveal: 20px;
   --motion-ease-state: cubic-bezier(.2,0,0,1);
   --motion-ease-enter: cubic-bezier(.16,1,.3,1);
   --motion-ease-settle: cubic-bezier(.2,.9,.25,1.08);
@@ -4073,7 +4105,7 @@ This appendix exists because the same master produced different builds: theme in
 ```css
 /* ============================================================
    Landometer Design System v0.9.0 — lds-base.css
-   Kit lds-kit-0.9.0-r3 · Copy verbatim after lds-tokens.css.
+   Kit lds-kit-0.9.0-r4 · Copy verbatim after lds-tokens.css.
    Contains no raw hex: every value derives from tokens.
    The reduced-motion kill switch is the only sanctioned !important.
    ============================================================ */
@@ -4327,7 +4359,7 @@ Replace `[placeholders]` from the validated Build Card; everything else stays by
 
 ```yaml
 selfCheck:
-  kit: lds-kit-0.9.0-r3
+  kit: lds-kit-0.9.0-r4
   SC-01: pass   # identity attributes + landometer:* receipt metas
   SC-02: pass   # theme init inline before styles
   SC-03: pass   # token block verbatim; no hex outside it
@@ -4350,6 +4382,7 @@ selfCheck:
   SC-20: pass   # bounded containers fit; long enumerations folded per 4.4C
   SC-21: pass   # capsule actions carry their padding, centring and target
   SC-22: pass | n/a   # entrance never withholds reached content; reduce/no-JS get final state
+  SC-23: pass   # icon centres with label at --space-2 gap; icon-only glyph centres in circle
   notes: []     # every fail or n/a gets one line naming the reason
 ```
 

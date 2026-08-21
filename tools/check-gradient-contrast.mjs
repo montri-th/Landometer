@@ -84,7 +84,7 @@ function minimumForInk(record, ink) {
 
 const registryText = await readFile(registryPath, "utf8");
 const registry = JSON.parse(registryText);
-assert(registry.meta?.id === "color-srgb-04", "unexpected Color Set id");
+assert(/^color-srgb-\d{2}$/.test(registry.meta?.id ?? ""), "unexpected Color Set id");
 assert(
   registry.delivery?.gradientRegistrySchema === "landometer-atmosphere-gradient-v2",
   "unexpected gradient registry schema",
@@ -121,8 +121,8 @@ const failures = results.filter((result) => !result.passed);
 const evidence = {
   schemaVersion: 1,
   designSystemVersion: "0.9.0",
-  authoringRevision: "v0.9.0-r4",
-  colorRegistryId: "color-srgb-04",
+  authoringRevision: "v0.9.0-r6",
+  colorRegistryId: registry.meta.id,
   gradientRegistrySchema: "landometer-atmosphere-gradient-v2",
   testedAt: "2026-08-07",
   registryPath: "assets/data/color-delivery.v0.9.0.json",

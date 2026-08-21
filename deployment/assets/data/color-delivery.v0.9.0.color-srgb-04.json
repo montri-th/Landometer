@@ -1,32 +1,32 @@
 {
   "meta": {
-    "id": "color-srgb-05",
+    "id": "color-srgb-04",
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r6",
+    "authoringRevision": "v0.9.0-r4",
     "status": "owner_approved_authoring_contract_package_validation_pending",
-    "createdAt": "2026-08-21",
-    "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+    "createdAt": "2026-08-20",
+    "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
     "currentArtifactBuild": {
-      "id": "ui-20260821-04",
-      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html"
+      "id": "ui-20260821-02",
+      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html"
     },
     "latestAliases": [
       "index.html",
       "landometer-design-system-v0.9.0-standalone.html"
     ],
-    "supersedes": "color-srgb-04 (immutable v0.9.0 colour baseline; every colour, gradient, and analytical scale value byte-identical in color-srgb-05)",
-    "changeNote": "2026-08-21 rise refinement of the [REVEAL-01] entrance: motion token values durationReveal 400->640ms, delayStagger 60->120ms, delayStaggerCap 240->600ms, distanceReveal 12->20px. Token source changed, so the registry identity rule mints a new Color Set ID; zero colour values change.",
-    "approvalRef": "normative-patches/landometer-design-system-v0.9.0-reveal-rise.approval.yml",
-    "amendedAt": "2026-08-21",
+    "supersedes": "color-srgb-02 (immutable v0.8.9 baseline)",
+    "changeNote": "2026-08-20 purple/brown purge: 10 token positions replaced (6 new raw values #A64A00 #A87B00 #5C6A61 #7B877D #A7B3A9 #93A398; 4 reassignments of existing registry values B23F74/F06FA6/7C8A84/8D9D99); every other value carried unchanged from color-srgb-02",
+    "approvalRef": "normative-patches/landometer-design-system-v0.9.0.approval.yml",
+    "amendedAt": "2026-08-20",
     "amendmentRecord": "normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml",
     "previousColorSet": {
-      "id": "color-srgb-04",
-      "frozenRegistryEvidence": "assets/data/color-delivery.v0.9.0.color-srgb-04.json"
+      "id": "color-srgb-03",
+      "frozenRegistryEvidence": "assets/data/color-delivery.v0.9.0.color-srgb-03.json"
     },
     "previousArtifactBuild": {
-      "id": "ui-20260821-02",
-      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html",
-      "status": "immutable evidence"
+      "id": "ui-20260821-01",
+      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
+      "status": "frozen evidence; never redefined"
     }
   },
   "delivery": {
@@ -52,13 +52,13 @@
     "authoringMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.0.md",
       "revision": "v0.9.0-r1",
-      "bytes": 410857,
-      "sha256": "d59ea6180ffeca1549a3a54caa2beb856cef605780e53467c3d7a4cae8b1b561"
+      "bytes": 399725,
+      "sha256": "946c7d303797d68fada62c3e51c47da36d896dbfa1ff0a4cb653e3ad1af74f43"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
       "carriedVersion": "0.9.0",
-      "sha256": "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc"
+      "sha256": "4fbdba7ef1fa8d7e80c22ab9dea4e8326892859465826529e2c5f756e9a21fdd"
     },
     "scaleRegistry": {
       "path": "assets/data/scales.json",
@@ -126,28 +126,6 @@
       "changeClass": "ui_only; Color Set color-srgb-04 unchanged",
       "bytes": 2142000,
       "sha256": "7e8fb15cc943218b057c968f7268705f792244934ddd9573752f9a38f67bf66a"
-    },
-    {
-      "id": "color-baseline-20260821",
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
-      "role": "immutable_color_baseline",
-      "colorRegistryId": "color-srgb-05",
-      "status": "append_only",
-      "mintedWithArtifactBuild": "ui-20260821-04",
-      "integrityMode": "append-only Color Set baseline; never rewritten for a UI-only change",
-      "bytes": 2141429,
-      "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a"
-    },
-    {
-      "id": "ui-20260821-04",
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
-      "role": "immutable_ui_build",
-      "colorRegistryId": "color-srgb-05",
-      "status": "append_only",
-      "supersedes": "ui-20260821-02 (last published build; the prepared ui-20260821-03 was withdrawn before publication and its id is not reused)",
-      "changeClass": "token_source_motion; every colour, gradient, and scale value byte-identical to color-srgb-04",
-      "bytes": 2141434,
-      "sha256": "f21ffb5db26170f25af0a551243003b8d3f98f7ca0bc74b683da4c3bbb09d19c"
     }
   ],
   "sharedAtmosphereGradients": [
