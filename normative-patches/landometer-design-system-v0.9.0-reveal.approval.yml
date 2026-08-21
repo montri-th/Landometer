@@ -1,0 +1,99 @@
+# Owner approval record — Landometer Design System v0.9.0
+# Amendment: [REVEAL-01] entrance on approach + [SELFCHECK-01] SC-21 and SC-22
+amendment:
+  id: v0.9.0-reveal
+  approvedAt: "2026-08-21"
+  authority: Landometer owner
+  evidenceLabel: Owner-stated
+  authoringRevision: v0.9.0-r3 -> v0.9.0-r4
+  dsVersion: "0.9.0"           # unchanged
+  colorSet: color-srgb-04      # unchanged; no governed colour value changes
+  kitVersion: lds-kit-0.9.0-r3 # unchanged token block
+  firstImplementingArtifactBuild: ui-20260821-02
+
+trigger:
+  report: >-
+    After ui-20260821-01 published, the owner reported that a labelled capsule action still
+    placed its text and icon badly.
+  instruction: >-
+    Add an entrance as the reader scrolls or swipes so components appear gradually; make it
+    enjoyable in the reggae sense and serve the reader's benefit; raise it to normative level
+    and republish.
+
+changes:
+  - section: 5.13A
+    rule: "[REVEAL-01]"
+    state: new
+    job: >-
+      A stagger running across a row is reading order made visible. That is the single job
+      [MOTION-01]'s own removal test accepts; everything else in the rule restricts the effect.
+    hardRules:
+      - content is never withheld; anything the reader has reached is in its final state
+      - never applied inside a closed disclosure or hidden panel; opening it is the reveal per [DISCLOSURE-01]
+      - lands once; scrolling back never replays it
+      - opacity and transform only; no layout movement
+      - reduced motion and no JavaScript get the final state and no entrance at all
+      - existing motion tokens only; mints no new duration, distance or curve
+    outOfScope:
+      - the page's first answer, decision surfaces, errors, receipts, warnings
+      - logos, photographs, heroes
+  - section: 6.2A verification
+    rule: "[BTN-GEOM-01]"
+    state: verification added, geometry unchanged
+    note: >-
+      The rule has required at least --space-5 inline padding since 2026-08-20. Nothing measured
+      it. SC-21 now does. No button geometry is added or changed by this amendment.
+  - section: 9 self-check ledger
+    rule: "[SELFCHECK-01]"
+    state: extended
+    items:
+      SC-21: rendered capsule padding, centring, target and clipping
+      SC-22: entrance never withholds reached content; reduce and no-JS get the final state
+    notDischargeableBySourceReview: true
+
+defectsFound:
+  buttonConformance:
+    finding: >-
+      The specimen capsule had the pill radius and accent border but never the padding, the
+      inline-flex centring, or the target height.
+    measured: "inline padding 2px against a required 24px; label top-aligned in a 47px block box"
+    corrected: "11px var(--space-5) with inline-flex centring; 26px both sides, 53px tall, centred"
+  pageWideCapsulePadding:
+    finding: >-
+      SC-21 then found the page's other capsule actions carried pre-Kit 14px and 18px inline
+      padding while Appendix E lds-base.css specifies min-height 44px and padding 10px var(--space-5).
+    scope: "24 capsule actions across 7 component classes"
+    resolution: >-
+      Adopted the kit value. This closes part of the SC-02/SC-03 [EXCEPTION-01] pre-Kit gap for
+      button padding on this surface; SC-02/SC-03 themselves remain open because the kit token
+      block is still not embedded.
+  revealFirstImplementation:
+    finding: >-
+      The first implementation marked every matching group, including groups inside collapsed
+      expanders and hidden tab panels.
+    measured: "a reader opening a section within the first seconds met 44 empty containers"
+    alsoWrong: "a blanket timer landed everything after a fixed window, which both masked the defect and removed the entrance"
+    corrected: >-
+      Only rendered groups take the hidden state; an expander opening lands everything inside it
+      at once; the failsafe lands only what the reader has already reached.
+    note: "Caught by measurement, not by review. SC-22 exists to catch this class."
+
+scopeExclusions:
+  - "no token, gradient, scale, colour or typography value changes"
+  - "no new Color Set is minted"
+  - "no new motion token is minted"
+  - "does not certify package-level conformance; the generated public-safe machine package stays pending"
+  - "manual rendered-glyph, assistive-technology, perceptual, product-evidence, privacy and public-conformance gates remain open"
+
+openConflictReported:
+  skipLinkGeometry: >-
+    Appendix E specifies the skip link with --radius-sm, but this page renders it as a capsule.
+    Its padding was brought to --space-5 with the other actions; its shape is left unchanged and
+    reported here for the owner rather than restyled.
+  checkerStricterThanRule: >-
+    The shipped experience-contract checker failed on the presence of IntersectionObserver or a
+    scroll listener, banning the mechanism. Master 5.13 bans generic scroll reveal only "unless it
+    expresses a real reading or decision order". Under that checker no conforming entrance could
+    ship. Resolved on owner authority: the master condition is unchanged, [REVEAL-01] is the only
+    entrance meeting it, parallax and scroll-driven CSS timelines stay banned outright, and a
+    scroll mechanism passes only as the [REVEAL-01] contract with its reader guards present.

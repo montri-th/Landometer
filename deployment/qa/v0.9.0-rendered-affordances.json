@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "1.0",
+  "rules": [
+    "[BTN-GEOM-01]",
+    "[REVEAL-01]"
+  ],
+  "selfCheckItems": [
+    "SC-21",
+    "SC-22"
+  ],
+  "dsVersion": "0.9.0",
+  "authoringRevision": "v0.9.0-r4",
+  "colorRegistryId": "color-srgb-04",
+  "artifactBuild": "ui-20260821-02",
+  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html",
+  "artifactFingerprint": "7e8fb15cc943218b",
+  "assertions": {
+    "minCapsuleInlinePaddingCssPx": 24,
+    "minTargetCssPx": 44,
+    "entranceNeverWithholdsReachedContent": true,
+    "entranceAbsentInsideClosedDisclosureOrHiddenPanel": true,
+    "entranceLandsOnce": true,
+    "entranceAbsentUnderReducedMotionAndNoJavaScript": true
+  },
+  "boundary": "Rendered geometry and entrance behaviour only. It does not judge whether an entrance is worth having, and it does not replace the manual perceptual, assistive-technology, or rendered-glyph gates.",
+  "totals": {
+    "cases": 5,
+    "failures": 0
+  },
+  "cases": [
+    {
+      "item": "SC-21",
+      "viewport": "mobile",
+      "capsulesMeasured": 25,
+      "passed": true
+    },
+    {
+      "item": "SC-21",
+      "viewport": "desktop",
+      "capsulesMeasured": 25,
+      "passed": true
+    },
+    {
+      "item": "SC-22",
+      "mode": "default",
+      "detail": {
+        "atRest": {
+          "marked": 11,
+          "reachedInvisible": 0,
+          "insideClosedOrHidden": 0
+        },
+        "afterReturn": {
+          "landed": 11,
+          "total": 11,
+          "invisible": 0
+        },
+        "afterOpen": {
+          "invisible": 0,
+          "total": 11
+        }
+      },
+      "passed": true
+    },
+    {
+      "item": "SC-22",
+      "mode": "reduced-motion",
+      "detail": {
+        "revealAttr": null,
+        "marked": 0,
+        "invisible": 0
+      },
+      "passed": true
+    },
+    {
+      "item": "SC-22",
+      "mode": "no-javascript",
+      "detail": {
+        "revealAttr": null,
+        "marked": 0,
+        "cards": 8,
+        "visibleCards": 8
+      },
+      "passed": true
+    }
+  ]
+}

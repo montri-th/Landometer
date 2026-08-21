@@ -1,7 +1,7 @@
 # Landometer Design System v0.9.0
 
 **Release:** v0.9.0
-**Authoring revision:** v0.9.0-r3 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9)
+**Authoring revision:** v0.9.0-r4 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9); same-day owner amendment adding `[REVEAL-01]` and self-check items SC-21 and SC-22 (§5.13A, §C9)
 **Manifest version:** 2.1 — closed extension of Manifest 2.0 carrying the new v0.9.0 records; Manifest 2.0 artifacts remain readable historical evidence and MUST NOT be emitted as current conformance
 **Token schema version:** 6 — unchanged. Per the 2026-08-20 purple/brown purge, v0.9.0 replaces ten brown/plum-toned token values (six new raw values + four reassignments of existing registry values) and therefore mints Color Set `color-srgb-03`; `color-srgb-02` and `color-srgb-01` remain immutable evidence. All other values, including every gradient recipe, are unchanged (ledger in §C9)
 **Build Card schema version:** 0.9.0
@@ -1637,6 +1637,27 @@ Rules: the signature expresses the user's progress — reward, receipt, and stat
 
 ---
 
+### 5.13A Entrance on approach `[REVEAL-01]`
+
+**Applies to:** a group of peer blocks — cards in a grid, specimens in a row, rows in a strip — that a reader scrolls or swipes into view (owner amendment 2026-08-21). It is the Riddim signature applied to arrival: the group **lands once** as the reader reaches it, on the skank stagger, and then never moves again.
+
+**Why it is allowed to exist at all.** `[MOTION-01]` ends with the test that decides this: if removing the motion changes nothing the reader needs, remove the motion. An entrance passes that test only when it does one job — telling the reader *this is one group, and this is the order to read it in*. A stagger that runs left to right across a row is reading order made visible. Anything beyond that job is decoration and fails `[MOTION-01]` on its own terms.
+
+**Hard rules — every one of these protects the reader, not the effect.**
+
+1. **Content is never withheld.** The entrance may not gate access to anything. Text is in the DOM, selectable, findable by in-page search, and exposed to assistive technology before and during the entrance. If the mechanism that triggers the entrance is unavailable, fails, or has not fired, every group the reader has already reached MUST be in its final state. An implementation that can leave reached content invisible is a defect, not a slow animation.
+2. **Never inside a closed disclosure or a hidden panel.** Opening an expander or switching a tab is itself the reveal under `[DISCLOSURE-01]`. A group inside a section the reader has not opened MUST NOT carry the hidden entrance state, because a reader who opens that section would otherwise meet an empty container.
+3. **It lands once.** Once a group has landed it stays landed. Scrolling back to it MUST NOT replay it. This is the same prohibition `[MOTION-01]` already places on bounce loops, repeated pulse, and replayed heroes — an entrance that re-runs is a loop.
+4. **No layout movement.** Opacity and transform only. The entrance MUST NOT change size, reserve space, or shift anything around it, so a reader who is already reading is never moved.
+5. **Reduced motion and no-JavaScript get the final state and nothing else.** Not a faster entrance — no entrance. Under `prefers-reduced-motion: reduce`, or with scripting off, the hidden state MUST NOT be applied at all.
+6. **Existing tokens only.** `--motion-duration-reveal`, `--motion-delay-stagger` per step capped at `--motion-delay-stagger-cap`, `--motion-distance-reveal`, `--motion-ease-enter` for opacity and `--motion-ease-settle` for the one-drop landing. `[REVEAL-01]` mints no new motion value; a build that needs a new duration, distance, or curve for an entrance is doing something this rule does not authorize.
+
+**Scope.** Peer groups only. Never the page's first answer, a decision surface, an error, a receipt, a warning, or anything a reader is waiting on — those are present immediately. Never a logo, photograph, or hero. Product surfaces may adopt it unchanged; they may not extend it.
+
+**Verification `[SELFCHECK-01]` SC-22.** A rendered check MUST confirm, on the shipped artifact, that nothing the reader has reached is left invisible, that no group inside a closed disclosure or hidden panel carries the hidden state, that a landed group stays landed after scrolling away and back, and that the reduced-motion and no-JavaScript paths never apply the hidden state at all.
+
+---
+
 ## 6. Core Guidance — controls, states, and accessibility
 
 ### 6.1 Functional-control gate `[CTRL-01]`
@@ -1696,6 +1717,8 @@ Buttons are a Landometer identity device (20 August 2026 amendment). Every rende
 2. **Circle** — equal width and height, `border-radius: 50%`, 44 × 44 CSS px minimum — for an icon-only action, which always carries an accessible name.
 
 No third button shape exists: rectangles, rounded rectangles, squircles, cut corners, and per-build radii on buttons all fail this rule. Labels may wrap without truncation, keep a minimum 44 px target, and stack or become full-width at narrow viewports. The color/state recipe is unchanged from `[VIS-04]`: `interaction.accent` label/border, `surface.blueTint` hover, `surface.soft` active, the separate focus-ring token, and no filled Brand Blue. The canonical implementation is `lds-base.css` in Appendix E; copy it rather than re-deriving it.
+
+**Verification `[SELFCHECK-01]` SC-21.** The inline padding, label centring, and 44 px minimum target in this rule are geometry that only exists once rendered, so a rendered check MUST measure them on the shipped artifact: every capsule action carries at least the `--space-5` inline padding on both sides, centres its label on both axes, meets the minimum target, and does not clip or overrun its own shape. A capsule that received only the pill radius, without the padding and centring this rule requires, is a `[BTN-GEOM-01]` failure even though its shape looks correct.
 
 Scope: the two-shape rule governs buttons only. Shape never replaces visible intent, hierarchy, focus, disabled/pending state, real effect, receipt, or recovery. Cards, form fields, disclosures, table rows, tooltips, navigation rows, tabs, and segmented selectors keep their own semantic geometry even when interactive; do not apply the action capsule to every clickable or rounded container. A non-interactive status/tag capsule is distinguished from a button by tint-plus-border styling, smaller height, and the absence of hover/press/busy states. Product-specific component geometry remains product-owned but MUST NOT introduce a third button shape.
 
@@ -2551,6 +2574,8 @@ Before delivery, every web artifact runs this binary checklist. The checks are t
 | SC-18 | The first-view DOM contains no warning/caution banner, no `role="alert"` outside a real error state, and none of the Appendix D caution-phrase lint list; the evidence affordance exists where claims render | `[DISCLOSURE-01]` |
 | SC-19 | Every UI icon resolves `font-family: "Material Symbols Rounded"` with the locked axes (or an approved registered custom glyph); no other icon set, emoji, or ad-hoc vector renders; production/portable builds load the icon face from a self-hosted subset, not fonts.googleapis.com | `[ICON-01]` |
 | SC-20 | No bounded container (card, tile, panel sharing a grid row) overflows its own box or exceeds the tallest sibling in its row beyond the stated tolerance, at every governed breakpoint and in both visual baselines; any enumeration past the §4.4C threshold carries an answer-first summary and a bounded expander | `[CONTAINER-FIT-01]` |
+| SC-21 | Every rendered capsule action carries at least `--space-5` inline padding on both sides, centres its label on both axes, meets the 44 px minimum target, and neither clips nor overruns its shape | `[BTN-GEOM-01]` |
+| SC-22 | No group the reader has reached is left invisible by an entrance; no group inside a closed disclosure or hidden panel carries the hidden state; a landed group stays landed after scrolling away and back; reduced-motion and no-JavaScript never apply the hidden state | `[REVEAL-01]` |
 
 The self-check never replaces the scoped QA in §10 — it removes the small-detail drift that previously forced repeated redeploys, before §10 runs.
 
@@ -3680,6 +3705,16 @@ CityMETER and CityChat are unchanged. Computed WCAG floors over 1,001 linear-sRG
 
 **Same-day second item: theme-pinned product identity specimens.** The owner also directed that specimens of the four product identity gradients (CityMETER, CityWiki, CityChat, ijji) show the `.light` value on a light surface and the `.dark` value on a dark surface regardless of the page theme, so a reader sees what each value does in the theme a real product user would have selected. Recorded in §A4. Before this, an atlas card rendered both values on whichever surface the page theme supplied, which showed the dark value on a light surface — a specimen that misrepresents its own application. No gradient value changes; only the surface the specimen is drawn on.
 
+**Owner amendment (2026-08-21, same day, second round): `[REVEAL-01]` and self-check items SC-21 and SC-22.** After `ui-20260821-01` published, the owner reported that a labelled capsule action still placed its text and icon badly, and asked for an entrance as the reader scrolls or swipes — "ค่อย ๆ ปรากฏ" — with the explicit brief that it be enjoyable in the reggae sense **and serve the reader's benefit**, and that the rule be raised to normative level (Owner-stated instruction, recorded in `normative-patches/landometer-design-system-v0.9.0-reveal.approval.yml`).
+
+**The button was already governed; nothing verified it.** `[BTN-GEOM-01]` has required locale-aware inline padding of at least `--space-5` since the 2026-08-20 amendment. The specimen capsule had received the pill radius and the accent border but never the padding, the inline-flex centring, or the target height, so its label sat flush against the 2px border and the rounded ends cut into the text: measured inline padding was **2 px against a required 24 px**, and the label was top-aligned in a 47 px block box. This is a conformance failure of an existing rule, not a new rule — so the amendment adds no button geometry, only **SC-21**, which measures the rendered padding, centring, target, and clipping. Corrected to `11px var(--space-5)` with inline-flex centring: 26 px on both sides, 53 px tall, label centred.
+
+**`[REVEAL-01]` (§5.13A) is written as a restriction, not a feature.** The reader's benefit is the only thing that justifies it: a stagger running across a row is reading order made visible, which is the single job `[MOTION-01]`'s own removal test will accept. Everything else in the rule protects the reader from the effect — content is never withheld, the hidden state never applies inside a closed disclosure or hidden panel (opening it is the reveal under `[DISCLOSURE-01]`), it lands once and never replays, opacity and transform only so nothing shifts under someone already reading, and reduced-motion and no-JavaScript get the final state with no entrance at all. It mints no motion value: `--motion-duration-reveal`, `--motion-delay-stagger` capped at `--motion-delay-stagger-cap`, `--motion-distance-reveal`, `--motion-ease-enter` and the `--motion-ease-settle` one-drop already exist in the registry and were simply never applied to arrival.
+
+**A defect found in the first implementation of this rule, and the reason rule 1 and rule 2 are written the way they are.** The first build marked every matching group, including groups inside collapsed expanders and hidden tab panels. Measured on that build: a reader who opened a section within the first seconds met **44 empty containers**. The failsafe was also wrong — a blanket timer that landed everything after a fixed window, which both hid the defect and removed the entrance. Both were corrected before publication: only groups that are actually rendered take the hidden state, an expander opening lands everything inside it at once, and the failsafe lands only what the reader has already reached, so groups still below the fold keep a real entrance. Recorded here because SC-22 exists to catch exactly this class of failure, and it was caught by measurement rather than by review.
+
+**Conflict found and resolved in the open, not silently.** The shipped experience-contract checker carried a rule named "no parallax or generic scroll-reveal engine" that failed on the mere presence of `IntersectionObserver` or a scroll listener — it banned the mechanism. §5.13 of this master bans something narrower and conditional: "Generic scroll reveal is omitted **unless it expresses a real reading or decision order**." The checker was therefore stricter than the authority it enforces, and under that checker no conforming entrance could ever ship. Resolution, on owner authority: the master's condition stands unchanged and `[REVEAL-01]` is the only entrance that meets it; parallax, scroll-driven CSS timelines, and generic reveal markers remain banned outright; and a scroll mechanism now passes only when it is the `[REVEAL-01]` contract with its reader guards present — the reduced-motion gate, the land-once unobserve, the closed-disclosure exclusion, and the reached-content failsafe. Two further contract checks were added at the same time: the entrance layer must be gated on script and reduced motion, and its hidden state must animate nothing but opacity and transform.
+
 **Scope of this amendment.** It changes presentation rules and the self-check ledger only. No token, gradient, scale, colour, or typography value changes, so Color Set `color-srgb-04` is unchanged and no new Color Set is minted. The kit token block is unchanged, so the kit version stays `lds-kit-0.9.0-r3`; only the kit's self-check comment block gains its SC-20 line. Artifact build `ui-20260821-01` carries the first implementation of this rule. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r3**.
 
 **Scope of this approval.** It makes the rules binding and authorizes Color Set `color-srgb-03`. It does **not** certify package-level conformance, does not pre-pass any artifact QA, does not approve any media, identity, or font asset, and raises no artifact's `evidenceStatus`, `indexable`, or `machineValidation` state. Conditions carried forward: Thai display leading `1.16` still needs rendered stress fixtures before machine-package sign-off; media and identity assets remain `approval_missing`/`internal_only` until their manifests ship inside a validated package; gated growth mechanics stay at their ungated fallback until `[ABUSE-INTEGRITY-01]` contracts exist; skills and instructions pinned to v0.8.8 are re-pinned to v0.9.0.
@@ -4313,6 +4348,8 @@ selfCheck:
   SC-18: pass | n/a   # no caution prose in first view; evidence affordance present
   SC-19: pass | n/a   # icons = Material Symbols Rounded locked axes, self-hosted subset
   SC-20: pass   # bounded containers fit; long enumerations folded per 4.4C
+  SC-21: pass   # capsule actions carry their padding, centring and target
+  SC-22: pass | n/a   # entrance never withholds reached content; reduce/no-JS get final state
   notes: []     # every fail or n/a gets one line naming the reason
 ```
 

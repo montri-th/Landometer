@@ -8,16 +8,16 @@ const deploymentRoot = resolve(repositoryRoot, "deployment");
 
 const RELEASE = Object.freeze({
   version: "0.9.0",
-  authoringRevision: "v0.9.0-r3",
+  authoringRevision: "v0.9.0-r4",
   manifestVersion: "2.1",
   tokenSchemaVersion: 6,
   colorSetId: "color-srgb-04",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260821-01",
+  artifactBuildId: "ui-20260821-02",
   latest: "landometer-design-system-v0.9.0-standalone.html",
   baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
   immutableUi:
-    "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
+    "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.0.md",
   skillMaster:
     "skill/apply-landometer-design-system-v0-9-0/references/landometer-design-system-v0.9.0-authoring-master.md",
@@ -29,6 +29,7 @@ const RELEASE = Object.freeze({
   contrastEvidence: "qa/v0.9.0-gradient-contrast.json",
   scaleEvidence: "qa/v0.9.0-scale-geometry.json",
   containerFitEvidence: "qa/v0.9.0-container-fit.json",
+  affordanceEvidence: "qa/v0.9.0-rendered-affordances.json",
   manifest: "site-manifest.v0.9.0.json",
   buildCard: "build-card.v0.9.0.yml",
 });
@@ -235,6 +236,7 @@ const requiredRepositoryFiles = [
   `deployment/${RELEASE.contrastEvidence}`,
   `deployment/${RELEASE.scaleEvidence}`,
   `deployment/${RELEASE.containerFitEvidence}`,
+  `deployment/${RELEASE.affordanceEvidence}`,
   `deployment/${RELEASE.manifest}`,
   `deployment/${RELEASE.buildCard}`,
   "deployment/font-assets.manifest.json",
@@ -314,7 +316,7 @@ const masterRecord = fileRecordAbsolute(deploymentPath(RELEASE.authoringMaster))
 check(Buffer.compare(readAbsolute(deploymentPath(RELEASE.authoringMaster)), readAbsolute(repoPath(RELEASE.skillMaster))) === 0, "normative:master-byte-parity");
 check(masterRecord.sha256 === sha256Absolute(repoPath(RELEASE.skillMaster)), "normative:master-hash-parity");
 check(authoringMaster.includes("**Release:** v0.9.0"), "normative:master-version");
-check(authoringMaster.includes("**Authoring revision:** v0.9.0-r3"), "normative:master-revision");
+check(authoringMaster.includes("**Authoring revision:** v0.9.0-r4"), "normative:master-revision");
 check(authoringMaster.includes("Let us cultivate our city with data."), "normative:brand-line-with-data");
 
 // Approval binds the exact proposal and integrated master while leaving artifact gates truthful.
@@ -421,7 +423,8 @@ check(deepEqual(
 const artifactExpectations = [
   { path: RELEASE.baseline, id: "color-baseline-20260820-02", role: "immutable_color_baseline", colorSet: RELEASE.colorSetId },
   { path: RELEASE.immutableUi, id: RELEASE.artifactBuildId, role: "immutable_ui_build", colorSet: RELEASE.colorSetId },
-  // frozen same-Color-Set predecessor: superseded by a UI-only change, never redefined
+  // frozen same-Color-Set predecessors: superseded by UI-only changes, never redefined
+  { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html", id: "ui-20260821-01", role: "immutable_ui_build", colorSet: "color-srgb-04" },
   { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html", id: "ui-20260820-02", role: "immutable_ui_build", colorSet: "color-srgb-04" },
   // frozen color-srgb-03 evidence: never redefined, still byte-verified against disk
   { path: "landometer-design-system-v0.9.0-standalone.color-srgb-03.html", id: "color-baseline-20260820", role: "immutable_color_baseline", colorSet: "color-srgb-03" },
@@ -438,7 +441,7 @@ for (const expected of artifactExpectations) {
   check(record?.bytes === actualFile.bytes, `artifact-record-bytes:${expected.path}`);
   check(record?.sha256 === actualFile.sha256, `artifact-record-hash:${expected.path}`);
 }
-check((registry?.artifactBuilds ?? []).length === 5, "artifact-record:three-frozen-plus-two-current-builds");
+check((registry?.artifactBuilds ?? []).length === 6, "artifact-record:four-frozen-plus-two-current-builds");
 check(normalizeBuildChannel(latestHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:latest-to-immutable-ui");
 // A Color Set baseline is never rewritten for a later UI-only change, so it stays byte-identical
 // to the UI build it was minted with — not to whatever the current build is.
@@ -527,6 +530,22 @@ for (const path of manifestFilePaths) {
   check(/\|\s*SC-20\s*\|/.test(authoringMaster), "master:sc-20-present");
   check(html.includes("SC-20 container fit"), "page:sc-20-row");
 }
+// [BTN-GEOM-01] SC-21 and [REVEAL-01] SC-22 — rendered evidence, bound to this build.
+{
+  const aff = readJsonAbsolute(deploymentPath(RELEASE.affordanceEvidence), "affordance:parse");
+  check(Array.isArray(aff?.selfCheckItems) && aff.selfCheckItems.includes("SC-21") && aff.selfCheckItems.includes("SC-22"), "affordance:self-check-items");
+  check(aff?.artifactBuild === RELEASE.artifactBuildId, "affordance:artifact-build");
+  check(aff?.authoringRevision === RELEASE.authoringRevision, "affordance:revision");
+  check(aff?.colorRegistryId === RELEASE.colorSetId, "affordance:color-set");
+  check(aff?.totals?.failures === 0, "affordance:zero-failures");
+  check(aff?.assertions?.minCapsuleInlinePaddingCssPx === 24, "affordance:capsule-padding-threshold");
+  check(aff?.assertions?.entranceNeverWithholdsReachedContent === true, "affordance:reveal-never-withholds");
+  check(aff?.assertions?.entranceAbsentUnderReducedMotionAndNoJavaScript === true, "affordance:reveal-reduce-and-nojs");
+  check(aff?.assertions?.entranceLandsOnce === true, "affordance:reveal-lands-once");
+  check(authoringMaster.includes("[REVEAL-01]"), "master:reveal-rule-present");
+  check(/\|\s*SC-21\s*\|/.test(authoringMaster), "master:sc-21-present");
+  check(/\|\s*SC-22\s*\|/.test(authoringMaster), "master:sc-22-present");
+}
 // Full assets[] sweep — verify-live.mjs byte-checks EVERY manifest asset record
 // against the deployed site, so every record must match disk here first.
 // (pages.yml run #24 failed post-deploy on a stale implementation-notes record
@@ -574,7 +593,7 @@ check(buildCard.includes(`path: ${RELEASE.contrastEvidence}`), "build-card:contr
 check(/contrastEvidence:\s*[\s\S]{0,180}?status:\s*passed\b/.test(buildCard), "build-card:contrast-status-passed");
 check(/scrims:\s*\[\]/.test(buildCard), "build-card:no-default-scrims");
 check(/passing standalone governed gradient remains (?:visible|unscreened)/i.test(buildCard), "build-card:no-blanket-scrim-policy");
-check(!/v0\.9\.0-r[45]\b/.test(buildCard), "build-card:no-stale-r3-r4");
+check(!/v0\.9\.0-r[56]\b/.test(buildCard), "build-card:no-stale-r3-r4");
 for (const path of [
   "index.html",
   RELEASE.authoringMaster,
@@ -681,7 +700,7 @@ for (const [name, source] of [
   ["approval", approval],
   ["master", authoringMaster],
 ]) {
-  check(!/v0\.9\.0-r[45]\b/.test(source), `revision:no-stale-r3-r4:${name}`);
+  check(!/v0\.9\.0-r[56]\b/.test(source), `revision:no-stale-r3-r4:${name}`);
 }
 
 // Reuse deterministic generators/checkers instead of duplicating their derivation logic.
