@@ -16,11 +16,11 @@ baselineAuthoringMaster:
   sha256: 827f4d85381f980dba43c319cd74762e2745a522232936630fa65ed4b54679d6
 integratedAuthoringMaster:
   path: deployment/assets/downloads/landometer-design-system-v0.9.0.md
-  authoringRevision: v0.9.0-r2
-  bytes: 383022
-  sha256: 928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa
+  authoringRevision: v0.9.0-r3
+  bytes: 390465
+  sha256: 4f6e6346deb8e924a2254deee423f4bb022322e6bbdceef629d206503970b089
   submittedForApprovalSha256: 87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48
-  note: The submitted hash is the file as reviewed. The integrated file adds the §C9 approval record and the status-line change, and the same-day owner-instructed Master Brand Brief v0.5.3 alignment and product-identity gradient amendment (§C9 records; the amendment mints Color Set color-srgb-04 and authoring revision v0.9.0-r2, see normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml), so its own hash differs and is recorded here.
+  note: The submitted hash is the file as reviewed. The integrated file adds the §C9 approval record and the status-line change, and the same-day owner-instructed Master Brand Brief v0.5.3 alignment and product-identity gradient amendment (§C9 records; the amendment mints Color Set color-srgb-04 and authoring revision v0.9.0-r2, see normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml), and the 2026-08-21 owner amendment adding [CONTAINER-FIT-01] and self-check item SC-20 (see normative-patches/landometer-design-system-v0.9.0-container-fit.approval.yml, which changes presentation rules only and mints no Color Set), so its own hash differs and is recorded here. Each amendment carries its own approval record; this block always states the file as it stands now.
 releaseIdentity:
   designSystemVersion: 0.9.0
   gradientRegistry: landometer-atmosphere-gradient-v2
