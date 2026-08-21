@@ -46,6 +46,12 @@ jobs:
           # layout. Thresholds live in the checker; it exits non-zero on any failure.
           node tools/check-container-fit.mjs > /tmp/v0.9.0-container-fit-current.json
 
+      - name: Verify rendered affordances (SC-21 [BTN-GEOM-01] / SC-22 [REVEAL-01])
+        run: |
+          # Capsule geometry and the entrance both only exist after layout and scripting,
+          # so neither item is dischargeable by source review.
+          node tools/check-rendered-affordances.mjs > /tmp/v0.9.0-rendered-affordances-current.json
+
       - name: Verify rendered scale geometry and accessible names
         run: |
           # The checker owns the pass/fail thresholds. Raw subpixel diagnostics
