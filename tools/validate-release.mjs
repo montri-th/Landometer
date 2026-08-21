@@ -481,6 +481,19 @@ for (const path of manifestFilePaths) {
     `manifest:file-record:${path}`,
   );
 }
+// Full assets[] sweep — verify-live.mjs byte-checks EVERY manifest asset record
+// against the deployed site, so every record must match disk here first.
+// (pages.yml run #24 failed post-deploy on a stale implementation-notes record
+// that the named-path loop above did not cover.)
+for (const asset of manifest?.assets ?? []) {
+  const absolute = deploymentPath(asset.path);
+  if (!existsSync(absolute) || !statSync(absolute).isFile()) continue; // directory entries (assets/fonts)
+  if (typeof asset.bytes !== "number" && typeof asset.sha256 !== "string") continue;
+  const record = fileRecordAbsolute(absolute);
+  const bytesOk = typeof asset.bytes !== "number" || asset.bytes === record.bytes;
+  const shaOk = typeof asset.sha256 !== "string" || asset.sha256 === record.sha256;
+  check(bytesOk && shaOk, `manifest:asset-sweep:${asset.path}`);
+}
 check(manifest?.colorDelivery?.immutableColorBaseline?.bytes === statSync(deploymentPath(RELEASE.baseline)).size, "manifest:baseline-bytes");
 check(manifest?.colorDelivery?.immutableColorBaseline?.sha256 === sha256Absolute(deploymentPath(RELEASE.baseline)), "manifest:baseline-hash");
 check(manifest?.colorDelivery?.currentArtifactBuild?.id === RELEASE.artifactBuildId, "manifest:immutable-ui-id");
