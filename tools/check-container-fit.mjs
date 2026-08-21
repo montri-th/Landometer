@@ -165,7 +165,7 @@ const evidence = {
   rule: "[CONTAINER-FIT-01]",
   selfCheckItem: "SC-20",
   dsVersion: "0.9.0",
-  authoringRevision: "v0.9.0-r4",
+  authoringRevision: "v0.9.0-r5",
   colorRegistryId: registry?.meta?.id,
   artifactBuild: artifactBuildId,
   artifactPath: artifactName,

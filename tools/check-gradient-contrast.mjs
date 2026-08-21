@@ -121,7 +121,7 @@ const failures = results.filter((result) => !result.passed);
 const evidence = {
   schemaVersion: 1,
   designSystemVersion: "0.9.0",
-  authoringRevision: "v0.9.0-r4",
+  authoringRevision: "v0.9.0-r5",
   colorRegistryId: "color-srgb-04",
   gradientRegistrySchema: "landometer-atmosphere-gradient-v2",
   testedAt: "2026-08-07",
