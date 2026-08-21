@@ -8,16 +8,16 @@ const deploymentRoot = resolve(repositoryRoot, "deployment");
 
 const RELEASE = Object.freeze({
   version: "0.9.0",
-  authoringRevision: "v0.9.0-r1",
+  authoringRevision: "v0.9.0-r2",
   manifestVersion: "2.1",
   tokenSchemaVersion: 6,
-  colorSetId: "color-srgb-03",
+  colorSetId: "color-srgb-04",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260820-01",
+  artifactBuildId: "ui-20260820-02",
   latest: "landometer-design-system-v0.9.0-standalone.html",
-  baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
+  baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
   immutableUi:
-    "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
+    "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.0.md",
   skillMaster:
     "skill/apply-landometer-design-system-v0-9-0/references/landometer-design-system-v0.9.0-authoring-master.md",
@@ -307,7 +307,7 @@ const masterRecord = fileRecordAbsolute(deploymentPath(RELEASE.authoringMaster))
 check(Buffer.compare(readAbsolute(deploymentPath(RELEASE.authoringMaster)), readAbsolute(repoPath(RELEASE.skillMaster))) === 0, "normative:master-byte-parity");
 check(masterRecord.sha256 === sha256Absolute(repoPath(RELEASE.skillMaster)), "normative:master-hash-parity");
 check(authoringMaster.includes("**Release:** v0.9.0"), "normative:master-version");
-check(authoringMaster.includes("**Authoring revision:** v0.9.0-r1"), "normative:master-revision");
+check(authoringMaster.includes("**Authoring revision:** v0.9.0-r2"), "normative:master-revision");
 check(authoringMaster.includes("Let us cultivate our city with data."), "normative:brand-line-with-data");
 
 // Approval binds the exact proposal and integrated master while leaving artifact gates truthful.
@@ -412,8 +412,11 @@ check(deepEqual(
 
 // Immutable build records bind bytes and hashes; aliases differ only by channel marker.
 const artifactExpectations = [
-  { path: RELEASE.baseline, id: "color-baseline-20260820", role: "immutable_color_baseline" },
-  { path: RELEASE.immutableUi, id: RELEASE.artifactBuildId, role: "immutable_ui_build" },
+  { path: RELEASE.baseline, id: "color-baseline-20260820-02", role: "immutable_color_baseline", colorSet: RELEASE.colorSetId },
+  { path: RELEASE.immutableUi, id: RELEASE.artifactBuildId, role: "immutable_ui_build", colorSet: RELEASE.colorSetId },
+  // frozen color-srgb-03 evidence: never redefined, still byte-verified against disk
+  { path: "landometer-design-system-v0.9.0-standalone.color-srgb-03.html", id: "color-baseline-20260820", role: "immutable_color_baseline", colorSet: "color-srgb-03" },
+  { path: "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html", id: "ui-20260820-01", role: "immutable_ui_build", colorSet: "color-srgb-03" },
 ];
 for (const expected of artifactExpectations) {
   const actualFile = fileRecordAbsolute(deploymentPath(expected.path));
@@ -421,12 +424,12 @@ for (const expected of artifactExpectations) {
   check(Boolean(record), `artifact-record:${expected.path}`);
   check(record?.id === expected.id, `artifact-record-id:${expected.path}`);
   check(record?.role === expected.role, `artifact-record-role:${expected.path}`);
-  check(record?.colorRegistryId === RELEASE.colorSetId, `artifact-record-color-set:${expected.path}`);
+  check(record?.colorRegistryId === expected.colorSet, `artifact-record-color-set:${expected.path}`);
   check(record?.status === "append_only", `artifact-record-append-only:${expected.path}`);
   check(record?.bytes === actualFile.bytes, `artifact-record-bytes:${expected.path}`);
   check(record?.sha256 === actualFile.sha256, `artifact-record-hash:${expected.path}`);
 }
-check((registry?.artifactBuilds ?? []).length === 2, "artifact-record:exactly-two-frozen-builds");
+check((registry?.artifactBuilds ?? []).length === 4, "artifact-record:two-frozen-plus-two-current-builds");
 check(normalizeBuildChannel(latestHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:latest-to-immutable-ui");
 check(normalizeBuildChannel(baselineHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:baseline-to-immutable-ui");
 check(!latestHtml.includes('<link rel="canonical"'), "standalone:noncanonical-latest");
@@ -498,7 +501,7 @@ check(buildCard.includes(`path: ${RELEASE.contrastEvidence}`), "build-card:contr
 check(/contrastEvidence:\s*[\s\S]{0,180}?status:\s*passed\b/.test(buildCard), "build-card:contrast-status-passed");
 check(/scrims:\s*\[\]/.test(buildCard), "build-card:no-default-scrims");
 check(/passing standalone governed gradient remains (?:visible|unscreened)/i.test(buildCard), "build-card:no-blanket-scrim-policy");
-check(!/v0\.9\.0-r[23]\b/.test(buildCard), "build-card:no-stale-v089-r2-r3");
+check(!/v0\.9\.0-r[34]\b/.test(buildCard), "build-card:no-stale-r3-r4");
 for (const path of [
   "index.html",
   RELEASE.authoringMaster,
@@ -596,7 +599,7 @@ for (const [id, expected] of Object.entries(EXPECTED_GRADIENTS)) {
   check(html.includes(stopText), `atlas:exact-gradient-css:${id}`);
 }
 
-// Active v0.9.0 surfaces may describe v0.8.9-r1 as history, but never an active v0.9.0-r2/r3.
+// Active v0.9.0 surfaces are r2 (2026-08-20 product-identity amendment); r3/r4 would be drift.
 for (const [name, source] of [
   ["html", html],
   ["manifest", JSON.stringify(manifest)],
@@ -605,7 +608,7 @@ for (const [name, source] of [
   ["approval", approval],
   ["master", authoringMaster],
 ]) {
-  check(!/v0\.9\.0-r[23]\b/.test(source), `revision:no-stale-r2-r3:${name}`);
+  check(!/v0\.9\.0-r[34]\b/.test(source), `revision:no-stale-r3-r4:${name}`);
 }
 
 // Reuse deterministic generators/checkers instead of duplicating their derivation logic.

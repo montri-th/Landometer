@@ -187,9 +187,9 @@ const atmosphereCopy = {
 
 const productCopy = {
   citymeter: ["CityMETER", "Light: ห้ามวางตัวอักษรเปล่า ใช้ opaque panel/scrim · Dark: mineral ≥5.22:1", "Light: no bare foreground; use an opaque panel/scrim · Dark: mineral ≥5.22:1"],
-  citywiki: ["CityWiki", "Light: white ≥4.93:1 · Dark: mineral ≥8.22:1", "Light: white ≥4.93:1 · Dark: mineral ≥8.22:1"],
+  citywiki: ["CityWiki", "Light: หมึก mineral ≥10.94:1 · ห้ามใช้ตัวอักษรขาวเปล่า · Dark: mineral ≥8.24:1", "Light: mineral ink ≥10.94:1, bare white prohibited · Dark: mineral ≥8.24:1"],
   citychat: ["CityChat", "Light: white ≥4.93:1 · Dark: mineral ≥8.24:1", "Light: white ≥4.93:1 · Dark: mineral ≥8.24:1"],
-  ijji: ["ijji", "Light: white ≥5.45:1 · Dark: mineral ≥5.75:1", "Light: white ≥5.45:1 · Dark: mineral ≥5.75:1"],
+  ijji: ["ijji", "Light: หมึก mineral ≥11.36:1 · ห้ามใช้ตัวอักษรขาวเปล่า · Dark: mineral ≥8.21:1", "Light: mineral ink ≥11.36:1, bare white prohibited · Dark: mineral ≥8.21:1"],
 };
 
 const categoricalSeries = [
@@ -421,13 +421,19 @@ function hydrateGradientRecords(registry) {
     ([id, record]) => {
       const copy = productCopy[id];
       assert(copy, `unknown product identity gradient ${id}`);
-      const buildTheme = (theme) => ({
-        css: gradientCss("135deg", [
-          [record[theme][0], "0%"],
-          [record[theme][1], "100%"],
-        ]),
-        stops: `${record[theme][0]} → ${record[theme][1]}`,
-      });
+      const buildTheme = (theme) => {
+        const colors = record[theme];
+        const positions = colors.length === 3 ? ["0%", "50%", "100%"] : ["0%", "100%"];
+        const alias = record[`${theme}AliasOf`];
+        const stopsText = colors.length === 3
+          ? colors.map((color, index) => `${color} ${positions[index]}`).join(" · ")
+          : `${colors[0]} → ${colors[1]}`;
+        const aliasShort = alias ? alias.replace("atmosphere.gradient.", "") : null;
+        return {
+          css: gradientCss("135deg", colors.map((color, index) => [color, positions[index]])),
+          stops: aliasShort ? `${stopsText} · alias → ${aliasShort}` : stopsText,
+        };
+      };
       return {
         id,
         label: copy[0],
@@ -469,15 +475,15 @@ function buildGradientCssTokens(registry) {
 }
 
 function validateColorDelivery(registry, scaleText, tokenText) {
-  assert(registry?.meta?.id === "color-srgb-03", "unexpected color registry id");
+  assert(registry?.meta?.id === "color-srgb-04", "unexpected color registry id");
   assert(
     registry?.meta?.immutableColorBaseline ===
-      "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
+      "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
     "unexpected immutable Color Set baseline filename",
   );
   assert(
     /^ui-\d{8}-\d{2}$/.test(registry?.meta?.currentArtifactBuild?.id ?? "") &&
-      /^landometer-design-system-v0\.9\.0-standalone\.color-srgb-03\.ui-\d{8}-\d{2}\.html$/.test(
+      /^landometer-design-system-v0\.9\.0-standalone\.color-srgb-04\.ui-\d{8}-\d{2}\.html$/.test(
         registry?.meta?.currentArtifactBuild?.immutableStandalone ?? "",
       ),
     "unexpected immutable UI artifact-build identity",
