@@ -172,7 +172,8 @@ const revealProbe = async (options, probe) => {
   const page = await context.newPage();
   await page.goto(artifactUrl);
   await page.waitForLoadState("load");
-  await page.waitForTimeout(1600);
+  // rise profile: stagger cap 600ms + reveal 640ms; wait it out before measuring
+  await page.waitForTimeout(2600);
   const value = await probe(page);
   await context.close();
   return value;
@@ -191,7 +192,7 @@ const normal = await revealProbe({}, async page => {
     };
   });
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(2000);
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(900);
   const afterReturn = await page.evaluate(() => {
@@ -246,7 +247,7 @@ const evidence = {
   rules: ["[BTN-GEOM-01]", "[REVEAL-01]"],
   selfCheckItems: ["SC-21", "SC-22", "SC-23"],
   dsVersion: "0.9.0",
-  authoringRevision: "v0.9.0-r5",
+  authoringRevision: "v0.9.0-r6",
   colorRegistryId: registry?.meta?.id,
   artifactBuild: artifactBuildId,
   artifactPath: argArtifact ? path.basename(artifactPath) : artifactName,
