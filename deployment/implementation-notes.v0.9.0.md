@@ -54,14 +54,29 @@ The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, 
 
 **Contract divergence resolved in the open:** the shipped experience-contract checker banned `IntersectionObserver` and scroll listeners outright, while master §5.13 bans generic scroll reveal only "unless it expresses a real reading or decision order". The checker was stricter than its own authority and no conforming entrance could ship under it. It now bans parallax, scroll-driven CSS timelines, and generic reveal markers, and accepts a scroll mechanism only as the `[REVEAL-01]` contract with its reader guards present. Two contract checks were added: the entrance layer must be gated on script and reduced motion, and its hidden state must animate nothing but opacity and transform.
 
+### `ui-20260821-03` — icon anatomy, SC-23, and the channel-drift purge (2026-08-21)
+
+**Owner report (Owner-stated):** on the live `ui-20260821-02` page, icon and text inside buttons still did not sit together properly.
+
+**Why SC-21 passed while the owner was right (Observed fact):** SC-21 measures the label — padding, label centring, target, clipping — and the build satisfied all four. The r4 correction had adopted only the kit's *box* contract onto the page capsule classes, not the kit *anatomy* (`display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2)`) that Appendix E `.btn` has always carried. A block-display capsule lays content on the text baseline: every icon-bearing `.copy-button` measured its glyph **3 px above the label centre with a 0 px icon–label gap**. The kit anatomy is now on every page capsule class, and **SC-23** measures the rendered icon anatomy (icon centres with label, `--space-2` gap, inside the box; circle icons centre on the circle) so a box-only adoption can never pass again.
+
+**Closed with the same approval, on the owner's direction:** the skip link returns to the kit's `--radius-sm` + `--space-3`/`--space-4` bytes (files win; a skip link is not a button); all sixteen dead pre-`[ICON-01]` `.ui-icon` rules are purged (the `.value-contrast-card > .ui-icon` break is the recorded precedent for why dead selectors are dangerous); and `qa/v0.9.0-automated.json` — which had carried 2026-08-07 v0.8.9 evidence under a v0.9.0 filename — is now composed at every rebuild from the gates this release actually runs.
+
+**Channel drift found while closing those (Observed fact, each fixed and now pinned by the validator):** the page's `[SELFCHECK-01]` card still declared "all 20 items · 16 pass" after the ledger had grown to 22 (now the full 23-item ledger; comparing card to ledger is a recorded open gap); `llms.txt` still declared `ui-20260821-01` as the release build while `ui-20260821-02` was live (new `llms:*` validator checks); and the skill release-lock shipped with a stale `artifactBuildId`, r2-era authority hashes, and a falsified product-identity lineage revision — the r3/r4 bumps had blanket-replaced a frozen historical record (restored to `v0.9.0-r2`; new `release-lock:*` validator checks, including `release-lock:lineage-history-not-rewritten`). A §C9 sequencing defect in the r4 master was also repaired.
+
+**Release mechanics:** governed colour, gradient, token source, and scale source are all unchanged, so this is a UI-only change: Color Set stays `color-srgb-04`; append-only artifact build `ui-20260821-03` is minted with its pinned filename; `ui-20260821-02` and every predecessor stay byte-frozen and byte-verified.
+
 ## Gates run locally before this PR
 
-- `node tools/validate-release.mjs` → **PASS (401 checks)**
+- `node tools/validate-release.mjs` → **PASS (432 checks)** — now also pinning `llms.txt` (`llms:*`), the skill release-lock (`release-lock:*`, including `lineage-history-not-rewritten`), the kit capsule anatomy, and the skip-link `--radius-sm` shape
 - `node tools/check-gradient-contrast.mjs --check` → 7 gradients × 1001 samples × 2 foregrounds
-- `node tools/build-standalone-html.mjs --check` → reproducible for latest and `ui-20260821-01`
+- `node tools/build-standalone-html.mjs --check` → reproducible for latest and `ui-20260821-03`
 - `node tools/generate-color-atlas.mjs --check-index` → injected atlas matches the registry
 - `node tools/check-scale-geometry.mjs` → 36 cases, 2916 rows, 0 failures
-- experience contracts on `deployment/index.html` → **59 passed, 0 failed**
+- `node tools/check-container-fit.mjs` → SC-20: 8 cases, 64 containers, 0 failures
+- `node tools/check-rendered-affordances.mjs` → SC-21 + SC-22 + SC-23: 7 cases, 0 failures
+- regression proof — the same gate against the frozen `ui-20260821-02` artifact (`--artifact`): **SC-23 fails 12 times** (icons 3.0–15.8 px off the label centre, every icon-label gap 0 px) while SC-21 passes, reproducing exactly the state the owner reported
+- experience contracts on `deployment/index.html` → **63 passed, 0 failed** (two added: kit anatomy on pill actions; skip link outside the pill set)
 
 ## Open, not folded into pass
 
