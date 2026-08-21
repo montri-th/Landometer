@@ -4,7 +4,7 @@
 
 Canonical page: https://montri-th.github.io/Landometer/
 Release status: internal_demo; source_limited; noindex; machineValidation pending
-Authoring revision: v0.9.0-r3; owner-approved 2026-08-20 (determinism release plus the same-day product identity gradient amendment)
+Authoring revision: v0.9.0-r4; owner-approved 2026-08-20 (determinism release plus the same-day product identity gradient amendment)
 Protected Cultural activation: Let us cultivate our city with data. (Master Brand Brief v0.5.3 §1.1; verified 2026-08-20 carried unchanged from v0.5.2 §1.1)
 Release build: ui-20260821-01; Color Set color-srgb-04; regenerated public-safe machine package pending
 Languages: Thai and English

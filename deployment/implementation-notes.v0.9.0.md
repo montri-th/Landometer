@@ -1,6 +1,6 @@
 # Implementation notes — Landometer Design System v0.9.0 root release (ui-20260821-01)
 
-**Approval:** owner-approved 2026-08-20 (`normative-patches/landometer-design-system-v0.9.0.approval.yml`) · master `v0.9.0-r3` · Color Set `color-srgb-04` · Manifest 2.1 · Build Kit `lds-kit-0.9.0-r2`
+**Approval:** owner-approved 2026-08-20 (`normative-patches/landometer-design-system-v0.9.0.approval.yml`) · master `v0.9.0-r4` · Color Set `color-srgb-04` · Manifest 2.1 · Build Kit `lds-kit-0.9.0-r2`
 **Truth state unchanged by this release:** `evidenceStatus: source_limited` · `indexable: false` · `machineValidation: pending` · conformance `authoring_aligned`
 
 ## What changed at the root
@@ -29,7 +29,8 @@ The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, 
 |---|---|---|---|
 | `ui-20260820-01` | `color-srgb-03` | first v0.9.0 root publication | frozen evidence |
 | `ui-20260820-02` | `color-srgb-04` | owner amendment: ijji/CityWiki product identity gradients | frozen evidence |
-| `ui-20260821-01` | `color-srgb-04` | UI-only: self-check card disclosure fold | current |
+| `ui-20260821-01` | `color-srgb-04` | UI-only: self-check card disclosure fold | frozen evidence |
+| `ui-20260821-02` | `color-srgb-04` | UI-only: capsule action geometry + `[REVEAL-01]` entrance | current |
 
 ### `ui-20260821-01` — self-check card disclosure fold (2026-08-21)
 
@@ -43,9 +44,19 @@ The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, 
 
 **Doctrine defect found and fixed in the same change:** `color-srgb-04`'s Colour Set baseline is the first baseline in this repository to survive into a second UI build. `validate-release.mjs` and `build-standalone-html.mjs` both asserted the baseline must be byte-identical to the *current* UI artifact, which contradicts the baseline's own recorded `integrityMode` ("never rewritten for a UI-only change"). Both tools now read a new registry field `mintedWithArtifactBuild` and verify the baseline against the build it was minted with (`ui-20260820-02`), leaving it byte-frozen. Without this the release could only have been shipped by wrongly rewriting a published immutable artifact or by wrongly minting a Colour Set for a change that touched no colour.
 
+### `ui-20260821-02` — capsule geometry and the Riddim entrance (2026-08-21)
+
+**Button (Observed fact, owner report plus measurement):** the specimen capsule had the pill radius and accent border but never the padding, inline-flex centring, or target height — measured inline padding **2 px against the `--space-5` (24 px) minimum `[BTN-GEOM-01]` has required since 2026-08-20**, label top-aligned in a 47 px block box. SC-21 then found the page's other capsule actions on pre-Kit 14 px and 18 px values while Appendix E `lds-base.css` specifies `min-height: 44px; padding: 10px var(--space-5)`. All 24 capsule actions across 7 component classes now carry the kit value. This closes part of the SC-02/SC-03 `[EXCEPTION-01]` gap for button padding on this surface; SC-02/SC-03 stay open because the kit token block is still not embedded.
+
+**Entrance:** `[REVEAL-01]` (§5.13A) implemented with existing tokens only — `--motion-duration-reveal` 400 ms, `--motion-delay-stagger` 60 ms per step capped at `--motion-delay-stagger-cap` 240 ms, `--motion-distance-reveal` 12 px, `--motion-ease-enter` for opacity and `--motion-ease-settle` for the one-drop landing. No new motion value is minted.
+
+**A defect in the first implementation, caught by measurement:** marking every matching group, including groups inside collapsed expanders and hidden tab panels, meant a reader who opened a section within the first seconds met **44 empty containers**; a blanket failsafe timer also landed everything after a fixed window, masking that and removing the entrance. Corrected before publication: only rendered groups take the hidden state, an expander opening lands everything inside it at once, and the failsafe lands only what the reader has already reached, so groups below the fold keep a real entrance.
+
+**Contract divergence resolved in the open:** the shipped experience-contract checker banned `IntersectionObserver` and scroll listeners outright, while master §5.13 bans generic scroll reveal only "unless it expresses a real reading or decision order". The checker was stricter than its own authority and no conforming entrance could ship under it. It now bans parallax, scroll-driven CSS timelines, and generic reveal markers, and accepts a scroll mechanism only as the `[REVEAL-01]` contract with its reader guards present. Two contract checks were added: the entrance layer must be gated on script and reduced motion, and its hidden state must animate nothing but opacity and transform.
+
 ## Gates run locally before this PR
 
-- `node tools/validate-release.mjs` → **PASS (366 checks)**
+- `node tools/validate-release.mjs` → **PASS (401 checks)**
 - `node tools/check-gradient-contrast.mjs --check` → 7 gradients × 1001 samples × 2 foregrounds
 - `node tools/build-standalone-html.mjs --check` → reproducible for latest and `ui-20260821-01`
 - `node tools/generate-color-atlas.mjs --check-index` → injected atlas matches the registry
