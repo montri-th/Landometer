@@ -78,6 +78,8 @@ The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, 
 
 **More shipped drift found and pinned (Observed fact):** the Appendix E kit headers still said `lds-kit-0.9.0-r3 · Color Set color-srgb-03` ever since the r2 mint — a verbatim kit copy stamped a wrong Color Set into new work; and the Build Card `deliveryIdentity` block still declared `color-srgb-04 / ui-20260820-02` with hashes of that era. Both repaired; the validator now pins the deliveryIdentity block, the token-registry sha, and the README release boundary (README had shipped `ui-20260821-01` as current through two releases).
 
+**Run #29 verify failure, found and closed (Observed fact):** the deploy itself succeeded — the live root served `ui-20260821-04` / `color-srgb-05` with the rise values while the post-deploy verify was still failing. The failure was an invariant gap, not bad bytes: `verify-live` checks every `CRITICAL_ASSETS` entry against its **manifest record**, and this release had added `assets/data/tokens.json` and the archived `color-delivery.v0.9.0.color-srgb-04.json` to the critical list without listing either in the manifest. Both now carry manifest records, and `validate-release` pins the invariant (`pages-workflow:critical-in-manifest:*`) so a critical asset without a record can never reach deploy again.
+
 ## Gates run locally before this PR
 
 - `node tools/validate-release.mjs` → **PASS (446 checks)** — now also pinning `llms.txt` (`llms:*`), the skill release-lock (`release-lock:*`, including `lineage-history-not-rewritten`), the kit capsule anatomy, the skip-link `--radius-sm` shape, the Build Card `deliveryIdentity` block, the token-registry sha, and the README release boundary
