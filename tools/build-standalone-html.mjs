@@ -243,10 +243,22 @@ if (checkOnly) {
     committedPinned === pinnedHtml,
     `immutable UI artifact build is missing or stale: ${pinnedOutputName}`,
   );
-  assert(
-    committedColorBaseline === colorBaselineHtml,
-    `immutable Color Set baseline is missing or stale: ${colorBaselineName}`,
-  );
+  const baselineMintedWith = colorBaselineRecord.mintedWithArtifactBuild ?? artifactBuildId;
+  if (baselineMintedWith === artifactBuildId) {
+    assert(
+      committedColorBaseline === colorBaselineHtml,
+      `immutable Color Set baseline is missing or stale: ${colorBaselineName}`,
+    );
+  } else {
+    // UI-only change on an already-published Color Set: the baseline stays byte-frozen at
+    // the build it was minted with and is verified against its append-only record.
+    assert(
+      committedColorBaseline !== null &&
+        Buffer.byteLength(committedColorBaseline) === colorBaselineRecord.bytes &&
+        sha256(committedColorBaseline) === colorBaselineRecord.sha256,
+      `immutable Color Set baseline no longer matches its append-only record (minted with ${baselineMintedWith}): ${colorBaselineName}`,
+    );
+  }
   process.stdout.write(
     `Standalone check passed for ${path.basename(outputPath)} and ${pinnedOutputName} (${artifactBuildId})\n`,
   );

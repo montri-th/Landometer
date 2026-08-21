@@ -1,6 +1,6 @@
 landometerBuild:
   dsVersion: 0.9.0
-  authoringRevision: v0.9.0-r2
+  authoringRevision: v0.9.0-r3
   schemas:
     buildCard: 0.9.0
     manifest: 2.1

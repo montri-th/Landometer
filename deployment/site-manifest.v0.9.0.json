@@ -22,7 +22,7 @@
     "canonicalUrl": "https://montri-th.github.io/Landometer/",
     "machineValidation": "pending",
     "fullLivingReference": false,
-    "artifactBuildId": "ui-20260820-02"
+    "artifactBuildId": "ui-20260821-01"
   },
   "colorDelivery": {
     "registryId": "color-srgb-04",
@@ -41,7 +41,7 @@
     },
     "atmosphereGradientRegistry": {
       "id": "landometer-atmosphere-gradient-v2",
-      "authoringRevision": "v0.9.0-r2",
+      "authoringRevision": "v0.9.0-r3",
       "proposalRepoPath": "normative-patches/landometer-design-system-v0.9.0-gradient-diversity.proposal.md",
       "approvalRepoPath": "normative-patches/landometer-design-system-v0.9.0-gradient-diversity.approval.yml",
       "canonicalAngle": "135deg",
@@ -100,21 +100,23 @@
     ],
     "immutableColorBaseline": {
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
-      "registryMarker": "data-color-registry=\"color-srgb-03\"",
+      "registryMarker": "data-color-registry=\"color-srgb-04\"",
       "buildChannelMarker": "data-build-channel=\"immutable-color-set\"",
       "bytes": 2129858,
       "sha256": "65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01",
       "integrityMode": "append-only Color Set baseline; never rewritten for a UI-only change",
-      "status": "preserved byte-for-byte"
+      "status": "preserved byte-for-byte",
+      "mintedWithArtifactBuild": "ui-20260820-02",
+      "artifactBuildMarker": "data-artifact-build=\"ui-20260820-02\""
     },
     "currentArtifactBuild": {
-      "id": "ui-20260820-02",
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
+      "id": "ui-20260821-01",
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
       "registryMarker": "data-color-registry=\"color-srgb-04\"",
-      "artifactBuildMarker": "data-artifact-build=\"ui-20260820-02\"",
+      "artifactBuildMarker": "data-artifact-build=\"ui-20260821-01\"",
       "buildChannelMarker": "data-build-channel=\"immutable-artifact-build\"",
-      "bytes": 2129863,
-      "sha256": "c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f",
+      "bytes": 2134749,
+      "sha256": "93bef9b68a7565c5c1cffc08b89de0ed60c0ece9139ba8dc3476f9d32c7e69ac",
       "integrityMode": "append-only UI artifact; byte parity with latest standalone after normalizing only data-build-channel",
       "status": "built; reproducibility and browser geometry checks passed; broader manual gates remain open"
     },
@@ -125,6 +127,14 @@
         "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
         "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html"
       ]
+    },
+    "previousArtifactBuild": {
+      "id": "ui-20260820-02",
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
+      "colorSet": "color-srgb-04",
+      "changeClass": "superseded by a UI-only change; Color Set unchanged",
+      "integrityMode": "append-only; preserved byte-for-byte and still byte-verified",
+      "status": "frozen evidence; never redefined"
     }
   },
   "experience": {
@@ -553,7 +563,7 @@
   "governedObject": {
     "id": "landometer-design-system@0.9.0",
     "status": "source_limited",
-    "source": "Landometer Design System v0.9.0-r2 owner-approved authoring master; Culture / Rally Cry restored from Master Brand Brief v0.5.2 §1.1 on 7 August 2026",
+    "source": "Landometer Design System v0.9.0-r3 owner-approved authoring master; Culture / Rally Cry restored from Master Brand Brief v0.5.2 §1.1 on 7 August 2026",
     "authoringMasterPath": "assets/downloads/landometer-design-system-v0.9.0.md",
     "authoringSkillRepoPath": "skill/apply-landometer-design-system-v0-9-0/",
     "gradientProposalRepoPath": "normative-patches/landometer-design-system-v0.9.0.proposal.md",
@@ -579,10 +589,10 @@
   "referenceFixtures": [
     {
       "id": "COLOR-ATLAS-0.9.0",
-      "sourceAndDate": "Landometer Design System v0.9.0-r2 Appendix A + landometer-atmosphere-gradient-v2 proposal approved 7 Aug 2026 + carried scales.json reference fixture checked 29 Jul 2026",
+      "sourceAndDate": "Landometer Design System v0.9.0-r3 Appendix A + landometer-atmosphere-gradient-v2 proposal approved 7 Aug 2026 + carried scales.json reference fixture checked 29 Jul 2026",
       "methodOrRecipe": "Render all 18 gradient records from one registry source — seven shared atmosphere, three asset-only motif, and eight product-identity records — with exact theme defaults, stop values, roles, boundaries, and foreground contracts; render all analytical LUT and 5/7/9 classes from pre-generated cells without runtime mixing.",
       "signalClass": "source_limited design-system reference fixture",
-      "confidence": "exact v0.9.0-r2 authoring values and token-level gradient contrast floors; generated v0.9.0 package conformance not claimed",
+      "confidence": "exact v0.9.0-r3 authoring values and token-level gradient contrast floors; generated v0.9.0 package conformance not claimed",
       "limitation": "qa/v0.9.0-gradient-contrast.json records token-level sRGB sampling only. Rendered glyph, alpha-stack, photograph, focus, export, theme, locale, device, and CVD review remain applicable. scales.json carries meta.version 0.8.6 and is not the gated v0.9.0 dataviz.tokens.json package.",
       "allowedUses": [
         "design-system training",
@@ -714,23 +724,23 @@
     },
     {
       "path": "assets/downloads/landometer-design-system-v0.9.0.md",
-      "bytes": 383022,
-      "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa",
+      "bytes": 390465,
+      "sha256": "4f6e6346deb8e924a2254deee423f4bb022322e6bbdceef629d206503970b089",
       "usageClass": "human-readable authoring master download",
-      "transform": "owner-approved v0.9.0-r2 authoring master carries the frozen v0.8.8 authority and integrates landometer-atmosphere-gradient-v2 with fifteen gradient-stop-only values, seven shared atmosphere recipes, exact theme defaults, foreground contracts, and alias/deprecation boundaries",
+      "transform": "owner-approved v0.9.0-r3 authoring master carries the frozen v0.8.8 authority and integrates landometer-atmosphere-gradient-v2 with fifteen gradient-stop-only values, seven shared atmosphere recipes, exact theme defaults, foreground contracts, and alias/deprecation boundaries",
       "status": "source_limited; machineValidation pending"
     },
     {
       "path": "assets/data/color-delivery.v0.9.0.json",
-      "bytes": 15473,
-      "sha256": "d6c912a5bc08510fbc670582a89b1633dc62903a12d824ab3cff531455533d23",
+      "bytes": 16261,
+      "sha256": "98ff0fbd26a6919b4c46c55e2682e3172169b9a804518bdd5f5ddd20bd84edcb",
       "usageClass": "artifact-level SDR sRGB delivery and build-parity registry",
       "status": "owner-approved authoring contract with artifact evidence; source_limited"
     },
     {
       "path": "landometer-design-system-v0.9.0-standalone.html",
-      "bytes": 2129851,
-      "sha256": "1902a9808189eaf98b6c6bd69a1bd4246838539a34e68a98d906819677035ce8",
+      "bytes": 2134737,
+      "sha256": "c55f597bd1316a179e52bb8beccc3f05da5cd9d81b550cbfdf6fca16317ee9b1",
       "usageClass": "self-contained single-file playground snapshot",
       "transform": "generated from deployment/index.html with nine display-font files, the official logo, and the team image embedded as data URLs; hosted-only font preloads are protocol-gated and opening the hosted source through file:// hands off to this embedded standalone while preserving URL state; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; the approved browser-tab symbol and linked release records use stable cache-revisioned production URLs",
       "status": "source_limited; self-contained build and local HTTP interaction verified; Safari direct-file handoff and font-readiness manual gate pending; machineValidation pending"
@@ -756,15 +766,15 @@
     },
     {
       "path": "implementation-notes.v0.9.0.md",
-      "bytes": 4257,
-      "sha256": "566fb3103183ad2bf346ae535f68925eba8866732719df25b2818e6d317eb8b7",
+      "bytes": 7133,
+      "sha256": "f9509614f7423108803d2f2113eb0ed475a471e2f72f8d964f4b16a02fd61464",
       "usageClass": "accepted artifact application record",
-      "authority": "non-normative artifact evidence; v0.9.0-r2 authoring master governs"
+      "authority": "non-normative artifact evidence; v0.9.0-r3 authoring master governs"
     },
     {
       "path": "llms.txt",
-      "bytes": 5039,
-      "sha256": "1f28785771cc8efc80fd0a3b5358badb81c91e79b5d854bdde0ecb61bbf6071c",
+      "bytes": 6430,
+      "sha256": "bfd64d3fa46c439a0a008456382d7158c492098e412121a513b6c1084345e4ed",
       "usageClass": "optional project-path machine discovery navigation aid",
       "authority": "not a ranking signal, access-control rule, conformance claim, host-root discovery guarantee, or agent-action permission"
     },
@@ -778,14 +788,14 @@
     {
       "path": "qa/v0.9.0-gradient-contrast.json",
       "bytes": 5935,
-      "sha256": "81945de3e234a057bcf9fd3b994f1fb222e87c97571e6567ed9e7768f5f0dad7",
+      "sha256": "c99485d9942fc01cec8c04da0576e9387c4fa8fea3aca21de3e749af412fa367",
       "usageClass": "token-level 1,001-position sRGB contrast-floor evidence for the seven shared atmosphere recipes",
       "status": "generated preflight evidence; rendered glyph, alpha-stack, photograph, focus, export, theme, locale, device, and CVD gates remain open"
     },
     {
       "path": "qa/v0.9.0-scale-geometry.json",
       "bytes": 28908,
-      "sha256": "8d07a692ad9b4ecce6259fc0ad0ab020a0238bbfb8f836bb35a9470873dcc86f",
+      "sha256": "addc8a94c99705902ff3608bc8aacefa944dc8dc92b17b6f40e806ced1fe3bda",
       "usageClass": "deterministic Playwright geometry evidence for localized 5/7/9 scale rows",
       "status": "36 cases; 2,916 rows; all nine embedded font probes ready; zero failures"
     },
@@ -797,9 +807,18 @@
     },
     {
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
-      "usageClass": "current immutable UI build (ui-20260820-02)",
+      "usageClass": "frozen immutable UI artifact build (superseded by ui-20260821-01); never redefined",
       "bytes": 2129863,
-      "sha256": "c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f"
+      "sha256": "c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f",
+      "artifactBuildId": "ui-20260820-02"
+    },
+    {
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
+      "usageClass": "immutable self-contained UI artifact-build handoff and visual-QA authority",
+      "bytes": 2134749,
+      "sha256": "93bef9b68a7565c5c1cffc08b89de0ed60c0ece9139ba8dc3476f9d32c7e69ac",
+      "artifactBuildId": "ui-20260821-01",
+      "status": "built; source reproducibility and browser geometry checks passed; broader manual gates remain open"
     }
   ],
   "publication": {

@@ -40,6 +40,12 @@ jobs:
       - name: Verify experience contracts
         run: node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs deployment/index.html
 
+      - name: Verify rendered container fit (SC-20 / [CONTAINER-FIT-01])
+        run: |
+          # SC-20 is not dischargeable by source review: the defect only exists after
+          # layout. Thresholds live in the checker; it exits non-zero on any failure.
+          node tools/check-container-fit.mjs > /tmp/v0.9.0-container-fit-current.json
+
       - name: Verify rendered scale geometry and accessible names
         run: |
           # The checker owns the pass/fail thresholds. Raw subpixel diagnostics

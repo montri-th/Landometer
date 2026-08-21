@@ -1,0 +1,75 @@
+# Owner approval record — Landometer Design System v0.9.0
+# Amendment: [CONTAINER-FIT-01] enumeration fit inside bounded containers + [SELFCHECK-01] SC-20
+amendment:
+  id: v0.9.0-container-fit
+  approvedAt: "2026-08-21"
+  authority: Landometer owner
+  evidenceLabel: Owner-stated
+  authoringRevision: v0.9.0-r2 -> v0.9.0-r3
+  dsVersion: "0.9.0"          # unchanged
+  colorSet: color-srgb-04     # unchanged; no governed colour value changes
+  kitVersion: lds-kit-0.9.0-r3 # unchanged token block; self-check comment gains SC-20
+  firstImplementingArtifactBuild: ui-20260821-01
+
+trigger:
+  report: >-
+    Owner reported from a rendered desktop view that the [KIT-01]/[SELFCHECK-01] specimen card
+    poured its full nineteen-row self-check table into a card sharing a four-column grid row,
+    so that card ran far past its siblings.
+  instruction: >-
+    Owner directed that the underlying rule gap be closed in the normative master, not patched
+    only in the artifact.
+
+gapClosed:
+  ruleGap: >-
+    [DISCLOSURE-01] bound caution prose and evidence depth; [MEDIA-LADDER-01] bound overflow prose.
+    Neither named enumerations, so a long table inside a card violated no rule.
+  gateGap: >-
+    No [SELFCHECK-01] item and no automated gate measured rendered container height. validate-release
+    checks identity, tokens, bytes and hashes; check-gradient-contrast samples colour;
+    check-scale-geometry covers scale-label cases; the experience-contract checker covers component
+    contracts. None models content longer than its designed container. Coverage gap, not a false pass.
+
+changes:
+  - section: 4.4C
+    rule: "[CONTAINER-FIT-01]"
+    state: new
+    threshold: "more than six rows or items, OR taller than the tallest sibling in the grid row"
+    treatment:
+      - "L1 answer-first summary carrying the counted outcome in the enumeration's own truthful wording"
+      - "L2 complete unabridged enumeration behind one labelled expander"
+      - "expander body bounded by its own scroll region so opening it cannot re-inflate a shared grid row"
+    boundaries:
+      - "presentation rule only; records and machine channels keep every row unfolded"
+      - "a page or section whose whole job is the enumeration is out of scope"
+      - "a summary never replaces a decision-moment warning under [DATA-01] / [EFFECT-01]"
+      - "static exports keep the summary at the claim and the enumeration on a back or appendix page"
+  - section: 9 self-check ledger
+    rule: "[SELFCHECK-01]"
+    state: extended
+    item: SC-20
+    text: >-
+      No bounded container overflows its own box or exceeds the tallest sibling in its row beyond the
+      stated tolerance, at every governed breakpoint and in both visual baselines; any enumeration past
+      the 4.4C threshold carries an answer-first summary and a bounded expander.
+    notDischargeableBySourceReview: true
+  - section: A4
+    rule: product identity gradient specimen surface
+    state: new clause
+    text: >-
+      A specimen of a .light product identity value renders on a light surface and a .dark value on a
+      dark surface, pinned to that baseline's real surface and ink tokens, never following the viewer's
+      selected theme; the pinned specimen states that it is pinned. Specimens only — a real product
+      surface still follows the user's selected theme.
+    appliesTo: [CityMETER, CityWiki, CityChat, ijji]
+    valueChanges: none
+  - section: E4 kit self-check block
+    state: extended
+    note: "comment-only line for SC-20; no token bytes change"
+
+scopeExclusions:
+  - "no token, gradient, scale, colour, or typography value changes"
+  - "no new Color Set is minted"
+  - "no kit token block change"
+  - "does not certify package-level conformance; the generated public-safe machine package stays pending"
+  - "manual rendered-glyph, assistive-technology, perceptual, product-evidence, privacy, and public-conformance gates remain open"

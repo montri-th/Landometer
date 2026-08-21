@@ -707,12 +707,18 @@ function renderGradientCard(record, variant) {
 }
 
 function renderProductGradientCard(record) {
+  // A product identity field is only truthful on the surface it is defined for, so each
+  // specimen is pinned to its own visual baseline and never follows the page theme.
   const renderTheme = (theme) => `
-              <figure class="atlas-gradient-theme">
+              <figure class="atlas-gradient-theme atlas-gradient-theme--pinned" data-theme-surface="${theme}">
                 <span class="atlas-gradient-sample" style="${gradientStyle(record[theme].css)}" aria-hidden="true"></span>
                 <figcaption>
                   <strong>${theme[0].toUpperCase()}${theme.slice(1)}</strong>
                   <code>${escapeHtml(record[theme].stops)}</code>
+                  <span class="atlas-theme-surface-note">${bilingual(
+                    `แสดงบนพื้น ${theme === "light" ? "Light" : "Dark"} เสมอ ไม่ตามธีมของหน้านี้`,
+                    `always shown on the ${theme} surface, not this page's theme`,
+                  )}</span>
                 </figcaption>
               </figure>`;
 
