@@ -110,8 +110,8 @@
     "currentArtifactBuild": {
       "id": "ui-20260820-02",
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
-      "registryMarker": "data-color-registry=\"color-srgb-03\"",
-      "artifactBuildMarker": "data-artifact-build=\"ui-20260820-01\"",
+      "registryMarker": "data-color-registry=\"color-srgb-04\"",
+      "artifactBuildMarker": "data-artifact-build=\"ui-20260820-02\"",
       "buildChannelMarker": "data-build-channel=\"immutable-artifact-build\"",
       "bytes": 2129863,
       "sha256": "c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f",
@@ -772,7 +772,7 @@
       "path": "qa/v0.9.0-automated.json",
       "bytes": 6579,
       "sha256": "077b087b831f7a227c6c473d0d913c61ee5897e56dc370783bc8f09fc262cfd6",
-      "usageClass": "current automated release evidence bound to ui-20260820-01",
+      "usageClass": "carried automated evidence recorded 2026-08-07 against artifactBuild ui-20260807-07 / color-srgb-02; not re-recorded for ui-20260820-02 — current-build automated evidence lives in qa/v0.9.0-scale-geometry.json and qa/v0.9.0-gradient-contrast.json",
       "status": "targeted browser geometry and source validation passed; manual gates remain open"
     },
     {

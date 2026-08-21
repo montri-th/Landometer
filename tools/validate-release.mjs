@@ -494,6 +494,19 @@ for (const asset of manifest?.assets ?? []) {
   const shaOk = typeof asset.sha256 !== "string" || asset.sha256 === record.sha256;
   check(bytesOk && shaOk, `manifest:asset-sweep:${asset.path}`);
 }
+// Marker fields on currentArtifactBuild must state the CURRENT identity —
+// verify-live and human readers treat them as the live-HTML contract.
+check(manifest?.colorDelivery?.currentArtifactBuild?.registryMarker === `data-color-registry="${RELEASE.colorSetId}"`, "manifest:current-build-registry-marker");
+check(manifest?.colorDelivery?.currentArtifactBuild?.artifactBuildMarker === `data-artifact-build="${RELEASE.artifactBuildId}"`, "manifest:current-build-artifact-marker");
+// pages.yml post-deploy gate must expect THIS release's identity and byte-check
+// this release's pinned artifacts (run #25 failed on a stale ui-20260820-01 pin).
+{
+  const pagesWorkflow = readFileSync(repoPath(".github/workflows/pages.yml"), "utf8");
+  check(pagesWorkflow.includes(`EXPECTED_ARTIFACT_BUILD: ${RELEASE.artifactBuildId}`), "pages-workflow:expected-artifact-build");
+  check(pagesWorkflow.includes(`${RELEASE.immutableUi},`), "pages-workflow:critical-immutable-ui");
+  check(pagesWorkflow.includes(`${RELEASE.baseline},`), "pages-workflow:critical-color-baseline");
+  check(!/EXPECTED_ARTIFACT_BUILD: ui-20260820-01\b/.test(pagesWorkflow), "pages-workflow:no-stale-ui-01-expectation");
+}
 check(manifest?.colorDelivery?.immutableColorBaseline?.bytes === statSync(deploymentPath(RELEASE.baseline)).size, "manifest:baseline-bytes");
 check(manifest?.colorDelivery?.immutableColorBaseline?.sha256 === sha256Absolute(deploymentPath(RELEASE.baseline)), "manifest:baseline-hash");
 check(manifest?.colorDelivery?.currentArtifactBuild?.id === RELEASE.artifactBuildId, "manifest:immutable-ui-id");
