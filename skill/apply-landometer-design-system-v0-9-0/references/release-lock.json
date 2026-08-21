@@ -1,7 +1,7 @@
 {
   "skillName": "apply-landometer-design-system-v0-9-0",
   "designSystemVersion": "0.9.0",
-  "skillRevision": 3,
+  "skillRevision": 4,
   "invocation": "explicit_only",
   "schemas": {
     "buildCard": "0.9.0",
@@ -10,11 +10,11 @@
   },
   "authority": {
     "status": "owner-approved-integrated-authoring-master",
-    "authoringRevision": "v0.9.0-r6",
+    "authoringRevision": "v0.9.0-r7",
     "activePath": "references/landometer-design-system-v0.9.0-authoring-master.md",
     "approvedThrough": "2026-08-20",
-    "bytes": 410857,
-    "sha256": "d59ea6180ffeca1549a3a54caa2beb856cef605780e53467c3d7a4cae8b1b561",
+    "bytes": 416189,
+    "sha256": "52ef41f1b231f8b84955a40c21a018991a114a4f5eaabd8c5111816bf8d645b1",
     "submittedForApprovalSha256": "87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48",
     "submittedForApprovalBytes": 378063,
     "note": "The submitted hash is the file the owner reviewed. The integrated file adds the §C9 approval record and the status-line change, so its own hash differs and is recorded above."
@@ -51,7 +51,7 @@
       "scope": "determinism release over the complete v0.8.9-r1 authoring authority plus the 2026-08-20 owner amendment items 1-16",
       "approvalPath": "normative-patches/landometer-design-system-v0.9.0.approval.yml",
       "approvalBytes": 4288,
-      "approvalSha256": "77295af148829259aea547b703a2e4ad22f5f74f237e41c366d4ed07a7b31510",
+      "approvalSha256": "d0e84890973954e12331043e885c056a27d674787c922bcaeecfac97f944aaa4",
       "proposalPath": "normative-patches/landometer-design-system-v0.9.0.proposal.md",
       "bytes": 6051,
       "sha256": "dd9a2a266ec062ee7bcda0e1e00ac35865306312be5c4d49f038561f65a5ca80",
@@ -100,6 +100,14 @@
       "approvalPath": "normative-patches/landometer-design-system-v0.9.0-reveal-rise.approval.yml",
       "approvalBytes": 3762,
       "approvalSha256": "0e3555a758147f3733634719c771b2dd65b3c2e6ce9e4a13bde0517730e3427f"
+    },
+    "v090MachinePackageAmendment": {
+      "authoringRevision": "v0.9.0-r7",
+      "firstImplementingArtifactBuild": "ui-20260821-05",
+      "packageRevision": "v0.9.0-mp1",
+      "approvalPath": "normative-patches/landometer-design-system-v0.9.0-machine-package.approval.yml",
+      "approvalBytes": 4340,
+      "approvalSha256": "823e94f5efcebae4d05a5c21fb82e64744fb4909462d3132fb276b781cd88542"
     }
   },
   "approvedAmendments": [
@@ -154,12 +162,12 @@
   },
   "releaseIdentity": {
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r6",
+    "authoringRevision": "v0.9.0-r7",
     "colorSetId": "color-srgb-05",
-    "artifactBuildId": "ui-20260821-04",
+    "artifactBuildId": "ui-20260821-05",
     "latestStandalonePath": "deployment/landometer-design-system-v0.9.0-standalone.html",
     "immutableColorSetPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
-    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
+    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html",
     "evidenceStatus": "source_limited",
     "indexable": false,
     "machineValidation": "pending"
@@ -180,7 +188,7 @@
     {
       "path": "SKILL.md",
       "bytes": 11193,
-      "sha256": "94ca8472900f14aef93a8b0a9162593a8f4de88f319c5e367ea5f0eac5075a03"
+      "sha256": "8ce18c595528499860133bff739ff636058c4f3623dc81a44b444cf840ab47aa"
     },
     {
       "path": "agents/openai.yaml",
@@ -190,12 +198,12 @@
     {
       "path": "assets/build-card-template.yaml",
       "bytes": 7328,
-      "sha256": "a9266db7999826a994b1fab179c3fb1072e54bcb632b9f5cb64d98c39ab1e4cc"
+      "sha256": "c285b56d30298a3b9f0c84381de9772c5586815d263993da5a4df1d4a28cc851"
     },
     {
       "path": "references/landometer-design-system-v0.9.0-authoring-master.md",
-      "bytes": 410857,
-      "sha256": "d59ea6180ffeca1549a3a54caa2beb856cef605780e53467c3d7a4cae8b1b561"
+      "bytes": 416189,
+      "sha256": "52ef41f1b231f8b84955a40c21a018991a114a4f5eaabd8c5111816bf8d645b1"
     }
   ]
 }

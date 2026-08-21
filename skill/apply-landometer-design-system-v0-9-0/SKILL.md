@@ -1,6 +1,6 @@
 ---
 name: apply-landometer-design-system-v0-9-0
-description: Apply or audit the owner-approved Landometer Design System v0.9.0-r6 human-readable authoring master in local design, content, presentation, data, and interface artifacts. Use when the user explicitly requests v0.9.0 or invokes this skill; require Build Card 0.9.0 and exactly one profile, copy the Appendix E Deterministic Build Kit bytes verbatim for web builds, run the [SELFCHECK-01] self-check before delivery, preserve shared-versus-product evidence boundaries, and report package and artifact gates honestly. Do not claim generated machine-package conformance while its schemas, manifests, recipes, fixtures, hashes, rule ledgers, and preflight remain pending; do not publish or create external effects.
+description: Apply or audit the owner-approved Landometer Design System v0.9.0-r7 human-readable authoring master in local design, content, presentation, data, and interface artifacts. Use when the user explicitly requests v0.9.0 or invokes this skill; require Build Card 0.9.0 and exactly one profile, copy the Appendix E Deterministic Build Kit bytes verbatim for web builds, run the [SELFCHECK-01] self-check before delivery, preserve shared-versus-product evidence boundaries, and report package and artifact gates honestly. Do not claim generated machine-package conformance while its schemas, manifests, recipes, fixtures, hashes, rule ledgers, and preflight remain pending; do not publish or create external effects.
 ---
 
 # Apply Landometer Design System v0.9.0
@@ -33,9 +33,9 @@ v0.9.0 exists because the same master produced materially different results per 
 - Compare products, places, or cities only under the same schema and release. Otherwise state the incompatibility and avoid false equivalence.
 - Treat supplied identity, media, font, token, and approval records as hash- and scope-specific. Custody never grants permission or cross-context approval.
 
-## Apply the approved v0.9.0-r6 authoring authority
+## Apply the approved v0.9.0-r7 authoring authority
 
-v0.9.0-r6 inherits the complete v0.8.9-r1 rule set. No v0.8.9 rule is removed; the only rename is `[SEARCH-01]` → `[INTERNAL-SEARCH-01]` (§7.6), with the old ID a deprecated alias for one release. Use the owning rules in the integrated master, especially:
+v0.9.0-r7 inherits the complete v0.8.9-r1 rule set. No v0.8.9 rule is removed; the only rename is `[SEARCH-01]` → `[INTERNAL-SEARCH-01]` (§7.6), with the old ID a deprecated alias for one release. Use the owning rules in the integrated master, especially:
 
 - `[BRAND-01]` §3.2: preserve the exact Cultural activation from Master Brand Brief v0.5.3 §1.1 (verified 2026-08-20 carried unchanged from v0.5.2 §1.1) — `Let us cultivate our city with data.` Never remove `with data` or substitute the earlier shortened reconciliation.
 - `[VALUE-PROOF-01]`: keep one work object and its evidence constant while making DNA, Voice, or Visual value observable; never make the baseline inaccessible to make the assisted state look better.

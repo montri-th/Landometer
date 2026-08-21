@@ -1,0 +1,75 @@
+# Owner approval record — Landometer Design System v0.9.0
+# Amendment: public-safe machine specification package v0.9.0-mp1 generated (fifth round, 2026-08-21)
+amendment:
+  id: v0.9.0-machine-package
+  approvedAt: "2026-08-21"
+  authority: Landometer owner
+  evidenceLabel: Owner-stated
+  authoringRevision: v0.9.0-r6 -> v0.9.0-r7
+  dsVersion: "0.9.0"
+  colorSet: color-srgb-05          # unchanged
+  kitVersion: lds-kit-0.9.0-r4     # unchanged
+  packageRevision: v0.9.0-mp1
+  firstImplementingArtifactBuild: ui-20260821-05
+
+trigger:
+  instruction: >-
+    Generate the machine specification package the master defines in full — schemas, rule
+    ledger, preflight — the piece that had never been generated; then deliver the updated
+    normative master.
+
+generated:
+  location: deployment/machine/v0.9.0/
+  generator: tools/generate-machine-package.py
+  validator: tools/validate-machine-package.mjs (dependency-free; runs inside validate-release)
+  report: machine/v0.9.0/validation-report.json
+  layout: >-
+    core.md; build-card.schema.json; manifest.schema.json; connector/growth/web-discovery/
+    social-previews schemas; tokens.json envelope (Token Schema 6 + provenance) with tokens.css
+    and tokens.ts projections; surface-recipes.json (registry references, no duplication);
+    color-delivery.json; font/media/identity manifests (hashes and boundaries only);
+    components.json; fixtures.json; page-kinds.json; 11 profiles/*.json; 20 packs/*.json;
+    voice-recipes.md (verbatim Appendix D); self-check.map.json (23 items);
+    preflight.yml (rule-ID keyed; both banned OKLCh windows; ten retired values; kit byte
+    hashes; manifest.html.match fields); build-kit/ (E1/E2/E3 verbatim);
+    v0.8.9-to-v0.9.0-rule-ledger.json (every v0.8.9 rule ID mapped; [SEARCH-01] rename
+    recorded); source fingerprint; package.json + SHA256SUMS.txt.
+
+signOffCondition:
+  carriedFrom: original v0.9.0 approval — "Thai display leading 1.16 still needs rendered
+    stress fixtures before machine-package sign-off"
+  dischargedBy: tools/check-thai-display-leading.mjs -> qa/v0.9.0-thai-leading.json
+  method: pixel-true inter-line ink overlap (per-line rasters intersected at the real 1.16
+    offset) + canvas ink extents + DOM clip checks; both governed viewports; weights 400/600;
+    same-string pairs plus adversarial descender-over-stack cross pairs
+  result: >-
+    Observed fact — no DOM clipping anywhere; same-string pairs never actually collide; but
+    9 of 12 adversarial cross pairs collide, up to 15 px deep at 80 px display size
+    (deep descenders over tall mark stacks). These are recorded as owner findings against the
+    owner's normative value --leading-display-th: 1.16, which this amendment does NOT change.
+    Until the owner rules, composed display text SHOULD avoid deep-descender lines directly
+    above stack-heavy lines at display sizes; the perceptual manual gate stays open.
+
+boundaries:
+  - Package-level validation = internal consistency of the specification only; it never
+    certifies a downstream artifact, and this playground's machineValidation stays pending
+    while qa/v0.9.0-manual-gates.md remains open.
+  - Protected binaries stay excluded; identity/media/font manifests record hashes and use
+    boundaries only.
+  - Pre-v0.8.9 migration ledgers and the v0.8.7 Thai voice fixtures ship as explicit
+    not_regenerated_source_external boundary records; their sources are frozen in their own
+    package versions outside this repository.
+  - The v0.8.9 rule ledger reads the repository's baseline authoring master variant
+    (sha 00d93125...) and records the canonical predecessor sha (827f4d85...) alongside it.
+
+releaseMechanics: >-
+  UI-only change: page release-status texts updated to the truthful generated state, so
+  append-only artifact build ui-20260821-05 is minted; ui-20260821-04 and every predecessor
+  stay byte-frozen. Color Set and kit unchanged.
+
+scopeOfApproval: >-
+  Approves the generated package v0.9.0-mp1 as the machine specification package for
+  DS 0.9.0 at authoring r7 and discharges the rendered-stress-fixture condition with the
+  evidence above. It does not certify artifact-level conformance, does not close any manual
+  gate, does not change --leading-display-th, and raises no artifact's evidenceStatus,
+  indexable, or machineValidation state.

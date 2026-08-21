@@ -62,13 +62,14 @@ jobs:
           EXPECTED_EVIDENCE_STATUS: source_limited
           EXPECTED_INDEXABLE: "false"
           EXPECTED_MACHINE_VALIDATION: pending
-          EXPECTED_ARTIFACT_BUILD: ui-20260821-04
+          EXPECTED_ARTIFACT_BUILD: ui-20260821-05
           VERIFY_EXACT_SOURCE: "true"
           LOCAL_DEPLOYMENT_DIR: deployment
           VERIFY_ATTEMPTS: "30"
           VERIFY_DELAY_MS: "10000"
           CRITICAL_ASSETS: >-
             landometer-design-system-v0.9.0-standalone.html,
+            landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html,
             landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html,
             landometer-design-system-v0.9.0-standalone.color-srgb-05.html,
             landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html,
@@ -83,6 +84,11 @@ jobs:
             qa/v0.9.0-automated.json,
             qa/v0.9.0-scale-geometry.json,
             qa/v0.9.0-gradient-contrast.json,
+            qa/v0.9.0-container-fit.json,
+            qa/v0.9.0-rendered-affordances.json,
+            qa/v0.9.0-thai-leading.json,
+            machine/v0.9.0/package.json,
+            machine/v0.9.0/validation-report.json,
             implementation-notes.v0.9.0.md,
             llms.txt,
             assets/images/landometer-symbol-transparent.png
