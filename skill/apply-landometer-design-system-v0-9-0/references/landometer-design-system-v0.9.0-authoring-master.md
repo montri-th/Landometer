@@ -1,7 +1,7 @@
 # Landometer Design System v0.9.0
 
 **Release:** v0.9.0
-**Authoring revision:** v0.9.0-r5 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9); same-day owner amendment adding `[REVEAL-01]` and self-check items SC-21 and SC-22 (§5.13A, §C9); third owner amendment of the same day adding self-check item SC-23 — rendered icon anatomy inside actions — after `ui-20260821-02` passed SC-21 while icon-bearing capsules still laid the glyph on the text baseline, together with four recorded resolutions: page-wide kit anatomy adoption, the skip-link return to the kit shape, the dead pre-`[ICON-01]` rule purge, and the automated-evidence re-record (§6.2A, §C9)
+**Authoring revision:** v0.9.0-r6 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9); same-day owner amendment adding `[REVEAL-01]` and self-check items SC-21 and SC-22 (§5.13A, §C9); third owner amendment of the same day adding self-check item SC-23 — rendered icon anatomy inside actions — after `ui-20260821-02` passed SC-21 while icon-bearing capsules still laid the glyph on the text baseline, together with four recorded resolutions: page-wide kit anatomy adoption, the skip-link return to the kit shape, the dead pre-`[ICON-01]` rule purge, and the automated-evidence re-record (§6.2A, §C9); fourth owner amendment of the same day re-tuning the `[REVEAL-01]` entrance to the rise profile — slower, farther, sequenced piece by piece — which changes the token source and therefore mints Color Set `color-srgb-05` and kit `lds-kit-0.9.0-r4` with every colour, gradient, and scale value byte-identical to `color-srgb-04` (§C9)
 **Manifest version:** 2.1 — closed extension of Manifest 2.0 carrying the new v0.9.0 records; Manifest 2.0 artifacts remain readable historical evidence and MUST NOT be emitted as current conformance
 **Token schema version:** 6 — unchanged. Per the 2026-08-20 purple/brown purge, v0.9.0 replaces ten brown/plum-toned token values (six new raw values + four reassignments of existing registry values) and therefore mints Color Set `color-srgb-03`; `color-srgb-02` and `color-srgb-01` remain immutable evidence. All other values, including every gradient recipe, are unchanged (ledger in §C9)
 **Build Card schema version:** 0.9.0
@@ -1602,8 +1602,8 @@ Any conflict in those fields is P0. A Thai-only naturalness review occurs first;
 Motion explains feedback, state, sequence, or cause → effect. It does not manufacture energy. When `motionEnhancement: false`, nonessential reveal/stagger motion is omitted; feedback and reduced-motion/no-JavaScript meaning still work.
 
 - Primary proof is visible immediately.
-- Use 2–5 items for a meaningful stagger, `60ms` apart, `240ms` maximum group delay.
-- Default reveal duration is `400ms`, distance `12px`, and it runs once.
+- Use 2–5 items for a meaningful stagger, `120ms` apart, `600ms` maximum group delay, so the sequence reads piece by piece (owner amendment 2026-08-21, rise refinement).
+- Default reveal duration is `640ms`, distance `20px`, and it runs once.
 - State changes normally finish in `120–280ms`.
 - Motion MUST NOT use bounce, repeated pulse, shimmer, orbit, map parallax, or decorative autoplay.
 - No-JavaScript and reduced-motion states show the complete final meaning immediately.
@@ -1628,7 +1628,7 @@ Landometer motion has one recognizable signature, internally named **Riddim**: r
 
 | Signature pattern | Exact recipe | Where it applies |
 |---|---|---|
-| **Skank stagger** | 2–5 items, `--motion-delay-stagger` 60ms apart, group cap `--motion-delay-stagger-cap` 240ms, each item `--motion-duration-reveal` 400ms with `--motion-ease-enter`, runs once | list/card/evidence reveals under `guided` or `expressive_short` intensity |
+| **Skank stagger** | 2–5 items, `--motion-delay-stagger` 120ms apart, group cap `--motion-delay-stagger-cap` 600ms, each item `--motion-duration-reveal` 640ms with `--motion-ease-enter`, runs once | list/card/evidence reveals under `guided` or `expressive_short` intensity |
 | **One-drop settle** | the arriving panel, receipt, or result lands once with `--motion-ease-settle` (single soft ≤8% overshoot, one pass, never a loop) over 200–400ms | receipts, result panels, dialog entry; the moving form of `motion.depth.receiptStack` and `motion.hook.rewardReveal` |
 | **Downbeat press** | `motion.cta.depthPress` 120ms, translate ≤ `--motion-distance-feedback` 2px, immediate return | every button press acknowledgement |
 | **Offbeat count-up** | a metric/score pauses one `--motion-delay-stagger` beat after its object appears, then resolves within `--motion-duration-chart` 360ms | `motion.meter.sweep` contexts |
@@ -3310,12 +3310,12 @@ Breakpoints: `xs 360`, `sm 600`, `md 900`, `lg 1200`, `xl 1600`.
   --motion-duration-state: 200ms;
   --motion-duration-map: 280ms;
   --motion-duration-chart: 360ms;
-  --motion-duration-reveal: 400ms;
+  --motion-duration-reveal: 640ms;
   --motion-duration-emphasis: 560ms;
-  --motion-delay-stagger: 60ms;
-  --motion-delay-stagger-cap: 240ms;
+  --motion-delay-stagger: 120ms;
+  --motion-delay-stagger-cap: 600ms;
   --motion-distance-feedback: 2px;
-  --motion-distance-reveal: 12px;
+  --motion-distance-reveal: 20px;
   --motion-ease-state: cubic-bezier(.2,0,0,1);
   --motion-ease-enter: cubic-bezier(.16,1,.3,1);
   --motion-ease-settle: cubic-bezier(.2,.9,.25,1.08); /* Riddim one-drop settle — single soft landing, one pass; guided/expressive_short only */
@@ -3323,7 +3323,7 @@ Breakpoints: `xs 360`, `sm 600`, `md 900`, `lg 1200`, `xl 1600`.
 }
 ```
 
-The two `--motion-ease-*` additions are the only v0.9.0 motion changes; every duration, stagger, distance, and semantic alias value is unchanged, so approved v0.8.9 deployments remain timing-identical. The Riddim signature recipes in `[MOTION-01]` consume these tokens; no build defines its own curves.
+The two `--motion-ease-*` additions were the only motion changes at v0.9.0-r1. The 2026-08-21 rise refinement (§C9, fourth round) then re-tuned the four entrance values — `--motion-duration-reveal` 400→640ms, `--motion-delay-stagger` 60→120ms, `--motion-delay-stagger-cap` 240→600ms, `--motion-distance-reveal` 12→20px — so approved v0.8.9 deployments remain timing-identical everywhere except the entrance profile. Every other duration and every semantic alias value is unchanged. The Riddim signature recipes in `[MOTION-01]` consume these tokens; no build defines its own curves.
 
 Semantic motion aliases preserve the exact Schema 5 meanings:
 
@@ -3737,6 +3737,18 @@ Also recorded: **a §C9 sequencing defect in the r4 revision of this file.** The
 
 **Scope of the third-round amendment.** Presentation conformance, evidence records, and the self-check ledger only. No token, gradient, scale, colour, or typography value changes, so Color Set `color-srgb-04` is unchanged and no new Color Set is minted; the kit token block is unchanged, so the kit stays `lds-kit-0.9.0-r3` (the page adopts kit bytes; the kit itself gains only its SC-23 comment line). Artifact build **`ui-20260821-03`** is minted append-only; `ui-20260821-02` and every predecessor remain immutable evidence. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r5**.
 
+**Owner amendment (2026-08-21, same day, fourth round): the rise refinement of `[REVEAL-01]`, minting Color Set `color-srgb-05` and kit `lds-kit-0.9.0-r4`.** Reviewing the entrance before publication, the owner directed that each component should rise the way Canva's "Rise" behaves — drifting upward gently, sequenced piece by piece — and reported the shipped profile as much too fast ("ตอนนี้เร็วไปมาก") (Owner-stated, recorded in `normative-patches/landometer-design-system-v0.9.0-reveal-rise.approval.yml`).
+
+**What changed, exactly.** Four existing motion token values are re-tuned; no token is added or renamed, so `[REVEAL-01]` rule 6 — existing tokens only — still holds: `--motion-duration-reveal` 400→**640ms**, `--motion-delay-stagger` 60→**120ms**, `--motion-delay-stagger-cap` 240→**600ms**, `--motion-distance-reveal` 12→**20px**. The eases are untouched: `--motion-ease-enter` still carries opacity and `--motion-ease-settle` still lands the one-drop, so the signature keeps its character at the slower tempo. The page failsafe grew with it (2400ms, above cap + duration) so it can never snap a running entrance, and the SC-22 probes wait out the longer profile before measuring.
+
+**Why this mints a Color Set with no colour change.** These values live in the token registry (`assets/data/tokens.json`), and the identity rule in this master is written wider than colour on purpose: *"A governed color, gradient, token source, or analytical scale source change MUST mint a new Color Set ID"* — the Color Set ID is the parity key for the whole token delivery, and two artifacts with different token bytes must never claim the same delivery identity. So this amendment mints **`color-srgb-05`** on the letter of that rule, with every colour, gradient, and analytical scale value byte-identical to `color-srgb-04`; the registry records the mint reason as the motion token source. The kit token block changes with it, so the kit advances to **`lds-kit-0.9.0-r4`**. `color-srgb-04`, its baseline, and its published builds remain immutable evidence, and the `color-srgb-04` registry is archived at `assets/data/color-delivery.v0.9.0.color-srgb-04.json`.
+
+**A prepared build withdrawn before publication.** `ui-20260821-03` had been prepared for the third-round amendment but was never merged, deployed, or published anywhere. It is withdrawn rather than frozen — immutability attaches at publication — and its id is not reused: this amendment's build is **`ui-20260821-04`**, pinned as `landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html`, superseding the last published build `ui-20260821-02`.
+
+**Also repaired: a shipped kit-header drift.** The Appendix E kit headers still declared `lds-kit-0.9.0-r3 · Color Set color-srgb-03` in every revision since the r2 amendment minted `color-srgb-04` — the kit version advanced while its own headers did not, so a builder copying the kit verbatim stamped a wrong Color Set into new work. The r4 kit headers now carry `lds-kit-0.9.0-r4 · Color Set color-srgb-05`, and keeping them true is part of the kit bump this amendment performs. The Build Card carried the same class of defect: its `deliveryIdentity` block still declared `color-srgb-04 / ui-20260820-02` with hashes from that era while `currentArtifactBuild` advanced — repaired to the current identity here, and the validator now pins both.
+
+**Scope of the fourth-round amendment.** Motion token values, the kit headers, the entrance profile, and the release identity only. No colour, gradient, scale, typography, spacing, or rule text beyond the values named above changes. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r6**.
+
 **Scope of this approval.** It makes the rules binding and authorizes Color Set `color-srgb-03`. It does **not** certify package-level conformance, does not pre-pass any artifact QA, does not approve any media, identity, or font asset, and raises no artifact's `evidenceStatus`, `indexable`, or `machineValidation` state. Conditions carried forward: Thai display leading `1.16` still needs rendered stress fixtures before machine-package sign-off; media and identity assets remain `approval_missing`/`internal_only` until their manifests ship inside a validated package; gated growth mechanics stay at their ungated fallback until `[ABUSE-INTEGRITY-01]` contracts exist; skills and instructions pinned to v0.8.8 are re-pinned to v0.9.0.
 
 # Appendix D — Reference-only Thai voice recipe and approved structural fixtures
@@ -3824,7 +3836,7 @@ Fixture review asks:
 An approved fixture may use `ยืนยันได้` only when the governed truth state is explicitly verified. It MUST NOT convert provisional, modelled, proxy, or recommendation status into verified fact.
 # Appendix E — Deterministic Build Kit `[KIT-01]`
 
-**Kit version:** `lds-kit-0.9.0-r3` · **Color Set:** `color-srgb-03` · **Token Schema:** 6
+**Kit version:** `lds-kit-0.9.0-r4` · **Color Set:** `color-srgb-05` · **Token Schema:** 6
 
 This appendix exists because the same master produced different builds: theme init, focus styles, button geometry, token-name mappings, and receipt metadata were re-derived from prose every time, and the small differences forced redeploys. The kit ships those decisions as **canonical bytes**. It is build material, not reading material.
 
@@ -3843,7 +3855,7 @@ This appendix exists because the same master produced different builds: theme in
 ```css
 /* ============================================================
    Landometer Design System v0.9.0 — lds-tokens.css
-   Kit lds-kit-0.9.0-r3 · Color Set color-srgb-03 · Token Schema 6
+   Kit lds-kit-0.9.0-r4 · Color Set color-srgb-05 · Token Schema 6
    Copy verbatim. Do not edit values. [TOKEN-01]
    ============================================================ */
 :root {
@@ -3993,12 +4005,12 @@ This appendix exists because the same master produced different builds: theme in
   --motion-duration-state: 200ms;
   --motion-duration-map: 280ms;
   --motion-duration-chart: 360ms;
-  --motion-duration-reveal: 400ms;
+  --motion-duration-reveal: 640ms;
   --motion-duration-emphasis: 560ms;
-  --motion-delay-stagger: 60ms;
-  --motion-delay-stagger-cap: 240ms;
+  --motion-delay-stagger: 120ms;
+  --motion-delay-stagger-cap: 600ms;
   --motion-distance-feedback: 2px;
-  --motion-distance-reveal: 12px;
+  --motion-distance-reveal: 20px;
   --motion-ease-state: cubic-bezier(.2,0,0,1);
   --motion-ease-enter: cubic-bezier(.16,1,.3,1);
   --motion-ease-settle: cubic-bezier(.2,.9,.25,1.08);
@@ -4093,7 +4105,7 @@ This appendix exists because the same master produced different builds: theme in
 ```css
 /* ============================================================
    Landometer Design System v0.9.0 — lds-base.css
-   Kit lds-kit-0.9.0-r3 · Copy verbatim after lds-tokens.css.
+   Kit lds-kit-0.9.0-r4 · Copy verbatim after lds-tokens.css.
    Contains no raw hex: every value derives from tokens.
    The reduced-motion kill switch is the only sanctioned !important.
    ============================================================ */
@@ -4347,7 +4359,7 @@ Replace `[placeholders]` from the validated Build Card; everything else stays by
 
 ```yaml
 selfCheck:
-  kit: lds-kit-0.9.0-r3
+  kit: lds-kit-0.9.0-r4
   SC-01: pass   # identity attributes + landometer:* receipt metas
   SC-02: pass   # theme init inline before styles
   SC-03: pass   # token block verbatim; no hex outside it
