@@ -1,14 +1,14 @@
 {
   "meta": {
-    "id": "color-srgb-04",
+    "id": "color-srgb-03",
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r2",
+    "authoringRevision": "v0.9.0-r1",
     "status": "owner_approved_authoring_contract_package_validation_pending",
     "createdAt": "2026-08-20",
-    "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
+    "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
     "currentArtifactBuild": {
-      "id": "ui-20260820-02",
-      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html"
+      "id": "ui-20260820-01",
+      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html"
     },
     "latestAliases": [
       "index.html",
@@ -16,13 +16,7 @@
     ],
     "supersedes": "color-srgb-02 (immutable v0.8.9 baseline)",
     "changeNote": "2026-08-20 purple/brown purge: 10 token positions replaced (6 new raw values #A64A00 #A87B00 #5C6A61 #7B877D #A7B3A9 #93A398; 4 reassignments of existing registry values B23F74/F06FA6/7C8A84/8D9D99); every other value carried unchanged from color-srgb-02",
-    "approvalRef": "normative-patches/landometer-design-system-v0.9.0.approval.yml",
-    "amendedAt": "2026-08-20",
-    "amendmentRecord": "normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml",
-    "previousColorSet": {
-      "id": "color-srgb-03",
-      "frozenRegistryEvidence": "assets/data/color-delivery.v0.9.0.color-srgb-03.json"
-    }
+    "approvalRef": "normative-patches/landometer-design-system-v0.9.0.approval.yml"
   },
   "delivery": {
     "range": "SDR",
@@ -47,8 +41,8 @@
     "authoringMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.0.md",
       "revision": "v0.9.0-r1",
-      "bytes": 383022,
-      "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa"
+      "bytes": 379865,
+      "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
@@ -79,24 +73,6 @@
       "bytes": 2129394,
       "sha256": "db186208abddfebf8957f4f8b2373f4c4fcf2ccfcd3c7201aa94145b6e661202",
       "status": "append_only"
-    },
-    {
-      "id": "color-baseline-20260820-02",
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
-      "role": "immutable_color_baseline",
-      "colorRegistryId": "color-srgb-04",
-      "status": "append_only",
-      "bytes": 2129858,
-      "sha256": "65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01"
-    },
-    {
-      "id": "ui-20260820-02",
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
-      "role": "immutable_ui_build",
-      "colorRegistryId": "color-srgb-04",
-      "status": "append_only",
-      "bytes": 2129863,
-      "sha256": "c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f"
     }
   ],
   "sharedAtmosphereGradients": [
@@ -534,14 +510,12 @@
     },
     "citywiki": {
       "light": [
-        "#F7CBC7",
-        "#FBD1B6",
-        "#F1E0B4"
+        "#176B82",
+        "#007E79"
       ],
-      "lightAliasOf": "atmosphere.gradient.cultivate.mist",
       "dark": [
-        "#F2F1DF",
-        "#E0B443"
+        "#59C7E8",
+        "#3BD3CB"
       ]
     },
     "citychat": {
@@ -556,14 +530,12 @@
     },
     "ijji": {
       "light": [
-        "#C4E0EE",
-        "#B2E2E2",
-        "#CCE6D0"
+        "#C52C00",
+        "#B23F74"
       ],
-      "lightAliasOf": "atmosphere.gradient.ground.mist",
       "dark": [
-        "#59C7E8",
-        "#3BD3CB"
+        "#FF8A4C",
+        "#F06FA6"
       ]
     }
   },

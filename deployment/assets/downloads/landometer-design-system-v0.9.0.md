@@ -1,7 +1,7 @@
 # Landometer Design System v0.9.0
 
 **Release:** v0.9.0
-**Authoring revision:** v0.9.0-r1 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority
+**Authoring revision:** v0.9.0-r2 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`
 **Manifest version:** 2.1 — closed extension of Manifest 2.0 carrying the new v0.9.0 records; Manifest 2.0 artifacts remain readable historical evidence and MUST NOT be emitted as current conformance
 **Token schema version:** 6 — unchanged. Per the 2026-08-20 purple/brown purge, v0.9.0 replaces ten brown/plum-toned token values (six new raw values + four reassignments of existing registry values) and therefore mints Color Set `color-srgb-03`; `color-srgb-02` and `color-srgb-01` remain immutable evidence. All other values, including every gradient recipe, are unchanged (ledger in §C9)
 **Build Card schema version:** 0.9.0
@@ -3043,12 +3043,12 @@ Migration aliases and independently governed product/motif records:
 | `dark.signature.sky` | deprecated signature role; raw `#68C4E2` remains valid only under separately governed roles such as `dark.interaction.accent` |
 | `product.citymeter.gradient.start.light` / `.end.light` | `#12669B` / `#36BCE4` |
 | `product.citymeter.gradient.start.dark` / `.end.dark` | `#4C99D5` / `#59C7E8` |
-| `product.citywiki.gradient.start.light` / `.end.light` | `#176B82` / `#007E79` |
-| `product.citywiki.gradient.start.dark` / `.end.dark` | `#59C7E8` / `#3BD3CB` |
+| `product.citywiki.gradient.light` | `#F7CBC7 0%` · `#FBD1B6 50%` · `#F1E0B4 100%` — exact alias of `atmosphere.gradient.cultivate.mist` (2026-08-20 owner amendment; ink foreground `#182327`/`#293337` ≥10.94:1, bare white prohibited) |
+| `product.citywiki.gradient.start.dark` / `.end.dark` | `#F2F1DF` / `#E0B443` — 2026-08-20 owner amendment; ink foreground ≥8.24:1 (`#182327`) |
 | `product.citychat.gradient.start.light` / `.end.light` | `#007A58` / `#007E79` |
 | `product.citychat.gradient.start.dark` / `.end.dark` | `#3BD19B` / `#3BD3CB` |
-| `product.ijji.gradient.start.light` / `.end.light` | `#C52C00` / `#B23F74` |
-| `product.ijji.gradient.start.dark` / `.end.dark` | `#FF8A4C` / `#F06FA6` |
+| `product.ijji.gradient.light` | `#C4E0EE 0%` · `#B2E2E2 50%` · `#CCE6D0 100%` — exact alias of `atmosphere.gradient.ground.mist` (2026-08-20 owner amendment; ink foreground `#182327`/`#293337` ≥11.36:1, bare white prohibited) |
+| `product.ijji.gradient.start.dark` / `.end.dark` | `#59C7E8` / `#3BD3CB` — 2026-08-20 owner amendment; previously the CityWiki dark pair, released by CityWiki the same day; ink foreground ≥8.21:1 (`#182327`) |
 | `motif.gradient.brandSignature` | exact asset-only alias of `atmosphere.gradient.measure.deep`, including `#176B82 54%` |
 | `motif.gradient.civicCool` | `#147A9F → #3BD3CB → #3BD19B` |
 | `motif.gradient.civicWarm` | `#C33F55 → #FF8A4C → #F4C44E` |
@@ -3632,6 +3632,17 @@ v0.9.0-r1 replaces v0.8.9-r1 as the binding authoring master from this date. The
 
 **Post-approval alignment (2026-08-20, owner-instructed).** Before publication the owner directed a content check of Master Brand Brief v0.5.3 (2026-08-20) against this master. Verified: v0.5.3 §1.1 carries the Cultural activation unchanged — **Let us cultivate our city with data.** — and v0.5.3 §4.3/§4.4 store no colour or font values, pointing instead to the current approved Design System, so no value-level conflict exists. The two forward-looking brand-brief citations (the §0 authority list and §3.2 `[BRAND-01]`) now cite v0.5.3; the v0.5.2 citations inside the historical v0.8.8/v0.8.9 lineage records remain unchanged as history. Every post-submission change to this file's hash is recorded in `normative-patches/landometer-design-system-v0.9.0.approval.yml`.
 
+**Owner amendment (2026-08-20, same day, after first publication): ijji and CityWiki product identity gradients.** The owner directed new identity gradients in this session (Owner-stated instruction, recorded in `normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml`):
+
+| Product · theme | Before (color-srgb-03) | After (color-srgb-04) |
+|---|---|---|
+| ijji · light | `#C52C00 → #B23F74` | `#C4E0EE 0% · #B2E2E2 50% · #CCE6D0 100%` — exact alias of `atmosphere.gradient.ground.mist` |
+| ijji · dark | `#FF8A4C → #F06FA6` | `#59C7E8 → #3BD3CB` (pair released by CityWiki the same day) |
+| CityWiki · light | `#176B82 → #007E79` | `#F7CBC7 0% · #FBD1B6 50% · #F1E0B4 100%` — exact alias of `atmosphere.gradient.cultivate.mist` |
+| CityWiki · dark | `#59C7E8 → #3BD3CB` | `#F2F1DF → #E0B443` (`#E0B443` is the amendment's one new raw value, product-gradient-only) |
+
+CityMETER and CityChat are unchanged. Computed WCAG floors over 1,001 linear-sRGB samples (Observed fact, this amendment's QA run): ijji light ink `#182327` ≥11.36:1 / `#293337` ≥9.16:1; ijji dark ink ≥8.21:1; CityWiki light ink ≥10.94:1 / ≥8.82:1; CityWiki dark ink ≥8.24:1. Both new light fields prohibit bare white foregrounds (white minima 1.31–1.33:1); their foreground contract is the mist recipes' existing `surfaceForeground.onLight` ink pair. Boundary of the aliases: inside an ijji or CityWiki product surface the aliased field reads as that product's identity; everywhere else the same recipe remains the shared Ground/Cultivate atmosphere; neither reading ever encodes data magnitude or semantic state, and the alias is declared in the registry (`lightAliasOf`), never a duplicated palette. Per the registry identity rule this amendment mints Color Set **`color-srgb-04`** and artifact build **`ui-20260820-02`**; `color-srgb-03`, `ui-20260820-01`, and their pinned artifacts remain immutable evidence and are never redefined. The kit token block changes with it, so the kit version advances to **`lds-kit-0.9.0-r3`** (migration: copy the new E1 bytes; only the two `--product-*-gradient` pairs differ). The retired assignments' raw values remain governed elsewhere (`#C52C00`/`#FF8A4C` as `series.02`, `#B23F74`/`#F06FA6` as `series.10` and the trade-off diverging anchors); no value leaves the registry. This amendment is the reason this file's authoring revision is **v0.9.0-r2**.
+
 **Scope of this approval.** It makes the rules binding and authorizes Color Set `color-srgb-03`. It does **not** certify package-level conformance, does not pre-pass any artifact QA, does not approve any media, identity, or font asset, and raises no artifact's `evidenceStatus`, `indexable`, or `machineValidation` state. Conditions carried forward: Thai display leading `1.16` still needs rendered stress fixtures before machine-package sign-off; media and identity assets remain `approval_missing`/`internal_only` until their manifests ship inside a validated package; gated growth mechanics stay at their ungated fallback until `[ABUSE-INTEGRITY-01]` contracts exist; skills and instructions pinned to v0.8.8 are re-pinned to v0.9.0.
 
 # Appendix D — Reference-only Thai voice recipe and approved structural fixtures
@@ -3719,7 +3730,7 @@ Fixture review asks:
 An approved fixture may use `ยืนยันได้` only when the governed truth state is explicitly verified. It MUST NOT convert provisional, modelled, proxy, or recommendation status into verified fact.
 # Appendix E — Deterministic Build Kit `[KIT-01]`
 
-**Kit version:** `lds-kit-0.9.0-r2` · **Color Set:** `color-srgb-03` · **Token Schema:** 6
+**Kit version:** `lds-kit-0.9.0-r3` · **Color Set:** `color-srgb-03` · **Token Schema:** 6
 
 This appendix exists because the same master produced different builds: theme init, focus styles, button geometry, token-name mappings, and receipt metadata were re-derived from prose every time, and the small differences forced redeploys. The kit ships those decisions as **canonical bytes**. It is build material, not reading material.
 
@@ -3738,7 +3749,7 @@ This appendix exists because the same master produced different builds: theme in
 ```css
 /* ============================================================
    Landometer Design System v0.9.0 — lds-tokens.css
-   Kit lds-kit-0.9.0-r2 · Color Set color-srgb-03 · Token Schema 6
+   Kit lds-kit-0.9.0-r3 · Color Set color-srgb-03 · Token Schema 6
    Copy verbatim. Do not edit values. [TOKEN-01]
    ============================================================ */
 :root {
@@ -3803,9 +3814,9 @@ This appendix exists because the same master produced different builds: theme in
 
   /* Product identity gradients (A4) — only inside the owning product */
   --product-citymeter-gradient: linear-gradient(135deg, #12669B 0%, #36BCE4 100%);
-  --product-citywiki-gradient: linear-gradient(135deg, #176B82 0%, #007E79 100%);
+  --product-citywiki-gradient: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
   --product-citychat-gradient: linear-gradient(135deg, #007A58 0%, #007E79 100%);
-  --product-ijji-gradient: linear-gradient(135deg, #C52C00 0%, #B23F74 100%);
+  --product-ijji-gradient: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
 
   /* Local foreground contracts (A4.1 — exact) */
   --fg-on-deep-primary: #FFFFFF;
@@ -3963,9 +3974,9 @@ This appendix exists because the same master produced different builds: theme in
   --on-atmosphere-cultivate: var(--fg-on-light-primary);
   --on-atmosphere-cultivate-2: var(--fg-on-light-secondary);
   --product-citymeter-gradient: linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);
-  --product-citywiki-gradient: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
+  --product-citywiki-gradient: linear-gradient(135deg, #F2F1DF 0%, #E0B443 100%);
   --product-citychat-gradient: linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);
-  --product-ijji-gradient: linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);
+  --product-ijji-gradient: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
   --series-01: #FF6B7F; --series-02: #FF8A4C; --series-03: #F4C44E;
   --series-04: #B5E34E; --series-05: #3BD19B; --series-06: #3BD3CB;
   --series-07: #59C7E8; --series-08: #4C99D5; --series-09: #A9C4C7;
@@ -3988,7 +3999,7 @@ This appendix exists because the same master produced different builds: theme in
 ```css
 /* ============================================================
    Landometer Design System v0.9.0 — lds-base.css
-   Kit lds-kit-0.9.0-r2 · Copy verbatim after lds-tokens.css.
+   Kit lds-kit-0.9.0-r3 · Copy verbatim after lds-tokens.css.
    Contains no raw hex: every value derives from tokens.
    The reduced-motion kill switch is the only sanctioned !important.
    ============================================================ */
@@ -4242,7 +4253,7 @@ Replace `[placeholders]` from the validated Build Card; everything else stays by
 
 ```yaml
 selfCheck:
-  kit: lds-kit-0.9.0-r2
+  kit: lds-kit-0.9.0-r3
   SC-01: pass   # identity attributes + landometer:* receipt metas
   SC-02: pass   # theme init inline before styles
   SC-03: pass   # token block verbatim; no hex outside it

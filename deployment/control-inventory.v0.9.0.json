@@ -322,7 +322,7 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "Browser download starts for the exact Markdown master",
       "recovery": "Open the same-origin href directly",
-      "finalState": "The 379,865-byte owner-approved v0.9.0-r1 Markdown file is available locally",
+      "finalState": "The 383,022-byte owner-approved v0.9.0-r2 Markdown file is available locally",
       "failureRecovery": "Open the same-origin href directly or use the Resources group",
       "browserTest": "Inspect #download-system href and download attribute; request the href and assert HTTP 200, 269767 bytes, and SHA-256 00d931254d21931952d29fdde7a00e2c3a5b4f875504a1bf72fee316bf5d4e68."
     },
@@ -610,7 +610,7 @@
       "keyboardTouch": "Enter or touch",
       "feedback": "The same-origin non-normative artifact application record opens",
       "recovery": "Use browser Back",
-      "finalState": "The note visibly distinguishes artifact-specific implementation evidence from the owner-approved v0.9.0-r1 master",
+      "finalState": "The note visibly distinguishes artifact-specific implementation evidence from the owner-approved v0.9.0-r2 master",
       "failureRecovery": "Open the same-origin path directly from the repository",
       "browserTest": "Inspect #resource-implementation-notes href/type; request it and assert HTTP 200, accepted artifact-record/non-normative authority, IMPL-SHARE-01, IMPL-SEARCH-EXT-01, IMPL-AI-EXT-01, and IMPL-EXAMPLE-01."
     },
@@ -641,7 +641,7 @@
     {
       "id": "resource-refinement-skill",
       "accessibleName": "Open v0.9.0 skill",
-      "userJob": "Apply or audit work against the owner-approved v0.9.0-r1 authoring master",
+      "userJob": "Apply or audit work against the owner-approved v0.9.0-r2 authoring master",
       "effect": "Navigate to the project-versioned skill folder in the public repository",
       "keyboardTouch": "Enter or touch",
       "feedback": "The version-locked authoring skill folder opens in a new tab",
@@ -654,7 +654,7 @@
       "id": "resource-standalone",
       "accessibleName": "Download standalone HTML",
       "userJob": "Keep or hand off the exact current Color Set and UI build as one self-contained file",
-      "effect": "Download landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
+      "effect": "Download landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
       "keyboardTouch": "Enter or touch",
       "feedback": "The browser downloads the single-file snapshot",
       "recovery": "Open the same-origin href directly or return to Resources",
@@ -790,5 +790,5 @@
       "navigationOrEffect": "external navigation (rel=noopener)"
     }
   ],
-  "artifactBuild": "ui-20260820-01"
+  "artifactBuild": "ui-20260820-02"
 }

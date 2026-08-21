@@ -1,12 +1,12 @@
 landometerBuild:
   dsVersion: 0.9.0
-  authoringRevision: v0.9.0-r1
+  authoringRevision: v0.9.0-r2
   schemas:
     buildCard: 0.9.0
     manifest: 2.1
     tokens: 6
   colorDelivery:
-    registryId: color-srgb-03
+    registryId: color-srgb-04
     registryPath: assets/data/color-delivery.v0.9.0.json
     range: SDR
     colorSpace: sRGB IEC 61966-2-1
@@ -20,7 +20,7 @@ landometerBuild:
       sha256: 83bee2ed86f55c3a01914ce2826f294b90e8f7d77f7eef4dc02b9b1cc4d4cdb1
     gradientRegistry:
       id: landometer-atmosphere-gradient-v2
-      colorSetId: color-srgb-03
+      colorSetId: color-srgb-04
       delivery: exact six-digit SDR sRGB; explicit in srgb interpolation where supported with byte-equivalent legacy fallback
       canonicalAngle: 135deg
       gradientStopOnlyValues:
@@ -110,7 +110,7 @@ landometerBuild:
       contrastEvidence:
         path: qa/v0.9.0-gradient-contrast.json
         bytes: 5935
-        sha256: 7db04788e534bc137b03319f56102a54523f6845ddcbca18bdd824b49e64599f
+        sha256: 81945de3e234a057bcf9fd3b994f1fb222e87c97571e6567ed9e7768f5f0dad7
         status: passed · 7 gradients × 1001 samples × 2 foregrounds · 14014 comparisons · 0 failures
         tokenPreflightMethod: 1001 positions under exact sRGB interpolation
         floors:
@@ -132,26 +132,26 @@ landometerBuild:
     adaptiveTheme: system is a user preference, not a visual-baseline state
     latestAliases: [index.html, landometer-design-system-v0.9.0-standalone.html]
     immutableColorBaseline:
-      path: landometer-design-system-v0.9.0-standalone.color-srgb-03.html
-      registryMarker: data-color-registry="color-srgb-03"
+      path: landometer-design-system-v0.9.0-standalone.color-srgb-04.html
+      registryMarker: data-color-registry="color-srgb-04"
       buildChannelMarker: data-build-channel="immutable-color-set"
-      bytes: 2129389
-      sha256: 88a65d8678dcf8a08b2c942bfc0298a53a14c09c4cf697c600d6d029c6367020
+      bytes: 2129858
+      sha256: 65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01
       integrityMode: append-only Color Set baseline; never rewritten for a UI-only change
       status: preserved byte-for-byte
     currentArtifactBuild:
-      id: ui-20260820-01
-      path: landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html
-      registryMarker: data-color-registry="color-srgb-03"
-      artifactBuildMarker: data-artifact-build="ui-20260820-01"
+      id: ui-20260820-02
+      path: landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html
+      registryMarker: data-color-registry="color-srgb-04"
+      artifactBuildMarker: data-artifact-build="ui-20260820-02"
       buildChannelMarker: data-build-channel="immutable-artifact-build"
-      bytes: 2129394
-      sha256: db186208abddfebf8957f4f8b2373f4c4fcf2ccfcd3c7201aa94145b6e661202
+      bytes: 2129863
+      sha256: c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f
       integrityMode: append-only UI artifact; byte parity with latest standalone after normalizing only data-build-channel
       status: built; reproducibility and browser geometry checks passed; broader manual gates remain open
   deliveryIdentity:
-    colorSetId: color-srgb-03
-    artifactBuildId: ui-20260820-01
+    colorSetId: color-srgb-04
+    artifactBuildId: ui-20260820-02
     tokenRegistry:
       path: assets/data/tokens.json
       version: 0.8.6
@@ -163,26 +163,26 @@ landometerBuild:
     artifactHashes:
       - channel: hosted_root
         path: index.html
-        bytes: 981437
-        sha256: c1eb816ab861814505223ba634256caba8363b6b9390e0ffb227f9dbf732e5e5
-        colorSetId: color-srgb-03
-        artifactBuildId: ui-20260820-01
+        bytes: 981906
+        sha256: 00b665a358cd49106bd3927f118a0c3a2b2417c175b735fe902d131253e3ba27
+        colorSetId: color-srgb-04
+        artifactBuildId: ui-20260820-02
         derivationRef: deployment/index.html source artifact
         evidenceRef: qa/v0.9.0-automated.json#source-integrity
       - channel: latest_standalone
         path: landometer-design-system-v0.9.0-standalone.html
-        bytes: 2129382
-        sha256: 64200d24a7426f6981e75ef6c92442373129c89a53294eeb8fb75f5dd962b0b3
-        colorSetId: color-srgb-03
-        artifactBuildId: ui-20260820-01
+        bytes: 2129851
+        sha256: 1902a9808189eaf98b6c6bd69a1bd4246838539a34e68a98d906819677035ce8
+        colorSetId: color-srgb-04
+        artifactBuildId: ui-20260820-02
         derivationRef: tools/build-standalone-html.mjs from deployment/index.html
         evidenceRef: qa/v0.9.0-automated.json#standalone-build
       - channel: immutable_artifact
-        path: landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html
-        bytes: 2129394
-        sha256: db186208abddfebf8957f4f8b2373f4c4fcf2ccfcd3c7201aa94145b6e661202
-        colorSetId: color-srgb-03
-        artifactBuildId: ui-20260820-01
+        path: landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html
+        bytes: 2129863
+        sha256: c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f
+        colorSetId: color-srgb-04
+        artifactBuildId: ui-20260820-02
         derivationRef: tools/build-standalone-html.mjs with immutable-artifact-build channel marker
         evidenceRef: qa/v0.9.0-automated.json#standalone-build
     visualBaselineTheme: light
@@ -203,7 +203,7 @@ landometerBuild:
     outputType: webpage
     deliveryConformance: not_claimed
     deliveryVisibilityMismatch: internal_demo intent is projected through a public GitHub Pages URL; public-delivery gates remain open
-    artifactBuildId: ui-20260820-01
+    artifactBuildId: ui-20260820-02
   publication:
     evidenceStatus: source_limited
     visibility: public
@@ -869,40 +869,40 @@ landometerBuild:
     photoApprovalBoundary: exact existing public repository rendition reused; formal rights and expiry record remains pending
   referenceDocuments:
     - path: assets/downloads/landometer-design-system-v0.9.0.md
-      bytes: 379865
-      sha256: e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3
-      transform: v0.9.0-r1 integrates the complete v0.8.8-r3 authoring authority and the owner-approved harmonized gradient-diversity family; exact bytes and hash are frozen in this release record
+      bytes: 383022
+      sha256: 928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa
+      transform: v0.9.0-r2 integrates the complete v0.8.8-r3 authoring authority and the owner-approved harmonized gradient-diversity family; exact bytes and hash are frozen in this release record
       status: source_limited; machineValidation pending
     - path: assets/data/color-delivery.v0.9.0.json
-      bytes: 14313
-      sha256: adf5233eedb3e5f3268354191825e94fe6fcb680ffa31364b2957428de1e4ecf
+      bytes: 15473
+      sha256: d6c912a5bc08510fbc670582a89b1633dc62903a12d824ab3cff531455533d23
       usageClass: artifact-level SDR sRGB delivery and build-parity registry
       status: owner-approved authoring contract with artifact evidence; source_limited
     - path: landometer-design-system-v0.9.0-standalone.html
-      bytes: 2129382
-      sha256: 64200d24a7426f6981e75ef6c92442373129c89a53294eeb8fb75f5dd962b0b3
+      bytes: 2129851
+      sha256: 1902a9808189eaf98b6c6bd69a1bd4246838539a34e68a98d906819677035ce8
       usageClass: self-contained single-file playground snapshot
       transform: generated from deployment/index.html with nine display-font files, the official horizontal logo, and the team image embedded as data URLs; hosted-only font preloads are protocol-gated and opening the hosted source through file:// hands off to this embedded standalone while preserving URL state; the hosted canonical link is removed so the downloaded snapshot does not claim to be the canonical hosted page; the approved browser-tab symbol and linked release records use stable cache-revisioned production URLs
       status: source_limited; self-contained build and local HTTP interaction verified; Safari direct-file handoff and font-readiness manual gate pending; machineValidation pending
-    - path: landometer-design-system-v0.9.0-standalone.color-srgb-03.html
-      bytes: 2129389
-      sha256: 88a65d8678dcf8a08b2c942bfc0298a53a14c09c4cf697c600d6d029c6367020
+    - path: landometer-design-system-v0.9.0-standalone.color-srgb-04.html
+      bytes: 2129858
+      sha256: 65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01
       usageClass: immutable self-contained Color Set baseline
-      registryId: color-srgb-03
+      registryId: color-srgb-04
       integrityMode: append-only; preserved byte-for-byte across UI-only changes
       status: preserved byte-for-byte
-    - path: landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html
-      bytes: 2129394
-      sha256: db186208abddfebf8957f4f8b2373f4c4fcf2ccfcd3c7201aa94145b6e661202
+    - path: landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html
+      bytes: 2129863
+      sha256: c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f
       usageClass: immutable self-contained UI artifact-build handoff and visual-QA authority
-      registryId: color-srgb-03
-      artifactBuildId: ui-20260820-01
+      registryId: color-srgb-04
+      artifactBuildId: ui-20260820-02
       integrityMode: append-only; compared with latest standalone after normalizing only data-build-channel
       status: built; source reproducibility and browser geometry checks passed; broader manual gates remain open
     - path: implementation-notes.v0.9.0.md
       bytes: 26768
       sha256: 6c38f114fb625bbfb597281e0e63366d70c000d56e87d5e64ee158e3767bc070
-      authority: accepted non-normative artifact application record; v0.9.0-r1 authoring master governs
+      authority: accepted non-normative artifact application record; v0.9.0-r2 authoring master governs
       covers: [governed atmosphere restoration, role-based color guidance, complete 5/7/9 scale teaching, share placement, contextual source search, external AI synthesis, positive Intent-to-AHA examples, browser identity, SEO and machine-discovery gates]
     - path: llms.txt
       bytes: 5039
@@ -912,11 +912,11 @@ landometerBuild:
     - path: qa/v0.9.0-automated.json
       bytes: 6579
       sha256: 077b087b831f7a227c6c473d0d913c61ee5897e56dc370783bc8f09fc262cfd6
-      usageClass: current automated release evidence bound to ui-20260820-01
+      usageClass: current automated release evidence bound to ui-20260820-02
       status: targeted browser geometry and source validation passed; manual gates remain open
     - path: qa/v0.9.0-scale-geometry.json
       bytes: 28908
-      sha256: d0b664b5b526ac9bfdcd3d7006b3adfb77f3555186e2d5f631004276a7934488
+      sha256: 8d07a692ad9b4ecce6259fc0ad0ab020a0238bbfb8f836bb35a9470873dcc86f
       usageClass: deterministic Playwright geometry evidence for localized 5/7/9 scale rows
       status: 36 cases; 2,916 rows; all nine embedded font probes ready; zero failures
   qa:

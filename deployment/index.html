@@ -19,9 +19,9 @@
   data-machine-discovery="llms_navigation_aid"
   data-color-space="srgb"
   data-gradient-interpolation="srgb-explicit-with-legacy-fallback"
-  data-color-registry="color-srgb-03"
+  data-color-registry="color-srgb-04"
   data-atmosphere-gradient-registry="landometer-atmosphere-gradient-v2"
-  data-artifact-build="ui-20260820-01"
+  data-artifact-build="ui-20260820-02"
   data-build-channel="latest-alias"
   data-kit="not-applied"
   data-theme="light"
@@ -35,9 +35,9 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F7F3">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#11191D">
   <meta name="landometer:ds-version" content="0.9.0">
-  <meta name="landometer:color-set" content="color-srgb-03">
-  <meta name="landometer:artifact-build" content="ui-20260820-01">
-  <meta name="landometer:release-receipt" content="2026-08-20-v090-playground-01">
+  <meta name="landometer:color-set" content="color-srgb-04">
+  <meta name="landometer:artifact-build" content="ui-20260820-02">
+  <meta name="landometer:release-receipt" content="2026-08-20-v090-playground-02">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png?v=35a1496f" sizes="192x192">
   <title>Landometer Design Identity Playground · v0.9.0</title>
@@ -247,12 +247,12 @@
       --opacity-trace: .06;
       --product-citymeter-legacy: linear-gradient(135deg, #12669B 0%, #36BCE4 100%);
       --product-citymeter-srgb: linear-gradient(135deg in srgb, #12669B 0%, #36BCE4 100%);
-      --product-citywiki-legacy: linear-gradient(135deg, #176B82 0%, #007E79 100%);
-      --product-citywiki-srgb: linear-gradient(135deg in srgb, #176B82 0%, #007E79 100%);
+      --product-citywiki-legacy: linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
+      --product-citywiki-srgb: linear-gradient(135deg in srgb, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);
       --product-citychat-legacy: linear-gradient(135deg, #007A58 0%, #007E79 100%);
       --product-citychat-srgb: linear-gradient(135deg in srgb, #007A58 0%, #007E79 100%);
-      --product-ijji-legacy: linear-gradient(135deg, #C52C00 0%, #B23F74 100%);
-      --product-ijji-srgb: linear-gradient(135deg in srgb, #C52C00 0%, #B23F74 100%);
+      --product-ijji-legacy: linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
+      --product-ijji-srgb: linear-gradient(135deg in srgb, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);
       --measure-surface: var(--measure-surface-legacy);
       --ground-surface: var(--ground-surface-legacy);
       --cultivate-surface: var(--cultivate-surface-legacy);
@@ -397,12 +397,12 @@
       --map-marker-stroke: #F1F4EF;
       --product-citymeter-legacy: linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);
       --product-citymeter-srgb: linear-gradient(135deg in srgb, #4C99D5 0%, #59C7E8 100%);
-      --product-citywiki-legacy: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
-      --product-citywiki-srgb: linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%);
+      --product-citywiki-legacy: linear-gradient(135deg, #F2F1DF 0%, #E0B443 100%);
+      --product-citywiki-srgb: linear-gradient(135deg in srgb, #F2F1DF 0%, #E0B443 100%);
       --product-citychat-legacy: linear-gradient(135deg, #3BD19B 0%, #3BD3CB 100%);
       --product-citychat-srgb: linear-gradient(135deg in srgb, #3BD19B 0%, #3BD3CB 100%);
-      --product-ijji-legacy: linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);
-      --product-ijji-srgb: linear-gradient(135deg in srgb, #FF8A4C 0%, #F06FA6 100%);
+      --product-ijji-legacy: linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);
+      --product-ijji-srgb: linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%);
       color-scheme: dark;
     }
 
@@ -1932,7 +1932,7 @@
       padding: 0 0 var(--space-4);
       border-bottom: 1px solid var(--border-hairline);
     }
-    .opportunity-flow span {
+    .opportunity-flow > span {
       position: relative;
       display: grid;
       place-items: center;
@@ -1942,7 +1942,7 @@
       background: var(--surface-raised);
       color: var(--interaction-accent);
     }
-    .opportunity-flow span:not(:last-child)::after {
+    .opportunity-flow > span:not(:last-child)::after {
       position: absolute;
       z-index: 2;
       right: -9px;
@@ -5470,7 +5470,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="hero-copy" data-quiet-field>
-        <p class="eyebrow">Design identity playground · v0.9.0-r1 · approved 20 Aug 2026</p>
+        <p class="eyebrow">Design identity playground · v0.9.0-r2 · approved 20 Aug 2026</p>
         <h1 id="hero-title" lang="en" aria-label="Let us cultivate our city with data."><span class="hero-line">Let us</span><span class="hero-line">cultivate</span><span class="hero-line">our city</span><span class="hero-line">with data.</span></h1>
         <p class="hero-support" data-th>เคยไหม—งานชัดในหัวเรา พอส่งต่อ คนถัดไปถามว่า ตัวเลขมาจากไหน ยังขาดอะไร แล้วทำอะไรต่อ? หยิบงานมาหนึ่งชิ้น แล้วให้ความหมาย หลักฐาน และก้าวถัดไปเดินทางไปด้วยกัน</p>
         <p class="hero-support" data-en>Work feels clear in your hands—then turns into questions when it moves on. Bring one screen, map, report, or message. Let meaning, evidence, limits, and next steps travel together.</p>
@@ -5576,7 +5576,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
                 </div>
                 <div>
                   <dt><span data-th>แหล่งอ้างอิง</span><span data-en>Source</span></dt>
-                  <dd id="meta-source">v0.9.0-r1 authoring master · approved 20 Aug 2026</dd>
+                  <dd id="meta-source">v0.9.0-r2 authoring master · approved 20 Aug 2026</dd>
                 </div>
                 <div>
                   <dt><span data-th>ขอบเขต</span><span data-en>Boundary</span></dt>
@@ -5866,7 +5866,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
                 <span class="icon-symbol" data-icon="sync_alt" aria-hidden="true">&#xEA18;</span>
                 <span id="recipe-handoff">ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ</span>
               </p>
-              <p class="recipe-source" id="recipe-source">ที่มา: Landometer Design System v0.9.0-r1 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending</p>
+              <p class="recipe-source" id="recipe-source">ที่มา: Landometer Design System v0.9.0-r2 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending</p>
             </div>
             <textarea class="sr-only" id="recipe-text" readonly>งาน: หน้าจอประกอบการตัดสินใจ
 
@@ -5878,7 +5878,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 
 ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
 
-ที่มา: Landometer Design System v0.9.0-r1 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending</textarea>
+ที่มา: Landometer Design System v0.9.0-r2 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending</textarea>
             <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
           </div>
         </div>
@@ -5921,8 +5921,8 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
             <span data-th>สิ่งที่คาดหวังได้เมื่อพัฒนาตาม v0.9.0</span>
             <span data-en>What becomes expectable under v0.9.0</span>
           </h2>
-          <p data-th>ทุกตัวอย่างด้านล่างคือของจริงที่ทำงานอยู่ในหน้านี้ ไม่ใช่ภาพจำลอง — หน้าเดิมทั้งหน้าถูกยกระดับด้วยกติกาชุดเดียวกันนี้แล้ว: ปุ่มทุกปุ่มเป็นสองทรง โฟกัสผูก token ไอคอนเป็น Material Symbols Rounded และชุดสี color-srgb-03</p>
-          <p data-en>Everything below is live in this very page, not a mockup — the whole page has already been upgraded under the same rules: two-shape buttons, token-bound focus, Material Symbols Rounded icons, and the color-srgb-03 Color Set.</p>
+          <p data-th>ทุกตัวอย่างด้านล่างคือของจริงที่ทำงานอยู่ในหน้านี้ ไม่ใช่ภาพจำลอง — หน้าเดิมทั้งหน้าถูกยกระดับด้วยกติกาชุดเดียวกันนี้แล้ว: ปุ่มทุกปุ่มเป็นสองทรง โฟกัสผูก token ไอคอนเป็น Material Symbols Rounded และชุดสี color-srgb-04</p>
+          <p data-en>Everything below is live in this very page, not a mockup — the whole page has already been upgraded under the same rules: two-shape buttons, token-bound focus, Material Symbols Rounded icons, and the color-srgb-04 Color Set.</p>
         </div>
         <div class="v090-grid">
 
@@ -6010,8 +6010,8 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 
           <article class="v090-card">
             <h3><span data-th>ใบเสร็จรุ่นอ่านได้จากหน้า และสีชุดใหม่</span><span data-en>A receipt any page can answer, and the purged palette</span> <code>[PUB-01] [VIS-04]</code></h3>
-            <p data-th>ทุกหน้า publish ตอบได้ว่า “นี่ build ไหน” จาก meta ในตัวเอง — ค่าด้านล่างอ่านสดจากหน้านี้ และโทนม่วงขุ่น/น้ำตาลขุ่นทั้งหมดถูกแทนที่ด้วยชุดที่สดกว่า (mint เป็น Color Set color-srgb-03)</p>
-            <p data-en>Every published page can answer “which build is this?” from its own metas — the values below are read live from this page. Every muddy purple/brown tone is replaced by a fresher set (minted as Color Set color-srgb-03).</p>
+            <p data-th>ทุกหน้า publish ตอบได้ว่า “นี่ build ไหน” จาก meta ในตัวเอง — ค่าด้านล่างอ่านสดจากหน้านี้ และโทนม่วงขุ่น/น้ำตาลขุ่นทั้งหมดถูกแทนที่ด้วยชุดที่สดกว่า (mint เป็น Color Set color-srgb-04)</p>
+            <p data-en>Every published page can answer “which build is this?” from its own metas — the values below are read live from this page. Every muddy purple/brown tone is replaced by a fresher set (minted as Color Set color-srgb-04).</p>
             <dl class="receipt-readout" id="v090-receipt"></dl>
             <p class="swatch-row">
               <span class="swatch"><i style="background:#A64A00"></i>#A64A00 <span data-th>อำพันส้ม (แทนน้ำตาลทองเดิม)</span><span data-en>amber (was muddy gold)</span></span>
@@ -6066,8 +6066,8 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
           </article>
 
         </div>
-        <p class="v090-note" data-th>สถานะของกติกา: v0.9.0-r1 เป็น authoring master ที่เจ้าของอนุมัติแล้วเมื่อ 20 สิงหาคม 2026 (§C9) หน้านี้จึงประกาศ conformance เป็น authoring_aligned เท่านั้น เพราะ machine package ยังรอสร้างใหม่ และ machineValidation ยังเป็น pending ตามจริง</p>
-        <p class="v090-note" data-en>Rule status: v0.9.0-r1 is the owner-approved authoring master (approved 20 August 2026, §C9). This page still claims authoring_aligned conformance only, because the generated machine package has not been regenerated, so machineValidation honestly stays pending.</p>
+        <p class="v090-note" data-th>สถานะของกติกา: v0.9.0-r2 เป็น authoring master ที่เจ้าของอนุมัติแล้วเมื่อ 20 สิงหาคม 2026 (§C9) หน้านี้จึงประกาศ conformance เป็น authoring_aligned เท่านั้น เพราะ machine package ยังรอสร้างใหม่ และ machineValidation ยังเป็น pending ตามจริง</p>
+        <p class="v090-note" data-en>Rule status: v0.9.0-r2 is the owner-approved authoring master (approved 20 August 2026, §C9). This page still claims authoring_aligned conformance only, because the generated machine package has not been regenerated, so machineValidation honestly stays pending.</p>
       </div>
     </section>
 
@@ -6503,7 +6503,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 <!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this sampler. -->
       <section
         class="scale-sampler"
-        data-color-registry="color-srgb-03"
+        data-color-registry="color-srgb-04"
         data-scale-source-version="0.8.6"
         data-scale-records="18"
         aria-labelledby="scale-sampler-title"
@@ -7128,7 +7128,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
                   <figcaption><span data-th>DS มี token เส้นสำหรับ map และมีกฎ connector แต่ยังไม่มี stroke-width scale กลางสำหรับ chart/axis—ตัวเลขความหนาในภาพเป็น candidate recipe ต้องขออนุมัติก่อนทำเป็น normative</span><span data-en>The DS governs map strokes and connector meaning, but has no universal chart/axis width scale. The shown widths are candidate recipes, not normative tokens.</span></figcaption>
                 </figure>
 
-                <figure class="color-plate color-plate--wide" id="color-device-stability" data-color-contract="registry-pinned-build" data-color-registry="color-srgb-03">
+                <figure class="color-plate color-plate--wide" id="color-device-stability" data-color-contract="registry-pinned-build" data-color-registry="color-srgb-04">
                   <div class="color-plate-head">
                     <span class="icon-well"><span class="icon-symbol" data-icon="compare_arrows" aria-hidden="true">&#xE915;</span></span>
                     <h5><span data-th>ทุกอุปกรณ์ต้องได้ Color Set เดียวกัน</span><span data-en>Every device must receive the same Color Set</span></h5>
@@ -7158,15 +7158,15 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
                     <ul class="color-stability-rules">
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="description" aria-hidden="true">&#xE683;</span>
-                        <span><strong><span data-th>หนึ่ง registry เท่านั้น</span><span data-en>One registry only</span></strong><small><code>color-delivery.v0.9.0.json · color-srgb-03</code><br><span data-th>root, standalone และ Atlas ต้องอ้าง token/gradient ชุดเดียวกัน</span><span data-en>Root, standalone, and Atlas must resolve the same token and gradient set.</span></small></span>
+                        <span><strong><span data-th>หนึ่ง registry เท่านั้น</span><span data-en>One registry only</span></strong><small><code>color-delivery.v0.9.0.json · color-srgb-04</code><br><span data-th>root, standalone และ Atlas ต้องอ้าง token/gradient ชุดเดียวกัน</span><span data-en>Root, standalone, and Atlas must resolve the same token and gradient set.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="download" aria-hidden="true">&#xE171;</span>
-                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
+                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="compare_arrows" aria-hidden="true">&#xE915;</span>
-                        <span><strong><span data-th>ตรวจ Build ID ก่อนดูสี</span><span data-en>Check Build ID before color</span></strong><small><code>data-color-registry="color-srgb-03"</code><br><span data-th>ถ้า ID ต่างกัน คือได้คนละ build—not สีเพี้ยน</span><span data-en>Different IDs mean different builds—not color drift.</span></small></span>
+                        <span><strong><span data-th>ตรวจ Build ID ก่อนดูสี</span><span data-en>Check Build ID before color</span></strong><small><code>data-color-registry="color-srgb-04"</code><br><span data-th>ถ้า ID ต่างกัน คือได้คนละ build—not สีเพี้ยน</span><span data-en>Different IDs mean different builds—not color drift.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="palette" aria-hidden="true">&#xE3B7;</span>
@@ -7192,7 +7192,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
                 <div class="complete-color-atlas-body">
                   <!-- COLOR_ATLAS_START -->
 <!-- Generated by tools/generate-color-atlas.mjs. Do not hand-edit this fragment. -->
-<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="color-srgb-03" data-atlas-version="0.9.0" data-atlas-source-version="0.8.6" data-atlas-records="18">
+<section class="atlas-root" aria-labelledby="atlas-title" data-color-registry="color-srgb-04" data-atlas-version="0.9.0" data-atlas-source-version="0.8.6" data-atlas-records="18">
   <header class="atlas-intro">
     <p class="atlas-kicker">TOKEN-01 · VIS-04 · SURFACE-01 · DATAVIZ-01 · MAP-01</p>
     <h4 class="atlas-title" id="atlas-title"><span data-th lang="th">สมุดสีฉบับเต็ม—เห็นทุกบทบาทก่อนหยิบไปใช้</span><span data-en lang="en">The complete color atlas—see every role before using it</span></h4>
@@ -7904,23 +7904,23 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
             <div class="atlas-product-pair">
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #176B82 0%, #007E79 100%);background:linear-gradient(135deg, #176B82 0%, #007E79 100%);background:linear-gradient(135deg in srgb, #176B82 0%, #007E79 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);background:linear-gradient(135deg, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%);background:linear-gradient(135deg in srgb, #F7CBC7 0%, #FBD1B6 50%, #F1E0B4 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Light</strong>
-                  <code>#176B82 → #007E79</code>
+                  <code>#F7CBC7 0% · #FBD1B6 50% · #F1E0B4 100% · alias → cultivate.mist</code>
                 </figcaption>
               </figure>
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #F2F1DF 0%, #E0B443 100%);background:linear-gradient(135deg, #F2F1DF 0%, #E0B443 100%);background:linear-gradient(135deg in srgb, #F2F1DF 0%, #E0B443 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Dark</strong>
-                  <code>#59C7E8 → #3BD3CB</code>
+                  <code>#F2F1DF → #E0B443</code>
                 </figcaption>
               </figure>
             </div>
             <p class="atlas-scope-note"><span data-th lang="th">ใช้บอกอัตลักษณ์ของผลิตภัณฑ์นี้เท่านั้น ห้ามใช้แทนข้อมูลหรือสถานะ</span><span data-en lang="en">Product identity only—never data magnitude or semantic state</span></p>
-            <p class="atlas-gradient-foreground"><span data-th lang="th">Light: white ≥4.93:1 · Dark: mineral ≥8.22:1</span><span data-en lang="en">Light: white ≥4.93:1 · Dark: mineral ≥8.22:1</span></p>
+            <p class="atlas-gradient-foreground"><span data-th lang="th">Light: หมึก mineral ≥10.94:1 · ห้ามใช้ตัวอักษรขาวเปล่า · Dark: mineral ≥8.24:1</span><span data-en lang="en">Light: mineral ink ≥10.94:1, bare white prohibited · Dark: mineral ≥8.24:1</span></p>
           </article>
           <article class="atlas-product-card" data-scope="product-identity">
             <header class="atlas-product-head">
@@ -7956,23 +7956,23 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
             <div class="atlas-product-pair">
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C52C00 0%, #B23F74 100%);background:linear-gradient(135deg, #C52C00 0%, #B23F74 100%);background:linear-gradient(135deg in srgb, #C52C00 0%, #B23F74 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);background:linear-gradient(135deg, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%);background:linear-gradient(135deg in srgb, #C4E0EE 0%, #B2E2E2 50%, #CCE6D0 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Light</strong>
-                  <code>#C52C00 → #B23F74</code>
+                  <code>#C4E0EE 0% · #B2E2E2 50% · #CCE6D0 100% · alias → ground.mist</code>
                 </figcaption>
               </figure>
 
               <figure class="atlas-gradient-theme">
-                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);background:linear-gradient(135deg, #FF8A4C 0%, #F06FA6 100%);background:linear-gradient(135deg in srgb, #FF8A4C 0%, #F06FA6 100%)" aria-hidden="true"></span>
+                <span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg, #59C7E8 0%, #3BD3CB 100%);background:linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%)" aria-hidden="true"></span>
                 <figcaption>
                   <strong>Dark</strong>
-                  <code>#FF8A4C → #F06FA6</code>
+                  <code>#59C7E8 → #3BD3CB</code>
                 </figcaption>
               </figure>
             </div>
             <p class="atlas-scope-note"><span data-th lang="th">ใช้บอกอัตลักษณ์ของผลิตภัณฑ์นี้เท่านั้น ห้ามใช้แทนข้อมูลหรือสถานะ</span><span data-en lang="en">Product identity only—never data magnitude or semantic state</span></p>
-            <p class="atlas-gradient-foreground"><span data-th lang="th">Light: white ≥5.45:1 · Dark: mineral ≥5.75:1</span><span data-en lang="en">Light: white ≥5.45:1 · Dark: mineral ≥5.75:1</span></p>
+            <p class="atlas-gradient-foreground"><span data-th lang="th">Light: หมึก mineral ≥11.36:1 · ห้ามใช้ตัวอักษรขาวเปล่า · Dark: mineral ≥8.21:1</span><span data-en lang="en">Light: mineral ink ≥11.36:1, bare white prohibited · Dark: mineral ≥8.21:1</span></p>
           </article>
       </div>
     </div>
@@ -10432,13 +10432,13 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
           </summary>
           <div class="library-content">
             <h4><span data-th>ดาวน์โหลดคู่มือ และตรวจบันทึกของ release ได้จากที่เดียวกัน</span><span data-en>Keep the readable master and release records together.</span></h4>
-            <p class="library-content-intro" data-th>ไฟล์หลักคือ authoring master v0.9.0-r1 ที่เจ้าของอนุมัติเมื่อ 20 สิงหาคม 2026 และหน้านี้สร้างตามฉบับนั้น ฉบับนี้เก็บกฎ v0.8.9 ไว้ครบทุกข้อ รักษาประโยค Culture / Rally Cry ตาม Master Brand Brief v0.5.3 §1.1 แล้วเพิ่มชุดกฎที่ทำให้ผลลัพธ์สม่ำเสมอ ได้แก่ Build Kit ที่คัดลอกได้ตรง ๆ self-check แบบผ่าน/ไม่ผ่าน รูปทรงปุ่มสองแบบ และกฎ visual identity ใหม่ ส่วน machine package และการรับรองตัว webpage ยังเป็น pending แยกกัน</p>
-            <p class="library-content-intro" data-en>The primary download is the owner-approved v0.9.0-r1 authoring master (approved 20 August 2026), which this page is built to. It retains every v0.8.9 rule, preserves the complete Culture / Rally Cry from Master Brand Brief v0.5.3 §1.1, and adds the determinism set — a copy-exact Build Kit, a pass/fail self-check, two-shape action geometry — plus the new visual-identity rules. Machine-package and webpage conformance remain separate pending gates.</p>
+            <p class="library-content-intro" data-th>ไฟล์หลักคือ authoring master v0.9.0-r2 ที่เจ้าของอนุมัติเมื่อ 20 สิงหาคม 2026 และหน้านี้สร้างตามฉบับนั้น ฉบับนี้เก็บกฎ v0.8.9 ไว้ครบทุกข้อ รักษาประโยค Culture / Rally Cry ตาม Master Brand Brief v0.5.3 §1.1 แล้วเพิ่มชุดกฎที่ทำให้ผลลัพธ์สม่ำเสมอ ได้แก่ Build Kit ที่คัดลอกได้ตรง ๆ self-check แบบผ่าน/ไม่ผ่าน รูปทรงปุ่มสองแบบ และกฎ visual identity ใหม่ ส่วน machine package และการรับรองตัว webpage ยังเป็น pending แยกกัน</p>
+            <p class="library-content-intro" data-en>The primary download is the owner-approved v0.9.0-r2 authoring master (approved 20 August 2026), which this page is built to. It retains every v0.8.9 rule, preserves the complete Culture / Rally Cry from Master Brand Brief v0.5.3 §1.1, and adds the determinism set — a copy-exact Build Kit, a pass/fail self-check, two-shape action geometry — plus the new visual-identity rules. Machine-package and webpage conformance remain separate pending gates.</p>
             <div class="resource-grid">
               <article>
-                <p class="resource-meta">HUMAN-READABLE · MARKDOWN · V0.9.0-R1</p>
+                <p class="resource-meta">HUMAN-READABLE · MARKDOWN · V0.9.0-R2</p>
                 <h5><span data-th>Design System authoring master</span><span data-en>Design System authoring master</span></h5>
-                <p>379,865 bytes · SHA-256 e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3</p>
+                <p>383,022 bytes · SHA-256 928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa</p>
                 <a class="download-action" href="assets/downloads/landometer-design-system-v0.9.0.md" id="resource-download-system" download><span data-th>ดาวน์โหลด Markdown</span><span data-en>Download Markdown</span></a>
               </article>
               <article>
@@ -10473,9 +10473,9 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
               <article>
                 <p class="resource-meta">PINNED COLOR SET · SELF-CONTAINED · HTML</p>
                 <h5><span data-th>Standalone ที่ล็อกชุดสีแล้ว</span><span data-en>Color-Set-pinned standalone</span></h5>
-                <p data-th>ไฟล์เดียวจบ ฝัง font และภาพไว้ครบ พร้อมล็อก Color Set <code>color-srgb-03</code> สำหรับตรวจงานข้ามเครื่องและส่งต่อโดยไม่สลับไปคนละ palette ตาม cache ของหน้า latest</p>
-                <p data-en>One self-contained file with fonts, images, and Color Set <code>color-srgb-03</code> pinned for cross-device review and handoff—without drifting to a different palette through a cached latest alias.</p>
-                <a class="download-action" href="landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html" id="resource-standalone" download><span data-th>ดาวน์โหลด build ที่ล็อกแล้ว</span><span data-en>Download pinned build</span></a>
+                <p data-th>ไฟล์เดียวจบ ฝัง font และภาพไว้ครบ พร้อมล็อก Color Set <code>color-srgb-04</code> สำหรับตรวจงานข้ามเครื่องและส่งต่อโดยไม่สลับไปคนละ palette ตาม cache ของหน้า latest</p>
+                <p data-en>One self-contained file with fonts, images, and Color Set <code>color-srgb-04</code> pinned for cross-device review and handoff—without drifting to a different palette through a cached latest alias.</p>
+                <a class="download-action" href="landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html" id="resource-standalone" download><span data-th>ดาวน์โหลด build ที่ล็อกแล้ว</span><span data-en>Download pinned build</span></a>
               </article>
               <article>
                 <p class="resource-meta">MACHINE DISCOVERY · NAVIGATION AID ONLY</p>
@@ -10524,7 +10524,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
     <div class="container footer-inner">
       <div>
         <b>Landometer Design Identity Playground</b>
-        <p>Based on the owner-approved v0.9.0-r1 authoring master.</p>
+        <p>Based on the owner-approved v0.9.0-r2 authoring master.</p>
       </div>
       <div class="footer-meta">
         internal-team intent · public projection · noindex<br>
@@ -10690,7 +10690,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
             "จบด้วยสิ่งที่คนถัดไปทำต่อได้หนึ่งอย่าง"
           ],
           recipeHandoff: "ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ",
-          recipeSource: "ที่มา: Landometer Design System v0.9.0-r1 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending",
+          recipeSource: "ที่มา: Landometer Design System v0.9.0-r2 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending",
           recipe: work => `งาน: ${work.label}
 
 1. ระบุว่าใครกำลังตัดสินใจเรื่องอะไร
@@ -10701,7 +10701,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 
 ก่อนส่งต่อ: คงชื่อและเวอร์ชันของงาน สถานะ แหล่งข้อมูล ขอบเขต และข้อจำกัดไว้ครบ
 
-ที่มา: Landometer Design System v0.9.0-r1 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending`,
+ที่มา: Landometer Design System v0.9.0-r2 authoring master (อนุมัติ 20 ส.ค. 2026, §C9) · source_limited · machineValidation pending`,
           copied: "คัดลอกสูตรแล้ว นำไปวางข้างงานที่กำลังทำได้เลย",
           copyFail: "คัดลอกอัตโนมัติไม่ได้ ระบบเลือกข้อความไว้ให้แล้ว กดคัดลอกจากอุปกรณ์ของคุณได้เลย"
         },
@@ -10831,7 +10831,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
             "End with one useful action for the next person."
           ],
           recipeHandoff: "Before handoff: preserve object/version, status, source, boundary, and limitation.",
-          recipeSource: "Source: Landometer Design System v0.9.0-r1 authoring master · source_limited · machineValidation pending",
+          recipeSource: "Source: Landometer Design System v0.9.0-r2 authoring master · source_limited · machineValidation pending",
           recipe: work => `Work: ${work.label}
 
 1. Name who is deciding what.
@@ -10842,7 +10842,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 
 Before handoff: preserve object/version, status, source, boundary, and limitation.
 
-Source: Landometer Design System v0.9.0-r1 authoring master · source_limited · machineValidation pending`,
+Source: Landometer Design System v0.9.0-r2 authoring master · source_limited · machineValidation pending`,
           copied: "Recipe copied. Place it beside the work you are doing.",
           copyFail: "Automatic copy was unavailable. The recipe is selected so you can copy it from your device."
         }

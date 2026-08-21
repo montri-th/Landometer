@@ -1,0 +1,61 @@
+decision: approved_owner_amendment
+amendmentOf: deployment/assets/downloads/landometer-design-system-v0.9.0.md
+approvedAt: 2026-08-20
+authority: Landometer owner
+authorityEvidence:
+  instruction: >-
+    Owner-stated in session, 2026-08-20 evening: change the ijji and CityWiki
+    product identity gradients — ijji light to the atmosphere.gradient.ground.mist
+    stops (#C4E0EE 0% · #B2E2E2 50% · #CCE6D0 100%) with dark #59C7E8 → #3BD3CB,
+    and CityWiki light to the atmosphere.gradient.cultivate.mist stops
+    (#F7CBC7 0% · #FBD1B6 50% · #F1E0B4 100%) with dark #F2F1DF → #E0B443 —
+    without changing the Design System version. Confirmed as a real value change
+    (not a layout-only fix) via an explicit follow-up question.
+scope: product_identity_gradients_only
+changes:
+  ijji:
+    light:
+      before: ["#C52C00", "#B23F74"]
+      after: ["#C4E0EE", "#B2E2E2", "#CCE6D0"]
+      aliasOf: atmosphere.gradient.ground.mist
+    dark:
+      before: ["#FF8A4C", "#F06FA6"]
+      after: ["#59C7E8", "#3BD3CB"]
+      note: pair released by CityWiki in this same amendment
+  citywiki:
+    light:
+      before: ["#176B82", "#007E79"]
+      after: ["#F7CBC7", "#FBD1B6", "#F1E0B4"]
+      aliasOf: atmosphere.gradient.cultivate.mist
+    dark:
+      before: ["#59C7E8", "#3BD3CB"]
+      after: ["#F2F1DF", "#E0B443"]
+      newRawValues: ["#E0B443"]
+  citymeter: unchanged
+  citychat: unchanged
+computedContrastEvidence:
+  method: 1001 uniform samples per gradient, linear sRGB component interpolation, WCAG 2.x relative-luminance contrast
+  ijjiLight: { ink182327: 11.36, ink293337: 9.16, white: 1.33, foreground: mist onLight ink contract, bareWhite: prohibited }
+  ijjiDark: { ink182327: 8.21, foreground: mineral ink }
+  citywikiLight: { ink182327: 10.94, ink293337: 8.82, white: 1.31, foreground: mist onLight ink contract, bareWhite: prohibited }
+  citywikiDark: { ink182327: 8.24, foreground: mineral ink }
+aliasBoundary: >-
+  Inside an ijji or CityWiki product surface the aliased field reads as that
+  product's identity; everywhere else the same recipe remains the shared
+  Ground/Cultivate atmosphere. Neither reading ever encodes data magnitude or
+  semantic state. The alias is declared in the registry (lightAliasOf), never a
+  duplicated palette.
+releaseMechanics:
+  designSystemVersion: 0.9.0 (unchanged, per owner instruction)
+  authoringRevision: v0.9.0-r1 -> v0.9.0-r2
+  colorSet: color-srgb-03 -> color-srgb-04 (registry identity rule; ids never redefined)
+  kitVersion: lds-kit-0.9.0-r2 -> lds-kit-0.9.0-r3 (E1 product token lines changed; migration = copy new E1 bytes)
+  artifactBuild: ui-20260820-01 -> ui-20260820-02
+  frozenEvidence:
+    - assets/data/color-delivery.v0.9.0.color-srgb-03.json
+    - deployment/landometer-design-system-v0.9.0-standalone.color-srgb-03.html
+    - deployment/landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html
+retiredAssignmentsRemainGoverned:
+  - "#C52C00 / #FF8A4C stay series.02 Signal Orange"
+  - "#B23F74 / #F06FA6 stay series.10 Warm Pink and the trade-off diverging anchors"
+machineValidation: pending
