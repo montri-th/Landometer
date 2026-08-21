@@ -6,17 +6,23 @@
   ],
   "selfCheckItems": [
     "SC-21",
-    "SC-22"
+    "SC-22",
+    "SC-23"
   ],
   "dsVersion": "0.9.0",
-  "authoringRevision": "v0.9.0-r4",
+  "authoringRevision": "v0.9.0-r5",
   "colorRegistryId": "color-srgb-04",
-  "artifactBuild": "ui-20260821-02",
-  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html",
-  "artifactFingerprint": "7e8fb15cc943218b",
+  "artifactBuild": "ui-20260821-03",
+  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-03.html",
+  "artifactFingerprint": "47456ec716fcce37",
   "assertions": {
     "minCapsuleInlinePaddingCssPx": 24,
     "minTargetCssPx": 44,
+    "iconCentredWithLabelToleranceCssPx": 1.5,
+    "iconLabelGapIsSpace2ToleranceCssPx": {
+      "below": 2,
+      "above": 4
+    },
     "entranceNeverWithholdsReachedContent": true,
     "entranceAbsentInsideClosedDisclosureOrHiddenPanel": true,
     "entranceLandsOnce": true,
@@ -24,20 +30,32 @@
   },
   "boundary": "Rendered geometry and entrance behaviour only. It does not judge whether an entrance is worth having, and it does not replace the manual perceptual, assistive-technology, or rendered-glyph gates.",
   "totals": {
-    "cases": 5,
+    "cases": 7,
     "failures": 0
   },
   "cases": [
     {
       "item": "SC-21",
       "viewport": "mobile",
-      "capsulesMeasured": 25,
+      "capsulesMeasured": 24,
+      "passed": true
+    },
+    {
+      "item": "SC-23",
+      "viewport": "mobile",
+      "iconActionsMeasured": 7,
       "passed": true
     },
     {
       "item": "SC-21",
       "viewport": "desktop",
-      "capsulesMeasured": 25,
+      "capsulesMeasured": 24,
+      "passed": true
+    },
+    {
+      "item": "SC-23",
+      "viewport": "desktop",
+      "iconActionsMeasured": 7,
       "passed": true
     },
     {
