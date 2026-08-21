@@ -2,13 +2,13 @@
   "meta": {
     "id": "color-srgb-04",
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r2",
+    "authoringRevision": "v0.9.0-r3",
     "status": "owner_approved_authoring_contract_package_validation_pending",
     "createdAt": "2026-08-20",
     "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
     "currentArtifactBuild": {
-      "id": "ui-20260820-02",
-      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html"
+      "id": "ui-20260821-01",
+      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html"
     },
     "latestAliases": [
       "index.html",
@@ -22,6 +22,11 @@
     "previousColorSet": {
       "id": "color-srgb-03",
       "frozenRegistryEvidence": "assets/data/color-delivery.v0.9.0.color-srgb-03.json"
+    },
+    "previousArtifactBuild": {
+      "id": "ui-20260820-02",
+      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
+      "status": "frozen evidence; never redefined"
     }
   },
   "delivery": {
@@ -47,8 +52,8 @@
     "authoringMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.0.md",
       "revision": "v0.9.0-r1",
-      "bytes": 383022,
-      "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa"
+      "bytes": 390465,
+      "sha256": "4f6e6346deb8e924a2254deee423f4bb022322e6bbdceef629d206503970b089"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
@@ -69,7 +74,8 @@
       "colorRegistryId": "color-srgb-03",
       "bytes": 2129389,
       "sha256": "88a65d8678dcf8a08b2c942bfc0298a53a14c09c4cf697c600d6d029c6367020",
-      "status": "append_only"
+      "status": "append_only",
+      "mintedWithArtifactBuild": "ui-20260820-01"
     },
     {
       "id": "ui-20260820-01",
@@ -87,7 +93,8 @@
       "colorRegistryId": "color-srgb-04",
       "status": "append_only",
       "bytes": 2129858,
-      "sha256": "65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01"
+      "sha256": "65b906252ad3be19b7282a121d7b955c375472766ddda177af8875fb7a968b01",
+      "mintedWithArtifactBuild": "ui-20260820-02"
     },
     {
       "id": "ui-20260820-02",
@@ -97,6 +104,17 @@
       "status": "append_only",
       "bytes": 2129863,
       "sha256": "c0694ea314e7d6ab5536845006bb2457412c1a7aad183bfdfb7a429ec2d2f67f"
+    },
+    {
+      "id": "ui-20260821-01",
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-04",
+      "status": "append_only",
+      "supersedes": "ui-20260820-02",
+      "changeClass": "ui_only; Color Set color-srgb-04 unchanged",
+      "bytes": 2134749,
+      "sha256": "93bef9b68a7565c5c1cffc08b89de0ed60c0ece9139ba8dc3476f9d32c7e69ac"
     }
   ],
   "sharedAtmosphereGradients": [
