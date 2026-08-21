@@ -1,7 +1,7 @@
 {
   "skillName": "apply-landometer-design-system-v0-9-0",
   "designSystemVersion": "0.9.0",
-  "skillRevision": 1,
+  "skillRevision": 2,
   "invocation": "explicit_only",
   "schemas": {
     "buildCard": "0.9.0",
@@ -10,11 +10,11 @@
   },
   "authority": {
     "status": "owner-approved-integrated-authoring-master",
-    "authoringRevision": "v0.9.0-r4",
+    "authoringRevision": "v0.9.0-r5",
     "activePath": "references/landometer-design-system-v0.9.0-authoring-master.md",
     "approvedThrough": "2026-08-20",
-    "bytes": 383022,
-    "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa",
+    "bytes": 406384,
+    "sha256": "96a03c25cb1bed79fa8ab000ea624449c8470cd68b736824d7c0320007ad9a6a",
     "submittedForApprovalSha256": "87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48",
     "submittedForApprovalBytes": 378063,
     "note": "The submitted hash is the file the owner reviewed. The integrated file adds the §C9 approval record and the status-line change, so its own hash differs and is recorded above."
@@ -50,8 +50,8 @@
       "authoringRevision": "v0.9.0-r1",
       "scope": "determinism release over the complete v0.8.9-r1 authoring authority plus the 2026-08-20 owner amendment items 1-16",
       "approvalPath": "normative-patches/landometer-design-system-v0.9.0.approval.yml",
-      "approvalBytes": 3483,
-      "approvalSha256": "b89f402539271d57891160ee11011ce6960d92ae5b41657eaef65cff72dda626",
+      "approvalBytes": 4288,
+      "approvalSha256": "d93216951309e6c6f1ec1847a83b6eeaded084e6e307109f7d74e041520d41ee",
       "proposalPath": "normative-patches/landometer-design-system-v0.9.0.proposal.md",
       "bytes": 6051,
       "sha256": "dd9a2a266ec062ee7bcda0e1e00ac35865306312be5c4d49f038561f65a5ca80",
@@ -69,7 +69,28 @@
       "colorSet": "color-srgb-04",
       "previousColorSet": "color-srgb-03 (frozen evidence: assets/data/color-delivery.v0.9.0.color-srgb-03.json)",
       "kitVersion": "lds-kit-0.9.0-r3",
-      "authoringRevision": "v0.9.0-r4"
+      "authoringRevision": "v0.9.0-r2"
+    },
+    "v090ContainerFitAmendment": {
+      "authoringRevision": "v0.9.0-r3",
+      "firstImplementingArtifactBuild": "ui-20260821-01",
+      "approvalPath": "normative-patches/landometer-design-system-v0.9.0-container-fit.approval.yml",
+      "approvalBytes": 3923,
+      "approvalSha256": "48b65bfb7950464c375a2efa87db75289f8163490996f613dbe19e59cd5ad55a"
+    },
+    "v090RevealAmendment": {
+      "authoringRevision": "v0.9.0-r4",
+      "firstImplementingArtifactBuild": "ui-20260821-02",
+      "approvalPath": "normative-patches/landometer-design-system-v0.9.0-reveal.approval.yml",
+      "approvalBytes": 5271,
+      "approvalSha256": "6aa43f0a9581858786624a6f869c4efc5945e0a97bff62e2116faa3fd94abd07"
+    },
+    "v090IconAnatomyAmendment": {
+      "authoringRevision": "v0.9.0-r5",
+      "firstImplementingArtifactBuild": "ui-20260821-03",
+      "approvalPath": "normative-patches/landometer-design-system-v0.9.0-icon-anatomy.approval.yml",
+      "approvalBytes": 5951,
+      "approvalSha256": "43821cbc63935a3149900420a9a94f1d31270c7a71b10e577e2df752641fb3ed"
     }
   },
   "approvedAmendments": [
@@ -124,12 +145,12 @@
   },
   "releaseIdentity": {
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r4",
+    "authoringRevision": "v0.9.0-r5",
     "colorSetId": "color-srgb-04",
-    "artifactBuildId": "ui-20260821-01",
+    "artifactBuildId": "ui-20260821-03",
     "latestStandalonePath": "deployment/landometer-design-system-v0.9.0-standalone.html",
     "immutableColorSetPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
-    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
+    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-03.html",
     "evidenceStatus": "source_limited",
     "indexable": false,
     "machineValidation": "pending"
@@ -150,7 +171,7 @@
     {
       "path": "SKILL.md",
       "bytes": 11193,
-      "sha256": "20c1da386c45ca94ae90e6b1346edc070219c32c460a3bd9f4fdb24e8bd4f67c"
+      "sha256": "e1f8c02a20b902d2a154b71791f2287245d2b88f80a293c092a1aaf2596cae6a"
     },
     {
       "path": "agents/openai.yaml",
@@ -160,12 +181,12 @@
     {
       "path": "assets/build-card-template.yaml",
       "bytes": 7328,
-      "sha256": "0466be8908300e13b0365ff3f7f334e0faa1e12e11f630e2ce681772a38fb02a"
+      "sha256": "e604572fe535fd2cc94d7a1e702e315d9e3e99461aa44b918c904085c0fdc277"
     },
     {
       "path": "references/landometer-design-system-v0.9.0-authoring-master.md",
-      "bytes": 383022,
-      "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa"
+      "bytes": 406384,
+      "sha256": "96a03c25cb1bed79fa8ab000ea624449c8470cd68b736824d7c0320007ad9a6a"
     }
   ]
 }
