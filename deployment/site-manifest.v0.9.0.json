@@ -756,8 +756,8 @@
     },
     {
       "path": "implementation-notes.v0.9.0.md",
-      "bytes": 26768,
-      "sha256": "6c38f114fb625bbfb597281e0e63366d70c000d56e87d5e64ee158e3767bc070",
+      "bytes": 4257,
+      "sha256": "566fb3103183ad2bf346ae535f68925eba8866732719df25b2818e6d317eb8b7",
       "usageClass": "accepted artifact application record",
       "authority": "non-normative artifact evidence; v0.9.0-r2 authoring master governs"
     },
