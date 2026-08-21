@@ -1,7 +1,7 @@
 # Landometer Design System v0.9.0
 
 **Release:** v0.9.0
-**Authoring revision:** v0.9.0-r2 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`
+**Authoring revision:** v0.9.0-r3 — deterministic build kit, growth-with-honesty layer, and red-team clarifications integrated 20 August 2026 over the complete v0.8.9-r1 authoring authority; same-day owner amendment of the ijji and CityWiki product identity gradients (§C9), minting Color Set `color-srgb-03` → `color-srgb-04` and kit `lds-kit-0.9.0-r3`; owner amendment of 21 August 2026 adding `[CONTAINER-FIT-01]` and self-check item SC-20 (§4.4C, §C9)
 **Manifest version:** 2.1 — closed extension of Manifest 2.0 carrying the new v0.9.0 records; Manifest 2.0 artifacts remain readable historical evidence and MUST NOT be emitted as current conformance
 **Token schema version:** 6 — unchanged. Per the 2026-08-20 purple/brown purge, v0.9.0 replaces ten brown/plum-toned token values (six new raw values + four reassignments of existing registry values) and therefore mints Color Set `color-srgb-03`; `color-srgb-02` and `color-srgb-01` remain immutable evidence. All other values, including every gradient recipe, are unchanged (ledger in §C9)
 **Build Card schema version:** 0.9.0
@@ -969,6 +969,32 @@ L3 deep reference method docs, ledger history, full QA evidence
 - Static human-facing exports (PDF, deck, poster) keep compact claim labels at the claims and carry the full source/limitation block on a back or appendix page — the document's own deep layer.
 - Agent, export, and share channels keep full evidence fields inline; `channelParityKey` parity compares records, not layout, and wording may simplify by channel (`[AGENT-OUT-01]` unchanged).
 - Master Brand Brief §3.7 requires visible evidence labels that are not hidden in footnotes: the compact chip at the claim is that visible label, and the L2 panel is on-demand disclosure, not a footnote. Removing even the chip would conflict with MBB §3.7 and requires amending the MBB first.
+
+### 4.4C Enumeration fit inside bounded containers `[CONTAINER-FIT-01]`
+
+**Applies to:** every enumeration — table, list, log, checklist, result set, or record dump — rendered inside a bounded companion container: a card, tile, panel, or any element that shares a grid track or row with siblings (owner amendment 2026-08-21).
+
+`[DISCLOSURE-01]` already says the answer comes first and the evidence sits one interaction deep. `[MEDIA-LADDER-01]` already says overflow prose folds into a labelled expander. Neither rule named enumerations, so a long table could be poured into a card verbatim while every individual rule still passed. This section closes that gap.
+
+**The rule.** An enumeration inside a bounded container MUST NOT exceed the height its container was designed for. Concretely, an enumeration crosses the threshold when either condition holds:
+
+1. it renders more than **six** rows or items; or
+2. it makes its container taller than the tallest sibling sharing its grid row or track.
+
+Above the threshold the enumeration MUST be presented as `[DISCLOSURE-01]` requires:
+
+- **L1 — an answer-first summary line** carrying the counted outcome, in the enumeration's own truthful wording. Counts are read from the enumeration itself and never rounded, softened, or reordered to look better; a summary that hides failures, exceptions, or `n/a` entries is a truth defect, not a layout choice.
+- **L2 — the full enumeration behind one labelled expander**, complete and unabridged. Folding never deletes rows and never becomes a reason to publish fewer of them.
+- The expander body is **bounded** — its own scroll region — so opening it cannot re-inflate a shared grid row and push siblings out of alignment.
+
+**Boundaries.**
+
+- This is a presentation rule, not an evidence rule: the record keeps every field and every row, and the machine-readable channels (`site-manifest`, Build Card, QA evidence) continue to carry the enumeration in full, unfolded.
+- A page or section whose whole job is the enumeration — a dedicated evidence page, an atlas, a QA table — is not a bounded companion container and is out of scope.
+- A summary line is never a substitute for a material reversal warning or a consequential confirmation; those still surface at the decision moment under `[DATA-01]` and `[EFFECT-01]`.
+- Static exports follow `[DISCLOSURE-01]`: the summary sits at the claim and the complete enumeration goes to a back or appendix page.
+
+**Verification `[SELFCHECK-01]` SC-20.** A rendered-geometry check MUST measure, at every governed breakpoint and in both visual baselines, whether any bounded container overflows its own box or exceeds the tallest sibling in its grid row beyond a stated tolerance. Static source review cannot discharge this item: the defect it catches only exists after layout. The check records its measurements as release evidence alongside the other rendered-geometry records.
 
 ### 4.5 Perceptual quiet and dominant media `[SPACE-01]`
 
@@ -2524,6 +2550,7 @@ Before delivery, every web artifact runs this binary checklist. The checks are t
 | SC-17 | None of the retired v0.8.x color values appears anywhere: `#795300` `#846100` `#686354` `#8B877A` `#B6AD98` `#A59A80` `#9E476F` `#E982AE` `#827C68` `#85837A` | `[VIS-04]` |
 | SC-18 | The first-view DOM contains no warning/caution banner, no `role="alert"` outside a real error state, and none of the Appendix D caution-phrase lint list; the evidence affordance exists where claims render | `[DISCLOSURE-01]` |
 | SC-19 | Every UI icon resolves `font-family: "Material Symbols Rounded"` with the locked axes (or an approved registered custom glyph); no other icon set, emoji, or ad-hoc vector renders; production/portable builds load the icon face from a self-hosted subset, not fonts.googleapis.com | `[ICON-01]` |
+| SC-20 | No bounded container (card, tile, panel sharing a grid row) overflows its own box or exceeds the tallest sibling in its row beyond the stated tolerance, at every governed breakpoint and in both visual baselines; any enumeration past the §4.4C threshold carries an answer-first summary and a bounded expander | `[CONTAINER-FIT-01]` |
 
 The self-check never replaces the scoped QA in §10 — it removes the small-detail drift that previously forced repeated redeploys, before §10 runs.
 
@@ -3054,6 +3081,8 @@ Migration aliases and independently governed product/motif records:
 | `motif.gradient.civicWarm` | `#C33F55 → #FF8A4C → #F4C44E` |
 
 Product gradients use `135deg` and identify the product only. They MUST NOT encode data or state.
+
+**Specimen surface (owner amendment 2026-08-21).** A product identity gradient is defined per visual baseline, so a specimen, atlas card, or documentation sample of the `.light` value MUST render on a light surface and the `.dark` value on a dark surface, in both cases pinned to that baseline's real surface and ink tokens and never following the theme the viewer happens to have selected. A reader must be able to see what the value does where it is actually used. The pinned specimen states that it is pinned, so the fixed surface is never mistaken for the page's own theme. This governs specimens only: in a real product surface the value follows the user's selected theme exactly as the token pair defines.
 
 Motif gradient IDs remain asset-only and do not clear the `[MOTIF-01]`
 vector/hash gate. They may color only a separately approved motif asset and
@@ -3641,7 +3670,17 @@ v0.9.0-r1 replaces v0.8.9-r1 as the binding authoring master from this date. The
 | CityWiki · light | `#176B82 → #007E79` | `#F7CBC7 0% · #FBD1B6 50% · #F1E0B4 100%` — exact alias of `atmosphere.gradient.cultivate.mist` |
 | CityWiki · dark | `#59C7E8 → #3BD3CB` | `#F2F1DF → #E0B443` (`#E0B443` is the amendment's one new raw value, product-gradient-only) |
 
-CityMETER and CityChat are unchanged. Computed WCAG floors over 1,001 linear-sRGB samples (Observed fact, this amendment's QA run): ijji light ink `#182327` ≥11.36:1 / `#293337` ≥9.16:1; ijji dark ink ≥8.21:1; CityWiki light ink ≥10.94:1 / ≥8.82:1; CityWiki dark ink ≥8.24:1. Both new light fields prohibit bare white foregrounds (white minima 1.31–1.33:1); their foreground contract is the mist recipes' existing `surfaceForeground.onLight` ink pair. Boundary of the aliases: inside an ijji or CityWiki product surface the aliased field reads as that product's identity; everywhere else the same recipe remains the shared Ground/Cultivate atmosphere; neither reading ever encodes data magnitude or semantic state, and the alias is declared in the registry (`lightAliasOf`), never a duplicated palette. Per the registry identity rule this amendment mints Color Set **`color-srgb-04`** and artifact build **`ui-20260820-02`**; `color-srgb-03`, `ui-20260820-01`, and their pinned artifacts remain immutable evidence and are never redefined. The kit token block changes with it, so the kit version advances to **`lds-kit-0.9.0-r3`** (migration: copy the new E1 bytes; only the two `--product-*-gradient` pairs differ). The retired assignments' raw values remain governed elsewhere (`#C52C00`/`#FF8A4C` as `series.02`, `#B23F74`/`#F06FA6` as `series.10` and the trade-off diverging anchors); no value leaves the registry. This amendment is the reason this file's authoring revision is **v0.9.0-r2**.
+CityMETER and CityChat are unchanged. Computed WCAG floors over 1,001 linear-sRGB samples (Observed fact, this amendment's QA run): ijji light ink `#182327` ≥11.36:1 / `#293337` ≥9.16:1; ijji dark ink ≥8.21:1; CityWiki light ink ≥10.94:1 / ≥8.82:1; CityWiki dark ink ≥8.24:1. Both new light fields prohibit bare white foregrounds (white minima 1.31–1.33:1); their foreground contract is the mist recipes' existing `surfaceForeground.onLight` ink pair. Boundary of the aliases: inside an ijji or CityWiki product surface the aliased field reads as that product's identity; everywhere else the same recipe remains the shared Ground/Cultivate atmosphere; neither reading ever encodes data magnitude or semantic state, and the alias is declared in the registry (`lightAliasOf`), never a duplicated palette. Per the registry identity rule this amendment mints Color Set **`color-srgb-04`** and artifact build **`ui-20260820-02`**; `color-srgb-03`, `ui-20260820-01`, and their pinned artifacts remain immutable evidence and are never redefined. The kit token block changes with it, so the kit version advances to **`lds-kit-0.9.0-r3`** (migration: copy the new E1 bytes; only the two `--product-*-gradient` pairs differ). The retired assignments' raw values remain governed elsewhere (`#C52C00`/`#FF8A4C` as `series.02`, `#B23F74`/`#F06FA6` as `series.10` and the trade-off diverging anchors); no value leaves the registry. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r2**.
+
+**Owner amendment (2026-08-21, after the product-identity amendment): `[CONTAINER-FIT-01]` and self-check item SC-20.** The owner reported, from a rendered desktop view, that the `[KIT-01]`/`[SELFCHECK-01]` specimen card poured its full nineteen-row self-check table into a card sharing a four-column grid row, so that card ran far past its siblings. The owner then directed that the underlying rule gap be closed in this master rather than patched only in the artifact (Owner-stated instruction, recorded in `normative-patches/landometer-design-system-v0.9.0-container-fit.approval.yml`).
+
+**What was missing.** `[DISCLOSURE-01]` bound caution prose and evidence depth; `[MEDIA-LADDER-01]` bound overflow *prose*. Neither named enumerations — tables, lists, logs, checklists, result sets — so a nineteen-row table inside a card violated no rule while still breaking the composition. No `[SELFCHECK-01]` item and no automated gate measured rendered container height: the release gates check identity, tokens, bytes, hashes, colour contrast, scale-label geometry, and component contracts, none of which model "content longer than the container it was designed for". The defect was therefore invisible to every gate that passed, which is a coverage gap in the rule set and in the gates, not a gate returning a false result.
+
+**What this amendment adds.** §4.4C `[CONTAINER-FIT-01]` states the threshold (more than six rows, or taller than the tallest sibling in the grid row), requires the `[DISCLOSURE-01]` treatment above it — an answer-first summary carrying the counted outcome in truthful wording, the complete enumeration behind one labelled expander, and a bounded scroll body so opening the expander cannot re-inflate a shared row — and fixes the boundaries: records and machine channels keep every row unfolded, dedicated evidence pages are out of scope, and a summary never replaces a decision-moment warning. `[SELFCHECK-01]` gains **SC-20**, which is explicitly not dischargeable by source review because the defect exists only after layout.
+
+**Same-day second item: theme-pinned product identity specimens.** The owner also directed that specimens of the four product identity gradients (CityMETER, CityWiki, CityChat, ijji) show the `.light` value on a light surface and the `.dark` value on a dark surface regardless of the page theme, so a reader sees what each value does in the theme a real product user would have selected. Recorded in §A4. Before this, an atlas card rendered both values on whichever surface the page theme supplied, which showed the dark value on a light surface — a specimen that misrepresents its own application. No gradient value changes; only the surface the specimen is drawn on.
+
+**Scope of this amendment.** It changes presentation rules and the self-check ledger only. No token, gradient, scale, colour, or typography value changes, so Color Set `color-srgb-04` is unchanged and no new Color Set is minted. The kit token block is unchanged, so the kit version stays `lds-kit-0.9.0-r3`; only the kit's self-check comment block gains its SC-20 line. Artifact build `ui-20260821-01` carries the first implementation of this rule. This amendment is the reason this file's authoring revision advanced to **v0.9.0-r3**.
 
 **Scope of this approval.** It makes the rules binding and authorizes Color Set `color-srgb-03`. It does **not** certify package-level conformance, does not pre-pass any artifact QA, does not approve any media, identity, or font asset, and raises no artifact's `evidenceStatus`, `indexable`, or `machineValidation` state. Conditions carried forward: Thai display leading `1.16` still needs rendered stress fixtures before machine-package sign-off; media and identity assets remain `approval_missing`/`internal_only` until their manifests ship inside a validated package; gated growth mechanics stay at their ungated fallback until `[ABUSE-INTEGRITY-01]` contracts exist; skills and instructions pinned to v0.8.8 are re-pinned to v0.9.0.
 
@@ -4273,6 +4312,7 @@ selfCheck:
   SC-17: pass   # retired purple/brown values absent
   SC-18: pass | n/a   # no caution prose in first view; evidence affordance present
   SC-19: pass | n/a   # icons = Material Symbols Rounded locked axes, self-hosted subset
+  SC-20: pass   # bounded containers fit; long enumerations folded per 4.4C
   notes: []     # every fail or n/a gets one line naming the reason
 ```
 
