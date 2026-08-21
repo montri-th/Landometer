@@ -695,7 +695,7 @@ const checks = [
   ],
   [
     "one Color Set identity spans the page, sampler, atlas, and manifest",
-    colorRegistryId === "color-srgb-03" &&
+    colorRegistryId === "color-srgb-04" &&
       attributeOf(htmlTag, "data-color-registry") === colorRegistryId &&
       attributeOf(samplerElement, "data-color-registry") === colorRegistryId &&
       attributeOf(
@@ -707,7 +707,7 @@ const checks = [
   [
     "the Color Set baseline stays immutable and handoff links the current immutable UI build",
     pinnedColorSetName ===
-      "landometer-design-system-v0.9.0-standalone.color-srgb-03.html" &&
+      "landometer-design-system-v0.9.0-standalone.color-srgb-04.html" &&
       tagsNamed(html, "a").some(tag =>
         attributeOf(tag, "id") === "resource-standalone" &&
         attributeOf(tag, "href") === currentArtifactBuildName
@@ -725,7 +725,7 @@ const checks = [
     "UI-only changes mint a separate append-only artifact build without rewriting the Color Set baseline",
     /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
       currentArtifactBuildName ===
-        `landometer-design-system-v0.9.0-standalone.color-srgb-03.${currentArtifactBuildId}.html` &&
+        `landometer-design-system-v0.9.0-standalone.color-srgb-04.${currentArtifactBuildId}.html` &&
       attributeOf(
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-color-registry"
