@@ -10,7 +10,7 @@
   },
   "authority": {
     "status": "owner-approved-integrated-authoring-master",
-    "authoringRevision": "v0.9.0-r3",
+    "authoringRevision": "v0.9.0-r4",
     "activePath": "references/landometer-design-system-v0.9.0-authoring-master.md",
     "approvedThrough": "2026-08-20",
     "bytes": 383022,
@@ -69,7 +69,7 @@
       "colorSet": "color-srgb-04",
       "previousColorSet": "color-srgb-03 (frozen evidence: assets/data/color-delivery.v0.9.0.color-srgb-03.json)",
       "kitVersion": "lds-kit-0.9.0-r3",
-      "authoringRevision": "v0.9.0-r3"
+      "authoringRevision": "v0.9.0-r4"
     }
   },
   "approvedAmendments": [
@@ -124,7 +124,7 @@
   },
   "releaseIdentity": {
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r3",
+    "authoringRevision": "v0.9.0-r4",
     "colorSetId": "color-srgb-04",
     "artifactBuildId": "ui-20260821-01",
     "latestStandalonePath": "deployment/landometer-design-system-v0.9.0-standalone.html",
