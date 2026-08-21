@@ -2,13 +2,13 @@
   "meta": {
     "id": "color-srgb-05",
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r6",
+    "authoringRevision": "v0.9.0-r7",
     "status": "owner_approved_authoring_contract_package_validation_pending",
     "createdAt": "2026-08-21",
     "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
     "currentArtifactBuild": {
-      "id": "ui-20260821-04",
-      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html"
+      "id": "ui-20260821-05",
+      "immutableStandalone": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html"
     },
     "latestAliases": [
       "index.html",
@@ -52,8 +52,8 @@
     "authoringMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.0.md",
       "revision": "v0.9.0-r1",
-      "bytes": 410857,
-      "sha256": "d59ea6180ffeca1549a3a54caa2beb856cef605780e53467c3d7a4cae8b1b561"
+      "bytes": 416189,
+      "sha256": "52ef41f1b231f8b84955a40c21a018991a114a4f5eaabd8c5111816bf8d645b1"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
@@ -148,6 +148,17 @@
       "changeClass": "token_source_motion; every colour, gradient, and scale value byte-identical to color-srgb-04",
       "bytes": 2141434,
       "sha256": "f21ffb5db26170f25af0a551243003b8d3f98f7ca0bc74b683da4c3bbb09d19c"
+    },
+    {
+      "id": "ui-20260821-05",
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-05",
+      "status": "append_only",
+      "supersedes": "ui-20260821-04",
+      "changeClass": "ui_only; machine specification package v0.9.0-mp1 generated and page package-status texts updated; Color Set color-srgb-05 unchanged",
+      "bytes": 2142100,
+      "sha256": "87ae72f9d51b5f83f47e05b4a1d885992aebe850c7135959e54ce73685955b2b"
     }
   ],
   "sharedAtmosphereGradients": [
