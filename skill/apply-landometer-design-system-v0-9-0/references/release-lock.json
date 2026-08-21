@@ -10,11 +10,11 @@
   },
   "authority": {
     "status": "owner-approved-integrated-authoring-master",
-    "authoringRevision": "v0.9.0-r1",
+    "authoringRevision": "v0.9.0-r2",
     "activePath": "references/landometer-design-system-v0.9.0-authoring-master.md",
     "approvedThrough": "2026-08-20",
-    "bytes": 379865,
-    "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3",
+    "bytes": 383022,
+    "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa",
     "submittedForApprovalSha256": "87e1996a9480f50e9d0e3982aa6b26386b98cfccc06d0de0a30b2962d92d0f48",
     "submittedForApprovalBytes": 378063,
     "note": "The submitted hash is the file the owner reviewed. The integrated file adds the §C9 approval record and the status-line change, so its own hash differs and is recorded above."
@@ -58,6 +58,18 @@
       "gradientRegistry": "landometer-atmosphere-gradient-v2",
       "colorSetId": "color-srgb-03",
       "activeAuthorityPath": "references/landometer-design-system-v0.9.0-authoring-master.md"
+    },
+    "v090ProductIdentityGradientAmendment": {
+      "approvedAt": "2026-08-20",
+      "authority": "Landometer owner",
+      "scope": "ijji and CityWiki product identity gradients; ijji light aliases atmosphere.gradient.ground.mist, CityWiki light aliases atmosphere.gradient.cultivate.mist; CityWiki dark adds #E0B443",
+      "approvalPath": "normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml",
+      "approvalBytes": 3100,
+      "approvalSha256": "5c48dcc7eef1eccb2b11b3055b72d8c282d8f04c413348deaebf475ea6fd5542",
+      "colorSet": "color-srgb-04",
+      "previousColorSet": "color-srgb-03 (frozen evidence: assets/data/color-delivery.v0.9.0.color-srgb-03.json)",
+      "kitVersion": "lds-kit-0.9.0-r3",
+      "authoringRevision": "v0.9.0-r2"
     }
   },
   "approvedAmendments": [
@@ -76,7 +88,8 @@
     "abuse and integrity gate for direct-send, post, invite, co-creation, and feedback learning [ABUSE-INTEGRITY-01]",
     "release receipt in delivered HTML, per-page favicon truth, and per-destination social previews [PUB-01]",
     "[SEARCH-01] renamed [INTERNAL-SEARCH-01] with the old ID a deprecated alias for one release",
-    "protected Cultural activation preserved exactly: Let us cultivate our city with data."
+    "protected Cultural activation preserved exactly: Let us cultivate our city with data.",
+    "ijji and CityWiki product identity gradients re-assigned by owner amendment 2026-08-20 — mist aliases for the light themes, #59C7E8→#3BD3CB and #F2F1DF→#E0B443 darks, Color Set color-srgb-04, kit lds-kit-0.9.0-r3 [VIS-02] [DELIVERY-01]"
   ],
   "explicitUnpromotedGaps": [
     "universal chart axis, grid, data, selection, and focus stroke widths",
@@ -111,12 +124,12 @@
   },
   "releaseIdentity": {
     "designSystemVersion": "0.9.0",
-    "authoringRevision": "v0.9.0-r1",
-    "colorSetId": "color-srgb-03",
-    "artifactBuildId": "ui-20260820-01",
+    "authoringRevision": "v0.9.0-r2",
+    "colorSetId": "color-srgb-04",
+    "artifactBuildId": "ui-20260820-02",
     "latestStandalonePath": "deployment/landometer-design-system-v0.9.0-standalone.html",
-    "immutableColorSetPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-03.html",
-    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html",
+    "immutableColorSetPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
+    "immutableArtifactPath": "deployment/landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
     "evidenceStatus": "source_limited",
     "indexable": false,
     "machineValidation": "pending"
@@ -136,8 +149,8 @@
   "integrity": [
     {
       "path": "SKILL.md",
-      "bytes": 10924,
-      "sha256": "a86151029ac3d5987b784232737db759797cb5d8eff2bf33120f1e3576783759"
+      "bytes": 11193,
+      "sha256": "20c1da386c45ca94ae90e6b1346edc070219c32c460a3bd9f4fdb24e8bd4f67c"
     },
     {
       "path": "agents/openai.yaml",
@@ -147,12 +160,12 @@
     {
       "path": "assets/build-card-template.yaml",
       "bytes": 7328,
-      "sha256": "e6e6f8df30ed552cf279e5e09aa9268c8ac60ed417b1706ecaba18f8a9922497"
+      "sha256": "0466be8908300e13b0365ff3f7f334e0faa1e12e11f630e2ce681772a38fb02a"
     },
     {
       "path": "references/landometer-design-system-v0.9.0-authoring-master.md",
-      "bytes": 379865,
-      "sha256": "e0b0e187861efa79008adb60fa2cab0ff5442d235ab3b6d3b1db78acb2a456a3"
+      "bytes": 383022,
+      "sha256": "928b00b47a4ff4319d00fe23990067ecd61a26dca9b6053888cb87f4b54210aa"
     }
   ]
 }
