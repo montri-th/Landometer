@@ -8,16 +8,16 @@ const deploymentRoot = resolve(repositoryRoot, "deployment");
 
 const RELEASE = Object.freeze({
   version: "0.9.0",
-  authoringRevision: "v0.9.0-r2",
+  authoringRevision: "v0.9.0-r3",
   manifestVersion: "2.1",
   tokenSchemaVersion: 6,
   colorSetId: "color-srgb-04",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260820-02",
+  artifactBuildId: "ui-20260821-01",
   latest: "landometer-design-system-v0.9.0-standalone.html",
   baseline: "landometer-design-system-v0.9.0-standalone.color-srgb-04.html",
   immutableUi:
-    "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html",
+    "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.0.md",
   skillMaster:
     "skill/apply-landometer-design-system-v0-9-0/references/landometer-design-system-v0.9.0-authoring-master.md",
@@ -28,6 +28,7 @@ const RELEASE = Object.freeze({
   registry: "assets/data/color-delivery.v0.9.0.json",
   contrastEvidence: "qa/v0.9.0-gradient-contrast.json",
   scaleEvidence: "qa/v0.9.0-scale-geometry.json",
+  containerFitEvidence: "qa/v0.9.0-container-fit.json",
   manifest: "site-manifest.v0.9.0.json",
   buildCard: "build-card.v0.9.0.yml",
 });
@@ -233,6 +234,7 @@ const requiredRepositoryFiles = [
   `deployment/${RELEASE.registry}`,
   `deployment/${RELEASE.contrastEvidence}`,
   `deployment/${RELEASE.scaleEvidence}`,
+  `deployment/${RELEASE.containerFitEvidence}`,
   `deployment/${RELEASE.manifest}`,
   `deployment/${RELEASE.buildCard}`,
   "deployment/font-assets.manifest.json",
@@ -284,16 +286,21 @@ const fontManifest = readJsonAbsolute(
 const buildCard = readDeployment(RELEASE.buildCard);
 
 // Release identity is repeated in every machine-consumed surface.
-for (const [channel, source, expectedChannel] of [
-  ["hosted", html, "latest-alias"],
-  ["latest", latestHtml, "latest-alias"],
-  ["baseline", baselineHtml, "immutable-color-set"],
-  ["immutable-ui", immutableUiHtml, "immutable-artifact-build"],
+const baselineMintedWithBuild =
+  registry?.artifactBuilds?.find(r => r.path === RELEASE.baseline)?.mintedWithArtifactBuild
+  ?? RELEASE.artifactBuildId;
+for (const [channel, source, expectedChannel, expectedBuild] of [
+  ["hosted", html, "latest-alias", RELEASE.artifactBuildId],
+  ["latest", latestHtml, "latest-alias", RELEASE.artifactBuildId],
+  // the Color Set baseline keeps the build id it was minted with; a later UI-only
+  // change mints a new artifact build without rewriting the baseline
+  ["baseline", baselineHtml, "immutable-color-set", baselineMintedWithBuild],
+  ["immutable-ui", immutableUiHtml, "immutable-artifact-build", RELEASE.artifactBuildId],
 ]) {
   check(hasAttribute(source, "data-ds-version", RELEASE.version), `identity:${channel}:version`);
   check(hasAttribute(source, "data-color-registry", RELEASE.colorSetId), `identity:${channel}:color-set`);
   check(hasAttribute(source, "data-atmosphere-gradient-registry", RELEASE.gradientSchema), `identity:${channel}:gradient-schema`);
-  check(hasAttribute(source, "data-artifact-build", RELEASE.artifactBuildId), `identity:${channel}:artifact-build`);
+  check(hasAttribute(source, "data-artifact-build", expectedBuild), `identity:${channel}:artifact-build`);
   check(hasAttribute(source, "data-build-channel", expectedChannel), `identity:${channel}:build-channel`);
   check(hasAttribute(source, "data-machine-validation", "pending"), `identity:${channel}:machine-validation`);
   check(hasAttribute(source, "data-evidence-status", "source_limited"), `identity:${channel}:evidence-status`);
@@ -307,7 +314,7 @@ const masterRecord = fileRecordAbsolute(deploymentPath(RELEASE.authoringMaster))
 check(Buffer.compare(readAbsolute(deploymentPath(RELEASE.authoringMaster)), readAbsolute(repoPath(RELEASE.skillMaster))) === 0, "normative:master-byte-parity");
 check(masterRecord.sha256 === sha256Absolute(repoPath(RELEASE.skillMaster)), "normative:master-hash-parity");
 check(authoringMaster.includes("**Release:** v0.9.0"), "normative:master-version");
-check(authoringMaster.includes("**Authoring revision:** v0.9.0-r2"), "normative:master-revision");
+check(authoringMaster.includes("**Authoring revision:** v0.9.0-r3"), "normative:master-revision");
 check(authoringMaster.includes("Let us cultivate our city with data."), "normative:brand-line-with-data");
 
 // Approval binds the exact proposal and integrated master while leaving artifact gates truthful.
@@ -414,6 +421,8 @@ check(deepEqual(
 const artifactExpectations = [
   { path: RELEASE.baseline, id: "color-baseline-20260820-02", role: "immutable_color_baseline", colorSet: RELEASE.colorSetId },
   { path: RELEASE.immutableUi, id: RELEASE.artifactBuildId, role: "immutable_ui_build", colorSet: RELEASE.colorSetId },
+  // frozen same-Color-Set predecessor: superseded by a UI-only change, never redefined
+  { path: "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html", id: "ui-20260820-02", role: "immutable_ui_build", colorSet: "color-srgb-04" },
   // frozen color-srgb-03 evidence: never redefined, still byte-verified against disk
   { path: "landometer-design-system-v0.9.0-standalone.color-srgb-03.html", id: "color-baseline-20260820", role: "immutable_color_baseline", colorSet: "color-srgb-03" },
   { path: "landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html", id: "ui-20260820-01", role: "immutable_ui_build", colorSet: "color-srgb-03" },
@@ -429,9 +438,27 @@ for (const expected of artifactExpectations) {
   check(record?.bytes === actualFile.bytes, `artifact-record-bytes:${expected.path}`);
   check(record?.sha256 === actualFile.sha256, `artifact-record-hash:${expected.path}`);
 }
-check((registry?.artifactBuilds ?? []).length === 4, "artifact-record:two-frozen-plus-two-current-builds");
+check((registry?.artifactBuilds ?? []).length === 5, "artifact-record:three-frozen-plus-two-current-builds");
 check(normalizeBuildChannel(latestHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:latest-to-immutable-ui");
-check(normalizeBuildChannel(baselineHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:baseline-to-immutable-ui");
+// A Color Set baseline is never rewritten for a later UI-only change, so it stays byte-identical
+// to the UI build it was minted with — not to whatever the current build is.
+{
+  const baselineRecord = registry?.artifactBuilds?.find(r => r.path === RELEASE.baseline);
+  const mintedWith = baselineRecord?.mintedWithArtifactBuild ?? RELEASE.artifactBuildId;
+  check(typeof mintedWith === "string" && mintedWith.length > 0, "artifact-parity:baseline-minted-with-declared");
+  if (mintedWith === RELEASE.artifactBuildId) {
+    check(normalizeBuildChannel(baselineHtml) === normalizeBuildChannel(immutableUiHtml), "artifact-parity:baseline-to-immutable-ui");
+  } else {
+    const mintedPath = deploymentPath(`landometer-design-system-v0.9.0-standalone.${RELEASE.colorSetId}.${mintedWith}.html`);
+    check(existsSync(mintedPath), "artifact-parity:baseline-minting-build-present");
+    if (existsSync(mintedPath)) {
+      check(
+        normalizeBuildChannel(baselineHtml) === normalizeBuildChannel(readUtf8Absolute(mintedPath)),
+        "artifact-parity:baseline-to-minting-ui-build",
+      );
+    }
+  }
+}
 check(!latestHtml.includes('<link rel="canonical"'), "standalone:noncanonical-latest");
 check(!immutableUiHtml.includes('<link rel="canonical"'), "standalone:noncanonical-immutable-ui");
 check((latestHtml.match(/data:font\/woff2;base64,/g) ?? []).length >= 9, "standalone:embedded-fonts");
@@ -481,6 +508,25 @@ for (const path of manifestFilePaths) {
     `manifest:file-record:${path}`,
   );
 }
+// [CONTAINER-FIT-01] / SC-20 — rendered container-fit evidence must exist, be bound to
+// THIS build and revision, and carry zero failures. Source review cannot discharge SC-20.
+{
+  const fit = readJsonAbsolute(deploymentPath(RELEASE.containerFitEvidence), "container-fit:parse");
+  check(fit?.rule === "[CONTAINER-FIT-01]", "container-fit:rule");
+  check(fit?.selfCheckItem === "SC-20", "container-fit:self-check-item");
+  check(fit?.artifactBuild === RELEASE.artifactBuildId, "container-fit:artifact-build");
+  check(fit?.colorRegistryId === RELEASE.colorSetId, "container-fit:color-set");
+  check(fit?.authoringRevision === RELEASE.authoringRevision, "container-fit:revision");
+  check(fit?.totals?.failures === 0, "container-fit:zero-failures");
+  check((fit?.totals?.cases ?? 0) >= 8, "container-fit:breakpoint-and-theme-coverage");
+  check((fit?.totals?.containersMeasured ?? 0) > 0, "container-fit:containers-measured");
+  check(Array.isArray(fit?.scope?.themes) && fit.scope.themes.includes("light") && fit.scope.themes.includes("dark"), "container-fit:both-visual-baselines");
+  check(typeof fit?.boundary === "string" && fit.boundary.length > 0, "container-fit:boundary-stated");
+  // the master must actually carry the rule and the self-check item it claims
+  check(authoringMaster.includes("[CONTAINER-FIT-01]"), "master:container-fit-rule-present");
+  check(/\|\s*SC-20\s*\|/.test(authoringMaster), "master:sc-20-present");
+  check(html.includes("SC-20 container fit"), "page:sc-20-row");
+}
 // Full assets[] sweep — verify-live.mjs byte-checks EVERY manifest asset record
 // against the deployed site, so every record must match disk here first.
 // (pages.yml run #24 failed post-deploy on a stale implementation-notes record
@@ -496,6 +542,7 @@ for (const asset of manifest?.assets ?? []) {
 }
 // Marker fields on currentArtifactBuild must state the CURRENT identity —
 // verify-live and human readers treat them as the live-HTML contract.
+check(manifest?.colorDelivery?.immutableColorBaseline?.registryMarker === `data-color-registry="${RELEASE.colorSetId}"`, "manifest:baseline-registry-marker");
 check(manifest?.colorDelivery?.currentArtifactBuild?.registryMarker === `data-color-registry="${RELEASE.colorSetId}"`, "manifest:current-build-registry-marker");
 check(manifest?.colorDelivery?.currentArtifactBuild?.artifactBuildMarker === `data-artifact-build="${RELEASE.artifactBuildId}"`, "manifest:current-build-artifact-marker");
 // pages.yml post-deploy gate must expect THIS release's identity and byte-check
@@ -527,7 +574,7 @@ check(buildCard.includes(`path: ${RELEASE.contrastEvidence}`), "build-card:contr
 check(/contrastEvidence:\s*[\s\S]{0,180}?status:\s*passed\b/.test(buildCard), "build-card:contrast-status-passed");
 check(/scrims:\s*\[\]/.test(buildCard), "build-card:no-default-scrims");
 check(/passing standalone governed gradient remains (?:visible|unscreened)/i.test(buildCard), "build-card:no-blanket-scrim-policy");
-check(!/v0\.9\.0-r[34]\b/.test(buildCard), "build-card:no-stale-r3-r4");
+check(!/v0\.9\.0-r[45]\b/.test(buildCard), "build-card:no-stale-r3-r4");
 for (const path of [
   "index.html",
   RELEASE.authoringMaster,
@@ -634,7 +681,7 @@ for (const [name, source] of [
   ["approval", approval],
   ["master", authoringMaster],
 ]) {
-  check(!/v0\.9\.0-r[34]\b/.test(source), `revision:no-stale-r3-r4:${name}`);
+  check(!/v0\.9\.0-r[45]\b/.test(source), `revision:no-stale-r3-r4:${name}`);
 }
 
 // Reuse deterministic generators/checkers instead of duplicating their derivation logic.
