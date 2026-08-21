@@ -739,6 +739,20 @@
       "status": "owner-approved authoring contract with artifact evidence; source_limited"
     },
     {
+      "path": "assets/data/tokens.json",
+      "bytes": 9166,
+      "sha256": "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc",
+      "usageClass": "token registry (token source; carried version 0.8.6 values with the 2026-08-21 rise-refinement motion values). Changing this file changes the token source and mints a new Color Set ID",
+      "status": "governed source; sha pinned by the registry, Build Card, and validator"
+    },
+    {
+      "path": "assets/data/color-delivery.v0.9.0.color-srgb-04.json",
+      "bytes": 16719,
+      "sha256": "d8623e3746cd14b149b67a2b472f9a5756b5e2e66aa1bc086ce7ad32fcb5ae17",
+      "usageClass": "frozen registry evidence for retired Color Set color-srgb-04 (superseded by the color-srgb-05 token-source mint); never relabelled current",
+      "status": "immutable archived evidence"
+    },
+    {
       "path": "landometer-design-system-v0.9.0-standalone.html",
       "bytes": 2141422,
       "sha256": "36e29d507bc3c6323d51965fbeb6531efb25980310d072cb260dc4df51841b32",
@@ -767,8 +781,8 @@
     },
     {
       "path": "implementation-notes.v0.9.0.md",
-      "bytes": 15549,
-      "sha256": "66301d23ec8dba58a2fd058f29bef30e1660459b13f62278d56232b01fe68039",
+      "bytes": 16260,
+      "sha256": "cf771b15fd8917a1e3e5ee5ae45c25e1c384cca48bc9cb79cd3a6cf0220c865a",
       "usageClass": "accepted artifact application record",
       "authority": "non-normative artifact evidence; v0.9.0-r6 authoring master governs"
     },
