@@ -66,11 +66,23 @@ The published playground is rebuilt to v0.9.0 while keeping every v0.8.9 route, 
 
 **Release mechanics:** governed colour, gradient, token source, and scale source are all unchanged, so this is a UI-only change: Color Set stays `color-srgb-04`; append-only artifact build `ui-20260821-03` is minted with its pinned filename; `ui-20260821-02` and every predecessor stay byte-frozen and byte-verified.
 
+### `ui-20260821-04` — the rise refinement, Color Set `color-srgb-05`, kit `lds-kit-0.9.0-r4` (2026-08-21)
+
+**Owner report (Owner-stated):** reviewing the entrance before publication — each component should load the way Canva calls "rise": drifting upward gently, sequenced piece by piece, separately per item; the shipped profile was much too fast.
+
+**What changed:** four existing motion token values only — `--motion-duration-reveal` 400→640ms, `--motion-delay-stagger` 60→120ms, `--motion-delay-stagger-cap` 240→600ms, `--motion-distance-reveal` 12→20px. Both eases, every other duration, and every semantic alias are untouched; no token is added or renamed. The page failsafe grew to 2400ms so it can never snap a running entrance, and the SC-22 probes wait out the longer profile.
+
+**Why this mints a Color Set with zero colour changes:** the values live in `assets/data/tokens.json`, and the identity rule is wider than colour on purpose — *"a governed color, gradient, token source, or analytical scale source change MUST mint a new Color Set ID"* — because the Color Set ID is the parity key for the whole token delivery. `color-srgb-05` is minted on the letter of that rule; every colour, gradient, and scale value is byte-identical to `color-srgb-04`, whose registry is archived at `assets/data/color-delivery.v0.9.0.color-srgb-04.json`. The kit token block changes with it → `lds-kit-0.9.0-r4`.
+
+**A prepared build withdrawn before publication:** `ui-20260821-03` was never merged, deployed, or published; it is withdrawn (immutability attaches at publication) and its id is not reused. This build is `ui-20260821-04`, superseding the last published `ui-20260821-02`.
+
+**More shipped drift found and pinned (Observed fact):** the Appendix E kit headers still said `lds-kit-0.9.0-r3 · Color Set color-srgb-03` ever since the r2 mint — a verbatim kit copy stamped a wrong Color Set into new work; and the Build Card `deliveryIdentity` block still declared `color-srgb-04 / ui-20260820-02` with hashes of that era. Both repaired; the validator now pins the deliveryIdentity block, the token-registry sha, and the README release boundary (README had shipped `ui-20260821-01` as current through two releases).
+
 ## Gates run locally before this PR
 
-- `node tools/validate-release.mjs` → **PASS (432 checks)** — now also pinning `llms.txt` (`llms:*`), the skill release-lock (`release-lock:*`, including `lineage-history-not-rewritten`), the kit capsule anatomy, and the skip-link `--radius-sm` shape
+- `node tools/validate-release.mjs` → **PASS (446 checks)** — now also pinning `llms.txt` (`llms:*`), the skill release-lock (`release-lock:*`, including `lineage-history-not-rewritten`), the kit capsule anatomy, the skip-link `--radius-sm` shape, the Build Card `deliveryIdentity` block, the token-registry sha, and the README release boundary
 - `node tools/check-gradient-contrast.mjs --check` → 7 gradients × 1001 samples × 2 foregrounds
-- `node tools/build-standalone-html.mjs --check` → reproducible for latest and `ui-20260821-03`
+- `node tools/build-standalone-html.mjs --check` → reproducible for latest, the `color-srgb-05` baseline, and `ui-20260821-04`
 - `node tools/generate-color-atlas.mjs --check-index` → injected atlas matches the registry
 - `node tools/check-scale-geometry.mjs` → 36 cases, 2916 rows, 0 failures
 - `node tools/check-container-fit.mjs` → SC-20: 8 cases, 64 containers, 0 failures
