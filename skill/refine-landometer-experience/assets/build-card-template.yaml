@@ -1,0 +1,243 @@
+landometerBuild:
+  dsVersion: 0.9.0
+  authoringRevision: v0.9.0-r7
+  schemas:
+    buildCard: 0.9.0
+    manifest: 2.1
+    tokens: 6
+  legacyReadOnlyBaseline:
+    authoringMasterVersion: 0.8.7
+    manifestVersion: 2.0
+    tokenSchemaVersion: 6
+  machinePackage:
+    status: pending
+    packageConformance: not_claimed
+  artifact:
+    name: ""
+    product: landometer | citymeter | citywiki | citychat | ijji
+    profile: designsystem.adoption | brand.public | citymeter.dataset | citywiki.public | product.app | citychat.app | ijji.app | data.explainer | campaign.public | social.static | presentation
+    pageKind: ""
+    pageKindSourceRef: ""
+    delivery: deployable_public | portable_single_file | internal_demo | static_export
+    language: th | en
+    additionalLanguages: []
+    generationMode: not_applicable | A | B | C
+    outputType: webpage | application | dataset_view | explainer | campaign | social_asset | presentation | static_document | destination_page | source_limited_planning_draft | entity_resolution_pack | field_verification_pack
+  export:
+    platform: not_applicable
+    canvasPx: not_applicable
+    aspectRatio: not_applicable
+    safeArea: not_applicable
+    exportScale: not_applicable
+    format: not_applicable
+    altOrCaptionPackage: ""
+    deliveredSizeTest: ""
+  publication:
+    evidenceStatus: verified | provisional | source_limited
+    visibility: public | internal | private
+    indexable: false
+    canonicalUrl: ""
+    discoveryStates:
+      machineReadableWhenOpened:
+        status: not_claimed | candidate | verified
+        evidenceRefs: []
+      searchDiscoverable:
+        status: not_claimed | candidate | verified
+        evidenceRefs: []
+      aiSearchDiscoverable:
+        status: not_claimed | candidate | verified
+        evidenceRefs: []
+      agentReadableOrActionable:
+        status: not_claimed | candidate | verified
+        evidenceRefs: []
+  destination:
+    required: false
+    url: ""
+    readiness: not_applicable | reference_ready | share_ready
+    publicSafe: false
+    status: verified | provisional | unavailable
+    qrOrLinkTest: ""
+  audience:
+    primary: ""
+    role: ""
+    adoptionRoleRegistry:
+      owner: ""
+      version: ""
+      roles: []
+  voice:
+    applies: true | false
+    locales:
+      - locale: th | en
+        ruleRefs: []
+        normativeSourceRef: references/landometer-design-system-v0.9.0-authoring-master.md
+        authoringBasisRef: ""
+        fixtureSetRef: none
+        copyHash: ""
+        naturalnessReviewRef: ""
+        parityReviewRef: ""
+  experience:
+    trigger: ""
+    oneJob: ""
+    promisedOutcome: ""
+    firstAha: ""
+    ahaEvidenceCue: ""
+    primaryAction: ""
+    nextUsefulAction: ""
+    nextTriggerOrCleanCompletion: ""
+    dominantObject: ""
+    channelParityKey: ""
+    brandSignatures: []
+    cleanCompletion: ""
+    valueProof:
+      applies: false
+      invariantObjectAndEvidence: ""
+      selectedLenses: []
+      intentionalChangedVariables: []
+      observableOutcome: ""
+  composition:
+    quietRegions: []
+    gradientSurfaces: []
+    connectors: []
+    localForegroundContracts: []
+  brandAlignment:
+    productStatement: ""
+    proofObject: ""
+    ahaProvesPromise: false
+    networkAdvancesObjective: false
+  investment:
+    mode: none_no_honest_investment | session_intent | saved_object | comparison | watch | helpfulness | correction | outcome_report | relevant_role
+    userBenefit: ""
+  proof:
+    kind: none | brand | documentary | analytical | operational
+    object: ""
+    sourceStatus: observed | official | calculated | proxy | modelled | recommendation | not_applicable
+    limitation: ""
+  assets:
+    officialLogo: available | missing
+    officialLogoAsset:
+      id: ""
+      variant: ""
+      sha256: ""
+      canvas: unresolved | transparent | exception_integral_background
+      placement: unresolved | direct_surface | separate_plate
+      surfacePairingRef: ""
+      identityApproval:
+        id: ""
+        authorityRole: brand_identity_authority
+        delegatedAuthorityRecordId: none
+        decision: unresolved | direct_surface | integral_background | separate_plate
+        assetId: ""
+        variant: ""
+        sha256: ""
+        canvas: unresolved | transparent | exception_integral_background
+        placement: unresolved | direct_surface | separate_plate
+        surfaceRef: ""
+        themesOrBackdrops: []
+        recordVersion: ""
+        validFrom: ""
+        expiresAt: null
+        evidenceRef: ""
+    identityDelivery: []
+    approvedPhotography: []
+    approvedWorkProof: []
+    mediaAssets: []
+    permissionRecords: []
+  theme:
+    mode: interactive_auto | static_light | static_dark | exception_fixed
+    support: dual | light_only | dark_only
+    default: system | light | dark
+    visibleOverride: true
+    exception: {}
+  motion:
+    intensity: guided | restrained | state_led | expressive_short | export_safe
+  capabilities:
+    analyticalEvidence: false
+    motionEnhancement: false
+    personalization: false
+    search: false
+    share: false
+    map: false
+    dataVisualization: false
+    coCreation: false
+    persistence: false
+    externalSideEffect: false
+    authentication: false
+    permissions: false
+    contextDiscovery: false
+    agentReadable: false
+    boundedAgentAction: false
+    agentActionEffect: none | read_only | local_only | external
+    fullLivingReference: false
+  contextDiscoveryActions: []
+  agentAction:
+    targetObjects: []
+    scope: ""
+    boundary: ""
+    confirmation: none | preview_then_confirm
+    allowedEffects: []
+  deliveryIdentity:
+    colorSetId: ""
+    artifactBuildId: ""
+    tokenRegistry:
+      path: ""
+      version: ""
+      sha256: ""
+    scaleRegistry:
+      path: ""
+      version: ""
+      sha256: ""
+    artifactHashes: []
+    visualBaselineTheme: light | dark | not_applicable
+  referenceFixtures: []
+  privacy:
+    personalData: false
+    sensitivity: public | internal | confidential | restricted
+    redactedPublicProjection: false
+    governanceRecord: {}
+  telemetry:
+    enabled: false
+    scope: none | internal | public_aggregate
+    purpose: ""
+    dataClasses: []
+    retention: ""
+    privacyBasis: ""
+    governanceRecord: {}
+  network:
+    mode: none | reference_ready | share_ready | relevant_circle | collaborative_object | co_creation_network | handoff_or_export | private_by_policy
+    action: none | copy_draft | exact_link | direct_send | post | invite | export | handoff
+    recipientOutcome: ""
+    policyReason: ""
+  qa:
+    evidencePath: ""
+    controlInventoryPath: ""
+    machineValidation: pending
+  determinism:
+    buildKitSource: Appendix E
+    buildKitCopiedVerbatim: false
+    kitFiles:
+      - lds-tokens.css
+      - lds-base.css
+      - skeleton.html
+    kitExtensionLayer: ""
+    selfCheck:
+      run: false
+      rowsTotal: 19
+      rowsPassed: 0
+      resultPath: ""
+  iconSystem:
+    family: material-symbols-rounded
+    axes: "FILL 0, wght 300, GRAD 0, opsz 24"
+    selfHostedSubsetPath: ""
+    spriteUseReferences: 0
+    secondFamilyPresent: false
+  actionGeometry:
+    capsuleActions: 0
+    circularIconOnlyActions: 0
+    thirdShapePresent: false
+  disclosure:
+    firstViewCaveatProse: none
+    disclosureLayersPath: ""
+    mediaLadderTop: video | image | icon | text
+  colorSetPurge:
+    retiredTonesPresent: false
+    colorSetId: color-srgb-04
