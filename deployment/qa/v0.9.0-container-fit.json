@@ -3,11 +3,11 @@
   "rule": "[CONTAINER-FIT-01]",
   "selfCheckItem": "SC-20",
   "dsVersion": "0.9.0",
-  "authoringRevision": "v0.9.0-r6",
+  "authoringRevision": "v0.9.0-r7",
   "colorRegistryId": "color-srgb-05",
-  "artifactBuild": "ui-20260821-04",
-  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
-  "artifactFingerprint": "f21ffb5db26170f2",
+  "artifactBuild": "ui-20260821-05",
+  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html",
+  "artifactFingerprint": "87ae72f9d51b5f83",
   "scope": {
     "viewports": [
       "mobile@390",

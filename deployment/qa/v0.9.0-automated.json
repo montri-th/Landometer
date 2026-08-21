@@ -5,18 +5,18 @@
   "machineValidation": "pending",
   "evidenceBoundary": "Automated release checks for this source-limited internal demo, re-recorded at every rebuild for the artifact build named below. They do not replace the open rendered-glyph, assistive-technology, perceptual, product-evidence, privacy, or public-conformance gates.",
   "artifactBuild": {
-    "id": "ui-20260821-04",
+    "id": "ui-20260821-05",
     "colorRegistryId": "color-srgb-05",
-    "authoringRevision": "v0.9.0-r6",
+    "authoringRevision": "v0.9.0-r7",
     "hostedSource": {
       "path": "index.html",
-      "bytes": 993477,
-      "sha256": "0eb1e24a062319edb322f2bff3c2937cb4202f9f69d331937959d568d7afd7f3"
+      "bytes": 994143,
+      "sha256": "09e616576c899cb2e69d9813ebaf333e61cf8a449d4fb1c6f4a8c655639108f5"
     },
     "latestStandalone": {
       "path": "landometer-design-system-v0.9.0-standalone.html",
-      "bytes": 2141422,
-      "sha256": "36e29d507bc3c6323d51965fbeb6531efb25980310d072cb260dc4df51841b32"
+      "bytes": 2142088,
+      "sha256": "312d45734fdbe8859d772ccd6e1444a88a847947952bf93a8c55347e46c8f5f7"
     },
     "immutableColorBaseline": {
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
@@ -24,9 +24,9 @@
       "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a"
     },
     "currentImmutableUiBuild": {
-      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html",
-      "bytes": 2141434,
-      "sha256": "f21ffb5db26170f25af0a551243003b8d3f98f7ca0bc74b683da4c3bbb09d19c"
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html",
+      "bytes": 2142100,
+      "sha256": "87ae72f9d51b5f83f47e05b4a1d885992aebe850c7135959e54ce73685955b2b"
     }
   },
   "staticValidator": {
@@ -64,8 +64,8 @@
     "result": "pass"
   },
   "sourceIntegrity": {
-    "hostedSourceSha256": "0eb1e24a062319edb322f2bff3c2937cb4202f9f69d331937959d568d7afd7f3",
-    "registrySha256": "1dff417161ac8646a05c520191c251347f701f6a88c839e7213d4cbd611d1150",
+    "hostedSourceSha256": "09e616576c899cb2e69d9813ebaf333e61cf8a449d4fb1c6f4a8c655639108f5",
+    "registrySha256": "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5",
     "manifestPath": "site-manifest.v0.9.0.json"
   },
   "browserQA": {
