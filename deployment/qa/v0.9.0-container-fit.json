@@ -1,0 +1,98 @@
+{
+  "schemaVersion": "1.0",
+  "rule": "[CONTAINER-FIT-01]",
+  "selfCheckItem": "SC-20",
+  "dsVersion": "0.9.0",
+  "authoringRevision": "v0.9.0-r3",
+  "colorRegistryId": "color-srgb-04",
+  "artifactBuild": "ui-20260821-01",
+  "artifactPath": "landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html",
+  "artifactFingerprint": "93bef9b68a7565c5",
+  "scope": {
+    "viewports": [
+      "mobile@390",
+      "tablet@834",
+      "desktop@1440",
+      "wide@1728"
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "containerSelectors": [
+      ".v090-card",
+      ".card",
+      "[data-container-fit]"
+    ]
+  },
+  "assertions": {
+    "rowDeltaToleranceCssPx": 4,
+    "selfOverflowToleranceCssPx": 2,
+    "enumerationRowThreshold": 6,
+    "foldsMustBoundTheirBody": true
+  },
+  "boundary": "Rendered container geometry only. It does not judge whether a summary line states the enumeration truthfully, and it does not replace the manual perceptual, assistive-technology, or rendered-glyph gates.",
+  "totals": {
+    "cases": 8,
+    "containersMeasured": 64,
+    "failures": 0
+  },
+  "cases": [
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "theme": "light",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "theme": "dark",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "tablet",
+      "width": 834,
+      "theme": "light",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "tablet",
+      "width": 834,
+      "theme": "dark",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "theme": "light",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "theme": "dark",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "wide",
+      "width": 1728,
+      "theme": "light",
+      "containers": 8,
+      "passed": true
+    },
+    {
+      "viewport": "wide",
+      "width": 1728,
+      "theme": "dark",
+      "containers": 8,
+      "passed": true
+    }
+  ]
+}

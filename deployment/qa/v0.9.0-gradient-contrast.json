@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "designSystemVersion": "0.9.0",
-  "authoringRevision": "v0.9.0-r2",
+  "authoringRevision": "v0.9.0-r3",
   "colorRegistryId": "color-srgb-04",
   "gradientRegistrySchema": "landometer-atmosphere-gradient-v2",
   "testedAt": "2026-08-07",
   "registryPath": "assets/data/color-delivery.v0.9.0.json",
-  "registrySha256": "d6c912a5bc08510fbc670582a89b1633dc62903a12d824ab3cff531455533d23",
+  "registrySha256": "98ff0fbd26a6919b4c46c55e2682e3172169b9a804518bdd5f5ddd20bd84edcb",
   "method": {
     "colorSpace": "sRGB IEC 61966-2-1",
     "interpolation": "CSS Color 4 explicit in srgb; encoded-channel piecewise interpolation",
