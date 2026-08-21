@@ -1,0 +1,107 @@
+# Owner approval record — Landometer Design System v0.9.0
+# Amendment: [SELFCHECK-01] SC-23 rendered icon anatomy + four recorded resolutions
+amendment:
+  id: v0.9.0-icon-anatomy
+  approvedAt: "2026-08-21"
+  authority: Landometer owner
+  evidenceLabel: Owner-stated
+  authoringRevision: v0.9.0-r4 -> v0.9.0-r5
+  dsVersion: "0.9.0"           # unchanged
+  colorSet: color-srgb-04      # unchanged; no governed colour value changes
+  kitVersion: lds-kit-0.9.0-r3 # unchanged token block; kit gains only its SC-23 comment line
+  firstImplementingArtifactBuild: ui-20260821-03
+
+trigger:
+  report: >-
+    After ui-20260821-02 published, the owner checked the live page and reported that icon
+    and text inside buttons still did not sit together properly.
+  instruction: >-
+    Advise on and close the three reported pending divergences, fix the buttons, republish,
+    and deliver the updated normative master and the machine package.
+
+defect:
+  observed: >-
+    SC-21 passed honestly — it measures the label (padding, label centring, target, clipping)
+    and ui-20260821-02 satisfied all four. The second-round correction had adopted only the
+    kit's box contract (min-height, padding-inline, --radius-pill) onto the page capsule
+    classes, not the kit anatomy (display inline-flex; align-items center; justify-content
+    center; gap --space-2) that Appendix E .btn has always carried. A block-display capsule
+    lays content on the text baseline.
+  measured:
+    - every icon-bearing .copy-button rendered its glyph 3 px above the label centre
+    - the icon-label gap measured 0 px against the kit --space-2 (8 px)
+    - 8 block-display capsules and 1 grid capsule existed across .copy-button, .pattern-button,
+      .cta-proof button; #language-cycle (grid, place-items center) is behaviourally centred
+  evidenceLabel: Observed fact (rendered measurement, both governed viewports)
+
+changes:
+  - section: 6.2A verification
+    rule: "[BTN-GEOM-01]"
+    state: extended
+    adds: >-
+      SC-23: every icon inside a labelled capsule centres with its label, keeps the --space-2
+      gap to it, and stays inside the capsule box; every icon inside a circle action centres
+      on the circle. Behavioural: an equivalent computed result passes; the mechanism is not
+      prescribed. Exists because a box-only kit adoption passes SC-21 while the icon sits on
+      the text baseline.
+  - section: selfcheck ledger
+    adds: SC-23 row; kit E4 self-check comment block gains its SC-23 line
+  - section: C9
+    adds: third-round amendment record, the four resolutions below, the r4 sequencing repair
+
+resolutionsOnOwnerDirection:
+  - id: skip-link-shape
+    resolution: >-
+      Page follows the kit: Appendix E .skip-link is --radius-sm with --space-3/--space-4
+      padding. ui-20260821-02 rendered it as a capsule. Files win; [BTN-GEOM-01]'s two shapes
+      govern buttons, and a skip link is a link.
+  - id: dead-ui-icon-rules
+    resolution: >-
+      All sixteen pre-[ICON-01] .ui-icon rules purged; zero markup matches existed. Defect
+      class: a dead selector invites edits that appear to work — the .value-contrast-card
+      > .ui-icon break in ui-20260820-02 is the recorded precedent.
+  - id: qa-automated-re-record
+    resolution: >-
+      qa/v0.9.0-automated.json had carried v0.8.9 evidence tested 2026-08-07 against
+      ui-20260807-07 / color-srgb-02 under a v0.9.0 filename (declared in the manifest
+      usageClass). It is now composed at every rebuild from the gates this release actually
+      runs; machineValidation stays pending and the manual gates stay open.
+  - id: selfcheck-card-staleness
+    resolution: >-
+      ui-20260821-02 shipped the page's [SELFCHECK-01] card still declaring "all 20 items ·
+      16 pass" after the ledger had grown to 22. Corrected to the full 23-item ledger.
+      Recorded as an open coverage gap: no gate yet compares the rendered card to the ledger.
+
+furtherDriftFoundAndFixedInThisRound:
+  - id: llms-release-identity
+    finding: >-
+      deployment/llms.txt still declared "Release build: ui-20260821-01" while ui-20260821-02
+      was live — the machine navigation channel drifted one build behind, twice.
+    fix: >-
+      llms.txt updated to the current identity, and validate-release.mjs now pins llms.txt to
+      the release identity (llms:* checks), so the channel can never drift silently again.
+  - id: release-lock-drift
+    finding: >-
+      The skill release-lock shipped in r4 with releaseIdentity.artifactBuildId still
+      ui-20260821-01, authority bytes/sha frozen at the r2-era master, and — worse — the r3
+      and r4 revision bumps blanket-replaced the authoring revision inside the frozen
+      product-identity lineage record, falsifying history (that amendment minted r2).
+    fix: >-
+      Lock rebuilt for r5 with true hashes; the product-identity lineage record restored to
+      v0.9.0-r2; the three 2026-08-21 amendments recorded in lineage with their approval
+      files; validate-release.mjs now pins the lock's release identity and integrity hashes.
+  - id: c9-sequencing
+    finding: >-
+      In the r4 master, the second-round record was inserted between the first-round record
+      and its scope paragraph, and the second round had no scope paragraph of its own.
+    fix: Corrected in r5; no record content changed, only position plus the missing paragraph.
+
+releaseMechanics: >-
+  UI-only change: Color Set color-srgb-04 unchanged; append-only artifact build ui-20260821-03
+  minted with its pinned filename; ui-20260821-02 and every predecessor stay byte-frozen and
+  byte-verified by the validator and the pages.yml post-deploy gate.
+
+scopeOfApproval: >-
+  Makes SC-23 binding and records the resolutions above. Does not certify package-level
+  conformance, does not pre-pass any artifact QA, does not approve any media, identity, or
+  font asset, and raises no artifact's evidenceStatus, indexable, or machineValidation state.
