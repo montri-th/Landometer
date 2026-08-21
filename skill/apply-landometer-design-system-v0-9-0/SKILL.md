@@ -1,6 +1,6 @@
 ---
 name: apply-landometer-design-system-v0-9-0
-description: Apply or audit the owner-approved Landometer Design System v0.9.0-r1 human-readable authoring master in local design, content, presentation, data, and interface artifacts. Use when the user explicitly requests v0.9.0 or invokes this skill; require Build Card 0.9.0 and exactly one profile, copy the Appendix E Deterministic Build Kit bytes verbatim for web builds, run the [SELFCHECK-01] self-check before delivery, preserve shared-versus-product evidence boundaries, and report package and artifact gates honestly. Do not claim generated machine-package conformance while its schemas, manifests, recipes, fixtures, hashes, rule ledgers, and preflight remain pending; do not publish or create external effects.
+description: Apply or audit the owner-approved Landometer Design System v0.9.0-r2 human-readable authoring master in local design, content, presentation, data, and interface artifacts. Use when the user explicitly requests v0.9.0 or invokes this skill; require Build Card 0.9.0 and exactly one profile, copy the Appendix E Deterministic Build Kit bytes verbatim for web builds, run the [SELFCHECK-01] self-check before delivery, preserve shared-versus-product evidence boundaries, and report package and artifact gates honestly. Do not claim generated machine-package conformance while its schemas, manifests, recipes, fixtures, hashes, rule ledgers, and preflight remain pending; do not publish or create external effects.
 ---
 
 # Apply Landometer Design System v0.9.0
@@ -12,7 +12,7 @@ Use the bundled integrated authoring master as the only design-system authority 
 1. Read [references/release-lock.json](references/release-lock.json) completely.
 2. Verify the SHA-256 values of every locked payload before using them. Stop on a mismatch.
 3. Read [references/landometer-design-system-v0.9.0-authoring-master.md](references/landometer-design-system-v0.9.0-authoring-master.md) completely. Do not substitute memory, v0.8.6, v0.8.7, frozen v0.8.8, frozen v0.8.9, a webpage, or a proposal sidecar.
-4. Accept only `dsVersion: 0.9.0`, Build Card `0.9.0`, Manifest `2.1`, Token Schema `6`, and Color Set `color-srgb-03`. Stop on another version rather than silently upgrading or downgrading. Manifest 2.0 and Color Sets `color-srgb-02` / `color-srgb-01` stay readable historical evidence and MUST NOT be emitted as current conformance.
+4. Accept only `dsVersion: 0.9.0`, Build Card `0.9.0`, Manifest `2.1`, Token Schema `6`, and Color Set `color-srgb-04`. Stop on another version rather than silently upgrading or downgrading. Manifest 2.0 and Color Sets `color-srgb-03` / `color-srgb-02` / `color-srgb-01` stay readable historical evidence and MUST NOT be emitted as current conformance.
 5. For an authorized build or change, copy [assets/build-card-template.yaml](assets/build-card-template.yaml) into the work area and resolve it before generating the artifact. For a read-only audit, inspect the supplied Build Card in place; if it is absent, use the template only as a read-only checklist and report the unresolved fields. Do not create or modify a Build Card during an audit unless the user explicitly asks for that change.
 
 ## Build deterministically
@@ -33,9 +33,9 @@ v0.9.0 exists because the same master produced materially different results per 
 - Compare products, places, or cities only under the same schema and release. Otherwise state the incompatibility and avoid false equivalence.
 - Treat supplied identity, media, font, token, and approval records as hash- and scope-specific. Custody never grants permission or cross-context approval.
 
-## Apply the approved v0.9.0-r1 authoring authority
+## Apply the approved v0.9.0-r2 authoring authority
 
-v0.9.0-r1 inherits the complete v0.8.9-r1 rule set. No v0.8.9 rule is removed; the only rename is `[SEARCH-01]` → `[INTERNAL-SEARCH-01]` (§7.6), with the old ID a deprecated alias for one release. Use the owning rules in the integrated master, especially:
+v0.9.0-r2 inherits the complete v0.8.9-r1 rule set. No v0.8.9 rule is removed; the only rename is `[SEARCH-01]` → `[INTERNAL-SEARCH-01]` (§7.6), with the old ID a deprecated alias for one release. Use the owning rules in the integrated master, especially:
 
 - `[BRAND-01]` §3.2: preserve the exact Cultural activation from Master Brand Brief v0.5.3 §1.1 (verified 2026-08-20 carried unchanged from v0.5.2 §1.1) — `Let us cultivate our city with data.` Never remove `with data` or substitute the earlier shortened reconciliation.
 - `[VALUE-PROOF-01]`: keep one work object and its evidence constant while making DNA, Voice, or Visual value observable; never make the baseline inaccessible to make the assisted state look better.
@@ -44,7 +44,7 @@ v0.9.0-r1 inherits the complete v0.8.9-r1 rule set. No v0.8.9 rule is removed; t
 - `[MEDIA-LADDER-01]` §4.4A + `[DISCLOSURE-01]` §4.4B: lead with video, then image, then icon or symbol, then text. In a human-facing first view, show no caveat, caution, limitation, or `source_limited` prose before interaction — put every such statement behind an explicit disclosure the reader opens. The collapsed state must still answer the reader's question.
 - `[LAYER-FIELD-01]` §5.6B: express problem complexity with named translucent overlapping fields, never with unlabelled decoration.
 - `[CATEGORY-ID-01]` §5.6: give each category a persistent icon **and** color; the icon takes the category's `series.*` or pillar color while its label stays in the text role.
-- `[COLOR-01]` §5.6 + §C9: the 2026-08-20 purge retires all purple and brown tones. Ten values are replaced and Color Set `color-srgb-03` is minted. Never reintroduce a retired value into a live token, LUT, class cell, gradient stop, or surface.
+- `[COLOR-01]` §5.6 + §C9: the 2026-08-20 purge retires all purple and brown tones. Ten values are replaced and Color Set `color-srgb-03` is minted; the same-day owner amendment of the ijji/CityWiki product identity gradients then mints `color-srgb-04` (ijji light aliases `atmosphere.gradient.ground.mist`, CityWiki light aliases `atmosphere.gradient.cultivate.mist`, CityWiki dark adds `#E0B443`). Never reintroduce a retired value into a live token, LUT, class cell, gradient stop, or surface.
 - `[FLOW-04]` + `[REFERENCE-01]`: teach visual and quantitative rules with directly labelled specimens, then disclose evidence, boundaries, and rationale.
 - `[REFERENCE-01]`: show complete role-labelled color coverage and every governed sequential/diverging family in both themes at exact 5/7/9 classes from a generated or explicitly carried LUT.
 - `[MOTION-01]`: use the named Riddim signature. Durations are unchanged from v0.8.9; only two easing tokens are new. Reduced motion lands the final meaning immediately.
