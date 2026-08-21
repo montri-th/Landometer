@@ -247,7 +247,7 @@ const evidence = {
   rules: ["[BTN-GEOM-01]", "[REVEAL-01]"],
   selfCheckItems: ["SC-21", "SC-22", "SC-23"],
   dsVersion: "0.9.0",
-  authoringRevision: "v0.9.0-r6",
+  authoringRevision: registry?.meta?.authoringRevision,
   colorRegistryId: registry?.meta?.id,
   artifactBuild: artifactBuildId,
   artifactPath: argArtifact ? path.basename(artifactPath) : artifactName,
