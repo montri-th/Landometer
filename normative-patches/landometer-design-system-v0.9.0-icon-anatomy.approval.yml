@@ -5,11 +5,16 @@ amendment:
   approvedAt: "2026-08-21"
   authority: Landometer owner
   evidenceLabel: Owner-stated
-  authoringRevision: v0.9.0-r4 -> v0.9.0-r5
+  authoringRevision: v0.9.0-r4 -> v0.9.0-r5 (published as part of v0.9.0-r6)
   dsVersion: "0.9.0"           # unchanged
   colorSet: color-srgb-04      # unchanged; no governed colour value changes
   kitVersion: lds-kit-0.9.0-r3 # unchanged token block; kit gains only its SC-23 comment line
-  firstImplementingArtifactBuild: ui-20260821-03
+  firstImplementingArtifactBuild: ui-20260821-04
+  # The build first prepared for this amendment was ui-20260821-03. Before it was merged,
+  # deployed, or published anywhere, the same-day rise refinement (fourth round) changed the
+  # token source, so that prepared build was withdrawn — immutability attaches at publication —
+  # and the first build actually implementing this amendment is ui-20260821-04. The withdrawn
+  # id is not reused.
 
 trigger:
   report: >-
