@@ -11,8 +11,8 @@
   "sourceIntegrity": {
     "hostedSource": {
       "path": "index.html",
-      "bytes": 1041970,
-      "sha256": "ff582692a9c3a7e4909102dff368fc185a28eac99c8f793d20cc28f6cb6db41a"
+      "bytes": 1041994,
+      "sha256": "40343585801c89db67f8d43c3102287c6dd54cb6996c894c93501beda9edf6fa"
     },
     "ownerApprovedMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.1.md",
@@ -22,13 +22,13 @@
     },
     "latestStandalone": {
       "path": "landometer-design-system-v0.9.1-standalone.html",
-      "bytes": 2189915,
-      "sha256": "47a7052ecce4132a957a33953840114dd14e5f2315346b952a71166e7e3cba46"
+      "bytes": 2189939,
+      "sha256": "48859c4d1687e7b7bd631e292a7d9cd786e9d73d00af4c9490f0d58c5cbb4685"
     },
     "immutableUiStandalone": {
       "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
-      "bytes": 2189927,
-      "sha256": "028f6e94b8b88901e600fb268eb2b0a6897a37aaed1b10f7256d835c75d61bb1"
+      "bytes": 2189951,
+      "sha256": "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927"
     },
     "retainedColorBaseline": {
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
@@ -99,11 +99,35 @@
           "playground and v0.9.1 specimen accessible names match the selected locale"
         ]
       }
+    },
+    {
+      "id": "experience-contracts",
+      "tool": "skill/refine-landometer-experience/scripts/check-experience-contracts.mjs",
+      "result": "pass",
+      "detail": "63 current-release contracts passed, including exact authority, retained Color Set, immutable UI handoff, bounded llms aid, documented color mixing, and plain-language analytical boundaries"
+    },
+    {
+      "id": "rendered-container-fit",
+      "tool": "tools/check-container-fit.mjs",
+      "result": "pass",
+      "detail": "8 viewport/theme cases, 112 governed containers, and zero failures on the immutable v0.9.1 artifact"
+    },
+    {
+      "id": "rendered-affordances",
+      "tool": "tools/check-rendered-affordances.mjs",
+      "result": "pass",
+      "detail": "SC-21 capsule geometry, SC-22 default/reduced/no-JavaScript reveal safety, and SC-23 icon anatomy passed across 7 cases with zero failures"
+    },
+    {
+      "id": "rendered-scale-geometry",
+      "tool": "tools/check-scale-geometry.mjs",
+      "result": "pass",
+      "detail": "36 locale/theme/width/zoom cases measured 2,916 rows with zero failures on the immutable v0.9.1 artifact"
     }
   ],
   "summary": {
-    "constituentChecks": 6,
-    "passed": 6,
+    "constituentChecks": 10,
+    "passed": 10,
     "failed": 0,
     "artifactConformanceClaimed": false,
     "evidenceBoundary": "The report covers this source-limited Design System reference. It does not establish product capability, city fact, machine-package delivery, or cross-product comparability."

@@ -79,12 +79,12 @@
     "artifactBuildMarker": "data-artifact-build=\"ui-20260901-01\"",
     "changeClass": "design_system_implementation; Color Set unchanged",
     "latestStandalone": {
-      "bytes": 2189915,
-      "sha256": "47a7052ecce4132a957a33953840114dd14e5f2315346b952a71166e7e3cba46"
+      "bytes": 2189939,
+      "sha256": "48859c4d1687e7b7bd631e292a7d9cd786e9d73d00af4c9490f0d58c5cbb4685"
     },
     "immutableStandalone": {
-      "bytes": 2189927,
-      "sha256": "028f6e94b8b88901e600fb268eb2b0a6897a37aaed1b10f7256d835c75d61bb1"
+      "bytes": 2189951,
+      "sha256": "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927"
     },
     "integrityMode": "append-only UI artifact; exact bytes are bound by site-manifest.v0.9.1.json"
   },
@@ -95,8 +95,8 @@
       "role": "immutable_ui_build",
       "colorRegistryId": "color-srgb-05",
       "changeClass": "design_system_implementation; Color Set unchanged",
-      "bytes": 2189927,
-      "sha256": "028f6e94b8b88901e600fb268eb2b0a6897a37aaed1b10f7256d835c75d61bb1",
+      "bytes": 2189951,
+      "sha256": "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
       "status": "append_only"
     }
   ],
