@@ -20,26 +20,75 @@ try {
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(toolDir, "..");
 const deploymentDir = path.join(repositoryRoot, "deployment");
-const registry = JSON.parse(
-  await readFile(
-    path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json"),
-    "utf8",
-  ),
+
+function cliValue(flag) {
+  const index = process.argv.indexOf(flag);
+  if (index < 0) return null;
+  const value = process.argv[index + 1];
+  if (!value || value.startsWith("--")) {
+    throw new Error(`${flag} requires a deployment-relative path.`);
+  }
+  return value;
+}
+
+function deploymentInput(value, label) {
+  if (path.isAbsolute(value)) {
+    throw new Error(`${label} must be deployment-relative, not absolute: ${value}`);
+  }
+  const normalized = value.replaceAll("\\", "/").replace(/^deployment\//, "");
+  const absolute = path.resolve(deploymentDir, normalized);
+  if (absolute !== deploymentDir && !absolute.startsWith(`${deploymentDir}${path.sep}`)) {
+    throw new Error(`${label} escapes deployment/: ${value}`);
+  }
+  return {
+    absolute,
+    relative: path.relative(deploymentDir, absolute).split(path.sep).join("/"),
+  };
+}
+
+function htmlDataAttribute(source, name) {
+  const match = source.match(new RegExp(`\\b${name}=(?:"([^"]+)"|'([^']+)')`, "i"));
+  return match?.[1] ?? match?.[2] ?? null;
+}
+
+const registryInput = deploymentInput(
+  cliValue("--registry") ?? "assets/data/color-delivery.v0.9.0.json",
+  "--registry",
 );
-const artifactBuildId = registry?.meta?.currentArtifactBuild?.id;
-const artifactPath =
-  registry?.meta?.currentArtifactBuild?.immutableStandalone;
-if (!artifactBuildId || !artifactPath) {
+const registry = JSON.parse(
+  await readFile(registryInput.absolute, "utf8"),
+);
+const declaredArtifactBuildId = registry?.meta?.currentArtifactBuild?.id;
+const declaredArtifactName = registry?.meta?.currentArtifactBuild?.immutableStandalone;
+if (!declaredArtifactBuildId || !declaredArtifactName) {
   throw new Error("Current immutable UI artifact-build identity is missing.");
 }
 
-const artifactBytes = await readFile(path.join(deploymentDir, artifactPath));
+const artifactInput = deploymentInput(
+  cliValue("--artifact") ?? declaredArtifactName,
+  "--artifact",
+);
+const artifactBytes = await readFile(artifactInput.absolute);
+const artifactSource = artifactBytes.toString("utf8");
+const artifactBuildId = htmlDataAttribute(artifactSource, "data-artifact-build");
+const artifactDsVersion = htmlDataAttribute(artifactSource, "data-ds-version");
+const artifactColorRegistryId = htmlDataAttribute(artifactSource, "data-color-registry");
+if (!artifactBuildId || !artifactDsVersion || !artifactColorRegistryId) {
+  throw new Error("Measured artifact is missing DS version, Color Set, or artifact-build identity.");
+}
+if (
+  artifactBuildId !== declaredArtifactBuildId ||
+  artifactDsVersion !== registry?.meta?.designSystemVersion ||
+  artifactColorRegistryId !== registry?.meta?.id
+) {
+  throw new Error(
+    `Registry/artifact identity mismatch: registry ${registry?.meta?.designSystemVersion}/${registry?.meta?.id}/${declaredArtifactBuildId}, artifact ${artifactDsVersion}/${artifactColorRegistryId}/${artifactBuildId}.`,
+  );
+}
 const artifactSha256 = createHash("sha256")
   .update(artifactBytes)
   .digest("hex");
-const artifactUrl = pathToFileURL(
-  path.join(deploymentDir, artifactPath),
-);
+const artifactUrl = pathToFileURL(artifactInput.absolute);
 
 const widths = [320, 360, 390, 620, 621, 980, 981];
 const locales = ["th", "en"];
@@ -343,8 +392,12 @@ const failures = results.flatMap((result) =>
 );
 const evidence = {
   schemaVersion: 1,
+  dsVersion: artifactDsVersion,
+  authoringRevision: registry?.meta?.authoringRevision,
+  colorRegistryId: artifactColorRegistryId,
+  registryPath: registryInput.relative,
   artifactBuildId,
-  artifactPath,
+  artifactPath: artifactInput.relative,
   artifactSha256,
   matrix: {
     widths,

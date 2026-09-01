@@ -1,0 +1,143 @@
+{
+  "reportId": "landometer-ds-v0.9.1-ui-20260901-01",
+  "recordedAt": "2026-09-01",
+  "designSystemVersion": "0.9.1",
+  "authoringRevision": "0.9.1-r8",
+  "rulesetRevision": "lds-rules-0.9.1",
+  "machinePackageIdentity": "v0.9.1-mp7",
+  "machinePackageBoundary": "release identity only; v0.9.1-mp7 package bytes are not delivered or validated by this repository",
+  "artifactBuildId": "ui-20260901-01",
+  "colorSetId": "color-srgb-05",
+  "sourceIntegrity": {
+    "hostedSource": {
+      "path": "index.html",
+      "bytes": 1041994,
+      "sha256": "40343585801c89db67f8d43c3102287c6dd54cb6996c894c93501beda9edf6fa"
+    },
+    "ownerApprovedMaster": {
+      "path": "assets/downloads/landometer-design-system-v0.9.1.md",
+      "bytes": 208463,
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
+      "exactProjectSourceCopy": true
+    },
+    "latestStandalone": {
+      "path": "landometer-design-system-v0.9.1-standalone.html",
+      "bytes": 2189939,
+      "sha256": "48859c4d1687e7b7bd631e292a7d9cd786e9d73d00af4c9490f0d58c5cbb4685"
+    },
+    "immutableUiStandalone": {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+      "bytes": 2189951,
+      "sha256": "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927"
+    },
+    "retainedColorBaseline": {
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+      "bytes": 2141429,
+      "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
+      "unchanged": true
+    }
+  },
+  "constituentChecks": [
+    {
+      "id": "authority-exact-copy",
+      "method": "byte comparison and SHA-256 against the read-only project source",
+      "result": "pass"
+    },
+    {
+      "id": "standalone-deterministic-build",
+      "tool": "tools/build-standalone-html.mjs",
+      "result": "pass",
+      "detail": "latest and immutable v0.9.1 standalones generated; predecessor color baseline preserved"
+    },
+    {
+      "id": "retained-color-atlas",
+      "tool": "tools/generate-color-atlas.mjs --check-index",
+      "result": "pass",
+      "detail": "18 analytical scale records, 738 LUT cells, 378 atlas class cells, and nine 5/7/9 sampler families retained"
+    },
+    {
+      "id": "retained-gradient-contrast",
+      "tool": "tools/check-gradient-contrast.mjs --check",
+      "result": "pass",
+      "detail": "the unchanged governed atmosphere-gradient contrast evidence remains valid"
+    },
+    {
+      "id": "historical-color-baseline-integrity",
+      "method": "exact bytes and SHA-256 against the frozen v0.9.0 color-srgb-05 registry record",
+      "result": "pass"
+    },
+    {
+      "id": "browser-runtime-matrix",
+      "method": "rendered browser inspection",
+      "result": "pass",
+      "coverage": {
+        "widthsCssPx": [
+          1440,
+          390,
+          320
+        ],
+        "locales": [
+          "th",
+          "en"
+        ],
+        "themes": [
+          "light",
+          "dark"
+        ],
+        "runtimeStates": [
+          "javascript",
+          "no_javascript",
+          "reduced_motion"
+        ],
+        "assertions": [
+          "zero root horizontal overflow",
+          "six v0.9.1 examples visible",
+          "direct interactive targets at least 44 CSS pixels",
+          "menu Escape closes and focus returns to the opener",
+          "no broad reveal selector hides proof, action, atlas, or implementation cases",
+          "Thai and English parity claims and rejected-specimen text switch with the selected locale",
+          "playground and v0.9.1 specimen accessible names match the selected locale"
+        ]
+      }
+    },
+    {
+      "id": "experience-contracts",
+      "tool": "skill/refine-landometer-experience/scripts/check-experience-contracts.mjs",
+      "result": "pass",
+      "detail": "63 current-release contracts passed, including exact authority, retained Color Set, immutable UI handoff, bounded llms aid, documented color mixing, and plain-language analytical boundaries"
+    },
+    {
+      "id": "rendered-container-fit",
+      "tool": "tools/check-container-fit.mjs",
+      "result": "pass",
+      "detail": "8 viewport/theme cases, 112 governed containers, and zero failures on the immutable v0.9.1 artifact"
+    },
+    {
+      "id": "rendered-affordances",
+      "tool": "tools/check-rendered-affordances.mjs",
+      "result": "pass",
+      "detail": "SC-21 capsule geometry, SC-22 default/reduced/no-JavaScript reveal safety, and SC-23 icon anatomy passed across 7 cases with zero failures"
+    },
+    {
+      "id": "rendered-scale-geometry",
+      "tool": "tools/check-scale-geometry.mjs",
+      "result": "pass",
+      "detail": "36 locale/theme/width/zoom cases measured 2,916 rows with zero failures on the immutable v0.9.1 artifact"
+    }
+  ],
+  "summary": {
+    "constituentChecks": 10,
+    "passed": 10,
+    "failed": 0,
+    "artifactConformanceClaimed": false,
+    "evidenceBoundary": "The report covers this source-limited Design System reference. It does not establish product capability, city fact, machine-package delivery, or cross-product comparability."
+  },
+  "staticValidator": {
+    "tool": "tools/validate-release.mjs",
+    "enforcement": [
+      "pre-publish local release check",
+      "GitHub Pages continuous integration"
+    ],
+    "recordingBoundary": "The validator is intentionally not recorded as a pass inside the report whose own hash it verifies."
+  }
+}

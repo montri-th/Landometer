@@ -6,6 +6,7 @@
 // container exceeding the tallest sibling in its row beyond the stated tolerance.
 
 import { createHash } from "node:crypto";
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -24,21 +25,71 @@ try {
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(toolDir, "..");
 const deploymentDir = path.join(repositoryRoot, "deployment");
-const registry = JSON.parse(
-  await readFile(path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json"), "utf8"),
+
+function cliValue(flag) {
+  const index = process.argv.indexOf(flag);
+  if (index < 0) return null;
+  const value = process.argv[index + 1];
+  if (!value || value.startsWith("--")) {
+    throw new Error(`${flag} requires a deployment-relative path.`);
+  }
+  return value;
+}
+
+function deploymentInput(value, label) {
+  if (path.isAbsolute(value)) {
+    throw new Error(`${label} must be deployment-relative, not absolute: ${value}`);
+  }
+  const normalized = value.replaceAll("\\", "/").replace(/^deployment\//, "");
+  const absolute = path.resolve(deploymentDir, normalized);
+  if (absolute !== deploymentDir && !absolute.startsWith(`${deploymentDir}${path.sep}`)) {
+    throw new Error(`${label} escapes deployment/: ${value}`);
+  }
+  return {
+    absolute,
+    relative: path.relative(deploymentDir, absolute).split(path.sep).join("/"),
+  };
+}
+
+function htmlDataAttribute(source, name) {
+  const match = source.match(new RegExp(`\\b${name}=(?:"([^"]+)"|'([^']+)')`, "i"));
+  return match?.[1] ?? match?.[2] ?? null;
+}
+
+const registryInput = deploymentInput(
+  cliValue("--registry") ?? "assets/data/color-delivery.v0.9.0.json",
+  "--registry",
 );
-const artifactBuildId = registry?.meta?.currentArtifactBuild?.id;
-const artifactName = registry?.meta?.currentArtifactBuild?.immutableStandalone;
-if (!artifactBuildId || !artifactName) {
+const registry = JSON.parse(
+  await readFile(registryInput.absolute, "utf8"),
+);
+const declaredArtifactBuildId = registry?.meta?.currentArtifactBuild?.id;
+const declaredArtifactName = registry?.meta?.currentArtifactBuild?.immutableStandalone;
+if (!declaredArtifactBuildId || !declaredArtifactName) {
   throw new Error("color-delivery registry does not declare the current artifact build");
 }
-// --artifact <path> lets this gate be pointed at any build, so a fix can be shown to
-// actually fail on the artifact it was written for (regression evidence, not a claim).
-const artifactOverrideIndex = process.argv.indexOf("--artifact");
-const artifactOverride = artifactOverrideIndex >= 0 ? process.argv[artifactOverrideIndex + 1] : null;
-const artifactPath = artifactOverride
-  ? path.resolve(repositoryRoot, artifactOverride)
-  : path.join(deploymentDir, artifactName);
+const artifactInput = deploymentInput(
+  cliValue("--artifact") ?? declaredArtifactName,
+  "--artifact",
+);
+const artifactBytes = await readFile(artifactInput.absolute);
+const artifactSource = artifactBytes.toString("utf8");
+const artifactBuildId = htmlDataAttribute(artifactSource, "data-artifact-build");
+const artifactDsVersion = htmlDataAttribute(artifactSource, "data-ds-version");
+const artifactColorRegistryId = htmlDataAttribute(artifactSource, "data-color-registry");
+if (!artifactBuildId || !artifactDsVersion || !artifactColorRegistryId) {
+  throw new Error("Measured artifact is missing DS version, Color Set, or artifact-build identity.");
+}
+if (
+  artifactBuildId !== declaredArtifactBuildId ||
+  artifactDsVersion !== registry?.meta?.designSystemVersion ||
+  artifactColorRegistryId !== registry?.meta?.id
+) {
+  throw new Error(
+    `Registry/artifact identity mismatch: registry ${registry?.meta?.designSystemVersion}/${registry?.meta?.id}/${declaredArtifactBuildId}, artifact ${artifactDsVersion}/${artifactColorRegistryId}/${artifactBuildId}.`,
+  );
+}
+const artifactPath = artifactInput.absolute;
 
 // Thresholds are owned by this checker so the evidence records them explicitly.
 const ROW_DELTA_TOLERANCE_CSS_PX = 4;   // sub-pixel + border rounding across platforms
@@ -53,12 +104,16 @@ const VIEWPORTS = [
 ];
 const THEMES = ["light", "dark"];
 
-const artifactFingerprint = createHash("sha256")
-  .update(await readFile(artifactPath))
-  .digest("hex")
-  .slice(0, 16);
+const artifactSha256 = createHash("sha256").update(artifactBytes).digest("hex");
+const artifactFingerprint = artifactSha256.slice(0, 16);
 
-const browser = await chromium.launch();
+const requestedBrowserExecutable = process.env.LANDOMETER_BROWSER_EXECUTABLE || "";
+const browser = await chromium.launch({
+  headless: true,
+  ...(requestedBrowserExecutable && existsSync(requestedBrowserExecutable)
+    ? { executablePath: requestedBrowserExecutable }
+    : {}),
+});
 const cases = [];
 const failures = [];
 
@@ -78,7 +133,7 @@ for (const viewport of VIEWPORTS) {
     // expand every governed container-fit fold so the bounded body is measured open too
     const measured = await page.evaluate(
       ({ rowTol, selfTol, rowThreshold }) => {
-        const containers = [...document.querySelectorAll(".v090-card, .card, [data-container-fit]")];
+        const containers = [...document.querySelectorAll(".v090-card, .v091-case, .card, [data-container-fit]")];
         const rows = new Map();
         for (const el of containers) {
           const parent = el.parentElement;
@@ -164,16 +219,18 @@ const evidence = {
   schemaVersion: "1.0",
   rule: "[CONTAINER-FIT-01]",
   selfCheckItem: "SC-20",
-  dsVersion: "0.9.0",
+  dsVersion: artifactDsVersion,
   authoringRevision: registry?.meta?.authoringRevision,
-  colorRegistryId: registry?.meta?.id,
+  colorRegistryId: artifactColorRegistryId,
+  registryPath: registryInput.relative,
   artifactBuild: artifactBuildId,
-  artifactPath: artifactName,
+  artifactPath: artifactInput.relative,
+  artifactSha256,
   artifactFingerprint,
   scope: {
     viewports: VIEWPORTS.map(v => `${v.name}@${v.width}`),
     themes: THEMES,
-    containerSelectors: [".v090-card", ".card", "[data-container-fit]"],
+    containerSelectors: [".v090-card", ".v091-case", ".card", "[data-container-fit]"],
   },
   assertions: {
     rowDeltaToleranceCssPx: ROW_DELTA_TOLERANCE_CSS_PX,

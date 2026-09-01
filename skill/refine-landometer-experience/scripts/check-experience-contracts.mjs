@@ -34,6 +34,15 @@ async function readJsonBesideHtml(name) {
   }
 }
 
+async function readTextBesideHtml(name) {
+  if (!name) return "";
+  try {
+    return await readFile(path.join(htmlDirectory, name), "utf8");
+  } catch {
+    return "";
+  }
+}
+
 function elementsWithClass(source, className) {
   return [...source.matchAll(/<([a-z][\w:-]*)\b([^>]*)>/giu)]
     .filter(([, , attributes]) => {
@@ -132,6 +141,9 @@ const scriptSource = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/giu)
   .map(match => match[1])
   .join("\n");
 
+const htmlTag = html.match(/<html\b[^>]*>/iu)?.[0] ?? "";
+const releaseVersion = attributeOf(htmlTag, "data-ds-version");
+
 let inventory = null;
 try {
   inventory = JSON.parse(
@@ -144,10 +156,13 @@ try {
   inventory = null;
 }
 
-const siteManifest = await readJsonBesideHtml("site-manifest.v0.9.0.json");
+const siteManifest = await readJsonBesideHtml(
+  `site-manifest.v${releaseVersion}.json`
+);
 const scaleFixture = await readJsonBesideHtml("assets/data/scales.json");
 const colorDelivery = await readJsonBesideHtml(
-  "assets/data/color-delivery.v0.9.0.json"
+  siteManifest?.colorDelivery?.registryPath ??
+    `assets/data/color-delivery.v${releaseVersion}.json`
 );
 const colorRegistryId = colorDelivery?.meta?.id ?? "";
 const pinnedColorSetName =
@@ -160,25 +175,29 @@ let pinnedColorSetHtml = "";
 let currentArtifactBuildHtml = "";
 let tokenRegistrySource = "";
 let scaleRegistrySource = "";
-try {
-  [
-    pinnedColorSetHtml,
-    currentArtifactBuildHtml,
-    tokenRegistrySource,
-    scaleRegistrySource
-  ] =
-    await Promise.all([
-      readFile(path.join(htmlDirectory, pinnedColorSetName), "utf8"),
-      readFile(path.join(htmlDirectory, currentArtifactBuildName), "utf8"),
-      readFile(path.join(htmlDirectory, "assets/data/tokens.json"), "utf8"),
-      readFile(path.join(htmlDirectory, "assets/data/scales.json"), "utf8")
-    ]);
-} catch {
-  pinnedColorSetHtml = "";
-  currentArtifactBuildHtml = "";
-  tokenRegistrySource = "";
-  scaleRegistrySource = "";
-}
+const retainedColorRegistryRecord =
+  colorDelivery?.sources?.retainedColorRegistry ?? null;
+const retainedColorRegistrySource = await readTextBesideHtml(
+  retainedColorRegistryRecord?.path
+);
+const retainedColorDelivery = retainedColorRegistrySource
+  ? JSON.parse(retainedColorRegistrySource)
+  : null;
+[
+  pinnedColorSetHtml,
+  currentArtifactBuildHtml,
+  tokenRegistrySource,
+  scaleRegistrySource
+] = await Promise.all([
+  readTextBesideHtml(pinnedColorSetName),
+  readTextBesideHtml(currentArtifactBuildName),
+  readTextBesideHtml("assets/data/tokens.json"),
+  readTextBesideHtml("assets/data/scales.json")
+]);
+const manifestAsset = assetPath =>
+  siteManifest?.assets?.find(asset => asset.path === assetPath) ?? null;
+const normativeSourceRecord = siteManifest?.authority?.normativeSource ?? null;
+const normativeSource = await readTextBesideHtml(normativeSourceRecord?.path);
 const scaleRecordsByKey = new Map(
   (scaleFixture?.scales ?? []).map(record => [
     `${record.scaleId}:${record.theme}`,
@@ -186,13 +205,15 @@ const scaleRecordsByKey = new Map(
   ])
 );
 
-const htmlTag = html.match(/<html\b[^>]*>/iu)?.[0] ?? "";
 const linkTags = tagsNamed(html, "link");
 const metaTags = tagsNamed(html, "meta");
 const faviconLinks = linkTags.filter(tag =>
   attributeOf(tag, "rel").split(/\s+/u).includes("icon")
 );
 const browserTabIcon = siteManifest?.identity?.browserTabIcon ?? null;
+const browserTabIconAsset = manifestAsset(
+  "assets/images/landometer-symbol-transparent.png"
+);
 const pendingFaviconValid =
   faviconLinks.length === 0 &&
   html.includes("<!-- FAVICON_PENDING_APPROVED_COMPACT_ASSET -->") &&
@@ -213,7 +234,9 @@ const stableStandaloneFaviconValid =
   attributeOf(currentArtifactFaviconLinks[0], "type") === "image/png" &&
   attributeOf(currentArtifactFaviconLinks[0], "sizes") === "192x192" &&
   !/^data:/iu.test(attributeOf(currentArtifactFaviconLinks[0], "href"));
-const approvedFaviconRecordText = JSON.stringify(browserTabIcon ?? {});
+const approvedFaviconRecordText = JSON.stringify(
+  browserTabIcon ?? browserTabIconAsset ?? {}
+);
 let approvedFaviconHash = "";
 let approvedFaviconBytes = null;
 let approvedFaviconSize = "";
@@ -243,7 +266,7 @@ if (
     approvedFaviconSize = "";
   }
 }
-const approvedFaviconValid =
+const legacyApprovedFaviconValid =
   faviconLinks.length === 1 &&
   faviconLinks.every(tag =>
     !/(?:banner|lockup|wordmark|horizontal)/iu.test(attributeOf(tag, "href"))
@@ -273,6 +296,27 @@ const approvedFaviconValid =
   /no carrier[\s\S]*crop/iu.test(browserTabIcon?.themeStrategy ?? "") &&
   /(?:favicon|compact|symbol)/iu.test(approvedFaviconRecordText) &&
   /transparent/iu.test(approvedFaviconRecordText);
+const assetApprovedFaviconValid =
+  faviconLinks.length === 1 &&
+  faviconLinks.every(tag =>
+    !/(?:banner|lockup|wordmark|horizontal)/iu.test(attributeOf(tag, "href"))
+  ) &&
+  approvedFaviconDeclaredHref ===
+    "assets/images/landometer-symbol-transparent.png?v=35a1496f" &&
+  browserTabIconAsset?.path === approvedFaviconHref &&
+  browserTabIconAsset?.mimeType === "image/png" &&
+  browserTabIconAsset?.sha256?.slice(0, 8) === "35a1496f" &&
+  /^[a-f0-9]{64}$/u.test(browserTabIconAsset?.sha256 ?? "") &&
+  approvedFaviconHash === browserTabIconAsset?.sha256 &&
+  approvedFaviconBytes?.length === browserTabIconAsset?.bytes &&
+  attributeOf(approvedFaviconLink, "type") === browserTabIconAsset?.mimeType &&
+  attributeOf(approvedFaviconLink, "sizes") === "192x192" &&
+  approvedFaviconSize === "192x192" &&
+  /approved browser-tab favicon only/iu.test(
+    browserTabIconAsset?.usageClass ?? ""
+  );
+const approvedFaviconValid =
+  legacyApprovedFaviconValid || assetApprovedFaviconValid;
 const browserTabIdentityPairValid =
   (pendingFaviconValid && currentArtifactFaviconLinks.length === 0) ||
   (approvedFaviconValid && stableStandaloneFaviconValid);
@@ -362,7 +406,7 @@ const llmsBoundaryText = [
 const llmsNegativeBoundariesValid =
   /not [^.\n]*\branking signal\b/iu.test(llmsBoundaryText) &&
   /not [^.\n]*\baccess(?:-control| control)\b/iu.test(llmsBoundaryText) &&
-  /not [^.\n]*\bconformance claim\b/iu.test(llmsBoundaryText) &&
+  /not [^.\n]*\bconformance (?:claim|certificate)\b/iu.test(llmsBoundaryText) &&
   /not [^.\n]*(?:agent-action )?permission|no bounded agent action|permission (?:for an agent )?to act/iu
     .test(llmsBoundaryText);
 const llmsNavigationValid =
@@ -375,26 +419,25 @@ const llmsNavigationValid =
     llmsFilePresent &&
     manifestClaimsLlms &&
     htmlClaimsLlms &&
-    siteManifest?.capabilities?.agentReadable === false &&
-    manifestMachineDiscovery?.agentReadableCapability === false &&
-    manifestMachineDiscovery?.boundedAgentAction === false &&
+    siteManifest?.capabilities?.agentReadable !== true &&
+    manifestMachineDiscovery?.agentReadableCapability !== true &&
+    manifestMachineDiscovery?.boundedAgentAction !== true &&
+    siteManifest?.artifact?.machinePackageDelivery === "identity_only" &&
     /navigation aid/iu.test(llmsSource) &&
+    /optional project-path navigation aid/iu.test(llmsAsset?.usageClass ?? "") &&
     /^[a-f0-9]{64}$/u.test(llmsAsset?.sha256 ?? "") &&
     llmsAsset?.sha256 === sha256(llmsSource) &&
+    llmsAsset?.bytes === Buffer.byteLength(llmsSource) &&
     llmsNegativeBoundariesValid
   );
 
-const manualGatesPath = siteManifest?.qa?.manualGatesPath ?? "";
-let manualGatesSource = "";
-try {
-  manualGatesSource = await readFile(
-    path.resolve(htmlDirectory, manualGatesPath),
-    "utf8"
-  );
-} catch {
-  manualGatesSource = "";
-}
-const manualGatesRemainOpen =
+const manualGatesPath =
+  siteManifest?.authority?.artifactApplication?.manualQaProtocol ??
+  siteManifest?.qa?.manualGatesPath ??
+  "";
+const manualGatesSource = await readTextBesideHtml(manualGatesPath);
+const manualGatesAsset = manifestAsset(manualGatesPath);
+const legacyManualGatesRemainOpen =
   manualGatesPath.length > 0 &&
   /^# .*\bopen manual gates\b/imu.test(manualGatesSource) &&
   /\bgates remain open\b/iu.test(manualGatesSource) &&
@@ -404,6 +447,21 @@ const manualGatesRemainOpen =
   siteManifest?.qa?.machineValidation === "pending" &&
   Array.isArray(siteManifest?.qa?.openManualGates) &&
   siteManifest.qa.openManualGates.length > 0;
+const currentManualProtocolValid =
+  manualGatesPath === `qa/v${releaseVersion}-manual-gates.md` &&
+  /^# .*\bmanual QA protocol\b/imu.test(manualGatesSource) &&
+  /release protocol, not an owner-approval record and not a Design System or artifact conformance claim/iu
+    .test(manualGatesSource) &&
+  /remains `source_limited`, `noindex`, and artifact conformance is not claimed/iu
+    .test(manualGatesSource) &&
+  siteManifest?.artifact?.machineValidation === "pending" &&
+  siteManifest?.artifact?.deliveryConformance === "not_claimed" &&
+  manualGatesAsset?.sha256 === sha256(manualGatesSource) &&
+  manualGatesAsset?.bytes === Buffer.byteLength(manualGatesSource) &&
+  /human release QA protocol; not an owner-approval or conformance claim/iu
+    .test(manualGatesAsset?.usageClass ?? "");
+const manualGatesRemainOpen =
+  legacyManualGatesRemainOpen || currentManualProtocolValid;
 
 function customPropertyOf(element, property) {
   const style = attributeOf(element, "style");
@@ -546,14 +604,116 @@ const fullAtlasRouteValid =
     attributeOf(element, "data-reveal-target") === "complete-color-atlas"
   );
 
+const activeReleaseReceiptValid =
+  releaseVersion === "0.9.1" &&
+  siteManifest?.artifact?.version === releaseVersion &&
+  attributeOf(htmlTag, "data-authoring-revision") === "0.9.1-r8" &&
+  siteManifest?.artifact?.authoringRevision === "0.9.1-r8" &&
+  siteManifest?.artifact?.rulesetRevision === "lds-rules-0.9.1" &&
+  siteManifest?.artifact?.machinePackageIdentity === "v0.9.1-mp7" &&
+  siteManifest?.artifact?.machinePackageDelivery === "identity_only" &&
+  normativeSourceRecord?.revision === "0.9.1-r8" &&
+  normativeSourceRecord?.sha256 === sha256(normativeSource) &&
+  normativeSourceRecord?.bytes === Buffer.byteLength(normativeSource) &&
+  html.includes(
+    '<dd id="meta-source">Landometer Design System 0.9.1-r8 · 1 Sep 2026</dd>'
+  ) &&
+  html.includes(
+    'href="assets/downloads/landometer-design-system-v0.9.1.md" id="resource-download-system"'
+  );
+
+const pinnedColorSetAsset = manifestAsset(pinnedColorSetName);
+const currentArtifactBuildAsset = manifestAsset(currentArtifactBuildName);
+const currentArtifactBuildRecord = colorDelivery?.artifactBuilds?.find(
+  record => record.id === currentArtifactBuildId
+);
+const retainedColorBaselineValid =
+  colorDelivery?.meta?.designSystemVersion === releaseVersion &&
+  colorDelivery?.meta?.authoringRevision === "0.9.1-r8" &&
+  colorDelivery?.retentionDecision?.colorValuesChanged === false &&
+  colorDelivery?.retentionDecision?.newColorSetMinted === false &&
+  siteManifest?.colorDelivery?.normativeColorValuesChangedFromV090R7 === false &&
+  siteManifest?.colorDelivery?.newColorSetMinted === false &&
+  pinnedColorSetName ===
+    `landometer-design-system-v0.9.0-standalone.${colorRegistryId}.html` &&
+  retainedColorRegistryRecord?.path ===
+    "assets/data/color-delivery.v0.9.0.json" &&
+  retainedColorRegistryRecord?.sha256 === sha256(retainedColorRegistrySource) &&
+  retainedColorRegistryRecord?.bytes ===
+    Buffer.byteLength(retainedColorRegistrySource) &&
+  retainedColorDelivery?.meta?.id === colorRegistryId &&
+  retainedColorDelivery?.meta?.immutableColorBaseline === pinnedColorSetName &&
+  pinnedColorSetAsset?.sha256 === sha256(pinnedColorSetHtml) &&
+  pinnedColorSetAsset?.bytes === Buffer.byteLength(pinnedColorSetHtml) &&
+  siteManifest?.colorDelivery?.immutableColorBaselineEvidence?.sha256 ===
+    pinnedColorSetAsset?.sha256 &&
+  siteManifest?.colorDelivery?.immutableColorBaselineEvidence?.bytes ===
+    pinnedColorSetAsset?.bytes &&
+  /preserved byte-for-byte/iu.test(pinnedColorSetAsset?.status ?? "");
+const currentArtifactBuildValid =
+  /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
+  currentArtifactBuildName ===
+    `landometer-design-system-v${releaseVersion}-standalone.${colorRegistryId}.${currentArtifactBuildId}.html` &&
+  currentArtifactBuildRecord?.path === currentArtifactBuildName &&
+  currentArtifactBuildRecord?.role === "immutable_ui_build" &&
+  currentArtifactBuildRecord?.status === "append_only" &&
+  currentArtifactBuildRecord?.colorRegistryId === colorRegistryId &&
+  currentArtifactBuildRecord?.sha256 === sha256(currentArtifactBuildHtml) &&
+  currentArtifactBuildRecord?.bytes ===
+    Buffer.byteLength(currentArtifactBuildHtml) &&
+  currentArtifactBuildAsset?.sha256 === currentArtifactBuildRecord?.sha256 &&
+  currentArtifactBuildAsset?.bytes === currentArtifactBuildRecord?.bytes &&
+  currentArtifactBuildAsset?.artifactBuildId === currentArtifactBuildId &&
+  currentArtifactBuildAsset?.colorRegistryId === colorRegistryId;
+
+const colorMixLines = html.split(/\r?\n/u)
+  .filter(line => line.includes("color-mix("))
+  .map(line => line.trim());
+const expectedColorMixLines = new Map([
+  [
+    "background: color-mix(in srgb, var(--surface-raised) 94%, transparent);",
+    1
+  ],
+  [
+    "@supports (background: color-mix(in srgb, white 50%, transparent)) {",
+    1
+  ],
+  [
+    ".side-bookmark { background: color-mix(in srgb, var(--surface-raised) 94%, transparent); }",
+    1
+  ],
+  [
+    "radial-gradient(circle at 8% 4%, color-mix(in srgb, var(--series-05) 13%, transparent), transparent 32%),",
+    1
+  ],
+  [
+    "radial-gradient(circle at 94% 36%, color-mix(in srgb, var(--series-03) 10%, transparent), transparent 30%),",
+    1
+  ]
+]);
+const governedColorMixValid =
+  colorMixLines.length === 5 &&
+  [...expectedColorMixLines].every(([line, count]) =>
+    colorMixLines.filter(candidate => candidate === line).length === count
+  ) &&
+  /data-gradient-interpolation="srgb-explicit-with-legacy-fallback"/u
+    .test(htmlTag) &&
+  /\.side-bookmark\s*\{[^{}]*background:\s*var\(--surface-raised\);[^{}]*\}\s*@supports\s*\(background:\s*color-mix\(in srgb, white 50%, transparent\)\)\s*\{\s*\.side-bookmark\s*\{\s*background:\s*color-mix\(in srgb, var\(--surface-raised\) 94%, transparent\);\s*\}\s*\}/u
+    .test(html) &&
+  /\.v091\s*\{\s*background:\s*radial-gradient\(circle at 8% 4%, color-mix\(in srgb, var\(--series-05\) 13%, transparent\), transparent 32%\),\s*radial-gradient\(circle at 94% 36%, color-mix\(in srgb, var\(--series-03\) 10%, transparent\), transparent 30%\),\s*var\(--canvas\);\s*\}/u
+    .test(html) &&
+  !/color-mix\(/u.test(scriptSource) &&
+  !/color-mix\(/u.test(samplerHtml) &&
+  !/color-mix\(/u.test(atlasHtml) &&
+  !/--[\w-]+\s*:[^;{}]*color-mix\(/u.test(html);
+
 const checks = [
   [
     "protected Cultural activation keeps ‘with data’",
     /aria-label="Let us cultivate our city with data\."/u.test(html) &&
       /<span class="hero-line">Let us<\/span><span class="hero-line">cultivate<\/span><span class="hero-line">our city<\/span><span class="hero-line">with data\.<\/span>/u.test(html) &&
       !/aria-label="Let us cultivate our city\."/u.test(html) &&
-      !html.includes("source_limited · authoring master r2 · 6 Aug 2026") &&
-      html.includes("source_limited · authoring master r1 · approved 7 Aug 2026")
+      activeReleaseReceiptValid
   ],
   ["before/after data", /\bbefore:\s*\{/u.test(html) && /\bafter:\s*\{/u.test(html)],
   ["governed surface owns metadata colors", /\.proof-preview\.has-brand-surface\s+\.proof-meta/u.test(html)],
@@ -580,7 +740,7 @@ const checks = [
     !/<link\b[^>]*\brel="preload"[^>]*\bas="font"/iu.test(html) &&
       html.includes('location.protocol === "file:"') &&
       html.includes('root.dataset.standalone !== "true"') &&
-      html.includes('new URL("landometer-design-system-v0.9.0-standalone.html", location.href)') &&
+      html.includes(`new URL("landometer-design-system-v${releaseVersion}-standalone.html", location.href)`) &&
       html.includes("target.search = location.search") &&
       html.includes("target.hash = location.hash") &&
       html.includes('location.replace(target.href)') &&
@@ -703,8 +863,9 @@ const checks = [
             twitterTags.length === 0 &&
             jsonLdBlocks.length === 0 &&
             hreflangLinks.length === 0 &&
-            siteManifest?.publication?.structuredData === false &&
-            siteManifest?.publication?.sitemap === false
+            !sitemapPresent &&
+            siteManifest?.publication?.structuredData !== true &&
+            siteManifest?.publication?.sitemap !== true
           )
         )
   ],
@@ -725,8 +886,7 @@ const checks = [
   ],
   [
     "the Color Set baseline stays immutable and handoff links the current immutable UI build",
-    pinnedColorSetName ===
-      `landometer-design-system-v0.9.0-standalone.${colorRegistryId}.html` &&
+    retainedColorBaselineValid &&
       tagsNamed(html, "a").some(tag =>
         attributeOf(tag, "id") === "resource-standalone" &&
         attributeOf(tag, "href") === currentArtifactBuildName
@@ -742,9 +902,7 @@ const checks = [
   ],
   [
     "UI-only changes mint a separate append-only artifact build without rewriting the Color Set baseline",
-    /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
-      currentArtifactBuildName ===
-        `landometer-design-system-v0.9.0-standalone.${colorRegistryId}.${currentArtifactBuildId}.html` &&
+    currentArtifactBuildValid &&
       attributeOf(
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-color-registry"
@@ -789,7 +947,10 @@ const checks = [
   ["semantic recipe uses structured ordered list", /class="recipe-steps"/u.test(html)],
   ["no tab-indented numbered recipe item", !/\n\t+\d+\.\s/u.test(html)],
   ["six color teaching plates", (html.match(/class="color-plate(?:\s|")/gu) || []).length >= 6],
-  ["no runtime color mixing", !/color-mix\(/u.test(html)],
+  [
+    "color mixing is confined to documented UI enhancement and fallback roles",
+    governedColorMixValid
+  ],
   [
     "nine-family scale sampler has generated source boundary",
     samplerMarkersValid &&
@@ -797,8 +958,13 @@ const checks = [
         scaleFixture?.meta?.version &&
       Number(attributeOf(samplerElement, "data-scale-records")) ===
         scaleFixture?.meta?.records &&
-      /SOURCE_LIMITED\s*·\s*REFERENCE FIXTURE\s*·\s*MACHINE VALIDATION PENDING/u
-        .test(samplerHtml)
+      /ANALYTICAL REFERENCE\s*·\s*NOT PRODUCT EVIDENCE/u.test(samplerHtml) &&
+      new RegExp(
+        `scales\\.json v${scaleFixture?.meta?.version} into v${releaseVersion}`,
+        "iu"
+      ).test(samplerHtml) &&
+      /for teaching and review/iu.test(samplerHtml) &&
+      /not product evidence or a product dataviz package/iu.test(samplerHtml)
   ],
   [
     "scale sampler has six sequential and three diverging families",
@@ -889,9 +1055,18 @@ const checks = [
   ],
   [
     "source-limited generated-scale boundary",
-    /SOURCE_LIMITED\s*·\s*REFERENCE FIXTURE\s*·\s*MACHINE VALIDATION PENDING/u.test(atlasHtml) &&
-      /not a scale-gate-cleared dataviz\.tokens\.json package/iu.test(atlasHtml) &&
-      /not to claim production conformance/iu.test(atlasHtml)
+    attributeOf(
+      elementsWithClass(atlasHtml, "atlas-root")[0] ?? "",
+      "data-atlas-source-version"
+    ) === scaleFixture?.meta?.version &&
+      Number(attributeOf(
+        elementsWithClass(atlasHtml, "atlas-root")[0] ?? "",
+        "data-atlas-records"
+      )) === scaleFixture?.meta?.records &&
+      /ANALYTICAL REFERENCE\s*·\s*NOT PRODUCT EVIDENCE/u.test(atlasHtml) &&
+      /scales\.json reference fixture carried into v0\.9\.1/iu.test(atlasHtml) &&
+      /not as product evidence or a product dataviz package/iu.test(atlasHtml) &&
+      /bind compatible schema, release, unit, and grain before use/iu.test(atlasHtml)
   ],
   [
     "atlas disclosure is present in inventory",

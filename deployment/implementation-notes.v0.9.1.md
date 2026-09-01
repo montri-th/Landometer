@@ -1,0 +1,107 @@
+# Landometer Design System v0.9.1 — implementation notes
+
+This is a non-normative application record for artifact build `ui-20260901-01`. The owner-approved authority is [`assets/downloads/landometer-design-system-v0.9.1.md`](assets/downloads/landometer-design-system-v0.9.1.md), authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`. Its SHA-256 is `64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19`.
+
+The source identifies machine package `v0.9.1-mp7`. This repository records that release identity but does not publish or claim validation of those machine-package bytes. Design System approval does not pre-certify this downstream playground.
+
+## What this build is for
+
+The page is a bilingual Design System reference. Its job is to make the v0.9.1 implementation improvements concrete while preserving the strongest existing learning material, especially the complete Color Atlas.
+
+The learning arc is:
+
+1. recognize the retained principle;
+2. inspect the improved implementation move;
+3. see the resulting AHA or recovery behavior;
+4. keep the evidence or compatibility boundary visible; and
+5. open the relevant library or release record.
+
+## Retained foundations
+
+The build retains the v0.9.0-r7 principles that v0.9.1 explicitly carries forward:
+
+- truth, evidence, and product boundaries first;
+- protected brand wording and one headline role;
+- the normative values and semantic ownership of Color Set `color-srgb-05`;
+- script-aware font families and semantic type roles;
+- spacing, radius, container, gutter, and breakpoint scales;
+- one job, dominant object, first AHA, primary action, and clean completion;
+- accessibility, resilience, privacy, permission, and external-effect boundaries;
+- data-visualization and map evidence discipline; and
+- the Build Card → profiles/capabilities → QA resolution model.
+
+The current page keeps the hero invitation, before/assisted proof, handoff pattern, takeaway, Implementation Library, and full Color Atlas. Historical v0.9.0 records and immutable standalones remain versioned evidence and are not relabelled as v0.9.1.
+
+## New implementation examples
+
+Every new example is visibly labelled in Thai and English as a conceptual example, not product evidence. The cases use product-neutral Locale Insight framing across Land, Location, and Living. Product data, capabilities, permissions, models, scores, workflows, audiences, and claims remain in named-product layers.
+
+### 1. Shared frame, distinct product truth
+
+The specimen separates a shared Locale Insight method from product-specific packs. Shared architecture can describe Land, Location, and Living together; a named product must still own its facts, evidence, permissions, and capability claims.
+
+### 2. One claim across initial, visible, and hydrated states
+
+The specimen preserves one meaning across source HTML, the visible page, and the hydrated interface. Discovery, readability, and action are shown as separate layers so a technical signal does not stand in for human clarity or a usable action.
+
+### 3. Calm navigation, truthful CTA, fail-open motion
+
+The page header is the live example:
+
+- ecosystem/property/page destinations remain distinct;
+- the desktop visible-control budget is no more than four including brand;
+- the mobile visible-control budget is no more than two including brand;
+- each direct interactive target is at least 44 × 44 CSS pixels;
+- disclosure uses a button with `aria-expanded`, stable focus, and Escape recovery;
+- page current state and in-page location current state use separate semantics;
+- icons stay Material Symbols Rounded at `FILL 0, wght 300, GRAD 0, opsz 24` in every state; and
+- selected state uses surface, container, and label rather than filled glyphs.
+
+The CTA has one visible verb-led destination and one finite discovery cue. The final state is present in source HTML and remains available with reduced motion, missing observer support, deep links, focus, or interrupted lifecycle.
+
+### 4. Change the format, preserve the promise
+
+Web controls become native equivalents in PDF, deck, document, app, or social output. Navigation may become a TOC or native bookmark, disclosures may become visible notes, and motion becomes a final-frame equivalent. Truth, identity, evidence boundary, locale proposition, and action promise remain invariant.
+
+### 5. Incompatibility is a valid result
+
+The analytical specimen refuses to compare records when schema, release, unit, or grain differs. It either recomputes under one approved schema or shows incompatibility beside the comparison. Similar names are not evidence of compatible meaning.
+
+### Rejected case and recovery
+
+The rejected motion specimen shows why hiding proof cards until an observer fires is unsafe. The recovery uses source-visible final meaning, explicit supporting motion roles only, a finite cue, and immediate final state for reduced motion or observer failure.
+
+## Color delivery and the complete atlas
+
+DS v0.9.1 retains `color-srgb-05`; no normative color value changes from v0.9.0-r7 and no new Color Set is minted. The artifact-level delivery record is [`assets/data/color-delivery.v0.9.1.json`](assets/data/color-delivery.v0.9.1.json).
+
+The existing immutable Color Set baseline remains:
+
+- path: `landometer-design-system-v0.9.0-standalone.color-srgb-05.html`
+- bytes: `2141429`
+- SHA-256: `0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a`
+- status: preserved byte-for-byte
+
+The complete Color Atlas remains a first-class route. It preserves 17 foundation pairs, 7 semantic states, 7 shared atmosphere gradients, 3 asset-only motif records, 4 product-gradient families with 8 theme specimens, 10 categorical pairs, 18 analytical scale records with 738 LUT cells and 378 class cells, 8 map pairs, 8 opacity values, and 6 depth roles.
+
+Analytical scale records stay bound to their recorded source/version. They are design-system reference material, not product or city evidence. A named product must supply a compatible schema, release, unit, grain, and evidence record before analytical use.
+
+## Release identity and handoff
+
+- Design System: `0.9.1`
+- authoring revision: `0.9.1-r8`
+- ruleset: `lds-rules-0.9.1`
+- machine-package identity: `v0.9.1-mp7` — identity only in this repository
+- Color Set: `color-srgb-05` — retained
+- artifact build: `ui-20260901-01`
+- latest standalone: `landometer-design-system-v0.9.1-standalone.html`
+- immutable UI handoff: `landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html`
+- site manifest: `site-manifest.v0.9.1.json`
+- Build Card: `build-card.v0.9.1.yml`
+- QA record: `qa/v0.9.1-manual-gates.md`
+
+Use the immutable UI handoff for cross-device comparison. Root and latest aliases are convenient routes and may briefly be cache-stale after publication.
+
+## Evidence boundary
+
+This playground teaches a shared method; it does not establish a named product's capability, data quality, score, city fact, sector workflow, customer outcome, or permission. CityMETER, CityWiki, CityChat, ijji, municipality, retail, and F&B material remains product- or context-specific wherever it appears. Cross-product and cross-city comparisons require compatible schema and release; otherwise incompatibility must remain explicit.

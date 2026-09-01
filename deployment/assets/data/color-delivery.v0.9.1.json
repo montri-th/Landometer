@@ -1,0 +1,142 @@
+{
+  "meta": {
+    "id": "color-srgb-05",
+    "designSystemVersion": "0.9.1",
+    "authoringRevision": "0.9.1-r8",
+    "rulesetRevision": "lds-rules-0.9.1",
+    "machinePackageIdentity": "v0.9.1-mp7",
+    "status": "retained_color_set_for_artifact_reference",
+    "effectiveAt": "2026-09-01",
+    "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+    "currentArtifactBuild": {
+      "id": "ui-20260901-01",
+      "immutableStandalone": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html"
+    },
+    "latestAliases": [
+      "index.html",
+      "landometer-design-system-v0.9.1-standalone.html"
+    ],
+    "changeNote": "Design System v0.9.1 retains Color Set color-srgb-05 without changing normative color values. Navigation, CTA, icon, typography, motion, discoverability, and cross-format changes are governed outside the Color Set."
+  },
+  "delivery": {
+    "range": "SDR",
+    "colorSpace": "sRGB IEC 61966-2-1",
+    "cssEncoding": "exact six-digit sRGB hex plus declared-alpha sRGB rgba",
+    "comparisonThemes": [
+      "light",
+      "dark"
+    ],
+    "adaptiveThemeBoundary": "system is a user preference, not a visual-baseline state"
+  },
+  "sources": {
+    "authoringMaster": {
+      "path": "assets/downloads/landometer-design-system-v0.9.1.md",
+      "revision": "0.9.1-r8",
+      "bytes": 208463,
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19"
+    },
+    "retainedColorRegistry": {
+      "path": "assets/data/color-delivery.v0.9.0.json",
+      "role": "predecessor artifact-level provenance for the retained color values",
+      "bytes": 18503,
+      "sha256": "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5"
+    },
+    "tokenRegistry": {
+      "path": "assets/data/tokens.json",
+      "role": "carried public playground token projection; not the unpublished v0.9.1 machine-package registry",
+      "bytes": 9166,
+      "sha256": "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc"
+    },
+    "scaleRegistry": {
+      "path": "assets/data/scales.json",
+      "role": "carried analytical-scale reference for the preserved Color Atlas",
+      "bytes": 36955,
+      "sha256": "daf8e5219f1da9229d7fb474fdaba3957f37c0cfe18eef7527e551c37d88d235"
+    }
+  },
+  "retentionDecision": {
+    "colorValuesChanged": false,
+    "newColorSetMinted": false,
+    "retainedRegistryId": "color-srgb-05",
+    "normativeSourceRef": "assets/downloads/landometer-design-system-v0.9.1.md",
+    "normativeDecision": "Section 0.1 release tuple: Color color-srgb-05 retained; no normative color values changed from v0.9.0-r7",
+    "boundary": "This record binds the v0.9.1 playground to the retained Color Set. It does not relabel historical v0.9.0 artifacts as v0.9.1 and does not assert that v0.9.1 machine-package bytes are published in this repository."
+  },
+  "immutableColorBaseline": {
+    "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+    "registryMarker": "data-color-registry=\"color-srgb-05\"",
+    "buildChannelMarker": "data-build-channel=\"immutable-color-set\"",
+    "bytes": 2141429,
+    "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
+    "integrityMode": "append-only predecessor Color Set baseline; preserved byte-for-byte",
+    "status": "preserved byte-for-byte"
+  },
+  "currentArtifactBuild": {
+    "id": "ui-20260901-01",
+    "latestPath": "landometer-design-system-v0.9.1-standalone.html",
+    "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+    "registryMarker": "data-color-registry=\"color-srgb-05\"",
+    "artifactBuildMarker": "data-artifact-build=\"ui-20260901-01\"",
+    "changeClass": "design_system_implementation; Color Set unchanged",
+    "latestStandalone": {
+      "bytes": 2189939,
+      "sha256": "48859c4d1687e7b7bd631e292a7d9cd786e9d73d00af4c9490f0d58c5cbb4685"
+    },
+    "immutableStandalone": {
+      "bytes": 2189951,
+      "sha256": "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927"
+    },
+    "integrityMode": "append-only UI artifact; exact bytes are bound by site-manifest.v0.9.1.json"
+  },
+  "artifactBuilds": [
+    {
+      "id": "ui-20260901-01",
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-05",
+      "changeClass": "design_system_implementation; Color Set unchanged",
+      "bytes": 2189951,
+      "sha256": "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
+      "status": "append_only"
+    }
+  ],
+  "atlas": {
+    "status": "retained and first-class",
+    "route": "#complete-color-atlas",
+    "coverage": {
+      "foundationPairs": 17,
+      "semanticStates": 7,
+      "sharedAtmosphereGradients": 7,
+      "assetOnlyMotifRecords": 3,
+      "productGradientFamilies": 4,
+      "productThemeSpecimens": 8,
+      "categoricalPairs": 10,
+      "analyticalScaleRecords": 18,
+      "analyticalLutCells": 738,
+      "analyticalClassCells": 378,
+      "mapPairs": 8,
+      "opacityValues": 8,
+      "depthRoles": 6
+    },
+    "boundary": "Analytical scales remain a design reference at their recorded source/version. A named product, city, or dataset must bind its own compatible evidence release before analytical use."
+  },
+  "parity": {
+    "sameColorSetRequiredFor": [
+      "hosted root",
+      "latest standalone alias",
+      "current immutable UI artifact",
+      "Complete Color Atlas",
+      "Build Card",
+      "Site Manifest",
+      "manual QA record"
+    ],
+    "compareFirst": [
+      "data-color-registry",
+      "artifact build id",
+      "resolved theme",
+      "token registry SHA-256",
+      "scale registry SHA-256"
+    ],
+    "cacheBoundary": "Latest aliases may temporarily differ after publication. Use the immutable v0.9.1 UI artifact for handoff and cross-device visual QA."
+  }
+}

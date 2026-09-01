@@ -1,4 +1,4 @@
-name: Validate approved v0.9.0 release source
+name: Validate active v0.9.1 release source
 
 on:
   pull_request:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout approved source
+      - name: Checkout release source
         uses: actions/checkout@v4
 
       - name: Install browser geometry dependency
@@ -31,7 +31,7 @@ jobs:
       - name: Verify generated standalone artifacts are reproducible
         run: node tools/build-standalone-html.mjs --check
 
-      - name: Verify every governed atmosphere gradient foreground
+      - name: Verify retained v0.9.0 atmosphere-gradient contrast baseline
         run: node tools/check-gradient-contrast.mjs --check
 
       - name: Validate repository release
@@ -44,23 +44,39 @@ jobs:
         run: |
           # SC-20 is not dischargeable by source review: the defect only exists after
           # layout. Thresholds live in the checker; it exits non-zero on any failure.
-          node tools/check-container-fit.mjs > /tmp/v0.9.0-container-fit-current.json
+          node tools/check-container-fit.mjs \
+            --registry assets/data/color-delivery.v0.9.1.json \
+            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html \
+            > /tmp/v0.9.1-container-fit-current.json
 
       - name: Verify rendered affordances (SC-21 [BTN-GEOM-01] / SC-22 [REVEAL-01])
         run: |
           # Capsule geometry and the entrance both only exist after layout and scripting,
           # so neither item is dischargeable by source review.
-          node tools/check-rendered-affordances.mjs > /tmp/v0.9.0-rendered-affordances-current.json
+          node tools/check-rendered-affordances.mjs \
+            --registry assets/data/color-delivery.v0.9.1.json \
+            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html \
+            > /tmp/v0.9.1-rendered-affordances-current.json
 
-      - name: Thai display-leading stress fixture (machine-package sign-off condition)
-        run: node tools/check-thai-display-leading.mjs > /tmp/v0.9.0-thai-leading-current.json
+      - name: Retained v0.9.0 Thai display-leading machine-package fixture
+        run: |
+          # This checker is intentionally bound to machine/v0.9.0. It is predecessor
+          # compatibility evidence, not validation of unpublished v0.9.1 package bytes.
+          node tools/check-thai-display-leading.mjs > /tmp/v0.9.0-thai-leading-compatibility.json
 
-      - name: Validate machine specification package
-        run: node tools/validate-machine-package.mjs
+      - name: Verify v0.9.1 machine-package delivery boundary
+        run: >-
+          node -e 'const fs=require("node:fs");
+          const m=JSON.parse(fs.readFileSync("deployment/site-manifest.v0.9.1.json","utf8"));
+          if(m.artifact.machinePackageIdentity!=="v0.9.1-mp7"||m.artifact.machinePackageDelivery!=="identity_only"||m.artifact.machineValidation!=="pending"||fs.existsSync("deployment/machine/v0.9.1"))
+          throw new Error("v0.9.1 machine-package boundary mismatch")'
 
-      - name: Verify rendered scale geometry and accessible names
+      - name: Verify v0.9.1 rendered scale geometry and accessible names
         run: |
           # The checker owns the pass/fail thresholds. Raw subpixel diagnostics
           # vary slightly by browser platform, so they are not byte-compared
           # with the approved macOS evidence snapshot.
-          node tools/check-scale-geometry.mjs > /tmp/v0.9.0-scale-geometry-current.json
+          node tools/check-scale-geometry.mjs \
+            --registry assets/data/color-delivery.v0.9.1.json \
+            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html \
+            > /tmp/v0.9.1-scale-geometry-current.json

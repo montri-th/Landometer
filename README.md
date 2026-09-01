@@ -1,62 +1,73 @@
-# Landometer Design Identity Playground v0.9.0
+# Landometer Design System v0.9.1 Implementation Playground
 
-The GitHub Pages root is `deployment/` and publishes a product-neutral, source-limited playground with internal-team intent through a public projection at:
+The GitHub Pages root is `deployment/` and publishes a bilingual, product-neutral Design System reference at:
 
 **https://montri-th.github.io/Landometer/**
 
-## What team members can do
+The v0.9.1 page keeps the strongest parts of the existing playground—hero invitation, before/assisted proof, evidence-preserving handoff, takeaway, Implementation Library, and the complete Color Atlas—then adds clearer implementation examples for navigation, action, motion, evidence, compatibility, and cross-format production.
 
-The page turns the v0.9.0 authoring master into one short route:
+## What is new in v0.9.1
 
-1. **Cultivate** — begin with one screen, map, report, or message.
-2. **Try** — compare the same object in Needs-revision and Assisted states.
-3. **Inspect** — look through Brand DNA, Brand Voice, or Brand Visual one lens at a time.
-4. **Align** — preserve object/version, status, source, boundary, limitation, and next action through handoff.
-5. **Take away** — copy a 60-second preflight recipe into real work.
-6. **Open the Implementation Library** — start with Color, surfaces & data palettes, then expand Foundations, Interface components, Data visualization & maps, Experience patterns, Product adaptations, or Resources only when the work needs more detail.
+The page now makes “retained principle → improved implementation → visible result” explicit through six learning cases:
 
-The library begins with a role-based color router for solid/state, atmosphere gradient, sequential/diverging scale, 4/8/12+ category, opacity/layer, and line/stroke decisions. A concise generated sampler shows all six sequential and three diverging families at exact 5/7/9 classes, then deep-links to the preserved complete atlas with both themes, 41-stop LUTs, map, opacity, and depth records. Candidate stroke widths and overlap formulas remain non-normative. The library also includes the complete shared component contract, four component ensembles, three positive Intent → AHA → Design cases, one static rejected case, a reduced-motion-safe semantic motion fixture, a deterministic local CTA state proof, an ethical value loop, a recipient-value ladder, bounded templates for CityMETER, CityWiki, CityChat, and ijji, and multiple creative concept sketches.
+1. a shared Locale Insight frame with distinct product truth;
+2. one claim preserved across initial HTML, visible page, and hydrated state;
+3. calm navigation, truthful CTA, and fail-open motion;
+4. format changes that preserve truth, identity, evidence, and action intent;
+5. schema/release/unit/grain incompatibility as a valid analytical result; and
+6. a bounded rejected motion case with a visible recovery.
 
-The contextual-discovery specimen now offers four current public CityMETER record snapshots: Tha Sai flood, Krok Phra fire, Bueng Lak storm, and Na To landslide. Each composes one visible editable public-safe query from event name, date, known cause, active field label, intent, and the event-specific village → municipality → district → province hierarchy. The user then explicitly chooses Google Search for a source trail or Google AI Mode for synthesis and follow-up. The source record remains inspectable before sending. These are product-specific snapshots retrieved on 29 July 2026—not independent ground-truth verification; the public incident endpoint exposes no provenance, and values with unclear geographic scope are omitted. Both destinations open only after activation, and returned material remains `discovery_only` until cited sources are opened, checked, and deliberately incorporated with provenance.
+Every new case is labelled as a conceptual example, not product evidence. Product data, capabilities, permissions, workflows, scores, models, audiences, and claims remain product-specific.
 
-Three synthetic dataviz fundamentals—Compare, Change, and Relationship—keep units, source, no-data, measured-zero, limitation, and visible table alternatives attached. Nine additional CityMETER-derived cards cover choropleth anatomy, flood time series/ranking/overlap, vehicle ranking/treemap/composition/compare/micro-trends. Public API snapshots are visibly separated from treatment sketches and remain product-specific.
+The shared Landometer layer covers portfolio framing, methodology, and product architecture across **Land · Location · Living**. Cross-product or cross-city comparison requires compatible schema, release, unit, and grain; otherwise incompatibility stays visible.
 
-Download the owner-approved human-readable master from the page or directly at [`deployment/assets/downloads/landometer-design-system-v0.9.0.md`](deployment/assets/downloads/landometer-design-system-v0.9.0.md). Authoring revision `v0.9.0-r7` retains the complete v0.8.9-r1 rule set, preserves the exact Culture / Rally Cry from Master Brand Brief v0.5.3 §1.1 — **Let us cultivate our city with data.** — and adds the determinism layer (Appendix E Build Kit, the `[SELFCHECK-01]` binary self-check, two-shape action geometry, the Material Symbols Rounded icon lock, the media-first disclosure model, and the purple/brown purge that mints Color Set `color-srgb-03`). The v0.8.9 and v0.8.8 records remain frozen historical evidence. The public-safe machine specification package `v0.9.0-mp1` is generated at `deployment/machine/v0.9.0/` (schemas, rule ledgers, preflight, build-kit bytes, source fingerprint, validator + validation report); package-level validation is an internal-consistency statement — artifact `machineValidation` stays honestly pending while manual gates remain open.
+## What remains
 
-Artifact-specific choices and evidence remain separate from that authority in [`deployment/implementation-notes.v0.9.0.md`](deployment/implementation-notes.v0.9.0.md). This accepted, non-normative application record covers the playground's atmosphere presets, exact assets and hashes, contextual Source Search and external AI routing, share placement, positive examples, and release-gated discovery. [`deployment/llms.txt`](deployment/llms.txt) is an optional project-path navigation aid—not a ranking signal, host-root discovery guarantee, access-control rule, conformance claim, or permission for an agent to act.
+- the protected rally cry: **Let us cultivate our city with data.**
+- one-job / first-AHA / primary-action / clean-completion discipline
+- truth, evidence, accessibility, privacy, permission, and product boundaries
+- shared component, data-visualization, map, and experience references
+- Thai/English and Light/Dark/System support
+- historical versioned evidence without relabelling
+- the complete Color Atlas and Color Set `color-srgb-05`
 
-The shared Landometer layer covers portfolio, methodology, and product architecture across **Land · Location · Living**. Product data, workflows, scores, models, claims, voice, and capabilities remain product-specific. Cross-product or cross-city comparison requires a compatible schema/release; otherwise incompatibility must remain visible.
+DS v0.9.1 changes navigation, CTA, icon, typography, motion, discoverability, and cross-format behavior, but does not change normative color values. The earlier immutable `color-srgb-05` baseline remains byte-frozen; the new UI build receives a new artifact-build identity instead of a new Color Set.
+
+## Color Atlas
+
+The Color Atlas stays a first-class route. It preserves the role-based color router, all six sequential and three diverging families at exact 5/7/9 classes, Light/Dark records, 41-stop LUTs, map pairs, opacity, and depth.
+
+The complete inventory includes 17 foundation pairs, 7 semantic states, 7 shared atmosphere gradients, 3 asset-only motif records, 4 product-gradient families/8 theme specimens, 10 categorical pairs, 18 analytical scale records/738 LUT cells/378 class cells, 8 map pairs, 8 opacity values, and 6 depth roles.
+
+Analytical scale records remain bound to their recorded source/version. They are reference material, not a named product's evidence.
 
 ## Release boundary
 
-- Design System `0.9.0`, owner-approved authoring revision `v0.9.0-r7`
-- Build Card `0.9.0`
-- Manifest `2.1`
-- Token Schema `6`
-- Color Set `color-srgb-05` (minted by the 2026-08-21 rise refinement — a token-source change with every colour value byte-identical to `color-srgb-04`; `color-srgb-03` and `color-srgb-04` stay frozen evidence)
-- artifact build `ui-20260821-05`
-- portable latest alias `deployment/landometer-design-system-v0.9.0-standalone.html`; immutable handoff `deployment/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html`
+- Design System `0.9.1`
+- owner-approved authoring revision `0.9.1-r8`
+- ruleset `lds-rules-0.9.1`
+- machine-package identity `v0.9.1-mp7` — identity only; its package bytes are not published or claimed as validated by this repository
+- Site Manifest `2.1`
+- carried Token Schema projection `6`
+- Color Set `color-srgb-05` — retained; no normative color value change from v0.9.0-r7
+- artifact build `ui-20260901-01`
+- latest standalone `deployment/landometer-design-system-v0.9.1-standalone.html`
+- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html`
 - profile `brand.public`
-- internal-team delivery intent through a public GitHub Pages projection; delivery conformance is not claimed while public-delivery gates remain open
+- public, `noindex`, `source_limited`; artifact conformance is not claimed
 - `fullLivingReference: false`
-- `dataVisualization: true` and `analyticalEvidence: true` for synthetic `DV-FIXTURE-0.1` training plus the source-limited, product-specific `CITYMETER-DV-SNAPSHOT-2026-07-29`
-- `map: false`; no governed map result is claimed
-- evidence `source_limited`
-- `noindex`
-- `machineValidation: pending`
-- no analytics, sharing, persistence, authentication, internal-search capability, bounded agent action, or remote governed-object mutation
-- two explicit external Google GET modes exist only inside `CONTEXT-FIXTURE-0.1`: Search for a source trail and AI Mode for synthesis/follow-up. Both send the same visible user-confirmed query in a new tab, do not persist it locally, and never promote returned material into evidence without source review
-- `network.mode: reference_ready`, `share: false`; share click, send, open, and handoff are never labelled network effect
-- motion, recipient value, creative examples, and machine navigation remain fixture/reference scoped; contextual discovery is enabled only as the explicit reference GET described above and does not claim a current product capability
-- machine specification package v0.9.0-mp1 generated (package-level internal consistency only); artifact machineValidation remains pending; no role-specific adoption proof is claimed
 
-The page reuses the existing repository logo and team-photo without alteration. Logo and release metadata backgrounds are always transparent; contrast is managed by their shared surrounding header surface, never by adding a box, plate, or carrier. Browser tabs use the separately approved transparent 192 × 192 symbol asset from repository commit `ce785864`; the horizontal lockup is never cropped or reconstructed, and the compact symbol is not silently promoted to social-preview, touch, maskable, or header duty. Technical metadata uses a deterministic, single-weight script-aware pair at 400/400: packaged JetBrains Mono 400 for Latin identifiers and numerals, plus self-hosted IBM Plex Sans Thai 400 for Thai glyphs. Stale 500/700 technical assets are removed from the published package. The Thai face is optically tuned with a 102% face-level size adjustment, compact 1.48 line-height, restrained `.008em` tracking, and one additional pixel of vertical space in the smallest technical pills. It is a proportional companion—not a fixed-cell Thai monospace. Bai Jamjuree 400/600 remains the continuous-reading body and general UI family. Text-labelled actions use the existing `radius-pill` token; icon-only theme/language utilities stay circular, while tabs, fields, cards, and segmented choices keep their own geometry.
+Download the exact owner-approved human-readable master at [`deployment/assets/downloads/landometer-design-system-v0.9.1.md`](deployment/assets/downloads/landometer-design-system-v0.9.1.md). Its SHA-256 is `64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19`.
 
-For cross-device color QA, compare the same pinned immutable HTML filename or release URL and record its build ID plus color-registry hash before investigating display or color-science differences. The root, `current`, and `latest` routes are conveniences that may be cache-stale; they are not handoff evidence. The complete color atlas remains preserved even when a version mismatch is found.
+Artifact choices remain separate from normative authority:
 
-Theme defaults to the device preference and cycles from one quiet icon control: `system → light → dark`. Language uses one matching quiet state control: `TH ↔ EN`. Their URL and local-device preferences remain explicit and reversible.
+- [`deployment/build-card.v0.9.1.yml`](deployment/build-card.v0.9.1.yml)
+- [`deployment/implementation-notes.v0.9.1.md`](deployment/implementation-notes.v0.9.1.md)
+- [`deployment/assets/data/color-delivery.v0.9.1.json`](deployment/assets/data/color-delivery.v0.9.1.json)
+- [`deployment/site-manifest.v0.9.1.json`](deployment/site-manifest.v0.9.1.json)
+- [`deployment/qa/v0.9.1-manual-gates.md`](deployment/qa/v0.9.1-manual-gates.md)
 
-Formal identity/media approval records and the manual visual/accessibility gates remain open, so this release does not claim package-level, artifact-level, or Full Living Reference conformance.
+Historical v0.9.0, v0.8.9, v0.8.8, v0.8.7, and v0.8.6 files remain frozen migration and compatibility evidence. They are not the current page authority and must not be silently relabelled as v0.9.1.
 
 ## Validate
 
@@ -70,8 +81,6 @@ node tools/validate-release.mjs
 python3 -m http.server 8000 --directory deployment
 ```
 
-Historical v0.8.9, v0.8.8, v0.8.7, and v0.8.6 files remain frozen versioned migration and compatibility evidence, each on its own frozen Color Set. They are not the current page authority and must not be silently relabelled as v0.9.0.
-
 ## Publishing
 
-The reusable direct publishing workflow is documented at [`skill/publish-landometer-design-system-github-pages/SKILL.md`](skill/publish-landometer-design-system-github-pages/SKILL.md). It requires a clean release branch, direct source writes, exact parity checks, a pull request, non-force merge, Pages verification, and no archive transport.
+The reusable publishing workflow is documented at [`skill/publish-landometer-design-system-github-pages/SKILL.md`](skill/publish-landometer-design-system-github-pages/SKILL.md). It requires a clean release branch, exact allowlist, pull request, non-force merge, Pages verification, and live byte parity.

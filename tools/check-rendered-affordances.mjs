@@ -6,6 +6,7 @@
 // capsule still laid its glyph on the text baseline: 3px above the label centre, 0px gap.
 
 import { createHash } from "node:crypto";
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -24,28 +25,76 @@ try {
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.resolve(toolDir, "..");
 const deploymentDir = path.join(repositoryRoot, "deployment");
-const registry = JSON.parse(
-  await readFile(path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json"), "utf8"),
+
+function cliValue(flag) {
+  const index = process.argv.indexOf(flag);
+  if (index < 0) return null;
+  const value = process.argv[index + 1];
+  if (!value || value.startsWith("--")) {
+    throw new Error(`${flag} requires a deployment-relative path.`);
+  }
+  return value;
+}
+
+function deploymentInput(value, label) {
+  if (path.isAbsolute(value)) {
+    throw new Error(`${label} must be deployment-relative, not absolute: ${value}`);
+  }
+  const normalized = value.replaceAll("\\", "/").replace(/^deployment\//, "");
+  const absolute = path.resolve(deploymentDir, normalized);
+  if (absolute !== deploymentDir && !absolute.startsWith(`${deploymentDir}${path.sep}`)) {
+    throw new Error(`${label} escapes deployment/: ${value}`);
+  }
+  return {
+    absolute,
+    relative: path.relative(deploymentDir, absolute).split(path.sep).join("/"),
+  };
+}
+
+function htmlDataAttribute(source, name) {
+  const match = source.match(new RegExp(`\\b${name}=(?:"([^"]+)"|'([^']+)')`, "i"));
+  return match?.[1] ?? match?.[2] ?? null;
+}
+
+const registryInput = deploymentInput(
+  cliValue("--registry") ?? "assets/data/color-delivery.v0.9.0.json",
+  "--registry",
 );
-const artifactBuildId = registry?.meta?.currentArtifactBuild?.id;
-const artifactName = registry?.meta?.currentArtifactBuild?.immutableStandalone;
-if (!artifactBuildId || !artifactName) {
+const registry = JSON.parse(
+  await readFile(registryInput.absolute, "utf8"),
+);
+const declaredArtifactBuildId = registry?.meta?.currentArtifactBuild?.id;
+const declaredArtifactName = registry?.meta?.currentArtifactBuild?.immutableStandalone;
+if (!declaredArtifactBuildId || !declaredArtifactName) {
   throw new Error("color-delivery registry does not declare the current artifact build");
 }
-// --artifact <path> override: regression-proof the gate against a frozen predecessor build
-// without touching the registry-declared current artifact.
-const argArtifact = (() => {
-  const i = process.argv.indexOf("--artifact");
-  return i >= 0 ? process.argv[i + 1] : null;
-})();
-const artifactPath = argArtifact
-  ? path.resolve(argArtifact)
-  : path.join(deploymentDir, artifactName);
+// Point both flags at a frozen predecessor to regression-test it without changing
+// the checker. Registry and measured artifact identities must agree.
+const artifactInput = deploymentInput(
+  cliValue("--artifact") ?? declaredArtifactName,
+  "--artifact",
+);
+const artifactBytes = await readFile(artifactInput.absolute);
+const artifactSource = artifactBytes.toString("utf8");
+const artifactBuildId = htmlDataAttribute(artifactSource, "data-artifact-build");
+const artifactDsVersion = htmlDataAttribute(artifactSource, "data-ds-version");
+const artifactColorRegistryId = htmlDataAttribute(artifactSource, "data-color-registry");
+if (!artifactBuildId || !artifactDsVersion || !artifactColorRegistryId) {
+  throw new Error("Measured artifact is missing DS version, Color Set, or artifact-build identity.");
+}
+if (
+  artifactBuildId !== declaredArtifactBuildId ||
+  artifactDsVersion !== registry?.meta?.designSystemVersion ||
+  artifactColorRegistryId !== registry?.meta?.id
+) {
+  throw new Error(
+    `Registry/artifact identity mismatch: registry ${registry?.meta?.designSystemVersion}/${registry?.meta?.id}/${declaredArtifactBuildId}, artifact ${artifactDsVersion}/${artifactColorRegistryId}/${artifactBuildId}.`,
+  );
+}
+const artifactPath = artifactInput.absolute;
 // Chromium caches file:// by URL; keying the URL to the bytes makes a stale read impossible.
-const artifactFingerprint = createHash("sha256")
-  .update(await readFile(artifactPath))
-  .digest("hex")
-  .slice(0, 16);
+const artifactSha256 = createHash("sha256").update(artifactBytes).digest("hex");
+const artifactFingerprint = artifactSha256.slice(0, 16);
 const artifactUrl = `${pathToFileURL(artifactPath).href}?cb=${artifactFingerprint}`;
 
 // [BTN-GEOM-01]: --space-5 is the normative minimum inline padding for a capsule.
@@ -64,7 +113,13 @@ const VIEWPORTS = [
 
 const failures = [];
 const cases = [];
-const browser = await chromium.launch();
+const requestedBrowserExecutable = process.env.LANDOMETER_BROWSER_EXECUTABLE || "";
+const browser = await chromium.launch({
+  headless: true,
+  ...(requestedBrowserExecutable && existsSync(requestedBrowserExecutable)
+    ? { executablePath: requestedBrowserExecutable }
+    : {}),
+});
 
 // ---------- SC-21 + SC-23: rendered capsule geometry and icon anatomy ----------
 for (const viewport of VIEWPORTS) {
@@ -246,11 +301,13 @@ const evidence = {
   schemaVersion: "1.0",
   rules: ["[BTN-GEOM-01]", "[REVEAL-01]"],
   selfCheckItems: ["SC-21", "SC-22", "SC-23"],
-  dsVersion: "0.9.0",
+  dsVersion: artifactDsVersion,
   authoringRevision: registry?.meta?.authoringRevision,
-  colorRegistryId: registry?.meta?.id,
+  colorRegistryId: artifactColorRegistryId,
+  registryPath: registryInput.relative,
   artifactBuild: artifactBuildId,
-  artifactPath: argArtifact ? path.basename(artifactPath) : artifactName,
+  artifactPath: artifactInput.relative,
+  artifactSha256,
   artifactFingerprint,
   assertions: {
     minCapsuleInlinePaddingCssPx: MIN_CAPSULE_INLINE_PADDING_PX,
