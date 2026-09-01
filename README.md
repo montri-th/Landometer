@@ -4,22 +4,32 @@ The GitHub Pages root is `deployment/` and publishes a bilingual, product-neutra
 
 **https://montri-th.github.io/Landometer/**
 
-The v0.9.1 page keeps the strongest parts of the existing playground—hero invitation, before/assisted proof, evidence-preserving handoff, takeaway, Implementation Library, and the complete Color Atlas—then adds clearer implementation examples for navigation, action, motion, evidence, compatibility, and cross-format production.
+The v0.9.1 page keeps the strongest parts of the existing playground—hero invitation, before/assisted proof, evidence-preserving handoff, takeaway, Implementation Library, and the complete Color Atlas—then presents the new implementation guidance as a deliberate visual story for navigation, action, motion, evidence, compatibility, and cross-format production.
 
 ## What is new in v0.9.1
 
-The page now makes “retained principle → improved implementation → visible result” explicit through six learning cases:
+Artifact build `ui-20260902-02` makes “retained principle → improved implementation → visible result” explicit through six alternating copy-and-visual chapters:
 
-1. a shared Locale Insight frame with distinct product truth;
-2. one claim preserved across initial HTML, visible page, and hydrated state;
-3. calm navigation, truthful CTA, and fail-open motion;
-4. format changes that preserve truth, identity, evidence, and action intent;
-5. schema/release/unit/grain incompatibility as a valid analytical result; and
-6. a bounded rejected motion case with a visible recovery.
+1. **One shared method, distinct product truths** — a shared Locale Insight frame with separate Land, Location, and Living packs;
+2. **One claim, consistent meaning for people and machines** — one claim preserved across initial HTML, visible page, and hydrated state;
+3. **Calm by hierarchy, not by hiding controls** — prominent and calm navigation states with the same direct targets;
+4. **Change the format, preserve the promise** — Web, PDF, deck, and social representations that preserve semantic invariants;
+5. **Incompatibility is a valid result** — parcel and neighbourhood fixtures that keep schema/release/unit/grain incompatibility visible; and
+6. **Rejected: motion gates the proof** — a bounded static rejection storyboard with a visible source-to-final recovery.
 
 Every new case is labelled as a conceptual example, not product evidence. Product data, capabilities, permissions, workflows, scores, models, audiences, and claims remain product-specific.
 
 The shared Landometer layer covers portfolio framing, methodology, and product architecture across **Land · Location · Living**. Cross-product or cross-city comparison requires compatible schema, release, unit, and grain; otherwise incompatibility stays visible.
+
+### UI artifact revision `ui-20260902-02`
+
+This is an implementation-artifact revision, not a normative Design System change. The header can become visually calm while reading downward and returns to prominent at the page start, on upward intent, pointer intent, focus, or an open menu. Only surface and emphasis change: semantic link and button targets remain direct and at least 44 × 44 CSS pixels. No wake-first click or coordinate-forwarding overlay is used. Reduced motion keeps the stable prominent state.
+
+The role-gated entrance recipe is explicit: `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, and `stagger.child`; opacity `760ms`; transform `920ms`; media `900ms`; block distance `32px`; logical inline distance `36px`; scale from `.985`; stagger `150ms` capped at `450ms`; enter easing `cubic-bezier(.16,1,.3,1)`; settle easing `cubic-bezier(.2,.9,.25,1.08)`; observer threshold `.14`; root margin `0px 0px -12% 0px`; and a `2400ms` safety audit. Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, and deep-link targets are excluded from hidden entrances. Closed disclosures and hidden panels are not enrolled.
+
+The cross-format CTA uses a pointer-inert highlight band that sweeps once from `-120%` to `120%` in `540ms` with `cubic-bezier(.16,1,.3,1)`. It does not loop, move layout, or reduce content opacity; reduced motion and missing observer support receive the final no-cue state.
+
+This final UI build also preserves keyboard focus when the language changes inside an open menu, uses one sticky-header offset for deep links, and embeds the approved favicon in standalone files for offline use. The reviewed `ui-20260902-01` candidate remains immutable release evidence.
 
 ## What remains
 
@@ -50,9 +60,9 @@ Analytical scale records remain bound to their recorded source/version. They are
 - Site Manifest `2.1`
 - carried Token Schema projection `6`
 - Color Set `color-srgb-05` — retained; no normative color value change from v0.9.0-r7
-- artifact build `ui-20260901-01`
+- artifact build `ui-20260902-02` — UI artifact revision; Design System authority and Color Set are unchanged
 - latest standalone `deployment/landometer-design-system-v0.9.1-standalone.html`
-- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html`
+- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html`
 - profile `brand.public`
 - public, `noindex`, `source_limited`; artifact conformance is not claimed
 - `fullLivingReference: false`

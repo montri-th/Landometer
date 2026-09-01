@@ -28,7 +28,7 @@
   data-type-registry="type-script-aware-02"
   data-layout-registry="layout-cross-format-01"
   data-atmosphere-gradient-registry="landometer-atmosphere-gradient-v2"
-  data-artifact-build="ui-20260901-01"
+  data-artifact-build="ui-20260902-02"
   data-build-channel="latest-alias"
   data-kit="artifact_resolved"
   data-theme="light"
@@ -50,8 +50,8 @@
   <meta name="landometer:icon-set" content="icon-rounded-outline-01">
   <meta name="landometer:type-set" content="type-script-aware-02">
   <meta name="landometer:layout-set" content="layout-cross-format-01">
-  <meta name="landometer:artifact-build" content="ui-20260901-01">
-  <meta name="landometer:release-receipt" content="2026-09-01-v091-playground-01">
+  <meta name="landometer:artifact-build" content="ui-20260902-02">
+  <meta name="landometer:release-receipt" content="2026-09-02-v091-experience-02">
   <meta name="robots" content="noindex,nofollow,noarchive">
   <link rel="icon" type="image/png" href="assets/images/landometer-symbol-transparent.png?v=35a1496f" sizes="192x192">
   <title>Landometer Design System v0.9.1 · Implementation Playground</title>
@@ -87,6 +87,13 @@
     (() => {
       const root = document.documentElement;
       root.classList.add("js");
+      const motionReduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!motionReduced && "IntersectionObserver" in window) {
+        root.dataset.motionApproach = "pending";
+        window.__landometerApproachWatchdog = window.setTimeout(() => {
+          if (root.dataset.motionApproach === "pending") root.removeAttribute("data-motion-approach");
+        }, 2400);
+      }
       const params = new URL(location.href).searchParams;
       let locale = params.get("lang");
       let theme = params.get("theme");
@@ -288,6 +295,15 @@
       --motion-distance-reveal: 20px;
       --motion-ease-state: cubic-bezier(.2, 0, 0, 1);
       --motion-ease-enter: cubic-bezier(.16, 1, .3, 1);
+      --approach-opacity-duration: 760ms;
+      --approach-transform-duration: 920ms;
+      --approach-media-duration: 900ms;
+      --approach-block-distance: 32px;
+      --approach-inline-distance: 36px;
+      --approach-scale-from: .985;
+      --approach-stagger-step: 150ms;
+      --approach-stagger-cap: 450ms;
+      --motion-ease-settle: cubic-bezier(.2, .9, .25, 1.08);
       --type-caption: .75rem;
       --type-label: .8125rem;
       --type-body-sm: .875rem;
@@ -614,13 +630,47 @@
       width: min(calc(100% - (2 * var(--gutter))), var(--container-wide));
       margin-inline: auto;
       padding-block: 10px;
+      min-height: 64px;
+      transition: filter 560ms var(--motion-ease-state);
     }
     .site-header::before {
       position: absolute;
       z-index: -1;
       inset: 0 calc(50% - 50vw);
-      background: #E2E9ED;
+      border-bottom: 1px solid color-mix(in srgb, var(--border-default) 72%, transparent);
+      background: color-mix(in srgb, var(--surface-blue-tint) 94%, transparent);
+      box-shadow: 0 8px 24px rgba(24, 35, 39, .07);
+      backdrop-filter: blur(10px) saturate(1.2);
       content: "";
+      transition:
+        inset 560ms var(--motion-ease-state),
+        background-color 560ms var(--motion-ease-state),
+        border-color 560ms var(--motion-ease-state),
+        box-shadow 560ms var(--motion-ease-state);
+    }
+    .site-header.is-calm::before {
+      inset-block: 14px;
+      background: color-mix(in srgb, var(--surface-blue-tint) 52%, transparent);
+      border-color: color-mix(in srgb, var(--border-default) 44%, transparent);
+      box-shadow: 0 4px 16px rgba(24, 35, 39, .04);
+    }
+    .site-header .logo-surface img,
+    .site-header .header-primary a > span,
+    .site-header .nav-menu-toggle > span {
+      transform-origin: center;
+      transition:
+        opacity 560ms var(--motion-ease-state),
+        transform 560ms var(--motion-ease-state);
+    }
+    .site-header .logo-surface img { transform-origin: left center; }
+    .site-header.is-calm .logo-surface img {
+      opacity: .76;
+      transform: scale(.72);
+    }
+    .site-header.is-calm .header-primary a > span,
+    .site-header.is-calm .nav-menu-toggle > span {
+      opacity: .72;
+      transform: scale(.82);
     }
     .logo-surface {
       display: grid;
@@ -638,7 +688,7 @@
     }
     .release-label {
       align-self: center;
-      color: #182327;
+      color: var(--text-primary);
       font-family: var(--font-number);
       font-size: var(--type-caption);
       font-weight: var(--weight-technical);
@@ -659,11 +709,11 @@
       border: 0;
       border-radius: 50%;
       background: transparent;
-      color: #182327;
+      color: var(--text-primary);
       cursor: pointer;
     }
     .theme-cycle:hover,
-    .language-cycle:hover { background: rgba(255, 255, 255, .48); }
+    .language-cycle:hover { background: color-mix(in srgb, var(--surface-raised) 58%, transparent); }
     .theme-cycle svg {
       width: 20px;
       height: 20px;
@@ -691,7 +741,7 @@
       min-height: 44px;
       padding: 8px 12px;
       border-radius: var(--radius-sm);
-      color: #182327;
+      color: var(--text-primary);
       font-weight: 600;
       text-decoration: none;
     }
@@ -699,7 +749,7 @@
     .header-primary a[aria-current="location"],
     .nav-panel a:hover,
     .nav-panel a[aria-current="location"] {
-      background: rgba(255, 255, 255, .64);
+      background: color-mix(in srgb, var(--surface-raised) 68%, transparent);
       text-decoration: underline;
       text-decoration-thickness: 2px;
       text-underline-offset: 5px;
@@ -711,14 +761,14 @@
       gap: var(--space-2);
       min-height: 44px;
       padding: 8px var(--space-5);
-      border: 1px solid rgba(24, 35, 39, .28);
+      border: 1px solid color-mix(in srgb, var(--text-primary) 28%, transparent);
       border-radius: var(--radius-pill);
       background: transparent;
-      color: #182327;
+      color: var(--text-primary);
       cursor: pointer;
     }
     .nav-menu-toggle:hover,
-    .nav-menu-toggle[aria-expanded="true"] { background: rgba(255, 255, 255, .64); }
+    .nav-menu-toggle[aria-expanded="true"] { background: color-mix(in srgb, var(--surface-raised) 68%, transparent); }
     .nav-panel {
       position: absolute;
       top: calc(100% + 8px);
@@ -777,7 +827,7 @@
       right: 14px;
       display: grid;
       gap: 4px;
-      width: 124px;
+      width: 56px;
       padding: 6px;
       border: 1px solid var(--border-default);
       border-radius: var(--radius-md);
@@ -795,12 +845,12 @@
       pointer-events: auto;
     }
     .side-bookmark a {
+      position: relative;
       display: grid;
-      grid-template-columns: 12px minmax(0, 1fr);
-      gap: 8px;
+      place-items: center;
       align-items: center;
       min-height: 44px;
-      padding: 7px 8px;
+      padding: 0;
       border-radius: var(--radius-sm);
       color: var(--text-secondary);
       font-size: var(--type-caption);
@@ -809,11 +859,35 @@
       text-decoration: none;
     }
     .side-bookmark a::before {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border: 2px solid currentColor;
       border-radius: 50%;
       content: "";
+    }
+    .side-bookmark a > span {
+      position: absolute;
+      top: 50%;
+      right: calc(100% + 10px);
+      width: max-content;
+      max-width: 180px;
+      padding: 7px 10px;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-sm);
+      background: var(--surface-raised);
+      box-shadow: 0 8px 24px rgba(24, 35, 39, .12);
+      color: var(--text-primary);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(6px, -50%);
+      transition:
+        opacity 160ms var(--motion-ease-state),
+        transform 160ms var(--motion-ease-state);
+    }
+    .side-bookmark a:hover > span,
+    .side-bookmark a:focus-visible > span {
+      opacity: 1;
+      transform: translate(0, -50%);
     }
     .side-bookmark a[aria-current="location"] {
       background: var(--surface-blue-tint);
@@ -1877,7 +1951,6 @@
     .library-gateway-actions .secondary-action { margin-top: 0; }
 
     .implementation-library {
-      scroll-margin-top: var(--space-5);
       padding-block: clamp(80px, 10vw, 140px);
       background: var(--surface-alt);
     }
@@ -1895,7 +1968,6 @@
       color: var(--text-secondary);
     }
     .library-group {
-      scroll-margin-top: 88px;
       border-top: 1px solid var(--border-default);
     }
     .library-group:last-child {
@@ -2448,15 +2520,6 @@
     .color-route-actions .primary-action,
     .color-route-actions .secondary-action {
       margin-top: 0;
-    }
-    #library-color-guide,
-    .color-plate[id],
-    #atlas-gradients-title,
-    #atlas-categorical-title,
-    #atlas-dataviz-title,
-    #atlas-map-title,
-    #atlas-depth-title {
-      scroll-margin-top: 96px;
     }
     .rule-list li,
     .product-recipe li {
@@ -4272,16 +4335,35 @@
        which the page sets only when JS is running AND reduced motion is not requested, so
        no-JS and reduce both get the final state with no CSS involvement at all. Text is in
        the DOM and reachable by find-in-page and assistive technology before it lands. */
-    html[data-reveal="on"] [data-riddim-reveal] {
+    html[data-motion-approach="pending"] [data-motion-role],
+    html[data-motion-approach="ready"] [data-motion-role][data-riddim-reveal] {
       opacity: 0;
-      transform: translateY(var(--motion-distance-reveal));
       transition:
-        opacity var(--motion-duration-reveal) var(--motion-ease-enter),
-        transform var(--motion-duration-reveal) var(--motion-ease-settle);
+        opacity var(--approach-opacity-duration) var(--motion-ease-enter),
+        transform var(--approach-transform-duration) var(--motion-ease-settle);
       transition-delay: var(--riddim-delay, 0ms);
       will-change: opacity, transform;
     }
-    html[data-reveal="on"] [data-riddim-reveal][data-riddim-landed] {
+    html[data-motion-approach="pending"] [data-motion-role="approach.soft"],
+    html[data-motion-approach="pending"] [data-motion-role="stagger.child"],
+    html[data-motion-approach="ready"] [data-motion-role="approach.soft"][data-riddim-reveal],
+    html[data-motion-approach="ready"] [data-motion-role="stagger.child"][data-riddim-reveal] {
+      transform: translateY(var(--approach-block-distance)) scale(var(--approach-scale-from));
+    }
+    html[data-motion-approach="pending"] [data-motion-role="approach.inline-start"],
+    html[data-motion-approach="ready"] [data-motion-role="approach.inline-start"][data-riddim-reveal] {
+      transform: translateX(calc(-1 * var(--approach-inline-distance)));
+    }
+    html[data-motion-approach="pending"] [data-motion-role="approach.inline-end"],
+    html[data-motion-approach="ready"] [data-motion-role="approach.inline-end"][data-riddim-reveal] {
+      transform: translateX(var(--approach-inline-distance));
+    }
+    html[data-motion-approach="pending"] [data-motion-role="media.arrival"],
+    html[data-motion-approach="ready"] [data-motion-role="media.arrival"][data-riddim-reveal] {
+      transform: scale(var(--approach-scale-from));
+      transition-duration: var(--approach-media-duration);
+    }
+    html[data-motion-approach] [data-riddim-reveal][data-riddim-landed] {
       opacity: 1;
       transform: none;
       will-change: auto;
@@ -5382,17 +5464,21 @@
     }
 
     @media (max-width: 980px) {
+      .side-bookmark { display: none; }
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
       }
       .hero-copy {
-        min-height: 64svh;
+        min-height: 0;
+        padding-top: clamp(104px, 14vh, 132px);
+        padding-bottom: clamp(44px, 7vh, 64px);
         padding-inline: var(--gutter);
       }
       .hero-media {
-        min-height: 58svh;
-        max-height: 720px;
+        min-height: 320px;
+        height: 46svh;
+        max-height: 520px;
       }
       .playground-grid,
       .handoff-layout,
@@ -5438,12 +5524,14 @@
       .nav-panel .release-label { display: block; }
       .logo-surface img { width: 138px; }
       .hero-copy {
-        min-height: 70svh;
-        padding-top: 120px;
-        padding-bottom: 68px;
+        min-height: 0;
+        padding-top: 96px;
+        padding-bottom: 44px;
       }
       .hero-media {
-        min-height: 54svh;
+        min-height: 280px;
+        height: 42svh;
+        max-height: 420px;
       }
       .hero h1 { font-size: clamp(1.65rem, 16vw, 5rem); }
       .section-heading { margin-bottom: var(--space-7); }
@@ -5630,7 +5718,7 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 .v090 [data-surface="cultivate"] a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   /* [REVEAL-01] under reduce there is no entrance at all — the final state is the only state. */
-  html[data-reveal="on"] [data-riddim-reveal] {
+  html[data-motion-approach] [data-motion-role] {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -5642,8 +5730,6 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 
 /* v0.9.1 implementation layer: critical content is visible in source and at rest. */
 html { scroll-padding-top: 84px; }
-main > section,
-main details[id] { scroll-margin-top: 84px; }
 .side-bookmark { background: var(--surface-raised); }
 @supports (background: color-mix(in srgb, white 50%, transparent)) {
   .side-bookmark { background: color-mix(in srgb, var(--surface-raised) 94%, transparent); }
@@ -5655,6 +5741,28 @@ main details[id] { scroll-margin-top: 84px; }
     var(--canvas);
 }
 .v091 .section-heading { max-width: 820px; }
+.v091-boundary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: var(--space-4) 0 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface-raised) 76%, transparent);
+  color: var(--text-metadata);
+  font-family: var(--font-technical);
+  font-size: var(--type-caption);
+  line-height: 1.45;
+}
+.v091-boundary::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--series-05);
+  content: "";
+}
 .v091-delta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5673,33 +5781,38 @@ main details[id] { scroll-margin-top: 84px; }
 .v091-delta section:last-child { background: var(--surface-blue-tint); }
 .v091-delta h3,
 .v091-delta p { margin-block: 0 var(--space-2); }
-.v091-case-grid {
+.v091-story {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-5);
-  margin-top: var(--space-6);
+  gap: clamp(48px, 8vw, 104px);
+  margin-top: clamp(56px, 8vw, 96px);
 }
-.v091-case {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+.v091-chapter {
+  display: grid;
+  grid-template-columns: minmax(260px, 2fr) minmax(0, 3fr);
+  grid-template-areas: "copy visual";
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
   min-width: 0;
-  padding: clamp(20px, 3vw, 30px);
-  border: 1px solid var(--border-default);
-  border-top: 4px solid var(--interaction-accent);
-  border-radius: var(--radius-lg);
-  background: var(--surface-card, var(--canvas));
-  box-shadow: 0 12px 34px rgba(24, 35, 39, .07);
 }
-.v091-case--wide { grid-column: 1 / -1; }
-.v091-case > header {
+.v091-chapter:nth-child(even) {
+  grid-template-columns: minmax(0, 3fr) minmax(260px, 2fr);
+  grid-template-areas: "visual copy";
+}
+.v091-chapter__copy {
+  grid-area: copy;
+  display: grid;
+  gap: var(--space-4);
+  align-content: center;
+  min-width: 0;
+}
+.v091-chapter__copy > header {
   display: grid;
   grid-template-columns: 48px minmax(0, 1fr);
   gap: var(--space-3);
   align-items: start;
 }
-.v091-case h3,
-.v091-case p { margin: 0; }
+.v091-chapter h3,
+.v091-chapter p { margin: 0; }
 .v091-case-index {
   display: grid;
   place-items: center;
@@ -5712,179 +5825,437 @@ main details[id] { scroll-margin-top: 84px; }
   font-size: var(--type-caption);
   font-weight: 700;
 }
-.v091-concept-label {
-  margin: 0 0 4px !important;
-  color: var(--text-metadata);
-  font-family: var(--font-technical);
-  font-size: .75rem;
-  line-height: 1.45;
-}
-.v091-layer-specimen,
-.v091-parity-specimen,
-.v091-format-grid,
-.v091-recovery-grid { display: grid; gap: var(--space-3); }
-.v091-shared-layer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: var(--space-2);
-  padding: 16px;
-  border-radius: var(--radius-md);
-  background: var(--text-primary);
-  color: var(--canvas);
-}
-.v091-shared-layer span { font-family: var(--font-technical); font-size: .75rem; }
-.v091-domain-layer {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-.v091-domain-layer > span,
-.v091-three-layers > span,
-.v091-format-grid section {
-  display: grid;
-  gap: 4px;
-  min-width: 0;
-  padding: 14px;
-  border: 1px solid var(--border-hairline);
-  border-radius: var(--radius-sm);
-  background: var(--surface-alt, var(--canvas));
-}
-.v091-domain-layer small,
-.v091-three-layers small,
-.v091-format-grid small,
-.v091-icon-state small,
-.v091-visible-card small { color: var(--text-secondary); line-height: 1.45; }
 .v091-aha {
-  padding: 14px 16px;
+  padding-inline-start: 14px;
   border-inline-start: 4px solid var(--interaction-accent);
-  background: var(--surface-blue-tint);
+  color: var(--text-secondary);
 }
-.v091-parity-specimen { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.v091-parity-specimen > div {
-  display: grid;
-  gap: 8px;
-  min-width: 0;
-  padding: 16px;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm);
-  background: var(--surface-alt, var(--canvas));
-}
-.v091-parity-specimen > div::after {
-  display: block;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--interaction-accent);
-  content: "";
-}
-.v091-parity-specimen span,
-.v091-parity-specimen small { overflow-wrap: anywhere; }
-.v091-three-layers {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-.v091-nav-specimen {
-  display: grid;
-  grid-template-columns: 1fr auto auto auto;
-  gap: 4px;
-  align-items: center;
-  padding: 8px;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-md);
-  background: var(--surface-alt, var(--canvas));
-}
-.v091-nav-specimen a,
-.v091-menu-control {
+.v091-next {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  width: fit-content;
   min-height: 44px;
-  padding: 8px var(--space-5);
-  border-radius: var(--radius-pill);
-  color: var(--text-primary);
-  text-decoration: none;
+  color: var(--interaction-accent);
+  font-weight: 600;
+  text-underline-offset: 5px;
 }
-.v091-menu-control { border: 1px solid var(--border-default); }
-.v091-brand-mark { padding-inline: 8px; font-weight: 700; }
-.v091-icon-state {
-  display: flex;
-  gap: var(--space-3);
-  align-items: center;
+.v091-visual {
+  position: relative;
+  isolation: isolate;
+  grid-area: visual;
+  min-width: 0;
+  min-height: clamp(360px, 42vw, 520px);
+  overflow: hidden;
+  padding: clamp(20px, 4vw, 44px);
+  border: 1px solid color-mix(in srgb, var(--border-default) 78%, transparent);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(24, 35, 39, .12);
 }
-.v091-icon-state > span:last-child { display: grid; gap: 2px; }
-.v091-discovery-cta { position: relative; isolation: isolate; align-self: flex-start; overflow: visible; }
-.v091-discovery-cta i {
+.v091-visual-label {
   position: absolute;
-  z-index: -1;
-  inset: 8px 14px;
-  border: 2px solid currentColor;
-  border-radius: inherit;
-  opacity: 0;
-  pointer-events: none;
+  z-index: 4;
+  top: 14px;
+  right: 14px;
+  padding: 6px 9px;
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+  color: var(--text-metadata);
+  font-family: var(--font-technical);
+  font-size: .6875rem;
+  line-height: 1.2;
+  backdrop-filter: blur(8px);
 }
-@keyframes v091-cue {
-  0% { opacity: 0; transform: scale(.96); }
-  35% { opacity: .7; }
-  100% { opacity: 0; transform: scale(1.08); }
-}
-.v091-discovery-cta.is-cued i {
-  animation: v091-cue 720ms ease-out both;
-  animation-iteration-count: 1;
-}
-.v091-invariant {
+.v091-architecture {
   display: grid;
-  gap: 4px;
-  padding: 16px;
-  border-radius: var(--radius-md);
+  grid-template-rows: auto 1fr;
+  gap: clamp(28px, 5vw, 52px);
+  align-content: center;
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--series-03) 22%, transparent), transparent 44%),
+    linear-gradient(320deg, color-mix(in srgb, var(--series-05) 18%, transparent), transparent 52%),
+    var(--surface-beige-tint);
+}
+.v091-method-band {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-radius: var(--radius-lg);
   background: var(--text-primary);
   color: var(--canvas);
 }
-.v091-format-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.v091-format-grid section { align-content: start; }
-.v091-compare {
+.v091-method-band .icon-symbol { font-size: 28px; }
+.v091-method-band span:last-child { display: grid; gap: 2px; }
+.v091-method-band small { color: color-mix(in srgb, var(--canvas) 74%, transparent); }
+.v091-domain-packs {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: var(--space-4);
-  align-items: center;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
 }
-.v091-compare > div:not(.v091-not-equal) {
+.v091-domain-packs::before {
+  position: absolute;
+  top: -28px;
+  left: 16.66%;
+  right: 16.66%;
+  height: 28px;
+  border: solid color-mix(in srgb, var(--text-primary) 34%, transparent);
+  border-width: 0 1px 1px;
+  content: "";
+}
+.v091-domain-pack {
   display: grid;
+  gap: 8px;
+  align-content: end;
+  min-height: 164px;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--text-primary) 16%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface-raised) 84%, transparent);
+}
+.v091-domain-pack::before {
+  width: 38px;
+  height: 38px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  opacity: .42;
+}
+.v091-domain-pack small { color: var(--text-secondary); }
+.v091-parity-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(190px, .8fr);
+  gap: clamp(18px, 3vw, 30px);
+  align-items: center;
+  background:
+    radial-gradient(circle at 86% 16%, color-mix(in srgb, var(--series-07) 28%, transparent), transparent 34%),
+    var(--text-primary);
+  color: var(--canvas);
+}
+.v091-claim-canvas {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+  min-height: 280px;
+  padding: clamp(20px, 4vw, 36px);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+.v091-claim-canvas > small { color: var(--text-metadata); }
+.v091-mini-bars {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  height: 96px;
+  padding-top: 12px;
+  border-bottom: 1px solid var(--border-default);
+}
+.v091-mini-bars i {
+  flex: 1;
+  height: var(--bar, 50%);
+  border-radius: 7px 7px 0 0;
+  background: var(--series-07);
+}
+.v091-mini-bars i:nth-child(2) { background: var(--series-05); }
+.v091-mini-bars i:nth-child(3) { background: var(--series-03); }
+.v091-claim-meta {
+  display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  padding: 20px;
+}
+.v091-claim-meta span {
+  padding: 5px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-alt);
+  color: var(--text-secondary);
+  font-family: var(--font-technical);
+  font-size: .6875rem;
+}
+.v091-parity-route {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.v091-parity-route li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid color-mix(in srgb, var(--canvas) 22%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--canvas) 8%, transparent);
+}
+.v091-parity-route b {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--energy-mint);
+  color: #11191D;
+}
+.v091-parity-route span { display: grid; gap: 2px; }
+.v091-parity-route small { color: color-mix(in srgb, var(--canvas) 72%, transparent); }
+.v091-nav-stage {
+  display: grid;
+  gap: clamp(28px, 5vw, 44px);
+  align-content: center;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--series-07) 18%, transparent), transparent 50%),
+    var(--surface-blue-tint);
+}
+.v091-nav-state {
+  display: grid;
+  gap: 8px;
+}
+.v091-nav-state > small {
+  color: var(--text-metadata);
+  font-family: var(--font-technical);
+}
+.v091-nav-line {
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) repeat(3, auto);
+  gap: 6px;
+  align-items: center;
+  min-height: 64px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+  box-shadow: 0 12px 30px rgba(24, 35, 39, .08);
+}
+.v091-nav-line--calm {
+  min-height: 44px;
+  background: color-mix(in srgb, var(--surface-raised) 52%, transparent);
+  box-shadow: none;
+}
+.v091-nav-target {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--type-caption);
+  font-weight: 600;
+}
+.v091-nav-target--brand { justify-items: start; font-size: var(--type-body-sm); }
+.v091-nav-line--calm .v091-nav-target > span { opacity: .72; transform: scale(.82); }
+.v091-nav-target::after {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed color-mix(in srgb, var(--interaction-accent) 48%, transparent);
+  border-radius: inherit;
+  content: "";
+}
+.v091-nav-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.v091-nav-note span {
+  padding: 6px 9px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface-raised) 74%, transparent);
+  color: var(--text-secondary);
+  font-family: var(--font-technical);
+  font-size: .6875rem;
+}
+.v091-discovery-cta {
+  position: relative;
+  isolation: isolate;
+  justify-self: start;
+  overflow: hidden;
+}
+.v091-discovery-cta > span { position: relative; z-index: 1; }
+.v091-discovery-cta i {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, transparent 36%, color-mix(in srgb, var(--energy-yellow) 72%, transparent) 36% 64%, transparent 64%);
+  pointer-events: none;
+  transform: translateX(-120%);
+}
+@keyframes v091-cue {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(120%); }
+}
+.v091-discovery-cta.is-cued i {
+  animation: v091-cue 540ms cubic-bezier(.16, 1, .3, 1) both;
+  animation-iteration-count: 1;
+}
+.v091-format-stage {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 34px);
+  align-items: stretch;
+  background:
+    radial-gradient(circle at 16% 84%, color-mix(in srgb, var(--series-03) 22%, transparent), transparent 34%),
+    var(--surface-alt);
+}
+.v091-format-canvas {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  min-width: 0;
+  padding: 14px;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
-  background: var(--surface-alt, var(--canvas));
+  background: var(--surface-raised);
+  box-shadow: 0 14px 32px rgba(24, 35, 39, .11);
 }
-.v091-not-equal { color: var(--warning-ink); font-size: 2rem; font-weight: 700; }
-.v091-compare p { grid-column: 1 / -1; }
-.v091-rejected { border-top-color: var(--warning-ink); }
-.v091-recovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.v091-recovery-grid section { display: grid; gap: var(--space-3); padding: 20px; border-radius: var(--radius-md); }
-.v091-recovery-grid .is-rejected { border: 1px dashed var(--warning-ink); background: var(--surface-alt, var(--canvas)); }
-.v091-recovery-grid .is-recovery { border: 1px solid var(--success-ink); background: var(--surface-green-tint, var(--surface-alt)); }
-.v091-ghost-card {
+.v091-format-canvas b { font-family: var(--font-technical); font-size: var(--type-caption); }
+.v091-format-canvas strong { font-size: var(--type-body-sm); line-height: 1.3; }
+.v091-format-canvas small { color: var(--text-metadata); }
+.v091-format-canvas::after {
+  height: 5px;
+  border-radius: 5px;
+  background: var(--series-05);
+  content: "";
+}
+.v091-format-canvas--web { grid-area: 2 / 1 / 7 / 7; }
+.v091-format-canvas--pdf { grid-area: 1 / 8 / 6 / 11; transform: rotate(2deg); }
+.v091-format-canvas--deck { grid-area: 5 / 6 / 9 / 12; transform: rotate(-1.5deg); }
+.v091-format-canvas--social { grid-area: 2 / 11 / 5 / 13; padding: 10px; }
+.v091-invariant-ribbon {
+  position: absolute;
+  z-index: 3;
+  right: 28px;
+  bottom: 22px;
+  left: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--text-primary);
+  box-shadow: 0 10px 28px rgba(24, 35, 39, .18);
+  color: var(--canvas);
+  font-family: var(--font-technical);
+  font-size: .6875rem;
+}
+.v091-compare-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(14px, 3vw, 26px);
+  align-items: center;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--series-05) 13%, transparent), transparent 45%),
+    var(--surface-beige-tint);
+}
+.v091-grain {
+  display: grid;
+  gap: 12px;
+  align-content: center;
+  min-height: 280px;
   padding: 18px;
-  border: 1px dashed currentColor;
+  border: 1px solid color-mix(in srgb, var(--text-primary) 16%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface-raised) 82%, transparent);
+}
+.v091-grain-map {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 4px;
+  min-height: 180px;
+}
+.v091-grain-map i {
+  border: 1px solid color-mix(in srgb, var(--series-07) 56%, var(--border-default));
+  background: color-mix(in srgb, var(--series-07) var(--shade, 12%), transparent);
+}
+.v091-grain-map--neighborhood { display: block; }
+.v091-grain-map--neighborhood i {
+  position: absolute;
+  width: var(--size, 42%);
+  aspect-ratio: 1;
+  border-radius: 48% 52% 42% 58%;
+  background: color-mix(in srgb, var(--series-05) var(--shade, 16%), transparent);
+}
+.v091-grain-map--neighborhood i:nth-child(1) { top: 4%; left: 8%; }
+.v091-grain-map--neighborhood i:nth-child(2) { top: 20%; right: 6%; }
+.v091-grain-map--neighborhood i:nth-child(3) { right: 28%; bottom: 2%; }
+.v091-mismatch-mark {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  color: var(--warning-ink);
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+.v091-motion-stage {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--warning-fill) 74%, transparent), transparent 54%),
+    var(--surface-alt);
+}
+.v091-motion-track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.v091-motion-frame {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  min-height: 190px;
+  padding: 16px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+}
+.v091-motion-frame > small { color: var(--text-metadata); font-family: var(--font-technical); }
+.v091-motion-proof {
+  display: grid;
+  gap: 6px;
+  min-height: 92px;
+  padding: 14px;
   border-radius: var(--radius-sm);
-  color: var(--text-metadata);
+  background: var(--surface-blue-tint);
+}
+.v091-motion-frame--rejected .v091-motion-proof {
+  border: 1px dashed var(--warning-ink);
+  background: transparent;
+  color: var(--text-muted);
   text-decoration: line-through;
 }
-.v091-visible-card {
-  display: grid;
-  gap: 4px;
-  padding: 18px;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-sm);
-  background: var(--surface-card, var(--canvas));
+.v091-motion-frame--final .v091-motion-proof { border: 1px solid var(--success-ink); }
+.v091-motion-rule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.v091-motion-rule span {
+  padding: 5px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  font-family: var(--font-technical);
+  font-size: .6875rem;
 }
 .v091-foundations {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1.25fr) minmax(240px, .75fr);
   gap: var(--space-5);
   align-items: center;
-  margin-top: var(--space-6);
+  margin-top: clamp(56px, 8vw, 96px);
   padding: clamp(20px, 3vw, 32px);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
@@ -5892,31 +6263,65 @@ main details[id] { scroll-margin-top: 84px; }
 }
 .v091-foundations h3,
 .v091-foundations p { margin-block: 0 var(--space-2); }
+.v091-atlas-ribbon {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  min-height: 110px;
+  padding: 10px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-alt);
+}
+.v091-atlas-ribbon i { border-radius: var(--radius-sm); background: var(--swatch); }
+.v091-atlas-ribbon i:nth-child(1) { --swatch: var(--series-01); }
+.v091-atlas-ribbon i:nth-child(2) { --swatch: var(--series-02); }
+.v091-atlas-ribbon i:nth-child(3) { --swatch: var(--series-03); }
+.v091-atlas-ribbon i:nth-child(4) { --swatch: var(--series-05); }
+.v091-atlas-ribbon i:nth-child(5) { --swatch: var(--series-06); }
+.v091-atlas-ribbon i:nth-child(6) { --swatch: var(--series-07); }
+.v091-atlas-ribbon i:nth-child(7) { --swatch: var(--series-08); }
+.v091-atlas-ribbon i:nth-child(8) { --swatch: var(--series-10); }
 @media (max-width: 900px) {
-  .v091-case-grid { grid-template-columns: 1fr; }
-  .v091-case--wide { grid-column: auto; }
-  .v091-format-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .v091-parity-specimen { grid-template-columns: 1fr; }
+  .v091-chapter,
+  .v091-chapter:nth-child(even) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "copy" "visual";
+  }
+  .v091-visual { min-height: 420px; }
 }
 @media (max-width: 620px) {
   html { scroll-padding-top: 74px; }
-  main > section,
-  main details[id] { scroll-margin-top: 74px; }
   .v091-delta,
-  .v091-domain-layer,
-  .v091-three-layers,
-  .v091-format-grid,
-  .v091-recovery-grid,
   .v091-foundations { grid-template-columns: 1fr; }
-  .v091-case { padding: 20px; }
-  .v091-case > header { grid-template-columns: 44px minmax(0, 1fr); }
-  .v091-nav-specimen { grid-template-columns: 1fr auto; }
-  .v091-nav-specimen a { display: none; }
-  .v091-compare { grid-template-columns: 1fr; }
-  .v091-not-equal { justify-self: center; transform: rotate(90deg); }
+  .v091-story { gap: 56px; }
+  .v091-chapter__copy > header { grid-template-columns: 44px minmax(0, 1fr); }
+  .v091-visual { min-height: 0; padding: 20px; border-radius: var(--radius-lg); }
+  .v091-visual-label { position: static; justify-self: start; margin-bottom: 8px; }
+  .v091-domain-packs,
+  .v091-parity-stage,
+  .v091-compare-stage,
+  .v091-motion-track { grid-template-columns: 1fr; }
+  .v091-domain-packs::before { display: none; }
+  .v091-domain-pack { min-height: 118px; }
+  .v091-nav-line { grid-template-columns: 1fr repeat(2, 44px); }
+  .v091-nav-target:nth-child(3) { display: none; }
+  .v091-nav-target { padding-inline: 4px; }
+  .v091-format-stage { grid-template-rows: repeat(12, 30px); }
+  .v091-format-canvas--web { grid-area: 2 / 1 / 7 / 9; }
+  .v091-format-canvas--pdf { grid-area: 1 / 9 / 6 / 13; }
+  .v091-format-canvas--deck { grid-area: 7 / 3 / 12 / 11; }
+  .v091-format-canvas--social { grid-area: 6 / 10 / 9 / 13; }
+  .v091-invariant-ribbon { right: 14px; bottom: 14px; left: 14px; }
+  .v091-mismatch-mark { justify-self: center; transform: rotate(90deg); }
+  .v091-grain { min-height: 230px; }
   .v091-foundations .primary-action { justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header::before,
+  .site-header .logo-surface img,
+  .site-header .header-primary a > span,
+  .site-header .nav-menu-toggle > span { transition: none !important; }
   .v091-discovery-cta i { display: none; }
 }
 </style>
@@ -6002,6 +6407,185 @@ main details[id] { scroll-margin-top: 84px; }
           <span data-en>Team identity and culture context—not evidence of a product outcome.</span>
         </figcaption>
       </figure>
+    </section>
+
+    <section class="v090 v091" id="v091-additions" aria-labelledby="v091-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">DS v0.9.1 · implementation in view</p>
+          <h2 id="v091-title">
+            <span data-th>หลักเดิมยังอยู่ เห็นวิธีใช้จริงได้ทันที</span>
+            <span data-en>The foundations stay. The implementation is now visible.</span>
+          </h2>
+          <p data-th>สีและพื้นฐานที่พิสูจน์แล้วยังคงเดิม รอบนี้เราเปลี่ยนกฎที่อ่านยาวให้เป็นตัวอย่างที่เห็นโครงสร้าง สถานะ และผลลัพธ์ได้ก่อน แล้วค่อยเปิดรายละเอียดเมื่อจำเป็น</p>
+          <p data-en>The proven visual foundations remain. This revision turns long guidance into visible structures, states, and outcomes, with detail available when it is useful.</p>
+          <p class="v091-boundary"><span data-th>ตัวอย่างเชิงแนวคิดทั้งหมดด้านล่าง · ไม่ใช่ข้อมูล ความสามารถ หรือผลลัพธ์ของผลิตภัณฑ์</span><span data-en>All fixtures below are conceptual · not product data, capability, or outcome evidence</span></p>
+        </div>
+
+        <div class="v091-delta" aria-label="สิ่งที่คงไว้และสิ่งที่พัฒนาขึ้น" data-l10n-aria-th="สิ่งที่คงไว้และสิ่งที่พัฒนาขึ้น" data-l10n-aria-en="What stays and what improves">
+          <section>
+            <p class="eyebrow"><span data-th>คงไว้</span><span data-en>Kept</span></p>
+            <h3><span data-th>ความจริงก่อนการตกแต่ง</span><span data-en>Truth before treatment</span></h3>
+            <p>color-srgb-05 · atmosphere · type roles · spacing · one job · first AHA · evidence boundary</p>
+          </section>
+          <section>
+            <p class="eyebrow"><span data-th>พัฒนาขึ้น</span><span data-en>Improved</span></p>
+            <h3><span data-th>ความหมายเดินทางได้ตรงกัน</span><span data-en>Meaning travels consistently</span></h3>
+            <p>navigation · outcome-led CTA · fail-open motion · initial/hydrated parity · cross-format equivalence</p>
+          </section>
+        </div>
+
+        <div class="v091-story">
+          <article class="v091-chapter" id="v091-layers" data-media-status="conceptual_no_product_evidence">
+            <div class="v091-chapter__copy">
+              <header>
+                <span class="v091-case-index">01</span>
+                <h3><span data-th>หนึ่งวิธีคิด หลายขอบเขตความจริง</span><span data-en>One shared method, distinct truth owners</span></h3>
+              </header>
+              <p><span data-th>Locale Insight เป็นโครงร่วมระดับ portfolio, methodology และ product architecture ได้ แต่ข้อมูล ความสามารถ และคำกล่าวอ้างยังต้องอยู่กับ product layer เจ้าของเรื่อง</span><span data-en>Locale Insight can provide a shared portfolio, methodology, and product-architecture frame. Each product still owns its data, capabilities, and claims.</span></p>
+              <p class="v091-aha"><strong>AHA · </strong><span data-th>แชร์ลำดับการคิดได้ โดยไม่รวม Land, Location และ Living ให้กลายเป็นความจริงชุดเดียว</span><span data-en>Share the decision sequence without merging Land, Location, and Living into one truth set.</span></p>
+              <a class="v091-next" href="#implementation-library"><span data-th>ดูวิธีแยก shared และ product layer</span><span data-en>Inspect the shared/product boundary</span></a>
+            </div>
+            <div class="v091-visual v091-architecture" aria-label="ภาพสถาปัตยกรรม Locale Insight ที่เชื่อมสาม product packs โดยไม่รวมข้อมูล" data-l10n-aria-th="ภาพสถาปัตยกรรม Locale Insight ที่เชื่อมสาม product packs โดยไม่รวมข้อมูล" data-l10n-aria-en="Locale Insight architecture linking three distinct product packs without merging their data">
+              <span class="v091-visual-label"><span data-th>Conceptual fixture</span><span data-en>Conceptual fixture</span></span>
+              <div class="v091-method-band">
+                <span class="icon-symbol" data-icon="hub" aria-hidden="true">&#xE13B;</span>
+                <span><strong>Locale Insight</strong><small>question → evidence → boundary → next action</small></span>
+              </div>
+              <div class="v091-domain-packs" data-motion-role="approach.soft">
+                <div class="v091-domain-pack"><strong>Land</strong><small><span data-th>วัตถุ ข้อมูล และข้อจำกัดของเจ้าของงาน</span><span data-en>Owned object, data, and limits</span></small></div>
+                <div class="v091-domain-pack"><strong>Location</strong><small><span data-th>วิธี หลักฐาน และ release ของเจ้าของงาน</span><span data-en>Owned method, evidence, and release</span></small></div>
+                <div class="v091-domain-pack"><strong>Living</strong><small><span data-th>บทบาท capability และคำกล่าวอ้างของเจ้าของงาน</span><span data-en>Owned roles, capabilities, and claims</span></small></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="v091-chapter" id="v091-parity" data-media-status="conceptual_no_product_evidence">
+            <div class="v091-chapter__copy">
+              <header>
+                <span class="v091-case-index">02</span>
+                <h3><span data-th>ข้อสรุปเดียวกัน คนและเครื่องอ่านตรงกัน</span><span data-en>One claim, consistent meaning for people and machines</span></h3>
+              </header>
+              <p><span data-th>ข้อสรุป ที่มา ช่วงเวลา และข้อจำกัดต้องเดินทางไปด้วยกัน ตั้งแต่ HTML แรก หน้าที่คนเห็น จนถึงสถานะหลัง JavaScript ทำงาน</span><span data-en>The claim, source, time basis, and limitation travel together from initial HTML to the visible page and hydrated state.</span></p>
+              <p class="v091-aha"><strong>AHA · </strong><span data-th>hydration เปลี่ยนวิธีแสดงได้ แต่ไม่เปลี่ยนความหมายหรือเพิ่มสิทธิ์ให้ action</span><span data-en>Hydration may change presentation, never meaning or action authority.</span></p>
+              <a class="v091-next" href="#library-resources"><span data-th>เปิด reference เรื่อง parity</span><span data-en>Open the parity reference</span></a>
+            </div>
+            <div class="v091-visual v091-parity-stage">
+              <span class="v091-visual-label"><span data-th>ข้อมูลจำลอง</span><span data-en>Synthetic data</span></span>
+              <div class="v091-claim-canvas">
+                <small>PRACTICE-01 · Q2 · synthetic</small>
+                <strong><span data-th>พื้นที่ B เปลี่ยนมากที่สุดในชุดตัวอย่างนี้</span><span data-en>Area B changed most in this fixture</span></strong>
+                <div class="v091-mini-bars" data-motion-role="approach.inline-start" aria-hidden="true"><i style="--bar:48%"></i><i style="--bar:86%"></i><i style="--bar:62%"></i></div>
+                <div class="v091-claim-meta"><span>source · PRACTICE-01</span><span>period · Q2</span><span><span data-th>limit · ยังไม่ยืนยันสาเหตุ</span><span data-en>limit · cause not established</span></span></div>
+              </div>
+              <ol class="v091-parity-route" data-motion-role="approach.inline-end">
+                <li><b>1</b><span><strong><span data-th>HTML แรก</span><span data-en>Initial HTML</span></strong><small><span data-th>ความหมายครบตั้งแต่ source</span><span data-en>complete meaning in source</span></small></span></li>
+                <li><b>2</b><span><strong><span data-th>หน้าที่เห็น</span><span data-en>Visible page</span></strong><small><span data-th>อ่านง่ายขึ้น ความจริงเดิม</span><span data-en>clearer treatment, same truth</span></small></span></li>
+                <li><b>3</b><span><strong><span data-th>หลังทำงาน</span><span data-en>Hydrated state</span></strong><small><span data-th>state เพิ่มได้ claim ห้าม drift</span><span data-en>state may grow; claim may not drift</span></small></span></li>
+              </ol>
+            </div>
+          </article>
+
+          <article class="v091-chapter" id="v091-calm-nav" data-media-status="conceptual_no_product_evidence">
+            <div class="v091-chapter__copy">
+              <header>
+                <span class="v091-case-index">03</span>
+                <h3><span data-th>สงบลงได้ โดยไม่ทำให้ควบคุมยาก</span><span data-en>Calm by hierarchy, not by hiding controls</span></h3>
+              </header>
+              <p><span data-th>ส่วนหัวของหน้านี้คือ adapter ที่ใช้งานจริง: scroll ลงแล้ว visual layer สงบลง แต่ link และ button ยังคงเป็นเป้าตรง 44px ไม่ต้องกดปลุกและไม่มี overlay ส่ง click ต่อ</span><span data-en>This page header is the live adapter: downward reading calms the visual layer while links and buttons remain direct 44px targets, with no wake-first tap or click-forwarding overlay.</span></p>
+              <a class="primary-action v091-discovery-cta" href="#v091-format" id="v091-discovery-cta"><span data-th>ดูวิธีส่งงานข้ามสื่อ</span><span data-en>See the cross-format handoff</span><i aria-hidden="true"></i></a>
+              <p class="v091-aha"><strong><span data-th>ความสงบมาจาก hierarchy</span><span data-en>Calm comes from hierarchy</span></strong><span> · 44px direct targets · finite cue · reduced motion = prominent final state</span></p>
+            </div>
+            <div class="v091-visual v091-nav-stage" aria-label="กายวิภาค navigation สถานะเด่นและสงบที่คงเป้าตรงขนาด 44 พิกเซล" data-l10n-aria-th="กายวิภาค navigation สถานะเด่นและสงบที่คงเป้าตรงขนาด 44 พิกเซล" data-l10n-aria-en="Prominent and calm navigation anatomy preserving direct 44 pixel targets">
+              <span class="v091-visual-label"><span data-th>Anatomy · ไม่ใช่ navbar ที่สอง</span><span data-en>Anatomy · not a second navbar</span></span>
+              <div class="v091-nav-state" data-motion-role="approach.soft">
+                <small><span data-th>Prominent · จุดเริ่มต้นและเมื่อมี intent</span><span data-en>Prominent · page start and user intent</span></small>
+                <div class="v091-nav-line"><span class="v091-nav-target v091-nav-target--brand"><span>Landometer</span></span><span class="v091-nav-target"><span>Examples</span></span><span class="v091-nav-target"><span>Atlas</span></span><span class="v091-nav-target"><span>Menu</span></span></div>
+              </div>
+              <div class="v091-nav-state" data-motion-role="approach.soft">
+                <small><span data-th>Calm · visual เล็กลง target เดิม</span><span data-en>Calm · smaller visual, same target</span></small>
+                <div class="v091-nav-line v091-nav-line--calm"><span class="v091-nav-target v091-nav-target--brand"><span>Landometer</span></span><span class="v091-nav-target"><span>Examples</span></span><span class="v091-nav-target"><span>Atlas</span></span><span class="v091-nav-target"><span>Menu</span></span></div>
+              </div>
+              <div class="v091-nav-note"><span>direct semantic target</span><span>44 × 44px</span><span>up / pointer / focus = prominent</span><span>reduced motion = stable</span></div>
+            </div>
+          </article>
+
+          <article class="v091-chapter" id="v091-format" data-media-status="conceptual_no_product_evidence">
+            <div class="v091-chapter__copy">
+              <header>
+                <span class="v091-case-index">04</span>
+                <h3><span data-th>เปลี่ยนสื่อ ไม่เปลี่ยนคำสัญญา</span><span data-en>Change the format, preserve the promise</span></h3>
+              </header>
+              <p><span data-th>เว็บ PDF สไลด์ และภาพ social ไม่ต้องเหมือนกันทุก pixel แต่ข้อสรุป หลักฐาน ข้อจำกัด และผลที่ action สัญญาไว้ต้องไม่หล่น</span><span data-en>Web, PDF, deck, and social formats need not match pixel for pixel. The claim, evidence, limitation, and action promise must survive.</span></p>
+              <p class="v091-aha"><strong>AHA · </strong><span data-th>fidelity คือ semantic equivalence ไม่ใช่การบังคับ layout เดียวกันทุกสื่อ</span><span data-en>Fidelity is semantic equivalence, not one layout forced onto every format.</span></p>
+              <a class="v091-next" href="#align"><span data-th>ดูวิธีส่งต่องานและบริบท</span><span data-en>Inspect the handoff and its context</span></a>
+            </div>
+            <div class="v091-visual v091-format-stage" data-motion-role="approach.soft">
+              <span class="v091-visual-label"><span data-th>Conceptual outputs</span><span data-en>Conceptual outputs</span></span>
+              <div class="v091-format-canvas v091-format-canvas--web"><b>WEB</b><strong><span data-th>พื้นที่ B เปลี่ยนมากสุด</span><span data-en>Area B changed most</span></strong><small>source · period · limit</small></div>
+              <div class="v091-format-canvas v091-format-canvas--pdf"><b>PDF</b><strong><span data-th>ข้อสรุปเดิม</span><span data-en>Same claim</span></strong><small>TOC · working link</small></div>
+              <div class="v091-format-canvas v091-format-canvas--deck"><b>DECK</b><strong><span data-th>หลักฐานเดิม</span><span data-en>Same evidence</span></strong><small>visible annotation</small></div>
+              <div class="v091-format-canvas v091-format-canvas--social"><b>SOCIAL</b><strong><span data-th>ขอบเขตเดิม</span><span data-en>Same limit</span></strong></div>
+              <div class="v091-invariant-ribbon"><strong><span data-th>ห้ามหล่น</span><span data-en>Invariant</span></strong><span>claim</span><span>time</span><span>evidence</span><span>limit</span><span>action outcome</span></div>
+            </div>
+          </article>
+
+          <article class="v091-chapter" id="v091-incompatibility" data-media-status="conceptual_no_product_evidence">
+            <div class="v091-chapter__copy">
+              <header>
+                <span class="v091-case-index">05</span>
+                <h3><span data-th>เปรียบเทียบไม่ได้ ก็เป็นคำตอบ</span><span data-en>Incompatibility is a valid result</span></h3>
+              </header>
+              <p><span data-th>ภาพซ้ายและขวาตั้งใจใช้ grain ต่างกัน ไม่มีค่าผลิตภัณฑ์จริง เมื่อ schema, release, unit หรือ grain ไม่ตรงกัน ต้องคง incompatibility ไว้แทนการฝืนสร้างคะแนนเดียว</span><span data-en>The two sides intentionally use different grains and contain no product values. When schema, release, unit, or grain differs, keep incompatibility visible instead of forcing one score.</span></p>
+              <p class="v091-aha"><strong>AHA · </strong><span data-th>ทางต่อไปคือคำนวณใหม่ด้วย schema เดียวกัน หรือหยุดอย่างซื่อตรง</span><span data-en>Recompute under one compatible schema—or stop honestly.</span></p>
+              <a class="v091-next" href="#library-dataviz"><span data-th>เปิดหลัก comparison และ dataviz</span><span data-en>Open comparison and dataviz guidance</span></a>
+            </div>
+            <div class="v091-visual v091-compare-stage">
+              <span class="v091-visual-label"><span data-th>Spatial fixture · ไม่มีข้อมูลจริง</span><span data-en>Spatial fixture · no observed data</span></span>
+              <div class="v091-grain">
+                <strong>Land signal</strong><small>Schema A · parcel · index 0–100</small>
+                <div class="v091-grain-map" data-motion-role="approach.inline-start" aria-hidden="true"><i style="--shade:10%"></i><i style="--shade:24%"></i><i style="--shade:18%"></i><i style="--shade:36%"></i><i style="--shade:16%"></i><i style="--shade:30%"></i><i style="--shade:12%"></i><i style="--shade:42%"></i><i style="--shade:22%"></i><i style="--shade:14%"></i><i style="--shade:34%"></i><i style="--shade:20%"></i><i style="--shade:38%"></i><i style="--shade:18%"></i><i style="--shade:26%"></i><i style="--shade:12%"></i></div>
+              </div>
+              <div class="v091-mismatch-mark" role="img" aria-label="เข้ากันไม่ได้" data-l10n-aria-th="เข้ากันไม่ได้" data-l10n-aria-en="Not compatible">≠</div>
+              <div class="v091-grain">
+                <strong>Living signal</strong><small>Schema B · neighborhood · rate / 1,000</small>
+                <div class="v091-grain-map v091-grain-map--neighborhood" data-motion-role="approach.inline-end" aria-hidden="true"><i style="--size:48%;--shade:18%"></i><i style="--size:42%;--shade:30%"></i><i style="--size:46%;--shade:24%"></i></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="v091-chapter" id="v091-rejected-motion" data-media-status="conceptual_no_product_evidence">
+            <div class="v091-chapter__copy">
+              <header>
+                <span class="v091-case-index">X</span>
+                <h3><span data-th>ไม่ผ่าน: motion กลายเป็นประตูขวางหลักฐาน</span><span data-en>Rejected: motion gates the proof</span></h3>
+              </header>
+              <p><span data-th>ตัวอย่างนี้แสดง failure แบบคงที่ ไม่ได้ซ่อนคำตอบจริง หน้า source ต้องเห็นความหมายสุดท้ายก่อน แล้วจึงเสริมจังหวะเฉพาะ visual ที่ช่วยอธิบายความสัมพันธ์</span><span data-en>The failure is shown statically; no real answer is withheld. Source HTML exposes the final meaning first, then motion may enhance only supporting relationships.</span></p>
+              <p class="v091-aha"><strong><span data-th>Recovery</span><span data-en>Recovery</span></strong><span> · explicit roles · 760/920ms · once only · reduced motion and observer failure = final state</span></p>
+              <a class="v091-next" href="#motion-lab"><span data-th>ลอง motion lab ที่ควบคุมได้</span><span data-en>Try the controlled motion lab</span></a>
+            </div>
+            <div class="v091-visual v091-motion-stage">
+              <span class="v091-visual-label"><span data-th>Static storyboard</span><span data-en>Static storyboard</span></span>
+              <div class="v091-motion-track">
+                <div class="v091-motion-frame v091-motion-frame--rejected"><small>REJECTED</small><div class="v091-motion-proof"><strong><span data-th>หลักฐานรอ observer</span><span data-en>Proof waits for observer</span></strong><span>hidden → ?</span></div><span><span data-th>ถ้า lifecycle พลาด คำตอบหาย</span><span data-en>A lifecycle miss removes the answer</span></span></div>
+                <div class="v091-motion-frame"><small>SOURCE</small><div class="v091-motion-proof"><strong><span data-th>คำตอบเห็นตั้งแต่ต้น</span><span data-en>Answer visible in source</span></strong><span>evidence · limit · action</span></div><span><span data-th>JS เพิ่ม enhancement เท่านั้น</span><span data-en>JavaScript adds enhancement only</span></span></div>
+                <div class="v091-motion-frame v091-motion-frame--final"><small>FINAL</small><div class="v091-motion-proof"><strong><span data-th>ลงจังหวะครั้งเดียว</span><span data-en>Settles once</span></strong><span>visible · stable · usable</span></div><span><span data-th>reduced/no observer เห็น state นี้ทันที</span><span data-en>Reduced/no observer gets this state immediately</span></span></div>
+              </div>
+              <div class="v091-motion-rule" data-motion-role="approach.soft"><span>opacity · 760ms</span><span>transform · 920ms</span><span>rise · 32px</span><span>stagger · 150 / 450ms</span><span>threshold · .14</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="v091-foundations">
+          <div>
+            <p class="eyebrow"><span data-th>หลักเดิมที่ยังทำงาน</span><span data-en>Foundations that still work</span></p>
+            <h3><span data-th>Color Atlas ยังคงครบ และเป็นปลายทางหลัก</span><span data-en>The complete Color Atlas remains a primary destination</span></h3>
+            <p><span data-th>พื้นผิว light/dark, atmosphere, type roles, spacing, semantic state และ truth-before-treatment ยังเป็นแกนเดิม ไม่มีการ mint Color Set ใหม่ใน UI revision นี้</span><span data-en>Light/dark surfaces, atmosphere, type roles, spacing, semantic states, and truth-before-treatment remain unchanged. This UI revision does not mint a new Color Set.</span></p>
+            <a class="primary-action" href="#complete-color-atlas"><span data-th>เปิด Color Atlas ที่คงเดิม</span><span data-en>Open the retained Color Atlas</span></a>
+          </div>
+          <div class="v091-atlas-ribbon" aria-label="ตัวอย่างสีจาก Color Set color-srgb-05" data-l10n-aria-th="ตัวอย่างสีจาก Color Set color-srgb-05" data-l10n-aria-en="Samples from Color Set color-srgb-05"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
     </section>
 
     <section class="playground" id="play" aria-labelledby="play-title">
@@ -6424,140 +7008,6 @@ main details[id] { scroll-margin-top: 84px; }
             <span data-th>ดาวน์โหลดคู่มือ Design System v0.9.1</span>
             <span data-en>Download Design System v0.9.1</span>
           </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="v090 v091" id="v091-additions" aria-labelledby="v091-title">
-      <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">DS v0.9.1 · implementation examples</p>
-          <h2 id="v091-title">
-            <span data-th>หลักเดิมยังอยู่ วิธีนำไปใช้ชัดขึ้น</span>
-            <span data-en>The foundations stay. The implementation gets clearer.</span>
-          </h2>
-          <p data-th>สีและพื้นฐานที่พิสูจน์แล้วยังคงเดิม สิ่งที่พัฒนาขึ้นคือวิธีรักษาความหมายให้ตรงกันตั้งแต่หน้าจอ การนำทาง motion ไปจนถึงงานที่เปลี่ยนสื่อ</p>
-          <p data-en>The proven visual foundations remain. The improvement is a clearer way to preserve meaning across navigation, motion, evidence, actions, and format changes.</p>
-        </div>
-
-        <div class="v091-delta" aria-label="สิ่งที่คงไว้และสิ่งที่พัฒนาขึ้น" data-l10n-aria-th="สิ่งที่คงไว้และสิ่งที่พัฒนาขึ้น" data-l10n-aria-en="What stays and what improves">
-          <section>
-            <p class="eyebrow"><span data-th>คงไว้</span><span data-en>Kept</span></p>
-            <h3><span data-th>ความจริงก่อนการตกแต่ง</span><span data-en>Truth before treatment</span></h3>
-            <p><span data-th>color-srgb-05 · atmosphere · type roles · spacing · one job · first AHA · evidence boundary</span><span data-en>color-srgb-05 · atmosphere · type roles · spacing · one job · first AHA · evidence boundary</span></p>
-          </section>
-          <section>
-            <p class="eyebrow"><span data-th>พัฒนาขึ้น</span><span data-en>Improved</span></p>
-            <h3><span data-th>ความหมายเดินทางได้ตรงกัน</span><span data-en>Meaning travels consistently</span></h3>
-            <p><span data-th>navigation · outcome-led CTA · fail-open motion · initial/hydrated parity · cross-format equivalence</span><span data-en>navigation · outcome-led CTA · fail-open motion · initial/hydrated parity · cross-format equivalence</span></p>
-          </section>
-        </div>
-
-        <div class="v091-case-grid">
-          <article class="v091-case" id="v091-layers" data-media-status="conceptual_no_product_evidence">
-            <header>
-              <span class="v091-case-index">01</span>
-              <div>
-                <p class="v091-concept-label"><span data-th>ตัวอย่างเชิงแนวคิด — ไม่ใช่ข้อมูลจากผลิตภัณฑ์</span><span data-en>Conceptual example — not product evidence</span></p>
-                <h3><span data-th>หนึ่งวิธีคิด หลายขอบเขตงาน</span><span data-en>One shared method, distinct product truths</span></h3>
-              </div>
-            </header>
-            <p><span data-th>Locale Insight เป็นโครงร่วมได้ แต่ข้อมูล ความสามารถ และคำกล่าวอ้างยังเป็นของ product layer เจ้าของเรื่อง</span><span data-en>Locale Insight can provide the shared frame. Each product still owns its data, capabilities, and claims.</span></p>
-            <div class="v091-layer-specimen" aria-label="สถาปัตยกรรมส่วนกลางและส่วนเฉพาะผลิตภัณฑ์" data-l10n-aria-th="สถาปัตยกรรมส่วนกลางและส่วนเฉพาะผลิตภัณฑ์" data-l10n-aria-en="Shared and product-specific architecture">
-              <div class="v091-shared-layer"><strong>Locale Insight</strong><span>question → evidence → boundary → next action</span></div>
-              <div class="v091-domain-layer">
-                <span><b>Land</b><small data-th>วัตถุและข้อมูลอยู่ใน product pack</small><small data-en>object and data stay in a product pack</small></span>
-                <span><b>Location</b><small data-th>วิธีและหลักฐานอยู่ใน product pack</small><small data-en>method and evidence stay in a product pack</small></span>
-                <span><b>Living</b><small data-th>บทบาทและ capability อยู่ใน product pack</small><small data-en>roles and capabilities stay in a product pack</small></span>
-              </div>
-            </div>
-            <p class="v091-aha"><strong>AHA</strong> <span data-th>แชร์สถาปัตยกรรมได้ โดยไม่ต้องรวมความจริงของแต่ละผลิตภัณฑ์เข้าด้วยกัน</span><span data-en>Share the architecture without merging each product's truth.</span></p>
-          </article>
-
-          <article class="v091-case" id="v091-parity" data-media-status="conceptual_no_product_evidence">
-            <header>
-              <span class="v091-case-index">02</span>
-              <div>
-                <p class="v091-concept-label"><span data-th>ตัวอย่างเชิงแนวคิด — ไม่ใช่ข้อมูลจากผลิตภัณฑ์</span><span data-en>Conceptual example — not product evidence</span></p>
-                <h3><span data-th>ผลเดียวกัน คนและเครื่องอ่านตรงกัน</span><span data-en>One claim, consistent meaning for people and machines</span></h3>
-              </div>
-            </header>
-            <p><span data-th>ข้อสรุป ที่มา ช่วงเวลา และข้อจำกัดต้องอยู่ด้วยกันตั้งแต่ HTML แรกที่โหลดจนถึงสถานะหลัง JavaScript ทำงานครบ</span><span data-en>The claim, source, time basis, and limitation stay together in the initial page and after hydration.</span></p>
-            <div class="v091-parity-specimen">
-              <div><b><span data-th>HTML แรก</span><span data-en>Initial HTML</span></b><span><span data-th>พื้นที่ B เปลี่ยนมากสุด</span><span data-en>Area B changed most</span></span><small>PRACTICE-01 · Q2 · <span data-th>ยังไม่ยืนยันสาเหตุ</span><span data-en>does not establish cause</span></small></div>
-              <div><b><span data-th>หน้าที่เห็น</span><span data-en>Visible page</span></b><span><span data-th>พื้นที่ B เปลี่ยนมากสุด</span><span data-en>Area B changed most</span></span><small>PRACTICE-01 · Q2 · <span data-th>ยังไม่ยืนยันสาเหตุ</span><span data-en>does not establish cause</span></small></div>
-              <div><b><span data-th>หลังทำงาน</span><span data-en>Hydrated state</span></b><span><span data-th>พื้นที่ B เปลี่ยนมากสุด</span><span data-en>Area B changed most</span></span><small>PRACTICE-01 · Q2 · <span data-th>ยังไม่ยืนยันสาเหตุ</span><span data-en>does not establish cause</span></small></div>
-            </div>
-            <div class="v091-three-layers"><span><b>Discovery</b><small data-th>เข้าถึงได้</small><small data-en>reachable</small></span><span><b>Readability</b><small data-th>อ่านรู้เรื่อง</small><small data-en>understandable</small></span><span><b>Action</b><small data-th>ไม่ได้อนุญาตโดยอัตโนมัติ</small><small data-en>never implied</small></span></div>
-          </article>
-
-          <article class="v091-case" id="v091-calm-nav" data-media-status="conceptual_no_product_evidence">
-            <header>
-              <span class="v091-case-index">03</span>
-              <div>
-                <p class="v091-concept-label"><span data-th>ตัวอย่างเชิงแนวคิด — ไม่ใช่ข้อมูลจากผลิตภัณฑ์</span><span data-en>Conceptual example — not product evidence</span></p>
-                <h3><span data-th>สงบลงได้ โดยไม่ทำให้ควบคุมยาก</span><span data-en>Calm by hierarchy, not by hiding controls</span></h3>
-              </div>
-            </header>
-            <p><span data-th>เมนูสงบลงได้โดยไม่ทำให้เป้ากดเล็กลง ชื่อหาย หรือคนต้องกดปลุกก่อนใช้งาน ส่วนหัวของหน้านี้คือตัวอย่างที่ใช้งานจริง</span><span data-en>A calmer header keeps every destination direct, named, and operable. This page's own header is the live implementation.</span></p>
-            <div class="v091-nav-specimen" aria-label="ตัวอย่าง navigation แบบสงบ" data-l10n-aria-th="ตัวอย่าง navigation แบบสงบ" data-l10n-aria-en="Calm navigation specimen">
-              <span class="v091-brand-mark">Landometer</span>
-              <a href="#v091-additions"><span data-th>ตัวอย่าง</span><span data-en>Examples</span></a>
-              <a href="#complete-color-atlas">Color Atlas</a>
-              <span class="v091-menu-control"><span class="icon-symbol icon-symbol--sm" data-icon="menu" aria-hidden="true">&#xE5D2;</span><span data-th>เมนู</span><span data-en>Menu</span></span>
-            </div>
-            <div class="v091-icon-state"><span class="v090-circle-demo" aria-hidden="true"><span class="icon-symbol" data-icon="star">&#xE838;</span></span><span><strong><span data-th>ไอคอน FILL 0 ทุกสถานะ</span><span data-en>Icons keep FILL 0 in every state</span></strong><small data-th>สถานะปัจจุบันใช้พื้นผิว ขอบ และ label แทนการถม glyph</small><small data-en>Selection uses surface, border, and label—not a filled glyph.</small></span></div>
-            <a class="primary-action v091-discovery-cta" href="#v091-format" id="v091-discovery-cta"><span data-th>ดูวิธีส่งงานข้ามสื่อ</span><span data-en>See the cross-format handoff</span><i aria-hidden="true"></i></a>
-            <p class="v091-aha"><strong><span data-th>ความสงบมาจาก hierarchy</span><span data-en>Calm comes from hierarchy</span></strong> · 44px direct targets · one finite cue · reduced motion = final state</p>
-          </article>
-
-          <article class="v091-case" id="v091-format" data-media-status="conceptual_no_product_evidence">
-            <header>
-              <span class="v091-case-index">04</span>
-              <div>
-                <p class="v091-concept-label"><span data-th>ตัวอย่างเชิงแนวคิด — ไม่ใช่ข้อมูลจากผลิตภัณฑ์</span><span data-en>Conceptual example — not product evidence</span></p>
-                <h3><span data-th>เปลี่ยนสื่อ ไม่เปลี่ยนคำสัญญา</span><span data-en>Change the format, preserve the promise</span></h3>
-              </div>
-            </header>
-            <p><span data-th>เว็บ PDF สไลด์ และภาพสังคมไม่ต้องหน้าตาเหมือนกัน แต่ต้องรักษาความจริง ขอบเขตหลักฐาน และผลที่ action สัญญาไว้ให้เหมือนเดิม</span><span data-en>Each format may look different. The truth, evidence boundary, and action promise must not drift.</span></p>
-            <div class="v091-invariant"><strong><span data-th>สิ่งที่ห้ามหล่น</span><span data-en>Invariant</span></strong><span><span data-th>ข้อสรุป · ช่วงเวลา · หลักฐาน · ข้อจำกัด · ผลของ action</span><span data-en>claim · time basis · evidence · limitation · action outcome</span></span></div>
-            <div class="v091-format-grid">
-              <section><b>Web</b><span data-th>navbar → ปลายทางตรง</span><span data-en>navbar → direct destination</span><small>motion → finite enhancement</small></section>
-              <section><b>PDF</b><span data-th>side bookmark → TOC + PDF bookmark</span><span data-en>side bookmark → TOC + PDF bookmark</span><small>CTA → working labelled link</small></section>
-              <section><b>Deck</b><span data-th>hover → คำอธิบายที่มองเห็น</span><span data-en>hover → visible annotation</span><small>motion → presenter-safe sequence</small></section>
-              <section><b>Social</b><span data-th>action → destination cue</span><span data-en>action → destination cue</span><small data-th>ไม่วาดปุ่มปลอม</small><small data-en>never a fake button</small></section>
-            </div>
-            <p class="v091-aha"><strong>AHA</strong> <span data-th>fidelity คือ semantic equivalence ไม่ใช่การทำให้ทุกสื่อเหมือนกันทุก pixel</span><span data-en>Fidelity is semantic equivalence, not pixel sameness.</span></p>
-          </article>
-
-          <article class="v091-case v091-case--wide" id="v091-incompatibility" data-media-status="conceptual_no_product_evidence">
-            <header>
-              <span class="v091-case-index">05</span>
-              <div><p class="v091-concept-label"><span data-th>ตัวอย่างเชิงแนวคิด — ไม่ใช่ข้อมูลจากผลิตภัณฑ์</span><span data-en>Conceptual example — not product evidence</span></p><h3><span data-th>เปรียบเทียบไม่ได้ก็เป็นคำตอบ</span><span data-en>Incompatibility is a valid result</span></h3></div>
-            </header>
-            <div class="v091-compare">
-              <div><strong>Land signal</strong><span>Schema A · parcel · index 0–100</span></div>
-              <div class="v091-not-equal" role="img" aria-label="เข้ากันไม่ได้" data-l10n-aria-th="เข้ากันไม่ได้" data-l10n-aria-en="Not compatible">≠</div>
-              <div><strong>Living signal</strong><span>Schema B · neighborhood · rate per 1,000</span></div>
-              <p><span data-th>ถ้าหน่วย schema หรือ grain ไม่ตรงกัน การบอกว่า “ยังเทียบไม่ได้” คือผลลัพธ์ที่ซื่อตรง ทางต่อไปคือคำนวณด้วย schema เดียวกัน หรือคงป้าย incompatibility ไว้</span><span data-en>When schema, unit, or grain differs, incompatibility is the honest result. Recompute under one schema or keep the mismatch visible.</span></p>
-            </div>
-          </article>
-
-          <article class="v091-case v091-case--wide v091-rejected" id="v091-rejected-motion" data-media-status="conceptual_no_product_evidence">
-            <header>
-              <span class="v091-case-index">X</span>
-              <div><p class="v091-concept-label"><span data-th>ตัวอย่างที่ไม่ผ่าน — แสดงแบบคงที่เพื่อไม่สร้างอุปสรรคจริง</span><span data-en>Rejected example — shown statically so the failure is never live</span></p><h3><span data-th>ไม่ผ่าน: motion กลายเป็นประตูขวางหลักฐาน</span><span data-en>Rejected: motion gates the proof</span></h3></div>
-            </header>
-            <div class="v091-recovery-grid">
-              <section class="is-rejected"><b><span data-th>ปัญหา</span><span data-en>Failure</span></b><span class="v091-ghost-card" aria-hidden="true"><span data-th>หลักฐานถูกซ่อนรอ observer</span><span data-en>Proof hidden until observer fires</span></span><p data-th>ซ่อน proof card ทุกใบ ซ้อน stagger และให้ CTA กะพริบวนซ้ำ เมื่อ JavaScript หรือ lifecycle พลาด คำตอบและ action หายไป</p><p data-en>Hide every proof card, nest stagger, and loop the CTA. When JavaScript or lifecycle fails, the answer and action disappear.</p></section>
-              <section class="is-recovery"><b><span data-th>วิธีแก้</span><span data-en>Recovery</span></b><span class="v091-visible-card"><strong><span data-th>คำตอบมองเห็นตั้งแต่ต้น</span><span data-en>The answer is visible from the start</span></strong><small><span data-th>หลักฐาน · ข้อจำกัด · action</span><span data-en>evidence · limitation · action</span></small></span><p data-th>แสดงคำตอบและ action ตั้งแต่ต้น แล้วใช้ motion แบบสั้นเฉพาะส่วนสนับสนุนเมื่อมันช่วยให้เข้าใจจริง</p><p data-en>Expose the answer and action first. Animate only supporting relationships when the movement adds understanding.</p></section>
-            </div>
-          </article>
-        </div>
-
-        <div class="v091-foundations">
-          <div><p class="eyebrow"><span data-th>หลักเดิมที่ยังทำงาน</span><span data-en>Foundations that still work</span></p><h3><span data-th>เอาของดีเดิมมาเป็นฐาน ไม่เริ่มใหม่</span><span data-en>Build on what is proven</span></h3><p><span data-th>Color Atlas ที่ครบ พื้นผิว light/dark, atmosphere, type roles, spacing, semantic state และหลัก truth-before-treatment ยังเป็นแกนเดิม</span><span data-en>The complete Color Atlas, light/dark surfaces, atmosphere, type roles, spacing, semantic states, and truth-before-treatment remain the foundation.</span></p></div>
-          <a class="primary-action" href="#complete-color-atlas"><span data-th>เปิด Color Atlas ที่คงเดิม</span><span data-en>Open the retained Color Atlas</span></a>
         </div>
       </div>
     </section>
@@ -7826,7 +8276,7 @@ main details[id] { scroll-margin-top: 84px; }
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="download" aria-hidden="true">&#xE171;</span>
-                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
+                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="compare_arrows" aria-hidden="true">&#xE915;</span>
@@ -11255,7 +11705,7 @@ main details[id] { scroll-margin-top: 84px; }
                 <h5><span data-th>Standalone ที่ล็อกชุดสีแล้ว</span><span data-en>Color-Set-pinned standalone</span></h5>
                 <p data-th>ไฟล์เดียวจบ ฝัง font และภาพไว้ครบ พร้อมล็อก Color Set <code>color-srgb-05</code> สำหรับตรวจงานข้ามเครื่องและส่งต่อโดยไม่สลับไปคนละ palette ตาม cache ของหน้า latest</p>
                 <p data-en>One self-contained file with fonts, images, and Color Set <code>color-srgb-05</code> pinned for cross-device review and handoff—without drifting to a different palette through a cached latest alias.</p>
-                <a class="download-action" href="landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html" id="resource-standalone" download><span data-th>ดาวน์โหลด build ที่ล็อกแล้ว</span><span data-en>Download pinned build</span></a>
+                <a class="download-action" href="landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html" id="resource-standalone" download><span data-th>ดาวน์โหลด build ที่ล็อกแล้ว</span><span data-en>Download pinned build</span></a>
               </article>
               <article>
                 <p class="resource-meta">MACHINE DISCOVERY · NAVIGATION AID ONLY</p>
@@ -11309,7 +11759,7 @@ main details[id] { scroll-margin-top: 84px; }
       <div class="footer-meta">
         design-system reference · public projection · noindex<br>
         conceptual examples · not product evidence<br>
-        color-srgb-05 retained · artifact build ui-20260901-01<br>
+        color-srgb-05 retained · artifact build ui-20260902-02<br>
         no analytics · no save · no share · no remote mutation<br>
         explicit contextual Google Search or AI Mode GET after user activation
       </div>
@@ -11650,29 +12100,45 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
       //  3. It lands once. The observer stops watching an element the moment it lands, so
       //     scrolling back up never replays it — Riddim results land, they do not loop.
       //  4. Only opacity and transform move, so nothing reflows and no text jumps.
-      const RIDDIM_GROUPS = ["[data-motion-role=\"approach.soft\"]"];
-      const RIDDIM_STAGGER_MS = 120;     // --motion-delay-stagger
-      const RIDDIM_STAGGER_CAP_MS = 600; // --motion-delay-stagger-cap
-      const RIDDIM_SAFETY_MS = 2400;     // > stagger cap + reveal duration, else the failsafe snaps a running entrance
+      const RIDDIM_GROUPS = [
+        "[data-motion-role=\"approach.soft\"]",
+        "[data-motion-role=\"approach.inline-start\"]",
+        "[data-motion-role=\"approach.inline-end\"]",
+        "[data-motion-role=\"media.arrival\"]",
+        "[data-motion-role=\"stagger.child\"]"
+      ];
+      const RIDDIM_STAGGER_MS = 150;
+      const RIDDIM_STAGGER_CAP_MS = 450;
+      const RIDDIM_SAFETY_MS = 2400;
       function riddimLandAll() {
-        document.querySelectorAll("[data-riddim-reveal]").forEach(node => {
+        document.querySelectorAll("[data-motion-role]").forEach(node => {
           node.setAttribute("data-riddim-landed", "");
         });
+        root.removeAttribute("data-motion-approach");
       }
       // Failsafe, not the mechanism: anything the reader has already reached must be visible,
       // whether or not the observer did its job. Groups still below the fold stay unlanded so
       // the entrance is real, and they land as they are reached.
       function riddimLandReached() {
         document.querySelectorAll("[data-riddim-reveal]:not([data-riddim-landed])").forEach(node => {
-          if (node.getBoundingClientRect().top < window.innerHeight) {
+          if (node.getBoundingClientRect().top < window.innerHeight * .88) {
             node.setAttribute("data-riddim-landed", "");
           }
         });
       }
+      const queueRiddimAudit = () => window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(riddimLandReached);
+      });
       function initRiddimReveal() {
         try {
-          if (reducedMotionQuery && reducedMotionQuery.matches) return;
-          if (!("IntersectionObserver" in window)) return;
+          if (reducedMotionQuery && reducedMotionQuery.matches) {
+            riddimLandAll();
+            return;
+          }
+          if (!("IntersectionObserver" in window)) {
+            riddimLandAll();
+            return;
+          }
           // Only elements that are actually rendered right now may take an entrance.
           // Anything inside a closed expander or a hidden tab panel is deliberately skipped:
           // opening that section IS the reveal ([DISCLOSURE-01]), and marking it here would
@@ -11690,8 +12156,12 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
               }
             });
           });
-          if (!nodes.length) return;
-          document.documentElement.setAttribute("data-reveal", "on");
+          if (!nodes.length) {
+            riddimLandAll();
+            return;
+          }
+          window.clearTimeout(window.__landometerApproachWatchdog);
+          root.dataset.motionApproach = "ready";
           // stagger by position within the element's own parent, so a row reads left to right
           nodes.forEach(node => {
             const siblings = node.parentElement
@@ -11709,7 +12179,7 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
               entry.target.setAttribute("data-riddim-landed", "");
               self.unobserve(entry.target); // lands once; scrolling back never replays it
             });
-          }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+          }, { rootMargin: "0px 0px -12% 0px", threshold: 0.14 });
           nodes.forEach(node => observer.observe(node));
           // anything already on screen lands on the next frame rather than waiting for a scroll
           window.requestAnimationFrame(() => {
@@ -11721,8 +12191,10 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
               }
             });
           });
-          window.setTimeout(riddimLandReached, RIDDIM_SAFETY_MS);
-          window.addEventListener("scroll", riddimLandReached, { passive: true });
+          window.setTimeout(queueRiddimAudit, RIDDIM_SAFETY_MS);
+          window.addEventListener("scroll", queueRiddimAudit, { passive: true });
+          window.addEventListener("resize", queueRiddimAudit, { passive: true });
+          window.addEventListener("pageshow", queueRiddimAudit);
           // if a reader opens any expander, land everything inside it at once
           document.addEventListener("toggle", event => {
             const host = event.target;
@@ -12463,10 +12935,33 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
 <script>
   (() => {
     const root = document.documentElement;
+    const siteHeader = document.querySelector(".site-header");
     const navMenuToggle = document.getElementById("nav-menu-toggle");
     const navPanel = document.getElementById("nav-panel");
     const pageLinks = [...document.querySelectorAll("[data-page-destination]")];
     const discoveryCta = document.getElementById("v091-discovery-cta");
+    const headerReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+    let calmRequested = false;
+    let pointerInsideHeader = false;
+    let focusInsideHeader = false;
+    let lastHeaderScrollY = window.scrollY;
+    let headerScrollFrame = 0;
+
+    const updateHeaderState = () => {
+      if (!siteHeader) return;
+      const menuOpen = navMenuToggle && navMenuToggle.getAttribute("aria-expanded") === "true";
+      const calm = calmRequested &&
+        window.scrollY > 24 &&
+        !(headerReducedMotion && headerReducedMotion.matches) &&
+        !pointerInsideHeader &&
+        !focusInsideHeader &&
+        !menuOpen;
+      siteHeader.classList.toggle("is-calm", Boolean(calm));
+    };
+    const wakeHeader = () => {
+      calmRequested = false;
+      updateHeaderState();
+    };
 
     const menuLabel = expanded => {
       const isEnglish = root.dataset.locale === "en";
@@ -12474,13 +12969,56 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
         ? (isEnglish ? "Close menu" : "ปิดเมนู")
         : (isEnglish ? "Open menu" : "เปิดเมนู");
     };
-    const setMenu = (expanded, returnFocus = false) => {
+    const setMenu = (expanded, returnFocus = false, focusFirst = true) => {
       if (!navMenuToggle || !navPanel) return;
       navMenuToggle.setAttribute("aria-expanded", String(expanded));
       navMenuToggle.setAttribute("aria-label", menuLabel(expanded));
       navPanel.hidden = !expanded;
-      if (!expanded && returnFocus) navMenuToggle.focus();
+      updateHeaderState();
+      if (expanded && focusFirst) {
+        window.requestAnimationFrame(() => {
+          const firstControl = navPanel.querySelector("a[href], button:not([disabled])");
+          if (firstControl) firstControl.focus();
+        });
+      } else if (returnFocus) navMenuToggle.focus();
     };
+
+    if (siteHeader) {
+      siteHeader.addEventListener("pointerenter", () => {
+        pointerInsideHeader = true;
+        wakeHeader();
+      });
+      siteHeader.addEventListener("pointerleave", () => {
+        pointerInsideHeader = false;
+        updateHeaderState();
+      });
+      siteHeader.addEventListener("focusin", () => {
+        focusInsideHeader = true;
+        wakeHeader();
+      });
+      siteHeader.addEventListener("focusout", () => {
+        window.requestAnimationFrame(() => {
+          focusInsideHeader = siteHeader.contains(document.activeElement);
+          updateHeaderState();
+        });
+      });
+      window.addEventListener("scroll", () => {
+        if (headerScrollFrame) return;
+        headerScrollFrame = window.requestAnimationFrame(() => {
+          headerScrollFrame = 0;
+          const nextY = window.scrollY;
+          const delta = nextY - lastHeaderScrollY;
+          if (nextY <= 24 || delta < -4) calmRequested = false;
+          else if (delta > 4) calmRequested = true;
+          lastHeaderScrollY = nextY;
+          updateHeaderState();
+        });
+      }, { passive: true });
+      if (headerReducedMotion && headerReducedMotion.addEventListener) {
+        headerReducedMotion.addEventListener("change", wakeHeader);
+      }
+      updateHeaderState();
+    }
 
     if (navMenuToggle && navPanel) {
       navMenuToggle.addEventListener("click", () => {
@@ -12498,7 +13036,7 @@ Source: Landometer Design System 0.9.1-r8 · conceptual example, not product evi
         event.preventDefault();
         setMenu(false, true);
       });
-      new MutationObserver(() => setMenu(navMenuToggle.getAttribute("aria-expanded") === "true"))
+      new MutationObserver(() => setMenu(navMenuToggle.getAttribute("aria-expanded") === "true", false, false))
         .observe(root, { attributes: true, attributeFilter: ["data-locale"] });
     }
 

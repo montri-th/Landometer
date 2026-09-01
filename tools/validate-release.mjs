@@ -20,9 +20,13 @@ const RELEASE = Object.freeze({
   machineValidation: "pending",
   colorSetId: "color-srgb-05",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260901-01",
+  artifactBuildId: "ui-20260902-02",
+  previousArtifactBuildId: "ui-20260902-01",
+  earlierArtifactBuildId: "ui-20260901-01",
   latest: "landometer-design-system-v0.9.1-standalone.html",
-  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
+  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
+  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
   historicalBaseline: "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.1.md",
   registry: "assets/data/color-delivery.v0.9.1.json",
@@ -33,6 +37,8 @@ const RELEASE = Object.freeze({
   automatedQa: "qa/v0.9.1-automated.json",
   manualQa: "qa/v0.9.1-manual-gates.md",
   authoritySha256: "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
+  previousImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
+  earlierImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
   historicalBaselineSha256: "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
   historicalRegistrySha256: "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5",
   tokensSha256: "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc",
@@ -151,6 +157,8 @@ const requiredRepositoryFiles = [
   "deployment/index.html",
   `deployment/${RELEASE.latest}`,
   `deployment/${RELEASE.immutableUi}`,
+  `deployment/${RELEASE.previousImmutableUi}`,
+  `deployment/${RELEASE.earlierImmutableUi}`,
   `deployment/${RELEASE.historicalBaseline}`,
   `deployment/${RELEASE.authoringMaster}`,
   `deployment/${RELEASE.registry}`,
@@ -166,6 +174,7 @@ const requiredRepositoryFiles = [
   "tools/check-gradient-contrast.mjs",
   "tools/generate-color-atlas.mjs",
   ".github/workflows/pages.yml",
+  ".github/workflows/verify-v090.yml",
 ];
 
 for (const relativePath of requiredRepositoryFiles) {
@@ -181,6 +190,8 @@ if (failures.length > 0) {
 const html = readDeployment("index.html");
 const latestHtml = readDeployment(RELEASE.latest);
 const immutableHtml = readDeployment(RELEASE.immutableUi);
+const previousImmutableHtml = readDeployment(RELEASE.previousImmutableUi);
+const earlierImmutableHtml = readDeployment(RELEASE.earlierImmutableUi);
 const authoringMaster = readDeployment(RELEASE.authoringMaster);
 const registry = readJson(deploymentPath(RELEASE.registry), "parse:color-registry-v091");
 const historicalRegistry = readJson(deploymentPath(RELEASE.historicalRegistry), "parse:color-registry-v090");
@@ -190,6 +201,7 @@ const buildCard = readDeployment(RELEASE.buildCard);
 const implementationNotes = readDeployment(RELEASE.implementationNotes);
 const manualQa = readDeployment(RELEASE.manualQa);
 const workflow = readUtf8(repoPath(".github/workflows/pages.yml"));
+const renderedWorkflow = readUtf8(repoPath(".github/workflows/verify-v090.yml"));
 
 // Current release identity. v0.9.1-mp7 is an identity receipt only: this web release
 // deliberately does not claim to publish or validate those machine-package bytes.
@@ -211,6 +223,24 @@ for (const [channel, source, expectedChannel] of [
 }
 check(hasAttribute(latestHtml, "data-standalone", "true"), "identity:standalone-latest:marker");
 check(hasAttribute(immutableHtml, "data-standalone", "true"), "identity:standalone-immutable:marker");
+check(hasAttribute(previousImmutableHtml, "data-ds-version", RELEASE.version), "history:previous-v091-ui:version");
+check(hasAttribute(previousImmutableHtml, "data-authoring-revision", RELEASE.authoringRevision), "history:previous-v091-ui:authoring-revision");
+check(hasAttribute(previousImmutableHtml, "data-ruleset", RELEASE.rulesetRevision), "history:previous-v091-ui:ruleset-revision");
+check(hasAttribute(previousImmutableHtml, "data-machine-package-identity", RELEASE.machinePackageIdentity), "history:previous-v091-ui:machine-package-identity");
+check(hasAttribute(previousImmutableHtml, "data-color-registry", RELEASE.colorSetId), "history:previous-v091-ui:color-set");
+check(hasAttribute(previousImmutableHtml, "data-artifact-build", RELEASE.previousArtifactBuildId), "history:previous-v091-ui:artifact-build");
+check(hasAttribute(previousImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:previous-v091-ui:build-channel");
+check(hasAttribute(previousImmutableHtml, "data-standalone", "true"), "history:previous-v091-ui:standalone-marker");
+check(sha256(deploymentPath(RELEASE.previousImmutableUi)) === RELEASE.previousImmutableUiSha256, "history:previous-v091-ui:known-hash");
+check(hasAttribute(earlierImmutableHtml, "data-ds-version", RELEASE.version), "history:earlier-v091-ui:version");
+check(hasAttribute(earlierImmutableHtml, "data-authoring-revision", RELEASE.authoringRevision), "history:earlier-v091-ui:authoring-revision");
+check(hasAttribute(earlierImmutableHtml, "data-ruleset", RELEASE.rulesetRevision), "history:earlier-v091-ui:ruleset-revision");
+check(hasAttribute(earlierImmutableHtml, "data-machine-package-identity", RELEASE.machinePackageIdentity), "history:earlier-v091-ui:machine-package-identity");
+check(hasAttribute(earlierImmutableHtml, "data-color-registry", RELEASE.colorSetId), "history:earlier-v091-ui:color-set");
+check(hasAttribute(earlierImmutableHtml, "data-artifact-build", RELEASE.earlierArtifactBuildId), "history:earlier-v091-ui:artifact-build");
+check(hasAttribute(earlierImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:earlier-v091-ui:build-channel");
+check(hasAttribute(earlierImmutableHtml, "data-standalone", "true"), "history:earlier-v091-ui:standalone-marker");
+check(sha256(deploymentPath(RELEASE.earlierImmutableUi)) === RELEASE.earlierImmutableUiSha256, "history:earlier-v091-ui:known-hash");
 check(/<title>[^<]*v0\.9\.1/i.test(html), "identity:document-title");
 check(html.includes("Landometer Design System · v0.9.1"), "identity:visible-release-label");
 check(html.includes("Let us") && html.includes("cultivate") && html.includes("with data."), "identity:protected-rally-cry");
@@ -258,8 +288,27 @@ const currentArtifactRecord = registry?.artifactBuilds?.find(
 check(currentArtifactRecord?.role === "immutable_ui_build", "registry:current-record-role");
 check(currentArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:current-record-color-set");
 check(currentArtifactRecord?.status === "append_only", "registry:current-record-append-only");
+check(currentArtifactRecord?.supersedes === RELEASE.previousArtifactBuildId, "registry:current-record-supersedes-previous-v091-ui");
 check(currentArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.immutableUi)).size, "registry:current-record-bytes");
 check(currentArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.immutableUi)), "registry:current-record-hash");
+const previousArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.previousArtifactBuildId && record.path === RELEASE.previousImmutableUi,
+);
+check(previousArtifactRecord?.role === "immutable_ui_build", "registry:previous-v091-record-role");
+check(previousArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:previous-v091-record-color-set");
+check(previousArtifactRecord?.status === "append_only", "registry:previous-v091-record-append-only");
+check(previousArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.previousImmutableUi)).size, "registry:previous-v091-record-bytes");
+check(previousArtifactRecord?.sha256 === RELEASE.previousImmutableUiSha256, "registry:previous-v091-record-known-hash");
+check(previousArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.previousImmutableUi)), "registry:previous-v091-record-file-hash");
+const earlierArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.earlierArtifactBuildId && record.path === RELEASE.earlierImmutableUi,
+);
+check(earlierArtifactRecord?.role === "immutable_ui_build", "registry:earlier-v091-record-role");
+check(earlierArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:earlier-v091-record-color-set");
+check(earlierArtifactRecord?.status === "append_only", "registry:earlier-v091-record-append-only");
+check(earlierArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.earlierImmutableUi)).size, "registry:earlier-v091-record-bytes");
+check(earlierArtifactRecord?.sha256 === RELEASE.earlierImmutableUiSha256, "registry:earlier-v091-record-known-hash");
+check(earlierArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.earlierImmutableUi)), "registry:earlier-v091-record-file-hash");
 check(sha256(deploymentPath(RELEASE.historicalRegistry)) === RELEASE.historicalRegistrySha256, "history:v090-registry-byte-frozen");
 check(sha256(deploymentPath(RELEASE.historicalBaseline)) === RELEASE.historicalBaselineSha256, "history:color-srgb-05-baseline-byte-frozen");
 check(!existsSync(deploymentPath("landometer-design-system-v0.9.1-standalone.color-srgb-05.html")), "history:no-reminted-v091-color-baseline");
@@ -300,34 +349,63 @@ check((html.match(/<figure class="atlas-gradient-card atlas-gradient-card--rare"
 check((html.match(/<figure class="atlas-gradient-card atlas-gradient-card--motif"/g) ?? []).length === 3, "atlas:three-motif-gradients");
 for (const gradient of EXPECTED_GRADIENTS) check(html.includes(gradient), `atlas:exact-gradient:${gradient}`);
 
-// v0.9.1 implementation examples: four constructive cases, one incompatibility
-// result, and one bounded rejected/recovery case. Every case declares its evidence
-// boundary instead of presenting a synthetic fixture as product truth.
+// v0.9.1 implementation examples: four constructive visual chapters, one
+// incompatibility result, and one bounded rejected/recovery storyboard. The
+// section-level boundary and every case record keep synthetic fixtures separate
+// from product truth.
 const v091Start = html.indexOf('id="v091-additions"');
-const v091End = html.indexOf('id="v090-additions"', v091Start);
+const v091End = html.indexOf('<section class="playground" id="play"', v091Start);
 const v091Section = v091Start >= 0 && v091End > v091Start ? html.slice(v091Start, v091End) : "";
 check(v091Section.length > 0, "examples:v091-section-present");
+check(v091Section.includes('class="v091-story"'), "examples:visual-story-present");
 for (const id of ["v091-layers", "v091-parity", "v091-calm-nav", "v091-format", "v091-incompatibility", "v091-rejected-motion"]) {
   check(new RegExp(`\\bid="${id}"`).test(v091Section), `examples:case:${id}`);
 }
 check((v091Section.match(/data-media-status="conceptual_no_product_evidence"/g) ?? []).length === 6, "examples:all-six-cases-evidence-labelled");
-check((v091Section.match(/Conceptual example — not product evidence/g) ?? []).length >= 5, "examples:constructive-cases-bilingual-boundary");
-check(v091Section.includes("ตัวอย่างที่ไม่ผ่าน") && v091Section.includes("Rejected example"), "examples:rejected-case-bilingual-boundary");
-check(v091Section.includes("Locale Insight") && v091Section.includes("<b>Land</b>") && v091Section.includes("<b>Location</b>") && v091Section.includes("<b>Living</b>"), "examples:locale-insight-three-domains");
+check(
+  v091Section.includes("ตัวอย่างเชิงแนวคิดทั้งหมดด้านล่าง") &&
+    v091Section.includes("All fixtures below are conceptual"),
+  "examples:section-bilingual-evidence-boundary",
+);
+check(
+  v091Section.includes("failure แบบคงที่") && v091Section.includes("failure is shown statically"),
+  "examples:rejected-case-bilingual-boundary",
+);
+check(
+  v091Section.includes("Locale Insight") &&
+    /class="v091-domain-pack"><strong>Land<\/strong>/.test(v091Section) &&
+    /class="v091-domain-pack"><strong>Location<\/strong>/.test(v091Section) &&
+    /class="v091-domain-pack"><strong>Living<\/strong>/.test(v091Section),
+  "examples:locale-insight-three-domains",
+);
 check(/product pack|product layer/.test(v091Section), "examples:shared-vs-product-specific-boundary");
 check(v091Section.includes("Initial HTML") && v091Section.includes("Visible page") && v091Section.includes("Hydrated state"), "examples:initial-visible-hydrated-parity");
-check(v091Section.includes("Discovery") && v091Section.includes("Readability") && v091Section.includes("Action"), "examples:discovery-readability-action-separated");
-check(v091Section.includes("Web") && v091Section.includes("PDF") && v091Section.includes("Deck") && v091Section.includes("Social"), "examples:cross-format-equivalence");
-check(v091Section.includes("schema, unit, or grain") && v091Section.includes("incompatibility"), "examples:incompatibility-is-valid-result");
-check(v091Section.includes("is-rejected") && v091Section.includes("is-recovery") && v091Section.includes("shown statically"), "examples:bounded-rejected-and-recovery");
+check(
+  v091Section.includes('class="v091-claim-meta"') &&
+    v091Section.includes("source · PRACTICE-01") &&
+    v091Section.includes("period · Q2") &&
+    v091Section.includes("limit · cause not established"),
+  "examples:claim-source-period-limitation-parity",
+);
+for (const format of ["web", "pdf", "deck", "social"]) {
+  check(v091Section.includes(`v091-format-canvas--${format}`), `examples:cross-format-canvas:${format}`);
+}
+check(v091Section.includes("schema, release, unit, or grain") && v091Section.includes("incompatibility visible"), "examples:incompatibility-is-valid-result");
+check(
+  v091Section.includes("v091-motion-frame--rejected") &&
+    v091Section.includes("v091-motion-frame--final") &&
+    v091Section.includes("Static storyboard"),
+  "examples:bounded-rejected-and-recovery",
+);
 check(v091Section.includes('href="#complete-color-atlas"'), "examples:retained-atlas-linked");
-check((v091Section.match(/<span data-en>Area B changed most<\/span>/g) ?? []).length === 3, "examples:parity-claim-bilingual");
-check(v091Section.includes("Proof hidden until observer fires"), "examples:rejected-specimen-bilingual");
+check(v091Section.includes("พื้นที่ B เปลี่ยนมากที่สุดในชุดตัวอย่างนี้") && v091Section.includes("Area B changed most in this fixture"), "examples:parity-claim-bilingual");
+check(v091Section.includes("หลักฐานรอ observer") && v091Section.includes("Proof waits for observer"), "examples:rejected-specimen-bilingual");
 for (const [id, thaiName, englishName] of [
   ["examples-delta", "สิ่งที่คงไว้และสิ่งที่พัฒนาขึ้น", "What stays and what improves"],
-  ["shared-product-layers", "สถาปัตยกรรมส่วนกลางและส่วนเฉพาะผลิตภัณฑ์", "Shared and product-specific architecture"],
-  ["calm-navigation", "ตัวอย่าง navigation แบบสงบ", "Calm navigation specimen"],
+  ["shared-product-layers", "ภาพสถาปัตยกรรม Locale Insight ที่เชื่อมสาม product packs โดยไม่รวมข้อมูล", "Locale Insight architecture linking three distinct product packs without merging their data"],
+  ["calm-navigation", "กายวิภาค navigation สถานะเด่นและสงบที่คงเป้าตรงขนาด 44 พิกเซล", "Prominent and calm navigation anatomy preserving direct 44 pixel targets"],
   ["incompatibility", "เข้ากันไม่ได้", "Not compatible"],
+  ["retained-color-atlas", "ตัวอย่างสีจาก Color Set color-srgb-05", "Samples from Color Set color-srgb-05"],
 ]) {
   check(
     v091Section.includes(`data-l10n-aria-th="${thaiName}"`) &&
@@ -352,8 +430,14 @@ for (const [id, thaiName, englishName] of [
 check(!/['"]FILL['"]\s*1\b/.test(html), "icon:no-fill-axis-one");
 check(!/\bFILL 1\b/.test(html), "icon:no-visible-fill-one-guidance");
 check(/font-variation-settings:\s*['"]FILL['"] 0,\s*['"]wght['"] 300/.test(html), "icon:fill-zero-weight-300");
-check(v091Section.includes("Icons keep FILL 0 in every state"), "icon:implementation-example");
+check(html.includes("v0.9.1 keeps the glyph outlined in every state"), "icon:implementation-example");
 check(!v091Section.includes("data-riddim-reveal"), "motion:v091-critical-cases-visible-in-source");
+const v091MotionRoles = [...v091Section.matchAll(/data-motion-role="([^"]+)"/g)].map((match) => match[1]);
+check(v091MotionRoles.length === 9, "motion:v091-nine-explicit-supporting-roles");
+check(
+  v091MotionRoles.every((role) => ["approach.soft", "approach.inline-start", "approach.inline-end"].includes(role)),
+  "motion:v091-only-governed-supporting-roles",
+);
 const riddimGroupMatch = html.match(/const RIDDIM_GROUPS\s*=\s*\[([\s\S]*?)\];/);
 if (riddimGroupMatch) {
   const groups = riddimGroupMatch[1];
@@ -383,6 +467,9 @@ check(/event\.key[\s\S]{0,24}?["']Escape["']/.test(html), "navigation:escape-clo
 check(/navMenuToggle\.focus\(|menuToggle\.focus\(/.test(html), "navigation:focus-restored-to-trigger");
 check(html.includes('aria-current", "location"') || html.includes("aria-current', 'location'"), "navigation:current-location-separate");
 check(/class="[^"]*\bside-bookmark\b[^"]*"/.test(html) && html.includes('data-page-destination="library-resources"'), "navigation:side-bookmark-real-anchors");
+check(html.includes(".site-header.is-calm::before"), "navigation:calm-state-styled");
+check(html.includes('siteHeader.classList.toggle("is-calm", Boolean(calm))'), "navigation:calm-state-runtime");
+check(!html.includes("elementFromPoint") && !html.includes("elementsFromPoint"), "navigation:no-coordinate-click-forwarding");
 
 // Output clarity: implementation-facing receipts remain in metadata and release
 // records, not in audience-facing page copy.
@@ -413,6 +500,8 @@ const manifestBoundFiles = [
   RELEASE.registry,
   RELEASE.latest,
   RELEASE.immutableUi,
+  RELEASE.previousImmutableUi,
+  RELEASE.earlierImmutableUi,
   RELEASE.historicalBaseline,
   RELEASE.buildCard,
   RELEASE.implementationNotes,
@@ -447,15 +536,25 @@ check(!/<link\s+rel="canonical"\b/i.test(immutableHtml), "standalone:immutable-n
 check((latestHtml.match(/data:font\/woff2;base64,/g) ?? []).length === 10, "standalone:ten-embedded-font-faces");
 check(latestHtml.includes("data:image/png;base64,"), "standalone:embedded-logo");
 check(latestHtml.includes("data:image/jpeg;base64,"), "standalone:embedded-team-image");
+check(/<link\b[^>]*\brel="icon"[^>]*\bhref="data:image\/png;base64,/i.test(latestHtml), "standalone:embedded-browser-tab-icon");
 check(!/(?:src|href)="assets\//.test(latestHtml), "standalone:no-relative-display-assets");
 
 // CI deploy and live-byte verification must point at this exact release. Every
 // critical asset is both present and hash-bound in the release manifest.
 check(workflow.includes('TARGET_VERSION: "0.9.1"'), "workflow:target-version");
 check(workflow.includes("MANIFEST_PATH: site-manifest.v0.9.1.json"), "workflow:manifest-path");
-check(workflow.includes("EXPECTED_ARTIFACT_BUILD: ui-20260901-01"), "workflow:artifact-build");
+check(workflow.includes(`EXPECTED_ARTIFACT_BUILD: ${RELEASE.artifactBuildId}`), "workflow:artifact-build");
 check(workflow.includes("EXPECTED_EVIDENCE_STATUS: source_limited"), "workflow:evidence-status");
 check(workflow.includes("EXPECTED_MACHINE_VALIDATION: pending"), "workflow:machine-validation");
+const renderedArtifactFlag = `--artifact ${RELEASE.immutableUi}`;
+check(
+  (renderedWorkflow.match(new RegExp(escapeRegExp(renderedArtifactFlag), "g")) ?? []).length === 3,
+  "workflow:rendered-checks-pin-current-immutable",
+);
+check(
+  !renderedWorkflow.includes(`--artifact ${RELEASE.previousImmutableUi}`),
+  "workflow:rendered-checks-do-not-pin-previous-immutable",
+);
 const criticalMatch = workflow.match(/CRITICAL_ASSETS:\s*>-([\s\S]*?)\n\s*run:/);
 check(Boolean(criticalMatch), "workflow:critical-assets-present");
 if (criticalMatch) {

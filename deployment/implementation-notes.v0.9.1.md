@@ -1,8 +1,12 @@
 # Landometer Design System v0.9.1 — implementation notes
 
-This is a non-normative application record for artifact build `ui-20260901-01`. The owner-approved authority is [`assets/downloads/landometer-design-system-v0.9.1.md`](assets/downloads/landometer-design-system-v0.9.1.md), authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`. Its SHA-256 is `64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19`.
+This is a non-normative application record for artifact build `ui-20260902-02`. The owner-approved authority is [`assets/downloads/landometer-design-system-v0.9.1.md`](assets/downloads/landometer-design-system-v0.9.1.md), authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`. Its SHA-256 is `64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19`.
 
 The source identifies machine package `v0.9.1-mp7`. This repository records that release identity but does not publish or claim validation of those machine-package bytes. Design System approval does not pre-certify this downstream playground.
+
+This build supersedes reviewed candidate `ui-20260902-01` as the current presentation while preserving both that candidate and `ui-20260901-01` as append-only release evidence. The change is an artifact-level visual and interaction revision: it does not alter Design System `0.9.1`, authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`, evidence status `source_limited`, public `noindex` policy, artifact conformance status `not_claimed`, or Color Set `color-srgb-05`.
+
+The final correction keeps focus on the current menu control when locale labels refresh, removes duplicate deep-link offsetting, and embeds the approved compact favicon in standalone output so offline rendering makes no network request.
 
 ## What this build is for
 
@@ -32,32 +36,39 @@ The build retains the v0.9.0-r7 principles that v0.9.1 explicitly carries forwar
 
 The current page keeps the hero invitation, before/assisted proof, handoff pattern, takeaway, Implementation Library, and full Color Atlas. Historical v0.9.0 records and immutable standalones remain versioned evidence and are not relabelled as v0.9.1.
 
-## New implementation examples
+## New visual chapters
 
 Every new example is visibly labelled in Thai and English as a conceptual example, not product evidence. The cases use product-neutral Locale Insight framing across Land, Location, and Living. Product data, capabilities, permissions, models, scores, workflows, audiences, and claims remain in named-product layers.
 
-### 1. Shared frame, distinct product truth
+The revision presents the examples as alternating copy-and-visual chapters. This sequencing is an artifact decision, not a new normative layout requirement.
 
-The specimen separates a shared Locale Insight method from product-specific packs. Shared architecture can describe Land, Location, and Living together; a named product must still own its facts, evidence, permissions, and capability claims.
+### 1. One shared method, distinct product truths
 
-### 2. One claim across initial, visible, and hydrated states
+The Locale Insight architecture specimen separates a shared method from distinct Land, Location, and Living packs. Shared architecture can describe the portfolio frame, methodology, and product architecture together; a named product must still own its facts, evidence, permissions, and capability claims.
 
-The specimen preserves one meaning across source HTML, the visible page, and the hydrated interface. Discovery, readability, and action are shown as separate layers so a technical signal does not stand in for human clarity or a usable action.
+### 2. One claim, consistent meaning for people and machines
 
-### 3. Calm navigation, truthful CTA, fail-open motion
+The synthetic claim canvas preserves one meaning across an Initial HTML → Visible page → Hydrated state route. Discovery, readability, and action are shown as separate layers so a technical signal does not stand in for human clarity or a usable action.
+
+### 3. Calm by hierarchy, not by hiding controls
 
 The page header is the live example:
 
 - ecosystem/property/page destinations remain distinct;
 - the desktop visible-control budget is no more than four including brand;
 - the mobile visible-control budget is no more than two including brand;
-- each direct interactive target is at least 44 × 44 CSS pixels;
+- the prominent state is used at the page start, on upward-scroll intent, pointer intent, focus within the header, or while the menu is open;
+- the calm state is eligible only during downward reading without pointer, focus, or an open menu;
+- calm changes surface and visual emphasis, never link/button meaning or geometry;
+- every direct interactive target remains at least 44 × 44 CSS pixels in both states;
+- no wake-first click or coordinate-forwarding overlay is used;
+- reduced motion stays in the stable prominent state;
 - disclosure uses a button with `aria-expanded`, stable focus, and Escape recovery;
 - page current state and in-page location current state use separate semantics;
 - icons stay Material Symbols Rounded at `FILL 0, wght 300, GRAD 0, opsz 24` in every state; and
 - selected state uses surface, container, and label rather than filled glyphs.
 
-The CTA has one visible verb-led destination and one finite discovery cue. The final state is present in source HTML and remains available with reduced motion, missing observer support, deep links, focus, or interrupted lifecycle.
+The cross-format CTA has one visible verb-led destination and a pointer-inert, `aria-hidden` highlight band. The band sweeps once from `translateX(-120%)` to `translateX(120%)` in `540ms`—below the `600ms` ceiling—with `cubic-bezier(.16,1,.3,1)`. It does not loop, move layout, or lower content opacity. Re-entry does not replay it; reduced motion or missing observer support receives the final no-cue state.
 
 ### 4. Change the format, preserve the promise
 
@@ -69,7 +80,11 @@ The analytical specimen refuses to compare records when schema, release, unit, o
 
 ### Rejected case and recovery
 
-The rejected motion specimen shows why hiding proof cards until an observer fires is unsafe. The recovery uses source-visible final meaning, explicit supporting motion roles only, a finite cue, and immediate final state for reduced motion or observer failure.
+The rejected motion specimen shows why hiding proof cards until an observer fires is unsafe. The recovery uses source-visible final meaning and only the explicit supporting roles `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, and `stagger.child`.
+
+The exact artifact recipe is opacity `760ms`, transform `920ms`, media `900ms`, block distance `32px`, logical inline distance `36px`, scale from `.985`, stagger step `150ms` capped at `450ms` (four beats), enter easing `cubic-bezier(.16,1,.3,1)`, settle easing `cubic-bezier(.2,.9,.25,1.08)`, observer threshold `.14`, root margin `0px 0px -12% 0px`, and a `2400ms` reached-content safety audit after two animation frames. One shared observer unobserves each element after its first landing.
+
+Hero and LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, and deep-link targets are excluded from hidden entrances. Closed disclosures and hidden panels are not enrolled. Broad every-card/every-heading selectors, unsynchronized nested reveals, parallax, and motion applied to identity, evidence, maps, charts, UI captures, or provider content are excluded. Reduced motion, no JavaScript, missing observer support, initialization failure or timeout, hidden tabs, focus/deep-link/history/BFCache restoration, and print resolve to visible final meaning.
 
 ## Color delivery and the complete atlas
 
@@ -93,14 +108,18 @@ Analytical scale records stay bound to their recorded source/version. They are d
 - ruleset: `lds-rules-0.9.1`
 - machine-package identity: `v0.9.1-mp7` — identity only in this repository
 - Color Set: `color-srgb-05` — retained
-- artifact build: `ui-20260901-01`
+- artifact build: `ui-20260902-02`
+- supersedes UI artifact: `ui-20260902-01` — preserved as an immutable reviewed candidate
+- earlier UI artifact: `ui-20260901-01` — also preserved as append-only evidence
 - latest standalone: `landometer-design-system-v0.9.1-standalone.html`
-- immutable UI handoff: `landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html`
+- immutable UI handoff: `landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html`
 - site manifest: `site-manifest.v0.9.1.json`
 - Build Card: `build-card.v0.9.1.yml`
 - QA record: `qa/v0.9.1-manual-gates.md`
 
 Use the immutable UI handoff for cross-device comparison. Root and latest aliases are convenient routes and may briefly be cache-stale after publication.
+
+The manual gates in `qa/v0.9.1-manual-gates.md` are an open execution protocol for these new immutable bytes. This record does not claim that those human checks have run or passed.
 
 ## Evidence boundary
 
