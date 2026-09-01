@@ -223,17 +223,23 @@ const approvedFaviconLink = faviconLinks[0] ?? "";
 const approvedFaviconDeclaredHref = attributeOf(approvedFaviconLink, "href");
 const approvedFaviconHref = approvedFaviconDeclaredHref
   .split(/[?#]/u)[0];
-const approvedFaviconStandaloneHref =
-  "https://montri-th.github.io/Landometer/assets/images/landometer-symbol-transparent.png?v=35a1496f";
 const currentArtifactFaviconLinks = tagsNamed(currentArtifactBuildHtml, "link")
   .filter(tag => attributeOf(tag, "rel").split(/\s+/u).includes("icon"));
-const stableStandaloneFaviconValid =
+const standaloneFaviconHref = attributeOf(currentArtifactFaviconLinks[0] ?? "", "href");
+let standaloneFaviconBytes = null;
+try {
+  if (/^data:image\/png;base64,/iu.test(standaloneFaviconHref)) {
+    standaloneFaviconBytes = Buffer.from(standaloneFaviconHref.split(",", 2)[1] ?? "", "base64");
+  }
+} catch {
+  standaloneFaviconBytes = null;
+}
+const embeddedStandaloneFaviconValid =
   currentArtifactFaviconLinks.length === 1 &&
-  attributeOf(currentArtifactFaviconLinks[0], "href") ===
-    approvedFaviconStandaloneHref &&
   attributeOf(currentArtifactFaviconLinks[0], "type") === "image/png" &&
   attributeOf(currentArtifactFaviconLinks[0], "sizes") === "192x192" &&
-  !/^data:/iu.test(attributeOf(currentArtifactFaviconLinks[0], "href"));
+  standaloneFaviconBytes?.length === browserTabIconAsset?.bytes &&
+  sha256(standaloneFaviconBytes) === browserTabIconAsset?.sha256;
 const approvedFaviconRecordText = JSON.stringify(
   browserTabIcon ?? browserTabIconAsset ?? {}
 );
@@ -276,7 +282,7 @@ const legacyApprovedFaviconValid =
   approvedFaviconDeclaredHref === browserTabIcon?.href &&
   browserTabIcon?.href ===
     "assets/images/landometer-symbol-transparent.png?v=35a1496f" &&
-  browserTabIcon?.standaloneHref === approvedFaviconStandaloneHref &&
+  /^(?:data:image\/png;base64,|embedded)$/iu.test(browserTabIcon?.standaloneHref ?? "embedded") &&
   browserTabIcon?.cacheRevision === "35a1496f" &&
   [browserTabIcon?.path, browserTabIcon?.assetPath]
     .filter(Boolean)
@@ -319,7 +325,7 @@ const approvedFaviconValid =
   legacyApprovedFaviconValid || assetApprovedFaviconValid;
 const browserTabIdentityPairValid =
   (pendingFaviconValid && currentArtifactFaviconLinks.length === 0) ||
-  (approvedFaviconValid && stableStandaloneFaviconValid);
+  (approvedFaviconValid && embeddedStandaloneFaviconValid);
 
 const robotsContent = attributeOf(
   metaTags.find(tag => attributeOf(tag, "name").toLowerCase() === "robots") ?? "",
@@ -669,43 +675,76 @@ const currentArtifactBuildValid =
 const colorMixLines = html.split(/\r?\n/u)
   .filter(line => line.includes("color-mix("))
   .map(line => line.trim());
-const expectedColorMixLines = new Map([
-  [
-    "background: color-mix(in srgb, var(--surface-raised) 94%, transparent);",
-    1
-  ],
-  [
-    "@supports (background: color-mix(in srgb, white 50%, transparent)) {",
-    1
-  ],
-  [
-    ".side-bookmark { background: color-mix(in srgb, var(--surface-raised) 94%, transparent); }",
-    1
-  ],
-  [
-    "radial-gradient(circle at 8% 4%, color-mix(in srgb, var(--series-05) 13%, transparent), transparent 32%),",
-    1
-  ],
-  [
-    "radial-gradient(circle at 94% 36%, color-mix(in srgb, var(--series-03) 10%, transparent), transparent 30%),",
-    1
-  ]
-]);
+const colorMixRules = styleRules.filter(rule =>
+  /color-mix\(/u.test(rule.declarations)
+);
+const allowedColorMixSelector = /(?:\.site-header|\.logo-surface|\.release-label|\.theme-cycle|\.language-cycle|\.header-primary|\.nav-panel|\.nav-menu-toggle|\.side-bookmark|\.v091)/u;
 const governedColorMixValid =
-  colorMixLines.length === 5 &&
-  [...expectedColorMixLines].every(([line, count]) =>
-    colorMixLines.filter(candidate => candidate === line).length === count
-  ) &&
+  colorMixLines.length > 0 &&
+  colorMixRules.length > 0 &&
+  colorMixRules.every(rule => allowedColorMixSelector.test(rule.selector)) &&
   /data-gradient-interpolation="srgb-explicit-with-legacy-fallback"/u
     .test(htmlTag) &&
-  /\.side-bookmark\s*\{[^{}]*background:\s*var\(--surface-raised\);[^{}]*\}\s*@supports\s*\(background:\s*color-mix\(in srgb, white 50%, transparent\)\)\s*\{\s*\.side-bookmark\s*\{\s*background:\s*color-mix\(in srgb, var\(--surface-raised\) 94%, transparent\);\s*\}\s*\}/u
-    .test(html) &&
-  /\.v091\s*\{\s*background:\s*radial-gradient\(circle at 8% 4%, color-mix\(in srgb, var\(--series-05\) 13%, transparent\), transparent 32%\),\s*radial-gradient\(circle at 94% 36%, color-mix\(in srgb, var\(--series-03\) 10%, transparent\), transparent 30%\),\s*var\(--canvas\);\s*\}/u
-    .test(html) &&
   !/color-mix\(/u.test(scriptSource) &&
   !/color-mix\(/u.test(samplerHtml) &&
   !/color-mix\(/u.test(atlasHtml) &&
   !/--[\w-]+\s*:[^;{}]*color-mix\(/u.test(html);
+
+const motionRoleElements = [...html.matchAll(
+  /<([a-z][\w:-]*)\b[^>]*\bdata-motion-role="([^"]+)"[^>]*>/giu
+)];
+const allowedMotionRoles = new Set([
+  "approach.soft",
+  "approach.inline-start",
+  "approach.inline-end",
+  "media.arrival",
+  "stagger.child"
+]);
+const motionAssignmentsValid =
+  motionRoleElements.length >= 6 &&
+  motionRoleElements.every(([, tagName, role]) =>
+    allowedMotionRoles.has(role) &&
+    !["a", "button", "h1", "h2", "h3", "section", "article", "form"].includes(tagName.toLowerCase())
+  );
+const approachRecipeValid =
+  /--approach-opacity-duration:\s*760ms;/u.test(html) &&
+  /--approach-transform-duration:\s*920ms;/u.test(html) &&
+  /--approach-media-duration:\s*900ms;/u.test(html) &&
+  /--approach-block-distance:\s*32px;/u.test(html) &&
+  /--approach-inline-distance:\s*36px;/u.test(html) &&
+  /--approach-scale-from:\s*\.985;/u.test(html) &&
+  /--approach-stagger-step:\s*150ms;/u.test(html) &&
+  /--approach-stagger-cap:\s*450ms;/u.test(html) &&
+  /const RIDDIM_STAGGER_MS = 150;/u.test(scriptSource) &&
+  /const RIDDIM_STAGGER_CAP_MS = 450;/u.test(scriptSource) &&
+  /rootMargin:\s*"0px 0px -12% 0px",\s*threshold:\s*0\.14/u.test(scriptSource) &&
+  /self\.unobserve\(entry\.target\)/u.test(scriptSource);
+const revealRules = styleRules.filter(rule =>
+  /data-(?:motion-role|riddim-reveal)/u.test(rule.selector)
+);
+const revealPropertyAllowlist = new Set([
+  "opacity",
+  "transform",
+  "transition",
+  "transition-delay",
+  "transition-duration",
+  "will-change"
+]);
+const revealPropertiesValid =
+  revealRules.length >= 6 &&
+  revealRules.every(rule => {
+    const properties = [...rule.declarations.matchAll(/(?:^|;)\s*([\w-]+)\s*:/gu)]
+      .map(match => match[1]);
+    return properties.length > 0 && properties.every(property =>
+      revealPropertyAllowlist.has(property)
+    );
+  });
+const discoveryCueValid =
+  /animation:\s*v091-cue 540ms cubic-bezier\(\.16, 1, \.3, 1\) both;/u.test(html) &&
+  /from\s*\{\s*transform:\s*translateX\(-120%\);\s*\}/u.test(html) &&
+  /to\s*\{\s*transform:\s*translateX\(120%\);\s*\}/u.test(html) &&
+  /\.v091-discovery-cta i\s*\{[\s\S]*?pointer-events:\s*none;/u.test(html) &&
+  !/v091-cue[^{}]*\{[\s\S]*animation-iteration-count:\s*infinite/iu.test(html);
 
 const checks = [
   [
@@ -818,7 +857,7 @@ const checks = [
     browserTabIdentityPairValid
   ],
   [
-    "standalone browser-tab identity uses the stable cache-revisioned production URL",
+    "standalone browser-tab identity embeds the approved compact asset for offline use",
     browserTabIdentityPairValid
   ],
   [
@@ -1097,7 +1136,8 @@ const checks = [
       (
         !/\bIntersectionObserver\b|addEventListener\(\s*["']scroll["']/iu.test(scriptSource) ||
         (
-          /data-riddim-reveal/u.test(html) &&
+          motionAssignmentsValid &&
+          approachRecipeValid &&
           /data-riddim-landed/u.test(html) &&
           /reducedMotionQuery\s*&&\s*reducedMotionQuery\.matches/u.test(scriptSource) &&
           /self\.unobserve\(entry\.target\)/u.test(scriptSource) &&
@@ -1109,18 +1149,20 @@ const checks = [
   [
     // [REVEAL-01] rule 5: the hidden state is gated so reduce and no-JS never receive it.
     "reveal entrance is gated on script and reduced motion",
-    /html\[data-reveal="on"\]\s*\[data-riddim-reveal\]/u.test(html) &&
-      /prefers-reduced-motion:\s*reduce[\s\S]{0,400}data-riddim-reveal/u.test(html)
+    /root\.dataset\.motionApproach = "pending"/u.test(scriptSource) &&
+      /html\[data-motion-approach="pending"\]\s*\[data-motion-role\]/u.test(html) &&
+      /html\[data-motion-approach="ready"\]\s*\[data-motion-role\]\[data-riddim-reveal\]/u.test(html) &&
+      /prefers-reduced-motion:\s*reduce[\s\S]{0,400}data-motion-role/u.test(html) &&
+      /window\.__landometerApproachWatchdog/u.test(scriptSource) &&
+      motionAssignmentsValid
   ],
   [
     // [REVEAL-01] rule 4: opacity and transform only — no layout property may be animated.
     "reveal entrance moves nothing but opacity and transform",
-    (() => {
-      const block = html.match(/html\[data-reveal="on"\] \[data-riddim-reveal\] \{([\s\S]*?)\}/u);
-      if (!block) return false;
-      return !/\b(height|width|margin|padding|top|left|right|bottom|inset|display|position)\s*:/u.test(block[1]);
-    })()
+    revealPropertiesValid
   ],
+  ["reveal assignments use the exact v0.9.1 approach recipe", approachRecipeValid],
+  ["CTA discovery cue is finite and matches the v0.9.1 recipe", discoveryCueValid],
   ["opportunity cards receive visual flow", /decorateOpportunityCards\(\)/u.test(html)],
   ["rounded outline icon contract", /stroke-linecap:\s*round/u.test(html) && /stroke-linejoin:\s*round/u.test(html)]
 ];

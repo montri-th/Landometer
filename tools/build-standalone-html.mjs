@@ -13,17 +13,16 @@ const registryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.1
 const historicalRegistryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json");
 const latestName = "landometer-design-system-v0.9.1-standalone.html";
 const latestPath = path.join(deploymentDir, latestName);
-const expectedArtifactBuild = "ui-20260901-01";
+const expectedArtifactBuild = "ui-20260902-02";
 const expectedColorSet = "color-srgb-05";
-const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html";
+const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html";
 const expectedHistoricalBaseline = "landometer-design-system-v0.9.0-standalone.color-srgb-05.html";
 const publicBase = "https://montri-th.github.io/Landometer/";
 const faviconPath = "assets/images/landometer-symbol-transparent.png";
-const faviconSha256 = "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85";
-const publicFaviconUrl = new URL(`${faviconPath}?v=${faviconSha256.slice(0, 8)}`, publicBase).href;
 const checkOnly = process.argv.includes("--check");
 
 const embeddedAssets = [
+  [faviconPath, "image/png", `${faviconPath}?v=35a1496f`],
   ["assets/fonts/arvo-latin-700-normal.woff2", "font/woff2"],
   ["assets/fonts/bai-jamjuree-latin-400-normal.woff2", "font/woff2"],
   ["assets/fonts/bai-jamjuree-latin-600-normal.woff2", "font/woff2"],
@@ -119,9 +118,9 @@ assert(/data-machine-validation=("|')pending\1/.test(html), "index.html must not
 
 html = html.replace(/\n\s*<link\s+rel="canonical"\s+href="[^"]+">\s*/i, "\n");
 
-for (const [relativePath, mime] of embeddedAssets) {
+for (const [relativePath, mime, sourceReference = relativePath] of embeddedAssets) {
   const encoded = await dataUrl(relativePath, mime);
-  const matcher = new RegExp(escapeRegex(relativePath), "g");
+  const matcher = new RegExp(escapeRegex(sourceReference), "g");
   const matches = html.match(matcher)?.length ?? 0;
   assert(matches > 0, `display asset is not referenced: ${relativePath}`);
   html = html.replace(matcher, encoded);
@@ -134,7 +133,7 @@ html = html.replace(
 html = html.replace('data-ds="landometer"', 'data-ds="landometer"\n  data-standalone="true"');
 html = html.replace(
   "<head>",
-  "<head>\n  <!-- Self-contained noncanonical snapshot generated from deployment/index.html. Display fonts and page images are embedded; browser-tab identity and linked release records use stable production URLs. -->",
+  "<head>\n  <!-- Self-contained noncanonical snapshot generated from deployment/index.html. Display fonts, page images, and browser-tab identity are embedded; linked release records use stable production URLs. -->",
 );
 
 assert(html.includes('data-standalone="true"'), "standalone marker is missing");
@@ -148,9 +147,8 @@ assert(
   "direct-file handoff or hosted-only font-preload guard is missing",
 );
 assert(
-  html.includes(`href="${publicFaviconUrl}"`) &&
-    !/<link\b[^>]*\brel="icon"[^>]*\bhref="data:/i.test(html),
-  "standalone browser-tab icon must use the stable cache-revisioned production URL",
+  /<link\b[^>]*\brel="icon"[^>]*\bhref="data:image\/png;base64,/i.test(html),
+  "standalone browser-tab icon must be embedded for offline use",
 );
 assert(!/(?:src|href)="assets\//.test(html), "relative display asset remains");
 assert(!/url\(["']?assets\//.test(html), "relative CSS asset remains");

@@ -3,11 +3,11 @@
 > Version 0.9.1 Design System reference and implementation playground.
 
 Canonical page: https://montri-th.github.io/Landometer/
-Delivery boundary: public GitHub Pages projection; noindex; conceptual examples are not product evidence
+Delivery boundary: public GitHub Pages projection; noindex; source_limited; artifact conformance not_claimed; conceptual examples are not product evidence
 Normative source: Landometer Design System 0.9.1-r8; owner-approved 2026-09-01; active and effective
 Ruleset: lds-rules-0.9.1
 Machine-package identity: v0.9.1-mp7; identity only—the package bytes are not published by this site
-Artifact build: ui-20260901-01
+Artifact build: ui-20260902-02; UI artifact revision superseding ui-20260902-01 without changing Design System authority or Color Set
 Color Set: color-srgb-05; retained with no normative color-value change from v0.9.0-r7
 Motion Set: motion-riddim-approach-02
 Icon Set: icon-rounded-outline-01
@@ -27,21 +27,28 @@ Governed object: landometer-design-system@0.9.1
 ## Portable artifacts
 
 - Latest standalone: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.html
-- Immutable v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html
+- Immutable v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html
+- Preserved reviewed candidate: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html
+- Preserved earlier v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html
 - v0.9.1 Color delivery record: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.1.json
 - Frozen predecessor Color Set baseline: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-05.html
 
 The predecessor baseline remains byte-frozen historical evidence. The v0.9.1 immutable UI artifact is a new implementation build over the retained Color Set; it does not relabel or replace the predecessor baseline.
 
-## Implementation examples
+## Implementation examples and visual chapters
 
-- Shared Locale Insight architecture across Land, Location, and Living while product data, methods, claims, terminology, and capabilities stay product-specific.
-- Initial HTML, visible page, and hydrated state preserve the same claim, source, time basis, and limitation.
-- Navigation uses direct named destinations, a disclosure button with stable focus recovery, and separate current-page/current-location states.
+- Six alternating copy-and-visual chapters cover: shared Locale Insight architecture with distinct Land/Location/Living product truth; Initial HTML → Visible page → Hydrated state parity; prominent/calm navigation; Web/PDF/deck/social semantic parity; parcel/neighbourhood incompatibility; and a static rejected-motion recovery.
+- Every chapter is a conceptual design-system teaching fixture, not product or city evidence. The alternating presentation is a non-normative artifact decision.
+- Initial HTML, visible page, and hydrated state preserve the same claim, source, time basis, limitation, and action authority.
+- Navigation uses direct named destinations, a disclosure button with stable focus recovery, and separate current-page/current-location states. The header may move between visually prominent and calm states, but every semantic link/button remains direct and at least 44 × 44 CSS pixels; no wake-first or coordinate-forwarding layer is permitted.
 - Icons remain rounded outline at FILL 0 in every state.
-- Motion is role-gated, finite, and fail-open; answers, evidence, actions, deep links, and focus targets are visible without motion or JavaScript.
+- Motion roles are limited to approach.soft, approach.inline-start, approach.inline-end, media.arrival, and stagger.child. Constants are 760ms opacity, 920ms transform, 900ms media, 32px block distance, 36px logical-inline distance, .985 starting scale, 150ms stagger capped at 450ms, .14 observer threshold, 0px 0px -12% 0px root margin, and a 2400ms safety audit.
+- Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, deep-link targets, closed disclosures, and hidden panels are excluded from hidden entrances. Motion is once-only and fail-open; reduced motion, missing observer support, or no JavaScript receives visible final meaning.
+- The finite CTA cue moves a pointer-inert 28% highlight band from -120% to 120% once in 540ms with cubic-bezier(.16,1,.3,1); it does not loop, move layout, or change content opacity.
 - Web, PDF, deck, and social outputs preserve semantic meaning rather than pixel sameness.
 - Incompatibility is a valid result when schema, release, unit, or grain differs.
+- The complete Color Atlas and Color Set color-srgb-05 are unchanged; this UI revision does not mint a new Color Set.
+- Open-menu locale changes preserve the currently focused control, deep links use one sticky-header offset, and standalone browser-tab identity embeds the approved favicon for offline use.
 
 ## Evidence and capability boundaries
 

@@ -25,7 +25,7 @@
     "canonicalUrl": "https://montri-th.github.io/Landometer/",
     "machineValidation": "pending",
     "fullLivingReference": false,
-    "artifactBuildId": "ui-20260901-01"
+    "artifactBuildId": "ui-20260902-02"
   },
   "authority": {
     "normativeSource": {
@@ -57,9 +57,9 @@
       "status": "preserved byte-for-byte"
     },
     "currentArtifactBuild": {
-      "id": "ui-20260901-01",
+      "id": "ui-20260902-02",
       "latestPath": "landometer-design-system-v0.9.1-standalone.html",
-      "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html"
+      "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
@@ -177,18 +177,38 @@
     },
     {
       "path": "assets/data/color-delivery.v0.9.1.json",
-      "bytes": 5941,
-      "sha256": "09cf3fe9d8926c58b1155bf2ef9e6ce57f74156e89c7ab2ac2ae16c2f525ca30",
+      "bytes": 7109,
+      "sha256": "89580109bc892cd5f3692f08fc839db99c87b39a88388befaa84a18168345582",
       "usageClass": "artifact-level retained Color Set delivery and parity record"
     },
     {
       "path": "landometer-design-system-v0.9.1-standalone.html",
-      "bytes": 2189939,
-      "sha256": "48859c4d1687e7b7bd631e292a7d9cd786e9d73d00af4c9490f0d58c5cbb4685",
+      "bytes": 2226471,
+      "sha256": "2cc609d3b146e00d77b06befd9a640884be595645e52665258383736e25a0171",
       "mimeType": "text/html",
-      "artifactBuildId": "ui-20260901-01",
+      "artifactBuildId": "ui-20260902-02",
       "colorRegistryId": "color-srgb-05",
       "usageClass": "self-contained latest Design System reference alias"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
+      "bytes": 2226483,
+      "sha256": "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
+      "mimeType": "text/html",
+      "artifactBuildId": "ui-20260902-02",
+      "colorRegistryId": "color-srgb-05",
+      "integrityMode": "append-only immutable UI artifact",
+      "usageClass": "current cross-device handoff and visual-QA authority"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
+      "bytes": 2212261,
+      "sha256": "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
+      "mimeType": "text/html",
+      "artifactBuildId": "ui-20260902-01",
+      "colorRegistryId": "color-srgb-05",
+      "integrityMode": "append-only immutable UI artifact",
+      "usageClass": "retained reviewed candidate immutable UI artifact"
     },
     {
       "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
@@ -198,7 +218,7 @@
       "artifactBuildId": "ui-20260901-01",
       "colorRegistryId": "color-srgb-05",
       "integrityMode": "append-only immutable UI artifact",
-      "usageClass": "cross-device handoff and visual-QA authority"
+      "usageClass": "retained predecessor immutable UI artifact"
     },
     {
       "path": "assets/data/tokens.json",
@@ -214,32 +234,32 @@
     },
     {
       "path": "build-card.v0.9.1.yml",
-      "bytes": 9203,
-      "sha256": "ce9804b626d64dd64e8d4a7bc9827f9037a3d54313b32160f41bd26c516908a5",
+      "bytes": 12155,
+      "sha256": "6413905ddcc5160165274558c56e84cab2a230b8ee9d72336d67c896a2a021db",
       "usageClass": "non-normative artifact Build Card"
     },
     {
       "path": "implementation-notes.v0.9.1.md",
-      "bytes": 7262,
-      "sha256": "d4471b1d0a73135acf7d6ab2ea6660b565e51e04b63c81fcdf88b89b0c2ac940",
+      "bytes": 10326,
+      "sha256": "4aec2a697038695c538b5cb95f267953c7932a16d9fc8f39aa7b751d1b5a92bd",
       "usageClass": "non-normative artifact implementation record"
     },
     {
       "path": "qa/v0.9.1-manual-gates.md",
-      "bytes": 8001,
-      "sha256": "88a0f24de66fc9807ce89b42d8d5155b4fc7f071d78031702f494577e310a85a",
+      "bytes": 11786,
+      "sha256": "e33ede39c7494de0013b46fe12aed318ca0f8ca95569e62592d6e46f219668a6",
       "usageClass": "human release QA protocol; not an owner-approval or conformance claim"
     },
     {
       "path": "qa/v0.9.1-automated.json",
-      "bytes": 5451,
-      "sha256": "229e16c95d3557a254d52245ed63dc083c6368703a023a216f8b1fa26cf5c54c",
+      "bytes": 5953,
+      "sha256": "16356dcbfc8a99006233609bcdddcf7b85989c416a65b259fe852800a6210118",
       "usageClass": "release-candidate source, standalone, retained-color, and browser-runtime evidence"
     },
     {
       "path": "llms.txt",
-      "bytes": 4491,
-      "sha256": "bd7e6ca1b818905a054fd9a18c3035dfb95d09e6e5872684b1da37cb8a46750d",
+      "bytes": 6559,
+      "sha256": "7be1f2f9a15c77ae3e6d21fe0543b820135e0fe8d302a1ee984f4dfbae67c89c",
       "usageClass": "optional project-path navigation aid",
       "authority": "not a ranking signal, access-control rule, conformance claim, host-root discovery guarantee, or agent-action permission"
     },
