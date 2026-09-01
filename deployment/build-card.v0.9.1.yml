@@ -1,0 +1,232 @@
+landometerBuild:
+  release:
+    dsVersion: 0.9.1
+    authoringRevision: 0.9.1-r8
+    ruleset: lds-rules-0.9.1
+    machinePackageIdentity: v0.9.1-mp7
+    machinePackageDelivery: identity_only
+    artifactBuildId: ui-20260901-01
+    sourceRef: assets/downloads/landometer-design-system-v0.9.1.md
+    sourceBytes: 208463
+    sourceSha256: 64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19
+    approvalBoundary: >-
+      The source records an active, effective, owner-approved normative release.
+      This repository projection does not publish or claim validation of the
+      v0.9.1-mp7 machine-package bytes.
+
+  schemas:
+    buildCardRecord: 0.9.1
+    siteManifest: 2.1
+    carriedTokenProjection: 6
+
+  artifact:
+    id: landometer-design-identity-playground-v0.9.1
+    name: Landometer Design System v0.9.1 Implementation Playground
+    product: landometer
+    portfolioScope: shared
+    profile: brand.public
+    pageKind: design_system_reference_with_implementation_library
+    deliveryMode: internal_demo_through_public_projection
+    deliveryConformance: not_claimed
+    visibility: public
+    indexable: false
+    evidenceStatus: source_limited
+    machineValidation: pending
+    fullLivingReference: false
+    canonicalUrl: https://montri-th.github.io/Landometer/
+    primaryLocale: th
+    additionalLocales: [en]
+
+  authority:
+    normativeDesignSystem:
+      ref: assets/downloads/landometer-design-system-v0.9.1.md
+      revision: 0.9.1-r8
+      sha256: 64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19
+      status: owner_approved_effective_source
+    predecessor:
+      ref: assets/downloads/landometer-design-system-v0.9.0.md
+      sha256: 52ef41f1b231f8b84955a40c21a018991a114a4f5eaabd8c5111816bf8d645b1
+      role: historical predecessor and retained-foundation evidence
+    artifactApplication:
+      ref: implementation-notes.v0.9.1.md
+      authority: non_normative
+    claimOwner: Landometer portfolio truth for shared guidance; named-product owners for product facts
+    evidenceBoundary: >-
+      Implementation examples are conceptual design-system teaching fixtures,
+      not product evidence, product capability claims, or city facts.
+
+  experience:
+    oneJob: >-
+      Show how v0.9.1 improves implementation while preserving the trusted
+      foundations and complete Color Atlas.
+    dominantObject: landometer-design-system@0.9.1
+    entryQuestion: What changes in implementation, and what remains stable?
+    firstAha: >-
+      The same truth can become easier to discover, read, act on, and carry
+      across formats without collapsing shared and product-specific layers.
+    primaryAction:
+      labelTh: ดูตัวอย่างใหม่
+      labelEn: See the new examples
+      destination: "#v091-additions"
+      outcome: Opens the v0.9.1 implementation examples on the same page
+    secondaryAction:
+      labelTh: เปิด Color Atlas
+      labelEn: Open Color Atlas
+      destination: "#complete-color-atlas"
+      outcome: Opens the retained complete color reference on the same page
+    cleanCompletion: >-
+      The reader can identify a retained principle, see the improved v0.9.1
+      implementation move, and choose the next relevant reference.
+
+  sharedLayer:
+    portfolioFrame: Locale Insight
+    domains: [Land, Location, Living]
+    allowedScope:
+      - portfolio framing
+      - methodology
+      - product architecture
+      - shared design-system behavior
+    productSpecificScope:
+      - product data and schemas
+      - product capabilities and permissions
+      - product claims and evidence
+      - product workflows, scores, models, audiences, and voice
+    comparisonRule: >-
+      Cross-product or cross-city comparison requires compatible schema,
+      release, unit, and grain; otherwise incompatibility stays visible.
+
+  implementationExamples:
+    status: conceptual_no_product_evidence
+    sourceVersion: v0.9.1-mp7
+    cases:
+      - id: v091-layers
+        title: Shared Locale Insight frame, distinct product truth
+        ruleAuthority: [LAYER-01, AUTHORITY-01, EVIDENCE-01]
+      - id: v091-parity
+        title: One claim across initial HTML, visible page, and hydrated state
+        ruleAuthority: [DISCOVERY-01, DISCOVERY-02, DISCOVERY-03, PARITY-01]
+      - id: v091-calm-nav
+        title: Calm navigation, truthful CTA, and fail-open motion
+        ruleAuthority: [NAV-01, NAV-02, BOOKMARK-01, CTA-01, CTA-02, MOTION-01, MOTION-03]
+      - id: v091-format
+        title: Change the format, preserve the promise
+        ruleAuthority: [FORMAT-PARITY-01, WEBFMT-01, PDFFMT-01, DECKFMT-01, SOCIALFMT-01]
+      - id: v091-incompatibility
+        title: Incompatibility is a valid result
+        ruleAuthority: [COMPARE-01]
+      - id: v091-rejected-motion
+        title: Rejected — motion gates the proof
+        ruleAuthority: [MOTION-01, MOTION-02, MOTION-03, A11Y-01]
+        recovery: Source final state; explicit supporting roles; finite cue; reduced-motion and observer-failure final state
+
+  navigation:
+    ecosystemPropertyPageSeparation: true
+    desktopVisibleControlBudgetIncludingBrand: 4
+    mobileVisibleControlBudgetIncludingBrand: 2
+    minimumDirectTargetCssPx: 44
+    disclosureControl:
+      element: button
+      stateAttribute: aria-expanded
+      escapeReturnsFocus: true
+    sideBookmark:
+      desktop: real_anchor_locations
+      mobile: local_toc_inside_disclosure
+      pageCurrentAndLocationCurrentSeparated: true
+
+  icon:
+    setId: icon-rounded-outline-01
+    family: Material Symbols Rounded
+    variation: "FILL 0, wght 300, GRAD 0, opsz 24"
+    filledSelectedStateAllowed: false
+    selectedStateChannels: [surface, container, label]
+
+  typography:
+    setId: type-script-aware-02
+    boundary: >-
+      Thai display line-height 1.16 is not a universal value. Validate the
+      actual size, script mixture, target, and output format.
+
+  motion:
+    setId: motion-riddim-approach-02
+    policy: role_gated_fail_open
+    sourceFinalStateVisible: true
+    protectedFromHiddenEntrance:
+      - H1
+      - first answer
+      - first proof
+      - primary action
+      - deep-link target
+      - focus target
+    ctaDiscoveryCue: finite_one_time
+    reducedMotion: final_state_immediate
+    observerFailure: final_state_visible
+
+  formatParity:
+    setId: layout-cross-format-01
+    primaryFormat: web_public_reference
+    equivalentFormats: [document, pdf, deck, social_static, app]
+    invariant:
+      - truth
+      - identity
+      - evidence boundary
+      - action promise
+      - locale proposition
+    representationMayChange:
+      - navigation
+      - bookmark
+      - disclosure
+      - motion
+
+  colorDelivery:
+    registryId: color-srgb-05
+    registryPath: assets/data/color-delivery.v0.9.1.json
+    range: SDR
+    colorSpace: sRGB IEC 61966-2-1
+    normativeColorValuesChangedFromV090R7: false
+    newColorSetMinted: false
+    tokenProjection:
+      path: assets/data/tokens.json
+      sha256: 00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc
+    scaleReference:
+      path: assets/data/scales.json
+      sha256: daf8e5219f1da9229d7fb474fdaba3957f37c0cfe18eef7527e551c37d88d235
+    immutableColorBaseline:
+      path: landometer-design-system-v0.9.0-standalone.color-srgb-05.html
+      bytes: 2141429
+      sha256: 0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a
+      status: preserved_byte_for_byte
+    currentArtifactBuild:
+      id: ui-20260901-01
+      latestPath: landometer-design-system-v0.9.1-standalone.html
+      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html
+      changeClass: design_system_implementation_color_set_unchanged
+
+  retainedFoundations:
+    - truth, evidence, and product boundaries first
+    - protected brand lines and one headline role
+    - color-srgb-05 values and semantic ownership
+    - script-aware font families and semantic type roles
+    - spacing, radius, container, gutter, and breakpoint scales
+    - one job, dominant object, first AHA, primary action, and clean completion
+    - accessibility, resilience, privacy, permissions, and external-effect receipts
+    - data-visualization and map evidence discipline
+    - Build Card to profiles and capabilities to QA resolution
+    - complete Color Atlas and its recorded source limits
+
+  exclusions:
+    - no named product is represented as portfolio-wide truth
+    - no conceptual fixture is product evidence
+    - no comparison hides schema, release, unit, or grain incompatibility
+    - no unpublished v0.9.1 machine-package bytes are claimed as repository delivery
+    - no artifact-level conformance is claimed by Design System approval alone
+    - no Color Set identifier is minted for non-color changes
+
+  publication:
+    canonicalUrl: https://montri-th.github.io/Landometer/
+    pagesRoot: deployment
+    latestStandalone: landometer-design-system-v0.9.1-standalone.html
+    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html
+    siteManifest: site-manifest.v0.9.1.json
+    implementationNotes: implementation-notes.v0.9.1.md
+    manualQaRecord: qa/v0.9.1-manual-gates.md
+    historicalRecordsRemainFrozen: true

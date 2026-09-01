@@ -1,65 +1,64 @@
 # Landometer Design System
 
-> Version 0.9.0 source-limited Design Identity Playground and implementation reference.
+> Version 0.9.1 Design System reference and implementation playground.
 
 Canonical page: https://montri-th.github.io/Landometer/
-Release status: internal_demo; source_limited; noindex; machineValidation pending
-Authoring revision: v0.9.0-r7; owner-approved 2026-08-20 with owner amendments through 2026-08-21 (determinism release; product identity gradients; [CONTAINER-FIT-01]; [REVEAL-01]; icon anatomy SC-23; rise refinement minting color-srgb-05 with colours byte-identical to color-srgb-04; machine specification package v0.9.0-mp1 generated)
-Protected Cultural activation: Let us cultivate our city with data. (Master Brand Brief v0.5.3 §1.1; verified 2026-08-20 carried unchanged from v0.5.2 §1.1)
-Release build: ui-20260821-05; Color Set color-srgb-05; machine specification package v0.9.0-mp1 generated (machine/v0.9.0/); artifact machineValidation still pending while manual gates stay open
+Delivery boundary: public GitHub Pages projection; noindex; conceptual examples are not product evidence
+Normative source: Landometer Design System 0.9.1-r8; owner-approved 2026-09-01; active and effective
+Ruleset: lds-rules-0.9.1
+Machine-package identity: v0.9.1-mp7; identity only—the package bytes are not published by this site
+Artifact build: ui-20260901-01
+Color Set: color-srgb-05; retained with no normative color-value change from v0.9.0-r7
+Motion Set: motion-riddim-approach-02
+Icon Set: icon-rounded-outline-01
+Typography Set: type-script-aware-02
+Layout Set: layout-cross-format-01
 Languages: Thai and English
-Governed object: landometer-design-system@0.9.0
-Channel parity key: ldm.ds.v0.9.0.design-identity-playground
+Governed object: landometer-design-system@0.9.1
 
 ## Primary reference
 
-- Design System v0.9.0 Markdown: https://montri-th.github.io/Landometer/assets/downloads/landometer-design-system-v0.9.0.md
-- Accepted implementation application record: https://montri-th.github.io/Landometer/implementation-notes.v0.9.0.md
-- Frozen legacy v0.8.8 reference: https://montri-th.github.io/Landometer/assets/downloads/landometer-design-system-v0.8.8.md
+- Owner-approved Design System Markdown: https://montri-th.github.io/Landometer/assets/downloads/landometer-design-system-v0.9.1.md
+- Implementation record: https://montri-th.github.io/Landometer/implementation-notes.v0.9.1.md
+- Build Card: https://montri-th.github.io/Landometer/build-card.v0.9.1.yml
+- Site Manifest: https://montri-th.github.io/Landometer/site-manifest.v0.9.1.json
+- Manual QA record: https://montri-th.github.io/Landometer/qa/v0.9.1-manual-gates.md
 
-## Machine-readable release context
+## Portable artifacts
 
-- Site Manifest 2.1: https://montri-th.github.io/Landometer/site-manifest.v0.9.0.json
-- Build Card v0.9.0: https://montri-th.github.io/Landometer/build-card.v0.9.0.yml
-- Color Set registry `color-srgb-05`: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.0.json
-- Portable latest standalone: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.html
-- Immutable UI build `ui-20260821-05`: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-05.html
-- Frozen previous immutable UI build `ui-20260821-04` (same Color Set, superseded by a UI-only change): https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-05.ui-20260821-04.html
-- Machine specification package `v0.9.0-mp1` manifest: https://montri-th.github.io/Landometer/machine/v0.9.0/package.json
-- Machine package validation report (package-level internal consistency only): https://montri-th.github.io/Landometer/machine/v0.9.0/validation-report.json
-- Machine package preflight (rule-ID keyed; banned OKLCh windows): https://montri-th.github.io/Landometer/machine/v0.9.0/preflight.yml
-- Frozen previous immutable UI build `ui-20260821-02` (same Color Set, superseded by a UI-only change): https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-02.html
-- Frozen previous immutable UI build `ui-20260821-01` (same Color Set, superseded by a UI-only change): https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260821-01.html
-- Immutable Color Set baseline: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-05.html
-- Frozen previous Color Set baseline `color-srgb-04` (byte-frozen at its minting build ui-20260820-02): https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-04.html
-- Frozen previous Color Set registry `color-srgb-04`: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.0.color-srgb-04.json
-- Frozen previous immutable UI build `ui-20260820-02` (same Color Set, superseded by a UI-only change): https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-04.ui-20260820-02.html
-- Frozen previous Color Set registry `color-srgb-03`: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.0.color-srgb-03.json
-- Frozen previous immutable UI build `ui-20260820-01`: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-03.ui-20260820-01.html
-- Control Inventory: https://montri-th.github.io/Landometer/control-inventory.v0.9.0.json
-- Automated QA record: https://montri-th.github.io/Landometer/qa/v0.9.0-automated.json
-- Manual QA gates: https://montri-th.github.io/Landometer/qa/v0.9.0-manual-gates.md
+- Latest standalone: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.html
+- Immutable v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html
+- v0.9.1 Color delivery record: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.1.json
+- Frozen predecessor Color Set baseline: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.0-standalone.color-srgb-05.html
+
+The predecessor baseline remains byte-frozen historical evidence. The v0.9.1 immutable UI artifact is a new implementation build over the retained Color Set; it does not relabel or replace the predecessor baseline.
+
+## Implementation examples
+
+- Shared Locale Insight architecture across Land, Location, and Living while product data, methods, claims, terminology, and capabilities stay product-specific.
+- Initial HTML, visible page, and hydrated state preserve the same claim, source, time basis, and limitation.
+- Navigation uses direct named destinations, a disclosure button with stable focus recovery, and separate current-page/current-location states.
+- Icons remain rounded outline at FILL 0 in every state.
+- Motion is role-gated, finite, and fail-open; answers, evidence, actions, deep links, and focus targets are visible without motion or JavaScript.
+- Web, PDF, deck, and social outputs preserve semantic meaning rather than pixel sameness.
+- Incompatibility is a valid result when schema, release, unit, or grain differs.
 
 ## Evidence and capability boundaries
 
-- This release is not a Full Living Reference.
-- Dataviz fundamentals use synthetic training fixture DV-FIXTURE-0.1. Nine additional cards use source-limited, product-specific CityMETER public snapshots or explicitly labelled treatment sketches under CITYMETER-DV-SNAPSHOT-2026-07-29.
-- Product data, methods, claims, terminology, thresholds, and capabilities remain product-specific.
-- Locale Insight spans Land, Location, and Living at portfolio, methodology, and product-architecture levels without merging product evidence boundaries.
-- Cross-product or cross-city comparison requires the same compatible schema and release, or a visible incompatibility explanation.
-- Root, standalone, Complete Color Atlas, Site Manifest, and Build Card must resolve Color Set `color-srgb-05` and the prepared UI artifact build `ui-20260821-05`. Any governed color, gradient, token-source, or scale-source change requires a new Color Set ID. A UI-only change keeps the Color Set ID but mints a new append-only artifact-build ID and immutable filename; the Color Set baseline is never rewritten for it and stays byte-frozen at the build it was minted with. After publication and exact-byte verification, the current immutable UI artifact—not a cacheable latest alias—is the visual-review and handoff authority.
-- The playground does not save, share, invite, publish, track, or mutate a remote governed object.
-- Contextual discovery offers two explicit user-triggered destinations from the same visible editable public-safe query: Google Search for a source trail, or Google AI Mode for synthesis and follow-up. The provider route is an implementation detail. Four current public CityMETER record snapshots may compose the query; the incident endpoint exposes no provenance, values with unresolved scope are omitted, and both Search results and AI synthesis remain `discovery_only` until cited sources are opened, checked, and deliberately incorporated with provenance.
-- No bounded agent action is enabled. Machine-readable files are reference inputs, not permission to act.
+- All teaching cases on this page are conceptual unless a named product-specific adaptation says otherwise.
+- This reference is not evidence about a city, place, product, audience, or outcome.
+- It is not a Full Living Reference.
+- Cross-product or cross-city comparison requires a compatible schema and release, with unit and grain reconciled; otherwise the incompatibility must remain visible.
+- CityMETER, CityWiki, CityChat, ijji, municipality, retail, F&B, land-valuation, flood, and other named-product or domain assumptions must not be generalized to the shared Landometer layer.
+- The Complete Color Atlas is a design reference. A product analysis must bind its own compatible data release and evidence before using analytical scales.
+- The page does not save, share, invite, publish, track, or mutate a remote governed object.
 
 ## Machine-use rules
 
 - Preserve object ID, version, scope, boundary, time, source, missingness, confidence, limitation, allowed use, visibility, and authoritative state.
-- Never upgrade partial to complete, modelled to observed, planned to available, sent to received, handoff to network effect, or discovery to evidence.
-- Do not universalize CityMETER, CityWiki, CityChat, ijji, municipality, retail, F&B, flood, land-valuation, or other product-instance assumptions.
-- Do not make or execute consequential decisions affecting rights, access, eligibility, housing, health, safety, employment, credit, or public benefit.
-- Product identity gradients may alias a shared atmosphere recipe by exact stop equality: ijji light aliases `atmosphere.gradient.ground.mist`, CityWiki light aliases `atmosphere.gradient.cultivate.mist`. Inside an ijji or CityWiki product surface the field reads as that product's identity; anywhere else the same field stays shared atmosphere. Neither reading may encode data, status, category, or scale.
-- Retired values are not deleted: Color Sets `color-srgb-03` and `color-srgb-04` and artifact builds `ui-20260820-01`, `ui-20260820-02`, `ui-20260821-01`, and `ui-20260821-02` remain resolvable frozen evidence and must never be relabelled as current. The prepared `ui-20260821-03` was withdrawn before publication and never existed on this site; its id is not reused. `color-srgb-05` changes no colour value: it was minted because the token source changed (the 2026-08-21 rise refinement of the entrance motion values).
-- Do not infer an agent action endpoint from a human-facing link or control.
+- Never upgrade partial to complete, modelled to observed, planned to available, sent to received, a handoff to a network effect, or discovery to evidence.
+- Readability does not grant permission to act.
+- Do not infer an action endpoint from a human-facing link or control.
+- Do not infer that the Design System release pre-certifies a downstream artifact or product claim.
 
-This project-path llms.txt follows an emerging convention and is a navigation aid only. It is not the host-root llms.txt for montri-th.github.io, a crawler directive, a ranking signal, an access-control rule, or permission for an agent to act, and it is not guaranteed to be discovered by search engines or AI systems.
+This project-path llms.txt is a navigation aid only. It is not a ranking signal, crawler directive, access-control rule, conformance certificate, or permission for an agent to act.

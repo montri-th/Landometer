@@ -9,23 +9,18 @@ const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const toolName = path.basename(fileURLToPath(import.meta.url));
 const deploymentDir = path.resolve(toolDir, "../deployment");
 const sourcePath = path.join(deploymentDir, "index.html");
-const outputPath = path.join(
-  deploymentDir,
-  "landometer-design-system-v0.9.0-standalone.html",
-);
-const colorDeliveryPath = path.join(
-  deploymentDir,
-  "assets/data/color-delivery.v0.9.0.json",
-);
+const registryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.1.json");
+const historicalRegistryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json");
+const latestName = "landometer-design-system-v0.9.1-standalone.html";
+const latestPath = path.join(deploymentDir, latestName);
+const expectedArtifactBuild = "ui-20260901-01";
+const expectedColorSet = "color-srgb-05";
+const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html";
+const expectedHistoricalBaseline = "landometer-design-system-v0.9.0-standalone.color-srgb-05.html";
 const publicBase = "https://montri-th.github.io/Landometer/";
 const faviconPath = "assets/images/landometer-symbol-transparent.png";
-const faviconSha256 =
-  "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85";
-const faviconRevision = faviconSha256.slice(0, 8);
-const publicFaviconUrl = new URL(
-  `${faviconPath}?v=${faviconRevision}`,
-  publicBase,
-).href;
+const faviconSha256 = "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85";
+const publicFaviconUrl = new URL(`${faviconPath}?v=${faviconSha256.slice(0, 8)}`, publicBase).href;
 const checkOnly = process.argv.includes("--check");
 
 const embeddedAssets = [
@@ -46,17 +41,12 @@ function assert(condition, message) {
   if (!condition) throw new Error(`Standalone build failed: ${message}`);
 }
 
-function escapeRegex(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-async function dataUrl(relativePath, mime) {
-  const bytes = await readFile(path.join(deploymentDir, relativePath));
-  return `data:${mime};base64,${bytes.toString("base64")}`;
-}
-
 function sha256(contents) {
   return createHash("sha256").update(contents).digest("hex");
+}
+
+function escapeRegex(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 async function readIfPresent(filePath) {
@@ -68,77 +58,66 @@ async function readIfPresent(filePath) {
   }
 }
 
+async function dataUrl(relativePath, mime) {
+  const bytes = await readFile(path.join(deploymentDir, relativePath));
+  return `data:${mime};base64,${bytes.toString("base64")}`;
+}
+
 async function atomicWrite(filePath, contents) {
   const temporaryPath = `${filePath}.tmp-${process.pid}`;
   await writeFile(temporaryPath, contents, "utf8");
   await rename(temporaryPath, filePath);
 }
 
-let html = await readFile(sourcePath, "utf8");
-const colorDelivery = JSON.parse(await readFile(colorDeliveryPath, "utf8"));
-const colorBaselineName = colorDelivery?.meta?.immutableColorBaseline;
-const currentArtifactBuild = colorDelivery?.meta?.currentArtifactBuild;
-const artifactBuildId = currentArtifactBuild?.id;
-const pinnedOutputName = currentArtifactBuild?.immutableStandalone;
-const currentColorSetId = colorDelivery?.meta?.id;
-assert(
-  /^color-srgb-\d{2}$/.test(currentColorSetId ?? ""),
-  "unexpected color-delivery registry id",
-);
-assert(
-  colorBaselineName ===
-    `landometer-design-system-v0.9.0-standalone.${currentColorSetId}.html`,
-  // predecessor baselines stay on disk as frozen evidence; the registry meta points at the current set.
-  "color-delivery registry must declare the current immutable Color Set baseline",
-);
-assert(
-  /^ui-\d{8}-\d{2}$/.test(artifactBuildId ?? ""),
-  "color-delivery registry must declare a safe append-only artifact-build id",
-);
-assert(
-  new RegExp(
-    `^landometer-design-system-v0\\.9\\.0-standalone\\.${currentColorSetId}\\.ui-\\d{8}-\\d{2}\\.html$`,
-  ).test(pinnedOutputName ?? ""),
-  "color-delivery registry must declare a safe immutable UI build filename",
-);
-const pinnedOutputPath = path.join(deploymentDir, pinnedOutputName);
-const colorBaselinePath = path.join(deploymentDir, colorBaselineName);
-const colorBaselineRecord = colorDelivery?.artifactBuilds?.find(
-  (record) => record.path === colorBaselineName,
-);
-const currentArtifactRecord = colorDelivery?.artifactBuilds?.find(
-  (record) => record.id === artifactBuildId && record.path === pinnedOutputName,
-);
-assert(
-  colorBaselineRecord?.role === "immutable_color_baseline" &&
-    ["prepared", "append_only"].includes(colorBaselineRecord?.status),
-  "immutable Color Set baseline record is missing or has an invalid state",
+const registry = JSON.parse(await readFile(registryPath, "utf8"));
+const historicalRegistry = JSON.parse(await readFile(historicalRegistryPath, "utf8"));
+
+assert(registry?.meta?.id === expectedColorSet, "v0.9.1 must retain Color Set color-srgb-05");
+assert(registry?.meta?.designSystemVersion === "0.9.1", "unexpected design-system version in v0.9.1 color-delivery record");
+assert(registry?.meta?.authoringRevision === "0.9.1-r8", "unexpected authoring revision in v0.9.1 color-delivery record");
+assert(registry?.meta?.immutableColorBaseline === expectedHistoricalBaseline, "v0.9.1 must reference, not remint, the v0.9.0 color-srgb-05 baseline");
+assert(registry?.meta?.currentArtifactBuild?.id === expectedArtifactBuild, "unexpected v0.9.1 artifact-build id");
+assert(registry?.meta?.currentArtifactBuild?.immutableStandalone === expectedImmutableName, "unexpected v0.9.1 immutable standalone filename");
+const currentArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === expectedArtifactBuild && record.path === expectedImmutableName,
 );
 assert(
   currentArtifactRecord?.role === "immutable_ui_build" &&
-    ["prepared", "append_only"].includes(currentArtifactRecord?.status),
-  "current immutable UI build record is missing or has an invalid state",
+    currentArtifactRecord?.colorRegistryId === expectedColorSet &&
+    (currentArtifactRecord?.status === "append_only" ||
+      currentArtifactRecord?.status?.startsWith("prepared")),
+  "the v0.9.1 immutable UI build record is missing or invalid",
 );
 
-const committedColorBaseline = await readIfPresent(colorBaselinePath);
-if (colorBaselineRecord.status === "append_only") {
-  assert(committedColorBaseline !== null, `immutable Color Set baseline is missing: ${colorBaselineName}`);
-  assert(
-    Buffer.byteLength(committedColorBaseline) === colorBaselineRecord.bytes &&
-      sha256(committedColorBaseline) === colorBaselineRecord.sha256,
-    `immutable Color Set baseline changed: ${colorBaselineName}`,
-  );
-} else {
-  assert(
-    committedColorBaseline === null,
-    `prepared Color Set baseline path already exists: ${colorBaselineName}. Finalize its registry record before rebuilding.`,
-  );
-}
-
-html = html.replace(
-  /\n\s*<link\s+rel="canonical"\s+href="[^"]+">\s*/i,
-  "\n",
+const historicalBaselineRecord = historicalRegistry?.artifactBuilds?.find(
+  (record) => record.path === expectedHistoricalBaseline,
 );
+assert(
+  historicalBaselineRecord?.role === "immutable_color_baseline" &&
+    historicalBaselineRecord?.colorRegistryId === expectedColorSet &&
+    historicalBaselineRecord?.status === "append_only",
+  "the frozen v0.9.0 color-srgb-05 baseline record is missing",
+);
+const historicalBaselinePath = path.join(deploymentDir, expectedHistoricalBaseline);
+const historicalBaseline = await readFile(historicalBaselinePath);
+assert(
+  historicalBaseline.byteLength === historicalBaselineRecord.bytes &&
+    sha256(historicalBaseline) === historicalBaselineRecord.sha256,
+  `historical immutable baseline changed: ${expectedHistoricalBaseline}`,
+);
+
+let html = await readFile(sourcePath, "utf8");
+assert(/data-ds-version=("|')0\.9\.1\1/.test(html), "index.html is not DS 0.9.1");
+assert(/data-authoring-revision=("|')0\.9\.1-r8\1/.test(html), "index.html has the wrong authoring revision");
+assert(/data-ruleset=("|')lds-rules-0\.9\.1\1/.test(html), "index.html has the wrong ruleset revision");
+assert(/data-machine-package-identity=("|')v0\.9\.1-mp7\1/.test(html), "index.html has the wrong machine-package identity receipt");
+assert(new RegExp(`data-color-registry=("|')${expectedColorSet}\\1`).test(html), "index.html does not retain color-srgb-05");
+assert(new RegExp(`data-artifact-build=("|')${expectedArtifactBuild}\\1`).test(html), "index.html has the wrong artifact-build id");
+assert(/data-build-channel=("|')latest-alias\1/.test(html), "index.html must be the latest alias channel");
+assert(/data-evidence-status=("|')source_limited\1/.test(html), "index.html must preserve the downstream artifact evidence boundary");
+assert(/data-machine-validation=("|')pending\1/.test(html), "index.html must not turn machine-package identity into an artifact validation claim");
+
+html = html.replace(/\n\s*<link\s+rel="canonical"\s+href="[^"]+">\s*/i, "\n");
 
 for (const [relativePath, mime] of embeddedAssets) {
   const encoded = await dataUrl(relativePath, mime);
@@ -152,43 +131,22 @@ html = html.replace(
   /href="(?!#|https?:|data:|mailto:|tel:)([^"]+)"/g,
   (_, relativeHref) => `href="${new URL(relativeHref, publicBase).href}"`,
 );
-
-html = html.replace(
-  'data-ds="landometer"',
-  'data-ds="landometer"\n  data-standalone="true"',
-);
+html = html.replace('data-ds="landometer"', 'data-ds="landometer"\n  data-standalone="true"');
 html = html.replace(
   "<head>",
   "<head>\n  <!-- Self-contained noncanonical snapshot generated from deployment/index.html. Display fonts and page images are embedded; browser-tab identity and linked release records use stable production URLs. -->",
 );
 
 assert(html.includes('data-standalone="true"'), "standalone marker is missing");
-assert(
-  !/<link\b[^>]*\brel="preload"[^>]*\bas="font"/i.test(html),
-  "standalone snapshot must not retain declarative font preloads",
-);
+assert(!/<link\b[^>]*\brel="preload"[^>]*\bas="font"/i.test(html), "standalone must not retain declarative font preloads");
+assert(!/<link\s+rel="canonical"\b/i.test(html), "standalone must not claim the live canonical URL");
 assert(
   html.includes('location.protocol === "file:"') &&
     html.includes('root.dataset.standalone !== "true"') &&
     html.includes('location.replace(target.href)') &&
     html.includes('!["http:", "https:"].includes(location.protocol)'),
-  "direct-file handoff and hosted-only font-preload guard are missing",
+  "direct-file handoff or hosted-only font-preload guard is missing",
 );
-assert(
-  (html.match(/data:font\/woff2;base64,/g) ?? []).length === 10,
-  "standalone snapshot must embed exactly ten governed WOFF2 faces: the nine text faces plus the [ICON-01] Material Symbols Rounded subset",
-);
-assert(
-  html.includes('root.dataset.fontDelivery = "pending"') &&
-    html.includes("Promise.race([loadFonts, fontTimeout])") &&
-    html.includes('reject(new Error("font-timeout"))') &&
-    html.includes('faceGroups[index].every(face => face.status === "loaded")') &&
-    html.includes("thaiDisplayReady") &&
-    html.includes("latinCompanionsReady") &&
-    html.includes('setFontFailureState(error?.message === "font-timeout" ? "timeout" : "failed")'),
-  "font readiness must cover all governed faces and expose pending, success, failure, timeout, and unavailable states",
-);
-assert(!/<link\s+rel="canonical"\b/i.test(html), "standalone snapshot must not claim a live canonical URL");
 assert(
   html.includes(`href="${publicFaviconUrl}"`) &&
     !/<link\b[^>]*\brel="icon"[^>]*\bhref="data:/i.test(html),
@@ -196,82 +154,47 @@ assert(
 );
 assert(!/(?:src|href)="assets\//.test(html), "relative display asset remains");
 assert(!/url\(["']?assets\//.test(html), "relative CSS asset remains");
-assert(
-  (html.match(/class="atlas-scale-record"/g) ?? []).length === 18,
-  "embedded color atlas does not contain 18 scale records",
-);
-assert(
-  [...html.matchAll(/class="atlas-lut-cell"/g)].length === 18 * 41,
-  "embedded color atlas does not contain 738 LUT cells",
-);
-assert(
-  [...html.matchAll(/class="atlas-class-cell"/g)].length === 18 * (5 + 7 + 9),
-  "embedded color atlas does not contain every 5/7/9 class cell",
-);
-assert(
-  [...html.matchAll(/class="scale-family-card"/g)].length === 9,
-  "embedded scale sampler does not contain all nine families",
-);
-assert(
-  [...html.matchAll(/class="scale-family-class-cell"/g)].length === 9 * (5 + 7 + 9),
-  "embedded scale sampler does not contain every paired 5/7/9 class cell",
-);
+assert((html.match(/data:font\/woff2;base64,/g) ?? []).length === 10, "standalone must embed the nine text faces and Material Symbols subset");
+assert((html.match(/class="atlas-scale-record"/g) ?? []).length === 18, "embedded atlas must retain 18 scale records");
+assert((html.match(/class="atlas-lut-cell"/g) ?? []).length === 18 * 41, "embedded atlas must retain 738 LUT cells");
+assert((html.match(/class="atlas-class-cell"/g) ?? []).length === 18 * (5 + 7 + 9), "embedded atlas must retain every 5/7/9 class cell");
+assert((html.match(/class="scale-family-card"/g) ?? []).length === 9, "embedded sampler must retain all nine families");
+assert((html.match(/class="scale-family-class-cell"/g) ?? []).length === 9 * (5 + 7 + 9), "embedded sampler must retain every paired 5/7/9 class cell");
 
-const pinnedHtml = html.replace(
+const immutableHtml = html.replace(
   'data-build-channel="latest-alias"',
   'data-build-channel="immutable-artifact-build"',
 );
-const colorBaselineHtml = html.replace(
-  'data-build-channel="latest-alias"',
-  'data-build-channel="immutable-color-set"',
-);
+assert(immutableHtml !== html, "immutable build-channel marker was not produced");
 assert(
-  pinnedHtml.includes(`data-color-registry="${currentColorSetId}"`) &&
-    pinnedHtml.includes(`data-artifact-build="${artifactBuildId}"`) &&
-    pinnedHtml.includes('data-build-channel="immutable-artifact-build"'),
-  "immutable UI artifact-build markers are missing",
+  immutableHtml.includes(`data-color-registry="${expectedColorSet}"`) &&
+    immutableHtml.includes(`data-artifact-build="${expectedArtifactBuild}"`) &&
+    immutableHtml.includes('data-build-channel="immutable-artifact-build"'),
+  "immutable UI artifact markers are missing",
 );
 
-const committedLatest = await readIfPresent(outputPath);
-const committedPinned = await readIfPresent(pinnedOutputPath);
+const immutablePath = path.join(deploymentDir, expectedImmutableName);
+const committedLatest = await readIfPresent(latestPath);
+const committedImmutable = await readIfPresent(immutablePath);
+if (currentArtifactRecord.status === "append_only") {
+  assert(committedImmutable !== null, `append-only immutable UI build is missing: ${expectedImmutableName}`);
+  assert(
+    Buffer.byteLength(committedImmutable) === currentArtifactRecord.bytes &&
+      sha256(committedImmutable) === currentArtifactRecord.sha256,
+    `append-only immutable UI build changed: ${expectedImmutableName}`,
+  );
+}
 
 if (checkOnly) {
-  assert(
-    committedLatest === html,
-    `latest standalone is stale; run ${toolName}`,
-  );
-  assert(
-    committedPinned === pinnedHtml,
-    `immutable UI artifact build is missing or stale: ${pinnedOutputName}`,
-  );
-  const baselineMintedWith = colorBaselineRecord.mintedWithArtifactBuild ?? artifactBuildId;
-  if (baselineMintedWith === artifactBuildId) {
-    assert(
-      committedColorBaseline === colorBaselineHtml,
-      `immutable Color Set baseline is missing or stale: ${colorBaselineName}`,
-    );
-  } else {
-    // UI-only change on an already-published Color Set: the baseline stays byte-frozen at
-    // the build it was minted with and is verified against its append-only record.
-    assert(
-      committedColorBaseline !== null &&
-        Buffer.byteLength(committedColorBaseline) === colorBaselineRecord.bytes &&
-        sha256(committedColorBaseline) === colorBaselineRecord.sha256,
-      `immutable Color Set baseline no longer matches its append-only record (minted with ${baselineMintedWith}): ${colorBaselineName}`,
-    );
-  }
-  process.stdout.write(
-    `Standalone check passed for ${path.basename(outputPath)} and ${pinnedOutputName} (${artifactBuildId})\n`,
-  );
+  assert(committedLatest === html, `latest standalone is stale; run ${toolName}`);
+  assert(committedImmutable === immutableHtml, `immutable UI build is missing or stale: ${expectedImmutableName}`);
+  process.stdout.write(`Standalone check passed for ${latestName} and ${expectedImmutableName} (${expectedArtifactBuild}); historical Color Set baseline preserved\n`);
 } else {
   assert(
-    committedPinned === null || committedPinned === pinnedHtml,
-    `immutable UI artifact build already exists with different bytes: ${pinnedOutputName}. Preserve it and mint a new artifact-build id plus filename. Mint a new Color Set id only when governed color changes.`,
+    committedImmutable === null || committedImmutable === immutableHtml,
+    `immutable UI build already exists with different bytes: ${expectedImmutableName}. Preserve it and mint a new artifact-build id and filename.`,
   );
-  await atomicWrite(outputPath, html);
-  if (committedColorBaseline === null) await atomicWrite(colorBaselinePath, colorBaselineHtml);
-  if (committedPinned === null) await atomicWrite(pinnedOutputPath, pinnedHtml);
-  process.stdout.write(
-    `Wrote ${outputPath} (${Buffer.byteLength(html).toLocaleString("en-US")} bytes), ${committedColorBaseline === null ? "created" : "preserved"} ${colorBaselinePath}, and ${committedPinned === null ? "created" : "preserved"} ${pinnedOutputPath} (${Buffer.byteLength(pinnedHtml).toLocaleString("en-US")} bytes; ${artifactBuildId})\n`,
-  );
+  await atomicWrite(latestPath, html);
+  if (committedImmutable === null) await atomicWrite(immutablePath, immutableHtml);
+  process.stdout.write(`Wrote ${latestPath} (${Buffer.byteLength(html).toLocaleString("en-US")} bytes) and ${committedImmutable === null ? "created" : "preserved"} ${immutablePath}; preserved ${historicalBaselinePath}\n`);
 }

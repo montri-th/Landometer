@@ -1,0 +1,262 @@
+{
+  "artifact": {
+    "id": "landometer-design-identity-playground-v0.9.1",
+    "version": "0.9.1",
+    "buildCardVersion": "0.9.1",
+    "manifestVersion": "2.1",
+    "tokenSchemaVersion": 6,
+    "authoringRevision": "0.9.1-r8",
+    "rulesetRevision": "lds-rules-0.9.1",
+    "machinePackageIdentity": "v0.9.1-mp7",
+    "machinePackageDelivery": "identity_only",
+    "product": "landometer",
+    "portfolioScope": "shared",
+    "profile": "brand.public",
+    "pageKind": "design_system_reference_with_implementation_library",
+    "delivery": "internal_demo_through_public_projection",
+    "language": "th",
+    "additionalLanguages": [
+      "en"
+    ],
+    "deliveryConformance": "not_claimed",
+    "evidenceStatus": "source_limited",
+    "visibility": "public",
+    "indexable": false,
+    "canonicalUrl": "https://montri-th.github.io/Landometer/",
+    "machineValidation": "pending",
+    "fullLivingReference": false,
+    "artifactBuildId": "ui-20260901-01"
+  },
+  "authority": {
+    "normativeSource": {
+      "path": "assets/downloads/landometer-design-system-v0.9.1.md",
+      "revision": "0.9.1-r8",
+      "bytes": 208463,
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
+      "status": "owner_approved_effective_source"
+    },
+    "machinePackageBoundary": "v0.9.1-mp7 is the release identity recorded by the source; its package bytes are not delivered or claimed as validated by this repository.",
+    "artifactApplication": {
+      "buildCard": "build-card.v0.9.1.yml",
+      "implementationNotes": "implementation-notes.v0.9.1.md",
+      "manualQaProtocol": "qa/v0.9.1-manual-gates.md",
+      "authority": "non_normative_artifact_records"
+    }
+  },
+  "colorDelivery": {
+    "registryId": "color-srgb-05",
+    "registryPath": "assets/data/color-delivery.v0.9.1.json",
+    "range": "SDR",
+    "colorSpace": "sRGB IEC 61966-2-1",
+    "normativeColorValuesChangedFromV090R7": false,
+    "newColorSetMinted": false,
+    "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+    "immutableColorBaselineEvidence": {
+      "bytes": 2141429,
+      "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
+      "status": "preserved byte-for-byte"
+    },
+    "currentArtifactBuild": {
+      "id": "ui-20260901-01",
+      "latestPath": "landometer-design-system-v0.9.1-standalone.html",
+      "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html"
+    },
+    "tokenRegistry": {
+      "path": "assets/data/tokens.json",
+      "bytes": 9166,
+      "sha256": "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc"
+    },
+    "scaleRegistry": {
+      "path": "assets/data/scales.json",
+      "bytes": 36955,
+      "sha256": "daf8e5219f1da9229d7fb474fdaba3957f37c0cfe18eef7527e551c37d88d235"
+    }
+  },
+  "experience": {
+    "oneJob": "Show how v0.9.1 improves implementation while preserving trusted foundations and the complete Color Atlas.",
+    "firstAha": "One governed truth can become easier to discover, read, act on, and carry across formats without collapsing shared and product-specific layers.",
+    "dominantObject": "landometer-design-system@0.9.1",
+    "primaryAction": {
+      "labelTh": "ดูตัวอย่างใหม่",
+      "labelEn": "See the new examples",
+      "destination": "#v091-additions",
+      "outcome": "Open the v0.9.1 implementation examples"
+    },
+    "nextUsefulAction": "Open the retained complete Color Atlas, inspect the Implementation Library, or download the owner-approved master.",
+    "cleanCompletion": "The reader can name a retained principle, identify the improved implementation move, and choose a truthful next reference."
+  },
+  "implementationExamples": {
+    "sourceVersion": "v0.9.1-mp7",
+    "mediaStatus": "conceptual_no_product_evidence",
+    "cases": [
+      {
+        "id": "v091-layers",
+        "kind": "constructive",
+        "ruleAuthority": [
+          "LAYER-01",
+          "AUTHORITY-01",
+          "EVIDENCE-01"
+        ]
+      },
+      {
+        "id": "v091-parity",
+        "kind": "constructive",
+        "ruleAuthority": [
+          "DISCOVERY-01",
+          "DISCOVERY-02",
+          "DISCOVERY-03",
+          "PARITY-01"
+        ]
+      },
+      {
+        "id": "v091-calm-nav",
+        "kind": "constructive",
+        "ruleAuthority": [
+          "NAV-01",
+          "NAV-02",
+          "BOOKMARK-01",
+          "CTA-01",
+          "CTA-02",
+          "MOTION-01",
+          "MOTION-03"
+        ]
+      },
+      {
+        "id": "v091-format",
+        "kind": "constructive",
+        "ruleAuthority": [
+          "FORMAT-PARITY-01",
+          "WEBFMT-01",
+          "PDFFMT-01",
+          "DECKFMT-01",
+          "SOCIALFMT-01"
+        ]
+      },
+      {
+        "id": "v091-incompatibility",
+        "kind": "analytical_boundary",
+        "ruleAuthority": [
+          "COMPARE-01"
+        ]
+      },
+      {
+        "id": "v091-rejected-motion",
+        "kind": "rejected_with_recovery",
+        "ruleAuthority": [
+          "MOTION-01",
+          "MOTION-02",
+          "MOTION-03",
+          "A11Y-01"
+        ]
+      }
+    ]
+  },
+  "evidenceBoundary": {
+    "sharedLayer": "Portfolio framing, methodology, product architecture, and shared design-system behavior across Land, Location, and Living.",
+    "productSpecificLayer": "Named-product data, capabilities, permissions, workflows, scores, models, audiences, voice, claims, and evidence.",
+    "comparison": "Cross-product or cross-city comparison requires compatible schema, release, unit, and grain; otherwise incompatibility stays visible.",
+    "conceptualExamples": "The v0.9.1 examples teach implementation and do not establish product capability, city fact, or product evidence."
+  },
+  "retainedFoundations": {
+    "colorAtlas": {
+      "route": "#complete-color-atlas",
+      "status": "retained_first_class",
+      "analyticalScaleRecords": 18,
+      "analyticalLutCells": 738,
+      "analyticalClassCells": 378
+    },
+    "historicalRecords": "All v0.9.0 and earlier versioned records remain frozen and are not relabelled as v0.9.1."
+  },
+  "assets": [
+    {
+      "path": "assets/downloads/landometer-design-system-v0.9.1.md",
+      "bytes": 208463,
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
+      "usageClass": "exact owner-approved human-readable normative master",
+      "status": "source bytes copied and hash-verified"
+    },
+    {
+      "path": "assets/data/color-delivery.v0.9.1.json",
+      "bytes": 5941,
+      "sha256": "d06142abd915d598e6731fb191ec359d993a5b88f65a692c1ebccec71e6379d9",
+      "usageClass": "artifact-level retained Color Set delivery and parity record"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.html",
+      "bytes": 2189915,
+      "sha256": "47a7052ecce4132a957a33953840114dd14e5f2315346b952a71166e7e3cba46",
+      "mimeType": "text/html",
+      "artifactBuildId": "ui-20260901-01",
+      "colorRegistryId": "color-srgb-05",
+      "usageClass": "self-contained latest Design System reference alias"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+      "bytes": 2189927,
+      "sha256": "028f6e94b8b88901e600fb268eb2b0a6897a37aaed1b10f7256d835c75d61bb1",
+      "mimeType": "text/html",
+      "artifactBuildId": "ui-20260901-01",
+      "colorRegistryId": "color-srgb-05",
+      "integrityMode": "append-only immutable UI artifact",
+      "usageClass": "cross-device handoff and visual-QA authority"
+    },
+    {
+      "path": "assets/data/tokens.json",
+      "bytes": 9166,
+      "sha256": "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc",
+      "usageClass": "carried public playground token projection; not v0.9.1 machine-package delivery"
+    },
+    {
+      "path": "assets/data/scales.json",
+      "bytes": 36955,
+      "sha256": "daf8e5219f1da9229d7fb474fdaba3957f37c0cfe18eef7527e551c37d88d235",
+      "usageClass": "carried analytical-scale reference for the preserved Color Atlas"
+    },
+    {
+      "path": "build-card.v0.9.1.yml",
+      "bytes": 9203,
+      "sha256": "ce9804b626d64dd64e8d4a7bc9827f9037a3d54313b32160f41bd26c516908a5",
+      "usageClass": "non-normative artifact Build Card"
+    },
+    {
+      "path": "implementation-notes.v0.9.1.md",
+      "bytes": 7262,
+      "sha256": "d4471b1d0a73135acf7d6ab2ea6660b565e51e04b63c81fcdf88b89b0c2ac940",
+      "usageClass": "non-normative artifact implementation record"
+    },
+    {
+      "path": "qa/v0.9.1-manual-gates.md",
+      "bytes": 8001,
+      "sha256": "88a0f24de66fc9807ce89b42d8d5155b4fc7f071d78031702f494577e310a85a",
+      "usageClass": "human release QA protocol; not an owner-approval or conformance claim"
+    },
+    {
+      "path": "qa/v0.9.1-automated.json",
+      "bytes": 4306,
+      "sha256": "c722d5dc25d30e83bb64bf5c82b15a24ce01fc0b4a7919368c11bc7a19179355",
+      "usageClass": "release-candidate source, standalone, retained-color, and browser-runtime evidence"
+    },
+    {
+      "path": "llms.txt",
+      "bytes": 4491,
+      "sha256": "bd7e6ca1b818905a054fd9a18c3035dfb95d09e6e5872684b1da37cb8a46750d",
+      "usageClass": "optional project-path navigation aid",
+      "authority": "not a ranking signal, access-control rule, conformance claim, host-root discovery guarantee, or agent-action permission"
+    },
+    {
+      "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
+      "bytes": 2141429,
+      "sha256": "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
+      "mimeType": "text/html",
+      "usageClass": "retained immutable predecessor Color Set baseline",
+      "status": "preserved byte-for-byte; historical path is not relabelled"
+    },
+    {
+      "path": "assets/images/landometer-symbol-transparent.png",
+      "bytes": 11001,
+      "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85",
+      "mimeType": "image/png",
+      "usageClass": "approved browser-tab favicon only"
+    }
+  ]
+}
