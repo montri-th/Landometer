@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // [SELFCHECK-01] SC-21 + SC-23 ([BTN-GEOM-01]), SC-22 ([REVEAL-01]),
-// SC-24 (selected Rebuild02 navbar profile + [NAV-01]), SC-25 (complete
+// SC-24 (selected Rebuild02 navbar profile + [NAV-01], including the approved
+// logo slot/art scale, stable calm targets, and finite intent-only CTA sweep), SC-25 (complete
 // component motion-policy coverage), SC-26 (generated Color Atlas preview parity),
 // and SC-27 (latest-alias freshness handshake). All are rendered contracts:
 // geometry, target ownership, state changes, painted color, and runtime policy
@@ -100,6 +101,11 @@ const artifactSha256 = createHash("sha256").update(artifactBytes).digest("hex");
 const artifactFingerprint = artifactSha256.slice(0, 16);
 const artifactUrl = `${pathToFileURL(artifactPath).href}?cb=${artifactFingerprint}`;
 const latestAliasSource = await readFile(path.join(deploymentDir, "index.html"), "utf8");
+const navCtaMotionSourceStart = artifactSource.indexOf(".nav-cta__sweep");
+const navCtaMotionSourceEnd = artifactSource.indexOf(".header-cta {", navCtaMotionSourceStart);
+const navCtaMotionSource = navCtaMotionSourceStart >= 0 && navCtaMotionSourceEnd > navCtaMotionSourceStart
+  ? artifactSource.slice(navCtaMotionSourceStart, navCtaMotionSourceEnd)
+  : "";
 
 // [BTN-GEOM-01]: --space-5 is the normative minimum inline padding for a capsule.
 const MIN_CAPSULE_INLINE_PADDING_PX = 24;
@@ -116,7 +122,8 @@ const VIEWPORTS = [
     width: 390,
     height: 844,
     prominentSurfacePx: 68,
-    calmSurfacePx: 52,
+    calmSurfacePx: 68,
+    logoSlotPx: 45,
     visibleHeaderControls: 2,
   },
   {
@@ -124,15 +131,23 @@ const VIEWPORTS = [
     width: 1440,
     height: 1000,
     prominentSurfacePx: 76,
-    calmSurfacePx: 52,
+    calmSurfacePx: 76,
+    logoSlotPx: 54,
     visibleHeaderControls: 5,
   },
 ];
 const NAV_GEOMETRY_TOLERANCE_PX = 1;
-const NAV_CALM_OPACITY = 1;
+const NAV_CALM_OPACITY = 0.72;
 const NAV_OPACITY_TOLERANCE = 0.03;
 const NAV_CALM_VISUAL_SCALE = 0.82;
 const NAV_VISUAL_SCALE_TOLERANCE = 0.025;
+const NAV_CALM_SURFACE_ALPHA = 0.26;
+const NAV_CALM_HAIRLINE_ALPHA = 0.20;
+const NAV_ALPHA_TOLERANCE = 0.015;
+const NAV_BRAND_ART_SCALE = 0.558;
+const NAV_BRAND_ART_SCALE_TOLERANCE = 0.012;
+const NAV_CTA_INTENT_DURATION_MS = 200;
+const NAV_CTA_INTENT_EASING = "cubic-bezier(0.2, 0, 0, 1)";
 const PAGE_BOOKMARK_ANCHORS = [
   "#top",
   "#v091-additions",
@@ -308,6 +323,18 @@ const measureNavbar = page => page.evaluate(() => {
     const rect = node?.getBoundingClientRect();
     return rect ? { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height } : null;
   };
+  const colorAlpha = color => {
+    if (!color || color === "transparent") return 0;
+    const canvas = document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = 1;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    if (!context) return Number.NaN;
+    context.clearRect(0, 0, 1, 1);
+    context.fillStyle = color;
+    context.fillRect(0, 0, 1, 1);
+    return context.getImageData(0, 0, 1, 1).data[3] / 255;
+  };
   const menuGlyph = () => {
     const rootMode = document.documentElement.dataset.navGlyphs || "unknown";
     const toggle = document.getElementById("nav-menu-toggle");
@@ -349,6 +376,10 @@ const measureNavbar = page => page.evaluate(() => {
           : node.matches(".header-cta") ? "cta" : "menu",
       href: node instanceof HTMLAnchorElement ? node.href : null,
       text: (node.textContent || "").replace(/\s+/gu, " ").trim(),
+      left: rect.left,
+      right: rect.right,
+      top: rect.top,
+      bottom: rect.bottom,
       width: rect.width,
       height: rect.height,
       centerX: (rect.left + rect.right) / 2,
@@ -373,6 +404,12 @@ const measureNavbar = page => page.evaluate(() => {
   const matrix = visual && getComputedStyle(visual).transform !== "none"
     ? new DOMMatrixReadOnly(getComputedStyle(visual).transform)
     : null;
+  const brandSymbol = document.querySelector(".site-header .brand__symbol");
+  const brandSymbolStyle = brandSymbol ? getComputedStyle(brandSymbol) : null;
+  const brandSymbolRect = brandSymbol?.getBoundingClientRect();
+  const brandSymbolMatrix = brandSymbolStyle && brandSymbolStyle.transform !== "none"
+    ? new DOMMatrixReadOnly(brandSymbolStyle.transform)
+    : null;
   const headerRect = header?.getBoundingClientRect();
   const main = document.querySelector("main");
   const rowRect = box(row);
@@ -387,8 +424,32 @@ const measureNavbar = page => page.evaluate(() => {
     headerTop: headerRect?.top ?? 0,
     headerHeight: headerRect?.height ?? 0,
     surfaceHeight: parseFloat(surface?.height ?? "0"),
+    surfaceBackground: surface?.backgroundColor ?? null,
+    surfaceAlpha: colorAlpha(surface?.backgroundColor),
+    hairlineColor: surface?.borderBottomColor ?? null,
+    hairlineAlpha: colorAlpha(surface?.borderBottomColor),
     rowOpacity: Number(row ? getComputedStyle(row).opacity : 0),
     visualScale: matrix ? Math.hypot(matrix.a, matrix.b) : 1,
+    brandSymbol: brandSymbol && brandSymbolRect ? {
+      src: brandSymbol.getAttribute("src"),
+      widthAttribute: brandSymbol.getAttribute("width"),
+      heightAttribute: brandSymbol.getAttribute("height"),
+      naturalWidth: brandSymbol.naturalWidth,
+      naturalHeight: brandSymbol.naturalHeight,
+      slotWidth: brandSymbol.offsetWidth,
+      slotHeight: brandSymbol.offsetHeight,
+      computedWidth: parseFloat(brandSymbolStyle?.width || "0"),
+      computedHeight: parseFloat(brandSymbolStyle?.height || "0"),
+      transform: brandSymbolStyle?.transform ?? null,
+      transformScaleX: brandSymbolMatrix ? Math.hypot(brandSymbolMatrix.a, brandSymbolMatrix.b) : 1,
+      transformScaleY: brandSymbolMatrix ? Math.hypot(brandSymbolMatrix.c, brandSymbolMatrix.d) : 1,
+      paintedWidth: brandSymbolRect.width,
+      paintedHeight: brandSymbolRect.height,
+      paintedScaleX: brandSymbol.offsetWidth ? brandSymbolRect.width / brandSymbol.offsetWidth : 0,
+      paintedScaleY: brandSymbol.offsetHeight ? brandSymbolRect.height / brandSymbol.offsetHeight : 0,
+      centerX: (brandSymbolRect.left + brandSymbolRect.right) / 2,
+      centerY: (brandSymbolRect.top + brandSymbolRect.bottom) / 2,
+    } : null,
     visibleControls: targets.length,
     targets,
     menuGlyph: menuGlyph(),
@@ -407,9 +468,209 @@ const measureNavbar = page => page.evaluate(() => {
 const glyphIsVisible = glyph => glyph?.mode === "inline-svg" &&
   glyph.iconVisible && glyph.paintedPaths > 0;
 
+const measureNavbarCta = (page, selector) => page.evaluate(targetSelector => {
+  const anchor = document.querySelector(targetSelector);
+  const visual = anchor?.querySelector(".header-control-visual--cta");
+  const label = visual?.querySelector(".nav-cta__label");
+  const sweep = visual?.querySelector(".nav-cta__sweep");
+  const windowNode = sweep?.querySelector(".nav-cta__sweep-window");
+  const copy = windowNode?.querySelector(".nav-cta__sweep-copy");
+  const rect = node => {
+    const value = node?.getBoundingClientRect();
+    return value ? {
+      left: value.left,
+      right: value.right,
+      top: value.top,
+      bottom: value.bottom,
+      width: value.width,
+      height: value.height,
+      centerX: (value.left + value.right) / 2,
+      centerY: (value.top + value.bottom) / 2,
+    } : null;
+  };
+  const animation = node => {
+    if (!node) return null;
+    const style = getComputedStyle(node);
+    return {
+      name: style.animationName,
+      duration: style.animationDuration,
+      delay: style.animationDelay,
+      iterationCount: style.animationIterationCount,
+      easing: style.animationTimingFunction,
+      direction: style.animationDirection,
+      fillMode: style.animationFillMode,
+      playState: style.animationPlayState,
+      transform: style.transform,
+    };
+  };
+  const anchorRect = rect(anchor);
+  const hit = anchorRect ? document.elementFromPoint(anchorRect.centerX, anchorRect.centerY) : null;
+  const sweepStyle = sweep ? getComputedStyle(sweep) : null;
+  const windowStyle = windowNode ? getComputedStyle(windowNode) : null;
+  const visualStyle = visual ? getComputedStyle(visual) : null;
+  const normalize = node => (node?.innerText || "").replace(/\s+/gu, " ").trim();
+  return {
+    exists: !!anchor,
+    visible: !!anchor && anchor.getClientRects().length > 0 && getComputedStyle(anchor).display !== "none",
+    focusVisible: !!anchor && anchor.matches(":focus-visible"),
+    anchorRect,
+    visualRect: rect(visual),
+    directHit: !!anchor && !!hit && (hit === anchor || anchor.contains(hit)),
+    visualOverflow: visualStyle?.overflow ?? null,
+    visualIsolation: visualStyle?.isolation ?? null,
+    labelOpacity: label ? Number(getComputedStyle(label).opacity) : 0,
+    labelText: normalize(label),
+    copyText: normalize(copy),
+    sweepInsideVisual: !!visual && !!sweep && visual.contains(sweep),
+    sweepAriaHidden: sweep?.getAttribute("aria-hidden") ?? null,
+    sweepPointerEvents: sweepStyle?.pointerEvents ?? null,
+    sweepLeft: parseFloat(sweepStyle?.left || "0"),
+    sweepRight: parseFloat(sweepStyle?.right || "0"),
+    sweepMarginLeft: parseFloat(sweepStyle?.marginLeft || "0"),
+    sweepMarginRight: parseFloat(sweepStyle?.marginRight || "0"),
+    sweepPaddingTop: parseFloat(sweepStyle?.paddingTop || "0"),
+    sweepPaddingRight: parseFloat(sweepStyle?.paddingRight || "0"),
+    sweepPaddingBottom: parseFloat(sweepStyle?.paddingBottom || "0"),
+    sweepPaddingLeft: parseFloat(sweepStyle?.paddingLeft || "0"),
+    sweepRadius: parseFloat(sweepStyle?.borderTopLeftRadius || "0"),
+    windowBackground: windowStyle?.backgroundColor ?? null,
+    windowClipPath: windowStyle?.clipPath ?? null,
+    windowAnimation: animation(windowNode),
+    copyAnimation: animation(copy),
+    animationEvents: [...(window.__navCtaAnimationEvents || [])],
+    intersectionObserved: [...(window.__navCtaIoObserved || [])],
+  };
+}, selector);
+
+const navbarRectStable = (before, after, tolerance = NAV_GEOMETRY_TOLERANCE_PX) =>
+  !!before && !!after && ["left", "right", "top", "bottom", "width", "height", "centerX", "centerY"]
+    .every(key => Math.abs(before[key] - after[key]) <= tolerance);
+
+const probeNavbarCtaIntent = async (page, selector, mode) => {
+  const locator = page.locator(selector);
+  await page.evaluate(() => { window.__navCtaAnimationEvents = []; });
+  const before = await measureNavbarCta(page, selector);
+  if (mode === "hover") {
+    await locator.hover();
+  } else {
+    await page.mouse.move(Math.max(1, Math.floor((await page.viewportSize()).width / 2)), 320);
+    for (let index = 0; index < 24; index += 1) {
+      const reached = await page.evaluate(targetSelector => document.activeElement === document.querySelector(targetSelector), selector);
+      if (reached) break;
+      await page.keyboard.press("Tab");
+    }
+  }
+  await page.waitForTimeout(32);
+  const during = await measureNavbarCta(page, selector);
+  await page.waitForTimeout(NAV_CTA_INTENT_DURATION_MS + 80);
+  const after = await measureNavbarCta(page, selector);
+  await page.mouse.move(Math.max(1, Math.floor((await page.viewportSize()).width / 2)), 320);
+  await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());
+  await page.waitForTimeout(24);
+  return { mode, before, during, after };
+};
+
+const validateNavbarCtaIntentProbe = (probe, navFailures, label) => {
+  const { mode, before, during, after } = probe;
+  if (!before.exists || !before.visible) {
+    navFailures.push(`${label} CTA is not visible before its ${mode} intent probe`);
+    return;
+  }
+  if (!before.sweepInsideVisual || before.sweepAriaHidden !== "true" || before.sweepPointerEvents !== "none") {
+    navFailures.push(`${label} CTA sweep is not an aria-hidden, pointer-inert child of the complete inner visual`);
+  }
+  if (before.visualOverflow !== "hidden" || before.visualIsolation !== "isolate") {
+    navFailures.push(`${label} CTA visual does not contain and isolate its sweep (${before.visualOverflow}/${before.visualIsolation})`);
+  }
+  if (!before.labelText || before.copyText !== before.labelText || before.labelOpacity < 0.999) {
+    navFailures.push(`${label} CTA duplicate copy or always-readable real label is incomplete`);
+  }
+  if (Math.abs(before.sweepLeft - 24) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepRight - 24) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepMarginLeft + 5) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepMarginRight + 5) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepPaddingTop - 2) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepPaddingRight - 5) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepPaddingBottom - 2) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepPaddingLeft - 5) > PADDING_TOLERANCE_PX ||
+      Math.abs(before.sweepRadius - 2) > PADDING_TOLERANCE_PX) {
+    navFailures.push(`${label} CTA sweep no longer matches the selected Rebuild02 duplicate-label optical geometry`);
+  }
+  if (!/rgba?\(255,\s*188,\s*31(?:,\s*1)?\)/u.test(before.windowBackground || "") ||
+      !/36%/u.test(before.windowClipPath || "")) {
+    navFailures.push(`${label} CTA sweep is not the Energy Yellow 28% centre band (${before.windowBackground}/${before.windowClipPath})`);
+  }
+  if (before.windowAnimation?.name !== "none" || before.copyAnimation?.name !== "none" || before.animationEvents.length) {
+    navFailures.push(`${label} CTA sweep autoplays before ${mode} intent`);
+  }
+  if (before.intersectionObserved.length) {
+    navFailures.push(`${label} CTA sweep is incorrectly enrolled in IntersectionObserver (${before.intersectionObserved.join(", ")})`);
+  }
+  if (mode === "focus" && !during.focusVisible) {
+    navFailures.push(`${label} CTA keyboard probe did not reach :focus-visible`);
+  }
+  for (const [track, animation, expectedName] of [
+    ["window", during.windowAnimation, "nav-cta-yellow-sweep-window"],
+    ["copy", during.copyAnimation, "nav-cta-yellow-sweep-copy"],
+  ]) {
+    if (!animation || animation.name !== expectedName || animation.duration !== `${NAV_CTA_INTENT_DURATION_MS / 1000}s` ||
+        animation.delay !== "0s" || animation.iterationCount !== "1" ||
+        animation.easing !== NAV_CTA_INTENT_EASING || animation.direction !== "normal" ||
+        animation.fillMode !== "both" || animation.playState !== "running") {
+      navFailures.push(`${label} CTA ${track} ${mode} animation contract is ${JSON.stringify(animation)}`);
+    }
+  }
+  const starts = after.animationEvents.filter(event => event.type === "animationstart");
+  const ends = after.animationEvents.filter(event => event.type === "animationend");
+  const iterations = after.animationEvents.filter(event => event.type === "animationiteration");
+  const cancels = after.animationEvents.filter(event => event.type === "animationcancel");
+  if (starts.length !== 2 || ends.length !== 2 || iterations.length || cancels.length ||
+      new Set(starts.map(event => event.name)).size !== 2) {
+    navFailures.push(`${label} CTA ${mode} event lifecycle is not one finite window+copy sweep (${JSON.stringify(after.animationEvents)})`);
+  }
+  if (!before.directHit || !during.directHit || !after.directHit ||
+      !navbarRectStable(before.anchorRect, during.anchorRect) ||
+      !navbarRectStable(before.anchorRect, after.anchorRect) ||
+      !navbarRectStable(before.visualRect, during.visualRect) ||
+      !navbarRectStable(before.visualRect, after.visualRect)) {
+    navFailures.push(`${label} CTA ${mode} sweep moves geometry or intercepts the direct anchor hit`);
+  }
+  if (during.labelOpacity < 0.999 || after.labelOpacity < 0.999) {
+    navFailures.push(`${label} CTA real-label opacity drops during or after ${mode} intent`);
+  }
+};
+
 for (const viewport of VIEWPORTS) {
   const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
   const page = await context.newPage();
+  await page.addInitScript(() => {
+    window.__navCtaAnimationEvents = [];
+    window.__navCtaIoObserved = [];
+    ["animationstart", "animationiteration", "animationcancel", "animationend"].forEach(type => {
+      document.addEventListener(type, event => {
+        const target = event.target;
+        if (!(target instanceof Element) ||
+            !target.matches(".nav-cta__sweep-window, .nav-cta__sweep-copy")) return;
+        window.__navCtaAnimationEvents.push({
+          type,
+          name: event.animationName,
+          target: target.className,
+          elapsedTime: event.elapsedTime,
+        });
+      }, true);
+    });
+    if ("IntersectionObserver" in window) {
+      const nativeObserve = IntersectionObserver.prototype.observe;
+      IntersectionObserver.prototype.observe = function observe(target) {
+        if (target instanceof Element &&
+            (target.matches(".header-cta, .nav-cta__sweep, .nav-cta__sweep-window, .nav-cta__sweep-copy") ||
+             target.closest(".header-cta"))) {
+          window.__navCtaIoObserved.push(target.className || target.tagName);
+        }
+        return nativeObserve.call(this, target);
+      };
+    }
+  });
   await page.goto(artifactUrl);
   await page.waitForLoadState("load");
   await page.evaluate(() => document.fonts?.ready);
@@ -417,6 +678,32 @@ for (const viewport of VIEWPORTS) {
 
   const prominent = await measureNavbar(page);
   const navFailures = [];
+  const ctaIntent = {
+    selector: viewport.width <= 680
+      ? ".nav-cta--mobile .header-cta"
+      : ".nav-cta--header .header-cta",
+    initial: null,
+    probes: [],
+  };
+  ctaIntent.initial = await measureNavbarCta(page, ctaIntent.selector);
+  if (!navCtaMotionSource || /\binfinite\b|@keyframes\s+lmFlick|@keyframes\s+lmSweep|IntersectionObserver/iu.test(navCtaMotionSource)) {
+    navFailures.push("navbar CTA source contains autoplay, observer, infinite, or Rebuild02 flicker/sweep machinery");
+  }
+  if (!/:hover\s+\.nav-cta__sweep-window/iu.test(navCtaMotionSource) ||
+      !/:focus-visible\s+\.nav-cta__sweep-window/iu.test(navCtaMotionSource)) {
+    navFailures.push("navbar CTA yellow sweep is not gated exclusively by hover and focus-visible intent");
+  }
+  if (ctaIntent.initial.animationEvents.length || ctaIntent.initial.intersectionObserved.length ||
+      ctaIntent.initial.windowAnimation?.name !== "none" || ctaIntent.initial.copyAnimation?.name !== "none") {
+    navFailures.push(`navbar CTA has autoplay or observer activity before intent (${JSON.stringify(ctaIntent.initial)})`);
+  }
+  if (viewport.width > 680) {
+    for (const mode of ["hover", "focus"]) {
+      const probe = await probeNavbarCtaIntent(page, ctaIntent.selector, mode);
+      ctaIntent.probes.push(probe);
+      validateNavbarCtaIntentProbe(probe, navFailures, `${viewport.name} header`);
+    }
+  }
   if (prominent.state !== "prominent") navFailures.push(`initial state ${prominent.state}`);
   if (Math.abs(prominent.headerHeight - viewport.prominentSurfacePx) > NAV_GEOMETRY_TOLERANCE_PX) {
     navFailures.push(`header block ${prominent.headerHeight.toFixed(1)}px, expected ${viewport.prominentSurfacePx}px`);
@@ -446,6 +733,31 @@ for (const viewport of VIEWPORTS) {
     navFailures.push(`menu icon is not visibly rendered (${prominent.menuGlyph.mode}/${prominent.menuGlyph.state})`);
   }
   if (prominent.hasIdentityCarrier) navFailures.push("identity is enclosed by a carrier");
+  if (!prominent.brandSymbol) {
+    navFailures.push("approved brand symbol slot is missing");
+  } else {
+    const symbol = prominent.brandSymbol;
+    if (Math.abs(symbol.slotWidth - viewport.logoSlotPx) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(symbol.slotHeight - viewport.logoSlotPx) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(symbol.computedWidth - viewport.logoSlotPx) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(symbol.computedHeight - viewport.logoSlotPx) > NAV_GEOMETRY_TOLERANCE_PX) {
+      navFailures.push(`brand symbol slot ${symbol.slotWidth.toFixed(1)}x${symbol.slotHeight.toFixed(1)}px (computed ${symbol.computedWidth.toFixed(1)}x${symbol.computedHeight.toFixed(1)}px), expected ${viewport.logoSlotPx}px square`);
+    }
+    if (symbol.widthAttribute !== "192" || symbol.heightAttribute !== "192" ||
+        symbol.naturalWidth !== 192 || symbol.naturalHeight !== 192) {
+      navFailures.push(`brand symbol approved 192px source slot changed (${symbol.widthAttribute}x${symbol.heightAttribute}, natural ${symbol.naturalWidth}x${symbol.naturalHeight})`);
+    }
+    if (Math.abs(symbol.transformScaleX - NAV_BRAND_ART_SCALE) > NAV_BRAND_ART_SCALE_TOLERANCE ||
+        Math.abs(symbol.transformScaleY - NAV_BRAND_ART_SCALE) > NAV_BRAND_ART_SCALE_TOLERANCE) {
+      navFailures.push(`brand symbol computed art scale ${symbol.transformScaleX.toFixed(3)}/${symbol.transformScaleY.toFixed(3)}, expected ${NAV_BRAND_ART_SCALE}`);
+    }
+    if (Math.abs(symbol.paintedScaleX - NAV_BRAND_ART_SCALE) > NAV_BRAND_ART_SCALE_TOLERANCE ||
+        Math.abs(symbol.paintedScaleY - NAV_BRAND_ART_SCALE) > NAV_BRAND_ART_SCALE_TOLERANCE ||
+        Math.abs(symbol.paintedWidth - viewport.logoSlotPx * NAV_BRAND_ART_SCALE) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(symbol.paintedHeight - viewport.logoSlotPx * NAV_BRAND_ART_SCALE) > NAV_GEOMETRY_TOLERANCE_PX) {
+      navFailures.push(`brand symbol painted footprint ${symbol.paintedWidth.toFixed(1)}x${symbol.paintedHeight.toFixed(1)}px (${symbol.paintedScaleX.toFixed(3)}/${symbol.paintedScaleY.toFixed(3)} of slot), expected CSS art scale ${NAV_BRAND_ART_SCALE}`);
+    }
+  }
   prominent.targets.forEach(target => {
     if (target.width + 0.5 < MIN_TARGET_PX || target.height + 0.5 < MIN_TARGET_PX) {
       navFailures.push(`${target.id} target ${target.width.toFixed(1)}x${target.height.toFixed(1)}px`);
@@ -480,6 +792,12 @@ for (const viewport of VIEWPORTS) {
   if (Math.abs(calm.rowOpacity - NAV_CALM_OPACITY) > NAV_OPACITY_TOLERANCE) {
     navFailures.push(`calm row opacity ${calm.rowOpacity.toFixed(2)}, expected ${NAV_CALM_OPACITY}`);
   }
+  if (!Number.isFinite(calm.surfaceAlpha) || Math.abs(calm.surfaceAlpha - NAV_CALM_SURFACE_ALPHA) > NAV_ALPHA_TOLERANCE) {
+    navFailures.push(`calm surface alpha ${Number.isFinite(calm.surfaceAlpha) ? calm.surfaceAlpha.toFixed(3) : calm.surfaceBackground}, expected ${NAV_CALM_SURFACE_ALPHA}`);
+  }
+  if (!Number.isFinite(calm.hairlineAlpha) || Math.abs(calm.hairlineAlpha - NAV_CALM_HAIRLINE_ALPHA) > NAV_ALPHA_TOLERANCE) {
+    navFailures.push(`calm hairline alpha ${Number.isFinite(calm.hairlineAlpha) ? calm.hairlineAlpha.toFixed(3) : calm.hairlineColor}, expected ${NAV_CALM_HAIRLINE_ALPHA}`);
+  }
   if (!calm.rowFillsInner || !calm.controlsRightAligned) {
     navFailures.push("calm row is not full-width with its control cluster aligned right");
   }
@@ -512,9 +830,15 @@ for (const viewport of VIEWPORTS) {
       navFailures.push(`calm target order changed at ${target.kind}`);
       return;
     }
-    if (Math.abs(target.centerX - calmTarget.centerX) > NAV_GEOMETRY_TOLERANCE_PX ||
-        Math.abs(target.width - calmTarget.width) > NAV_GEOMETRY_TOLERANCE_PX) {
-      navFailures.push(`${target.kind} moves or changes semantic width during calm transition`);
+    if (Math.abs(target.left - calmTarget.left) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.right - calmTarget.right) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.top - calmTarget.top) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.bottom - calmTarget.bottom) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.centerX - calmTarget.centerX) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.centerY - calmTarget.centerY) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.width - calmTarget.width) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.height - calmTarget.height) > NAV_GEOMETRY_TOLERANCE_PX) {
+      navFailures.push(`${target.kind} direct target box or centre moves during calm transition`);
     }
     if (!target.visual || !calmTarget.visual) {
       navFailures.push(`${target.kind} has no complete inner visual wrapper`);
@@ -537,6 +861,19 @@ for (const viewport of VIEWPORTS) {
       navFailures.push("brand calm inner visual is not left-anchored in its semantic target");
     }
   });
+  if (!calm.brandSymbol || !prominent.brandSymbol) {
+    navFailures.push("brand symbol is unavailable for calm painted-footprint comparison");
+  } else {
+    const expectedCalmPaintedScale = NAV_BRAND_ART_SCALE * NAV_CALM_VISUAL_SCALE;
+    if (Math.abs(calm.brandSymbol.slotWidth - prominent.brandSymbol.slotWidth) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(calm.brandSymbol.slotHeight - prominent.brandSymbol.slotHeight) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(calm.brandSymbol.transformScaleX - NAV_BRAND_ART_SCALE) > NAV_BRAND_ART_SCALE_TOLERANCE ||
+        Math.abs(calm.brandSymbol.transformScaleY - NAV_BRAND_ART_SCALE) > NAV_BRAND_ART_SCALE_TOLERANCE ||
+        Math.abs(calm.brandSymbol.paintedScaleX - expectedCalmPaintedScale) > NAV_BRAND_ART_SCALE_TOLERANCE ||
+        Math.abs(calm.brandSymbol.paintedScaleY - expectedCalmPaintedScale) > NAV_BRAND_ART_SCALE_TOLERANCE) {
+      navFailures.push(`calm brand symbol does not preserve its ${viewport.logoSlotPx}px slot and ${NAV_BRAND_ART_SCALE} CSS art scale (painted ${calm.brandSymbol.paintedScaleX.toFixed(3)}/${calm.brandSymbol.paintedScaleY.toFixed(3)}, expected ${expectedCalmPaintedScale.toFixed(3)})`);
+    }
+  }
 
   // Headless Chromium starts its virtual pointer at (0, 0), which is already
   // inside the sticky header but does not dispatch an initial pointerenter.
@@ -656,6 +993,11 @@ for (const viewport of VIEWPORTS) {
     if (!closeIconVisible || menuOpen.closeIcon.state !== "close") {
       navFailures.push(`close icon is not visibly rendered (${menuOpen.closeIcon.mode}/${menuOpen.closeIcon.state})`);
     }
+    if (viewport.width <= 680) {
+      const mobileFocusProbe = await probeNavbarCtaIntent(page, ctaIntent.selector, "focus");
+      ctaIntent.probes.push(mobileFocusProbe);
+      validateNavbarCtaIntentProbe(mobileFocusProbe, navFailures, `${viewport.name} menu`);
+    }
     await page.keyboard.press("Escape");
     await page.waitForTimeout(80);
     const afterEscape = await page.evaluate(() => ({
@@ -701,6 +1043,7 @@ for (const viewport of VIEWPORTS) {
     viewport: viewport.name,
     prominent,
     calm,
+    ctaIntent,
     navFragment,
     upward,
     passed: navFailures.length === 0,
@@ -1332,6 +1675,8 @@ if (normal.afterOpen.unlandedRoles > 0 || normal.afterOpen.visibleUnsettled > 0)
 const reduced = await revealProbe({ reducedMotion: "reduce" }, async page => {
   await page.evaluate(() => scrollTo(0, Math.min(1200, document.documentElement.scrollHeight - innerHeight)));
   await page.waitForTimeout(700);
+  await page.locator(".nav-cta--header .header-cta").hover();
+  await page.waitForTimeout(32);
   return page.evaluate(() => ({
     motionApproach: document.documentElement.getAttribute("data-motion-approach"),
     motionCoverage: document.documentElement.dataset.motionCoverage,
@@ -1342,6 +1687,18 @@ const reduced = await revealProbe({ reducedMotion: "reduce" }, async page => {
       .filter(n => Number(getComputedStyle(n).opacity) < 0.99).length,
     calmHeader: document.querySelector(".site-header")?.classList.contains("is-calm") ?? false,
     navState: document.querySelector(".site-header")?.dataset.navState,
+    navCta: (() => {
+      const anchor = document.querySelector(".nav-cta--header .header-cta");
+      const label = anchor?.querySelector(".nav-cta__label");
+      const sweep = anchor?.querySelector(".nav-cta__sweep");
+      const rect = anchor?.getBoundingClientRect();
+      const hit = rect ? document.elementFromPoint((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2) : null;
+      return {
+        sweepDisplay: sweep ? getComputedStyle(sweep).display : null,
+        labelOpacity: label ? Number(getComputedStyle(label).opacity) : 0,
+        directHit: !!anchor && !!hit && (hit === anchor || anchor.contains(hit)),
+      };
+    })(),
   }));
 });
 if (reduced.motionApproach) failures.push("SC-22 reduced-motion: the entrance layer was enabled");
@@ -1351,6 +1708,9 @@ if (reduced.motionCoverage !== "complete" || reduced.unlandedRoles > 0 || reduce
   failures.push(`SC-25 reduced-motion: coverage=${reduced.motionCoverage}, unlanded=${reduced.unlandedRoles}, unsettled=${reduced.unsettled}`);
 }
 if (reduced.calmHeader || reduced.navState !== "prominent") failures.push(`SC-24 reduced-motion: header state ${reduced.navState}`);
+if (reduced.navCta.sweepDisplay !== "none" || reduced.navCta.labelOpacity < 0.999 || !reduced.navCta.directHit) {
+  failures.push(`SC-24 reduced-motion: navbar CTA cue is not hidden with a readable, direct final state (${JSON.stringify(reduced.navCta)})`);
+}
 
 const noJs = await revealProbe({ javaScriptEnabled: false }, page => page.evaluate(() => ({
   motionApproach: document.documentElement.getAttribute("data-motion-approach"),
@@ -1460,7 +1820,7 @@ cases.push({ item: "SC-25", mode: "initial-deep-link", detail: initialDeepLink, 
 await browser.close();
 
 const evidence = {
-  schemaVersion: "1.3",
+  schemaVersion: "1.4",
   rules: ["[BTN-GEOM-01]", "[REVEAL-01]", "[NAV-01]", "[MOTION-COVERAGE-01]", "[TOKEN-01]", "[VIS-04]", "[WEBFMT-01]"],
   selfCheckItems: ["SC-21", "SC-22", "SC-23", "SC-24", "SC-25", "SC-26", "SC-27"],
   dsVersion: artifactDsVersion,
@@ -1488,14 +1848,31 @@ const evidence = {
     },
     entranceCadenceRequiredTerritories: ["v091-additions", "play", "align", "takeaway", "implementation-library"],
     navbarProminentSurfaceCssPx: { desktop: 76, mobile: 68 },
-    navbarCalmSurfaceCssPx: { desktop: 52, mobile: 52 },
+    navbarCalmSurfaceCssPx: { desktop: 76, mobile: 68 },
+    navbarCalmSurfaceAlpha: NAV_CALM_SURFACE_ALPHA,
+    navbarCalmHairlineAlpha: NAV_CALM_HAIRLINE_ALPHA,
+    navbarCalmRowOpacity: NAV_CALM_OPACITY,
+    navbarApprovedLogoSlotCssPx: { desktop: 54, mobile: 45 },
+    navbarLogoCssArtScale: NAV_BRAND_ART_SCALE,
+    navbarLogoPaintedFootprintMatchesArtScale: true,
     navbarVisibleControlBudgetIncludingBrand: { desktop: 5, mobile: 2 },
     navbarDesktopOwnerSelectedR7Routes: ["CityMETER", "CityWiki", "Sign in"],
     navbarMenuAndCloseHavePaintedInlineSvg: true,
     navbarPanelContainsAllCoreRoutesAndGroupedMobilePrimaryTask: true,
     navbarCalmKeepsDirectSemanticTargets: true,
+    navbarCalmKeepsDirectTargetFullRectsAndCenters: true,
     navbarCalmRetainsFullWidthRightAlignedControlCluster: true,
     navbarReducedMotionRemainsProminent: true,
+    navbarCtaYellowDuplicateSweepInsideInnerVisual: true,
+    navbarCtaSweepIntentTriggers: ["hover", "focus-visible"],
+    navbarCtaSweepDurationMs: NAV_CTA_INTENT_DURATION_MS,
+    navbarCtaSweepEasing: NAV_CTA_INTENT_EASING,
+    navbarCtaSweepIterationCount: 1,
+    navbarCtaSweepAutoplay: false,
+    navbarCtaSweepIntersectionObserver: false,
+    navbarCtaSweepInfiniteOrFlicker: false,
+    navbarCtaSweepReducedMotion: "hidden_static_final_state",
+    navbarCtaSweepPreservesLayoutLabelAndDirectHit: true,
     pageBookmarkAnchorsInExactOrder: PAGE_BOOKMARK_ANCHORS,
     pageBookmarkMirroredInMobilePanel: true,
     pageBookmarkVisibleAbove600CssPxExceptShortViewport: true,
@@ -1513,7 +1890,7 @@ const evidence = {
     intersectionObserverFailureShowsFinalState: true,
   },
   boundary:
-    "Rendered geometry, navbar state, inline-SVG paint, route presence, bookmark continuity, Color Atlas preview parity, an isolated latest-build freshness handshake, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, native-Safari review, or transparent-surface contrast review.",
+    "Rendered geometry, approved navbar logo-slot/art scale, calm transparency with stable direct-target rectangles, finite intent-only CTA sweep, inline-SVG paint, route presence, bookmark continuity, Color Atlas preview parity, an isolated latest-build freshness handshake, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, native-Safari review, or transparent-surface contrast review.",
   totals: { cases: cases.length, failures: failures.length },
   cases,
   ...(failures.length ? { failures } : {}),

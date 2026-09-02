@@ -9,14 +9,14 @@
     "effectiveAt": "2026-09-01",
     "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
     "currentArtifactBuild": {
-      "id": "ui-20260902-07",
-      "immutableStandalone": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html"
+      "id": "ui-20260902-08",
+      "immutableStandalone": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html"
     },
     "latestAliases": [
       "index.html",
       "landometer-design-system-v0.9.1-standalone.html"
     ],
-    "changeNote": "Design System v0.9.1 retains Color Set color-srgb-05 without changing normative color values. UI build ui-20260902-07 keeps the owner-selected r7 anatomy while stabilizing calm-scroll target positions, scaling complete inner control visuals, rendering Menu and six bookmark icons as deterministic outline SVG, binding the front preview to the seven Identity and Energy Color Atlas records, and checking latest-build freshness."
+    "changeNote": "Design System v0.9.1 retains Color Set color-srgb-05 without changing normative color values. UI build ui-20260902-08 preserves stable direct navigation targets, matches the Rebuild02 calm transparency values, scales only the approved symbol artwork to the Rebuild02 optical footprint, and adds a finite yellow text sweep as hover/focus feedback on the real Sign-in action without autoplay, flicker, or looping."
   },
   "delivery": {
     "range": "SDR",
@@ -72,19 +72,19 @@
     "status": "preserved byte-for-byte"
   },
   "currentArtifactBuild": {
-    "id": "ui-20260902-07",
+    "id": "ui-20260902-08",
     "latestPath": "landometer-design-system-v0.9.1-standalone.html",
-    "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html",
+    "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html",
     "registryMarker": "data-color-registry=\"color-srgb-05\"",
-    "artifactBuildMarker": "data-artifact-build=\"ui-20260902-07\"",
-    "changeClass": "stable calm-scroll navbar geometry, deterministic inline SVG navigation icons, generator-bound seven-color Identity and Energy preview, and latest-build freshness; Color Set unchanged",
+    "artifactBuildMarker": "data-artifact-build=\"ui-20260902-08\"",
+    "changeClass": "optically matched header symbol, Rebuild02 calm transparency, stable calm target geometry, and finite user-intent yellow CTA text sweep; Color Set unchanged",
     "latestStandalone": {
-      "bytes": 2030738,
-      "sha256": "4ce8e62443c8a2ffc245b788d3da1dd06a992d2f28f87478176a408054de389b"
+      "bytes": 2033086,
+      "sha256": "3fbf25d2670088c620d0b9ba25d35d23d4491e492cb49570c3346c2437504982"
     },
     "immutableStandalone": {
-      "bytes": 2030750,
-      "sha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910"
+      "bytes": 2033098,
+      "sha256": "f24b14705e504ac479aadb4eac4241550f10104c9b959e72bac642a963c89497"
     },
     "integrityMode": "append-only UI artifact; exact bytes are bound by site-manifest.v0.9.1.json"
   },
@@ -174,6 +174,17 @@
       "supersedes": "ui-20260902-06",
       "bytes": 2030750,
       "sha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910",
+      "status": "append_only"
+    },
+    {
+      "id": "ui-20260902-08",
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-05",
+      "changeClass": "optically matched header symbol, Rebuild02 calm transparency, stable calm target geometry, and finite user-intent yellow CTA text sweep; Color Set unchanged",
+      "supersedes": "ui-20260902-07",
+      "bytes": 2033098,
+      "sha256": "f24b14705e504ac479aadb4eac4241550f10104c9b959e72bac642a963c89497",
       "status": "append_only"
     }
   ],

@@ -198,7 +198,7 @@ const currentArtifactBuildId =
   colorDelivery?.meta?.currentArtifactBuild?.id ?? "";
 const currentArtifactBuildName =
   colorDelivery?.meta?.currentArtifactBuild?.immutableStandalone ?? "";
-const expectedCurrentArtifactBuildId = "ui-20260902-07";
+const expectedCurrentArtifactBuildId = "ui-20260902-08";
 let pinnedColorSetHtml = "";
 let currentArtifactBuildHtml = "";
 let tokenRegistrySource = "";
@@ -236,12 +236,24 @@ const preservedUi06BuildHash =
 const preservedUi06BuildHtml = await readTextBesideHtml(
   preservedUi06BuildName
 );
+const preservedUi07BuildId = "ui-20260902-07";
+const preservedUi07BuildName =
+  `landometer-design-system-v${releaseVersion}-standalone.color-srgb-05.${preservedUi07BuildId}.html`;
+const preservedUi07BuildHash =
+  "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910";
+const preservedUi07BuildHtml = await readTextBesideHtml(
+  preservedUi07BuildName
+);
 const manifestAsset = assetPath =>
   siteManifest?.assets?.find(asset => asset.path === assetPath) ?? null;
 const preservedUi06BuildRecord = colorDelivery?.artifactBuilds?.find(
   record => record.id === preservedUi06BuildId
 );
 const preservedUi06BuildAsset = manifestAsset(preservedUi06BuildName);
+const preservedUi07BuildRecord = colorDelivery?.artifactBuilds?.find(
+  record => record.id === preservedUi07BuildId
+);
+const preservedUi07BuildAsset = manifestAsset(preservedUi07BuildName);
 const normativeSourceRecord = siteManifest?.authority?.normativeSource ?? null;
 const normativeSource = await readTextBesideHtml(normativeSourceRecord?.path);
 const scaleRecordsByKey = new Map(
@@ -808,6 +820,21 @@ const preservedUi06BuildValid =
   preservedUi06BuildAsset?.sha256 === preservedUi06BuildHash &&
   preservedUi06BuildAsset?.artifactBuildId === preservedUi06BuildId &&
   preservedUi06BuildAsset?.colorRegistryId === colorRegistryId;
+const preservedUi07BuildValid =
+  preservedUi07BuildRecord?.id === preservedUi07BuildId &&
+  preservedUi07BuildRecord?.path === preservedUi07BuildName &&
+  preservedUi07BuildRecord?.role === "immutable_ui_build" &&
+  preservedUi07BuildRecord?.status === "append_only" &&
+  preservedUi07BuildRecord?.colorRegistryId === colorRegistryId &&
+  preservedUi07BuildRecord?.bytes ===
+    Buffer.byteLength(preservedUi07BuildHtml) &&
+  preservedUi07BuildRecord?.sha256 === preservedUi07BuildHash &&
+  sha256(preservedUi07BuildHtml) === preservedUi07BuildHash &&
+  preservedUi07BuildAsset?.path === preservedUi07BuildName &&
+  preservedUi07BuildAsset?.bytes === preservedUi07BuildRecord?.bytes &&
+  preservedUi07BuildAsset?.sha256 === preservedUi07BuildHash &&
+  preservedUi07BuildAsset?.artifactBuildId === preservedUi07BuildId &&
+  preservedUi07BuildAsset?.colorRegistryId === colorRegistryId;
 const currentArtifactBuildValid =
   currentArtifactBuildId === expectedCurrentArtifactBuildId &&
   currentArtifactBuildName ===
@@ -939,6 +966,8 @@ const headerTargetBlocks = pairedInteractiveElements(siteHeaderRowHtml)
 const headerTargetsByClass = className => headerTargetBlocks.filter(element =>
   classTokensOf(element.attributes).includes(className)
 );
+const allHeaderCtaElements = pairedInteractiveElements(siteHeaderHtml)
+  .filter(element => classTokensOf(element.attributes).includes("header-cta"));
 const ownsSingleSpanWrapper = (element, className) =>
   countClass(element.body, className) === 1 &&
   new RegExp(
@@ -973,9 +1002,23 @@ const siteHeaderCalmSurfaceRule = styleRuleFor(".site-header.is-calm::before");
 const siteHeaderInnerRule = styleRuleFor(".site-header__inner");
 const siteHeaderRowRule = styleRuleFor(".site-header__row");
 const siteHeaderCalmRowRule = styleRuleFor(".site-header.is-calm .site-header__row");
+const brandSymbolRule = exactStyleRuleFor(".brand__symbol");
+const mobileBrandSymbolRule = styleRules.find(rule =>
+  rule.selector.trim() === ".brand__symbol" &&
+  /width:\s*45px/u.test(rule.declarations) &&
+  /height:\s*45px/u.test(rule.declarations)
+);
 const headerLinkOwnRule = exactStyleRuleFor(".header-link");
 const headerCtaRule = exactStyleRuleFor(".header-cta");
 const headerCtaVisualRule = exactStyleRuleFor(".header-control-visual--cta");
+const navCtaSweepRule = exactStyleRuleFor(".nav-cta__sweep");
+const navCtaSweepWindowRule = exactStyleRuleFor(".nav-cta__sweep-window");
+const navCtaSweepCopyRule = exactStyleRuleFor(".nav-cta__sweep-copy");
+const navbarCtaAnimationRules = styleRules.filter(rule =>
+  /animation:\s*nav-cta-yellow-sweep-(?:window|copy)\b/u.test(
+    rule.declarations
+  )
+);
 const navMenuToggleOwnRule = exactStyleRuleFor(".nav-menu-toggle");
 const navMenuToggleVisualOwnRule = exactStyleRuleFor(".nav-menu-toggle__visual");
 const navInlineIconRule = exactStyleRuleFor(".nav-inline-icon");
@@ -1018,12 +1061,12 @@ const rebuildNavbarAnatomyValid =
   attributeOf(siteHeaderHtml.match(/<header\b[^>]*>/iu)?.[0] ?? "", "data-motion-policy") === "state.direct" &&
   /--nav-block-prominent-desktop:\s*76px;/u.test(html) &&
   /--nav-block-prominent-mobile:\s*68px;/u.test(html) &&
-  /--nav-visual-calm-desktop:\s*52px;/u.test(html) &&
-  /--nav-visual-calm-mobile:\s*52px;/u.test(html) &&
+  /--nav-visual-calm-desktop:\s*76px;/u.test(html) &&
+  /--nav-visual-calm-mobile:\s*68px;/u.test(html) &&
   /--nav-content-calm-scale:\s*\.82;/u.test(html) &&
-  /--nav-content-calm-opacity:\s*1;/u.test(html) &&
+  /--nav-content-calm-opacity:\s*\.72;/u.test(html) &&
   /--nav-surface-prominent-alpha:\s*92%;/u.test(html) &&
-  /--nav-surface-calm-alpha:\s*88%;/u.test(html) &&
+  /--nav-surface-calm-alpha:\s*26%;/u.test(html) &&
   /--nav-state-duration:\s*560ms;/u.test(html) &&
   /position:\s*sticky/u.test(siteHeaderRule?.declarations ?? "") &&
   /height:\s*var\(--nav-block-prominent-desktop\)/u.test(siteHeaderRule?.declarations ?? "") &&
@@ -1032,6 +1075,8 @@ const rebuildNavbarAnatomyValid =
   /var\(--nav-surface-prominent-alpha\)/u.test(siteHeaderSurfaceRule?.declarations ?? "") &&
   /height:\s*var\(--nav-visual-calm-desktop\)/u.test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
   /var\(--nav-surface-calm-alpha\)/u.test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
+  /border-color:\s*color-mix\(in srgb, var\(--border-hairline\) 20%, transparent\)/u
+    .test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
   /max-width:\s*1280px/u.test(siteHeaderInnerRule?.declarations ?? "") &&
   /padding-inline:\s*24px/u.test(siteHeaderInnerRule?.declarations ?? "") &&
   /width:\s*100%/u.test(siteHeaderRowRule?.declarations ?? "") &&
@@ -1041,6 +1086,54 @@ const rebuildNavbarAnatomyValid =
   /class="brand__symbol"/u.test(siteHeaderHtml) &&
   /class="brand__wordmark"[^>]*>Landometer</u.test(siteHeaderHtml) &&
   !/\blogo-surface\b/iu.test(siteHeaderHtml);
+const navbarSymbolOpticalScaleValid =
+  /--nav-brand-symbol-art-scale:\s*\.558;/u.test(html) &&
+  elementsWithClass(siteHeaderHtml, "brand__symbol").length === 1 &&
+  elementsWithClass(siteHeaderHtml, "brand__symbol").every(symbol =>
+    attributeOf(symbol, "src") ===
+      "assets/images/landometer-symbol-transparent.png?v=35a1496f" &&
+    attributeOf(symbol, "width") === "192" &&
+    attributeOf(symbol, "height") === "192"
+  ) &&
+  browserTabIconAsset?.path ===
+    "assets/images/landometer-symbol-transparent.png" &&
+  browserTabIconAsset?.bytes === 11001 &&
+  browserTabIconAsset?.sha256 ===
+    "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85" &&
+  approvedFaviconBytes?.length === 11001 &&
+  approvedFaviconHash === browserTabIconAsset.sha256 &&
+  /width:\s*54px/u.test(brandSymbolRule?.declarations ?? "") &&
+  /height:\s*54px/u.test(brandSymbolRule?.declarations ?? "") &&
+  /object-fit:\s*contain/u.test(brandSymbolRule?.declarations ?? "") &&
+  /transform:\s*scale\(var\(--nav-brand-symbol-art-scale\)\)/u.test(
+    brandSymbolRule?.declarations ?? ""
+  ) &&
+  /transform-origin:\s*center/u.test(brandSymbolRule?.declarations ?? "") &&
+  Boolean(mobileBrandSymbolRule);
+const navbarCalmSurfaceParityValid =
+  /--nav-block-prominent-desktop:\s*76px;/u.test(html) &&
+  /--nav-block-prominent-mobile:\s*68px;/u.test(html) &&
+  /--nav-visual-calm-desktop:\s*76px;/u.test(html) &&
+  /--nav-visual-calm-mobile:\s*68px;/u.test(html) &&
+  /--nav-content-calm-opacity:\s*\.72;/u.test(html) &&
+  /--nav-surface-calm-alpha:\s*26%;/u.test(html) &&
+  /height:\s*var\(--nav-visual-calm-desktop\)/u.test(
+    siteHeaderCalmSurfaceRule?.declarations ?? ""
+  ) &&
+  /height:\s*var\(--nav-visual-calm-desktop\)/u.test(
+    siteHeaderCalmRowRule?.declarations ?? ""
+  ) &&
+  /opacity:\s*var\(--nav-content-calm-opacity\)/u.test(
+    siteHeaderCalmRowRule?.declarations ?? ""
+  ) &&
+  /border-color:\s*color-mix\(in srgb, var\(--border-hairline\) 20%, transparent\)/u
+    .test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
+  !styleRules.some(rule =>
+    rule.selector.trim() === ".site-header.is-calm" &&
+    /(?:^|;)\s*height\s*:/u.test(rule.declarations)
+  ) &&
+  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.site-header\.is-calm::before\s*\{\s*height:\s*var\(--nav-visual-calm-mobile\);\s*\}[\s\S]*?\.site-header\.is-calm \.site-header__row\s*\{[^{}]*height:\s*var\(--nav-visual-calm-mobile\);[^{}]*\}/u
+    .test(html);
 const navbarCalmTargetStableValid =
   headerTargetBlocks.length === 5 &&
   headerTargetsByClass("brand").length === 1 &&
@@ -1096,6 +1189,65 @@ const navbarCalmTargetStableValid =
   /border-radius:\s*50%/u.test(
     navMenuToggleVisualOwnRule?.declarations ?? ""
   );
+const navbarCtaStructureValid =
+  allHeaderCtaElements.length === 2 &&
+  allHeaderCtaElements.every(element => {
+    const realLabels = elementsWithClass(element.body, "nav-cta__label");
+    const sweeps = elementsWithClass(element.body, "nav-cta__sweep");
+    return attributeOf(element.openingTag, "href") ===
+        "https://landometer.com/auth" &&
+      ownsSingleSpanWrapper(element, "header-control-visual--cta") &&
+      realLabels.length === 1 &&
+      sweeps.length === 1 &&
+      !/\baria-hidden\b/iu.test(realLabels[0]) &&
+      attributeOf(sweeps[0], "aria-hidden") === "true" &&
+      countClass(element.body, "nav-cta__sweep-window") === 1 &&
+      countClass(element.body, "nav-cta__sweep-copy") === 1 &&
+      element.body.indexOf('class="nav-cta__label"') <
+        element.body.indexOf('class="nav-cta__sweep"') &&
+      (element.body.match(/>เข้าใช้งาน</gu) ?? []).length === 2 &&
+      (element.body.match(/>Sign in</gu) ?? []).length === 2;
+  }) &&
+  /position:\s*relative/u.test(headerCtaVisualRule?.declarations ?? "") &&
+  /isolation:\s*isolate/u.test(headerCtaVisualRule?.declarations ?? "") &&
+  /overflow:\s*hidden/u.test(headerCtaVisualRule?.declarations ?? "") &&
+  /pointer-events:\s*none/u.test(navCtaSweepRule?.declarations ?? "") &&
+  /background:\s*var\(--energy-yellow\)/u.test(
+    navCtaSweepWindowRule?.declarations ?? ""
+  ) &&
+  /color:\s*var\(--fg-on-light-primary\)/u.test(
+    navCtaSweepWindowRule?.declarations ?? ""
+  );
+const navbarCtaIntentMotionValid =
+  /--motion-duration-state:\s*200ms;/u.test(html) &&
+  navbarCtaAnimationRules.length === 2 &&
+  navbarCtaAnimationRules.every(rule => {
+    const animationName = rule.declarations.match(
+      /animation:\s*(nav-cta-yellow-sweep-(?:window|copy))\b/u
+    )?.[1];
+    const targetClass = animationName?.endsWith("window")
+      ? "nav-cta__sweep-window"
+      : animationName?.endsWith("copy")
+        ? "nav-cta__sweep-copy"
+        : "";
+    const selectors = rule.selector.split(",").map(selector => selector.trim());
+    return targetClass.length > 0 &&
+      selectors.length === 2 &&
+      selectors.includes(`.header-cta:hover .${targetClass}`) &&
+      selectors.includes(`.header-cta:focus-visible .${targetClass}`) &&
+      new RegExp(
+        `animation:\\s*${animationName}\\s+var\\(--motion-duration-state\\)\\s+var\\(--motion-ease-state\\)\\s+0ms\\s+1\\s+both`,
+        "u"
+      ).test(rule.declarations);
+  }) &&
+  !/\banimation\s*:/u.test(navCtaSweepRule?.declarations ?? "") &&
+  !/\banimation\s*:/u.test(navCtaSweepWindowRule?.declarations ?? "") &&
+  !/\banimation\s*:/u.test(navCtaSweepCopyRule?.declarations ?? "") &&
+  /@keyframes\s+nav-cta-yellow-sweep-window\s*\{\s*from\s*\{\s*transform:\s*translateX\(-120%\);\s*\}\s*to\s*\{\s*transform:\s*translateX\(120%\);\s*\}\s*\}/u.test(html) &&
+  /@keyframes\s+nav-cta-yellow-sweep-copy\s*\{\s*from\s*\{\s*transform:\s*translateX\(120%\);\s*\}\s*to\s*\{\s*transform:\s*translateX\(-120%\);\s*\}\s*\}/u.test(html) &&
+  !/(?:nav-cta__|header-cta)/u.test(scriptSource) &&
+  !/\blmFlick\b|@keyframes\s+lmSweep\b|nav-cta-yellow-sweep-[^;{}]*\binfinite\b/iu.test(html) &&
+  /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]{0,900}\.nav-cta__sweep\s*\{\s*display:\s*none;\s*\}/u.test(html);
 const navbarInlineSvgIconsValid =
   attributeOf(htmlTag, "data-nav-glyphs") === "inline-svg" &&
   headerTargetsByClass("nav-menu-toggle").every(element =>
@@ -1327,8 +1479,24 @@ const checks = [
     rebuildNavbarAnatomyValid
   ],
   [
+    "navbar symbol keeps the exact binary while its artwork matches the Rebuild02 optical footprint inside stable desktop and mobile slots",
+    navbarSymbolOpticalScaleValid
+  ],
+  [
+    "calm navbar keeps full target geometry while applying Rebuild02 alpha, hairline, and row-opacity treatment",
+    navbarCalmSurfaceParityValid
+  ],
+  [
     "calm navbar keeps every 44px target in place and scales each complete inner visual",
     navbarCalmTargetStableValid
+  ],
+  [
+    "navbar CTA keeps its real label and pointer-inert yellow duplicate inside the complete visual wrapper",
+    navbarCtaStructureValid
+  ],
+  [
+    "navbar CTA yellow sweep is finite 200ms hover/focus feedback with no autoplay, flicker, or reduced-motion paint",
+    navbarCtaIntentMotionValid
   ],
   [
     "menu and six distinct side bookmarks use deterministic rounded inline SVG icons",
@@ -1456,6 +1624,10 @@ const checks = [
   [
     "ui-20260902-06 remains byte-exact as the append-only predecessor",
     preservedUi06BuildValid
+  ],
+  [
+    "ui-20260902-07 remains byte-exact as the append-only predecessor",
+    preservedUi07BuildValid
   ],
   [
     "Color Set source hashes match the packaged token and scale registries",
@@ -1680,7 +1852,7 @@ const checks = [
     fragmentMotionSafetyValid
   ],
   ["reveal assignments use the exact v0.9.1 approach recipe", approachRecipeValid],
-  ["CTA discovery cue is finite and matches the v0.9.1 recipe", discoveryCueValid],
+  ["body v0.9.1 discovery CTA stays a separate finite 540ms cue", discoveryCueValid],
   ["opportunity cards receive visual flow", /decorateOpportunityCards\(\)/u.test(html)],
   ["rounded outline icon contract", /stroke-linecap:\s*round/u.test(html) && /stroke-linejoin:\s*round/u.test(html)],
   [

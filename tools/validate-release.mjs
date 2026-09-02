@@ -20,23 +20,25 @@ const RELEASE = Object.freeze({
   machineValidation: "pending",
   colorSetId: "color-srgb-05",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260902-07",
-  previousArtifactBuildId: "ui-20260902-06",
-  earlierArtifactBuildId: "ui-20260902-05",
-  initialArtifactBuildId: "ui-20260902-04",
-  predecessorArtifactBuildId: "ui-20260902-03",
-  originArtifactBuildId: "ui-20260902-02",
-  legacyArtifactBuildId: "ui-20260902-01",
-  oldestArtifactBuildId: "ui-20260901-01",
+  artifactBuildId: "ui-20260902-08",
+  previousArtifactBuildId: "ui-20260902-07",
+  earlierArtifactBuildId: "ui-20260902-06",
+  initialArtifactBuildId: "ui-20260902-05",
+  predecessorArtifactBuildId: "ui-20260902-04",
+  originArtifactBuildId: "ui-20260902-03",
+  legacyArtifactBuildId: "ui-20260902-02",
+  oldestArtifactBuildId: "ui-20260902-01",
+  foundingArtifactBuildId: "ui-20260901-01",
   latest: "landometer-design-system-v0.9.1-standalone.html",
-  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html",
-  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
-  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",
-  initialImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html",
-  predecessorImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
-  originImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
-  legacyImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
-  oldestImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html",
+  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html",
+  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
+  initialImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",
+  predecessorImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html",
+  originImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
+  legacyImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
+  oldestImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
+  foundingImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
   historicalBaseline: "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.1.md",
   registry: "assets/data/color-delivery.v0.9.1.json",
@@ -47,13 +49,14 @@ const RELEASE = Object.freeze({
   automatedQa: "qa/v0.9.1-automated.json",
   manualQa: "qa/v0.9.1-manual-gates.md",
   authoritySha256: "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
-  previousImmutableUiSha256: "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55",
-  earlierImmutableUiSha256: "8e25a5c8b0f39b8d96d433720681222ea06027862e8749922546678e355c05cf",
-  initialImmutableUiSha256: "5e2f707b333e0424ea9035f7392022514e0e37bf4ca0aa4680617483889fe42a",
-  predecessorImmutableUiSha256: "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332",
-  originImmutableUiSha256: "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
-  legacyImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
-  oldestImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
+  previousImmutableUiSha256: "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910",
+  earlierImmutableUiSha256: "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55",
+  initialImmutableUiSha256: "8e25a5c8b0f39b8d96d433720681222ea06027862e8749922546678e355c05cf",
+  predecessorImmutableUiSha256: "5e2f707b333e0424ea9035f7392022514e0e37bf4ca0aa4680617483889fe42a",
+  originImmutableUiSha256: "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332",
+  legacyImmutableUiSha256: "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
+  oldestImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
+  foundingImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
   navFontSha256: "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
   navFontLicenseSha256: "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
   historicalBaselineSha256: "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
@@ -441,6 +444,15 @@ check(oldestArtifactRecord?.status === "append_only", "registry:oldest-v091-reco
 check(oldestArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.oldestImmutableUi)).size, "registry:oldest-v091-record-bytes");
 check(oldestArtifactRecord?.sha256 === RELEASE.oldestImmutableUiSha256, "registry:oldest-v091-record-known-hash");
 check(oldestArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.oldestImmutableUi)), "registry:oldest-v091-record-file-hash");
+const foundingArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.foundingArtifactBuildId && record.path === RELEASE.foundingImmutableUi,
+);
+check(foundingArtifactRecord?.role === "immutable_ui_build", "registry:founding-v091-record-role");
+check(foundingArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:founding-v091-record-color-set");
+check(foundingArtifactRecord?.status === "append_only", "registry:founding-v091-record-append-only");
+check(foundingArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.foundingImmutableUi)).size, "registry:founding-v091-record-bytes");
+check(foundingArtifactRecord?.sha256 === RELEASE.foundingImmutableUiSha256, "registry:founding-v091-record-known-hash");
+check(foundingArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.foundingImmutableUi)), "registry:founding-v091-record-file-hash");
 check(sha256(deploymentPath(RELEASE.historicalRegistry)) === RELEASE.historicalRegistrySha256, "history:v090-registry-byte-frozen");
 check(sha256(deploymentPath(RELEASE.historicalBaseline)) === RELEASE.historicalBaselineSha256, "history:color-srgb-05-baseline-byte-frozen");
 check(!existsSync(deploymentPath("landometer-design-system-v0.9.1-standalone.color-srgb-05.html")), "history:no-reminted-v091-color-baseline");
@@ -699,13 +711,36 @@ check(
 check(
     html.includes("--nav-block-prominent-desktop: 76px") &&
     html.includes("--nav-block-prominent-mobile: 68px") &&
-    html.includes("--nav-visual-calm-desktop: 52px") &&
-    html.includes("--nav-visual-calm-mobile: 52px") &&
+    html.includes("--nav-visual-calm-desktop: 76px") &&
+    html.includes("--nav-visual-calm-mobile: 68px") &&
     html.includes("--nav-content-calm-scale: .82") &&
-    html.includes("--nav-content-calm-opacity: 1") &&
-    html.includes("--nav-surface-calm-alpha: 88%") &&
+    html.includes("--nav-content-calm-opacity: .72") &&
+    html.includes("--nav-brand-symbol-art-scale: .558") &&
+    html.includes("--nav-surface-calm-alpha: 26%") &&
     html.includes("--nav-state-duration: 560ms"),
-  "navigation:r7-adapted-safe-state-anatomy",
+  "navigation:r7-adapted-stable-geometry-and-reference-transparency",
+);
+check(
+  /\.brand__symbol\s*\{[\s\S]*?width:\s*54px;[\s\S]*?height:\s*54px;[\s\S]*?transform:\s*scale\(var\(--nav-brand-symbol-art-scale\)\)/.test(html) &&
+    /@media\s*\(max-width:\s*680px\)[\s\S]*?\.brand__symbol\s*\{\s*width:\s*45px;\s*height:\s*45px;\s*\}/.test(html),
+  "navigation:asset-preserving-rebuild02-optical-symbol-footprint",
+);
+check(
+  (header.match(/class="nav-cta__sweep"\s+aria-hidden="true"/g) ?? []).length === 2 &&
+    (header.match(/class="nav-cta__label"/g) ?? []).length === 2 &&
+    /header-control-visual header-control-visual--cta[\s\S]*?nav-cta__label[\s\S]*?nav-cta__sweep/.test(header) &&
+    /\.nav-cta__sweep\s*\{[\s\S]*?pointer-events:\s*none;/.test(html) &&
+    /\.nav-cta__sweep-window\s*\{[\s\S]*?background:\s*var\(--energy-yellow\);[\s\S]*?clip-path:\s*inset\(0 36% 0 36%\);/.test(html),
+  "navigation:sign-in-yellow-text-sweep-layer-contract",
+);
+check(
+  /\.header-cta:hover \.nav-cta__sweep-window,[\s\S]*?\.header-cta:focus-visible \.nav-cta__sweep-window[\s\S]*?animation:\s*nav-cta-yellow-sweep-window var\(--motion-duration-state\) var\(--motion-ease-state\) 0ms 1 both;/.test(html) &&
+    /@keyframes nav-cta-yellow-sweep-window\s*\{[\s\S]*?translateX\(-120%\)[\s\S]*?translateX\(120%\)/.test(html) &&
+    /@keyframes nav-cta-yellow-sweep-copy\s*\{[\s\S]*?translateX\(120%\)[\s\S]*?translateX\(-120%\)/.test(html) &&
+    /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.nav-cta__sweep\s*\{\s*display:\s*none;\s*\}/.test(html) &&
+    !/nav-cta[^\n{}]*[\s\S]{0,240}?infinite/i.test(html) &&
+    !html.includes("lmFlick"),
+  "navigation:sign-in-sweep-is-finite-user-intent-state-feedback",
 );
 check(header.includes("ในหน้านี้") && header.includes("Landometer ecosystem") && header.includes("nav-panel-utilities"), "navigation:r7-panel-group-anatomy");
 check(header.includes("nav-panel-mobile-cta") && header.includes("https://landometer.com/auth"), "navigation:mobile-cta-restored-in-panel");
