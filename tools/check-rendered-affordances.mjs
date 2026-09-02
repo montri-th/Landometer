@@ -348,6 +348,12 @@ for (const viewport of VIEWPORTS) {
     if (!target.directHit) navFailures.push(`${target.id} calm target is covered by another layer`);
   });
 
+  // Headless Chromium starts its virtual pointer at (0, 0), which is already
+  // inside the sticky header but does not dispatch an initial pointerenter.
+  // Move outside first so this check measures a real entry intent consistently
+  // across Linux CI and interactive desktop browsers.
+  await page.mouse.move(Math.floor(viewport.width / 2), Math.min(viewport.height - 1, 320));
+  await page.waitForTimeout(80);
   let navFragment = null;
   const menuBox = await page.locator("#nav-menu-toggle").boundingBox();
   if (!menuBox) {
