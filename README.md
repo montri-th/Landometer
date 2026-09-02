@@ -8,7 +8,7 @@ The v0.9.1 page keeps the strongest parts of the existing playground—hero invi
 
 ## What is new in v0.9.1
 
-Artifact build `ui-20260902-03` makes “retained principle → improved implementation → visible result” explicit through six alternating copy-and-visual chapters:
+Artifact build `ui-20260902-06` makes “retained principle → improved implementation → visible result” explicit through six alternating copy-and-visual chapters:
 
 1. **One shared method, distinct product truths** — a shared Locale Insight frame with separate Land, Location, and Living packs;
 2. **One claim, consistent meaning for people and machines** — one claim preserved across initial HTML, visible page, and hydrated state;
@@ -21,15 +21,23 @@ Every new case is labelled as a conceptual example, not product evidence. Produc
 
 The shared Landometer layer covers portfolio framing, methodology, and product architecture across **Land · Location · Living**. Cross-product or cross-city comparison requires compatible schema, release, unit, and grain; otherwise incompatibility stays visible.
 
-### UI artifact revision `ui-20260902-03`
+### UI artifact revision `ui-20260902-06`
 
-This is an implementation-artifact revision, not a normative Design System change. The live header now uses the same approved symbol-plus-wordmark anatomy, 76/68px prominent rhythm, and 29/27px calm visual surface as the validated public-site pattern. The DS page keeps the normative budget of Brand + CityMETER + Sign in + Menu on desktop and Brand + Menu on mobile. Only surface and visual emphasis change: semantic targets stay direct and at least 44 × 44 CSS pixels. No wake-first click or coordinate-forwarding overlay is used. Reduced motion keeps the stable prominent state.
+This is an implementation-artifact revision, not a normative Design System change. It applies the owner-selected `rebuild02-navbar-handoff-r7-candidate`, bound to the supplied archive SHA-256 `47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa`. That candidate is a non-normative artifact reference and is not identity approval.
 
-Every semantic component family now declares a motion policy. Supporting editorial sequences may use `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, or `stagger.child`; visible teaching cards use a finite outline settle; direct controls own their state; disclosures animate only their surface; and critical/evidence/identity/Color Atlas content is explicitly static. The entrance constants remain opacity `760ms`, transform `920ms`, media `900ms`, block distance `32px`, logical inline distance `36px`, scale from `.985`, stagger `150ms` capped at `450ms`, observer threshold `.14`, root margin `0px 0px -12% 0px`, and a `2400ms` safety audit. Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, and deep-link targets are never hidden. Closed disclosures and hidden panels are not enrolled.
+The desktop header now follows the selected r7 anatomy: Brand + CityMETER + CityWiki + Sign in + Menu. Five visible controls including brand exceed the NAV-01 budget of four, so the divergence is explicit and artifact conformance remains `not_claimed`. Mobile keeps Brand + Menu while the grouped disclosure preserves the primary action, the same six page anchors, ecosystem routes, and utilities. Prominent height is 76px desktop and 68px mobile; calm is a 52px visual surface in both modes. The row remains full-width, controls stay right, only inner visuals scale to `.82`, content opacity stays `1`, and surface alpha is `88%`. Direct targets remain at least 44 × 44 CSS pixels; no wake-first click, coordinate-forwarding overlay, infinite cue, or `FILL 1` selected icon is used.
+
+The selected side bookmark is bound to `component.bookmark.side.01`. Its desktop rail remains present before the first tracked section, exposes six real anchors in stable order, and mirrors the same list in the mobile disclosure. The earlier intermittent rail came from tying visibility to a short active-anchor observer list rather than the page-index contract.
+
+Every semantic component family still declares a motion policy, but this revision adds perceptual cadence: each major reading territory after the hero has an eligible supporting reveal or a justified-static state. Containers with protected descendants split eligible supporting children instead of downgrading all editorial content. Critical/evidence/identity/Color Atlas content stays immediate. The entrance constants remain opacity `760ms`, transform `920ms`, media `900ms`, block distance `32px`, logical inline distance `36px`, scale from `.985`, stagger `150ms` capped at `450ms`, observer threshold `.14`, root margin `0px 0px -12% 0px`, and a `2400ms` safety audit. Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, and deep-link targets are never hidden. Closed disclosures and hidden panels are not enrolled.
+
+The blank menu icon in the prior build was an icon-subset coverage failure that escaped a size-only rendered check; this revision adds visible-glyph coverage. Continuous Thai/English slow-scroll review and header identity/contrast review remain open manual gates and are not claimed as passed.
+
+`ui-20260902-05` preserved the complete ui-04 navbar, side-bookmark, icon-delivery, and perceptual-motion implementation, then closed a stale handoff-link/receipt defect. `ui-20260902-06` preserves both revisions and corrects a pre-commit finding: selected side-bookmark icons had changed from the governed `wght 300` to `wght 400`. The selected icon is now restored to `FILL 0, wght 300, GRAD 0, opsz 24`; selection remains visible through surface, border, shape, and label. The ui-05 and ui-04 files remain byte-frozen append-only evidence.
 
 The cross-format CTA uses a pointer-inert highlight band that sweeps once from `-120%` to `120%` in `540ms` with `cubic-bezier(.16,1,.3,1)`. It does not loop, move layout, or reduce content opacity; reduced motion and missing observer support receive the final no-cue state.
 
-Status, source, boundary, limitation, and CTA receipt text remain readable throughout semantic state changes; only supporting cues or a non-content surface settle. Print, no-JavaScript, reduced-motion, missing-observer, and observer-failure paths expose final meaning. The prior `ui-20260902-02`, `ui-20260902-01`, and `ui-20260901-01` builds remain immutable release evidence.
+Status, source, boundary, limitation, and CTA receipt text remain readable throughout semantic state changes; only supporting cues or a non-content surface settle. Print, no-JavaScript, reduced-motion, missing-observer, and observer-failure paths expose final meaning. The prior `ui-20260902-05`, `ui-20260902-04`, `ui-20260902-03`, `ui-20260902-02`, `ui-20260902-01`, and `ui-20260901-01` builds remain immutable release evidence.
 
 ## What remains
 
@@ -60,9 +68,9 @@ Analytical scale records remain bound to their recorded source/version. They are
 - Site Manifest `2.1`
 - carried Token Schema projection `6`
 - Color Set `color-srgb-05` — retained; no normative color value change from v0.9.0-r7
-- artifact build `ui-20260902-03` — navbar and complete component-family motion revision; Design System authority and Color Set are unchanged
+- artifact build `ui-20260902-06` — preserves the ui-04 experience revision and ui-05 handoff-link correction while restoring selected bookmark icons to governed `wght 300`; Design System authority and Color Set are unchanged
 - latest standalone `deployment/landometer-design-system-v0.9.1-standalone.html`
-- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html`
+- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html`
 - profile `brand.public`
 - public, `noindex`, `source_limited`; artifact conformance is not claimed
 - `fullLivingReference: false`

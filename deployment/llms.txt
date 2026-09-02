@@ -7,7 +7,8 @@ Delivery boundary: public GitHub Pages projection; noindex; source_limited; arti
 Normative source: Landometer Design System 0.9.1-r8; owner-approved 2026-09-01; active and effective
 Ruleset: lds-rules-0.9.1
 Machine-package identity: v0.9.1-mp7; identity only—the package bytes are not published by this site
-Artifact build: ui-20260902-03; navbar and complete component-family motion revision superseding ui-20260902-02 without changing Design System authority or Color Set
+Artifact build: ui-20260902-06; preserves the ui-04 experience revision and ui-05 handoff-link correction while restoring the selected side-bookmark icon from an unintended wght 400 override to governed wght 300; supersedes and preserves ui-20260902-05 without changing Design System authority or Color Set
+Owner-selected artifact candidate: rebuild02-navbar-handoff-r7-candidate; Unified navbar design handoff r7.zip SHA-256 47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa; non-normative reference only
 Color Set: color-srgb-05; retained with no normative color-value change from v0.9.0-r7
 Motion Set: motion-riddim-approach-02
 Icon Set: icon-rounded-outline-01
@@ -27,8 +28,11 @@ Governed object: landometer-design-system@0.9.1
 ## Portable artifacts
 
 - Latest standalone: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.html
-- Immutable v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html
-- Preserved prior UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html
+- Immutable v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html
+- Preserved prior UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html
+- Preserved earlier UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html
+- Preserved earlier UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html
+- Preserved earlier UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html
 - Preserved reviewed candidate: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html
 - Preserved earlier v0.9.1 UI build: https://montri-th.github.io/Landometer/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html
 - v0.9.1 Color delivery record: https://montri-th.github.io/Landometer/assets/data/color-delivery.v0.9.1.json
@@ -41,15 +45,19 @@ The predecessor baseline remains byte-frozen historical evidence. The v0.9.1 imm
 - Six alternating copy-and-visual chapters cover: shared Locale Insight architecture with distinct Land/Location/Living product truth; Initial HTML → Visible page → Hydrated state parity; prominent/calm navigation; Web/PDF/deck/social semantic parity; parcel/neighbourhood incompatibility; and a static rejected-motion recovery.
 - Every chapter is a conceptual design-system teaching fixture, not product or city evidence. The alternating presentation is a non-normative artifact decision.
 - Initial HTML, visible page, and hydrated state preserve the same claim, source, time basis, limitation, and action authority.
-- Navigation uses the approved symbol-plus-wordmark anatomy with Brand + CityMETER + Sign in + Menu on desktop and Brand + Menu on mobile. The 76/68px prominent surface may calm visually to 29/27px, but every semantic target remains direct and at least 44 × 44 CSS pixels; no wake-first or coordinate-forwarding layer is permitted.
+- Navigation applies the owner-selected r7 candidate anatomy with Brand + CityMETER + CityWiki + Sign in + Menu on desktop and Brand + Menu on mobile. Five desktop controls including brand exceed the NAV-01 budget of four, so this is an explicit artifact divergence and conformance remains not_claimed.
+- The 76px desktop/68px mobile prominent surface calms to 52px in both modes; the row remains full-width, controls stay right, inner visuals scale to .82, content opacity stays 1, and surface alpha is 88%. Every semantic target remains direct and at least 44 × 44 CSS pixels; no wake-first or coordinate-forwarding layer is permitted.
+- The selected `component.bookmark.side.01` rail uses six real anchors in stable order and mirrors them exactly in the mobile disclosure. It does not wait for an active anchor before appearing; page-current and location-current semantics remain separate.
+- The Color Set stability code sample, Implementation Library standalone resource, and footer artifact receipt all resolve to the current ui-06 immutable handoff; ui-05 and ui-04 remain append-only evidence.
 - Icons remain rounded outline at FILL 0 in every state.
-- Every semantic component family declares one of eight motion policies. Supporting entrances use only approach.soft, approach.inline-start, approach.inline-end, media.arrival, and stagger.child. Other families settle visibly, own direct state, use surface-only disclosure motion, remain static critical/evidence, or inherit/orchestrate container behavior. Constants remain 760ms opacity, 920ms transform, 900ms media, 32px block distance, 36px logical-inline distance, .985 starting scale, 150ms stagger capped at 450ms, .14 observer threshold, 0px 0px -12% 0px root margin, and a 2400ms safety audit.
+- Selected side-bookmark icons remain at `wght 300`; selection uses surface, border, shape, and label rather than a glyph-weight or fill change.
+- Every semantic component family declares one of eight motion policies. Each major reading territory after the hero has an eligible supporting reveal or explicit justified-static state; protected descendants are split from eligible supporting children instead of downgrading the whole parent. Constants remain 760ms opacity, 920ms transform, 900ms media, 32px block distance, 36px logical-inline distance, .985 starting scale, 150ms stagger capped at 450ms, .14 observer threshold, 0px 0px -12% 0px root margin, and a 2400ms safety audit.
 - Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, deep-link targets, closed disclosures, and hidden panels are excluded from hidden entrances. Motion is once-only and fail-open; reduced motion, missing observer support, or no JavaScript receives visible final meaning.
 - The finite CTA cue moves a pointer-inert 28% highlight band from -120% to 120% once in 540ms with cubic-bezier(.16,1,.3,1); it does not loop, move layout, or change content opacity.
 - Web, PDF, deck, and social outputs preserve semantic meaning rather than pixel sameness.
 - Incompatibility is a valid result when schema, release, unit, or grain differs.
 - The complete Color Atlas and Color Set color-srgb-05 are unchanged; this UI revision does not mint a new Color Set.
-- Open-menu locale changes preserve the currently focused control, deep links use one sticky-header offset, and standalone browser-tab identity embeds the approved favicon for offline use.
+- Open-menu locale changes preserve the currently focused control, deep links use one sticky-header offset, and standalone browser-tab identity embeds the approved favicon for offline use. The r7 archive is not identity authorization; header identity/contrast and continuous slow-scroll review remain open manual gates.
 
 ## Evidence and capability boundaries
 

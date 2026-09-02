@@ -5,10 +5,16 @@ landometerBuild:
     ruleset: lds-rules-0.9.1
     machinePackageIdentity: v0.9.1-mp7
     machinePackageDelivery: identity_only
-    artifactBuildId: ui-20260902-03
-    supersedesArtifactBuildId: ui-20260902-02
-    retainedPriorArtifactBuildIds: [ui-20260902-02, ui-20260902-01, ui-20260901-01]
+    artifactBuildId: ui-20260902-06
+    supersedesArtifactBuildId: ui-20260902-05
+    retainedPriorArtifactBuildIds: [ui-20260902-05, ui-20260902-04, ui-20260902-03, ui-20260902-02, ui-20260902-01, ui-20260901-01]
     changeClass: ui_artifact_revision_color_set_unchanged
+    defectClosure: >-
+      Preserves the ui-20260902-05 handoff-link and receipt corrections and
+      restores the selected side-bookmark icon from an unintended wght 400
+      override to the governed FILL 0, wght 300 state. Selection continues to
+      use surface, border, shape, and label; ui-20260902-05 and earlier builds
+      remain byte-for-byte append-only evidence.
     sourceRef: assets/downloads/landometer-design-system-v0.9.1.md
     sourceBytes: 208463
     sourceSha256: 64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19
@@ -53,6 +59,15 @@ landometerBuild:
     artifactApplication:
       ref: implementation-notes.v0.9.1.md
       authority: non_normative
+    ownerSelectedArtifactCandidate:
+      id: rebuild02-navbar-handoff-r7-candidate
+      sourceLabel: Unified navbar design handoff r7.zip
+      sha256: 47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa
+      authority: non_normative_artifact_reference
+      selectedScope: navbar anatomy, disclosure grouping, side bookmark, and visual rhythm
+      normativeEffect: none
+      identityAuthorization: not_provided_by_candidate
+      headerIdentityManualGate: open_pending_execution
     claimOwner: Landometer portfolio truth for shared guidance; named-product owners for product facts
     evidenceBoundary: >-
       Implementation examples are conceptual design-system teaching fixtures,
@@ -132,22 +147,46 @@ landometerBuild:
         ruleAuthority: [MOTION-01, MOTION-02, MOTION-03, A11Y-01]
         recovery: Source final state; explicit supporting roles; finite cue; reduced-motion and observer-failure final state
 
+  composition:
+    componentIds:
+      - component.bookmark.side.01
+
   navigation:
     ecosystemPropertyPageSeparation: true
     desktopVisibleControlBudgetIncludingBrand: 4
+    artifactDesktopVisibleControlsIncludingBrand: 5
     mobileVisibleControlBudgetIncludingBrand: 2
     minimumDirectTargetCssPx: 44
     visibleAnatomy:
-      desktop: [brand_symbol_and_wordmark, CityMETER, Sign_in, Menu]
+      desktop: [brand_symbol_and_wordmark, CityMETER, CityWiki, Sign_in, Menu]
       mobile: [brand_symbol_and_wordmark, Menu]
-      CityWiki: disclosed_menu_destination
+      mobileDisclosure: [primary_action, page_sections, ecosystem, utilities]
+    candidateApplication:
+      id: rebuild02-navbar-handoff-r7-candidate
+      sha256: 47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa
+      ownerSelection: explicit
+      normativeDivergence:
+        ruleId: NAV-01
+        artifactChoice: five visible desktop controls including brand
+        normativeBudget: four visible desktop controls including brand
+        consequence: deliveryConformance remains not_claimed
+      safetyDeviationsFromCandidate:
+        - direct semantic targets remain at least 44 by 44 CSS pixels
+        - no wake-first interaction or coordinate-forwarding overlay
+        - no infinite or replaying attention cue
+        - selected icons remain FILL 0 and use shape, surface, and label channels
+        - identity approval is not inferred from candidate files
     geometry:
       prominentBlockDesktopCssPx: 76
       prominentBlockMobileCssPx: 68
-      calmVisualDesktopCssPx: 29
-      calmVisualMobileCssPx: 27
-      contentCalmScale: 0.5
-      contentCalmOpacity: 0.72
+      calmVisualDesktopCssPx: 52
+      calmVisualMobileCssPx: 52
+      contentCalmScale: 0.82
+      contentCalmOpacity: 1
+      calmSurfaceAlpha: 0.88
+      calmRowWidth: full
+      calmControlClusterAlignment: right
+      scaleBoundary: inner_visual_wrappers_only
       stateDurationMs: 560
       scrollIntentDeltaCssPx: 4
       topThresholdCssPx: 24
@@ -155,9 +194,18 @@ landometerBuild:
       element: button
       stateAttribute: aria-expanded
       escapeReturnsFocus: true
-    sideBookmark:
+    sideBookmark: selected
+    sideBookmarkUserBenefit: >-
+      Keeps readers oriented in a long reference and provides a direct route
+      to each stable teaching territory without replacing global navigation.
+    sideBookmarkImplementation:
       desktop: real_anchor_locations
-      mobile: local_toc_inside_disclosure
+      mobile: exact_order_mirror_inside_disclosure
+      anchorIds: [top, v091-additions, play, implementation-library, complete-color-atlas, library-resources]
+      hideAtOrBelowWidthCssPx: 600
+      hideAtOrBelowViewportHeightCssPx: 560
+      currentSemantics: location
+      visibleBeforeFirstTrackedAnchor: true
       pageCurrentAndLocationCurrentSeparated: true
     prominentCalmHeader:
       policy: visual_prominence_changes_semantic_targets_do_not
@@ -204,8 +252,8 @@ landometerBuild:
         - container.orchestrates
         - contained.inherited
       behaviorByFamily:
-        supportingEditorial: role_gated_once_only_reveal
-        visibleTeachingCards: finite_outline_settle
+        supportingEditorial: role_gated_once_only_reveal_in_each_major_reading_territory
+        visibleTeachingCards: eligible_supporting_children_reveal_protected_content_stays_immediate
         directControls: component_owned_state
         disclosures: surface_only_settle_content_immediate
         criticalContent: static_immediate
@@ -214,6 +262,10 @@ landometerBuild:
       proofSemanticText: immediate_static
       receiptSemanticText: immediate_static_surface_settle_only
       print: final_state_immediate
+      perceptualCadence:
+        longReadingTerritoriesCovered: true
+        protectedDescendantHandling: split_eligible_supporting_children_without_hiding_parent
+        slowScrollRecordingGate: open_pending_execution
     assignedRoles:
       - approach.soft
       - approach.inline-start
@@ -303,10 +355,10 @@ landometerBuild:
       sha256: 0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a
       status: preserved_byte_for_byte
     currentArtifactBuild:
-      id: ui-20260902-03
-      supersedes: ui-20260902-02
+      id: ui-20260902-06
+      supersedes: ui-20260902-05
       latestPath: landometer-design-system-v0.9.1-standalone.html
-      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html
+      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html
       changeClass: ui_artifact_revision_color_set_unchanged
       offlineStandaloneIdentity: approved_favicon_embedded
 
@@ -334,7 +386,7 @@ landometerBuild:
     canonicalUrl: https://montri-th.github.io/Landometer/
     pagesRoot: deployment
     latestStandalone: landometer-design-system-v0.9.1-standalone.html
-    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html
+    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html
     siteManifest: site-manifest.v0.9.1.json
     implementationNotes: implementation-notes.v0.9.1.md
     manualQaRecord: qa/v0.9.1-manual-gates.md

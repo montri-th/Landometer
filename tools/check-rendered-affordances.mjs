@@ -59,7 +59,7 @@ function htmlDataAttribute(source, name) {
 }
 
 const registryInput = deploymentInput(
-  cliValue("--registry") ?? "assets/data/color-delivery.v0.9.0.json",
+  cliValue("--registry") ?? "assets/data/color-delivery.v0.9.1.json",
   "--registry",
 );
 const registry = JSON.parse(
@@ -114,7 +114,7 @@ const VIEWPORTS = [
     width: 390,
     height: 844,
     prominentSurfacePx: 68,
-    calmSurfacePx: 27,
+    calmSurfacePx: 52,
     visibleHeaderControls: 2,
   },
   {
@@ -122,13 +122,21 @@ const VIEWPORTS = [
     width: 1440,
     height: 1000,
     prominentSurfacePx: 76,
-    calmSurfacePx: 29,
-    visibleHeaderControls: 4,
+    calmSurfacePx: 52,
+    visibleHeaderControls: 5,
   },
 ];
 const NAV_GEOMETRY_TOLERANCE_PX = 1;
-const NAV_CALM_OPACITY = 0.72;
+const NAV_CALM_OPACITY = 1;
 const NAV_OPACITY_TOLERANCE = 0.03;
+const PAGE_BOOKMARK_ANCHORS = [
+  "#top",
+  "#v091-additions",
+  "#play",
+  "#implementation-library",
+  "#complete-color-atlas",
+  "#library-resources",
+];
 
 const failures = [];
 const cases = [];
@@ -241,15 +249,51 @@ for (const viewport of VIEWPORTS) {
   await page.close();
 }
 
-// ---------- SC-24: selected Rebuild02 navbar anatomy with direct DS targets ----------
+// ---------- SC-24: owner-selected r7 navbar, glyph, menu, and bookmark contracts ----------
 const measureNavbar = page => page.evaluate(() => {
   const header = document.querySelector(".site-header");
+  const inner = document.querySelector(".site-header__inner");
   const row = document.querySelector(".site-header__row");
+  const controls = document.querySelector(".site-header .header-nav");
   const surface = header ? getComputedStyle(header, "::before") : null;
   const visible = node => {
     if (!node || !node.getClientRects().length) return false;
     const style = getComputedStyle(node);
-    return style.display !== "none" && style.visibility !== "hidden";
+    return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity) > 0.01;
+  };
+  const box = node => {
+    const rect = node?.getBoundingClientRect();
+    return rect ? { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height } : null;
+  };
+  const menuGlyph = () => {
+    const rootMode = document.documentElement.dataset.navGlyphs || "unknown";
+    const icon = document.querySelector("#nav-menu-toggle .nav-icon--menu");
+    const fallback = document.querySelector("#nav-menu-toggle .nav-menu-fallback");
+    const iconStyle = icon ? getComputedStyle(icon) : null;
+    const fallbackStyle = fallback ? getComputedStyle(fallback) : null;
+    const before = fallback ? getComputedStyle(fallback, "::before") : null;
+    const after = fallback ? getComputedStyle(fallback, "::after") : null;
+    const iconRect = icon?.getBoundingClientRect();
+    const fallbackRect = fallback?.getBoundingClientRect();
+    const paintedLine = pseudo => {
+      if (!pseudo) return false;
+      const color = pseudo.backgroundColor;
+      return parseFloat(pseudo.width) >= 16 && parseFloat(pseudo.height) >= 1 &&
+        color !== "transparent" && color !== "rgba(0, 0, 0, 0)";
+    };
+    return {
+      mode: rootMode,
+      codepoint: icon?.textContent?.codePointAt(0)?.toString(16).toUpperCase() || null,
+      glyphVisible: visible(icon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16 &&
+        /Material Symbols Rounded Nav/u.test(iconStyle?.fontFamily || ""),
+      glyphFontLoaded: !!document.fonts?.check?.('300 24px "Material Symbols Rounded Nav"', icon?.textContent || ""),
+      fallbackVisible: visible(fallback) && (fallbackRect?.width || 0) >= 18 && (fallbackRect?.height || 0) >= 12 &&
+        paintedLine(before) && paintedLine(after),
+      fallbackBeforeTransform: before?.transform || null,
+      fallbackAfterTransform: after?.transform || null,
+      iconDisplay: iconStyle?.display || null,
+      fallbackDisplay: fallbackStyle?.display || null,
+    };
   };
   const targetNodes = [
     document.querySelector(".site-header .brand"),
@@ -265,18 +309,29 @@ const measureNavbar = page => page.evaluate(() => {
     );
     return {
       id: node.id || node.className || node.tagName,
+      kind: node.matches(".brand") ? "brand"
+        : node.matches(".header-link") ? "route"
+          : node.matches(".header-cta") ? "cta" : "menu",
+      href: node instanceof HTMLAnchorElement ? node.href : null,
+      text: (node.textContent || "").replace(/\s+/gu, " ").trim(),
       width: rect.width,
       height: rect.height,
       directHit: !!hit && (hit === node || node.contains(hit)),
       pointerEvents: getComputedStyle(node).pointerEvents,
     };
   });
-  const visual = document.querySelector(".site-header .brand__symbol");
+  const visual = document.querySelector(".site-header .brand__visual");
   const matrix = visual && getComputedStyle(visual).transform !== "none"
     ? new DOMMatrixReadOnly(getComputedStyle(visual).transform)
     : null;
   const headerRect = header?.getBoundingClientRect();
   const main = document.querySelector("main");
+  const rowRect = box(row);
+  const innerRect = box(inner);
+  const controlsRect = box(controls);
+  const innerStyle = inner ? getComputedStyle(inner) : null;
+  const innerPadLeft = parseFloat(innerStyle?.paddingLeft || "0") || 0;
+  const innerPadRight = parseFloat(innerStyle?.paddingRight || "0") || 0;
   return {
     state: header?.dataset.navState ?? null,
     isCalm: header?.classList.contains("is-calm") ?? false,
@@ -286,10 +341,22 @@ const measureNavbar = page => page.evaluate(() => {
     visualScale: matrix ? Math.hypot(matrix.a, matrix.b) : 1,
     visibleControls: targets.length,
     targets,
+    menuGlyph: menuGlyph(),
+    rowRect,
+    innerRect,
+    controlsRect,
+    rowFillsInner: !!rowRect && !!innerRect &&
+      Math.abs(rowRect.left - (innerRect.left + innerPadLeft)) <= 1 &&
+      Math.abs(rowRect.right - (innerRect.right - innerPadRight)) <= 1,
+    controlsRightAligned: !!rowRect && !!controlsRect && Math.abs(rowRect.right - controlsRect.right) <= 1,
     mainDocumentTop: main ? main.getBoundingClientRect().top + scrollY : null,
     hasIdentityCarrier: !!document.querySelector(".site-header .logo-surface, .site-header .brand-plate"),
   };
 });
+
+const glyphIsVisible = glyph => glyph?.mode === "ready"
+  ? glyph.glyphVisible && glyph.glyphFontLoaded
+  : glyph?.mode === "fallback" && glyph.fallbackVisible;
 
 for (const viewport of VIEWPORTS) {
   const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
@@ -310,6 +377,24 @@ for (const viewport of VIEWPORTS) {
   }
   if (prominent.visibleControls !== viewport.visibleHeaderControls) {
     navFailures.push(`${prominent.visibleControls} visible controls, expected ${viewport.visibleHeaderControls}`);
+  }
+  const prominentRouteHrefs = prominent.targets.filter(target => target.kind === "route").map(target => target.href);
+  const expectedRouteHrefs = viewport.width <= 680
+    ? []
+    : ["https://montri-th.github.io/CityMETER/", "https://landometer.com/v3/citywiki"];
+  if (JSON.stringify(prominentRouteHrefs) !== JSON.stringify(expectedRouteHrefs)) {
+    navFailures.push(`header routes ${JSON.stringify(prominentRouteHrefs)}, expected ${JSON.stringify(expectedRouteHrefs)}`);
+  }
+  const visibleCtas = prominent.targets.filter(target => target.kind === "cta");
+  if ((viewport.width <= 680 && visibleCtas.length) ||
+      (viewport.width > 680 && (visibleCtas.length !== 1 || visibleCtas[0].href !== "https://landometer.com/auth"))) {
+    navFailures.push(`header CTA anatomy is not the selected r7 breakpoint contract`);
+  }
+  if (!prominent.rowFillsInner || !prominent.controlsRightAligned) {
+    navFailures.push("prominent row is not full-width with its control cluster aligned right");
+  }
+  if (!glyphIsVisible(prominent.menuGlyph) || prominent.menuGlyph.codepoint !== "E5D2") {
+    navFailures.push(`menu glyph is not visibly rendered (${prominent.menuGlyph.mode}/${prominent.menuGlyph.codepoint})`);
   }
   if (prominent.hasIdentityCarrier) navFailures.push("identity is enclosed by a carrier");
   prominent.targets.forEach(target => {
@@ -334,8 +419,17 @@ for (const viewport of VIEWPORTS) {
   if (Math.abs(calm.rowOpacity - NAV_CALM_OPACITY) > NAV_OPACITY_TOLERANCE) {
     navFailures.push(`calm row opacity ${calm.rowOpacity.toFixed(2)}, expected ${NAV_CALM_OPACITY}`);
   }
-  if (Math.abs(calm.visualScale - 0.5) > 0.03) {
-    navFailures.push(`calm visual scale ${calm.visualScale.toFixed(2)}, expected 0.5`);
+  if (!calm.rowFillsInner || !calm.controlsRightAligned) {
+    navFailures.push("calm row is not full-width with its control cluster aligned right");
+  }
+  if (prominent.rowRect && calm.rowRect &&
+      (Math.abs(prominent.rowRect.left - calm.rowRect.left) > NAV_GEOMETRY_TOLERANCE_PX ||
+       Math.abs(prominent.rowRect.right - calm.rowRect.right) > NAV_GEOMETRY_TOLERANCE_PX)) {
+    navFailures.push("calm row drifts horizontally instead of retaining the full row");
+  }
+  if (prominent.controlsRect && calm.controlsRect &&
+      Math.abs(prominent.controlsRect.right - calm.controlsRect.right) > NAV_GEOMETRY_TOLERANCE_PX) {
+    navFailures.push("calm control cluster drifts away from the right edge");
   }
   if (Math.abs(calm.headerHeight - prominent.headerHeight) > NAV_GEOMETRY_TOLERANCE_PX ||
       Math.abs((calm.mainDocumentTop ?? 0) - (prominent.mainDocumentTop ?? 0)) > NAV_GEOMETRY_TOLERANCE_PX) {
@@ -367,18 +461,97 @@ for (const viewport of VIEWPORTS) {
     }
     await page.locator("#nav-menu-toggle").click();
     await page.waitForTimeout(120);
-    const menuOpen = await page.evaluate(() => {
+    const menuOpen = await page.evaluate(expectedAnchors => {
       const panel = document.getElementById("nav-panel");
       const toggle = document.getElementById("nav-menu-toggle");
+      const visible = node => {
+        if (!node || !node.getClientRects().length) return false;
+        const style = getComputedStyle(node);
+        return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity) > 0.01;
+      };
+      const localLinks = [...document.querySelectorAll("#nav-panel .nav-panel-local [data-page-destination]")];
+      const headings = [...document.querySelectorAll("#nav-panel .nav-panel-heading")]
+        .filter(visible).map(node => (node.textContent || "").replace(/\s+/gu, " ").trim());
+      const panelLinks = [...document.querySelectorAll("#nav-panel a[href]")];
+      const visibleControls = [...document.querySelectorAll("#nav-panel a[href], #nav-panel button:not([disabled])")].filter(visible);
+      const undersized = visibleControls.filter(node => {
+        const rect = node.getBoundingClientRect();
+        return rect.width < 43.5 || rect.height < 43.5;
+      }).map(node => node.id || node.className || node.textContent.trim());
+      const mobileCta = document.querySelector("#nav-panel .nav-panel-mobile-cta .header-cta");
+      const mobileCtaRect = mobileCta?.getBoundingClientRect();
+      const menuIcon = toggle?.querySelector(".nav-icon--menu");
+      const fallback = toggle?.querySelector(".nav-menu-fallback");
+      const before = fallback ? getComputedStyle(fallback, "::before") : null;
+      const after = fallback ? getComputedStyle(fallback, "::after") : null;
+      const mode = document.documentElement.dataset.navGlyphs || "unknown";
+      const iconRect = menuIcon?.getBoundingClientRect();
+      const fallbackRect = fallback?.getBoundingClientRect();
+      const glyphVisible = visible(menuIcon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16 &&
+        /Material Symbols Rounded Nav/u.test(getComputedStyle(menuIcon).fontFamily) &&
+        !!document.fonts?.check?.('300 24px "Material Symbols Rounded Nav"', menuIcon?.textContent || "");
+      const fallbackVisible = visible(fallback) && (fallbackRect?.width || 0) >= 18 && (fallbackRect?.height || 0) >= 12 &&
+        before?.transform !== "none" && after?.transform !== "none";
       return {
         state: document.querySelector(".site-header")?.dataset.navState,
         expanded: toggle?.getAttribute("aria-expanded"),
         hidden: panel?.hidden,
         focusInside: !!panel && panel.contains(document.activeElement),
+        ariaModal: panel?.getAttribute("aria-modal"),
+        backdropVisible: visible(document.getElementById("nav-panel-backdrop")),
+        headings,
+        localHrefs: localLinks.map(link => link.getAttribute("href")),
+        localOrderMatches: JSON.stringify(localLinks.map(link => link.getAttribute("href"))) === JSON.stringify(expectedAnchors),
+        coreRoutes: {
+          citymeter: panelLinks.some(link => link.href === "https://montri-th.github.io/CityMETER/"),
+          citywiki: panelLinks.some(link => link.href === "https://landometer.com/v3/citywiki"),
+          signIn: panelLinks.some(link => link.href === "https://landometer.com/auth"),
+          landometer: panelLinks.some(link => link.getAttribute("aria-current") === "page" && link.getAttribute("href") === "#top"),
+        },
+        mobileCtaVisible: visible(mobileCta),
+        mobileCtaHref: mobileCta?.href || null,
+        mobileCtaSize: mobileCtaRect ? { width: mobileCtaRect.width, height: mobileCtaRect.height } : null,
+        undersized,
+        closeIcon: {
+          mode,
+          codepoint: menuIcon?.textContent?.codePointAt(0)?.toString(16).toUpperCase() || null,
+          glyphVisible,
+          fallbackVisible,
+        },
       };
-    });
+    }, PAGE_BOOKMARK_ANCHORS);
     if (menuOpen.state !== "menu_open" || menuOpen.expanded !== "true" || menuOpen.hidden || !menuOpen.focusInside) {
       navFailures.push("opening the menu does not keep prominence and transfer focus");
+    }
+    if (menuOpen.ariaModal !== "true" || !menuOpen.backdropVisible) {
+      navFailures.push("open menu is not a modal disclosure with a visible hit-test backdrop");
+    }
+    if (!menuOpen.localOrderMatches) {
+      navFailures.push(`panel bookmark order ${JSON.stringify(menuOpen.localHrefs)} does not match the six-anchor contract`);
+    }
+    if (!Object.values(menuOpen.coreRoutes).every(Boolean)) {
+      navFailures.push(`panel is missing a core route: ${JSON.stringify(menuOpen.coreRoutes)}`);
+    }
+    if (!menuOpen.headings.some(label => /(?:ในหน้านี้|On this page)/iu.test(label)) ||
+        !menuOpen.headings.some(label => /Landometer ecosystem/iu.test(label))) {
+      navFailures.push(`panel group headings are incomplete: ${JSON.stringify(menuOpen.headings)}`);
+    }
+    if (viewport.width <= 680) {
+      if (!menuOpen.mobileCtaVisible || menuOpen.mobileCtaHref !== "https://landometer.com/auth" ||
+          !menuOpen.mobileCtaSize || menuOpen.mobileCtaSize.height < 43.5) {
+        navFailures.push("mobile panel does not expose the 44px Sign in primary task");
+      }
+    } else if (menuOpen.mobileCtaVisible) {
+      navFailures.push("mobile-only panel CTA is visible at the desktop breakpoint");
+    }
+    if (menuOpen.undersized.length) {
+      navFailures.push(`panel contains undersized direct target(s): ${menuOpen.undersized.join(", ")}`);
+    }
+    const closeIconVisible = menuOpen.closeIcon.mode === "ready"
+      ? menuOpen.closeIcon.glyphVisible
+      : menuOpen.closeIcon.mode === "fallback" && menuOpen.closeIcon.fallbackVisible;
+    if (!closeIconVisible || menuOpen.closeIcon.codepoint !== "E5CD") {
+      navFailures.push(`close glyph is not visibly rendered (${menuOpen.closeIcon.mode}/${menuOpen.closeIcon.codepoint})`);
     }
     await page.keyboard.press("Escape");
     await page.waitForTimeout(80);
@@ -432,9 +605,138 @@ for (const viewport of VIEWPORTS) {
   await context.close();
 }
 
+for (const viewport of [
+  { name: "mobile-390", width: 390, height: 844, railExpected: false },
+  { name: "mobile-boundary-600", width: 600, height: 900, railExpected: false },
+  { name: "compact-desktop-900", width: 900, height: 900, railExpected: true },
+  { name: "compact-height-desktop-900", width: 900, height: 540, railExpected: false },
+]) {
+  const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
+  const page = await context.newPage();
+  await page.goto(artifactUrl);
+  await page.waitForLoadState("load");
+  await page.evaluate(() => document.fonts?.ready);
+  await page.waitForTimeout(500);
+  const measureRail = () => page.evaluate(expectedAnchors => {
+    const rail = document.querySelector(".side-bookmark");
+    const visible = node => {
+      if (!node || !node.getClientRects().length) return false;
+      const style = getComputedStyle(node);
+      return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity) > 0.01;
+    };
+    const links = [...document.querySelectorAll(".side-bookmark a[data-page-destination]")];
+    const panelLinks = [...document.querySelectorAll("#nav-panel .nav-panel-local a[data-page-destination]")];
+    const hrefs = links.map(link => link.getAttribute("href"));
+    const panelHrefs = panelLinks.map(link => link.getAttribute("href"));
+    const items = links.map(link => {
+      const rect = link.getBoundingClientRect();
+      const icon = link.querySelector(".side-bookmark__icon[data-icon]");
+      const iconRect = icon?.getBoundingClientRect();
+      const hit = rect.width && rect.height
+        ? document.elementFromPoint((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2)
+        : null;
+      return {
+        href: link.getAttribute("href"),
+        width: rect.width,
+        height: rect.height,
+        directHit: !!hit && (hit === link || link.contains(hit)),
+        accessibleName: (link.textContent || "").replace(/\s+/gu, " ").trim(),
+        iconName: icon?.dataset.icon || null,
+        iconCodepoint: icon?.textContent?.codePointAt(0)?.toString(16).toUpperCase() || null,
+        iconVisible: visible(icon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16,
+        iconFill: icon ? getComputedStyle(icon).fontVariationSettings : null,
+      };
+    });
+    const railRect = rail?.getBoundingClientRect();
+    const railCurrent = links.filter(link => link.getAttribute("aria-current") === "location")
+      .map(link => link.getAttribute("href"));
+    const panelCurrent = panelLinks.filter(link => link.getAttribute("aria-current") === "location")
+      .map(link => link.getAttribute("href"));
+    return {
+      railVisible: visible(rail),
+      railRect: railRect ? { left: railRect.left, top: railRect.top, width: railRect.width, height: railRect.height } : null,
+      hrefs,
+      panelHrefs,
+      exactOrder: JSON.stringify(hrefs) === JSON.stringify(expectedAnchors),
+      mirroredOrder: JSON.stringify(hrefs) === JSON.stringify(panelHrefs),
+      items,
+      railCurrent,
+      panelCurrent,
+    };
+  }, PAGE_BOOKMARK_ANCHORS);
+
+  const initial = await measureRail();
+  const bookmarkFailures = [];
+  if (initial.railVisible !== viewport.railExpected) {
+    bookmarkFailures.push(`rail visibility ${initial.railVisible}, expected ${viewport.railExpected}`);
+  }
+  if (!initial.exactOrder || initial.hrefs.length !== PAGE_BOOKMARK_ANCHORS.length) {
+    bookmarkFailures.push(`rail anchors ${JSON.stringify(initial.hrefs)} do not match the exact ordered six-anchor set`);
+  }
+  if (!initial.mirroredOrder) {
+    bookmarkFailures.push(`rail order ${JSON.stringify(initial.hrefs)} is not mirrored in the panel ${JSON.stringify(initial.panelHrefs)}`);
+  }
+  if (initial.railCurrent.length !== 1 || initial.panelCurrent.length !== 1 || initial.railCurrent[0] !== initial.panelCurrent[0]) {
+    bookmarkFailures.push(`current location rail=${JSON.stringify(initial.railCurrent)}, panel=${JSON.stringify(initial.panelCurrent)}`);
+  }
+  if (viewport.railExpected) {
+    initial.items.forEach(item => {
+      if (Math.abs(item.width - MIN_TARGET_PX) > NAV_GEOMETRY_TOLERANCE_PX ||
+          Math.abs(item.height - MIN_TARGET_PX) > NAV_GEOMETRY_TOLERANCE_PX) {
+        bookmarkFailures.push(`${item.href} target ${item.width.toFixed(1)}x${item.height.toFixed(1)}px, expected 44x44px`);
+      }
+      if (!item.directHit) bookmarkFailures.push(`${item.href} is not the direct bookmark hit target`);
+      if (!item.accessibleName) bookmarkFailures.push(`${item.href} has no accessible text`);
+      if (!item.iconName || !item.iconCodepoint || !item.iconVisible) {
+        bookmarkFailures.push(`${item.href} has no visible named outline icon`);
+      }
+      if (item.iconFill && !/["']?FILL["']?\s+0/iu.test(item.iconFill)) {
+        bookmarkFailures.push(`${item.href} uses a filled icon state (${item.iconFill})`);
+      }
+      if (item.iconFill && !/["']?wght["']?\s+300/iu.test(item.iconFill)) {
+        bookmarkFailures.push(`${item.href} changes the governed icon weight (${item.iconFill})`);
+      }
+    });
+
+    await page.evaluate(() => {
+      const target = document.getElementById("play");
+      const root = document.documentElement;
+      const prior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      target?.scrollIntoView({ behavior: "instant", block: "start" });
+      root.style.scrollBehavior = prior;
+    });
+    await page.waitForTimeout(350);
+    const afterScroll = await measureRail();
+    if (!afterScroll.railVisible || afterScroll.hrefs.length !== PAGE_BOOKMARK_ANCHORS.length) {
+      bookmarkFailures.push("rail disappears or changes membership after scrolling");
+    }
+    if (afterScroll.railCurrent.length !== 1 || afterScroll.railCurrent[0] !== "#play" ||
+        afterScroll.panelCurrent.length !== 1 || afterScroll.panelCurrent[0] !== "#play") {
+      bookmarkFailures.push(`scrollspy did not select #play exactly once (rail=${JSON.stringify(afterScroll.railCurrent)}, panel=${JSON.stringify(afterScroll.panelCurrent)})`);
+    }
+    if (initial.railRect && afterScroll.railRect &&
+        (Math.abs(initial.railRect.left - afterScroll.railRect.left) > NAV_GEOMETRY_TOLERANCE_PX ||
+         Math.abs(initial.railRect.top - afterScroll.railRect.top) > NAV_GEOMETRY_TOLERANCE_PX)) {
+      bookmarkFailures.push("rail position is not stable while reading");
+    }
+    initial.afterScroll = afterScroll;
+  }
+
+  bookmarkFailures.forEach(problem => failures.push(`SC-24 ${viewport.name} bookmark: ${problem}`));
+  cases.push({
+    item: "SC-24",
+    mode: "page-bookmark",
+    viewport: viewport.name,
+    detail: initial,
+    passed: bookmarkFailures.length === 0,
+  });
+  await context.close();
+}
+
 // ---------- SC-22: entrance never withholds content ----------
 const revealProbe = async (options, probe) => {
-  const { disableIntersectionObserver = false, ...contextOptions } = options;
+  const { disableIntersectionObserver = false, fragmentHash = "", ...contextOptions } = options;
   const context = await browser.newContext({ viewport: { width: 1200, height: 900 }, ...contextOptions });
   const page = await context.newPage();
   if (disableIntersectionObserver) {
@@ -443,9 +745,10 @@ const revealProbe = async (options, probe) => {
       try { delete Window.prototype.IntersectionObserver; } catch (_) {}
     });
   }
-  await page.goto(artifactUrl);
+  await page.goto(`${artifactUrl}${fragmentHash}`);
   await page.waitForLoadState("load");
-  // rise profile: stagger cap 600ms + reveal 640ms; wait it out before measuring
+  // v0.9.1 approach profile: stagger cap 450ms + transform 920ms; wait out
+  // the longest path before measuring the resting state.
   await page.waitForTimeout(2600);
   const value = await probe(page);
   await context.close();
@@ -478,6 +781,24 @@ const normal = await revealProbe({}, async page => {
       ".atlas-scale-record", ".atlas-special-card", ".atlas-map-card", ".atlas-opacity-row",
       ".atlas-depth-layout",
     ].join(","))];
+    const revealProtected = [...document.querySelectorAll([
+      ".hero-copy", ".hero-media", ".primary-action", ".secondary-action", ".copy-button",
+      ".download-action", "button", "input", "select", "textarea", "[role='status']", "[aria-live]",
+      ".proof-preview", ".stage-output", ".truth-lock", ".handoff-record", ".recipe",
+      ".closing-inner", ".site-footer",
+    ].join(","))];
+    const cadenceTerritories = ["v091-additions", "play", "align", "takeaway", "implementation-library"]
+      .map(id => {
+        const host = document.getElementById(id);
+        const revealPolicies = host ? [...host.querySelectorAll("[data-motion-policy='reveal.supporting']")] : [];
+        return {
+          id,
+          exists: !!host,
+          revealPolicies: revealPolicies.length,
+          enrolled: revealPolicies.filter(node => node.hasAttribute("data-riddim-reveal")).length,
+          visible: revealPolicies.filter(node => node.getClientRects().length > 0 && !node.closest("[hidden], details:not([open])")).length,
+        };
+      });
     const settle = policies.filter(node => node.dataset.motionPolicy === "settle.visible");
     return {
       marked: all.length,
@@ -493,10 +814,13 @@ const normal = await revealProbe({}, async page => {
       criticalTotal: critical.length,
       criticalWrongPolicy: critical.filter(node => node.dataset.motionPolicy !== "static.critical").length,
       criticalAnimated: critical.filter(node => node.hasAttribute("data-riddim-reveal") || node.hasAttribute("data-motion-role")).length,
+      protectedWithinReveal: revealProtected.filter(node => !!node.closest("[data-riddim-reveal]")).length,
       evidenceTotal: evidence.length,
       evidenceWrongPolicy: evidence.filter(node => node.dataset.motionPolicy !== "static.evidence").length,
       evidenceAnimated: evidence.filter(node => node.hasAttribute("data-riddim-reveal") || node.hasAttribute("data-motion-role")).length,
+      evidenceWithinReveal: evidence.filter(node => !!node.closest("[data-riddim-reveal]")).length,
       revealWrongPolicy: all.filter(node => node.dataset.motionPolicy !== "reveal.supporting").length,
+      cadenceTerritories,
       settleTotal: settle.length,
       settleContentMoved: settle.filter(node => {
         const style = getComputedStyle(node);
@@ -506,6 +830,80 @@ const normal = await revealProbe({}, async page => {
         .filter(node => node.dataset.motionPolicy !== "state.disclosure").length,
     };
   });
+  const transitionProbe = await page.evaluate(() => {
+    const territoryIds = ["v091-additions", "play", "align", "takeaway", "implementation-library"];
+    const candidates = territoryIds.flatMap(id => {
+      const host = document.getElementById(id);
+      return host ? [...host.querySelectorAll("[data-riddim-reveal]:not([data-riddim-landed])")] : [];
+    }).filter(node => {
+      const rect = node.getBoundingClientRect();
+      return rect.top > innerHeight * 1.05 && node.getClientRects().length > 0 && !node.closest("details:not([open]), [hidden]");
+    });
+    const node = candidates.sort((a, b) => {
+      const aDelay = parseFloat(getComputedStyle(a).transitionDelay) || 0;
+      const bDelay = parseFloat(getComputedStyle(b).transitionDelay) || 0;
+      return aDelay - bDelay;
+    })[0];
+    if (!node) return { found: false };
+    node.dataset.qaTransitionProbe = "true";
+    const style = getComputedStyle(node);
+    const seconds = value => value.split(",").map(part => {
+      const token = part.trim();
+      return token.endsWith("ms") ? parseFloat(token) : parseFloat(token) * 1000;
+    });
+    const properties = style.transitionProperty.split(",").map(part => part.trim());
+    const durations = seconds(style.transitionDuration);
+    const delays = seconds(style.transitionDelay);
+    const durationFor = property => {
+      const index = properties.indexOf(property);
+      return index < 0 ? 0 : durations[index % durations.length];
+    };
+    const matrix = style.transform === "none" ? null : new DOMMatrixReadOnly(style.transform);
+    return {
+      found: true,
+      territory: territoryIds.find(id => document.getElementById(id)?.contains(node)) || null,
+      role: node.dataset.motionRole || null,
+      initialOpacity: Number(style.opacity),
+      initialDisplacement: matrix ? Math.hypot(matrix.e, matrix.f) : 0,
+      opacityDurationMs: durationFor("opacity"),
+      transformDurationMs: durationFor("transform"),
+      delayMs: Math.max(0, ...delays),
+      initialTransform: style.transform,
+      initialLanded: node.hasAttribute("data-riddim-landed"),
+    };
+  });
+  if (transitionProbe.found) {
+    await page.evaluate(() => {
+      const node = document.querySelector("[data-qa-transition-probe='true']");
+      const root = document.documentElement;
+      const prior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      node?.scrollIntoView({ behavior: "instant", block: "center" });
+      root.style.scrollBehavior = prior;
+    });
+    await page.waitForTimeout(Math.min(700, transitionProbe.delayMs + 140));
+    transitionProbe.mid = await page.evaluate(() => {
+      const node = document.querySelector("[data-qa-transition-probe='true']");
+      const style = node ? getComputedStyle(node) : null;
+      const matrix = style && style.transform !== "none" ? new DOMMatrixReadOnly(style.transform) : null;
+      return {
+        opacity: Number(style?.opacity || 0),
+        displacement: matrix ? Math.hypot(matrix.e, matrix.f) : 0,
+        landed: !!node?.hasAttribute("data-riddim-landed"),
+      };
+    });
+    await page.waitForTimeout(Math.max(1100, 1050 + transitionProbe.delayMs));
+    transitionProbe.final = await page.evaluate(() => {
+      const node = document.querySelector("[data-qa-transition-probe='true']");
+      const style = node ? getComputedStyle(node) : null;
+      const matrix = style && style.transform !== "none" ? new DOMMatrixReadOnly(style.transform) : null;
+      return {
+        opacity: Number(style?.opacity || 0),
+        displacement: matrix ? Math.hypot(matrix.e, matrix.f) : 0,
+        landed: !!node?.hasAttribute("data-riddim-landed"),
+      };
+    });
+  }
   // Reach each enrolled supporting group and visible-settle component once. A single
   // jump to the footer can skip intermediate IntersectionObserver crossings and would
   // not represent reading through the component library.
@@ -525,13 +923,18 @@ const normal = await revealProbe({}, async page => {
     }
     root.style.scrollBehavior = previousScrollBehavior;
   });
-  await page.waitForTimeout(160);
+  // The final sibling may carry the full 450ms stagger plus a 920ms transform.
+  // Let that governed maximum settle before testing the once-only return state.
+  await page.waitForTimeout(1500);
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-  await page.waitForTimeout(900);
+  await page.waitForTimeout(120);
   const afterReturn = await page.evaluate(() => {
     const all = [...document.querySelectorAll("[data-riddim-reveal]")];
+    const probe = document.querySelector("[data-qa-transition-probe='true']");
     return { landed: all.filter(n => n.hasAttribute("data-riddim-landed")).length, total: all.length,
-      invisible: all.filter(n => Number(getComputedStyle(n).opacity) < 0.99).length };
+      invisible: all.filter(n => Number(getComputedStyle(n).opacity) < 0.99).length,
+      probeStayedLanded: !!probe?.hasAttribute("data-riddim-landed"),
+      probeOpacity: probe ? Number(getComputedStyle(probe).opacity) : null };
   });
   const afterOpen = await page.evaluate(async () => {
     document.querySelectorAll("details").forEach(d => { d.open = true; });
@@ -551,24 +954,47 @@ const normal = await revealProbe({}, async page => {
         .filter(node => node.getClientRects().length > 0 && Number(getComputedStyle(node).opacity) < 0.99).length,
     };
   });
-  return { atRest, afterReturn, afterOpen };
+  return { atRest, transitionProbe, afterReturn, afterOpen };
 });
 if (normal.atRest.reachedInvisible > 0) failures.push(`SC-22 default: ${normal.atRest.reachedInvisible} reached group(s) left invisible`);
 if (normal.atRest.insideClosedOrHidden > 0) failures.push(`SC-22 default: ${normal.atRest.insideClosedOrHidden} group(s) inside a closed disclosure or hidden panel carry the hidden state`);
 if (normal.afterReturn.invisible > 0) failures.push(`SC-22 return-scroll: ${normal.afterReturn.invisible} group(s) re-hidden after scrolling away and back`);
 if (normal.afterReturn.landed !== normal.afterReturn.total) failures.push("SC-22 return-scroll: a landed group did not stay landed");
+if (normal.transitionProbe.found && (!normal.afterReturn.probeStayedLanded || normal.afterReturn.probeOpacity < 0.99)) {
+  failures.push("SC-22 return-scroll: the perceptual probe replayed or left its final state");
+}
 if (normal.afterOpen.invisible > 0) failures.push(`SC-22 open-disclosure: ${normal.afterOpen.invisible} group(s) invisible after their section was opened`);
+const cadenceFailures = normal.atRest.cadenceTerritories
+  .filter(territory => !territory.exists || territory.revealPolicies < 1 || territory.enrolled < 1 || territory.visible < 1);
+if (cadenceFailures.length) {
+  failures.push(`SC-25 cadence: missing explicit visible reveal in ${cadenceFailures.map(territory => territory.id).join(", ")}`);
+}
+if (!normal.transitionProbe.found) {
+  failures.push("SC-22 perceptual: no below-fold reveal was available to measure");
+} else {
+  const transition = normal.transitionProbe;
+  const changedMidFlight = !!transition.mid &&
+    (transition.mid.opacity > transition.initialOpacity + 0.01 ||
+      transition.mid.displacement < transition.initialDisplacement - 0.5);
+  const reachedFinal = !!transition.final && transition.final.landed &&
+    transition.final.opacity >= 0.99 && transition.final.displacement <= 0.5;
+  if (transition.initialLanded || transition.initialOpacity > 0.1 || transition.initialDisplacement < 24 ||
+      transition.opacityDurationMs < 700 || transition.transformDurationMs < 850 ||
+      !changedMidFlight || !reachedFinal) {
+    failures.push(`SC-22 perceptual: reveal is not a clear slow transition ${JSON.stringify(transition)}`);
+  }
+}
 if (normal.atRest.coverage !== "complete" || normal.atRest.semanticMissingPolicy > 0 || normal.atRest.invalidPolicies > 0 || normal.atRest.missingFamilies > 0) {
   failures.push(`SC-25 coverage: runtime=${normal.atRest.coverage}, semantic missing=${normal.atRest.semanticMissingPolicy}, invalid=${normal.atRest.invalidPolicies}, family missing=${normal.atRest.missingFamilies}`);
 }
 if (normal.atRest.coverageComponents < normal.atRest.semanticTotal || normal.atRest.coverageFamilies < 9) {
   failures.push(`SC-25 coverage: ${normal.atRest.coverageComponents} audited components / ${normal.atRest.coverageFamilies} families is incomplete`);
 }
-if (normal.atRest.criticalWrongPolicy > 0 || normal.atRest.criticalAnimated > 0) {
-  failures.push(`SC-25 critical: wrong policy=${normal.atRest.criticalWrongPolicy}, enrolled=${normal.atRest.criticalAnimated}`);
+if (normal.atRest.criticalWrongPolicy > 0 || normal.atRest.criticalAnimated > 0 || normal.atRest.protectedWithinReveal > 0) {
+  failures.push(`SC-25 critical: wrong policy=${normal.atRest.criticalWrongPolicy}, enrolled=${normal.atRest.criticalAnimated}, within reveal=${normal.atRest.protectedWithinReveal}`);
 }
-if (normal.atRest.evidenceWrongPolicy > 0 || normal.atRest.evidenceAnimated > 0) {
-  failures.push(`SC-25 evidence: wrong policy=${normal.atRest.evidenceWrongPolicy}, enrolled=${normal.atRest.evidenceAnimated}`);
+if (normal.atRest.evidenceWrongPolicy > 0 || normal.atRest.evidenceAnimated > 0 || normal.atRest.evidenceWithinReveal > 0) {
+  failures.push(`SC-25 evidence: wrong policy=${normal.atRest.evidenceWrongPolicy}, enrolled=${normal.atRest.evidenceAnimated}, within reveal=${normal.atRest.evidenceWithinReveal}`);
 }
 if (normal.atRest.revealWrongPolicy > 0 || normal.atRest.settleContentMoved > 0) {
   failures.push(`SC-25 policy: reveal wrong=${normal.atRest.revealWrongPolicy}, settle moved=${normal.atRest.settleContentMoved}`);
@@ -670,21 +1096,49 @@ if (!fragment.targetId || !fragment.detailsOpen || !fragment.focusTransferred ||
   failures.push(`SC-25 fragment: target=${fragment.targetId}, open=${fragment.detailsOpen}, focus=${fragment.focusTransferred}, hidden=${fragment.hiddenMotionAncestor}, unsettled=${fragment.unsettledAncestor}, hash=${fragment.hash}`);
 }
 
-cases.push({ item: "SC-22", mode: "default", detail: normal, passed: !failures.some(f => f.startsWith("SC-22 default") || f.startsWith("SC-22 return") || f.startsWith("SC-22 open")) });
+const initialDeepLink = await revealProbe({ fragmentHash: "#library-color-guide" }, page => page.evaluate(() => {
+  const target = document.getElementById("library-color-guide");
+  const details = target ? [...document.querySelectorAll("details")].filter(node => node.contains(target)) : [];
+  const motionChain = target
+    ? [target, ...target.querySelectorAll("[data-motion-role], [data-motion-policy]")]
+    : [];
+  const hiddenAncestor = target?.closest("[data-riddim-reveal]:not([data-riddim-landed])");
+  const unsettledAncestor = target?.closest("[data-motion-policy='settle.visible']:not([data-motion-settled])");
+  return {
+    targetExists: !!target,
+    hash: location.hash,
+    containingDetails: details.length,
+    closedDetails: details.filter(node => !node.open).length,
+    hiddenAncestor: !!hiddenAncestor,
+    unsettledAncestor: !!unsettledAncestor,
+    nonFinalDescendants: motionChain.filter(node => {
+      const style = getComputedStyle(node);
+      return Number(style.opacity) < 0.99 || style.transform !== "none";
+    }).length,
+  };
+}));
+if (!initialDeepLink.targetExists || initialDeepLink.hash !== "#library-color-guide" ||
+    initialDeepLink.closedDetails > 0 || initialDeepLink.hiddenAncestor || initialDeepLink.unsettledAncestor ||
+    initialDeepLink.nonFinalDescendants > 0) {
+  failures.push(`SC-25 deep-link: ${JSON.stringify(initialDeepLink)}`);
+}
+
+cases.push({ item: "SC-22", mode: "default", detail: normal, passed: !failures.some(f => f.startsWith("SC-22 default") || f.startsWith("SC-22 return") || f.startsWith("SC-22 open") || f.startsWith("SC-22 perceptual")) });
 cases.push({ item: "SC-22", mode: "reduced-motion", detail: reduced, passed: !failures.some(f => f.startsWith("SC-22 reduced")) });
 cases.push({ item: "SC-22", mode: "no-javascript", detail: noJs, passed: !failures.some(f => f.startsWith("SC-22 no-JS")) });
 cases.push({ item: "SC-24", mode: "reduced-motion", detail: reduced, passed: !failures.some(f => f.startsWith("SC-24 reduced")) });
 cases.push({ item: "SC-24", mode: "no-javascript", detail: noJs, passed: !failures.some(f => f.startsWith("SC-24 no-JS")) });
-cases.push({ item: "SC-25", mode: "default", detail: normal, passed: !failures.some(f => f.startsWith("SC-25 coverage") || f.startsWith("SC-25 critical") || f.startsWith("SC-25 evidence") || f.startsWith("SC-25 policy") || f.startsWith("SC-25 disclosure") || f.startsWith("SC-25 completion")) });
+cases.push({ item: "SC-25", mode: "default", detail: normal, passed: !failures.some(f => f.startsWith("SC-25 coverage") || f.startsWith("SC-25 cadence") || f.startsWith("SC-25 critical") || f.startsWith("SC-25 evidence") || f.startsWith("SC-25 policy") || f.startsWith("SC-25 disclosure") || f.startsWith("SC-25 completion")) });
 cases.push({ item: "SC-25", mode: "reduced-motion", detail: reduced, passed: !failures.some(f => f.startsWith("SC-25 reduced")) });
 cases.push({ item: "SC-25", mode: "no-javascript", detail: noJs, passed: !failures.some(f => f.startsWith("SC-25 no-JS")) });
 cases.push({ item: "SC-25", mode: "intersection-observer-unavailable", detail: ioFailure, passed: !failures.some(f => f.startsWith("SC-25 IO-failure")) });
 cases.push({ item: "SC-25", mode: "fragment-focus", detail: fragment, passed: !failures.some(f => f.startsWith("SC-25 fragment")) });
+cases.push({ item: "SC-25", mode: "initial-deep-link", detail: initialDeepLink, passed: !failures.some(f => f.startsWith("SC-25 deep-link")) });
 
 await browser.close();
 
 const evidence = {
-  schemaVersion: "1.1",
+  schemaVersion: "1.2",
   rules: ["[BTN-GEOM-01]", "[REVEAL-01]", "[NAV-01]", "[MOTION-COVERAGE-01]"],
   selfCheckItems: ["SC-21", "SC-22", "SC-23", "SC-24", "SC-25"],
   dsVersion: artifactDsVersion,
@@ -704,11 +1158,28 @@ const evidence = {
     entranceAbsentInsideClosedDisclosureOrHiddenPanel: true,
     entranceLandsOnce: true,
     entranceAbsentUnderReducedMotionAndNoJavaScript: true,
+    entrancePerceptualMinimum: {
+      initialOpacityMaximum: 0.1,
+      initialDisplacementCssPxMinimum: 24,
+      opacityDurationMsMinimum: 700,
+      transformDurationMsMinimum: 850,
+    },
+    entranceCadenceRequiredTerritories: ["v091-additions", "play", "align", "takeaway", "implementation-library"],
     navbarProminentSurfaceCssPx: { desktop: 76, mobile: 68 },
-    navbarCalmSurfaceCssPx: { desktop: 29, mobile: 27 },
-    navbarVisibleControlBudgetIncludingBrand: { desktop: 4, mobile: 2 },
+    navbarCalmSurfaceCssPx: { desktop: 52, mobile: 52 },
+    navbarVisibleControlBudgetIncludingBrand: { desktop: 5, mobile: 2 },
+    navbarDesktopOwnerSelectedR7Routes: ["CityMETER", "CityWiki", "Sign in"],
+    navbarMenuAndCloseHaveRenderedFontOrCssFallback: true,
+    navbarPanelContainsAllCoreRoutesAndGroupedMobilePrimaryTask: true,
     navbarCalmKeepsDirectSemanticTargets: true,
+    navbarCalmRetainsFullWidthRightAlignedControlCluster: true,
     navbarReducedMotionRemainsProminent: true,
+    pageBookmarkAnchorsInExactOrder: PAGE_BOOKMARK_ANCHORS,
+    pageBookmarkMirroredInMobilePanel: true,
+    pageBookmarkVisibleAbove600CssPxExceptShortViewport: true,
+    pageBookmarkShortViewportFallbackMaxHeightCssPx: 560,
+    pageBookmarkTargetsCssPx: MIN_TARGET_PX,
+    pageBookmarkSingleCurrentLocation: true,
     everySemanticComponentHasMotionPolicy: true,
     criticalAndEvidenceComponentsStayStatic: true,
     settleVisibleNeverWithholdsContent: true,
@@ -716,7 +1187,7 @@ const evidence = {
     intersectionObserverFailureShowsFinalState: true,
   },
   boundary:
-    "Rendered geometry, navbar state, target ownership, and motion-policy completion only. It does not replace manual perceptual, assistive-technology, transparent-surface contrast, or rendered-glyph gates.",
+    "Rendered geometry, navbar state, glyph/fallback visibility, route presence, bookmark continuity, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, or transparent-surface contrast review.",
   totals: { cases: cases.length, failures: failures.length },
   cases,
   ...(failures.length ? { failures } : {}),

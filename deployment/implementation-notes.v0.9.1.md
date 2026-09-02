@@ -1,12 +1,26 @@
 # Landometer Design System v0.9.1 — implementation notes
 
-This is a non-normative application record for artifact build `ui-20260902-03`. The owner-approved authority is [`assets/downloads/landometer-design-system-v0.9.1.md`](assets/downloads/landometer-design-system-v0.9.1.md), authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`. Its SHA-256 is `64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19`.
+This is a non-normative application record for artifact build `ui-20260902-06`. The owner-approved authority is [`assets/downloads/landometer-design-system-v0.9.1.md`](assets/downloads/landometer-design-system-v0.9.1.md), authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`. Its SHA-256 is `64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19`.
 
 The source identifies machine package `v0.9.1-mp7`. This repository records that release identity but does not publish or claim validation of those machine-package bytes. Design System approval does not pre-certify this downstream playground.
 
-This build supersedes `ui-20260902-02` as the current presentation while preserving it, `ui-20260902-01`, and `ui-20260901-01` as append-only release evidence. The change is an artifact-level navbar and motion revision: it does not alter Design System `0.9.1`, authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`, evidence status `source_limited`, public `noindex` policy, artifact conformance status `not_claimed`, or Color Set `color-srgb-05`.
+This build supersedes `ui-20260902-05` as the current presentation while preserving it, `ui-20260902-04`, `ui-20260902-03`, `ui-20260902-02`, `ui-20260902-01`, and `ui-20260901-01` as append-only release evidence. It retains the ui-04 navbar, side-bookmark, icon-delivery, and perceptual-motion work and the ui-05 handoff-link/receipt correction without altering Design System `0.9.1`, authoring revision `0.9.1-r8`, ruleset `lds-rules-0.9.1`, evidence status `source_limited`, public `noindex` policy, artifact conformance status `not_claimed`, or Color Set `color-srgb-05`.
 
-The revision aligns the live navbar with the approved symbol-plus-wordmark anatomy and prominent/calm rhythm used by the public-site pattern while retaining the stricter DS v0.9.1 visible-control budget and direct target rules. It also gives every semantic component family an explicit motion policy, without hiding evidence, status, identity, Color Atlas records, focus targets, or deep-link targets.
+Three visible/current references in ui-04 still pointed to the older ui-03 immutable handoff: the Color Set stability code sample, the Implementation Library standalone resource link, and the footer artifact receipt. `ui-20260902-05` rebinds all three to its own immutable handoff. The ui-04 file is not rewritten and remains append-only evidence.
+
+A pre-commit audit of ui-05 found that the selected side-bookmark icon changed from the governed `wght 300` to `wght 400`. That emphasis violated the fixed ICON-01 outline recipe even though `FILL 0` remained intact. `ui-20260902-06` restores the selected icon to `FILL 0, wght 300, GRAD 0, opsz 24`; selection continues to communicate through surface, border, shape, and label rather than glyph fill or weight. The ui-05 and ui-04 artifacts remain byte-frozen.
+
+The owner explicitly selected the non-normative `rebuild02-navbar-handoff-r7-candidate` as the artifact reference for this revision. The supplied archive is bound by SHA-256 `47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa`; that binding proves the reference bytes, not Design System approval, identity approval, or downstream conformance. The implementation takes its navbar anatomy, grouped disclosure, bookmark orientation, and visual rhythm while preserving the DS safety floors described below.
+
+## Why `ui-20260902-03` could pass and still look broken
+
+The supplied quality audits were used as evidence, not as normative instructions. Where the later Claude re-audit added a stricter visible-quality finding beyond the earlier ChatGPT audit, that additional finding was carried into this hotfix without allowing either audit to override the Design System authority. Their shared findings explain three visible failures that the previous structural checks did not catch:
+
+- **Blank menu icon:** the page called menu/close glyphs that were absent from its embedded icon subset, while the rendered check measured the 44 × 44 button box rather than verifying that a recognizable glyph was painted. This was an asset-coverage and QA-scope failure, not a rule requiring an empty icon.
+- **Intermittent side bookmark:** rail visibility depended on whether the active observer target belonged to a short four-anchor list. It therefore disappeared before the first tracked anchor and across omitted long sections. This was an implementation-state error compounded by an incomplete bookmark contract.
+- **Slow reveal that was technically covered but barely perceptible:** the runtime assigned a motion policy to many components, but one protected descendant could downgrade an entire container and the check counted policy labels rather than reading-journey cadence. This was primarily policy resolution and perceptual-QA coverage, not evidence that DS v0.9.1 requires every node to animate.
+
+`ui-20260902-04` closed those gaps with rendered glyph checks, a stable six-anchor bookmark model, and eligible supporting-child reveal groups across the major reading territories. `ui-20260902-05` preserved those improvements and corrected the three stale current-handoff references. `ui-20260902-06` keeps both revisions and restores the selected bookmark icon to the fixed outline recipe. Critical content, evidence, identity, controls, focus/deep-link targets, and Color Atlas records remain visible immediately.
 
 ## What this build is for
 
@@ -52,13 +66,15 @@ The synthetic claim canvas preserves one meaning across an Initial HTML → Visi
 
 ### 3. Calm by hierarchy, not by hiding controls
 
-The page header is the live example:
+The page header is the live example and an explicitly owner-selected artifact divergence:
 
 - ecosystem/property/page destinations remain distinct;
-- the prominent navbar uses the approved symbol plus Arvo wordmark, with Brand + CityMETER + Sign in + Menu on desktop and Brand + Menu on mobile;
-- the visual rhythm is 76px prominent and 29px calm on desktop, 68px prominent and 27px calm on mobile, with a 560ms state transition;
-- the desktop visible-control budget is no more than four including brand;
+- the prominent navbar uses Brand + CityMETER + CityWiki + Sign in + Menu on desktop and Brand + Menu on mobile;
+- the desktop selection is five visible controls including brand, one over the NAV-01 budget of four; the owner-selected candidate divergence is recorded rather than silently described as normative, and artifact conformance remains `not_claimed`;
+- the visual rhythm is 76px prominent on desktop and 68px prominent on mobile, calming to a 52px visual surface in both modes with a 560ms state transition;
+- calm keeps the row full-width and the control cluster right-aligned, scales only inner visual wrappers to `.82`, keeps content opacity at `1`, and uses an `88%` surface alpha;
 - the mobile visible-control budget is no more than two including brand;
+- mobile keeps the primary action, the same six page anchors, ecosystem routes, and utilities inside the grouped disclosure instead of deleting them;
 - the prominent state is used at the page start, on upward-scroll intent, pointer intent, focus within the header, or while the menu is open;
 - the calm state is eligible only during downward reading without pointer, focus, or an open menu;
 - calm changes surface and visual emphasis, never link/button meaning or geometry;
@@ -67,8 +83,12 @@ The page header is the live example:
 - reduced motion stays in the stable prominent state;
 - disclosure uses a button with `aria-expanded`, stable focus, and Escape recovery;
 - page current state and in-page location current state use separate semantics;
+- `navigation.sideBookmark: selected` is bound to `component.bookmark.side.01`; the desktop rail is stable before the first tracked section and the mobile disclosure mirrors the exact six anchors and order;
+- the rail hides at widths of 600px or less, or at viewport heights of 560px or less, where the disclosure remains the orientation route;
 - icons stay Material Symbols Rounded at `FILL 0, wght 300, GRAD 0, opsz 24` in every state; and
 - selected state uses surface, container, and label rather than filled glyphs.
+
+The candidate's unsafe mechanics are not copied. Direct targets remain at least 44 × 44 CSS pixels, calm does not shrink semantic geometry, and there is no wake-first layer, coordinate forwarding, infinite attention cue, or `FILL 1` selected icon. The r7 archive is not treated as identity authorization; the existing header identity remains subject to the open manual identity/contrast gate.
 
 The cross-format CTA has one visible verb-led destination and a pointer-inert, `aria-hidden` highlight band. The band sweeps once from `translateX(-120%)` to `translateX(120%)` in `540ms`—below the `600ms` ceiling—with `cubic-bezier(.16,1,.3,1)`. It does not loop, move layout, or lower content opacity. Re-entry does not replay it; reduced motion or missing observer support receives the final no-cue state.
 
@@ -84,7 +104,9 @@ The analytical specimen refuses to compare records when schema, release, unit, o
 
 The rejected motion specimen shows why hiding proof cards until an observer fires is unsafe. The recovery uses source-visible final meaning and only the explicit supporting roles `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, and `stagger.child`.
 
-Every semantic component family is audited at runtime against one of eight policies: `reveal.supporting`, `settle.visible`, `state.direct`, `state.disclosure`, `static.critical`, `static.evidence`, `container.orchestrates`, or `contained.inherited`. Supporting editorial sequences may reveal once; teaching cards remain readable while an outline settles; controls own direct state; disclosures animate only their surface; and critical, evidence, identity, chart, map, provider, and Color Atlas content stays immediate. Proof status/source/boundary/limitation and CTA receipt text never dim or translate; only supporting cues or a non-content surface may settle.
+Every semantic component family is audited at runtime against one of eight policies: `reveal.supporting`, `settle.visible`, `state.direct`, `state.disclosure`, `static.critical`, `static.evidence`, `container.orchestrates`, or `contained.inherited`. Every major reading territory after the hero now has an eligible supporting reveal group or an explicit justified-static state. When a teaching container contains protected material, the runtime reveals only eligible supporting children instead of hiding the parent or downgrading all of its editorial content. Controls own direct state; disclosures animate only their surface; and critical, evidence, identity, chart, map, provider, and Color Atlas content stays immediate. Proof status/source/boundary/limitation and CTA receipt text never dim or translate; only supporting cues or a non-content surface may settle.
+
+This is perceptual coverage across the reading journey, not a blanket “animate every component” rule. Broad every-card/every-heading assignment remains prohibited. The required slow-scroll screen recording is still an open manual gate; this record does not claim that the perceptual check has passed.
 
 The exact artifact recipe is opacity `760ms`, transform `920ms`, media `900ms`, block distance `32px`, logical inline distance `36px`, scale from `.985`, stagger step `150ms` capped at `450ms` (four beats), enter easing `cubic-bezier(.16,1,.3,1)`, settle easing `cubic-bezier(.2,.9,.25,1.08)`, observer threshold `.14`, root margin `0px 0px -12% 0px`, and a `2400ms` reached-content safety audit after two animation frames. One shared observer unobserves each element after its first landing.
 
@@ -112,11 +134,11 @@ Analytical scale records stay bound to their recorded source/version. They are d
 - ruleset: `lds-rules-0.9.1`
 - machine-package identity: `v0.9.1-mp7` — identity only in this repository
 - Color Set: `color-srgb-05` — retained
-- artifact build: `ui-20260902-03`
-- supersedes UI artifact: `ui-20260902-02` — preserved as append-only release evidence
-- earlier UI artifacts: `ui-20260902-01` and `ui-20260901-01` — also preserved as append-only evidence
+- artifact build: `ui-20260902-06`
+- supersedes UI artifact: `ui-20260902-05` — preserved as append-only release evidence
+- earlier UI artifacts: `ui-20260902-04`, `ui-20260902-03`, `ui-20260902-02`, `ui-20260902-01`, and `ui-20260901-01` — also preserved as append-only evidence
 - latest standalone: `landometer-design-system-v0.9.1-standalone.html`
-- immutable UI handoff: `landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html`
+- immutable UI handoff: `landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html`
 - site manifest: `site-manifest.v0.9.1.json`
 - Build Card: `build-card.v0.9.1.yml`
 - QA record: `qa/v0.9.1-manual-gates.md`

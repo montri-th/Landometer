@@ -760,6 +760,11 @@ const discoveryCueValid =
 const siteHeaderHtml = html.match(
   /<header\b[^>]*\bclass="[^"]*\bsite-header\b[^"]*"[^>]*>[\s\S]*?<\/header>/iu
 )?.[0] ?? "";
+const siteHeaderRowStart = siteHeaderHtml.indexOf('<div class="site-header__row">');
+const siteHeaderRowEnd = siteHeaderHtml.indexOf('<div class="nav-panel js-only"', siteHeaderRowStart);
+const siteHeaderRowHtml = siteHeaderRowStart >= 0 && siteHeaderRowEnd > siteHeaderRowStart
+  ? siteHeaderHtml.slice(siteHeaderRowStart, siteHeaderRowEnd)
+  : "";
 const noJsPageIndexHtml = html.match(
   /<nav\b[^>]*\bclass="[^"]*\bno-js-page-index\b[^"]*"[^>]*>[\s\S]*?<\/nav>/iu
 )?.[0] ?? "";
@@ -784,22 +789,22 @@ const navMenuToggleGeometryRule = styleRules.find(rule => {
     /height:\s*44px/u.test(rule.declarations);
 });
 const headerDesktopControls = [
-  ...elementsWithClass(siteHeaderHtml, "brand"),
-  ...elementsWithClass(siteHeaderHtml, "header-link"),
-  ...elementsWithClass(siteHeaderHtml, "header-cta"),
-  ...elementsWithClass(siteHeaderHtml, "nav-menu-toggle")
+  ...elementsWithClass(siteHeaderRowHtml, "brand"),
+  ...elementsWithClass(siteHeaderRowHtml, "header-link"),
+  ...elementsWithClass(siteHeaderRowHtml, "header-cta"),
+  ...elementsWithClass(siteHeaderRowHtml, "nav-menu-toggle")
 ];
 const rebuildNavbarAnatomyValid =
   attributeOf(siteHeaderHtml.match(/<header\b[^>]*>/iu)?.[0] ?? "", "data-nav-state") === "prominent" &&
   attributeOf(siteHeaderHtml.match(/<header\b[^>]*>/iu)?.[0] ?? "", "data-motion-policy") === "state.direct" &&
   /--nav-block-prominent-desktop:\s*76px;/u.test(html) &&
   /--nav-block-prominent-mobile:\s*68px;/u.test(html) &&
-  /--nav-visual-calm-desktop:\s*29px;/u.test(html) &&
-  /--nav-visual-calm-mobile:\s*27px;/u.test(html) &&
-  /--nav-content-calm-scale:\s*\.5;/u.test(html) &&
-  /--nav-content-calm-opacity:\s*\.72;/u.test(html) &&
+  /--nav-visual-calm-desktop:\s*52px;/u.test(html) &&
+  /--nav-visual-calm-mobile:\s*52px;/u.test(html) &&
+  /--nav-content-calm-scale:\s*\.82;/u.test(html) &&
+  /--nav-content-calm-opacity:\s*1;/u.test(html) &&
   /--nav-surface-prominent-alpha:\s*92%;/u.test(html) &&
-  /--nav-surface-calm-alpha:\s*26%;/u.test(html) &&
+  /--nav-surface-calm-alpha:\s*88%;/u.test(html) &&
   /--nav-state-duration:\s*560ms;/u.test(html) &&
   /position:\s*sticky/u.test(siteHeaderRule?.declarations ?? "") &&
   /height:\s*var\(--nav-block-prominent-desktop\)/u.test(siteHeaderRule?.declarations ?? "") &&
@@ -810,19 +815,24 @@ const rebuildNavbarAnatomyValid =
   /var\(--nav-surface-calm-alpha\)/u.test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
   /max-width:\s*1280px/u.test(siteHeaderInnerRule?.declarations ?? "") &&
   /padding-inline:\s*24px/u.test(siteHeaderInnerRule?.declarations ?? "") &&
-  /transform-origin:\s*left center/u.test(siteHeaderRowRule?.declarations ?? "") &&
-  /height:\s*44px/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /width:\s*100%/u.test(siteHeaderRowRule?.declarations ?? "") &&
+  /width:\s*100%/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /height:\s*var\(--nav-visual-calm-desktop\)/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
   /opacity:\s*var\(--nav-content-calm-opacity\)/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
   /class="brand__symbol"/u.test(siteHeaderHtml) &&
   /class="brand__wordmark"[^>]*>Landometer</u.test(siteHeaderHtml) &&
   !/\blogo-surface\b/iu.test(siteHeaderHtml);
 const navbarBudgetAndFallbackValid =
-  headerDesktopControls.length === 4 &&
-  countClass(siteHeaderHtml, "brand") === 1 &&
-  countClass(siteHeaderHtml, "header-link") === 1 &&
-  countClass(siteHeaderHtml, "header-cta") === 1 &&
-  countClass(siteHeaderHtml, "nav-menu-toggle") === 1 &&
-  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-main-links,[\s\S]*?\.nav-cta--header,[\s\S]*?\.side-bookmark\s*\{\s*display:\s*none;/u.test(html) &&
+  headerDesktopControls.length === 5 &&
+  countClass(siteHeaderRowHtml, "brand") === 1 &&
+  countClass(siteHeaderRowHtml, "header-link") === 2 &&
+  countClass(siteHeaderRowHtml, "header-cta") === 1 &&
+  countClass(siteHeaderRowHtml, "nav-menu-toggle") === 1 &&
+  siteManifest?.artifact?.deliveryConformance === "not_claimed" &&
+  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-main-links,[\s\S]*?\.nav-cta--header\s*\{\s*display:\s*none;/u.test(html) &&
+  /\.nav-panel-mobile-cta\s*\{\s*display:\s*block;/u.test(html) &&
+  /class="nav-panel-heading"[^>]*>[\s\S]*?ในหน้านี้/iu.test(siteHeaderHtml) &&
+  /Landometer ecosystem/iu.test(siteHeaderHtml) &&
   /href="https:\/\/montri-th\.github\.io\/CityMETER\/"/u.test(noJsPageIndexHtml) &&
   /href="https:\/\/landometer\.com\/v3\/citywiki"/u.test(noJsPageIndexHtml) &&
   /href="https:\/\/landometer\.com\/auth"/u.test(noJsPageIndexHtml) &&
@@ -839,7 +849,7 @@ const navbarDirectTargetAndBehaviorValid =
   /siteHeader\.addEventListener\("pointerenter"/u.test(scriptSource) &&
   /siteHeader\.addEventListener\("focusin"/u.test(scriptSource) &&
   /firstControl\) firstControl\.focus\(\)/u.test(scriptSource) &&
-  /event\.key !== "Escape"/u.test(scriptSource) &&
+  /event\.key === "Escape"/u.test(scriptSource) &&
   /setMenu\(false, true\)/u.test(scriptSource) &&
   /destination\.focus\(\{ preventScroll: true \}\)/u.test(scriptSource) &&
   !/(?:elements?FromPoint|wake[-_ ]?zone|dispatchEvent\s*\(\s*new MouseEvent)/iu.test(scriptSource);
@@ -865,12 +875,15 @@ const motionPolicyCoverageValid =
   [
     "critical-content", "evidence-and-identity", "direct-interaction",
     "native-disclosure", "section-introduction", "v091-editorial-sequence",
-    "teaching-card-sequence", "visible-component-settle", "component-container"
+    "teaching-card-sequence", "editorial-card-sequence", "visible-boundary-settle",
+    "component-container"
   ].every(family => scriptSource.includes(`id: "${family}"`)) &&
   /id:\s*"critical-content",[\s\S]{0,100}policy:\s*"static\.critical"/u.test(scriptSource) &&
   /id:\s*"evidence-and-identity",[\s\S]{0,700}policy:\s*"static\.evidence"/u.test(scriptSource) &&
-  /id:\s*"teaching-card-sequence",[\s\S]{0,500}policy:\s*"settle\.visible"/u.test(scriptSource) &&
-  /policy === "reveal\.supporting"[\s\S]{0,220}resolvedPolicy = "settle\.visible"/u.test(scriptSource) &&
+  /id:\s*"teaching-card-sequence",[\s\S]{0,500}policy:\s*"reveal\.supporting"/u.test(scriptSource) &&
+  /MOTION_REVEAL_GUARD_SELECTOR[\s\S]{0,1500}node\.dataset\.motionPolicy = "container\.orchestrates"/u.test(scriptSource) &&
+  /#takeaway \.preflight-copy > h2/u.test(scriptSource) &&
+  /#implementation-library > \.container > \.library-heading/u.test(scriptSource) &&
   /main section, main article, main aside, main figure, main details, main form, main table/u.test(scriptSource) &&
   /root\.dataset\.motionCoverage = invalid\.length \? "invalid" : "complete"/u.test(scriptSource) &&
   scriptSource.indexOf("assignMotionPolicies();") >= 0 &&
@@ -946,7 +959,7 @@ const checks = [
         currentArtifactBuildHtml.match(/<html\b[^>]*>/iu)?.[0] ?? "",
         "data-standalone"
       ) === "true" &&
-      (currentArtifactBuildHtml.match(/src:\s*url\(["']?data:font\/woff2/giu) ?? []).length === 10 &&
+      (currentArtifactBuildHtml.match(/src:\s*url\(["']?data:font\/woff2/giu) ?? []).length === 11 &&
       !/<link\b[^>]*\brel=["']preload["'][^>]*\bas=["']font["']/iu.test(currentArtifactBuildHtml)
   ],
   [
@@ -999,7 +1012,7 @@ const checks = [
     rebuildNavbarAnatomyValid
   ],
   [
-    "navbar stays within the DS desktop/mobile control budget and keeps no-JS routes",
+    "owner-selected r7 navbar records its desktop budget divergence and keeps mobile/no-JS routes",
     navbarBudgetAndFallbackValid
   ],
   [
@@ -1334,7 +1347,11 @@ const checks = [
   ["reveal assignments use the exact v0.9.1 approach recipe", approachRecipeValid],
   ["CTA discovery cue is finite and matches the v0.9.1 recipe", discoveryCueValid],
   ["opportunity cards receive visual flow", /decorateOpportunityCards\(\)/u.test(html)],
-  ["rounded outline icon contract", /stroke-linecap:\s*round/u.test(html) && /stroke-linejoin:\s*round/u.test(html)]
+  ["rounded outline icon contract", /stroke-linecap:\s*round/u.test(html) && /stroke-linejoin:\s*round/u.test(html)],
+  [
+    "selected side bookmark keeps the governed FILL 0 and wght 300 axes",
+    /\.side-bookmark a\[aria-current="location"\] \.side-bookmark__icon\s*\{[\s\S]*?font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/u.test(html)
+  ]
 ];
 
 let failed = 0;
