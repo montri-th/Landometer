@@ -13,10 +13,27 @@ const registryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.1
 const historicalRegistryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json");
 const latestName = "landometer-design-system-v0.9.1-standalone.html";
 const latestPath = path.join(deploymentDir, latestName);
-const expectedArtifactBuild = "ui-20260902-02";
+const expectedArtifactBuild = "ui-20260902-03";
 const expectedColorSet = "color-srgb-05";
-const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html";
+const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html";
 const expectedHistoricalBaseline = "landometer-design-system-v0.9.0-standalone.color-srgb-05.html";
+const preservedUiBuilds = Object.freeze([
+  {
+    id: "ui-20260902-02",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
+    sha256: "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
+  },
+  {
+    id: "ui-20260902-01",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
+    sha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
+  },
+  {
+    id: "ui-20260901-01",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+    sha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
+  },
+]);
 const publicBase = "https://montri-th.github.io/Landometer/";
 const faviconPath = "assets/images/landometer-symbol-transparent.png";
 const checkOnly = process.argv.includes("--check");
@@ -83,10 +100,30 @@ const currentArtifactRecord = registry?.artifactBuilds?.find(
 assert(
   currentArtifactRecord?.role === "immutable_ui_build" &&
     currentArtifactRecord?.colorRegistryId === expectedColorSet &&
+    currentArtifactRecord?.supersedes === preservedUiBuilds[0].id &&
     (currentArtifactRecord?.status === "append_only" ||
       currentArtifactRecord?.status?.startsWith("prepared")),
   "the v0.9.1 immutable UI build record is missing or invalid",
 );
+
+for (const preserved of preservedUiBuilds) {
+  const record = registry?.artifactBuilds?.find(
+    (candidate) => candidate.id === preserved.id && candidate.path === preserved.path,
+  );
+  assert(
+    record?.role === "immutable_ui_build" &&
+      record?.colorRegistryId === expectedColorSet &&
+      record?.status === "append_only" &&
+      record?.sha256 === preserved.sha256,
+    `preserved immutable UI build record is missing or invalid: ${preserved.id}`,
+  );
+  const preservedPath = path.join(deploymentDir, preserved.path);
+  const preservedBytes = await readFile(preservedPath);
+  assert(
+    preservedBytes.byteLength === record.bytes && sha256(preservedBytes) === preserved.sha256,
+    `preserved immutable UI build changed: ${preserved.path}`,
+  );
+}
 
 const historicalBaselineRecord = historicalRegistry?.artifactBuilds?.find(
   (record) => record.path === expectedHistoricalBaseline,

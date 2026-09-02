@@ -678,11 +678,19 @@ const colorMixLines = html.split(/\r?\n/u)
 const colorMixRules = styleRules.filter(rule =>
   /color-mix\(/u.test(rule.declarations)
 );
-const allowedColorMixSelector = /(?:\.site-header|\.logo-surface|\.release-label|\.theme-cycle|\.language-cycle|\.header-primary|\.nav-panel|\.nav-menu-toggle|\.side-bookmark|\.v091)/u;
+const allowedColorMixSelector = /(?:\.site-header|\.logo-surface|\.release-label|\.theme-cycle|\.language-cycle|\.header-primary|\.nav-panel|\.nav-menu-toggle|\.side-bookmark|\.v091|data-motion-policy|\.cta-receipt)/u;
 const governedColorMixValid =
   colorMixLines.length > 0 &&
   colorMixRules.length > 0 &&
-  colorMixRules.every(rule => allowedColorMixSelector.test(rule.selector)) &&
+  colorMixRules.every(rule =>
+    allowedColorMixSelector.test(rule.selector) ||
+    (
+      rule.selector === "from" &&
+      /outline:\s*1px solid color-mix\(in srgb, var\(--interaction-accent\) 34%, transparent\)/u
+        .test(rule.declarations) &&
+      /@keyframes disclosure-surface-settle/u.test(html)
+    )
+  ) &&
   /data-gradient-interpolation="srgb-explicit-with-legacy-fallback"/u
     .test(htmlTag) &&
   !/color-mix\(/u.test(scriptSource) &&
@@ -745,6 +753,144 @@ const discoveryCueValid =
   /to\s*\{\s*transform:\s*translateX\(120%\);\s*\}/u.test(html) &&
   /\.v091-discovery-cta i\s*\{[\s\S]*?pointer-events:\s*none;/u.test(html) &&
   !/v091-cue[^{}]*\{[\s\S]*animation-iteration-count:\s*infinite/iu.test(html);
+
+// Rebuild02 is an explicitly selected candidate profile for this artifact, while the
+// active DS still owns the control budget and accessibility floor. These checks keep
+// the observable candidate anatomy without inheriting its click-forwarding wake layer.
+const siteHeaderHtml = html.match(
+  /<header\b[^>]*\bclass="[^"]*\bsite-header\b[^"]*"[^>]*>[\s\S]*?<\/header>/iu
+)?.[0] ?? "";
+const noJsPageIndexHtml = html.match(
+  /<nav\b[^>]*\bclass="[^"]*\bno-js-page-index\b[^"]*"[^>]*>[\s\S]*?<\/nav>/iu
+)?.[0] ?? "";
+const styleRuleFor = selector => styleRules.find(rule =>
+  rule.selector.split(",").map(item => item.trim()).includes(selector)
+);
+const siteHeaderRule = styleRuleFor(".site-header");
+const siteHeaderSurfaceRule = styleRuleFor(".site-header::before");
+const siteHeaderCalmSurfaceRule = styleRuleFor(".site-header.is-calm::before");
+const siteHeaderInnerRule = styleRuleFor(".site-header__inner");
+const siteHeaderRowRule = styleRuleFor(".site-header__row");
+const siteHeaderCalmRowRule = styleRuleFor(".site-header.is-calm .site-header__row");
+const headerDirectTargetRule = styleRules.find(rule => {
+  const selectors = rule.selector.split(",").map(selector => selector.trim());
+  return [".brand", ".header-link", ".header-cta", ".nav-menu-toggle"]
+    .every(selector => selectors.includes(selector));
+});
+const navMenuToggleGeometryRule = styleRules.find(rule => {
+  const selectors = rule.selector.split(",").map(selector => selector.trim());
+  return selectors.includes(".nav-menu-toggle") &&
+    /width:\s*44px/u.test(rule.declarations) &&
+    /height:\s*44px/u.test(rule.declarations);
+});
+const headerDesktopControls = [
+  ...elementsWithClass(siteHeaderHtml, "brand"),
+  ...elementsWithClass(siteHeaderHtml, "header-link"),
+  ...elementsWithClass(siteHeaderHtml, "header-cta"),
+  ...elementsWithClass(siteHeaderHtml, "nav-menu-toggle")
+];
+const rebuildNavbarAnatomyValid =
+  attributeOf(siteHeaderHtml.match(/<header\b[^>]*>/iu)?.[0] ?? "", "data-nav-state") === "prominent" &&
+  attributeOf(siteHeaderHtml.match(/<header\b[^>]*>/iu)?.[0] ?? "", "data-motion-policy") === "state.direct" &&
+  /--nav-block-prominent-desktop:\s*76px;/u.test(html) &&
+  /--nav-block-prominent-mobile:\s*68px;/u.test(html) &&
+  /--nav-visual-calm-desktop:\s*29px;/u.test(html) &&
+  /--nav-visual-calm-mobile:\s*27px;/u.test(html) &&
+  /--nav-content-calm-scale:\s*\.5;/u.test(html) &&
+  /--nav-content-calm-opacity:\s*\.72;/u.test(html) &&
+  /--nav-surface-prominent-alpha:\s*92%;/u.test(html) &&
+  /--nav-surface-calm-alpha:\s*26%;/u.test(html) &&
+  /--nav-state-duration:\s*560ms;/u.test(html) &&
+  /position:\s*sticky/u.test(siteHeaderRule?.declarations ?? "") &&
+  /height:\s*var\(--nav-block-prominent-desktop\)/u.test(siteHeaderRule?.declarations ?? "") &&
+  /height:\s*var\(--nav-block-prominent-desktop\)/u.test(siteHeaderSurfaceRule?.declarations ?? "") &&
+  /backdrop-filter:\s*blur\(10px\) saturate\(1\.2\)/u.test(siteHeaderSurfaceRule?.declarations ?? "") &&
+  /var\(--nav-surface-prominent-alpha\)/u.test(siteHeaderSurfaceRule?.declarations ?? "") &&
+  /height:\s*var\(--nav-visual-calm-desktop\)/u.test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
+  /var\(--nav-surface-calm-alpha\)/u.test(siteHeaderCalmSurfaceRule?.declarations ?? "") &&
+  /max-width:\s*1280px/u.test(siteHeaderInnerRule?.declarations ?? "") &&
+  /padding-inline:\s*24px/u.test(siteHeaderInnerRule?.declarations ?? "") &&
+  /transform-origin:\s*left center/u.test(siteHeaderRowRule?.declarations ?? "") &&
+  /height:\s*44px/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /opacity:\s*var\(--nav-content-calm-opacity\)/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /class="brand__symbol"/u.test(siteHeaderHtml) &&
+  /class="brand__wordmark"[^>]*>Landometer</u.test(siteHeaderHtml) &&
+  !/\blogo-surface\b/iu.test(siteHeaderHtml);
+const navbarBudgetAndFallbackValid =
+  headerDesktopControls.length === 4 &&
+  countClass(siteHeaderHtml, "brand") === 1 &&
+  countClass(siteHeaderHtml, "header-link") === 1 &&
+  countClass(siteHeaderHtml, "header-cta") === 1 &&
+  countClass(siteHeaderHtml, "nav-menu-toggle") === 1 &&
+  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-main-links,[\s\S]*?\.nav-cta--header,[\s\S]*?\.side-bookmark\s*\{\s*display:\s*none;/u.test(html) &&
+  /href="https:\/\/montri-th\.github\.io\/CityMETER\/"/u.test(noJsPageIndexHtml) &&
+  /href="https:\/\/landometer\.com\/v3\/citywiki"/u.test(noJsPageIndexHtml) &&
+  /href="https:\/\/landometer\.com\/auth"/u.test(noJsPageIndexHtml) &&
+  /html:not\(\.js\) \.no-js-page-index/u.test(html);
+const navbarDirectTargetAndBehaviorValid =
+  /min-height:\s*44px/u.test(headerDirectTargetRule?.declarations ?? "") &&
+  /width:\s*44px/u.test(navMenuToggleGeometryRule?.declarations ?? "") &&
+  /height:\s*44px/u.test(navMenuToggleGeometryRule?.declarations ?? "") &&
+  /let calmRequested = false;/u.test(scriptSource) &&
+  /nextY <= 24 \|\| delta < -4/u.test(scriptSource) &&
+  /else if \(delta > 4\) calmRequested = true;/u.test(scriptSource) &&
+  /!pointerInsideHeader[\s\S]{0,100}!focusInsideHeader[\s\S]{0,100}!menuOpen/u.test(scriptSource) &&
+  /headerReducedMotion && headerReducedMotion\.matches/u.test(scriptSource) &&
+  /siteHeader\.addEventListener\("pointerenter"/u.test(scriptSource) &&
+  /siteHeader\.addEventListener\("focusin"/u.test(scriptSource) &&
+  /firstControl\) firstControl\.focus\(\)/u.test(scriptSource) &&
+  /event\.key !== "Escape"/u.test(scriptSource) &&
+  /setMenu\(false, true\)/u.test(scriptSource) &&
+  /destination\.focus\(\{ preventScroll: true \}\)/u.test(scriptSource) &&
+  !/(?:elements?FromPoint|wake[-_ ]?zone|dispatchEvent\s*\(\s*new MouseEvent)/iu.test(scriptSource);
+
+const expectedMotionPolicies = [
+  "reveal.supporting",
+  "settle.visible",
+  "state.direct",
+  "state.disclosure",
+  "static.critical",
+  "static.evidence",
+  "container.orchestrates",
+  "contained.inherited"
+];
+const motionVocabularySource = scriptSource.match(
+  /const MOTION_POLICY_VOCABULARY = Object\.freeze\(\[([\s\S]*?)\]\);/u
+)?.[1] ?? "";
+const declaredMotionPolicies = [...motionVocabularySource.matchAll(/"([^"]+)"/gu)]
+  .map(match => match[1]);
+const motionPolicyCoverageValid =
+  declaredMotionPolicies.length === expectedMotionPolicies.length &&
+  expectedMotionPolicies.every(policy => declaredMotionPolicies.includes(policy)) &&
+  [
+    "critical-content", "evidence-and-identity", "direct-interaction",
+    "native-disclosure", "section-introduction", "v091-editorial-sequence",
+    "teaching-card-sequence", "visible-component-settle", "component-container"
+  ].every(family => scriptSource.includes(`id: "${family}"`)) &&
+  /id:\s*"critical-content",[\s\S]{0,100}policy:\s*"static\.critical"/u.test(scriptSource) &&
+  /id:\s*"evidence-and-identity",[\s\S]{0,700}policy:\s*"static\.evidence"/u.test(scriptSource) &&
+  /id:\s*"teaching-card-sequence",[\s\S]{0,500}policy:\s*"settle\.visible"/u.test(scriptSource) &&
+  /policy === "reveal\.supporting"[\s\S]{0,220}resolvedPolicy = "settle\.visible"/u.test(scriptSource) &&
+  /main section, main article, main aside, main figure, main details, main form, main table/u.test(scriptSource) &&
+  /root\.dataset\.motionCoverage = invalid\.length \? "invalid" : "complete"/u.test(scriptSource) &&
+  scriptSource.indexOf("assignMotionPolicies();") >= 0 &&
+  scriptSource.indexOf("assignMotionPolicies();") < scriptSource.indexOf("initRiddimReveal();");
+const settleAndFallbackContractValid =
+  /\[data-motion-policy="settle\.visible"\]\s*\{[^{}]*outline:/u.test(html) &&
+  !/\[data-motion-policy="settle\.visible"\][^{]*\{[^{}]*(?:opacity|transform)\s*:/u.test(html) &&
+  /details\[data-motion-policy="state\.disclosure"\]\[open\]/u.test(html) &&
+  /@keyframes disclosure-surface-settle[\s\S]{0,300}outline/u.test(html) &&
+  /if \(reducedMotionQuery && reducedMotionQuery\.matches\) \{\s*riddimLandAll\(\)/u.test(scriptSource) &&
+  /if \(!\("IntersectionObserver" in window\)\) \{\s*riddimLandAll\(\)/u.test(scriptSource) &&
+  /catch \(error\) \{\s*riddimLandAll\(\)/u.test(scriptSource) &&
+  /data-motion-policy=\\"settle\.visible\\"[\s\S]{0,180}data-motion-settled/u.test(scriptSource) &&
+  /host\.querySelectorAll\("\[data-motion-policy=\\"settle\.visible\\"\]"\)/u.test(scriptSource) &&
+  /@media print[\s\S]*?html\[data-motion-approach\] \[data-motion-role\][\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*none !important;/u.test(html);
+const fragmentMotionSafetyValid =
+  /const motionHost = target\.closest\("\[data-motion-role\]"\);[\s\S]{0,120}data-riddim-landed/u.test(scriptSource) &&
+  /const settleHost = target\.closest\("\[data-motion-policy=\\"settle\.visible\\"\]"\);[\s\S]{0,140}data-motion-settled/u.test(scriptSource) &&
+  /detailChain\.forEach\(details => \{\s*details\.open = true;/u.test(scriptSource) &&
+  /focusTarget\?\.focus\(\{\s*preventScroll:\s*true\s*\}\)/u.test(scriptSource);
 
 const checks = [
   [
@@ -847,6 +993,18 @@ const checks = [
       /min-height:\s*44px/u.test(quietUtilityRule?.declarations ?? "") &&
       /padding:\s*0/u.test(quietUtilityRule?.declarations ?? "") &&
       /border-radius:\s*50%/u.test(quietUtilityRule?.declarations ?? "")
+  ],
+  [
+    "selected Rebuild02 navbar anatomy keeps its prominent and calm visual states",
+    rebuildNavbarAnatomyValid
+  ],
+  [
+    "navbar stays within the DS desktop/mobile control budget and keeps no-JS routes",
+    navbarBudgetAndFallbackValid
+  ],
+  [
+    "navbar calm behavior preserves direct 44px targets without coordinate forwarding",
+    navbarDirectTargetAndBehaviorValid
   ],
   [
     "tabs fields selectors and cards stay outside the action-pill rule",
@@ -1160,6 +1318,18 @@ const checks = [
     // [REVEAL-01] rule 4: opacity and transform only — no layout property may be animated.
     "reveal entrance moves nothing but opacity and transform",
     revealPropertiesValid
+  ],
+  [
+    "every semantic component family receives an explicit governed motion policy",
+    motionPolicyCoverageValid
+  ],
+  [
+    "critical and evidence content stays visible while settle and disclosure states complete safely",
+    settleAndFallbackContractValid
+  ],
+  [
+    "fragment navigation lands motion hosts before opening and focusing its target",
+    fragmentMotionSafetyValid
   ],
   ["reveal assignments use the exact v0.9.1 approach recipe", approachRecipeValid],
   ["CTA discovery cue is finite and matches the v0.9.1 recipe", discoveryCueValid],

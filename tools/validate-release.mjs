@@ -20,13 +20,15 @@ const RELEASE = Object.freeze({
   machineValidation: "pending",
   colorSetId: "color-srgb-05",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260902-02",
-  previousArtifactBuildId: "ui-20260902-01",
-  earlierArtifactBuildId: "ui-20260901-01",
+  artifactBuildId: "ui-20260902-03",
+  previousArtifactBuildId: "ui-20260902-02",
+  earlierArtifactBuildId: "ui-20260902-01",
+  initialArtifactBuildId: "ui-20260901-01",
   latest: "landometer-design-system-v0.9.1-standalone.html",
-  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
-  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
-  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
+  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
+  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
+  initialImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
   historicalBaseline: "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.1.md",
   registry: "assets/data/color-delivery.v0.9.1.json",
@@ -37,8 +39,9 @@ const RELEASE = Object.freeze({
   automatedQa: "qa/v0.9.1-automated.json",
   manualQa: "qa/v0.9.1-manual-gates.md",
   authoritySha256: "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
-  previousImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
-  earlierImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
+  previousImmutableUiSha256: "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
+  earlierImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
+  initialImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
   historicalBaselineSha256: "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
   historicalRegistrySha256: "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5",
   tokensSha256: "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc",
@@ -159,6 +162,7 @@ const requiredRepositoryFiles = [
   `deployment/${RELEASE.immutableUi}`,
   `deployment/${RELEASE.previousImmutableUi}`,
   `deployment/${RELEASE.earlierImmutableUi}`,
+  `deployment/${RELEASE.initialImmutableUi}`,
   `deployment/${RELEASE.historicalBaseline}`,
   `deployment/${RELEASE.authoringMaster}`,
   `deployment/${RELEASE.registry}`,
@@ -192,6 +196,7 @@ const latestHtml = readDeployment(RELEASE.latest);
 const immutableHtml = readDeployment(RELEASE.immutableUi);
 const previousImmutableHtml = readDeployment(RELEASE.previousImmutableUi);
 const earlierImmutableHtml = readDeployment(RELEASE.earlierImmutableUi);
+const initialImmutableHtml = readDeployment(RELEASE.initialImmutableUi);
 const authoringMaster = readDeployment(RELEASE.authoringMaster);
 const registry = readJson(deploymentPath(RELEASE.registry), "parse:color-registry-v091");
 const historicalRegistry = readJson(deploymentPath(RELEASE.historicalRegistry), "parse:color-registry-v090");
@@ -241,6 +246,15 @@ check(hasAttribute(earlierImmutableHtml, "data-artifact-build", RELEASE.earlierA
 check(hasAttribute(earlierImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:earlier-v091-ui:build-channel");
 check(hasAttribute(earlierImmutableHtml, "data-standalone", "true"), "history:earlier-v091-ui:standalone-marker");
 check(sha256(deploymentPath(RELEASE.earlierImmutableUi)) === RELEASE.earlierImmutableUiSha256, "history:earlier-v091-ui:known-hash");
+check(hasAttribute(initialImmutableHtml, "data-ds-version", RELEASE.version), "history:initial-v091-ui:version");
+check(hasAttribute(initialImmutableHtml, "data-authoring-revision", RELEASE.authoringRevision), "history:initial-v091-ui:authoring-revision");
+check(hasAttribute(initialImmutableHtml, "data-ruleset", RELEASE.rulesetRevision), "history:initial-v091-ui:ruleset-revision");
+check(hasAttribute(initialImmutableHtml, "data-machine-package-identity", RELEASE.machinePackageIdentity), "history:initial-v091-ui:machine-package-identity");
+check(hasAttribute(initialImmutableHtml, "data-color-registry", RELEASE.colorSetId), "history:initial-v091-ui:color-set");
+check(hasAttribute(initialImmutableHtml, "data-artifact-build", RELEASE.initialArtifactBuildId), "history:initial-v091-ui:artifact-build");
+check(hasAttribute(initialImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:initial-v091-ui:build-channel");
+check(hasAttribute(initialImmutableHtml, "data-standalone", "true"), "history:initial-v091-ui:standalone-marker");
+check(sha256(deploymentPath(RELEASE.initialImmutableUi)) === RELEASE.initialImmutableUiSha256, "history:initial-v091-ui:known-hash");
 check(/<title>[^<]*v0\.9\.1/i.test(html), "identity:document-title");
 check(html.includes("Landometer Design System · v0.9.1"), "identity:visible-release-label");
 check(html.includes("Let us") && html.includes("cultivate") && html.includes("with data."), "identity:protected-rally-cry");
@@ -309,6 +323,15 @@ check(earlierArtifactRecord?.status === "append_only", "registry:earlier-v091-re
 check(earlierArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.earlierImmutableUi)).size, "registry:earlier-v091-record-bytes");
 check(earlierArtifactRecord?.sha256 === RELEASE.earlierImmutableUiSha256, "registry:earlier-v091-record-known-hash");
 check(earlierArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.earlierImmutableUi)), "registry:earlier-v091-record-file-hash");
+const initialArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.initialArtifactBuildId && record.path === RELEASE.initialImmutableUi,
+);
+check(initialArtifactRecord?.role === "immutable_ui_build", "registry:initial-v091-record-role");
+check(initialArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:initial-v091-record-color-set");
+check(initialArtifactRecord?.status === "append_only", "registry:initial-v091-record-append-only");
+check(initialArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.initialImmutableUi)).size, "registry:initial-v091-record-bytes");
+check(initialArtifactRecord?.sha256 === RELEASE.initialImmutableUiSha256, "registry:initial-v091-record-known-hash");
+check(initialArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.initialImmutableUi)), "registry:initial-v091-record-file-hash");
 check(sha256(deploymentPath(RELEASE.historicalRegistry)) === RELEASE.historicalRegistrySha256, "history:v090-registry-byte-frozen");
 check(sha256(deploymentPath(RELEASE.historicalBaseline)) === RELEASE.historicalBaselineSha256, "history:color-srgb-05-baseline-byte-frozen");
 check(!existsSync(deploymentPath("landometer-design-system-v0.9.1-standalone.color-srgb-05.html")), "history:no-reminted-v091-color-baseline");
@@ -432,12 +455,54 @@ check(!/\bFILL 1\b/.test(html), "icon:no-visible-fill-one-guidance");
 check(/font-variation-settings:\s*['"]FILL['"] 0,\s*['"]wght['"] 300/.test(html), "icon:fill-zero-weight-300");
 check(html.includes("v0.9.1 keeps the glyph outlined in every state"), "icon:implementation-example");
 check(!v091Section.includes("data-riddim-reveal"), "motion:v091-critical-cases-visible-in-source");
-const v091MotionRoles = [...v091Section.matchAll(/data-motion-role="([^"]+)"/g)].map((match) => match[1]);
-check(v091MotionRoles.length === 9, "motion:v091-nine-explicit-supporting-roles");
+const authoredMotionRoles = [...html.matchAll(/data-motion-role="([^"]+)"/g)].map((match) => match[1]);
+check(authoredMotionRoles.length > 0, "motion:authored-supporting-roles-present");
 check(
-  v091MotionRoles.every((role) => ["approach.soft", "approach.inline-start", "approach.inline-end"].includes(role)),
-  "motion:v091-only-governed-supporting-roles",
+  authoredMotionRoles.every((role) => ["approach.soft", "approach.inline-start", "approach.inline-end", "media.arrival", "stagger.child"].includes(role)),
+  "motion:only-governed-supporting-roles",
 );
+for (const policy of [
+  "reveal.supporting",
+  "settle.visible",
+  "state.direct",
+  "state.disclosure",
+  "static.critical",
+  "static.evidence",
+  "container.orchestrates",
+  "contained.inherited",
+]) {
+  check(html.includes(`"${policy}"`), `motion:policy-vocabulary:${policy}`);
+}
+for (const family of [
+  "critical-content",
+  "evidence-and-identity",
+  "direct-interaction",
+  "native-disclosure",
+  "section-introduction",
+  "v091-editorial-sequence",
+  "teaching-card-sequence",
+  "visible-component-settle",
+  "component-container",
+  "semantic-component-audit",
+]) {
+  check(html.includes(`"${family}"`), `motion:component-family:${family}`);
+}
+check(
+  html.includes('document.querySelectorAll("main section, main article, main aside, main figure, main details, main form, main table, main [role=\\"tabpanel\\"], main [role=\\"tablist\\"], main [role=\\"group\\"]")'),
+  "motion:semantic-component-catchall",
+);
+check(
+  html.includes('root.dataset.motionCoverage = invalid.length ? "invalid" : "complete"') &&
+    html.includes("root.dataset.motionCoverageComponents") &&
+    html.includes("root.dataset.motionCoverageFamilies"),
+  "motion:runtime-coverage-receipt",
+);
+const assignMotionCall = html.lastIndexOf("assignMotionPolicies();");
+const initRiddimCall = html.lastIndexOf("initRiddimReveal();");
+check(assignMotionCall > 0 && initRiddimCall > assignMotionCall, "motion:coverage-assigned-before-reveal-runtime");
+for (const protectedSelector of [".hero-copy", ".hero-media", ".primary-action", "[role=\\\"status\\\"]", "[aria-live]", ".proof-preview", ".truth-lock", ".site-footer"]) {
+  check(html.includes(protectedSelector), `motion:protected-critical-selector:${protectedSelector}`);
+}
 const riddimGroupMatch = html.match(/const RIDDIM_GROUPS\s*=\s*\[([\s\S]*?)\];/);
 if (riddimGroupMatch) {
   const groups = riddimGroupMatch[1];
@@ -446,29 +511,76 @@ if (riddimGroupMatch) {
   }
   check(groups.trim() === "" || groups.includes("data-motion-role"), "motion:role-gated-supporting-elements-only");
 }
-check(html.includes("prefers-reduced-motion: reduce"), "motion:reduced-motion-final-state");
+check(
+  html.includes('document.querySelectorAll("[data-motion-role]").forEach') &&
+    html.includes('node.setAttribute("data-riddim-landed", "")') &&
+    html.includes('document.querySelectorAll("[data-motion-policy=\\"settle.visible\\"]").forEach') &&
+    html.includes('node.setAttribute("data-motion-settled", "")') &&
+    html.includes('root.removeAttribute("data-motion-approach")'),
+  "motion:fail-open-lands-every-policy",
+);
+check(/if \(reducedMotionQuery && reducedMotionQuery\.matches\)\s*\{\s*riddimLandAll\(\)/.test(html), "motion:reduced-motion-fail-open");
+check(/if \(!\("IntersectionObserver" in window\)\)\s*\{\s*riddimLandAll\(\)/.test(html), "motion:no-observer-fail-open");
+check(/catch \(error\)\s*\{\s*riddimLandAll\(\)/.test(html), "motion:runtime-error-fail-open");
+check(
+  html.includes('!node.closest("details:not([open])")') &&
+    html.includes('host.querySelectorAll("[data-motion-role]")') &&
+    html.includes('host.querySelectorAll("[data-motion-policy=\\"settle.visible\\"]")'),
+  "motion:disclosure-content-opens-readable",
+);
+check(html.includes('{ rootMargin: "0px 0px -12% 0px", threshold: 0.14 }'), "motion:governed-observer-window");
+check(/@media\s+print[\s\S]*?\[data-motion-role\][\s\S]*?opacity:\s*1\s*!important[\s\S]*?transform:\s*none\s*!important/.test(html), "motion:print-final-state");
+check(/@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\[data-motion-role\][\s\S]*?opacity:\s*1\s*!important[\s\S]*?transform:\s*none\s*!important/.test(html), "motion:reduced-motion-final-state");
 check(html.includes("v091-cue") && html.includes("animation-iteration-count: 1"), "motion:finite-discovery-cue");
 
-// Header control budget: desktop exposes brand + two direct destinations + Menu;
-// mobile hides the two direct shortcuts and keeps brand + Menu. Disclosure uses a
+// Header control budget: desktop exposes Brand + CityMETER + Sign in + Menu;
+// mobile hides the direct product shortcut and sign-in CTA, keeping Brand + Menu.
+// Disclosure uses a
 // real button, aria-expanded, stable focus restoration, and Escape.
 const headerStart = html.indexOf('<header class="site-header"');
 const headerEnd = html.indexOf("</header>", headerStart);
 const header = headerStart >= 0 && headerEnd > headerStart ? html.slice(headerStart, headerEnd) : "";
-const primaryNav = header.match(/<nav class="header-primary"[\s\S]*?<\/nav>/)?.[0] ?? "";
+const headerNav = header.match(/<nav class="header-nav"[\s\S]*?<\/nav>/)?.[0] ?? "";
+const headerMainLinks = header.match(/<span class="header-main-links">[\s\S]*?<\/span>/)?.[0] ?? "";
+const desktopControlCount =
+  (header.match(/<a\b[^>]*\bid="home-link"/g) ?? []).length +
+  (headerMainLinks.match(/<a\b/g) ?? []).length +
+  (headerNav.match(/<a\b[^>]*\bclass="header-cta"/g) ?? []).length +
+  (headerNav.match(/<button\b[^>]*\bid="nav-menu-toggle"/g) ?? []).length;
 check(header.length > 0, "navigation:site-header-present");
-check((primaryNav.match(/<a\b/g) ?? []).length === 2, "navigation:desktop-two-shortcuts");
+check(headerNav.length > 0, "navigation:header-nav-present");
+check(desktopControlCount === 4, "navigation:desktop-four-control-budget");
+check((headerMainLinks.match(/<a\b/g) ?? []).length === 1 && headerMainLinks.includes("CityMETER"), "navigation:citymeter-single-direct-destination");
+check(headerNav.includes('class="header-cta"') && headerNav.includes("Sign in"), "navigation:sign-in-single-direct-cta");
+check(!headerMainLinks.includes("CityWiki") && header.includes('class="nav-panel-links"') && header.includes("CityWiki"), "navigation:citywiki-disclosed-not-direct");
 check(header.includes('id="home-link"') && header.includes('aria-current="page"'), "navigation:brand-current-page-separate");
+check(header.includes('class="brand__symbol"') && header.includes('class="brand__wordmark"'), "navigation:brand-symbol-and-wordmark");
 check(header.includes('id="nav-menu-toggle"') && header.includes('aria-expanded="false"') && header.includes('aria-controls="nav-panel"'), "navigation:disclosure-button-contract");
 check(header.includes('id="nav-panel" hidden'), "navigation:panel-source-state");
-check(/@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-primary[\s\S]*?display:\s*none/.test(html), "navigation:mobile-two-control-budget");
-check(/\.header-primary a[\s\S]{0,500}?min-height:\s*44px/.test(html) || /\.header-primary a,[\s\S]{0,800}?min-height:\s*44px/.test(html), "navigation:direct-targets-44px");
+check(
+  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-main-links,[\s\S]*?\.nav-cta--header,[\s\S]*?display:\s*none/.test(html),
+  "navigation:mobile-two-control-budget",
+);
+check(
+  /\.brand,[\s\S]{0,180}?\.header-link,[\s\S]{0,180}?\.header-cta,[\s\S]{0,180}?\.nav-menu-toggle[\s\S]{0,180}?min-height:\s*44px/.test(html),
+  "navigation:direct-targets-44px",
+);
+check(
+  html.includes("--nav-block-prominent-desktop: 76px") &&
+    html.includes("--nav-block-prominent-mobile: 68px") &&
+    html.includes("--nav-visual-calm-desktop: 29px") &&
+    html.includes("--nav-visual-calm-mobile: 27px") &&
+    html.includes("--nav-content-calm-scale: .5") &&
+    html.includes("--nav-state-duration: 560ms"),
+  "navigation:rebuild02-state-anatomy",
+);
 check(/event\.key[\s\S]{0,24}?["']Escape["']/.test(html), "navigation:escape-closes-menu");
 check(/navMenuToggle\.focus\(|menuToggle\.focus\(/.test(html), "navigation:focus-restored-to-trigger");
 check(html.includes('aria-current", "location"') || html.includes("aria-current', 'location'"), "navigation:current-location-separate");
 check(/class="[^"]*\bside-bookmark\b[^"]*"/.test(html) && html.includes('data-page-destination="library-resources"'), "navigation:side-bookmark-real-anchors");
 check(html.includes(".site-header.is-calm::before"), "navigation:calm-state-styled");
 check(html.includes('siteHeader.classList.toggle("is-calm", Boolean(calm))'), "navigation:calm-state-runtime");
+check(!header.includes("v091-cue"), "navigation:consequential-sign-in-has-no-discovery-sweep");
 check(!html.includes("elementFromPoint") && !html.includes("elementsFromPoint"), "navigation:no-coordinate-click-forwarding");
 
 // Output clarity: implementation-facing receipts remain in metadata and release
@@ -502,6 +614,7 @@ const manifestBoundFiles = [
   RELEASE.immutableUi,
   RELEASE.previousImmutableUi,
   RELEASE.earlierImmutableUi,
+  RELEASE.initialImmutableUi,
   RELEASE.historicalBaseline,
   RELEASE.buildCard,
   RELEASE.implementationNotes,
