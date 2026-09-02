@@ -62,13 +62,14 @@ jobs:
           EXPECTED_EVIDENCE_STATUS: source_limited
           EXPECTED_INDEXABLE: "false"
           EXPECTED_MACHINE_VALIDATION: pending
-          EXPECTED_ARTIFACT_BUILD: ui-20260902-07
+          EXPECTED_ARTIFACT_BUILD: ui-20260902-08
           VERIFY_EXACT_SOURCE: "true"
           LOCAL_DEPLOYMENT_DIR: deployment
           VERIFY_ATTEMPTS: "30"
           VERIFY_DELAY_MS: "10000"
           CRITICAL_ASSETS: >-
             landometer-design-system-v0.9.1-standalone.html,
+            landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html,
             landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html,
             landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html,
             landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html,

@@ -5,20 +5,23 @@ landometerBuild:
     ruleset: lds-rules-0.9.1
     machinePackageIdentity: v0.9.1-mp7
     machinePackageDelivery: identity_only
-    artifactBuildId: ui-20260902-07
-    supersedesArtifactBuildId: ui-20260902-06
-    retainedPriorArtifactBuildIds: [ui-20260902-06, ui-20260902-05, ui-20260902-04, ui-20260902-03, ui-20260902-02, ui-20260902-01, ui-20260901-01]
+    artifactBuildId: ui-20260902-08
+    supersedesArtifactBuildId: ui-20260902-07
+    retainedPriorArtifactBuildIds: [ui-20260902-07, ui-20260902-06, ui-20260902-05, ui-20260902-04, ui-20260902-03, ui-20260902-02, ui-20260902-01, ui-20260901-01]
     changeClass: ui_artifact_revision_color_set_unchanged
     defectClosure: >-
-      Preserves the ui-20260902-06 outline-state correction and closes four
-      artifact defects: calm navigation retains a full-width row with unchanged
-      semantic-target positions while complete inner visual surfaces scale;
-      menu, close, and all six side-bookmark icons paint as inline outline SVG
-      without a font dependency; the seven-color Identity and Energy preview is
-      generated from the same records as the complete Color Atlas; and the
-      latest alias performs a no-store manifest freshness handshake before a
-      one-time build-qualified reload. Color Set color-srgb-05 is unchanged, and
-      ui-20260902-06 and earlier builds remain byte-for-byte append-only evidence.
+      Preserves the ui-20260902-07 Safari, icon, Color Atlas preview, and cache
+      corrections while applying three owner-selected Rebuild02 navbar details.
+      Calm preserves ui-07's full-width row and target dimensions, removes its
+      remaining vertical-centre shift by keeping the 76px/68px target row, and
+      uses a 26% surface, 20% hairline, and .72 content opacity. The existing
+      symbol asset remains unchanged inside 54px desktop and 45px mobile layout
+      slots, with a .558 artwork scale that matches the Rebuild02 optical
+      footprint. The Sign in CTA receives the Rebuild02-signature yellow text
+      sweep only as 200ms hover/focus state.direct feedback; it is not observer
+      discovery, autoplay, flicker, or a loop. Color Set color-srgb-05 is
+      unchanged, and ui-20260902-07 and earlier builds remain byte-for-byte
+      append-only evidence.
     sourceRef: assets/downloads/landometer-design-system-v0.9.1.md
     sourceBytes: 208463
     sourceSha256: 64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19
@@ -68,7 +71,7 @@ landometerBuild:
       sourceLabel: Unified navbar design handoff r7.zip
       sha256: 47a26f9546316856357040d7a716619a8fa5289484851b4d25bdbb9501ef60fa
       authority: non_normative_artifact_reference
-      selectedScope: navbar anatomy, disclosure grouping, side bookmark, and visual rhythm
+      selectedScope: navbar anatomy, disclosure grouping, side bookmark, calm transparency, optical brand proportion, CTA state feedback, and visual rhythm
       normativeEffect: none
       identityAuthorization: not_provided_by_candidate
       headerIdentityManualGate: open_pending_execution
@@ -183,17 +186,31 @@ landometerBuild:
     geometry:
       prominentBlockDesktopCssPx: 76
       prominentBlockMobileCssPx: 68
-      calmVisualDesktopCssPx: 52
-      calmVisualMobileCssPx: 52
+      calmVisualDesktopCssPx: 76
+      calmVisualMobileCssPx: 68
       contentCalmScale: 0.82
-      contentCalmOpacity: 1
-      calmSurfaceAlpha: 0.88
+      contentCalmOpacity: 0.72
+      calmSurfaceAlpha: 0.26
+      calmHairlineAlpha: 0.20
       calmRowWidth: full
       calmControlClusterAlignment: right
       scaleBoundary: inner_visual_wrappers_only
       stateDurationMs: 560
       scrollIntentDeltaCssPx: 4
       topThresholdCssPx: 24
+      brandSymbol:
+        asset: assets/images/landometer-symbol-transparent.png
+        assetChanged: false
+        desktopLayoutSlotCssPx: 54
+        mobileLayoutSlotCssPx: 45
+        artworkScale: 0.558
+        purpose: match_rebuild02_optical_footprint_without_replacing_identity_asset
+      rebuild02HeightSafetyDivergence:
+        observedCandidateCalmDesktopCssPx: 29
+        observedCandidateCalmMobileCssPx: 27
+        artifactCalmDesktopCssPx: 76
+        artifactCalmMobileCssPx: 68
+        reason: preserve_literal_direct_target_rects_and_centres_without_coordinate_forwarding
     disclosureControl:
       element: button
       stateAttribute: aria-expanded
@@ -231,6 +248,21 @@ landometerBuild:
       coordinateForwardingOverlayAllowed: false
       localeChangeWhileOpen: preserve_current_focus
       deepLinkOffset: one_scroll_padding_mechanism
+    ctaStateFeedback:
+      target: Sign_in
+      reference: rebuild02_signature_yellow_text_sweep
+      policy: state.direct
+      triggers: [hover, focus_visible]
+      durationMs: 200
+      decorativeLayer: locale_matched_text_duplicate
+      decorativeLayerAriaHidden: true
+      decorativeLayerPointerInert: true
+      realActionRemainsReadableAndClickable: true
+      observerDiscovery: false
+      autoplay: false
+      flicker: false
+      loop: false
+      reducedMotion: no_decorative_sweep
 
   icon:
     setId: icon-rounded-outline-01
@@ -367,10 +399,10 @@ landometerBuild:
       sha256: 0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a
       status: preserved_byte_for_byte
     currentArtifactBuild:
-      id: ui-20260902-07
-      supersedes: ui-20260902-06
+      id: ui-20260902-08
+      supersedes: ui-20260902-07
       latestPath: landometer-design-system-v0.9.1-standalone.html
-      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html
+      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html
       changeClass: ui_artifact_revision_color_set_unchanged
       offlineStandaloneIdentity: approved_favicon_embedded
     mainPagePreview:
@@ -412,7 +444,7 @@ landometerBuild:
     canonicalUrl: https://montri-th.github.io/Landometer/
     pagesRoot: deployment
     latestStandalone: landometer-design-system-v0.9.1-standalone.html
-    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html
+    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html
     siteManifest: site-manifest.v0.9.1.json
     implementationNotes: implementation-notes.v0.9.1.md
     manualQaRecord: qa/v0.9.1-manual-gates.md

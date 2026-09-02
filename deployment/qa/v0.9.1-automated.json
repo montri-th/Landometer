@@ -1,12 +1,12 @@
 {
-  "reportId": "landometer-ds-v0.9.1-ui-20260902-07",
+  "reportId": "landometer-ds-v0.9.1-ui-20260902-08",
   "recordedAt": "2026-09-02",
   "designSystemVersion": "0.9.1",
   "authoringRevision": "0.9.1-r8",
   "rulesetRevision": "lds-rules-0.9.1",
   "machinePackageIdentity": "v0.9.1-mp7",
   "machinePackageBoundary": "release identity only; v0.9.1-mp7 package bytes are not delivered or validated by this repository",
-  "artifactBuildId": "ui-20260902-07",
+  "artifactBuildId": "ui-20260902-08",
   "colorSetId": "color-srgb-05",
   "artifactDecision": {
     "ownerSelectedCandidate": "rebuild02-navbar-handoff-r7-candidate",
@@ -14,7 +14,7 @@
     "authority": "non_normative_artifact_reference",
     "normativeDivergence": "The selected five-control desktop anatomy exceeds the NAV-01 four-control budget; delivery conformance remains not_claimed.",
     "preservedSafetyFloors": [
-      "direct semantic targets remain at least 44 by 44 CSS pixels",
+      "direct semantic targets remain at least 44 by 44 CSS pixels and keep their complete rectangles and centers through the calm-state transition",
       "no wake-first interaction or coordinate-forwarding overlay",
       "no infinite or replaying attention cue",
       "critical Menu, Close, and side-bookmark icons are deterministic inline outline SVG",
@@ -24,8 +24,8 @@
   "sourceIntegrity": {
     "hostedSource": {
       "path": "index.html",
-      "bytes": 1096212,
-      "sha256": "da3629d54a2859dd9580b5a631159c40eae0ff6475f994a9770ba17baeedaa07"
+      "bytes": 1098560,
+      "sha256": "1581689d4b0beee36eed53559f6df19f4cff74d06632d4ea2c878b94a7666e7b"
     },
     "ownerApprovedMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.1.md",
@@ -35,23 +35,23 @@
     },
     "colorDeliveryRecord": {
       "path": "assets/data/color-delivery.v0.9.1.json",
-      "bytes": 10101,
-      "sha256": "18852fe3d3a036cf927fb700411802dcfe31303525a6343435e1e007ba86415e"
+      "bytes": 10631,
+      "sha256": "b822cabbcd08458c46a6d14dfdc3203478297f7ab727d9f2fa7bcac600614637"
     },
     "latestStandalone": {
       "path": "landometer-design-system-v0.9.1-standalone.html",
-      "bytes": 2030738,
-      "sha256": "4ce8e62443c8a2ffc245b788d3da1dd06a992d2f28f87478176a408054de389b"
+      "bytes": 2033086,
+      "sha256": "3fbf25d2670088c620d0b9ba25d35d23d4491e492cb49570c3346c2437504982"
     },
     "immutableUiStandalone": {
-      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html",
-      "bytes": 2030750,
-      "sha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910"
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html",
+      "bytes": 2033098,
+      "sha256": "f24b14705e504ac479aadb4eac4241550f10104c9b959e72bac642a963c89497"
     },
     "retainedPreviousUiStandalone": {
-      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
-      "bytes": 2024873,
-      "sha256": "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55",
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html",
+      "bytes": 2030750,
+      "sha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910",
       "unchanged": true
     },
     "retainedColorBaseline": {
@@ -90,7 +90,7 @@
       "id": "standalone-deterministic-build",
       "tool": "tools/build-standalone-html.mjs --check",
       "result": "pass",
-      "detail": "latest and immutable ui-20260902-07 standalones match after normalizing only the build-channel marker; ui-20260902-06 and all earlier immutable artifacts plus the predecessor Color Set baseline remain preserved"
+      "detail": "latest and immutable ui-20260902-08 standalones match after normalizing only the build-channel marker; ui-20260902-07 and all earlier immutable artifacts plus the predecessor Color Set baseline remain preserved"
     },
     {
       "id": "retained-color-atlas",
@@ -113,21 +113,21 @@
       "id": "current-immutable-handoff",
       "method": "exact source inspection plus current immutable-target existence",
       "result": "pass",
-      "detail": "the Color Set stability code sample, Implementation Library pinned-download link, and footer receipt all resolve ui-20260902-07; ui-20260902-06 remains byte-frozen"
+      "detail": "the Color Set stability code sample, Implementation Library pinned-download link, and footer receipt all resolve ui-20260902-08; ui-20260902-07 remains byte-frozen"
     },
     {
       "id": "experience-contracts",
       "tool": "skill/refine-landometer-experience/scripts/check-experience-contracts.mjs",
       "result": "pass",
-      "detail": "77 current-release experience contracts passed, including ui07 immutable handoff parity, documented r7 navigation divergence, stable calm target positions, deterministic inline SVG icon delivery, generated seven-color preview parity, no-store freshness recovery, governed motion coverage, retained Color Atlas, and open manual-gate truthfulness"
+      "detail": "82 current-release experience contracts passed, including ui08 immutable handoff parity, documented r7 navigation divergence, stable calm target rectangles and centers, Rebuild02-equivalent calm transparency, optical logo scaling, finite intent-only CTA sweep, deterministic inline SVG icon delivery, generated seven-color preview parity, no-store freshness recovery, governed motion coverage, retained Color Atlas, and open manual-gate truthfulness"
     },
     {
       "id": "rendered-affordances",
       "tool": "tools/check-rendered-affordances.mjs",
       "result": "pass",
       "receipt": {
-        "schemaVersion": "1.3",
-        "artifactSha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910",
+        "schemaVersion": "1.4",
+        "artifactSha256": "f24b14705e504ac479aadb4eac4241550f10104c9b959e72bac642a963c89497",
         "cases": 26,
         "failures": 0
       },
@@ -138,8 +138,28 @@
             "mobile": 68
           },
           "calmSurfaceCssPx": {
-            "desktop": 52,
-            "mobile": 52
+            "desktop": 76,
+            "mobile": 68
+          },
+          "calmSurfaceAlpha": 0.26,
+          "calmHairlineAlpha": 0.2,
+          "calmRowOpacity": 0.72,
+          "logoSlotCssPx": {
+            "desktop": 54,
+            "mobile": 45
+          },
+          "logoArtScale": 0.558,
+          "ctaYellowSweep": {
+            "triggers": [
+              "hover",
+              "focus-visible"
+            ],
+            "durationMs": 200,
+            "iterationCount": 1,
+            "autoplay": false,
+            "intersectionObserver": false,
+            "infiniteOrFlicker": false,
+            "reducedMotion": "hidden_static_final_state"
           },
           "visibleControlsIncludingBrand": {
             "desktop": 5,
@@ -153,7 +173,10 @@
           "assertions": [
             "menu and close contain visibly painted inline outline SVG independent of font delivery",
             "the panel retains all core routes and the grouped mobile primary task",
-            "calm keeps each direct target position and size, scales the complete inner visual to 0.82, and retains a full-width right-aligned row",
+            "calm keeps every direct target rectangle and center stable at 76px desktop and 68px mobile while scaling the complete inner visual to 0.82",
+            "calm uses the Rebuild02 0.26 surface alpha, 0.20 hairline alpha, and 0.72 row opacity without shrinking or relocating targets",
+            "the unchanged approved logo binary uses a 0.558 artwork scale inside stable 54px desktop and 45px mobile slots",
+            "the CTA preserves its real label and direct hit while a pointer-inert yellow duplicate sweeps once for 200ms on hover or focus-visible, with no autoplay, observer, infinite loop, or flicker",
             "reduced motion remains prominent"
           ]
         },
@@ -223,27 +246,27 @@
           ]
         }
       },
-      "boundary": "Rendered geometry, navbar state, inline-SVG paint, route presence, bookmark continuity, Color Atlas preview parity, isolated latest-build freshness behavior, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, native-Safari review, or transparent-surface contrast review."
+      "boundary": "Rendered geometry, approved navbar logo-slot/art scale, calm transparency with stable direct-target rectangles, finite intent-only CTA sweep, inline-SVG paint, route presence, bookmark continuity, Color Atlas preview parity, an isolated latest-build freshness handshake, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, native-Safari review, or transparent-surface contrast review."
     },
     {
       "id": "rendered-container-fit",
       "tool": "tools/check-container-fit.mjs",
       "result": "pass",
-      "detail": "8 viewport/theme cases measured 64 governed implementation containers with zero failures on ui-20260902-07"
+      "detail": "8 viewport/theme cases measured 64 governed implementation containers with zero failures on ui-20260902-08"
     },
     {
       "id": "continuous-perceptual-smoke",
       "method": "Chrome/Playwright continuous down-scroll and return-scroll sampling with screenshots and state telemetry",
       "artifactBuildId": "ui-20260902-06",
       "result": "retained_predecessor_evidence",
-      "detail": "The ui-20260902-06 exact-byte smoke remains retained evidence; ui-20260902-07 passes current rendered motion and return-scroll contracts, but a new whole-journey continuous capture has not been recorded.",
-      "boundary": "Predecessor evidence does not discharge current ui07 human screen-recording, native-Safari, assistive-technology, identity, or transparent-surface review gates."
+      "detail": "The ui-20260902-06 exact-byte smoke remains retained evidence; ui-20260902-08 passes current rendered motion and return-scroll contracts, but a new whole-journey continuous capture has not been recorded.",
+      "boundary": "Predecessor evidence does not discharge current ui08 human screen-recording, native-Safari, assistive-technology, identity, or transparent-surface review gates."
     },
     {
       "id": "rendered-scale-geometry",
       "tool": "tools/check-scale-geometry.mjs",
       "result": "pass",
-      "detail": "36 locale/theme/width/zoom cases measured 2,916 rows with zero failures on ui-20260902-07"
+      "detail": "36 locale/theme/width/zoom cases measured 2,916 rows with zero failures on ui-20260902-08"
     }
   ],
   "summary": {
@@ -256,6 +279,7 @@
   },
   "openManualGates": [
     "human continuous Thai and English slow-scroll screen-recording review across the whole reading journey",
+    "native Safari review",
     "assistive-technology review",
     "transparent calm-surface contrast review over varied content",
     "header identity authorization and Light/Dark contrast review"
