@@ -8,7 +8,7 @@ The v0.9.1 page keeps the strongest parts of the existing playground—hero invi
 
 ## What is new in v0.9.1
 
-Artifact build `ui-20260902-02` makes “retained principle → improved implementation → visible result” explicit through six alternating copy-and-visual chapters:
+Artifact build `ui-20260902-03` makes “retained principle → improved implementation → visible result” explicit through six alternating copy-and-visual chapters:
 
 1. **One shared method, distinct product truths** — a shared Locale Insight frame with separate Land, Location, and Living packs;
 2. **One claim, consistent meaning for people and machines** — one claim preserved across initial HTML, visible page, and hydrated state;
@@ -21,15 +21,15 @@ Every new case is labelled as a conceptual example, not product evidence. Produc
 
 The shared Landometer layer covers portfolio framing, methodology, and product architecture across **Land · Location · Living**. Cross-product or cross-city comparison requires compatible schema, release, unit, and grain; otherwise incompatibility stays visible.
 
-### UI artifact revision `ui-20260902-02`
+### UI artifact revision `ui-20260902-03`
 
-This is an implementation-artifact revision, not a normative Design System change. The header can become visually calm while reading downward and returns to prominent at the page start, on upward intent, pointer intent, focus, or an open menu. Only surface and emphasis change: semantic link and button targets remain direct and at least 44 × 44 CSS pixels. No wake-first click or coordinate-forwarding overlay is used. Reduced motion keeps the stable prominent state.
+This is an implementation-artifact revision, not a normative Design System change. The live header now uses the same approved symbol-plus-wordmark anatomy, 76/68px prominent rhythm, and 29/27px calm visual surface as the validated public-site pattern. The DS page keeps the normative budget of Brand + CityMETER + Sign in + Menu on desktop and Brand + Menu on mobile. Only surface and visual emphasis change: semantic targets stay direct and at least 44 × 44 CSS pixels. No wake-first click or coordinate-forwarding overlay is used. Reduced motion keeps the stable prominent state.
 
-The role-gated entrance recipe is explicit: `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, and `stagger.child`; opacity `760ms`; transform `920ms`; media `900ms`; block distance `32px`; logical inline distance `36px`; scale from `.985`; stagger `150ms` capped at `450ms`; enter easing `cubic-bezier(.16,1,.3,1)`; settle easing `cubic-bezier(.2,.9,.25,1.08)`; observer threshold `.14`; root margin `0px 0px -12% 0px`; and a `2400ms` safety audit. Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, and deep-link targets are excluded from hidden entrances. Closed disclosures and hidden panels are not enrolled.
+Every semantic component family now declares a motion policy. Supporting editorial sequences may use `approach.soft`, `approach.inline-start`, `approach.inline-end`, `media.arrival`, or `stagger.child`; visible teaching cards use a finite outline settle; direct controls own their state; disclosures animate only their surface; and critical/evidence/identity/Color Atlas content is explicitly static. The entrance constants remain opacity `760ms`, transform `920ms`, media `900ms`, block distance `32px`, logical inline distance `36px`, scale from `.985`, stagger `150ms` capped at `450ms`, observer threshold `.14`, root margin `0px 0px -12% 0px`, and a `2400ms` safety audit. Hero/LCP media, H1, first answer, primary proof, primary action, task-critical state, status, focus targets, and deep-link targets are never hidden. Closed disclosures and hidden panels are not enrolled.
 
 The cross-format CTA uses a pointer-inert highlight band that sweeps once from `-120%` to `120%` in `540ms` with `cubic-bezier(.16,1,.3,1)`. It does not loop, move layout, or reduce content opacity; reduced motion and missing observer support receive the final no-cue state.
 
-This final UI build also preserves keyboard focus when the language changes inside an open menu, uses one sticky-header offset for deep links, and embeds the approved favicon in standalone files for offline use. The reviewed `ui-20260902-01` candidate remains immutable release evidence.
+Status, source, boundary, limitation, and CTA receipt text remain readable throughout semantic state changes; only supporting cues or a non-content surface settle. Print, no-JavaScript, reduced-motion, missing-observer, and observer-failure paths expose final meaning. The prior `ui-20260902-02`, `ui-20260902-01`, and `ui-20260901-01` builds remain immutable release evidence.
 
 ## What remains
 
@@ -60,9 +60,9 @@ Analytical scale records remain bound to their recorded source/version. They are
 - Site Manifest `2.1`
 - carried Token Schema projection `6`
 - Color Set `color-srgb-05` — retained; no normative color value change from v0.9.0-r7
-- artifact build `ui-20260902-02` — UI artifact revision; Design System authority and Color Set are unchanged
+- artifact build `ui-20260902-03` — navbar and complete component-family motion revision; Design System authority and Color Set are unchanged
 - latest standalone `deployment/landometer-design-system-v0.9.1-standalone.html`
-- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html`
+- immutable UI handoff `deployment/landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html`
 - profile `brand.public`
 - public, `noindex`, `source_limited`; artifact conformance is not claimed
 - `fullLivingReference: false`

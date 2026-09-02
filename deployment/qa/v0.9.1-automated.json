@@ -1,18 +1,18 @@
 {
-  "reportId": "landometer-ds-v0.9.1-ui-20260902-02",
+  "reportId": "landometer-ds-v0.9.1-ui-20260902-03",
   "recordedAt": "2026-09-02",
   "designSystemVersion": "0.9.1",
   "authoringRevision": "0.9.1-r8",
   "rulesetRevision": "lds-rules-0.9.1",
   "machinePackageIdentity": "v0.9.1-mp7",
   "machinePackageBoundary": "release identity only; v0.9.1-mp7 package bytes are not delivered or validated by this repository",
-  "artifactBuildId": "ui-20260902-02",
+  "artifactBuildId": "ui-20260902-03",
   "colorSetId": "color-srgb-05",
   "sourceIntegrity": {
     "hostedSource": {
       "path": "index.html",
-      "bytes": 1063935,
-      "sha256": "ef995d9e55279eab5136cdf43dee5f67e93a516a72465b5362a1f58406d4dc58"
+      "bytes": 1081624,
+      "sha256": "15ee31824ad5d63fa9faaea179aeaacc109267a6dec349f84e015b9a1439aeb8"
     },
     "ownerApprovedMaster": {
       "path": "assets/downloads/landometer-design-system-v0.9.1.md",
@@ -22,13 +22,13 @@
     },
     "latestStandalone": {
       "path": "landometer-design-system-v0.9.1-standalone.html",
-      "bytes": 2226471,
-      "sha256": "2cc609d3b146e00d77b06befd9a640884be595645e52665258383736e25a0171"
+      "bytes": 2012842,
+      "sha256": "7353530d3a7b23ce2bafb54351859eced43ec0ddaeb22402daf554b3d1505fc7"
     },
     "immutableUiStandalone": {
-      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
-      "bytes": 2226483,
-      "sha256": "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee"
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
+      "bytes": 2012854,
+      "sha256": "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332"
     },
     "retainedColorBaseline": {
       "path": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
@@ -101,7 +101,12 @@
           "six v0.9.1 implementation chapters remain reachable and visible",
           "direct interactive targets at least 44 CSS pixels",
           "capsule inline padding and outline-icon alignment remain within contract",
-          "nine role-gated motion subjects land once and never withhold reached content",
+          "all 603 audited semantic component instances declare one governed motion policy across 13 families and 439 semantic roots",
+          "39 visible supporting reveal groups land once and never withhold reached content",
+          "53 teaching and status surfaces use visible settle treatment without hidden entrance state",
+          "22 critical and 138 evidence components remain immediately visible and static",
+          "desktop navbar transitions from a 76 CSS pixel prominent state to a 29 CSS pixel calm visual surface while retaining four direct controls",
+          "mobile navbar transitions from a 68 CSS pixel prominent state to a 27 CSS pixel calm visual surface while retaining two direct controls",
           "reduced-motion and no-JavaScript states expose final readable content",
           "open-menu locale refresh preserves the currently focused control",
           "deep links use one sticky-header offset mechanism",
@@ -114,7 +119,7 @@
       "id": "experience-contracts",
       "tool": "skill/refine-landometer-experience/scripts/check-experience-contracts.mjs",
       "result": "pass",
-      "detail": "65 current-release contracts passed, including exact authority, retained Color Set, immutable UI handoff, role-gated motion, finite CTA cue, bounded llms aid, documented color mixing, and plain-language analytical boundaries"
+      "detail": "71 current-release contracts passed, including exact authority, retained Color Set, immutable UI handoff, complete semantic motion-policy coverage, direct navbar targets, finite CTA cue, bounded llms aid, documented color mixing, and plain-language analytical boundaries"
     },
     {
       "id": "rendered-container-fit",
@@ -126,7 +131,7 @@
       "id": "rendered-affordances",
       "tool": "tools/check-rendered-affordances.mjs",
       "result": "pass",
-      "detail": "SC-21 capsule geometry, SC-22 default/reduced/no-JavaScript entrance safety for nine semantic subjects, and SC-23 icon anatomy passed across 7 cases with zero failures"
+      "detail": "16 desktop, mobile, reduced-motion, no-JavaScript, unavailable-IntersectionObserver, disclosure, and fragment-focus cases passed with zero failures; coverage included 603 components, 13 families, 439 semantic roots, 39 visible reveal groups, 53 settle surfaces, 22 critical components, and 138 evidence components"
     },
     {
       "id": "rendered-scale-geometry",

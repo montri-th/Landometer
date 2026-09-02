@@ -5,9 +5,9 @@ landometerBuild:
     ruleset: lds-rules-0.9.1
     machinePackageIdentity: v0.9.1-mp7
     machinePackageDelivery: identity_only
-    artifactBuildId: ui-20260902-02
-    supersedesArtifactBuildId: ui-20260902-01
-    retainedPriorArtifactBuildIds: [ui-20260902-01, ui-20260901-01]
+    artifactBuildId: ui-20260902-03
+    supersedesArtifactBuildId: ui-20260902-02
+    retainedPriorArtifactBuildIds: [ui-20260902-02, ui-20260902-01, ui-20260901-01]
     changeClass: ui_artifact_revision_color_set_unchanged
     sourceRef: assets/downloads/landometer-design-system-v0.9.1.md
     sourceBytes: 208463
@@ -137,6 +137,20 @@ landometerBuild:
     desktopVisibleControlBudgetIncludingBrand: 4
     mobileVisibleControlBudgetIncludingBrand: 2
     minimumDirectTargetCssPx: 44
+    visibleAnatomy:
+      desktop: [brand_symbol_and_wordmark, CityMETER, Sign_in, Menu]
+      mobile: [brand_symbol_and_wordmark, Menu]
+      CityWiki: disclosed_menu_destination
+    geometry:
+      prominentBlockDesktopCssPx: 76
+      prominentBlockMobileCssPx: 68
+      calmVisualDesktopCssPx: 29
+      calmVisualMobileCssPx: 27
+      contentCalmScale: 0.5
+      contentCalmOpacity: 0.72
+      stateDurationMs: 560
+      scrollIntentDeltaCssPx: 4
+      topThresholdCssPx: 24
     disclosureControl:
       element: button
       stateAttribute: aria-expanded
@@ -178,6 +192,28 @@ landometerBuild:
     setId: motion-riddim-approach-02
     policy: role_gated_fail_open
     sourceFinalStateVisible: true
+    componentCoverage:
+      status: complete_runtime_audit
+      policyVocabulary:
+        - reveal.supporting
+        - settle.visible
+        - state.direct
+        - state.disclosure
+        - static.critical
+        - static.evidence
+        - container.orchestrates
+        - contained.inherited
+      behaviorByFamily:
+        supportingEditorial: role_gated_once_only_reveal
+        visibleTeachingCards: finite_outline_settle
+        directControls: component_owned_state
+        disclosures: surface_only_settle_content_immediate
+        criticalContent: static_immediate
+        evidenceIdentityAtlas: static_immediate
+        containers: orchestrate_or_inherit
+      proofSemanticText: immediate_static
+      receiptSemanticText: immediate_static_surface_settle_only
+      print: final_state_immediate
     assignedRoles:
       - approach.soft
       - approach.inline-start
@@ -267,10 +303,10 @@ landometerBuild:
       sha256: 0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a
       status: preserved_byte_for_byte
     currentArtifactBuild:
-      id: ui-20260902-02
-      supersedes: ui-20260902-01
+      id: ui-20260902-03
+      supersedes: ui-20260902-02
       latestPath: landometer-design-system-v0.9.1-standalone.html
-      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html
+      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html
       changeClass: ui_artifact_revision_color_set_unchanged
       offlineStandaloneIdentity: approved_favicon_embedded
 
@@ -298,7 +334,7 @@ landometerBuild:
     canonicalUrl: https://montri-th.github.io/Landometer/
     pagesRoot: deployment
     latestStandalone: landometer-design-system-v0.9.1-standalone.html
-    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html
+    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html
     siteManifest: site-manifest.v0.9.1.json
     implementationNotes: implementation-notes.v0.9.1.md
     manualQaRecord: qa/v0.9.1-manual-gates.md
