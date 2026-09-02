@@ -62,13 +62,16 @@ jobs:
           EXPECTED_EVIDENCE_STATUS: source_limited
           EXPECTED_INDEXABLE: "false"
           EXPECTED_MACHINE_VALIDATION: pending
-          EXPECTED_ARTIFACT_BUILD: ui-20260902-03
+          EXPECTED_ARTIFACT_BUILD: ui-20260902-06
           VERIFY_EXACT_SOURCE: "true"
           LOCAL_DEPLOYMENT_DIR: deployment
           VERIFY_ATTEMPTS: "30"
           VERIFY_DELAY_MS: "10000"
           CRITICAL_ASSETS: >-
             landometer-design-system-v0.9.1-standalone.html,
+            landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html,
+            landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html,
+            landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html,
             landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html,
             landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html,
             landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html,
@@ -78,6 +81,9 @@ jobs:
             assets/data/color-delivery.v0.9.1.json,
             assets/data/tokens.json,
             assets/data/scales.json,
+            font-assets.manifest.json,
+            assets/fonts/material-symbols-rounded-nav-300.woff2,
+            assets/fonts/licenses/material-symbols-Apache-2.0.txt,
             build-card.v0.9.1.yml,
             implementation-notes.v0.9.1.md,
             qa/v0.9.1-automated.json,

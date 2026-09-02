@@ -46,7 +46,7 @@ jobs:
           # layout. Thresholds live in the checker; it exits non-zero on any failure.
           node tools/check-container-fit.mjs \
             --registry assets/data/color-delivery.v0.9.1.json \
-            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html \
+            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html \
             > /tmp/v0.9.1-container-fit-current.json
 
       - name: Verify rendered affordances (SC-21 [BTN-GEOM-01] / SC-22 [REVEAL-01])
@@ -56,7 +56,7 @@ jobs:
           set +e
           node tools/check-rendered-affordances.mjs \
             --registry assets/data/color-delivery.v0.9.1.json \
-            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html \
+            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html \
             > /tmp/v0.9.1-rendered-affordances-current.json
           rendered_status=$?
           set -e
@@ -85,5 +85,5 @@ jobs:
           # with the approved macOS evidence snapshot.
           node tools/check-scale-geometry.mjs \
             --registry assets/data/color-delivery.v0.9.1.json \
-            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html \
+            --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html \
             > /tmp/v0.9.1-scale-geometry-current.json

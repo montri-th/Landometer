@@ -9,14 +9,14 @@
     "effectiveAt": "2026-09-01",
     "immutableColorBaseline": "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
     "currentArtifactBuild": {
-      "id": "ui-20260902-03",
-      "immutableStandalone": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html"
+      "id": "ui-20260902-06",
+      "immutableStandalone": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html"
     },
     "latestAliases": [
       "index.html",
       "landometer-design-system-v0.9.1-standalone.html"
     ],
-    "changeNote": "Design System v0.9.1 retains Color Set color-srgb-05 without changing normative color values. UI build ui-20260902-03 aligns the live navbar anatomy and prominent/calm rhythm with the approved public-site pattern, then assigns an explicit fail-open motion policy to every semantic component family outside the Color Set."
+    "changeNote": "Design System v0.9.1 retains Color Set color-srgb-05 without changing normative color values. UI build ui-20260902-06 preserves the owner-selected r7 navigation, stable side bookmark, governed reveal cadence, and corrected current handoff from ui-20260902-05 while restoring the selected bookmark glyph to the fixed FILL 0 / wght 300 icon contract."
   },
   "delivery": {
     "range": "SDR",
@@ -72,19 +72,19 @@
     "status": "preserved byte-for-byte"
   },
   "currentArtifactBuild": {
-    "id": "ui-20260902-03",
+    "id": "ui-20260902-06",
     "latestPath": "landometer-design-system-v0.9.1-standalone.html",
-    "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
+    "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
     "registryMarker": "data-color-registry=\"color-srgb-05\"",
-    "artifactBuildMarker": "data-artifact-build=\"ui-20260902-03\"",
-    "changeClass": "navbar anatomy and complete semantic component-family motion policy coverage; Color Set unchanged",
+    "artifactBuildMarker": "data-artifact-build=\"ui-20260902-06\"",
+    "changeClass": "fixed selected bookmark FILL 0 / wght 300 state over the r7 navbar, repaired side bookmark, perceptible governed reveal cadence, and current immutable handoff; Color Set unchanged",
     "latestStandalone": {
-      "bytes": 2012842,
-      "sha256": "7353530d3a7b23ce2bafb54351859eced43ec0ddaeb22402daf554b3d1505fc7"
+      "bytes": 2024861,
+      "sha256": "9b8c0a6b8d085fe523ab158b0d30ffde282f95c760bf8278888480eb2f526f83"
     },
     "immutableStandalone": {
-      "bytes": 2012854,
-      "sha256": "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332"
+      "bytes": 2024873,
+      "sha256": "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55"
     },
     "integrityMode": "append-only UI artifact; exact bytes are bound by site-manifest.v0.9.1.json"
   },
@@ -130,6 +130,39 @@
       "supersedes": "ui-20260902-02",
       "bytes": 2012854,
       "sha256": "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332",
+      "status": "append_only"
+    },
+    {
+      "id": "ui-20260902-04",
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-05",
+      "changeClass": "owner-selected r7 navbar candidate, stable side bookmark, and distributed governed slow reveal; Color Set unchanged",
+      "supersedes": "ui-20260902-03",
+      "bytes": 2024862,
+      "sha256": "5e2f707b333e0424ea9035f7392022514e0e37bf4ca0aa4680617483889fe42a",
+      "status": "append_only"
+    },
+    {
+      "id": "ui-20260902-05",
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-05",
+      "changeClass": "current pinned-build handoff links and visible receipt corrected; r7 navbar, side bookmark, motion cadence, and Color Set unchanged",
+      "supersedes": "ui-20260902-04",
+      "bytes": 2024870,
+      "sha256": "8e25a5c8b0f39b8d96d433720681222ea06027862e8749922546678e355c05cf",
+      "status": "append_only"
+    },
+    {
+      "id": "ui-20260902-06",
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
+      "role": "immutable_ui_build",
+      "colorRegistryId": "color-srgb-05",
+      "changeClass": "selected side-bookmark glyph fixed to FILL 0 / wght 300; r7 navbar, bookmark continuity, motion cadence, current handoff, and Color Set unchanged",
+      "supersedes": "ui-20260902-05",
+      "bytes": 2024873,
+      "sha256": "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55",
       "status": "append_only"
     }
   ],

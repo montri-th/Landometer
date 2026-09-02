@@ -13,11 +13,26 @@ const registryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.1
 const historicalRegistryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json");
 const latestName = "landometer-design-system-v0.9.1-standalone.html";
 const latestPath = path.join(deploymentDir, latestName);
-const expectedArtifactBuild = "ui-20260902-03";
+const expectedArtifactBuild = "ui-20260902-06";
 const expectedColorSet = "color-srgb-05";
-const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html";
+const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html";
 const expectedHistoricalBaseline = "landometer-design-system-v0.9.0-standalone.color-srgb-05.html";
 const preservedUiBuilds = Object.freeze([
+  {
+    id: "ui-20260902-05",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",
+    sha256: "8e25a5c8b0f39b8d96d433720681222ea06027862e8749922546678e355c05cf",
+  },
+  {
+    id: "ui-20260902-04",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html",
+    sha256: "5e2f707b333e0424ea9035f7392022514e0e37bf4ca0aa4680617483889fe42a",
+  },
+  {
+    id: "ui-20260902-03",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
+    sha256: "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332",
+  },
   {
     id: "ui-20260902-02",
     path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
@@ -49,6 +64,7 @@ const embeddedAssets = [
   ["assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2", "font/woff2"],
   ["assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2", "font/woff2"],
   ["assets/fonts/jetbrains-mono-latin-400-normal.woff2", "font/woff2"],
+  ["assets/fonts/material-symbols-rounded-nav-300.woff2", "font/woff2"],
   ["assets/images/landometer-logo-banner.png", "image/png"],
   ["assets/images/team-hero.jpg", "image/jpeg"],
 ];
@@ -189,7 +205,7 @@ assert(
 );
 assert(!/(?:src|href)="assets\//.test(html), "relative display asset remains");
 assert(!/url\(["']?assets\//.test(html), "relative CSS asset remains");
-assert((html.match(/data:font\/woff2;base64,/g) ?? []).length === 10, "standalone must embed the nine text faces and Material Symbols subset");
+assert((html.match(/data:font\/woff2;base64,/g) ?? []).length === 11, "standalone must embed the nine text faces and both Material Symbols subsets");
 assert((html.match(/class="atlas-scale-record"/g) ?? []).length === 18, "embedded atlas must retain 18 scale records");
 assert((html.match(/class="atlas-lut-cell"/g) ?? []).length === 18 * 41, "embedded atlas must retain 738 LUT cells");
 assert((html.match(/class="atlas-class-cell"/g) ?? []).length === 18 * (5 + 7 + 9), "embedded atlas must retain every 5/7/9 class cell");

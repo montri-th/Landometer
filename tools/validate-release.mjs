@@ -20,15 +20,21 @@ const RELEASE = Object.freeze({
   machineValidation: "pending",
   colorSetId: "color-srgb-05",
   gradientSchema: "landometer-atmosphere-gradient-v2",
-  artifactBuildId: "ui-20260902-03",
-  previousArtifactBuildId: "ui-20260902-02",
-  earlierArtifactBuildId: "ui-20260902-01",
-  initialArtifactBuildId: "ui-20260901-01",
+  artifactBuildId: "ui-20260902-06",
+  previousArtifactBuildId: "ui-20260902-05",
+  earlierArtifactBuildId: "ui-20260902-04",
+  initialArtifactBuildId: "ui-20260902-03",
+  predecessorArtifactBuildId: "ui-20260902-02",
+  originArtifactBuildId: "ui-20260902-01",
+  legacyArtifactBuildId: "ui-20260901-01",
   latest: "landometer-design-system-v0.9.1-standalone.html",
-  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
-  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
-  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
-  initialImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
+  immutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
+  previousImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",
+  earlierImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-04.html",
+  initialImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html",
+  predecessorImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-02.html",
+  originImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-01.html",
+  legacyImmutableUi: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260901-01.html",
   historicalBaseline: "landometer-design-system-v0.9.0-standalone.color-srgb-05.html",
   authoringMaster: "assets/downloads/landometer-design-system-v0.9.1.md",
   registry: "assets/data/color-delivery.v0.9.1.json",
@@ -39,9 +45,14 @@ const RELEASE = Object.freeze({
   automatedQa: "qa/v0.9.1-automated.json",
   manualQa: "qa/v0.9.1-manual-gates.md",
   authoritySha256: "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
-  previousImmutableUiSha256: "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
-  earlierImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
-  initialImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
+  previousImmutableUiSha256: "8e25a5c8b0f39b8d96d433720681222ea06027862e8749922546678e355c05cf",
+  earlierImmutableUiSha256: "5e2f707b333e0424ea9035f7392022514e0e37bf4ca0aa4680617483889fe42a",
+  initialImmutableUiSha256: "804f01102cd596d424acad6f3db23a00c5646fed04f6493fac89a88adb4ca332",
+  predecessorImmutableUiSha256: "818f106d0b964c6fc5a0ace20e82de1a4918b0c84b261362e4b896a4b7a737ee",
+  originImmutableUiSha256: "a95f50caf4bd10ed73a8ade1ddf637d09e80a7e6e6c4c24421375e449c0f8dc1",
+  legacyImmutableUiSha256: "5a457f2440bb2f13622b11ab065d3ff2c9ebe5a0a903a3efc6a0dd7ef2190927",
+  navFontSha256: "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
+  navFontLicenseSha256: "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
   historicalBaselineSha256: "0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a",
   historicalRegistrySha256: "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5",
   tokensSha256: "00863492782b2fb1f93e6229f644fa0c092bde0e8c5d1093619c3120d73a71fc",
@@ -163,6 +174,9 @@ const requiredRepositoryFiles = [
   `deployment/${RELEASE.previousImmutableUi}`,
   `deployment/${RELEASE.earlierImmutableUi}`,
   `deployment/${RELEASE.initialImmutableUi}`,
+  `deployment/${RELEASE.predecessorImmutableUi}`,
+  `deployment/${RELEASE.originImmutableUi}`,
+  `deployment/${RELEASE.legacyImmutableUi}`,
   `deployment/${RELEASE.historicalBaseline}`,
   `deployment/${RELEASE.authoringMaster}`,
   `deployment/${RELEASE.registry}`,
@@ -174,6 +188,9 @@ const requiredRepositoryFiles = [
   `deployment/${RELEASE.manualQa}`,
   "deployment/assets/data/tokens.json",
   "deployment/assets/data/scales.json",
+  "deployment/font-assets.manifest.json",
+  "deployment/assets/fonts/material-symbols-rounded-nav-300.woff2",
+  "deployment/assets/fonts/licenses/material-symbols-Apache-2.0.txt",
   "tools/build-standalone-html.mjs",
   "tools/check-gradient-contrast.mjs",
   "tools/generate-color-atlas.mjs",
@@ -197,6 +214,9 @@ const immutableHtml = readDeployment(RELEASE.immutableUi);
 const previousImmutableHtml = readDeployment(RELEASE.previousImmutableUi);
 const earlierImmutableHtml = readDeployment(RELEASE.earlierImmutableUi);
 const initialImmutableHtml = readDeployment(RELEASE.initialImmutableUi);
+const predecessorImmutableHtml = readDeployment(RELEASE.predecessorImmutableUi);
+const originImmutableHtml = readDeployment(RELEASE.originImmutableUi);
+const legacyImmutableHtml = readDeployment(RELEASE.legacyImmutableUi);
 const authoringMaster = readDeployment(RELEASE.authoringMaster);
 const registry = readJson(deploymentPath(RELEASE.registry), "parse:color-registry-v091");
 const historicalRegistry = readJson(deploymentPath(RELEASE.historicalRegistry), "parse:color-registry-v090");
@@ -255,6 +275,33 @@ check(hasAttribute(initialImmutableHtml, "data-artifact-build", RELEASE.initialA
 check(hasAttribute(initialImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:initial-v091-ui:build-channel");
 check(hasAttribute(initialImmutableHtml, "data-standalone", "true"), "history:initial-v091-ui:standalone-marker");
 check(sha256(deploymentPath(RELEASE.initialImmutableUi)) === RELEASE.initialImmutableUiSha256, "history:initial-v091-ui:known-hash");
+check(hasAttribute(predecessorImmutableHtml, "data-ds-version", RELEASE.version), "history:predecessor-v091-ui:version");
+check(hasAttribute(predecessorImmutableHtml, "data-authoring-revision", RELEASE.authoringRevision), "history:predecessor-v091-ui:authoring-revision");
+check(hasAttribute(predecessorImmutableHtml, "data-ruleset", RELEASE.rulesetRevision), "history:predecessor-v091-ui:ruleset-revision");
+check(hasAttribute(predecessorImmutableHtml, "data-machine-package-identity", RELEASE.machinePackageIdentity), "history:predecessor-v091-ui:machine-package-identity");
+check(hasAttribute(predecessorImmutableHtml, "data-color-registry", RELEASE.colorSetId), "history:predecessor-v091-ui:color-set");
+check(hasAttribute(predecessorImmutableHtml, "data-artifact-build", RELEASE.predecessorArtifactBuildId), "history:predecessor-v091-ui:artifact-build");
+check(hasAttribute(predecessorImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:predecessor-v091-ui:build-channel");
+check(hasAttribute(predecessorImmutableHtml, "data-standalone", "true"), "history:predecessor-v091-ui:standalone-marker");
+check(sha256(deploymentPath(RELEASE.predecessorImmutableUi)) === RELEASE.predecessorImmutableUiSha256, "history:predecessor-v091-ui:known-hash");
+check(hasAttribute(originImmutableHtml, "data-ds-version", RELEASE.version), "history:origin-v091-ui:version");
+check(hasAttribute(originImmutableHtml, "data-authoring-revision", RELEASE.authoringRevision), "history:origin-v091-ui:authoring-revision");
+check(hasAttribute(originImmutableHtml, "data-ruleset", RELEASE.rulesetRevision), "history:origin-v091-ui:ruleset-revision");
+check(hasAttribute(originImmutableHtml, "data-machine-package-identity", RELEASE.machinePackageIdentity), "history:origin-v091-ui:machine-package-identity");
+check(hasAttribute(originImmutableHtml, "data-color-registry", RELEASE.colorSetId), "history:origin-v091-ui:color-set");
+check(hasAttribute(originImmutableHtml, "data-artifact-build", RELEASE.originArtifactBuildId), "history:origin-v091-ui:artifact-build");
+check(hasAttribute(originImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:origin-v091-ui:build-channel");
+check(hasAttribute(originImmutableHtml, "data-standalone", "true"), "history:origin-v091-ui:standalone-marker");
+check(sha256(deploymentPath(RELEASE.originImmutableUi)) === RELEASE.originImmutableUiSha256, "history:origin-v091-ui:known-hash");
+check(hasAttribute(legacyImmutableHtml, "data-ds-version", RELEASE.version), "history:legacy-v091-ui:version");
+check(hasAttribute(legacyImmutableHtml, "data-authoring-revision", RELEASE.authoringRevision), "history:legacy-v091-ui:authoring-revision");
+check(hasAttribute(legacyImmutableHtml, "data-ruleset", RELEASE.rulesetRevision), "history:legacy-v091-ui:ruleset-revision");
+check(hasAttribute(legacyImmutableHtml, "data-machine-package-identity", RELEASE.machinePackageIdentity), "history:legacy-v091-ui:machine-package-identity");
+check(hasAttribute(legacyImmutableHtml, "data-color-registry", RELEASE.colorSetId), "history:legacy-v091-ui:color-set");
+check(hasAttribute(legacyImmutableHtml, "data-artifact-build", RELEASE.legacyArtifactBuildId), "history:legacy-v091-ui:artifact-build");
+check(hasAttribute(legacyImmutableHtml, "data-build-channel", "immutable-artifact-build"), "history:legacy-v091-ui:build-channel");
+check(hasAttribute(legacyImmutableHtml, "data-standalone", "true"), "history:legacy-v091-ui:standalone-marker");
+check(sha256(deploymentPath(RELEASE.legacyImmutableUi)) === RELEASE.legacyImmutableUiSha256, "history:legacy-v091-ui:known-hash");
 check(/<title>[^<]*v0\.9\.1/i.test(html), "identity:document-title");
 check(html.includes("Landometer Design System · v0.9.1"), "identity:visible-release-label");
 check(html.includes("Let us") && html.includes("cultivate") && html.includes("with data."), "identity:protected-rally-cry");
@@ -285,6 +332,18 @@ check((registry?.meta?.machinePackageIdentity ?? registry?.meta?.machinePackage)
 check(registry?.meta?.immutableColorBaseline === RELEASE.historicalBaseline, "registry:historical-baseline-reference");
 check(registry?.meta?.currentArtifactBuild?.id === RELEASE.artifactBuildId, "registry:current-artifact-build");
 check(registry?.meta?.currentArtifactBuild?.immutableStandalone === RELEASE.immutableUi, "registry:immutable-ui-path");
+check(
+  html.includes(`href="${RELEASE.immutableUi}" id="resource-standalone"`),
+  "handoff:download-points-to-current-immutable-ui",
+);
+check(
+  html.includes(`<code>${RELEASE.immutableUi}</code>`),
+  "handoff:visible-pinned-build-points-to-current-immutable-ui",
+);
+check(
+  html.includes(`${RELEASE.colorSetId} retained · artifact build ${RELEASE.artifactBuildId}<br>`),
+  "handoff:footer-receipt-points-to-current-artifact-build",
+);
 for (const [key, relativePath, expectedHash] of [
   ["authoringMaster", RELEASE.authoringMaster, RELEASE.authoritySha256],
   ["retainedColorRegistry", RELEASE.historicalRegistry, RELEASE.historicalRegistrySha256],
@@ -332,6 +391,33 @@ check(initialArtifactRecord?.status === "append_only", "registry:initial-v091-re
 check(initialArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.initialImmutableUi)).size, "registry:initial-v091-record-bytes");
 check(initialArtifactRecord?.sha256 === RELEASE.initialImmutableUiSha256, "registry:initial-v091-record-known-hash");
 check(initialArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.initialImmutableUi)), "registry:initial-v091-record-file-hash");
+const predecessorArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.predecessorArtifactBuildId && record.path === RELEASE.predecessorImmutableUi,
+);
+check(predecessorArtifactRecord?.role === "immutable_ui_build", "registry:predecessor-v091-record-role");
+check(predecessorArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:predecessor-v091-record-color-set");
+check(predecessorArtifactRecord?.status === "append_only", "registry:predecessor-v091-record-append-only");
+check(predecessorArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.predecessorImmutableUi)).size, "registry:predecessor-v091-record-bytes");
+check(predecessorArtifactRecord?.sha256 === RELEASE.predecessorImmutableUiSha256, "registry:predecessor-v091-record-known-hash");
+check(predecessorArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.predecessorImmutableUi)), "registry:predecessor-v091-record-file-hash");
+const originArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.originArtifactBuildId && record.path === RELEASE.originImmutableUi,
+);
+check(originArtifactRecord?.role === "immutable_ui_build", "registry:origin-v091-record-role");
+check(originArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:origin-v091-record-color-set");
+check(originArtifactRecord?.status === "append_only", "registry:origin-v091-record-append-only");
+check(originArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.originImmutableUi)).size, "registry:origin-v091-record-bytes");
+check(originArtifactRecord?.sha256 === RELEASE.originImmutableUiSha256, "registry:origin-v091-record-known-hash");
+check(originArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.originImmutableUi)), "registry:origin-v091-record-file-hash");
+const legacyArtifactRecord = registry?.artifactBuilds?.find(
+  (record) => record.id === RELEASE.legacyArtifactBuildId && record.path === RELEASE.legacyImmutableUi,
+);
+check(legacyArtifactRecord?.role === "immutable_ui_build", "registry:legacy-v091-record-role");
+check(legacyArtifactRecord?.colorRegistryId === RELEASE.colorSetId, "registry:legacy-v091-record-color-set");
+check(legacyArtifactRecord?.status === "append_only", "registry:legacy-v091-record-append-only");
+check(legacyArtifactRecord?.bytes === statSync(deploymentPath(RELEASE.legacyImmutableUi)).size, "registry:legacy-v091-record-bytes");
+check(legacyArtifactRecord?.sha256 === RELEASE.legacyImmutableUiSha256, "registry:legacy-v091-record-known-hash");
+check(legacyArtifactRecord?.sha256 === sha256(deploymentPath(RELEASE.legacyImmutableUi)), "registry:legacy-v091-record-file-hash");
 check(sha256(deploymentPath(RELEASE.historicalRegistry)) === RELEASE.historicalRegistrySha256, "history:v090-registry-byte-frozen");
 check(sha256(deploymentPath(RELEASE.historicalBaseline)) === RELEASE.historicalBaselineSha256, "history:color-srgb-05-baseline-byte-frozen");
 check(!existsSync(deploymentPath("landometer-design-system-v0.9.1-standalone.color-srgb-05.html")), "history:no-reminted-v091-color-baseline");
@@ -481,7 +567,8 @@ for (const family of [
   "section-introduction",
   "v091-editorial-sequence",
   "teaching-card-sequence",
-  "visible-component-settle",
+  "editorial-card-sequence",
+  "visible-boundary-settle",
   "component-container",
   "semantic-component-audit",
 ]) {
@@ -494,8 +581,23 @@ check(
 check(
   html.includes('root.dataset.motionCoverage = invalid.length ? "invalid" : "complete"') &&
     html.includes("root.dataset.motionCoverageComponents") &&
-    html.includes("root.dataset.motionCoverageFamilies"),
+    html.includes("root.dataset.motionCoverageFamilies") &&
+    html.includes("root.dataset.motionCoverageReveal") &&
+    html.includes("root.dataset.motionCoverageSettle"),
   "motion:runtime-coverage-receipt",
+);
+for (const selector of [
+  "#takeaway .preflight-copy > h2",
+  "#takeaway .preflight-copy > p:not(.preflight-count)",
+  "#implementation-library > .container > .library-heading",
+]) {
+  check(html.includes(`"${selector}"`), `motion:explicit-reading-rhythm:${selector}`);
+}
+check(
+  html.includes("MOTION_REVEAL_GUARD_SELECTOR") &&
+    html.includes('node.dataset.motionPolicy = "container.orchestrates"') &&
+    html.includes("-safe-child"),
+  "motion:protected-descendant-safe-child-ownership",
 );
 const assignMotionCall = html.lastIndexOf("assignMotionPolicies();");
 const initRiddimCall = html.lastIndexOf("initRiddimReveal();");
@@ -533,15 +635,19 @@ check(/@media\s+print[\s\S]*?\[data-motion-role\][\s\S]*?opacity:\s*1\s*!importa
 check(/@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*?\[data-motion-role\][\s\S]*?opacity:\s*1\s*!important[\s\S]*?transform:\s*none\s*!important/.test(html), "motion:reduced-motion-final-state");
 check(html.includes("v091-cue") && html.includes("animation-iteration-count: 1"), "motion:finite-discovery-cue");
 
-// Header control budget: desktop exposes Brand + CityMETER + Sign in + Menu;
-// mobile hides the direct product shortcut and sign-in CTA, keeping Brand + Menu.
-// Disclosure uses a
-// real button, aria-expanded, stable focus restoration, and Escape.
+// Owner-selected r7 candidate: desktop exposes Brand + CityMETER + CityWiki +
+// Sign in + Menu. This deliberately exceeds NAV-01's four-control normative cap,
+// remains non-conformant, and keeps every direct target at least 44px. Mobile keeps
+// Brand + Menu and restores every route plus the CTA inside the disclosure.
 const headerStart = html.indexOf('<header class="site-header"');
 const headerEnd = html.indexOf("</header>", headerStart);
 const header = headerStart >= 0 && headerEnd > headerStart ? html.slice(headerStart, headerEnd) : "";
 const headerNav = header.match(/<nav class="header-nav"[\s\S]*?<\/nav>/)?.[0] ?? "";
-const headerMainLinks = header.match(/<span class="header-main-links">[\s\S]*?<\/span>/)?.[0] ?? "";
+const headerMainLinksStart = header.indexOf('<span class="header-main-links">');
+const headerMainLinksEnd = header.indexOf('<span class="nav-cta nav-cta--header">', headerMainLinksStart);
+const headerMainLinks = headerMainLinksStart >= 0 && headerMainLinksEnd > headerMainLinksStart
+  ? header.slice(headerMainLinksStart, headerMainLinksEnd)
+  : "";
 const desktopControlCount =
   (header.match(/<a\b[^>]*\bid="home-link"/g) ?? []).length +
   (headerMainLinks.match(/<a\b/g) ?? []).length +
@@ -549,16 +655,18 @@ const desktopControlCount =
   (headerNav.match(/<button\b[^>]*\bid="nav-menu-toggle"/g) ?? []).length;
 check(header.length > 0, "navigation:site-header-present");
 check(headerNav.length > 0, "navigation:header-nav-present");
-check(desktopControlCount === 4, "navigation:desktop-four-control-budget");
-check((headerMainLinks.match(/<a\b/g) ?? []).length === 1 && headerMainLinks.includes("CityMETER"), "navigation:citymeter-single-direct-destination");
+check(desktopControlCount === 5, "navigation:r7-desktop-five-control-candidate");
+check((headerMainLinks.match(/<a\b/g) ?? []).length === 2 && headerMainLinks.includes("CityMETER") && headerMainLinks.includes("CityWiki"), "navigation:r7-direct-product-destinations");
 check(headerNav.includes('class="header-cta"') && headerNav.includes("Sign in"), "navigation:sign-in-single-direct-cta");
-check(!headerMainLinks.includes("CityWiki") && header.includes('class="nav-panel-links"') && header.includes("CityWiki"), "navigation:citywiki-disclosed-not-direct");
-check(header.includes('id="home-link"') && header.includes('aria-current="page"'), "navigation:brand-current-page-separate");
+check(header.includes('class="nav-panel-links"') && header.includes("CityMETER") && header.includes("CityWiki"), "navigation:ecosystem-routes-in-panel");
+check(header.includes('id="home-link"') && !/<a\b[^>]*id="home-link"[^>]*aria-current/.test(header), "navigation:brand-not-current-destination");
+check(/<a\b[^>]*href="#top"[^>]*aria-current="page"/.test(header), "navigation:ecosystem-current-page-separate");
 check(header.includes('class="brand__symbol"') && header.includes('class="brand__wordmark"'), "navigation:brand-symbol-and-wordmark");
 check(header.includes('id="nav-menu-toggle"') && header.includes('aria-expanded="false"') && header.includes('aria-controls="nav-panel"'), "navigation:disclosure-button-contract");
-check(header.includes('id="nav-panel" hidden'), "navigation:panel-source-state");
+check(/id="nav-panel"[^>]*\shidden(?:\s|>)/.test(header), "navigation:panel-source-state");
 check(
-  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-main-links,[\s\S]*?\.nav-cta--header,[\s\S]*?display:\s*none/.test(html),
+  /@media\s*\(max-width:\s*680px\)[\s\S]*?\.header-main-links,[\s\S]*?\.nav-cta--header\s*\{\s*display:\s*none/.test(html) &&
+    /@media\s*\(max-width:\s*680px\)[\s\S]*?\.nav-panel-mobile-cta\s*\{\s*display:\s*block/.test(html),
   "navigation:mobile-two-control-budget",
 );
 check(
@@ -566,18 +674,45 @@ check(
   "navigation:direct-targets-44px",
 );
 check(
-  html.includes("--nav-block-prominent-desktop: 76px") &&
+    html.includes("--nav-block-prominent-desktop: 76px") &&
     html.includes("--nav-block-prominent-mobile: 68px") &&
-    html.includes("--nav-visual-calm-desktop: 29px") &&
-    html.includes("--nav-visual-calm-mobile: 27px") &&
-    html.includes("--nav-content-calm-scale: .5") &&
+    html.includes("--nav-visual-calm-desktop: 52px") &&
+    html.includes("--nav-visual-calm-mobile: 52px") &&
+    html.includes("--nav-content-calm-scale: .82") &&
+    html.includes("--nav-content-calm-opacity: 1") &&
+    html.includes("--nav-surface-calm-alpha: 88%") &&
     html.includes("--nav-state-duration: 560ms"),
-  "navigation:rebuild02-state-anatomy",
+  "navigation:r7-adapted-safe-state-anatomy",
+);
+check(header.includes("ในหน้านี้") && header.includes("Landometer ecosystem") && header.includes("nav-panel-utilities"), "navigation:r7-panel-group-anatomy");
+check(header.includes("nav-panel-mobile-cta") && header.includes("https://landometer.com/auth"), "navigation:mobile-cta-restored-in-panel");
+check(
+  html.includes('font-family: "Material Symbols Rounded Nav"') &&
+    html.includes('data-nav-glyphs="fallback"') &&
+    html.includes("nav-menu-fallback") &&
+    html.includes('document.fonts.load(\'300 24px "Material Symbols Rounded Nav"\''),
+  "navigation:menu-close-glyph-and-visible-fallback",
 );
 check(/event\.key[\s\S]{0,24}?["']Escape["']/.test(html), "navigation:escape-closes-menu");
 check(/navMenuToggle\.focus\(|menuToggle\.focus\(/.test(html), "navigation:focus-restored-to-trigger");
 check(html.includes('aria-current", "location"') || html.includes("aria-current', 'location'"), "navigation:current-location-separate");
-check(/class="[^"]*\bside-bookmark\b[^"]*"/.test(html) && html.includes('data-page-destination="library-resources"'), "navigation:side-bookmark-real-anchors");
+const sideBookmark = html.match(/<nav class="side-bookmark[\s\S]*?<\/nav>/)?.[0] ?? "";
+const expectedBookmarkOrder = ["top", "v091-additions", "play", "implementation-library", "complete-color-atlas", "library-resources"];
+const bookmarkOrder = [...sideBookmark.matchAll(/data-page-destination="([^"]+)"/g)].map(match => match[1]);
+const panelLocal = header.match(/<section class="nav-panel-section nav-panel-local"[\s\S]*?<\/section>/)?.[0] ?? "";
+const panelBookmarkOrder = [...panelLocal.matchAll(/data-page-destination="([^"]+)"/g)].map(match => match[1]);
+check(JSON.stringify(bookmarkOrder) === JSON.stringify(expectedBookmarkOrder), "navigation:side-bookmark-real-ordered-anchors");
+check(JSON.stringify(panelBookmarkOrder) === JSON.stringify(expectedBookmarkOrder), "navigation:mobile-toc-mirrors-side-bookmark");
+check((sideBookmark.match(/aria-current="location"/g) ?? []).length === 1, "navigation:side-bookmark-one-source-current");
+check(html.includes(".side-bookmark__icon") && html.includes(".side-bookmark__tooltip"), "navigation:side-bookmark-r7-icons-and-tooltips");
+check(/\.side-bookmark a\s*\{[\s\S]*?width:\s*44px;[\s\S]*?height:\s*44px;/.test(html), "navigation:side-bookmark-direct-44px-targets");
+check(
+  /\.side-bookmark a\[aria-current="location"\] \.side-bookmark__icon\s*\{[\s\S]*?font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/.test(html),
+  "navigation:side-bookmark-selected-icon-keeps-fill0-wght300",
+);
+check(/@media\s*\(max-width:\s*600px\),\s*\(max-height:\s*560px\)[\s\S]*?\.side-bookmark\s*\{\s*display:\s*none/.test(html), "navigation:side-bookmark-mobile-degradation");
+check(!html.includes("sideBookmark.toggleAttribute(\"data-active\"") && !/\.side-bookmark\[data-active\]/.test(html), "navigation:side-bookmark-never-current-hidden");
+check(html.includes('const railLinks = [...document.querySelectorAll(".side-bookmark [data-page-destination]")]'), "navigation:scrollspy-isolates-rail-links");
 check(html.includes(".site-header.is-calm::before"), "navigation:calm-state-styled");
 check(html.includes('siteHeader.classList.toggle("is-calm", Boolean(calm))'), "navigation:calm-state-runtime");
 check(!header.includes("v091-cue"), "navigation:consequential-sign-in-has-no-discovery-sweep");
@@ -615,17 +750,29 @@ const manifestBoundFiles = [
   RELEASE.previousImmutableUi,
   RELEASE.earlierImmutableUi,
   RELEASE.initialImmutableUi,
+  RELEASE.predecessorImmutableUi,
+  RELEASE.originImmutableUi,
+  RELEASE.legacyImmutableUi,
   RELEASE.historicalBaseline,
   RELEASE.buildCard,
   RELEASE.implementationNotes,
   RELEASE.automatedQa,
   RELEASE.manualQa,
+  "font-assets.manifest.json",
+  "assets/fonts/material-symbols-rounded-nav-300.woff2",
+  "assets/fonts/licenses/material-symbols-Apache-2.0.txt",
 ];
 for (const relativePath of manifestBoundFiles) {
   check(manifestAssetMatches(manifest, relativePath), `manifest:file-record:${relativePath}`);
 }
 check(!(manifest?.assets ?? []).some((asset) => /^machine\/v0\.9\.1\//.test(asset.path)), "manifest:no-v091-machine-package-byte-claim");
 check(!existsSync(deploymentPath("machine/v0.9.1")), "release:no-v091-machine-package-directory");
+check(sha256(deploymentPath("assets/fonts/material-symbols-rounded-nav-300.woff2")) === RELEASE.navFontSha256, "font:approved-nav-subset-known-hash");
+check(sha256(deploymentPath("assets/fonts/licenses/material-symbols-Apache-2.0.txt")) === RELEASE.navFontLicenseSha256, "font:approved-nav-subset-license-known-hash");
+const fontManifest = readJson(deploymentPath("font-assets.manifest.json"), "parse:font-assets-manifest");
+const navFontFace = fontManifest?.faces?.find(face => face.file === "assets/fonts/material-symbols-rounded-nav-300.woff2");
+check(navFontFace?.sha256 === RELEASE.navFontSha256, "font:nav-subset-manifest-hash");
+check(navFontFace?.licenseFile === "assets/fonts/licenses/material-symbols-Apache-2.0.txt", "font:nav-subset-license-binding");
 
 for (const [name, source] of [
   ["build-card", buildCard],
@@ -646,7 +793,7 @@ check(buildCard.includes(RELEASE.machinePackageIdentity), "release-record:build-
 check(normalizeBuildChannel(latestHtml) === normalizeBuildChannel(immutableHtml), "standalone:latest-immutable-parity");
 check(!/<link\s+rel="canonical"\b/i.test(latestHtml), "standalone:latest-noncanonical");
 check(!/<link\s+rel="canonical"\b/i.test(immutableHtml), "standalone:immutable-noncanonical");
-check((latestHtml.match(/data:font\/woff2;base64,/g) ?? []).length === 10, "standalone:ten-embedded-font-faces");
+check((latestHtml.match(/data:font\/woff2;base64,/g) ?? []).length === 11, "standalone:eleven-embedded-font-faces");
 check(latestHtml.includes("data:image/png;base64,"), "standalone:embedded-logo");
 check(latestHtml.includes("data:image/jpeg;base64,"), "standalone:embedded-team-image");
 check(/<link\b[^>]*\brel="icon"[^>]*\bhref="data:image\/png;base64,/i.test(latestHtml), "standalone:embedded-browser-tab-icon");
