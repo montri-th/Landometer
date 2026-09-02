@@ -13,11 +13,16 @@ const registryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.1
 const historicalRegistryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json");
 const latestName = "landometer-design-system-v0.9.1-standalone.html";
 const latestPath = path.join(deploymentDir, latestName);
-const expectedArtifactBuild = "ui-20260902-06";
+const expectedArtifactBuild = "ui-20260902-07";
 const expectedColorSet = "color-srgb-05";
-const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html";
+const expectedImmutableName = "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html";
 const expectedHistoricalBaseline = "landometer-design-system-v0.9.0-standalone.color-srgb-05.html";
 const preservedUiBuilds = Object.freeze([
+  {
+    id: "ui-20260902-06",
+    path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
+    sha256: "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55",
+  },
   {
     id: "ui-20260902-05",
     path: "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",

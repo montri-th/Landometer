@@ -75,6 +75,33 @@ const atlasMarkersValid = atlasStart >= 0 && atlasEnd > atlasStart;
 const atlasHtml = atlasMarkersValid
   ? html.slice(atlasStart + atlasStartMarker.length, atlasEnd)
   : "";
+const atlasPreviewStartMarker = "<!-- COLOR_ATLAS_PREVIEW_START -->";
+const atlasPreviewEndMarker = "<!-- COLOR_ATLAS_PREVIEW_END -->";
+const atlasPreviewStart = html.indexOf(atlasPreviewStartMarker);
+const atlasPreviewEnd = html.indexOf(atlasPreviewEndMarker);
+const atlasPreviewMarkersValid =
+  atlasPreviewStart >= 0 && atlasPreviewEnd > atlasPreviewStart;
+const atlasPreviewHtml = atlasPreviewMarkersValid
+  ? html.slice(
+      atlasPreviewStart + atlasPreviewStartMarker.length,
+      atlasPreviewEnd
+    )
+  : "";
+const atlasPreviewElement =
+  elementsWithClass(atlasPreviewHtml, "v091-atlas-ribbon")[0] ?? "";
+const atlasPreviewSwatches = elementsWithClass(
+  atlasPreviewHtml,
+  "v091-atlas-ribbon__swatch"
+);
+const expectedAtlasPreviewRecords = [
+  ["brand.blue", "#1D4497"],
+  ["brand.beige", "#F2F1DF"],
+  ["dark.brand.beige", "#D8CFB2"],
+  ["energy.sky", "#59D2FE"],
+  ["energy.mint", "#0AD69C"],
+  ["energy.coral", "#FF5A5F"],
+  ["energy.yellow", "#FFBC1F"]
+];
 const scaleRecords = [...atlasHtml.matchAll(
   /<article class="atlas-scale-record"([^>]*)>([\s\S]*?)<\/article>/gu
 )];
@@ -171,6 +198,7 @@ const currentArtifactBuildId =
   colorDelivery?.meta?.currentArtifactBuild?.id ?? "";
 const currentArtifactBuildName =
   colorDelivery?.meta?.currentArtifactBuild?.immutableStandalone ?? "";
+const expectedCurrentArtifactBuildId = "ui-20260902-07";
 let pinnedColorSetHtml = "";
 let currentArtifactBuildHtml = "";
 let tokenRegistrySource = "";
@@ -194,8 +222,26 @@ const retainedColorDelivery = retainedColorRegistrySource
   readTextBesideHtml("assets/data/tokens.json"),
   readTextBesideHtml("assets/data/scales.json")
 ]);
+let tokenRegistry = null;
+try {
+  tokenRegistry = JSON.parse(tokenRegistrySource);
+} catch {
+  tokenRegistry = null;
+}
+const preservedUi06BuildId = "ui-20260902-06";
+const preservedUi06BuildName =
+  `landometer-design-system-v${releaseVersion}-standalone.color-srgb-05.${preservedUi06BuildId}.html`;
+const preservedUi06BuildHash =
+  "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55";
+const preservedUi06BuildHtml = await readTextBesideHtml(
+  preservedUi06BuildName
+);
 const manifestAsset = assetPath =>
   siteManifest?.assets?.find(asset => asset.path === assetPath) ?? null;
+const preservedUi06BuildRecord = colorDelivery?.artifactBuilds?.find(
+  record => record.id === preservedUi06BuildId
+);
+const preservedUi06BuildAsset = manifestAsset(preservedUi06BuildName);
 const normativeSourceRecord = siteManifest?.authority?.normativeSource ?? null;
 const normativeSource = await readTextBesideHtml(normativeSourceRecord?.path);
 const scaleRecordsByKey = new Map(
@@ -376,6 +422,59 @@ const manifestCanonical =
 const sourceLimitedOrInternal =
   siteManifest?.artifact?.evidenceStatus !== "verified" ||
   siteManifest?.artifact?.delivery !== "deployable_public";
+const cacheControlMeta = metaTags.find(tag =>
+  attributeOf(tag, "http-equiv").toLowerCase() === "cache-control"
+) ?? "";
+const pragmaMeta = metaTags.find(tag =>
+  attributeOf(tag, "http-equiv").toLowerCase() === "pragma"
+) ?? "";
+const expiresMeta = metaTags.find(tag =>
+  attributeOf(tag, "http-equiv").toLowerCase() === "expires"
+) ?? "";
+const artifactBuildMeta = metaTags.find(tag =>
+  attributeOf(tag, "name").toLowerCase() === "landometer:artifact-build"
+) ?? "";
+const latestAliasFreshnessHandshakeValid =
+  attributeOf(htmlTag, "data-artifact-build") ===
+    expectedCurrentArtifactBuildId &&
+  attributeOf(htmlTag, "data-build-channel") === "latest-alias" &&
+  attributeOf(artifactBuildMeta, "content") === expectedCurrentArtifactBuildId &&
+  /(?:^|,)\s*no-cache\s*(?:,|$)/iu.test(
+    attributeOf(cacheControlMeta, "content")
+  ) &&
+  /(?:^|,)\s*no-store\s*(?:,|$)/iu.test(
+    attributeOf(cacheControlMeta, "content")
+  ) &&
+  /(?:^|,)\s*must-revalidate\s*(?:,|$)/iu.test(
+    attributeOf(cacheControlMeta, "content")
+  ) &&
+  attributeOf(pragmaMeta, "content").toLowerCase() === "no-cache" &&
+  attributeOf(expiresMeta, "content") === "0" &&
+  /root\.dataset\.standalone === "true"[\s\S]{0,120}root\.dataset\.buildChannel !== "latest-alias"/u
+    .test(scriptSource) &&
+  /new URL\("site-manifest\.v0\.9\.1\.json", location\.href\)/u
+    .test(scriptSource) &&
+  /manifestUrl\.searchParams\.set\("fresh", String\(Date\.now\(\)\)\)/u
+    .test(scriptSource) &&
+  /fetch\(manifestUrl, \{ cache: "no-store" \}\)/u.test(scriptSource) &&
+  /const currentBuild = root\.dataset\.artifactBuild \|\| "";/u
+    .test(scriptSource) &&
+  /const latestBuild = manifest\?\.artifact\?\.artifactBuildId \|\| "";/u
+    .test(scriptSource) &&
+  /!latestBuild \|\| latestBuild === currentBuild/u.test(scriptSource) &&
+  /sessionStorage\.getItem\(refreshKey\) === "done"/u.test(scriptSource) &&
+  /sessionStorage\.setItem\(refreshKey, "done"\)/u.test(scriptSource) &&
+  /freshUrl\.searchParams\.set\("build", latestBuild\)/u
+    .test(scriptSource) &&
+  /freshUrl\.searchParams\.set\("_build_fresh", String\(Date\.now\(\)\)\)/u
+    .test(scriptSource) &&
+  /location\.replace\(freshUrl\.href\)/u.test(scriptSource) &&
+  /window\.addEventListener\("pageshow", checkForFreshBuild\)/u
+    .test(scriptSource) &&
+  /document\.addEventListener\("visibilitychange"/u.test(scriptSource) &&
+  /catch \(_\) \{\s*\/\/ Freshness is an enhancement\.[\s\S]{0,160}finally/u
+    .test(scriptSource) &&
+  siteManifest?.artifact?.artifactBuildId === expectedCurrentArtifactBuildId;
 let sitemapPresent = false;
 try {
   await readFile(path.join(htmlDirectory, "sitemap.xml"), "utf8");
@@ -475,6 +574,44 @@ function customPropertyOf(element, property) {
     new RegExp(`(?:^|;)\\s*${property}\\s*:\\s*([^;]+)`, "iu")
   )?.[1]?.trim() ?? "";
 }
+
+const atlasPreviewRecords = atlasPreviewSwatches.map(swatch => [
+  attributeOf(swatch, "data-atlas-token"),
+  attributeOf(swatch, "data-atlas-value")
+]);
+const atlasPreviewRegistryRecords = [
+  ["brand.blue", tokenRegistry?.brand?.blue ?? ""],
+  ["brand.beige", tokenRegistry?.brand?.beige ?? ""],
+  ["dark.brand.beige", tokenRegistry?.brand?.darkBeige ?? ""],
+  ["energy.sky", tokenRegistry?.energy?.sky ?? ""],
+  ["energy.mint", tokenRegistry?.energy?.mint ?? ""],
+  ["energy.coral", tokenRegistry?.energy?.coral ?? ""],
+  ["energy.yellow", tokenRegistry?.energy?.yellow ?? ""]
+];
+const atlasPreviewExactParityValid =
+  atlasPreviewMarkersValid &&
+  attributeOf(atlasPreviewElement, "data-atlas-preview-family") ===
+    "identity-energy" &&
+  attributeOf(atlasPreviewElement, "data-color-registry") ===
+    colorRegistryId &&
+  attributeOf(atlasPreviewElement, "role") === "list" &&
+  JSON.stringify(atlasPreviewRecords) ===
+    JSON.stringify(expectedAtlasPreviewRecords) &&
+  JSON.stringify(atlasPreviewRegistryRecords) ===
+    JSON.stringify(expectedAtlasPreviewRecords) &&
+  atlasPreviewSwatches.every((swatch, index) => {
+    const [tokenId, value] = expectedAtlasPreviewRecords[index] ?? [];
+    return attributeOf(swatch, "role") === "listitem" &&
+      attributeOf(swatch, "data-atlas-token") === tokenId &&
+      attributeOf(swatch, "data-atlas-value") === value &&
+      customPropertyOf(swatch, "--swatch") === value &&
+      new RegExp(`(?:^|;)\\s*background\\s*:\\s*${value}(?:;|$)`, "iu")
+        .test(attributeOf(swatch, "style")) &&
+      attributeOf(swatch, "title") === `${tokenId} · ${value}` &&
+      attributeOf(swatch, "aria-label") === `${tokenId}: ${value}`;
+  }) &&
+  !/--series-(?:0[1-9]|10)|data-atlas-token="series\./iu
+    .test(atlasPreviewHtml);
 
 const samplerKindsValid =
   samplerCards.length === samplerFamilies.size &&
@@ -656,8 +793,23 @@ const retainedColorBaselineValid =
   siteManifest?.colorDelivery?.immutableColorBaselineEvidence?.bytes ===
     pinnedColorSetAsset?.bytes &&
   /preserved byte-for-byte/iu.test(pinnedColorSetAsset?.status ?? "");
+const preservedUi06BuildValid =
+  preservedUi06BuildRecord?.id === preservedUi06BuildId &&
+  preservedUi06BuildRecord?.path === preservedUi06BuildName &&
+  preservedUi06BuildRecord?.role === "immutable_ui_build" &&
+  preservedUi06BuildRecord?.status === "append_only" &&
+  preservedUi06BuildRecord?.colorRegistryId === colorRegistryId &&
+  preservedUi06BuildRecord?.bytes ===
+    Buffer.byteLength(preservedUi06BuildHtml) &&
+  preservedUi06BuildRecord?.sha256 === preservedUi06BuildHash &&
+  sha256(preservedUi06BuildHtml) === preservedUi06BuildHash &&
+  preservedUi06BuildAsset?.path === preservedUi06BuildName &&
+  preservedUi06BuildAsset?.bytes === preservedUi06BuildRecord?.bytes &&
+  preservedUi06BuildAsset?.sha256 === preservedUi06BuildHash &&
+  preservedUi06BuildAsset?.artifactBuildId === preservedUi06BuildId &&
+  preservedUi06BuildAsset?.colorRegistryId === colorRegistryId;
 const currentArtifactBuildValid =
-  /^ui-\d{8}-\d{2}$/u.test(currentArtifactBuildId) &&
+  currentArtifactBuildId === expectedCurrentArtifactBuildId &&
   currentArtifactBuildName ===
     `landometer-design-system-v${releaseVersion}-standalone.${colorRegistryId}.${currentArtifactBuildId}.html` &&
   currentArtifactBuildRecord?.path === currentArtifactBuildName &&
@@ -765,11 +917,55 @@ const siteHeaderRowEnd = siteHeaderHtml.indexOf('<div class="nav-panel js-only"'
 const siteHeaderRowHtml = siteHeaderRowStart >= 0 && siteHeaderRowEnd > siteHeaderRowStart
   ? siteHeaderHtml.slice(siteHeaderRowStart, siteHeaderRowEnd)
   : "";
+const pairedInteractiveElements = source => [
+  ...source.matchAll(/<(a|button)\b([^>]*)>([\s\S]*?)<\/\1>/giu)
+].map(([, tagName, attributes, body]) => ({
+  tagName: tagName.toLowerCase(),
+  attributes,
+  body,
+  openingTag: `<${tagName}${attributes}>`
+}));
+const classTokensOf = source =>
+  attributeOf(source, "class").split(/\s+/u).filter(Boolean);
+const headerTargetClasses = new Set([
+  "brand", "header-link", "header-cta", "nav-menu-toggle"
+]);
+const headerTargetBlocks = pairedInteractiveElements(siteHeaderRowHtml)
+  .filter(element =>
+    classTokensOf(element.attributes).some(className =>
+      headerTargetClasses.has(className)
+    )
+  );
+const headerTargetsByClass = className => headerTargetBlocks.filter(element =>
+  classTokensOf(element.attributes).includes(className)
+);
+const ownsSingleSpanWrapper = (element, className) =>
+  countClass(element.body, className) === 1 &&
+  new RegExp(
+    `^\\s*<span\\b[^>]*\\bclass="[^"]*\\b${className}\\b[^"]*"[^>]*>[\\s\\S]*<\\/span>\\s*$`,
+    "iu"
+  ).test(element.body);
+const sideBookmarkHtml = html.match(
+  /<nav\b[^>]*\bclass="[^"]*\bside-bookmark\b[^"]*"[^>]*>[\s\S]*?<\/nav>/iu
+)?.[0] ?? "";
+const sideBookmarkLinks = pairedInteractiveElements(sideBookmarkHtml)
+  .filter(element => element.tagName === "a");
+const sideBookmarkSvgBlocks = sideBookmarkLinks.map(element =>
+  element.body.match(
+    /<svg\b[^>]*\bclass="[^"]*\bside-bookmark__icon\b[^"]*"[^>]*>[\s\S]*?<\/svg>/iu
+  )?.[0] ?? ""
+);
+const expectedSideBookmarkIcons = [
+  "landscape", "visibility", "play_arrow", "widgets", "palette", "description"
+];
 const noJsPageIndexHtml = html.match(
   /<nav\b[^>]*\bclass="[^"]*\bno-js-page-index\b[^"]*"[^>]*>[\s\S]*?<\/nav>/iu
 )?.[0] ?? "";
 const styleRuleFor = selector => styleRules.find(rule =>
   rule.selector.split(",").map(item => item.trim()).includes(selector)
+);
+const exactStyleRuleFor = selector => styleRules.find(rule =>
+  rule.selector.trim() === selector
 );
 const siteHeaderRule = styleRuleFor(".site-header");
 const siteHeaderSurfaceRule = styleRuleFor(".site-header::before");
@@ -777,6 +973,29 @@ const siteHeaderCalmSurfaceRule = styleRuleFor(".site-header.is-calm::before");
 const siteHeaderInnerRule = styleRuleFor(".site-header__inner");
 const siteHeaderRowRule = styleRuleFor(".site-header__row");
 const siteHeaderCalmRowRule = styleRuleFor(".site-header.is-calm .site-header__row");
+const headerLinkOwnRule = exactStyleRuleFor(".header-link");
+const headerCtaRule = exactStyleRuleFor(".header-cta");
+const headerCtaVisualRule = exactStyleRuleFor(".header-control-visual--cta");
+const navMenuToggleOwnRule = exactStyleRuleFor(".nav-menu-toggle");
+const navMenuToggleVisualOwnRule = exactStyleRuleFor(".nav-menu-toggle__visual");
+const navInlineIconRule = exactStyleRuleFor(".nav-inline-icon");
+const sideBookmarkIconRule = exactStyleRuleFor(".side-bookmark__icon");
+const calmInnerVisualRule = styleRules.find(rule => {
+  const selectors = rule.selector.split(",").map(selector => selector.trim());
+  return [
+    ".site-header.is-calm .brand__visual",
+    ".site-header.is-calm .header-control-visual",
+    ".site-header.is-calm .nav-menu-toggle__visual"
+  ].every(selector => selectors.includes(selector));
+});
+const calmDirectTargetTransformRules = styleRules.filter(rule =>
+  /\.site-header\.is-calm/u.test(rule.selector) &&
+  /(?:\.brand\b|\.header-link\b|\.header-cta\b|\.nav-menu-toggle\b)/u
+    .test(rule.selector) &&
+  /transform:\s*(?!none\b)/u.test(rule.declarations) &&
+  !/(?:brand__visual|header-control-visual|nav-menu-toggle__visual)/u
+    .test(rule.selector)
+);
 const headerDirectTargetRule = styleRules.find(rule => {
   const selectors = rule.selector.split(",").map(selector => selector.trim());
   return [".brand", ".header-link", ".header-cta", ".nav-menu-toggle"]
@@ -822,6 +1041,102 @@ const rebuildNavbarAnatomyValid =
   /class="brand__symbol"/u.test(siteHeaderHtml) &&
   /class="brand__wordmark"[^>]*>Landometer</u.test(siteHeaderHtml) &&
   !/\blogo-surface\b/iu.test(siteHeaderHtml);
+const navbarCalmTargetStableValid =
+  headerTargetBlocks.length === 5 &&
+  headerTargetsByClass("brand").length === 1 &&
+  headerTargetsByClass("header-link").length === 2 &&
+  headerTargetsByClass("header-cta").length === 1 &&
+  headerTargetsByClass("nav-menu-toggle").length === 1 &&
+  ownsSingleSpanWrapper(headerTargetsByClass("brand")[0] ?? { body: "" }, "brand__visual") &&
+  headerTargetsByClass("header-link").every(element =>
+    ownsSingleSpanWrapper(element, "header-control-visual")
+  ) &&
+  ownsSingleSpanWrapper(
+    headerTargetsByClass("header-cta")[0] ?? { body: "" },
+    "header-control-visual--cta"
+  ) &&
+  ownsSingleSpanWrapper(
+    headerTargetsByClass("nav-menu-toggle")[0] ?? { body: "" },
+    "nav-menu-toggle__visual"
+  ) &&
+  /width:\s*100%/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /max-width:\s*none/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /margin-inline:\s*0/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /transform:\s*none/u.test(siteHeaderCalmRowRule?.declarations ?? "") &&
+  /justify-content:\s*space-between/u.test(
+    siteHeaderCalmRowRule?.declarations ?? ""
+  ) &&
+  /transform:\s*scale\(var\(--nav-content-calm-scale\)\)/u.test(
+    calmInnerVisualRule?.declarations ?? ""
+  ) &&
+  calmDirectTargetTransformRules.length === 0 &&
+  /padding:\s*0/u.test(headerLinkOwnRule?.declarations ?? "") &&
+  /height:\s*44px/u.test(headerCtaRule?.declarations ?? "") &&
+  /min-width:\s*108px/u.test(headerCtaRule?.declarations ?? "") &&
+  /padding:\s*0/u.test(headerCtaRule?.declarations ?? "") &&
+  /border:\s*0/u.test(headerCtaRule?.declarations ?? "") &&
+  /background:\s*transparent/u.test(headerCtaRule?.declarations ?? "") &&
+  /width:\s*100%/u.test(headerCtaVisualRule?.declarations ?? "") &&
+  /min-height:\s*44px/u.test(headerCtaVisualRule?.declarations ?? "") &&
+  /border:\s*2px solid var\(--interaction-accent\)/u.test(
+    headerCtaVisualRule?.declarations ?? ""
+  ) &&
+  /border-radius:\s*var\(--radius-pill\)/u.test(
+    headerCtaVisualRule?.declarations ?? ""
+  ) &&
+  /width:\s*44px/u.test(navMenuToggleOwnRule?.declarations ?? "") &&
+  /height:\s*44px/u.test(navMenuToggleOwnRule?.declarations ?? "") &&
+  /border:\s*0/u.test(navMenuToggleOwnRule?.declarations ?? "") &&
+  /background:\s*transparent/u.test(navMenuToggleOwnRule?.declarations ?? "") &&
+  /width:\s*44px/u.test(navMenuToggleVisualOwnRule?.declarations ?? "") &&
+  /height:\s*44px/u.test(navMenuToggleVisualOwnRule?.declarations ?? "") &&
+  /border:\s*1px solid/u.test(
+    navMenuToggleVisualOwnRule?.declarations ?? ""
+  ) &&
+  /border-radius:\s*50%/u.test(
+    navMenuToggleVisualOwnRule?.declarations ?? ""
+  );
+const navbarInlineSvgIconsValid =
+  attributeOf(htmlTag, "data-nav-glyphs") === "inline-svg" &&
+  headerTargetsByClass("nav-menu-toggle").every(element =>
+    countClass(element.body, "nav-menu-toggle__visual") === 1 &&
+    countClass(element.body, "nav-inline-icon") === 2 &&
+    countClass(element.body, "nav-menu-icon__menu") === 1 &&
+    countClass(element.body, "nav-menu-icon__close") === 1 &&
+    (element.body.match(/<svg\b/giu) ?? []).length === 2 &&
+    (element.body.match(/<path\b[^>]*\bd="[^"]+"/giu) ?? []).length === 2 &&
+    (element.body.match(/\bviewBox="0 0 24 24"/gu) ?? []).length === 2 &&
+    (element.body.match(/\bfocusable="false"/gu) ?? []).length === 2 &&
+    (element.body.match(/\baria-hidden="true"/gu) ?? []).length === 3
+  ) &&
+  headerTargetsByClass("nav-menu-toggle").every(element =>
+    attributeOf(element.openingTag, "data-l10n-aria-en") === "Open menu" &&
+    attributeOf(element.openingTag, "aria-controls") === "nav-panel"
+  ) &&
+  sideBookmarkLinks.length === expectedSideBookmarkIcons.length &&
+  sideBookmarkSvgBlocks.every(Boolean) &&
+  new Set(sideBookmarkSvgBlocks).size === expectedSideBookmarkIcons.length &&
+  JSON.stringify(sideBookmarkSvgBlocks.map(svg => attributeOf(svg, "data-icon"))) ===
+    JSON.stringify(expectedSideBookmarkIcons) &&
+  sideBookmarkSvgBlocks.every(svg =>
+    attributeOf(svg, "viewBox") === "0 0 24 24" &&
+    attributeOf(svg, "focusable") === "false" &&
+    attributeOf(svg, "aria-hidden") === "true" &&
+    /<(?:path|rect|circle)\b[^>]*>/u.test(svg)
+  ) &&
+  !/\bclass="[^"]*(?:nav-icon|nav-menu-fallback)[^"]*"/iu
+    .test(`${siteHeaderHtml}\n${sideBookmarkHtml}`) &&
+  /fill:\s*none/u.test(navInlineIconRule?.declarations ?? "") &&
+  /stroke:\s*currentColor/u.test(navInlineIconRule?.declarations ?? "") &&
+  /stroke-linecap:\s*round/u.test(navInlineIconRule?.declarations ?? "") &&
+  /stroke-linejoin:\s*round/u.test(navInlineIconRule?.declarations ?? "") &&
+  /fill:\s*none/u.test(sideBookmarkIconRule?.declarations ?? "") &&
+  /stroke:\s*currentColor/u.test(sideBookmarkIconRule?.declarations ?? "") &&
+  /stroke-linecap:\s*round/u.test(sideBookmarkIconRule?.declarations ?? "") &&
+  /stroke-linejoin:\s*round/u.test(sideBookmarkIconRule?.declarations ?? "") &&
+  !/font-family|font-variation-settings/u.test(
+    sideBookmarkIconRule?.declarations ?? ""
+  );
 const navbarBudgetAndFallbackValid =
   headerDesktopControls.length === 5 &&
   countClass(siteHeaderRowHtml, "brand") === 1 &&
@@ -1012,6 +1327,14 @@ const checks = [
     rebuildNavbarAnatomyValid
   ],
   [
+    "calm navbar keeps every 44px target in place and scales each complete inner visual",
+    navbarCalmTargetStableValid
+  ],
+  [
+    "menu and six distinct side bookmarks use deterministic rounded inline SVG icons",
+    navbarInlineSvgIconsValid
+  ],
+  [
     "owner-selected r7 navbar records its desktop budget divergence and keeps mobile/no-JS routes",
     navbarBudgetAndFallbackValid
   ],
@@ -1040,6 +1363,10 @@ const checks = [
       canonicalHref === manifestCanonical &&
       /<title>[^<]+<\/title>/iu.test(html) &&
       descriptionContent.trim().length > 0
+  ],
+  [
+    "latest alias performs a no-store manifest freshness handshake and fails open",
+    latestAliasFreshnessHandshakeValid
   ],
   [
     "indexing metadata is gated by delivery and evidence state",
@@ -1127,6 +1454,10 @@ const checks = [
       ) === "immutable-artifact-build"
   ],
   [
+    "ui-20260902-06 remains byte-exact as the append-only predecessor",
+    preservedUi06BuildValid
+  ],
+  [
     "Color Set source hashes match the packaged token and scale registries",
     /^[a-f0-9]{64}$/u.test(
       colorDelivery?.sources?.tokenRegistry?.sha256 ?? ""
@@ -1191,6 +1522,10 @@ const checks = [
   [
     "concise color router and sampler deep-link to the first-class full atlas",
     fullAtlasRouteValid
+  ],
+  [
+    "generated homepage Atlas preview exactly mirrors the seven Identity and Energy registry colors",
+    atlasPreviewExactParityValid
   ],
   ["complete color atlas generated boundary", atlasMarkersValid],
   [
@@ -1349,8 +1684,14 @@ const checks = [
   ["opportunity cards receive visual flow", /decorateOpportunityCards\(\)/u.test(html)],
   ["rounded outline icon contract", /stroke-linecap:\s*round/u.test(html) && /stroke-linejoin:\s*round/u.test(html)],
   [
-    "selected side bookmark keeps the governed FILL 0 and wght 300 axes",
-    /\.side-bookmark a\[aria-current="location"\] \.side-bookmark__icon\s*\{[\s\S]*?font-variation-settings:\s*"FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;/u.test(html)
+    "selected side bookmark preserves outlined SVG ink without changing its target geometry",
+    /\.side-bookmark a\[aria-current="location"\] \.side-bookmark__icon\s*\{[\s\S]*?transform:\s*scale\(1\.08\);/u.test(html) &&
+      /vector-effect:\s*non-scaling-stroke/u.test(
+        sideBookmarkIconRule?.declarations ?? ""
+      ) &&
+      !/font-variation-settings/u.test(
+        sideBookmarkIconRule?.declarations ?? ""
+      )
   ]
 ];
 
