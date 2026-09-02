@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // [SELFCHECK-01] SC-21 + SC-23 ([BTN-GEOM-01]), SC-22 ([REVEAL-01]),
-// SC-24 (selected Rebuild02 navbar profile + [NAV-01]), and SC-25 (complete
-// component motion-policy coverage). All are rendered contracts: geometry, target
-// ownership, state changes, and runtime policy assignment cannot be discharged by
-// source review alone.
+// SC-24 (selected Rebuild02 navbar profile + [NAV-01]), SC-25 (complete
+// component motion-policy coverage), SC-26 (generated Color Atlas preview parity),
+// and SC-27 (latest-alias freshness handshake). All are rendered contracts:
+// geometry, target ownership, state changes, painted color, and runtime policy
+// assignment cannot be discharged by source review alone.
 // SC-23 exists because ui-20260821-02 passed SC-21 (label box centred) while an icon-bearing
 // capsule still laid its glyph on the text baseline: 3px above the label centre, 0px gap.
 
@@ -98,6 +99,7 @@ const artifactPath = artifactInput.absolute;
 const artifactSha256 = createHash("sha256").update(artifactBytes).digest("hex");
 const artifactFingerprint = artifactSha256.slice(0, 16);
 const artifactUrl = `${pathToFileURL(artifactPath).href}?cb=${artifactFingerprint}`;
+const latestAliasSource = await readFile(path.join(deploymentDir, "index.html"), "utf8");
 
 // [BTN-GEOM-01]: --space-5 is the normative minimum inline padding for a capsule.
 const MIN_CAPSULE_INLINE_PADDING_PX = 24;
@@ -129,6 +131,8 @@ const VIEWPORTS = [
 const NAV_GEOMETRY_TOLERANCE_PX = 1;
 const NAV_CALM_OPACITY = 1;
 const NAV_OPACITY_TOLERANCE = 0.03;
+const NAV_CALM_VISUAL_SCALE = 0.82;
+const NAV_VISUAL_SCALE_TOLERANCE = 0.025;
 const PAGE_BOOKMARK_ANCHORS = [
   "#top",
   "#v091-additions",
@@ -137,15 +141,40 @@ const PAGE_BOOKMARK_ANCHORS = [
   "#complete-color-atlas",
   "#library-resources",
 ];
+const ATLAS_PREVIEW_RECORDS = [
+  { token: "brand.blue", value: "#1D4497" },
+  { token: "brand.beige", value: "#F2F1DF" },
+  { token: "dark.brand.beige", value: "#D8CFB2" },
+  { token: "energy.sky", value: "#59D2FE" },
+  { token: "energy.mint", value: "#0AD69C" },
+  { token: "energy.coral", value: "#FF5A5F" },
+  { token: "energy.yellow", value: "#FFBC1F" },
+].map(record => ({
+  ...record,
+  computed: (() => {
+    const hex = record.value.slice(1);
+    return `rgb(${Number.parseInt(hex.slice(0, 2), 16)},${Number.parseInt(hex.slice(2, 4), 16)},${Number.parseInt(hex.slice(4, 6), 16)})`;
+  })(),
+}));
 
 const failures = [];
 const cases = [];
 const requestedBrowserExecutable = process.env.LANDOMETER_BROWSER_EXECUTABLE || "";
+let bundledBrowserExecutable = "";
+try {
+  bundledBrowserExecutable = chromium.executablePath();
+} catch (_) {}
+const systemChromeExecutable = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const browserExecutable = requestedBrowserExecutable && existsSync(requestedBrowserExecutable)
+  ? requestedBrowserExecutable
+  : bundledBrowserExecutable && existsSync(bundledBrowserExecutable)
+    ? ""
+    : existsSync(systemChromeExecutable)
+      ? systemChromeExecutable
+      : "";
 const browser = await chromium.launch({
   headless: true,
-  ...(requestedBrowserExecutable && existsSync(requestedBrowserExecutable)
-    ? { executablePath: requestedBrowserExecutable }
-    : {}),
+  ...(browserExecutable ? { executablePath: browserExecutable } : {}),
 });
 
 // ---------- SC-21 + SC-23: rendered capsule geometry and icon anatomy ----------
@@ -261,38 +290,38 @@ const measureNavbar = page => page.evaluate(() => {
     const style = getComputedStyle(node);
     return style.display !== "none" && style.visibility !== "hidden" && Number(style.opacity) > 0.01;
   };
+  const paintedOutline = node => {
+    if (!node) return false;
+    const style = getComputedStyle(node);
+    const stroke = style.stroke.replace(/\s+/gu, "").toLowerCase();
+    let geometry = 1;
+    try {
+      if (typeof node.getTotalLength === "function") geometry = node.getTotalLength();
+    } catch (_) {
+      geometry = 0;
+    }
+    return geometry > 0 && parseFloat(style.strokeWidth || "0") > 0 &&
+      stroke !== "none" && stroke !== "transparent" &&
+      stroke !== "rgba(0,0,0,0)" && !stroke.endsWith(",0)");
+  };
   const box = node => {
     const rect = node?.getBoundingClientRect();
     return rect ? { left: rect.left, right: rect.right, top: rect.top, bottom: rect.bottom, width: rect.width, height: rect.height } : null;
   };
   const menuGlyph = () => {
     const rootMode = document.documentElement.dataset.navGlyphs || "unknown";
-    const icon = document.querySelector("#nav-menu-toggle .nav-icon--menu");
-    const fallback = document.querySelector("#nav-menu-toggle .nav-menu-fallback");
-    const iconStyle = icon ? getComputedStyle(icon) : null;
-    const fallbackStyle = fallback ? getComputedStyle(fallback) : null;
-    const before = fallback ? getComputedStyle(fallback, "::before") : null;
-    const after = fallback ? getComputedStyle(fallback, "::after") : null;
+    const toggle = document.getElementById("nav-menu-toggle");
+    const expanded = toggle?.getAttribute("aria-expanded") === "true";
+    const icon = toggle?.querySelector(expanded ? ".nav-menu-icon__close" : ".nav-menu-icon__menu");
     const iconRect = icon?.getBoundingClientRect();
-    const fallbackRect = fallback?.getBoundingClientRect();
-    const paintedLine = pseudo => {
-      if (!pseudo) return false;
-      const color = pseudo.backgroundColor;
-      return parseFloat(pseudo.width) >= 16 && parseFloat(pseudo.height) >= 1 &&
-        color !== "transparent" && color !== "rgba(0, 0, 0, 0)";
-    };
+    const paths = icon ? [...icon.querySelectorAll("path, circle, rect, line, polyline, polygon")] : [];
+    const paintedPaths = paths.filter(paintedOutline);
     return {
       mode: rootMode,
-      codepoint: icon?.textContent?.codePointAt(0)?.toString(16).toUpperCase() || null,
-      glyphVisible: visible(icon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16 &&
-        /Material Symbols Rounded Nav/u.test(iconStyle?.fontFamily || ""),
-      glyphFontLoaded: !!document.fonts?.check?.('300 24px "Material Symbols Rounded Nav"', icon?.textContent || ""),
-      fallbackVisible: visible(fallback) && (fallbackRect?.width || 0) >= 18 && (fallbackRect?.height || 0) >= 12 &&
-        paintedLine(before) && paintedLine(after),
-      fallbackBeforeTransform: before?.transform || null,
-      fallbackAfterTransform: after?.transform || null,
-      iconDisplay: iconStyle?.display || null,
-      fallbackDisplay: fallbackStyle?.display || null,
+      state: expanded ? "close" : "menu",
+      iconVisible: visible(icon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16,
+      paintedPaths: paintedPaths.length,
+      pathSignatures: paths.map(path => path.getAttribute("d") || path.outerHTML),
     };
   };
   const targetNodes = [
@@ -303,6 +332,12 @@ const measureNavbar = page => page.evaluate(() => {
   ].filter(visible);
   const targets = targetNodes.map(node => {
     const rect = node.getBoundingClientRect();
+    const visual = node.matches(".brand")
+      ? node.querySelector(".brand__visual")
+      : node.matches(".nav-menu-toggle")
+        ? node.querySelector(".nav-menu-toggle__visual")
+        : node.querySelector(".header-control-visual");
+    const visualRect = visual?.getBoundingClientRect();
     const hit = document.elementFromPoint(
       Math.max(0, Math.min(innerWidth - 1, (rect.left + rect.right) / 2)),
       Math.max(0, Math.min(innerHeight - 1, (rect.top + rect.bottom) / 2)),
@@ -316,6 +351,20 @@ const measureNavbar = page => page.evaluate(() => {
       text: (node.textContent || "").replace(/\s+/gu, " ").trim(),
       width: rect.width,
       height: rect.height,
+      centerX: (rect.left + rect.right) / 2,
+      centerY: (rect.top + rect.bottom) / 2,
+      visual: visualRect ? {
+        left: visualRect.left,
+        right: visualRect.right,
+        top: visualRect.top,
+        bottom: visualRect.bottom,
+        width: visualRect.width,
+        height: visualRect.height,
+        centerX: (visualRect.left + visualRect.right) / 2,
+        centerY: (visualRect.top + visualRect.bottom) / 2,
+        aspectRatio: visualRect.height ? visualRect.width / visualRect.height : 0,
+        transform: getComputedStyle(visual).transform,
+      } : null,
       directHit: !!hit && (hit === node || node.contains(hit)),
       pointerEvents: getComputedStyle(node).pointerEvents,
     };
@@ -335,6 +384,7 @@ const measureNavbar = page => page.evaluate(() => {
   return {
     state: header?.dataset.navState ?? null,
     isCalm: header?.classList.contains("is-calm") ?? false,
+    headerTop: headerRect?.top ?? 0,
     headerHeight: headerRect?.height ?? 0,
     surfaceHeight: parseFloat(surface?.height ?? "0"),
     rowOpacity: Number(row ? getComputedStyle(row).opacity : 0),
@@ -354,9 +404,8 @@ const measureNavbar = page => page.evaluate(() => {
   };
 });
 
-const glyphIsVisible = glyph => glyph?.mode === "ready"
-  ? glyph.glyphVisible && glyph.glyphFontLoaded
-  : glyph?.mode === "fallback" && glyph.fallbackVisible;
+const glyphIsVisible = glyph => glyph?.mode === "inline-svg" &&
+  glyph.iconVisible && glyph.paintedPaths > 0;
 
 for (const viewport of VIEWPORTS) {
   const context = await browser.newContext({ viewport: { width: viewport.width, height: viewport.height } });
@@ -393,8 +442,8 @@ for (const viewport of VIEWPORTS) {
   if (!prominent.rowFillsInner || !prominent.controlsRightAligned) {
     navFailures.push("prominent row is not full-width with its control cluster aligned right");
   }
-  if (!glyphIsVisible(prominent.menuGlyph) || prominent.menuGlyph.codepoint !== "E5D2") {
-    navFailures.push(`menu glyph is not visibly rendered (${prominent.menuGlyph.mode}/${prominent.menuGlyph.codepoint})`);
+  if (!glyphIsVisible(prominent.menuGlyph) || prominent.menuGlyph.state !== "menu") {
+    navFailures.push(`menu icon is not visibly rendered (${prominent.menuGlyph.mode}/${prominent.menuGlyph.state})`);
   }
   if (prominent.hasIdentityCarrier) navFailures.push("identity is enclosed by a carrier");
   prominent.targets.forEach(target => {
@@ -403,6 +452,18 @@ for (const viewport of VIEWPORTS) {
     }
     if (!target.directHit || target.pointerEvents === "none") {
       navFailures.push(`${target.id} is not the direct hit-tested target`);
+    }
+    if (!target.visual) {
+      navFailures.push(`${target.id} has no complete inner visual wrapper`);
+    } else {
+      const visualOffY = Math.abs(target.visual.centerY - target.centerY);
+      const visualOffX = Math.abs(target.visual.centerX - target.centerX);
+      if (visualOffY > 1.5 || (target.kind !== "brand" && visualOffX > 1.5)) {
+        navFailures.push(`${target.kind} prominent inner visual is not aligned within its semantic target`);
+      }
+      if (target.kind === "brand" && Math.abs(target.visual.left - (target.centerX - target.width / 2)) > 1.5) {
+        navFailures.push("brand prominent inner visual is not left-anchored in its semantic target");
+      }
     }
   });
 
@@ -440,6 +501,41 @@ for (const viewport of VIEWPORTS) {
       navFailures.push(`${target.id} calm target ${target.width.toFixed(1)}x${target.height.toFixed(1)}px`);
     }
     if (!target.directHit) navFailures.push(`${target.id} calm target is covered by another layer`);
+    const expectedCenterY = calm.headerTop + calm.surfaceHeight / 2;
+    if (Math.abs(target.centerY - expectedCenterY) > 1.5) {
+      navFailures.push(`${target.kind} calm target is not vertically centred in the calm surface`);
+    }
+  });
+  prominent.targets.forEach((target, index) => {
+    const calmTarget = calm.targets[index];
+    if (!calmTarget || calmTarget.kind !== target.kind) {
+      navFailures.push(`calm target order changed at ${target.kind}`);
+      return;
+    }
+    if (Math.abs(target.centerX - calmTarget.centerX) > NAV_GEOMETRY_TOLERANCE_PX ||
+        Math.abs(target.width - calmTarget.width) > NAV_GEOMETRY_TOLERANCE_PX) {
+      navFailures.push(`${target.kind} moves or changes semantic width during calm transition`);
+    }
+    if (!target.visual || !calmTarget.visual) {
+      navFailures.push(`${target.kind} has no complete inner visual wrapper`);
+      return;
+    }
+    if (Math.abs(target.visual.aspectRatio - calmTarget.visual.aspectRatio) > 0.03) {
+      navFailures.push(`${target.kind} inner visual changes aspect ratio during calm transition`);
+    }
+    const widthScale = target.visual.width ? calmTarget.visual.width / target.visual.width : 0;
+    const heightScale = target.visual.height ? calmTarget.visual.height / target.visual.height : 0;
+    if (Math.abs(widthScale - NAV_CALM_VISUAL_SCALE) > NAV_VISUAL_SCALE_TOLERANCE ||
+        Math.abs(heightScale - NAV_CALM_VISUAL_SCALE) > NAV_VISUAL_SCALE_TOLERANCE) {
+      navFailures.push(`${target.kind} inner visual scale ${widthScale.toFixed(3)}/${heightScale.toFixed(3)}, expected ${NAV_CALM_VISUAL_SCALE}`);
+    }
+    if (Math.abs(calmTarget.visual.centerY - calmTarget.centerY) > 1.5 ||
+        (target.kind !== "brand" && Math.abs(calmTarget.visual.centerX - calmTarget.centerX) > 1.5)) {
+      navFailures.push(`${target.kind} calm inner visual is not centred in its semantic target`);
+    }
+    if (target.kind === "brand" && Math.abs(calmTarget.visual.left - (calmTarget.centerX - calmTarget.width / 2)) > 1.5) {
+      navFailures.push("brand calm inner visual is not left-anchored in its semantic target");
+    }
   });
 
   // Headless Chromium starts its virtual pointer at (0, 0), which is already
@@ -480,18 +576,26 @@ for (const viewport of VIEWPORTS) {
       }).map(node => node.id || node.className || node.textContent.trim());
       const mobileCta = document.querySelector("#nav-panel .nav-panel-mobile-cta .header-cta");
       const mobileCtaRect = mobileCta?.getBoundingClientRect();
-      const menuIcon = toggle?.querySelector(".nav-icon--menu");
-      const fallback = toggle?.querySelector(".nav-menu-fallback");
-      const before = fallback ? getComputedStyle(fallback, "::before") : null;
-      const after = fallback ? getComputedStyle(fallback, "::after") : null;
+      const menuIcon = toggle?.querySelector(".nav-menu-icon__close");
       const mode = document.documentElement.dataset.navGlyphs || "unknown";
       const iconRect = menuIcon?.getBoundingClientRect();
-      const fallbackRect = fallback?.getBoundingClientRect();
-      const glyphVisible = visible(menuIcon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16 &&
-        /Material Symbols Rounded Nav/u.test(getComputedStyle(menuIcon).fontFamily) &&
-        !!document.fonts?.check?.('300 24px "Material Symbols Rounded Nav"', menuIcon?.textContent || "");
-      const fallbackVisible = visible(fallback) && (fallbackRect?.width || 0) >= 18 && (fallbackRect?.height || 0) >= 12 &&
-        before?.transform !== "none" && after?.transform !== "none";
+      const iconPaths = menuIcon
+        ? [...menuIcon.querySelectorAll("path, circle, rect, line, polyline, polygon")]
+        : [];
+      const paintedPaths = iconPaths.filter(path => {
+        const style = getComputedStyle(path);
+        const stroke = style.stroke.replace(/\s+/gu, "").toLowerCase();
+        let geometry = 1;
+        try {
+          if (typeof path.getTotalLength === "function") geometry = path.getTotalLength();
+        } catch (_) {
+          geometry = 0;
+        }
+        return geometry > 0 && parseFloat(style.strokeWidth || "0") > 0 &&
+          stroke !== "none" && stroke !== "transparent" &&
+          stroke !== "rgba(0,0,0,0)" && !stroke.endsWith(",0)");
+      });
+      const iconVisible = visible(menuIcon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16 && paintedPaths.length > 0;
       return {
         state: document.querySelector(".site-header")?.dataset.navState,
         expanded: toggle?.getAttribute("aria-expanded"),
@@ -514,9 +618,9 @@ for (const viewport of VIEWPORTS) {
         undersized,
         closeIcon: {
           mode,
-          codepoint: menuIcon?.textContent?.codePointAt(0)?.toString(16).toUpperCase() || null,
-          glyphVisible,
-          fallbackVisible,
+          state: "close",
+          iconVisible,
+          paintedPaths: paintedPaths.length,
         },
       };
     }, PAGE_BOOKMARK_ANCHORS);
@@ -547,11 +651,10 @@ for (const viewport of VIEWPORTS) {
     if (menuOpen.undersized.length) {
       navFailures.push(`panel contains undersized direct target(s): ${menuOpen.undersized.join(", ")}`);
     }
-    const closeIconVisible = menuOpen.closeIcon.mode === "ready"
-      ? menuOpen.closeIcon.glyphVisible
-      : menuOpen.closeIcon.mode === "fallback" && menuOpen.closeIcon.fallbackVisible;
-    if (!closeIconVisible || menuOpen.closeIcon.codepoint !== "E5CD") {
-      navFailures.push(`close glyph is not visibly rendered (${menuOpen.closeIcon.mode}/${menuOpen.closeIcon.codepoint})`);
+    const closeIconVisible = menuOpen.closeIcon.mode === "inline-svg" &&
+      menuOpen.closeIcon.iconVisible && menuOpen.closeIcon.paintedPaths > 0;
+    if (!closeIconVisible || menuOpen.closeIcon.state !== "close") {
+      navFailures.push(`close icon is not visibly rendered (${menuOpen.closeIcon.mode}/${menuOpen.closeIcon.state})`);
     }
     await page.keyboard.press("Escape");
     await page.waitForTimeout(80);
@@ -632,6 +735,20 @@ for (const viewport of [
       const rect = link.getBoundingClientRect();
       const icon = link.querySelector(".side-bookmark__icon[data-icon]");
       const iconRect = icon?.getBoundingClientRect();
+      const shapes = icon ? [...icon.querySelectorAll("path, circle, rect, line, polyline, polygon")] : [];
+      const paintedShapes = shapes.filter(shape => {
+        const style = getComputedStyle(shape);
+        const stroke = style.stroke.replace(/\s+/gu, "").toLowerCase();
+        let geometry = 1;
+        try {
+          if (typeof shape.getTotalLength === "function") geometry = shape.getTotalLength();
+        } catch (_) {
+          geometry = 0;
+        }
+        return geometry > 0 && parseFloat(style.strokeWidth || "0") > 0 &&
+          stroke !== "none" && stroke !== "transparent" &&
+          stroke !== "rgba(0,0,0,0)" && !stroke.endsWith(",0)");
+      });
       const hit = rect.width && rect.height
         ? document.elementFromPoint((rect.left + rect.right) / 2, (rect.top + rect.bottom) / 2)
         : null;
@@ -642,9 +759,9 @@ for (const viewport of [
         directHit: !!hit && (hit === link || link.contains(hit)),
         accessibleName: (link.textContent || "").replace(/\s+/gu, " ").trim(),
         iconName: icon?.dataset.icon || null,
-        iconCodepoint: icon?.textContent?.codePointAt(0)?.toString(16).toUpperCase() || null,
-        iconVisible: visible(icon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16,
-        iconFill: icon ? getComputedStyle(icon).fontVariationSettings : null,
+        iconSignature: shapes.map(shape => shape.getAttribute("d") || shape.outerHTML).join("|"),
+        iconPaintedShapes: paintedShapes.length,
+        iconVisible: visible(icon) && (iconRect?.width || 0) >= 16 && (iconRect?.height || 0) >= 16 && paintedShapes.length > 0,
       };
     });
     const railRect = rail?.getBoundingClientRect();
@@ -687,16 +804,13 @@ for (const viewport of [
       }
       if (!item.directHit) bookmarkFailures.push(`${item.href} is not the direct bookmark hit target`);
       if (!item.accessibleName) bookmarkFailures.push(`${item.href} has no accessible text`);
-      if (!item.iconName || !item.iconCodepoint || !item.iconVisible) {
+      if (!item.iconName || !item.iconSignature || !item.iconVisible || item.iconPaintedShapes < 1) {
         bookmarkFailures.push(`${item.href} has no visible named outline icon`);
       }
-      if (item.iconFill && !/["']?FILL["']?\s+0/iu.test(item.iconFill)) {
-        bookmarkFailures.push(`${item.href} uses a filled icon state (${item.iconFill})`);
-      }
-      if (item.iconFill && !/["']?wght["']?\s+300/iu.test(item.iconFill)) {
-        bookmarkFailures.push(`${item.href} changes the governed icon weight (${item.iconFill})`);
-      }
     });
+    if (new Set(initial.items.map(item => item.iconSignature)).size !== PAGE_BOOKMARK_ANCHORS.length) {
+      bookmarkFailures.push("bookmark icons are not six distinct SVG silhouettes");
+    }
 
     await page.evaluate(() => {
       const target = document.getElementById("play");
@@ -730,6 +844,214 @@ for (const viewport of [
     viewport: viewport.name,
     detail: initial,
     passed: bookmarkFailures.length === 0,
+  });
+  await context.close();
+}
+
+// ---------- SC-26: generated Color Atlas preview is the complete Atlas identity set ----------
+const atlasPreviewCases = [
+  { name: "light-desktop", theme: "light", width: 1200, height: 900 },
+  { name: "dark-desktop", theme: "dark", width: 1200, height: 900 },
+  { name: "light-narrow", theme: "light", width: 390, height: 844 },
+  { name: "dark-narrow", theme: "dark", width: 390, height: 844 },
+];
+for (const atlasCase of atlasPreviewCases) {
+  const context = await browser.newContext({
+    viewport: { width: atlasCase.width, height: atlasCase.height },
+  });
+  const page = await context.newPage();
+  const themedArtifactUrl = new URL(artifactUrl);
+  themedArtifactUrl.searchParams.set("theme", atlasCase.theme);
+  await page.goto(themedArtifactUrl.href);
+  await page.waitForLoadState("load");
+  await page.evaluate(() => document.fonts?.ready);
+  const ribbonLocator = page.locator(".v091-atlas-ribbon");
+  await ribbonLocator.scrollIntoViewIfNeeded();
+  // The preview may be a descendant of a governed reveal group. Wait out the
+  // 450ms stagger plus the 920ms slow transform before testing painted output.
+  await page.waitForTimeout(1500);
+  await page.evaluate(async () => {
+    const atlas = document.getElementById("complete-color-atlas");
+    if (atlas instanceof HTMLDetailsElement) atlas.open = true;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
+  const measured = await page.evaluate(() => {
+    const normalizeColor = value => String(value || "").replace(/\s+/gu, "").toLowerCase();
+    const elementVisible = node => {
+      if (!node || !node.getClientRects().length) return false;
+      for (let current = node; current instanceof Element; current = current.parentElement) {
+        const style = getComputedStyle(current);
+        if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) <= 0.01) {
+          return false;
+        }
+      }
+      return true;
+    };
+    const ribbon = document.querySelector(".v091-atlas-ribbon[data-atlas-preview-family='identity-energy']");
+    const ribbonRect = ribbon?.getBoundingClientRect();
+    const preview = ribbon ? [...ribbon.querySelectorAll(":scope > .v091-atlas-ribbon__swatch")] : [];
+    const previewRecords = preview.map(node => {
+      const rect = node.getBoundingClientRect();
+      const background = normalizeColor(getComputedStyle(node).backgroundColor);
+      return {
+        token: node.dataset.atlasToken || null,
+        value: node.dataset.atlasValue || null,
+        background,
+        width: rect.width,
+        height: rect.height,
+        painted: elementVisible(node) && rect.width > 0 && rect.height > 0 &&
+          background !== "transparent" && background !== "rgba(0,0,0,0)" && !background.endsWith(",0)"),
+        contained: !!ribbonRect && rect.left >= ribbonRect.left - 1 && rect.right <= ribbonRect.right + 1 &&
+          rect.top >= ribbonRect.top - 1 && rect.bottom <= ribbonRect.bottom + 1,
+      };
+    });
+    const identityGrid = document.querySelector(".atlas-family--identity > .atlas-token-grid");
+    const identityCards = identityGrid
+      ? [...identityGrid.children].filter(node => node.matches(".atlas-token-card:not(.atlas-token-card--asset)"))
+      : [];
+    const completeRecords = identityCards.slice(0, 7).map(card => {
+      const swatch = card.querySelector(".atlas-swatch");
+      return {
+        token: card.querySelector(".atlas-token-id")?.textContent?.trim() || null,
+        value: card.querySelector(".atlas-token-value")?.textContent?.trim() || null,
+        background: swatch ? normalizeColor(getComputedStyle(swatch).backgroundColor) : null,
+      };
+    });
+    return {
+      resolvedTheme: document.documentElement.dataset.theme || null,
+      themePreference: document.documentElement.dataset.themePreference || null,
+      family: ribbon?.dataset.atlasPreviewFamily || null,
+      registry: ribbon?.dataset.colorRegistry || null,
+      role: ribbon?.getAttribute("role") || null,
+      previewRecords,
+      completeIdentityRecordCount: identityCards.length,
+      completeRecords,
+      overflowPx: ribbon ? Math.max(0, ribbon.scrollWidth - ribbon.clientWidth) : null,
+      viewportOverflowPx: ribbonRect
+        ? Math.max(0, -ribbonRect.left, ribbonRect.right - innerWidth)
+        : null,
+    };
+  });
+  const atlasFailures = [];
+  const expectedRecords = ATLAS_PREVIEW_RECORDS.map(({ token, value }) => ({ token, value }));
+  const measuredPreviewRecords = measured.previewRecords.map(({ token, value }) => ({ token, value }));
+  const measuredCompleteRecords = measured.completeRecords.map(({ token, value }) => ({ token, value }));
+  if (measured.resolvedTheme !== atlasCase.theme || measured.themePreference !== atlasCase.theme) {
+    atlasFailures.push(`resolved theme ${measured.themePreference}/${measured.resolvedTheme}, expected explicit ${atlasCase.theme}`);
+  }
+  if (measured.family !== "identity-energy" || measured.registry !== artifactColorRegistryId || measured.role !== "list") {
+    atlasFailures.push(`preview authority ${measured.family}/${measured.registry}/${measured.role} is incomplete`);
+  }
+  if (measured.previewRecords.length !== ATLAS_PREVIEW_RECORDS.length ||
+      JSON.stringify(measuredPreviewRecords) !== JSON.stringify(expectedRecords)) {
+    atlasFailures.push(`preview order/value ${JSON.stringify(measuredPreviewRecords)} does not match the governed seven records`);
+  }
+  if (measured.completeIdentityRecordCount < ATLAS_PREVIEW_RECORDS.length ||
+      JSON.stringify(measuredCompleteRecords) !== JSON.stringify(expectedRecords)) {
+    atlasFailures.push(`complete Atlas identity order/value ${JSON.stringify(measuredCompleteRecords)} is not the governed source set`);
+  }
+  measured.previewRecords.forEach((record, index) => {
+    const expected = ATLAS_PREVIEW_RECORDS[index];
+    if (!expected) return;
+    if (!record.painted || record.background !== expected.computed) {
+      atlasFailures.push(`${expected.token} preview paint ${record.background || "missing"}, expected ${expected.computed}`);
+    }
+    if (!record.contained) atlasFailures.push(`${expected.token} escapes the preview ribbon`);
+    const complete = measured.completeRecords[index];
+    if (!complete || complete.background !== expected.computed || complete.background !== record.background) {
+      atlasFailures.push(`${expected.token} preview paint is not equal to the complete Atlas (${complete?.background || "missing"})`);
+    }
+  });
+  if ((measured.overflowPx ?? 1) > 1 || (measured.viewportOverflowPx ?? 1) > 1) {
+    atlasFailures.push(`preview overflows by ${measured.overflowPx}/${measured.viewportOverflowPx}px`);
+  }
+  atlasFailures.forEach(problem => failures.push(`SC-26 ${atlasCase.name}: ${problem}`));
+  cases.push({
+    item: "SC-26",
+    mode: "color-atlas-preview",
+    viewport: atlasCase.name,
+    detail: measured,
+    passed: atlasFailures.length === 0,
+  });
+  await context.close();
+}
+
+// ---------- SC-27: hosted latest-alias build freshness, isolated from the network ----------
+{
+  const context = await browser.newContext({ viewport: { width: 900, height: 700 } });
+  const page = await context.newPage();
+  const qaOrigin = "https://landometer-freshness.invalid";
+  const sourceBuild = htmlDataAttribute(latestAliasSource, "data-artifact-build") || "unknown";
+  const nextBuild = `${sourceBuild}-freshness-probe`;
+  let documentRequests = 0;
+  let manifestRequests = 0;
+  await page.route("**/*", async route => {
+    const request = route.request();
+    const url = new URL(request.url());
+    if (url.origin !== qaOrigin) {
+      await route.abort("blockedbyclient");
+      return;
+    }
+    if (url.pathname === "/site-manifest.v0.9.1.json") {
+      manifestRequests += 1;
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        headers: { "cache-control": "no-store" },
+        body: JSON.stringify({ artifact: { artifactBuildId: nextBuild } }),
+      });
+      return;
+    }
+    if (url.pathname === "/") {
+      if (request.resourceType() === "document") documentRequests += 1;
+      await route.fulfill({ status: 200, contentType: "text/html", body: latestAliasSource });
+      return;
+    }
+    await route.fulfill({ status: 404, contentType: "text/plain", body: "not found" });
+  });
+  const freshnessFailures = [];
+  await page.goto(`${qaOrigin}/?theme=light`, { waitUntil: "domcontentloaded" });
+  try {
+    await page.waitForURL(url => url.searchParams.get("build") === nextBuild, { timeout: 4000 });
+  } catch (_) {
+    freshnessFailures.push("latest-alias page did not replace itself with the manifest build URL");
+  }
+  await page.waitForTimeout(300);
+  const firstPass = await page.evaluate(({ sourceBuild, nextBuild }) => ({
+    sourceBuild: document.documentElement.dataset.artifactBuild || null,
+    buildParam: new URL(location.href).searchParams.get("build"),
+    freshMarker: new URL(location.href).searchParams.get("_build_fresh"),
+    refreshGuard: sessionStorage.getItem(`landometer-build-refresh:${sourceBuild}:${nextBuild}`),
+  }), { sourceBuild, nextBuild });
+  if (firstPass.sourceBuild !== sourceBuild || firstPass.buildParam !== nextBuild ||
+      !firstPass.freshMarker || firstPass.refreshGuard !== "done") {
+    freshnessFailures.push(`freshness state is incomplete: ${JSON.stringify(firstPass)}`);
+  }
+  const documentsBeforeReload = documentRequests;
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.waitForTimeout(400);
+  const secondPassUrl = new URL(page.url());
+  if (secondPassUrl.searchParams.get("build") !== nextBuild ||
+      documentRequests !== documentsBeforeReload + 1) {
+    freshnessFailures.push(`session guard allowed a reload loop (${documentRequests - documentsBeforeReload} document requests)`);
+  }
+  if (manifestRequests < 2) {
+    freshnessFailures.push(`freshness manifest was not checked after both page shows (${manifestRequests})`);
+  }
+  const detail = {
+    sourceBuild,
+    nextBuild,
+    firstPass,
+    finalUrl: page.url(),
+    documentRequests,
+    manifestRequests,
+  };
+  freshnessFailures.forEach(problem => failures.push(`SC-27 latest-alias: ${problem}`));
+  cases.push({
+    item: "SC-27",
+    mode: "isolated-latest-build-freshness",
+    detail,
+    passed: freshnessFailures.length === 0,
   });
   await context.close();
 }
@@ -1138,9 +1460,9 @@ cases.push({ item: "SC-25", mode: "initial-deep-link", detail: initialDeepLink, 
 await browser.close();
 
 const evidence = {
-  schemaVersion: "1.2",
-  rules: ["[BTN-GEOM-01]", "[REVEAL-01]", "[NAV-01]", "[MOTION-COVERAGE-01]"],
-  selfCheckItems: ["SC-21", "SC-22", "SC-23", "SC-24", "SC-25"],
+  schemaVersion: "1.3",
+  rules: ["[BTN-GEOM-01]", "[REVEAL-01]", "[NAV-01]", "[MOTION-COVERAGE-01]", "[TOKEN-01]", "[VIS-04]", "[WEBFMT-01]"],
+  selfCheckItems: ["SC-21", "SC-22", "SC-23", "SC-24", "SC-25", "SC-26", "SC-27"],
   dsVersion: artifactDsVersion,
   authoringRevision: registry?.meta?.authoringRevision,
   colorRegistryId: artifactColorRegistryId,
@@ -1169,7 +1491,7 @@ const evidence = {
     navbarCalmSurfaceCssPx: { desktop: 52, mobile: 52 },
     navbarVisibleControlBudgetIncludingBrand: { desktop: 5, mobile: 2 },
     navbarDesktopOwnerSelectedR7Routes: ["CityMETER", "CityWiki", "Sign in"],
-    navbarMenuAndCloseHaveRenderedFontOrCssFallback: true,
+    navbarMenuAndCloseHavePaintedInlineSvg: true,
     navbarPanelContainsAllCoreRoutesAndGroupedMobilePrimaryTask: true,
     navbarCalmKeepsDirectSemanticTargets: true,
     navbarCalmRetainsFullWidthRightAlignedControlCluster: true,
@@ -1180,6 +1502,10 @@ const evidence = {
     pageBookmarkShortViewportFallbackMaxHeightCssPx: 560,
     pageBookmarkTargetsCssPx: MIN_TARGET_PX,
     pageBookmarkSingleCurrentLocation: true,
+    colorAtlasPreviewRecords: ATLAS_PREVIEW_RECORDS.map(({ token, value }) => ({ token, value })),
+    colorAtlasPreviewMatchesCompleteAtlasInExplicitThemes: ["light", "dark"],
+    colorAtlasPreviewHasNoNarrowViewportOverflow: true,
+    latestAliasFreshnessHandshakeIsOneTimeAndFailSafe: true,
     everySemanticComponentHasMotionPolicy: true,
     criticalAndEvidenceComponentsStayStatic: true,
     settleVisibleNeverWithholdsContent: true,
@@ -1187,7 +1513,7 @@ const evidence = {
     intersectionObserverFailureShowsFinalState: true,
   },
   boundary:
-    "Rendered geometry, navbar state, glyph/fallback visibility, route presence, bookmark continuity, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, or transparent-surface contrast review.",
+    "Rendered geometry, navbar state, inline-SVG paint, route presence, bookmark continuity, Color Atlas preview parity, an isolated latest-build freshness handshake, one representative slow transition, and motion-policy completion. It does not replace manual whole-journey perceptual review, assistive-technology review, native-Safari review, or transparent-surface contrast review.",
   totals: { cases: cases.length, failures: failures.length },
   cases,
   ...(failures.length ? { failures } : {}),

@@ -25,7 +25,7 @@
     "canonicalUrl": "https://montri-th.github.io/Landometer/",
     "machineValidation": "pending",
     "fullLivingReference": false,
-    "artifactBuildId": "ui-20260902-06"
+    "artifactBuildId": "ui-20260902-07"
   },
   "authority": {
     "normativeSource": {
@@ -64,9 +64,9 @@
       "status": "preserved byte-for-byte"
     },
     "currentArtifactBuild": {
-      "id": "ui-20260902-06",
+      "id": "ui-20260902-07",
       "latestPath": "landometer-design-system-v0.9.1-standalone.html",
-      "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html"
+      "immutablePath": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html"
     },
     "tokenRegistry": {
       "path": "assets/data/tokens.json",
@@ -161,14 +161,16 @@
   "qualityEvidence": {
     "automatedQaReport": "qa/v0.9.1-automated.json",
     "renderedAffordances": {
-      "artifactBuildId": "ui-20260902-06",
-      "artifactSha256": "3eb1866ec860f1cbfee998eb3155f9a1c4fa40b7a2881dda903e6c163d7d2d55",
-      "cases": 21,
-      "passed": 21,
+      "artifactBuildId": "ui-20260902-07",
+      "artifactSha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910",
+      "cases": 26,
+      "passed": 26,
       "failed": 0,
       "coverage": {
-        "navbar": "owner-selected r7 routes, 76/68px prominent and 52px calm surfaces, five/two visible controls, direct targets, grouped disclosure, glyph and CSS fallback, full-width right-aligned calm row, and reduced-motion prominent state",
-        "sideBookmark": "six real anchors in stable order, exact mobile disclosure mirror, 44px targets, width/short-height degradation, and one visible current: location",
+        "navbar": "owner-selected r7 routes, 76/68px prominent and 52px calm surfaces, five/two visible controls, stable direct target positions, complete inner-visual 0.82 scaling, grouped disclosure, painted inline SVG Menu/Close, full-width right-aligned calm row, and reduced-motion prominent state",
+        "sideBookmark": "six distinct painted inline SVG icons and real anchors in stable order, exact mobile disclosure mirror, 44px targets, width/short-height degradation, and one visible current: location",
+        "colorAtlasPreview": "seven generator-bound Identity and Energy swatches in exact token/value order, visibly painted and equal to complete-Atlas records in explicit Light and Dark without narrow-width overflow",
+        "latestBuildFreshness": "isolated newer-manifest, matching-build, immutable, standalone, and fetch-failure paths verify one-time fail-safe build-qualified reload behavior",
         "motion": "641 audited component instances across 18 families and 439 semantic roots; 43 enrolled visible reveal targets, 6 visible settle surfaces, 22 critical static components, 138 evidence static components, five reading-cadence territories, and final-state recovery routes"
       },
       "boundary": "One representative slow transition is measured; continuous whole-journey perceptual review remains a manual gate."
@@ -185,6 +187,7 @@
     },
     "continuousPerceptualSmoke": {
       "artifactBuildId": "ui-20260902-06",
+      "status": "retained_predecessor_evidence_not_current_ui07_execution",
       "locales": ["th", "en"],
       "viewportsCssPx": ["1440x900", "390x844"],
       "cases": 4,
@@ -192,7 +195,7 @@
       "eligibleRevealTargetsLanded": 43,
       "replayViolations": 0,
       "bookmarkContinuityFailures": 0,
-      "boundary": "Exact-byte sampled scroll telemetry and screenshots; human continuous screen-recording review remains open."
+      "boundary": "Retained ui-20260902-06 exact-byte sampled scroll telemetry and screenshots. Current ui-20260902-07 rendered motion contracts pass separately; human continuous screen-recording review for ui07 remains open."
     },
     "manualGates": {
       "status": "open_pending_execution",
@@ -225,18 +228,28 @@
     },
     {
       "path": "assets/data/color-delivery.v0.9.1.json",
-      "bytes": 9375,
-      "sha256": "3949763241f245f03bb1da68376d433df55cd408f3e9c8cdbd835fadba3735bf",
+      "bytes": 10101,
+      "sha256": "18852fe3d3a036cf927fb700411802dcfe31303525a6343435e1e007ba86415e",
       "usageClass": "artifact-level retained Color Set delivery and parity record"
     },
     {
       "path": "landometer-design-system-v0.9.1-standalone.html",
-      "bytes": 2024861,
-      "sha256": "9b8c0a6b8d085fe523ab158b0d30ffde282f95c760bf8278888480eb2f526f83",
+      "bytes": 2030738,
+      "sha256": "4ce8e62443c8a2ffc245b788d3da1dd06a992d2f28f87478176a408054de389b",
       "mimeType": "text/html",
-      "artifactBuildId": "ui-20260902-06",
+      "artifactBuildId": "ui-20260902-07",
       "colorRegistryId": "color-srgb-05",
       "usageClass": "self-contained latest Design System reference alias"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html",
+      "bytes": 2030750,
+      "sha256": "7abf389bf53798dcd2618db33de6fcb51a1f3cabd210ae178e3e17437246c910",
+      "mimeType": "text/html",
+      "artifactBuildId": "ui-20260902-07",
+      "colorRegistryId": "color-srgb-05",
+      "integrityMode": "append-only immutable UI artifact",
+      "usageClass": "current cross-device handoff and visual-QA authority"
     },
     {
       "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html",
@@ -246,7 +259,7 @@
       "artifactBuildId": "ui-20260902-06",
       "colorRegistryId": "color-srgb-05",
       "integrityMode": "append-only immutable UI artifact",
-      "usageClass": "current cross-device handoff and visual-QA authority"
+      "usageClass": "retained prior immutable UI artifact"
     },
     {
       "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-05.html",
@@ -322,26 +335,26 @@
     },
     {
       "path": "build-card.v0.9.1.yml",
-      "bytes": 16304,
-      "sha256": "e887e6a43ab71fdaa50ec87bb1bd6e368eb9732bc1d086f8ea2f2608f33bc458",
+      "bytes": 17650,
+      "sha256": "62c467199228be12838c5b3705faa7ca0c4e902f73c84469625fa1d4298bb40e",
       "usageClass": "non-normative artifact Build Card"
     },
     {
       "path": "implementation-notes.v0.9.1.md",
-      "bytes": 16340,
-      "sha256": "fca2bec42bf733d2f556499bd0c3463204722a19e68eb88fb52b3bca6cd4f3be",
+      "bytes": 18560,
+      "sha256": "c1574dc8aef9ac6ae6c1041df93b767fae3627582b3b1af15099680042bd1b20",
       "usageClass": "non-normative artifact implementation record"
     },
     {
       "path": "qa/v0.9.1-manual-gates.md",
-      "bytes": 16889,
-      "sha256": "33268209498cd8ed7815e459b37605155aa53ab92c4cff4f8228f4936f81058f",
+      "bytes": 18384,
+      "sha256": "ce9f6d6b6eb9ab7319b32a7d01890793cc6343af96b93278820f13735f03687c",
       "usageClass": "human release QA protocol; not an owner-approval or conformance claim"
     },
     {
       "path": "qa/v0.9.1-automated.json",
-      "bytes": 11139,
-      "sha256": "51aa65547e7fa76734ed0d690fc25631d6f5ec177178d9a881b6a6e7dc6f6b86",
+      "bytes": 12257,
+      "sha256": "e01ff9c0cf88bc7c1aa08590cad17d1846642abc704bcec10dc62763372cb455",
       "usageClass": "release-candidate source, standalone, retained-color, and browser-runtime evidence"
     },
     {
@@ -353,9 +366,9 @@
     },
     {
       "path": "font-assets.manifest.json",
-      "bytes": 3526,
-      "sha256": "c61e3a32e92fbd6b945fd61fed849a7d891ba5b8ceabfb0ff83a3634e102baf8",
-      "usageClass": "self-hosted text and navigation-glyph asset manifest"
+      "bytes": 3613,
+      "sha256": "d8dfb68e6dd1245c3e0eeabc6c185599b2a146f8b23ffda8bd2844970f7c1534",
+      "usageClass": "self-hosted text and retained licensed compatibility-glyph asset manifest; critical ui07 navigation icons are inline SVG"
     },
     {
       "path": "assets/fonts/material-symbols-rounded-nav-300.woff2",

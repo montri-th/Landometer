@@ -5,16 +5,20 @@ landometerBuild:
     ruleset: lds-rules-0.9.1
     machinePackageIdentity: v0.9.1-mp7
     machinePackageDelivery: identity_only
-    artifactBuildId: ui-20260902-06
-    supersedesArtifactBuildId: ui-20260902-05
-    retainedPriorArtifactBuildIds: [ui-20260902-05, ui-20260902-04, ui-20260902-03, ui-20260902-02, ui-20260902-01, ui-20260901-01]
+    artifactBuildId: ui-20260902-07
+    supersedesArtifactBuildId: ui-20260902-06
+    retainedPriorArtifactBuildIds: [ui-20260902-06, ui-20260902-05, ui-20260902-04, ui-20260902-03, ui-20260902-02, ui-20260902-01, ui-20260901-01]
     changeClass: ui_artifact_revision_color_set_unchanged
     defectClosure: >-
-      Preserves the ui-20260902-05 handoff-link and receipt corrections and
-      restores the selected side-bookmark icon from an unintended wght 400
-      override to the governed FILL 0, wght 300 state. Selection continues to
-      use surface, border, shape, and label; ui-20260902-05 and earlier builds
-      remain byte-for-byte append-only evidence.
+      Preserves the ui-20260902-06 outline-state correction and closes four
+      artifact defects: calm navigation retains a full-width row with unchanged
+      semantic-target positions while complete inner visual surfaces scale;
+      menu, close, and all six side-bookmark icons paint as inline outline SVG
+      without a font dependency; the seven-color Identity and Energy preview is
+      generated from the same records as the complete Color Atlas; and the
+      latest alias performs a no-store manifest freshness handshake before a
+      one-time build-qualified reload. Color Set color-srgb-05 is unchanged, and
+      ui-20260902-06 and earlier builds remain byte-for-byte append-only evidence.
     sourceRef: assets/downloads/landometer-design-system-v0.9.1.md
     sourceBytes: 208463
     sourceSha256: 64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19
@@ -207,6 +211,9 @@ landometerBuild:
       currentSemantics: location
       visibleBeforeFirstTrackedAnchor: true
       pageCurrentAndLocationCurrentSeparated: true
+      iconCount: 6
+      iconDelivery: inline_outline_svg
+      fontPaintDependency: none
     prominentCalmHeader:
       policy: visual_prominence_changes_semantic_targets_do_not
       prominentWhen:
@@ -218,6 +225,8 @@ landometerBuild:
       calmWhen: downward_reading_without_pointer_focus_or_open_menu
       reducedMotion: stable_prominent_state
       directTargetGeometryStable: true
+      directTargetPositionsStable: true
+      completeInnerVisualSurfaceScales: true
       wakeFirstClickAllowed: false
       coordinateForwardingOverlayAllowed: false
       localeChangeWhileOpen: preserve_current_focus
@@ -225,8 +234,11 @@ landometerBuild:
 
   icon:
     setId: icon-rounded-outline-01
-    family: Material Symbols Rounded
-    variation: "FILL 0, wght 300, GRAD 0, opsz 24"
+    governedReferenceFamily: Material Symbols Rounded
+    governedReferenceVariation: "FILL 0, wght 300, GRAD 0, opsz 24"
+    artifactDelivery: inline_outline_svg
+    artifactStrokeBehavior: non_scaling_round_cap_round_join
+    fontPaintDependency: none
     filledSelectedStateAllowed: false
     selectedStateChannels: [surface, container, label]
 
@@ -355,12 +367,26 @@ landometerBuild:
       sha256: 0788b25be195307821ac7c26159d5011e840c4c0da385ba6c9237e90fbaf7f1a
       status: preserved_byte_for_byte
     currentArtifactBuild:
-      id: ui-20260902-06
-      supersedes: ui-20260902-05
+      id: ui-20260902-07
+      supersedes: ui-20260902-06
       latestPath: landometer-design-system-v0.9.1-standalone.html
-      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html
+      immutablePath: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html
       changeClass: ui_artifact_revision_color_set_unchanged
       offlineStandaloneIdentity: approved_favicon_embedded
+    mainPagePreview:
+      family: identity_and_energy
+      source: generated_from_complete_atlas_identity_records
+      count: 7
+      tokenIds:
+        - brand.blue
+        - brand.beige
+        - dark.brand.beige
+        - energy.sky
+        - energy.mint
+        - energy.coral
+        - energy.yellow
+      values: ["#1D4497", "#F2F1DF", "#D8CFB2", "#59D2FE", "#0AD69C", "#FF5A5F", "#FFBC1F"]
+      categoricalSubstitutionAllowed: false
 
   retainedFoundations:
     - truth, evidence, and product boundaries first
@@ -386,8 +412,13 @@ landometerBuild:
     canonicalUrl: https://montri-th.github.io/Landometer/
     pagesRoot: deployment
     latestStandalone: landometer-design-system-v0.9.1-standalone.html
-    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-06.html
+    immutableStandalone: landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-07.html
     siteManifest: site-manifest.v0.9.1.json
     implementationNotes: implementation-notes.v0.9.1.md
     manualQaRecord: qa/v0.9.1-manual-gates.md
     historicalRecordsRemainFrozen: true
+    latestAliasFreshness:
+      manifestFetchCache: no-store
+      comparisonField: artifact.artifactBuildId
+      mismatchRecovery: one_time_build_qualified_reload
+      standaloneApplies: false
