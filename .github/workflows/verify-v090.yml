@@ -53,10 +53,17 @@ jobs:
         run: |
           # Capsule geometry and the entrance both only exist after layout and scripting,
           # so neither item is dischargeable by source review.
+          set +e
           node tools/check-rendered-affordances.mjs \
             --registry assets/data/color-delivery.v0.9.1.json \
             --artifact landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-03.html \
             > /tmp/v0.9.1-rendered-affordances-current.json
+          rendered_status=$?
+          set -e
+          if [ "$rendered_status" -ne 0 ]; then
+            cat /tmp/v0.9.1-rendered-affordances-current.json
+          fi
+          exit "$rendered_status"
 
       - name: Retained v0.9.0 Thai display-leading machine-package fixture
         run: |
