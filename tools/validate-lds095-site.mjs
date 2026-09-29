@@ -14,7 +14,7 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.5' && manifest.colorSetId === 'color-srgb-08', 'release identity');
 check(manifest.packageId === 'v0.9.5-owner.1', 'unchanged approved package identity');
-check(manifest.artifactBuildId === 'ui-20260929-lds095-02', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20260929-lds095-03', 'full-guide website build identity');
 check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
 check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
 const manifestPaths = manifest.assets.map(asset => asset.path);

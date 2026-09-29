@@ -1,67 +1,498 @@
 {
-  "version": "0.9.5",
-  "build": "ui-20260929-lds095-02",
-  "date": "2026-09-29",
-  "method": "Codex in-app browser; rendered DOM, native controls and screenshots",
-  "contentBaseline": "v0.9.1 full handbook, ui-20260902-08",
-  "viewportWidths": [
-    320,
-    390,
-    768,
-    1280
+  "build": "ui-20260929-lds095-03",
+  "method": "Real in-app browser; DOM geometry, rendered screenshots and keyboard interactions",
+  "integration": [
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 288
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 288
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 288
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 288
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 288
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 288
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 288
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 288
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 358
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 358
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 358
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 358
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 358
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 358
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "headings": [
+        {
+          "height": 52.40625,
+          "id": "v095-evidence",
+          "width": 358
+        },
+        {
+          "height": 52.40625,
+          "id": "v095-motion",
+          "width": 358
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "light",
+      "width": 768
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "dark",
+      "width": 768
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "light",
+      "width": 768
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "dark",
+      "width": 768
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "light",
+      "width": 1280
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "th",
+      "theme": "dark",
+      "width": 1280
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "light",
+      "width": 1280
+    },
+    {
+      "headings": [
+        {
+          "height": 26.203125,
+          "id": "v095-evidence",
+          "width": 448.03125
+        },
+        {
+          "height": 26.203125,
+          "id": "v095-motion",
+          "width": 448.03125
+        }
+      ],
+      "issues": [],
+      "locale": "en",
+      "theme": "dark",
+      "width": 1280
+    }
   ],
-  "themes": [
-    "light",
-    "dark"
+  "navigation": [
+    {
+      "locale": "th",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "หลักที่พัฒนาขึ้น"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "locale": "th",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "หลักที่พัฒนาขึ้น"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "locale": "en",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "What improved"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "locale": "en",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "What improved"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "locale": "th",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "หลักที่พัฒนาขึ้น"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "light",
+      "width": 1280
+    },
+    {
+      "locale": "th",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "หลักที่พัฒนาขึ้น"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "dark",
+      "width": 1280
+    },
+    {
+      "locale": "en",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "What improved"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "light",
+      "width": 1280
+    },
+    {
+      "locale": "en",
+      "menuOverflow": false,
+      "selected": [
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "What improved"
+        },
+        {
+          "left": "0px",
+          "right": "0px",
+          "shadow": "none",
+          "text": "Landometer"
+        }
+      ],
+      "theme": "dark",
+      "width": 1280
+    }
   ],
-  "locales": [
-    "th",
-    "en"
+  "resources": [
+    {
+      "cards": 10,
+      "overflow": false,
+      "overlap": false,
+      "width": 390
+    },
+    {
+      "cards": 10,
+      "overflow": false,
+      "overlap": false,
+      "width": 1280
+    }
   ],
-  "horizontalOverflowFailures": 0,
-  "densityPanels": 4,
-  "familyCountCombinations": 60,
-  "familyCountPass": 60,
-  "familyCountFailures": [],
-  "fonts": "loaded",
-  "browserConsoleErrorsCurrentBuild": [],
-  "historicalConsoleObservation": "One MutationObserver error from an earlier iframe prototype at 2026-09-29T15:26:07.457Z; not observed again on the final inline build.",
-  "controlsVerified": [
-    "Brand DNA / Voice / Visual tabs",
-    "Four work-object options",
-    "Stage and checklist recipe controls",
-    "Menu open / Escape / focus return",
-    "TH / EN and synchronized light / dark theme",
-    "Native anchors to categories / library / scale lab",
-    "Categorical vivid selection",
-    "20 analytical families at 5 / 7 / 9 classes in both themes"
-  ],
-  "inlineIntegration": {
-    "iframes": 0,
-    "duplicateIds": 0,
-    "scopedStyles": true,
-    "summaryDisclosureCollisionFixed": true
-  },
+  "keyboardFocus": "Visible 3px outline; Escape returns focus to nav-menu-toggle",
   "limitations": [
-    "Real user color-vision tests not performed",
-    "No broad accessibility certificate or native Thai editorial sign-off",
-    "No-JavaScript and reduced-motion fallback checked in source; browser emulation not performed",
-    "Account or team activation is outside this website revision"
+    "Targeted regression review, not a full accessibility certificate",
+    "No new color-vision or account-activation claim"
   ],
-  "priorColorMicrositeEvidence": {
+  "version": "0.9.5",
+  "date": "2026-09-29",
+  "priorBuildEvidence": {
     "version": "0.9.5",
-    "build": "ui-20260929-lds095-01",
+    "build": "ui-20260929-lds095-02",
     "date": "2026-09-29",
-    "method": "Codex in-app browser, real DOM and keyboard interaction",
+    "method": "Codex in-app browser; rendered DOM, native controls and screenshots",
+    "contentBaseline": "v0.9.1 full handbook, ui-20260902-08",
     "viewportWidths": [
       320,
       390,
       768,
-      1440
+      1280
     ],
     "themes": [
       "light",
       "dark"
+    ],
+    "locales": [
+      "th",
+      "en"
     ],
     "horizontalOverflowFailures": 0,
     "densityPanels": 4,
@@ -69,11 +500,57 @@
     "familyCountPass": 60,
     "familyCountFailures": [],
     "fonts": "loaded",
-    "browserConsoleErrors": [],
+    "browserConsoleErrorsCurrentBuild": [],
+    "historicalConsoleObservation": "One MutationObserver error from an earlier iframe prototype at 2026-09-29T15:26:07.457Z; not observed again on the final inline build.",
+    "controlsVerified": [
+      "Brand DNA / Voice / Visual tabs",
+      "Four work-object options",
+      "Stage and checklist recipe controls",
+      "Menu open / Escape / focus return",
+      "TH / EN and synchronized light / dark theme",
+      "Native anchors to categories / library / scale lab",
+      "Categorical vivid selection",
+      "20 analytical families at 5 / 7 / 9 classes in both themes"
+    ],
+    "inlineIntegration": {
+      "iframes": 0,
+      "duplicateIds": 0,
+      "scopedStyles": true,
+      "summaryDisclosureCollisionFixed": true
+    },
     "limitations": [
       "Real user color-vision tests not performed",
-      "Cross-account ChatGPT/Claude activation not proved",
-      "No broad accessibility certificate"
-    ]
+      "No broad accessibility certificate or native Thai editorial sign-off",
+      "No-JavaScript and reduced-motion fallback checked in source; browser emulation not performed",
+      "Account or team activation is outside this website revision"
+    ],
+    "priorColorMicrositeEvidence": {
+      "version": "0.9.5",
+      "build": "ui-20260929-lds095-01",
+      "date": "2026-09-29",
+      "method": "Codex in-app browser, real DOM and keyboard interaction",
+      "viewportWidths": [
+        320,
+        390,
+        768,
+        1440
+      ],
+      "themes": [
+        "light",
+        "dark"
+      ],
+      "horizontalOverflowFailures": 0,
+      "densityPanels": 4,
+      "familyCountCombinations": 60,
+      "familyCountPass": 60,
+      "familyCountFailures": [],
+      "fonts": "loaded",
+      "browserConsoleErrors": [],
+      "limitations": [
+        "Real user color-vision tests not performed",
+        "Cross-account ChatGPT/Claude activation not proved",
+        "No broad accessibility certificate"
+      ]
+    }
   }
 }

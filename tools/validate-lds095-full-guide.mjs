@@ -64,7 +64,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|5(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|08)/g, '<current-color-set>')
     .replace(/2026-09-(?:02|29)/g, '<release-date>')
-    .replace(/ui-202609(?:02-08|29-lds095-02)/g, '<current-site-build>');
+    .replace(/ui-202609(?:02-08|29-lds095-03)/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -101,6 +101,38 @@ const requiredIds = [
   'ethical-loop-title', 'external-discovery-title', 'seo-ai-gate-title', 'closing-title'
 ];
 for (const id of requiredIds) check(Boolean(element(html, id)), `retained guide section or control ${id}`);
+// The new integration examples do not have the numbered badge/visual slots of
+// v091-chapter. Reusing that named grid caused overlapping headings and copy.
+const integration = element(html, 'v095-integration') ?? '';
+check(Boolean(integration) && Boolean(element(integration, 'v095-integration-title')), 'integration section and heading remain present');
+const integrationClasses = [...integration.matchAll(/\bclass="([^"]*)"/g)].flatMap(match => match[1].split(/\s+/));
+check(!integrationClasses.some(name => /^v091-chapter(?:__|--|$)/.test(name)), 'integration examples cannot inherit the numbered v091 chapter grid');
+for (const [id, kind, headings] of [
+  ['v095-evidence', 'evidence', ['ตัวเลขกับสถานะต้องตรงกันทั้งคนและเครื่องมือ', 'People and machines read the same value state']],
+  ['v095-motion', 'motion', ['คงหลักฐานให้อ่านได้ และใช้ motion ตามหน้าที่', 'Keep evidence readable and give motion a job']]
+]) {
+  const article = element(integration, id) ?? '';
+  check(/^<article\b/.test(article) && article.includes(`lds095-integration__chapter--${kind}`), `integration ${kind} uses its independent article layout`);
+  const heading = firstTagged(article, 'h3', () => true);
+  check(headings.every(value => text(heading).includes(value)), `integration ${kind} retains both language headings`);
+}
+const evidenceRows = [...integration.matchAll(/<tr\b[^>]*data-evidence-state="([^"]+)"[^>]*data-value="([^"]+)"/g)];
+check(evidenceRows.length === 6 && new Set(evidenceRows.map(row => row[1])).size === 6, 'integration retains six distinct evidence states');
+for (const state of ['measured', 'measured_zero', 'no_data', 'out_of_scope', 'suppressed', 'not_yet']) {
+  const row = evidenceRows.find(candidate => candidate[1] === state), value = row?.[2];
+  check(state === 'measured' ? value !== undefined && Number.isFinite(Number(value)) && Number(value) !== 0 : state === 'measured_zero' ? value === '0' : value === 'null', `integration evidence value contract ${state}`);
+}
+// These bounded override checks guard the owner's selected-state preference.
+// Actual cascade, focus visibility and narrow/desktop geometry are reviewed
+// in the browser; this is deliberately not a CSS layout simulator.
+const guideOverrides = read('deployment/v0.9.5/full-guide.css').replace(/\/\*[\s\S]*?\*\//g, '');
+check(html.includes('href="full-guide.css"'), 'current guide loads navigation and integration overrides');
+for (const state of ['page', 'location']) {
+  const rules = [...guideOverrides.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(rule => rule[1].split(',').some(selector => selector.trim() === `.nav-panel a[aria-current="${state}"]`));
+  const shadows = rules.flatMap(rule => [...rule[2].matchAll(/(?:^|;)\s*box-shadow\s*:\s*([^;]+)/g)].map(match => match[1].trim()));
+  check(shadows.at(-1) === 'none', `current navigation ${state} has no decorative inset-shadow override`);
+}
+check(/@media\s*\(\s*min-width\s*:\s*981px\s*\)\s*\{\s*\.lens-list\s+button\[aria-selected="true"\]\s*\{[^}]*\bborder-left-width\s*:\s*0\s*(?:;|})/.test(guideOverrides), 'desktop selected lens removes the inherited left rail without changing mobile borders');
 for (const group of ['color', 'foundations', 'components', 'dataviz', 'experience', 'products', 'resources']) {
   check(element(html, `library-${group}`)?.startsWith('<details') && Boolean(element(html, `library-${group}-toggle`)), `retained expandable library group ${group}`);
 }
@@ -124,7 +156,7 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.5'], ['data-machine-package-identity', 'v0.9.5-owner.1'],
-  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260929-lds095-02']
+  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260929-lds095-03']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.5\/"/.test(html), 'current guide canonical URL');
