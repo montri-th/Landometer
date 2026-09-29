@@ -2957,17 +2957,17 @@
   --scale-anomaly-neg: #3578B8;
   --scale-anomaly-zero: #F2F1DF;
   --scale-anomaly-pos: #DC631E;
-  --scale-density-low: var(--scale-built-low); --scale-density-mid: var(--scale-built-mid); --scale-density-high: var(--scale-built-high); 
-  --series-1-fill: #D88381; --series-1-ink: #963538; --series-soft-1-fill: #D88381; --series-vivid-1-fill: #F66C6D; 
-  --series-2-fill: #E39B6E; --series-2-ink: #182327; --series-soft-2-fill: #E39B6E; --series-vivid-2-fill: #FF8A36; 
-  --series-3-fill: #EAC578; --series-3-ink: #182327; --series-soft-3-fill: #EAC578; --series-vivid-3-fill: #FDC010; 
-  --series-4-fill: #BECE7E; --series-4-ink: #606E00; --series-soft-4-fill: #BECE7E; --series-vivid-4-fill: #BBD23C; 
-  --series-5-fill: #7BD0A3; --series-5-ink: #007047; --series-soft-5-fill: #7BD0A3; --series-vivid-5-fill: #2ADB94; 
-  --series-6-fill: #6ACCF0; --series-6-ink: #006580; --series-soft-6-fill: #6ACCF0; --series-vivid-6-fill: #36D0FF; 
-  --series-7-fill: #49C0BC; --series-7-ink: #006967; --series-soft-7-fill: #49C0BC; --series-vivid-7-fill: #00C4BF; 
-  --series-8-fill: #6196D1; --series-8-ink: #0E599D; --series-soft-8-fill: #6196D1; --series-vivid-8-fill: #3295F6; 
-  --series-9-fill: #8AA4AA; --series-9-ink: #355F6A; --series-soft-9-fill: #8AA4AA; --series-vivid-9-fill: #7FA6B0; 
-  --series-10-fill: #82AC79; --series-10-ink: #34622A; --series-soft-10-fill: #82AC79; --series-vivid-10-fill: #71B262; 
+  --scale-density-low: var(--scale-built-low); --scale-density-mid: var(--scale-built-mid); --scale-density-high: var(--scale-built-high);
+  --series-1-fill: #D88381; --series-1-ink: #963538; --series-soft-1-fill: #D88381; --series-vivid-1-fill: #F66C6D;
+  --series-2-fill: #E39B6E; --series-2-ink: #182327; --series-soft-2-fill: #E39B6E; --series-vivid-2-fill: #FF8A36;
+  --series-3-fill: #EAC578; --series-3-ink: #182327; --series-soft-3-fill: #EAC578; --series-vivid-3-fill: #FDC010;
+  --series-4-fill: #BECE7E; --series-4-ink: #606E00; --series-soft-4-fill: #BECE7E; --series-vivid-4-fill: #BBD23C;
+  --series-5-fill: #7BD0A3; --series-5-ink: #007047; --series-soft-5-fill: #7BD0A3; --series-vivid-5-fill: #2ADB94;
+  --series-6-fill: #6ACCF0; --series-6-ink: #006580; --series-soft-6-fill: #6ACCF0; --series-vivid-6-fill: #36D0FF;
+  --series-7-fill: #49C0BC; --series-7-ink: #006967; --series-soft-7-fill: #49C0BC; --series-vivid-7-fill: #00C4BF;
+  --series-8-fill: #6196D1; --series-8-ink: #0E599D; --series-soft-8-fill: #6196D1; --series-vivid-8-fill: #3295F6;
+  --series-9-fill: #8AA4AA; --series-9-ink: #355F6A; --series-soft-9-fill: #8AA4AA; --series-vivid-9-fill: #7FA6B0;
+  --series-10-fill: #82AC79; --series-10-ink: #34622A; --series-soft-10-fill: #82AC79; --series-vivid-10-fill: #71B262;
 }
 .lds095-color-atlas[data-theme="dark"]{
   --text-primary: #F1F4EF; --text-secondary: #C4CECA; --text-metadata: #A6B5B1; --text-muted: #8D9D99; --border-default: #46524F; --border-emphasis: #7C8A84; --border-hairline: #33403D;

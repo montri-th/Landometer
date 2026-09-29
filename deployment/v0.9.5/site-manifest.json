@@ -1653,8 +1653,8 @@
     },
     {
       "path": "v0.9.5/scoped-atlas.css",
-      "bytes": 182548,
-      "sha256": "3982cfcb849a92a7e6d408506a029a52bf26c32f4aefaa17762c65d262855d3a"
+      "bytes": 182537,
+      "sha256": "b7acade23c65bc10970cf72faeb4d9412f4bc12ab6421b232ab042f3b917aa37"
     },
     {
       "path": "v0.9.5/site.webmanifest",

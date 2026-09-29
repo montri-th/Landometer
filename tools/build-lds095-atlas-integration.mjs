@@ -47,6 +47,7 @@ for(const file of files)css+=`/* Source: ${file} */\n${scopeCss(readFileSync(joi
 css+=`${scope}{min-width:0;width:100%;height:auto;overflow-anchor:none}\n${scope} .wrap{width:100%;max-width:none}\n${scope} .section{scroll-margin-top:110px}\n`;
 // body-level perception modes belong only to the atlas, never to the handbook.
 css=css.replaceAll(`${scope} .vision-gray`,`${scope}.vision-gray`).replaceAll(`${scope} .vision-deuteranopia`,`${scope}.vision-deuteranopia`);
+css=css.replace(/[ \t]+$/gm,'');
 let js=readFileSync(join(site,'app.js'),'utf8');
 const begin=js.indexOf(" const theme=document.getElementById('theme-choice');"),end=js.indexOf(' function update()');
 if(begin<0||end<begin)throw Error('Standalone atlas theme hook changed');
