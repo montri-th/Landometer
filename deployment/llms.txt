@@ -8,4 +8,4 @@ Current version: 0.9.5. Color Set: color-srgb-08. Package: v0.9.5-owner.1 (owner
 - [Canonical source](https://github.com/montri-th/Landometer/tree/main/plugins/landometer-design-system)
 - [Release](https://github.com/montri-th/Landometer/releases/tag/v0.9.5)
 Use exact bundled assets. Retain brand voice/visual from 0.9.1. Do not use historical color-srgb-05 or inherited color-srgb-07 for a new unpinned artifact. Explicitly pinned older projects retain their release until migration. Package verification is not universal output conformance. Team account activation is separate from local installation.
-Website build ui-20260929-lds095-02 restores the full 0.9.1 teaching and implementation experience with explicit 0.9.5 updates. Historical master documents and add-on bindings retain their original release identities.
+Website build ui-20260929-lds095-03 restores the full 0.9.1 teaching and implementation experience with explicit 0.9.5 updates. Historical master documents and add-on bindings retain their original release identities.

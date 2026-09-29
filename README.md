@@ -8,6 +8,8 @@ The package includes human guidance, machine JSON/DTCG tokens, production CSS, e
 
 The website carries forward the complete 0.9.1 Implementation Playground: Brand DNA, Voice and Visual, work-object examples, handoff and checklist, foundations, components, data visualization, experience patterns and product adaptations. The approved 0.9.5 Color Atlas is integrated into that handbook. The preserved source is `deployment/index.v0.9.1.html`; `tools/build-lds095-full-guide.mjs` applies explicit current-release updates without rewriting that archive.
 
+Website build `ui-20260929-lds095-03` removes decorative left-rail highlights and gives the new evidence/motion guidance its own responsive layout, preventing squeezed headings and overlapping paragraphs. Targeted browser geometry and keyboard checks are recorded in `deployment/v0.9.5/browser-checks.json`.
+
 ## Use it
 
 - [Human guide](plugins/landometer-design-system/assets/lds-0.9.5/GUIDE.md)
@@ -31,7 +33,7 @@ The repository has ChatGPT/Codex and Claude marketplace manifests. Local install
 - Design System: **0.9.5**
 - Color Set: **color-srgb-08**
 - Package: **v0.9.5-owner.1**
-- Web build: **ui-20260929-lds095-02**
+- Web build: **ui-20260929-lds095-03**
 - Approval: Montri approved R2.1 for implementation and selected 0.9.5 on 29 September 2026.
 - This is an owner-approved **unsigned distribution**, with exact hashes. The inherited signature authenticates 0.9.4 only; it does not sign 0.9.5. No private signing key is included or used.
 - Package integrity, output conformance, visual accessibility, and account activation are separate evidence.

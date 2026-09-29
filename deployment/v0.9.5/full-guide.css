@@ -3,4 +3,30 @@
 .lds095-atlas-links a{display:inline-flex;min-height:44px;align-items:center}
 .lds095-release-note{padding:20px 0;border-block:1px solid var(--line);margin-block:24px}
 .lds095-release-note p{max-width:72ch}
+/* Current navigation is a quiet filled state; never a decorative bracket/rail.
+   Keyboard focus remains governed by the original focus-visible outline. */
+.nav-panel a[aria-current="page"],
+.nav-panel a[aria-current="location"]{box-shadow:none;font-weight:600}
+@media(min-width:981px){.lens-list button[aria-selected="true"]{border-left-width:0;padding-left:12px}}
+.mock-action,.library-boundary,.non-negotiable,.color-route-boundary,
+.atlas-boundary,.dataviz-boundary,.citymeter-gallery-boundary,
+.motion-action-cue,.pattern-boundary,.v091-aha,
+.lds095-color-atlas .block-note{border-inline-start:0}
+
+/* These articles have no numbered badge or named visual grid area. */
+.lds095-integration{padding-block:clamp(56px,8vw,104px);scroll-margin-top:100px}
+.lds095-integration__chapter{display:grid;gap:24px;min-width:0;margin-top:40px}
+.lds095-integration__chapter+.lds095-integration__chapter{margin-top:56px;padding-top:40px;border-top:1px solid var(--border-hairline)}
+.lds095-integration__copy{display:grid;gap:20px;min-width:0;align-content:start}
+.lds095-integration__copy>header{display:block;min-width:0}
+.lds095-integration__copy h3,.lds095-integration__copy p{margin:0}
+.lds095-integration__copy h3{max-width:36ch;line-height:1.4}
+.lds095-integration__copy p{max-width:72ch}
+.lds095-integration .matrix-wrap{min-width:0;margin-top:0}
+.lds095-integration .state-table{margin-top:0}
+.lds095-integration .matrix-wrap>p{margin-top:20px}
+.lds095-integration__chapter--motion{max-width:76ch}
+@media(min-width:960px){
+ .lds095-integration__chapter--evidence{grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(32px,5vw,64px);align-items:start}
+}
 @media print{.lds095-atlas-links{display:none}}

@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.5",
   "colorSetId": "color-srgb-08",
   "packageId": "v0.9.5-owner.1",
-  "artifactBuildId": "ui-20260929-lds095-02",
+  "artifactBuildId": "ui-20260929-lds095-03",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -114,7 +114,7 @@
     {
       "path": "llms.txt",
       "bytes": 1367,
-      "sha256": "35fccc72348c98fcf6d3669f51c3ec183380c322bd8929ded05ad81a99f764f3"
+      "sha256": "375797bdb0e7cc589a0d729aab9b90cc5720c6fcf7859100d314fec91af07098"
     },
     {
       "path": "qa/v0.9.1-manual-gates.md",
@@ -129,7 +129,7 @@
     {
       "path": "v0.9.5/README.txt",
       "bytes": 684,
-      "sha256": "7389dd1cc839dff81addba9ab98a373727877301d89b6a3b19d594146fdded88"
+      "sha256": "8206b23069a34e0630aa762189db443b59cd131f5c70b0f145b841c93d1fec45"
     },
     {
       "path": "v0.9.5/app.css",
@@ -148,8 +148,8 @@
     },
     {
       "path": "v0.9.5/browser-checks.json",
-      "bytes": 2321,
-      "sha256": "baea69ad25d5b7f239b215cd82dc3f50f07bca201bbc7e235fb1b552ec2726b4"
+      "bytes": 12040,
+      "sha256": "5070ab2d05fee69714a7fdc494ffd2586706d184590c63c7e8d1e95cbcb0229c"
     },
     {
       "path": "v0.9.5/candidate.css",
@@ -159,7 +159,7 @@
     {
       "path": "v0.9.5/color-atlas.html",
       "bytes": 361935,
-      "sha256": "a01f507f7845f597124fde24ecbb2f63c533744c4e8379341a5d831d3ad13566"
+      "sha256": "1abeb786b5a7ba361ee07f79cd987c6cca472560c4299c267675c8dcf78728d6"
     },
     {
       "path": "v0.9.5/data.js",
@@ -173,8 +173,8 @@
     },
     {
       "path": "v0.9.5/full-guide.css",
-      "bytes": 403,
-      "sha256": "99ab4f076938172f912e805bef7f355313c4407357d3cf8d3c4aac776ddc270d"
+      "bytes": 2063,
+      "sha256": "a6806a6b0a7de9c9f689a93ed94b0b50a19dcfa8aca830de54f55494ada9a8d4"
     },
     {
       "path": "v0.9.5/full-guide.js",
@@ -228,8 +228,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 1130202,
-      "sha256": "69907477ae0ce06e76a5f2b027a35f0eb70465a9ca631994906bc4b2ce80c101"
+      "bytes": 1130391,
+      "sha256": "4d87e10ab6b94e3d3e11d88867057573ffb1e98491167725777a3890b49de23e"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
