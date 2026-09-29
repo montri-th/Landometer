@@ -100,7 +100,9 @@ const artifactPath = artifactInput.absolute;
 const artifactSha256 = createHash("sha256").update(artifactBytes).digest("hex");
 const artifactFingerprint = artifactSha256.slice(0, 16);
 const artifactUrl = `${pathToFileURL(artifactPath).href}?cb=${artifactFingerprint}`;
-const latestAliasSource = await readFile(path.join(deploymentDir, "index.html"), "utf8");
+// SC-27 belongs to the frozen 0.9.1 contract. The portfolio index now routes to
+// 0.9.5; retain the archived 0.9.1 alias and its original freshness handshake.
+const latestAliasSource = await readFile(path.join(deploymentDir, "index.v0.9.1.html"), "utf8");
 const navCtaMotionSourceStart = artifactSource.indexOf(".nav-cta__sweep");
 const navCtaMotionSourceEnd = artifactSource.indexOf(".header-cta {", navCtaMotionSourceStart);
 const navCtaMotionSource = navCtaMotionSourceStart >= 0 && navCtaMotionSourceEnd > navCtaMotionSourceStart
