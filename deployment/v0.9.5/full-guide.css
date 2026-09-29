@@ -1,0 +1,6 @@
+.lds095-color-atlas{min-width:0;width:100%;box-sizing:border-box}
+.lds095-atlas-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin:16px 0 24px}
+.lds095-atlas-links a{display:inline-flex;min-height:44px;align-items:center}
+.lds095-release-note{padding:20px 0;border-block:1px solid var(--line);margin-block:24px}
+.lds095-release-note p{max-width:72ch}
+@media print{.lds095-atlas-links{display:none}}

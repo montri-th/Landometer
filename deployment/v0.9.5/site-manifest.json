@@ -3,27 +3,133 @@
   "designSystemVersion": "0.9.5",
   "colorSetId": "color-srgb-08",
   "packageId": "v0.9.5-owner.1",
-  "artifactBuildId": "ui-20260929-lds095-01",
+  "artifactBuildId": "ui-20260929-lds095-02",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
-  "evidenceStatus": "synthetic-demonstration",
+  "evidenceStatus": "source_limited_with_synthetic_examples",
   "artifactConformance": "bounded-checks-only",
+  "contentBaseline": "ui-20260902-08 (0.9.1 full handbook)",
   "assets": [
+    {
+      "path": "assets/downloads/landometer-design-system-v0.9.1.md",
+      "bytes": 208463,
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19"
+    },
+    {
+      "path": "assets/fonts/arvo-latin-700-normal.woff2",
+      "bytes": 17348,
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-latin-400-normal.woff2",
+      "bytes": 11596,
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-latin-600-normal.woff2",
+      "bytes": 11844,
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-thai-400-normal.woff2",
+      "bytes": 9168,
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-thai-600-normal.woff2",
+      "bytes": 9808,
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+      "bytes": 18012,
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+      "bytes": 14176,
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2",
+      "bytes": 11804,
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+    },
+    {
+      "path": "assets/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "bytes": 21168,
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    },
+    {
+      "path": "assets/fonts/material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+    },
+    {
+      "path": "assets/images/landometer-logo-banner.png",
+      "bytes": 184476,
+      "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535"
+    },
+    {
+      "path": "assets/images/landometer-symbol-transparent.png",
+      "bytes": 11001,
+      "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85"
+    },
+    {
+      "path": "assets/images/team-hero.jpg",
+      "bytes": 182387,
+      "sha256": "50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb"
+    },
+    {
+      "path": "build-card.v0.9.1.yml",
+      "bytes": 19033,
+      "sha256": "00f8d654b18aaf7dc5e4b03ae9df30c2f56908712b97256c1892ed25ec9303bf"
+    },
+    {
+      "path": "control-inventory.v0.9.0.json",
+      "bytes": 51282,
+      "sha256": "b5e641732721dc2ac518b2a753bb9515e86199956d846006a3b4c6b89cf32fe1"
+    },
+    {
+      "path": "implementation-notes.v0.9.1.md",
+      "bytes": 21229,
+      "sha256": "0e64b4a8dbce6edf378b3425dccce4ca43fb9e6f108f2d50e0b29e4a00a78dc3"
+    },
     {
       "path": "index.html",
       "bytes": 581,
       "sha256": "46c4475e86ad872c958a5b538208e1f397c7c79feedfff66fafa31319d10fba3"
     },
     {
+      "path": "index.v0.9.1.html",
+      "bytes": 1098560,
+      "sha256": "1581689d4b0beee36eed53559f6df19f4cff74d06632d4ea2c878b94a7666e7b"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html",
+      "bytes": 2033098,
+      "sha256": "f24b14705e504ac479aadb4eac4241550f10104c9b959e72bac642a963c89497"
+    },
+    {
       "path": "llms.txt",
-      "bytes": 739,
-      "sha256": "2cf4d8c9812e1f8ae31f1013ec95a5f89f4fa08e7532af91a695db3495f00ab6"
+      "bytes": 1367,
+      "sha256": "35fccc72348c98fcf6d3669f51c3ec183380c322bd8929ded05ad81a99f764f3"
+    },
+    {
+      "path": "qa/v0.9.1-manual-gates.md",
+      "bytes": 20173,
+      "sha256": "753fc043f16c46cf9b58b1ef456a653f4445ab4e2d582e083ee4715305f2bf7f"
+    },
+    {
+      "path": "site-manifest.v0.9.1.json",
+      "bytes": 17935,
+      "sha256": "4106c2327e79eba0218e4c89dc3137aa37b609134e0bc0ac5fcfb225b1488123"
     },
     {
       "path": "v0.9.5/README.txt",
-      "bytes": 466,
-      "sha256": "8ddd8a707f6cc06d6c201b376243e5536e6d652ade0959384a36139189378222"
+      "bytes": 684,
+      "sha256": "7389dd1cc839dff81addba9ab98a373727877301d89b6a3b19d594146fdded88"
     },
     {
       "path": "v0.9.5/app.css",
@@ -42,8 +148,8 @@
     },
     {
       "path": "v0.9.5/browser-checks.json",
-      "bytes": 630,
-      "sha256": "4e410b46c2bc4251befa6b9706f41e310006ead69f13d10ce29577d5114716b4"
+      "bytes": 2321,
+      "sha256": "baea69ad25d5b7f239b215cd82dc3f50f07bca201bbc7e235fb1b552ec2726b4"
     },
     {
       "path": "v0.9.5/candidate.css",
@@ -51,9 +157,34 @@
       "sha256": "2deb709a08b025e05f80caceb0c42af551fdf1f4a845bed38c6bc5471e80719f"
     },
     {
+      "path": "v0.9.5/color-atlas.html",
+      "bytes": 361935,
+      "sha256": "a01f507f7845f597124fde24ecbb2f63c533744c4e8379341a5d831d3ad13566"
+    },
+    {
       "path": "v0.9.5/data.js",
       "bytes": 202513,
       "sha256": "5a790ba008312d24b0a3eb13f206f275af93557022230aa89b204a4bdce8b566"
+    },
+    {
+      "path": "v0.9.5/embedded-atlas.js",
+      "bytes": 3107,
+      "sha256": "5cb9fa7c5d222f14d36da0204fc9eeb3d22dd47dc1cb8b9f0b1106e9c0e17b4f"
+    },
+    {
+      "path": "v0.9.5/full-guide.css",
+      "bytes": 403,
+      "sha256": "99ab4f076938172f912e805bef7f355313c4407357d3cf8d3c4aac776ddc270d"
+    },
+    {
+      "path": "v0.9.5/full-guide.js",
+      "bytes": 387,
+      "sha256": "780ab9e13bfa6ab96d196ef1b90e36bc482bf43d74ec30a2e36666bd9ddfc0cd"
+    },
+    {
+      "path": "v0.9.5/guide-token-aliases.css",
+      "bytes": 6557,
+      "sha256": "ba7d993c3539642c42f76e987fc6ab7f57ea0850e1ea0362e24421737df9cf81"
     },
     {
       "path": "v0.9.5/icons/generate-icon-set.py",
@@ -97,8 +228,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 361904,
-      "sha256": "61c2222c7c37ecbd2d934c13ea53e418d83ce64ae3cbe0c9800c4c0f201095db"
+      "bytes": 1130202,
+      "sha256": "69907477ae0ce06e76a5f2b027a35f0eb70465a9ca631994906bc4b2ce80c101"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
@@ -1519,6 +1650,11 @@
       "path": "v0.9.5/render.js",
       "bytes": 10952,
       "sha256": "9e02201199ba1a05aa7395e59857df6a4bb980d827586bf6888db02c507aee2c"
+    },
+    {
+      "path": "v0.9.5/scoped-atlas.css",
+      "bytes": 182537,
+      "sha256": "b7acade23c65bc10970cf72faeb4d9412f4bc12ab6421b232ab042f3b917aa37"
     },
     {
       "path": "v0.9.5/site.webmanifest",
