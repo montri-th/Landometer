@@ -6,6 +6,8 @@ DS 0.9.5 adopts the owner-approved R2.1 palette: ten improved dark categorical c
 
 The package includes human guidance, machine JSON/DTCG tokens, production CSS, exact 41-stop lookup tables with 3/5/7/9 class selections, ready-to-use fonts and identity assets, and bounded validators. Historical 0.9.1 pages and signed 0.9.4 source bytes remain intact.
 
+The website carries forward the complete 0.9.1 Implementation Playground: Brand DNA, Voice and Visual, work-object examples, handoff and checklist, foundations, components, data visualization, experience patterns and product adaptations. The approved 0.9.5 Color Atlas is integrated into that handbook. The preserved source is `deployment/index.v0.9.1.html`; `tools/build-lds095-full-guide.mjs` applies explicit current-release updates without rewriting that archive.
+
 ## Use it
 
 - [Human guide](plugins/landometer-design-system/assets/lds-0.9.5/GUIDE.md)
@@ -29,7 +31,7 @@ The repository has ChatGPT/Codex and Claude marketplace manifests. Local install
 - Design System: **0.9.5**
 - Color Set: **color-srgb-08**
 - Package: **v0.9.5-owner.1**
-- Web build: **ui-20260929-lds095-01**
+- Web build: **ui-20260929-lds095-02**
 - Approval: Montri approved R2.1 for implementation and selected 0.9.5 on 29 September 2026.
 - This is an owner-approved **unsigned distribution**, with exact hashes. The inherited signature authenticates 0.9.4 only; it does not sign 0.9.5. No private signing key is included or used.
 - Package integrity, output conformance, visual accessibility, and account activation are separate evidence.

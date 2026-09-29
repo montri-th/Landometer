@@ -1,27 +1,174 @@
 #!/usr/bin/env node
-import {readFileSync,statSync} from 'node:fs';
-import {resolve,join} from 'node:path';
+import {readFileSync, statSync} from 'node:fs';
+import {resolve, join} from 'node:path';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
-const root=resolve(import.meta.dirname,'..'),site=join(root,'deployment/v0.9.5');
-const read=p=>readFileSync(join(site,p),'utf8');
-const manifest=JSON.parse(read('site-manifest.json')),html=read('index.html');
-let n=0;const check=(v,s)=>{n++;if(!v)throw Error(s);};
-check(manifest.designSystemVersion==='0.9.5'&&manifest.colorSetId==='color-srgb-08','release identity');
-check(manifest.cryptographicSignature==='not-claimed','truthful signature boundary');
-for(const a of manifest.assets){const p=join(root,'deployment',a.path);check(statSync(p).size===a.bytes&&createHash('sha256').update(readFileSync(p)).digest('hex')===a.sha256,`asset parity ${a.path}`);}
-check(html.includes('data-ds-version="0.9.5"')&&html.includes('data-color-registry="color-srgb-08"'),'visible site metadata');
-check(!html.includes('127.0.0.1'),'no local canonical URLs');
-for(const id of ['start','categories','library','scale-lab','atmospheres'])check(html.includes(`id="${id}"`),`static content ${id}`);
-check(html.includes('Let us cultivate our city with data.'),'retained rally cry');
-const c={window:{}};vm.runInNewContext(read('data.js'),c);const D=c.window.LDS_CANDIDATE;
-check(D.designSystemVersion==='0.9.5'&&D.colorSetId==='color-srgb-08'&&D.scales.length===20,'runtime identity and inventory');
-const colors=JSON.parse(read('package/assets/lds-0.9.5/machine/color-registry.json'));
-// Registry parity is mandatory; explicit fields are settled by the package contract.
-for(const s of D.scales)for(const theme of ['light','dark']){
- const target=colors.scales.find(x=>x.id===s.id);
- check(JSON.stringify(s.themes[theme].lut)===JSON.stringify(target.themes[theme].lut),`runtime exact LUT ${s.id}/${theme}`);
+const root = resolve(import.meta.dirname, '..'), site = join(root, 'deployment/v0.9.5');
+const read = p => readFileSync(join(site, p), 'utf8');
+const manifest = JSON.parse(read('site-manifest.json')), html = read('index.html');
+const atlas = read('color-atlas.html');
+let checks = 0;
+const failures = [];
+const check = (value, label) => { checks++; if (!value) failures.push(label); };
+const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+check(manifest.designSystemVersion === '0.9.5' && manifest.colorSetId === 'color-srgb-08', 'release identity');
+check(manifest.packageId === 'v0.9.5-owner.1', 'unchanged approved package identity');
+check(manifest.artifactBuildId === 'ui-20260929-lds095-02', 'full-guide website build identity');
+check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
+check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
+const manifestPaths = manifest.assets.map(asset => asset.path);
+check(new Set(manifestPaths).size === manifestPaths.length, 'manifest paths are unique');
+for (const required of ['index.html', 'llms.txt', 'v0.9.5/index.html', 'v0.9.5/color-atlas.html', 'v0.9.5/data.js', 'v0.9.5/scoped-atlas.css', 'v0.9.5/embedded-atlas.js', 'v0.9.5/full-guide.js', 'v0.9.5/guide-token-aliases.css']) {
+  check(manifestPaths.includes(required), `manifest covers ${required}`);
 }
-const seriesValues=arr=>arr.map(({id,name,cue,light,dark})=>({id,name,cue,light,dark}));
-check(JSON.stringify(seriesValues(D.series))===JSON.stringify(seriesValues(colors.series)),'runtime categorical parity');
-console.log(`DS 0.9.5 site PASS (${n} checks)`);
+for (const asset of manifest.assets) {
+  const path = join(root, 'deployment', asset.path);
+  check(!asset.path.startsWith('/') && !asset.path.split('/').includes('..'), `manifest path is local: ${asset.path}`);
+  try {
+    check(statSync(path).size === asset.bytes && hash(readFileSync(path)) === asset.sha256, `asset parity ${asset.path}`);
+  } catch (error) { check(false, `missing asset ${asset.path}: ${error.message}`); }
+}
+for (const [label, source] of [['full guide', html], ['approved color atlas', atlas]]) {
+  check(source.includes('data-ds-version="0.9.5"') && source.includes('data-color-registry="color-srgb-08"'), `${label}: visible release metadata`);
+  check(!source.includes('127.0.0.1'), `${label}: no local canonical URLs`);
+}
+for (const id of ['start', 'categories', 'library', 'scale-lab', 'atmospheres']) {
+  check(atlas.includes(`id="${id}"`), `atlas retains static content ${id}`);
+}
+check(html.includes('id="lds095-color-atlas"') && html.includes('class="lds095-color-atlas"'), 'full guide integrates current approved color atlas inline');
+const context = {window: {}};
+vm.runInNewContext(read('data.js'), context, {timeout: 5000});
+const D = context.window.LDS_CANDIDATE;
+const colors = JSON.parse(read('package/assets/lds-0.9.5/machine/color-registry.json'));
+check(D.designSystemVersion === '0.9.5' && D.colorSetId === 'color-srgb-08', 'runtime release identity');
+check(D.scales.length === 20 && new Set(D.scales.map(scale => scale.id)).size === 20, 'twenty unique analytical families');
+check(same(D.scales.map(scale => scale.id).sort(), colors.scales.map(scale => scale.id).sort()), 'runtime analytical family inventory');
+for (const scale of D.scales) {
+  const target = colors.scales.find(candidate => candidate.id === scale.id);
+  check(Boolean(target), `known analytical family ${scale.id}`);
+  if (!target) continue;
+  for (const field of ['kind', 'unit', 'meaning', 'warm']) {
+    check(same(scale[field], target[field]), `runtime metric semantics ${scale.id}/${field}`);
+  }
+  for (const theme of ['light', 'dark']) {
+    const actualTheme = scale.themes[theme], expectedTheme = target.themes[theme];
+    check(actualTheme.lut.length === 41 && same(actualTheme.lut, expectedTheme.lut), `runtime exact 41-stop LUT ${scale.id}/${theme}`);
+    check(same(actualTheme.anchors, expectedTheme.anchors), `runtime exact anchors ${scale.id}/${theme}`);
+    check(actualTheme.canvas === expectedTheme.canvas, `runtime canvas ${scale.id}/${theme}`);
+    for (const count of [3, 5, 7, 9]) {
+      const actual = actualTheme.options[count], expected = expectedTheme.options[count];
+      check(actual?.hex?.length === count && same(actual?.hex, expected?.hex), `runtime exact ${count}-class colors ${scale.id}/${theme}`);
+      check(actual?.minStep === expected?.minStep && actual?.separationPass === expected?.separationPass, `runtime ${count}-class separation evidence ${scale.id}/${theme}`);
+    }
+  }
+}
+const seriesValues = series => series.map(({id, name, cue, light, dark}) => ({id, name, cue, light, dark}));
+check(D.series.length === 10 && same(seriesValues(D.series), seriesValues(colors.series)), 'runtime exact categorical IDs, cues and both theme values');
+check(D.gradients.length === 7 && same(D.gradients, colors.gradients), 'runtime exact seven retained atmosphere gradients');
+check(same(D.foundation, colors.foundation), 'runtime exact foundation values');
+// The retained guide renders examples outside the atlas iframe. Its legacy
+// variable names must resolve to current colors too, including thin-mark ink.
+const aliasCss = read('guide-token-aliases.css');
+const tokens = JSON.parse(read('package/assets/lds-0.9.5/machine/color-srgb-08.tokens.json')).values;
+const foundationNames = {
+  'surface.canvas': 'canvas', 'surface.alt': 'surface-alt', 'surface.card': 'surface-card',
+  'surface.raised': 'surface-raised', 'surface.soft': 'surface-soft', 'surface.blueTint': 'surface-blue-tint',
+  'surface.beigeTint': 'surface-beige-tint', 'text.primary': 'text-primary', 'text.secondary': 'text-secondary',
+  'text.metadata': 'text-metadata', 'text.muted': 'text-muted', 'text.disabled': 'text-disabled',
+  'border.hairline': 'border-hairline', 'border.default': 'border-default', 'border.emphasis': 'border-emphasis',
+  'interaction.accent': 'interaction-accent', 'interaction.focus.ring': 'focus-ring'
+};
+for (const [index, theme] of ['light', 'dark'].entries()) {
+  const block = [...aliasCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)].find(match => match[1].includes(`data-theme="${theme}"`));
+  check(Boolean(block), `guide alias theme ${theme}`);
+  if (!block) continue;
+  const declarations = [...block[2].matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)].map(match => [match[1], match[2].trim()]);
+  const aliases = new Map(declarations);
+  check(aliases.size === declarations.length, `guide alias names unique ${theme}`);
+  const alias = (name, value) => check(aliases.get(name) === value, `guide current alias ${theme}/${name}`);
+  for (const [id, name] of Object.entries(foundationNames)) alias(name, colors.foundation[id][theme]);
+  for (const series of colors.series) {
+    const name = series.id.replace('.', '-');
+    alias(name, series[theme].ink);
+    for (const role of ['fill', 'ink', 'vivid']) alias(`${name}-${role}`, series[theme][role]);
+  }
+  for (const [name, state] of Object.entries(tokens.semantic)) {
+    alias(`${name}-fill`, state[theme][0]); alias(`${name}-ink`, state[theme][1]);
+  }
+  alias('dataviz-no-data', tokens.dataState.noData[theme]);
+  alias('dataviz-zero', tokens.dataState.zero[theme]);
+  for (const [id, names] of [['confidence', ['seq-confidence-low', 'seq-confidence-mid', 'seq-confidence-high']], ['delta', ['div-delta-side-a', 'div-delta-neutral', 'div-delta-side-b']]]) {
+    const classes = colors.scales.find(scale => scale.id === id).themes[theme].options[3].hex;
+    names.forEach((name, i) => alias(`dataviz-${name}`, classes[i]));
+  }
+  for (const [name, values] of Object.entries(tokens.map)) alias(`map-${name.replace(/[A-Z]/g, character => '-' + character.toLowerCase())}`, values[index]);
+  for (const [name, product] of Object.entries(tokens.product)) {
+    const stops = product[theme].map((hex, i, all) => `${hex} ${i * 100 / (all.length - 1)}%`).join(', ');
+    alias(`product-${name}-legacy`, `linear-gradient(135deg, ${stops})`);
+    alias(`product-${name}-srgb`, `linear-gradient(135deg in srgb, ${stops})`);
+  }
+}
+check(html.includes('href="guide-token-aliases.css"'), 'full guide loads current token aliases');
+// The atlas is inline so its selectors and perception controls must not style
+// the surrounding handbook or take ownership of the page's theme preference.
+const scopedCss = read('scoped-atlas.css');
+const embeddedApp = read('embedded-atlas.js');
+const guideRuntime = read('full-guide.js');
+check(html.includes('href="scoped-atlas.css"'), 'inline atlas loads isolated styles');
+check(html.includes('src="embedded-atlas.js"'), 'inline atlas loads its own controls');
+check(!/<script\b[^>]*src="app\.js"/.test(html), 'full guide does not load standalone global theme controls');
+check(!embeddedApp.includes('document.body.classList') && !embeddedApp.includes('document.documentElement.dataset.theme') && !embeddedApp.includes('lds-preview-theme'), 'embedded controls cannot change global perception or theme preferences');
+check(embeddedApp.includes('atlas.classList'), 'perception controls target only the inline atlas');
+check(!guideRuntime.includes('contentDocument') && !guideRuntime.includes('contentWindow'), 'guide runtime does not depend on an iframe');
+check(!/scrollTo\(|scrollIntoView\(|history\.pushState\(|history\.replaceState\(/.test(guideRuntime), 'guide helper preserves native page anchor behavior');
+const stripComments = value => value.replace(/\/\*[\s\S]*?\*\//g, '');
+const colorLiterals = value => stripComments(value).match(/#[\da-f]{3,8}\b/gi) ?? [];
+const styleSources = ['package/assets/lds-0.9.5/machine/color-srgb-08.production.css', 'lds/lds-0.9.4-ext.css', 'lds/lds-0.9.4-components.css', 'app.css', 'candidate.css'];
+check(same(colorLiterals(scopedCss), styleSources.flatMap(file => colorLiterals(read(file)))), 'scoped styles retain exact approved source color literals');
+function selectorList(value) {
+  const result = []; let begin = 0, depth = 0, quote = null;
+  for (let i = 0; i < value.length; i++) {
+    const character = value[i];
+    if (quote) { if (character === quote && value[i - 1] !== '\\') quote = null; continue; }
+    if (character === '"' || character === "'") { quote = character; continue; }
+    if (character === '(' || character === '[') depth++;
+    else if (character === ')' || character === ']') depth--;
+    else if (character === ',' && depth === 0) { result.push(value.slice(begin, i).trim()); begin = i + 1; }
+  }
+  result.push(value.slice(begin).trim()); return result;
+}
+function checkScopedRules(source) {
+  let cursor = 0;
+  while (cursor < source.length) {
+    const open = source.indexOf('{', cursor);
+    if (open < 0) { check(!source.slice(cursor).trim(), 'scoped CSS has no unexpected trailing rule'); return; }
+    const selector = source.slice(cursor, open).trim();
+    let depth = 1, quote = null, end = open + 1;
+    for (; end < source.length; end++) {
+      const character = source[end];
+      if (quote) { if (character === quote && source[end - 1] !== '\\') quote = null; continue; }
+      if (character === '"' || character === "'") { quote = character; continue; }
+      if (character === '{') depth++;
+      else if (character === '}' && --depth === 0) break;
+    }
+    check(depth === 0, 'scoped CSS blocks are balanced');
+    if (depth !== 0) return;
+    const body = source.slice(open + 1, end);
+    if (/^@(media|supports|container|layer)\b/.test(selector)) checkScopedRules(body);
+    else if (!/^@(font-face|keyframes)\b/.test(selector)) {
+      for (const part of selectorList(selector)) check(/^\.lds095-color-atlas(?:$|[\s.#:\[>+~])/.test(part), `atlas selector is isolated: ${part}`);
+    }
+    cursor = end + 1;
+  }
+}
+checkScopedRules(stripComments(scopedCss));
+for (const family of ['density.area', 'density.capita', 'density.household', 'built']) {
+  check(D.scales.find(scale => scale.id === family)?.warm === true, `warm density family ${family}`);
+}
+if (failures.length) {
+  console.error(`DS 0.9.5 site FAIL (${failures.length}/${checks} checks)`);
+  failures.forEach(failure => console.error(`- ${failure}`));
+  process.exit(1);
+}
+console.log(`DS 0.9.5 full guide + color atlas distribution PASS (${checks} checks; bounded static and exact-data checks)`);
