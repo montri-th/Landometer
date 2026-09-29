@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-import {cpSync,mkdirSync,readFileSync,writeFileSync,readdirSync,statSync} from 'node:fs';
+import {cpSync,rmSync,mkdirSync,readFileSync,writeFileSync,readdirSync,statSync} from 'node:fs';
 import {resolve,relative,join} from 'node:path';
 import {createHash} from 'node:crypto';
 const root=resolve(import.meta.dirname,'..');
 const site=join(root,'deployment/v0.9.5');
 const plugin=join(root,'plugins/landometer-design-system');
+rmSync(join(site,'package'),{recursive:true,force:true});
 cpSync(plugin,join(site,'package'),{recursive:true});
 writeFileSync(join(site,'team-setup.md'),readFileSync(join(root,'docs/lds-0.9.5-team-activation.md'),'utf8').replaceAll('../plugins/landometer-design-system/','./package/').replaceAll('../tools/install-lds095.py','https://github.com/montri-th/Landometer/blob/main/tools/install-lds095.py'));
 const walk=p=>readdirSync(p,{withFileTypes:true}).sort((a,b)=>a.name<b.name?-1:a.name>b.name?1:0).flatMap(e=>e.isDirectory()?walk(join(p,e.name)):[join(p,e.name)]);

@@ -1,7 +1,9 @@
-Landometer Color Direction R2.1 — density revision
+Landometer Design System 0.9.5
 
-เปิด index.html หลังแตกไฟล์
-รอบนี้แก้เฉพาะ density4ตระกูล เป็นส้ม/กุหลาบ/แดง/เหลืองทอง
-Categorical และสเกลอีก16ตระกูลคงตาม R2
-เป็น local candidate ไม่ใช่ signed release
-ลิงก์กลับไป preview รอบแรกต้องใช้บริการพอร์ต8765
+Owner-approved R2.1 colors; color-srgb-08; v0.9.5-owner.1.
+Open https://montri-th.github.io/Landometer/v0.9.5/
+Human guide: package/assets/lds-0.9.5/GUIDE.md
+Machine entry: package/assets/lds-0.9.5/machine/release.json
+Team activation: team-setup.md
+This owner distribution is unsigned. The inherited signature authenticates 0.9.4 only.
+Historical comparison palettes and inherited asset filenames preserve their original identities.
