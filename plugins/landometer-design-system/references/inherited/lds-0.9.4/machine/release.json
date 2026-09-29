@@ -1,0 +1,1134 @@
+{
+  "schemaVersion": "1.5",
+  "release": {
+    "name": "Landometer Design System",
+    "dsVersion": "0.9.4",
+    "authoringRevision": "0.9.4-r2",
+    "rulesetId": "lds-rules-0.9.4",
+    "machinePackage": "v0.9.4-mp1",
+    "status": "active",
+    "effective": true,
+    "ownerApproval": {
+      "status": "approved",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-17T10:30:13+07:00",
+      "evidenceRef": "owner-message:2026-09-17:0.9.4-approval",
+      "attestationRef": "release-approval.attestation.json",
+      "conditionImplementedBy": "OUTPUT-CLARITY-01",
+      "scope": "approval of the 0.9.4 text and values, given on the condition that every gate passes (contrast-evidence.json: result PASS, 0 undeclared failures); active and effective through this frozen immutable package v0.9.4-mp1, whose release-approval attestation signs this record"
+    },
+    "ownerDecisions": [
+      {
+        "decidedOn": "2026-09-17",
+        "evidenceRef": "owner-message:2026-09-17:0.9.4-approval",
+        "decidedAt": "2026-09-17T10:30:13+07:00",
+        "decisions": {
+          "apply_board_delta_0_9_2_r2_to_0_9_4_r1": "on top of 0.9.3-r2 (everything the delta does not touch, MOTIF-06 included, carries forward)",
+          "renumber_candidate_to_v0_9_4": true,
+          "undelivered_delta_files": "reconstruct the five files the delta references from the delta table (RECONSTRUCTED); compare by hash when the board's files arrive",
+          "rule_ids": "per the delta — DATAVIZ-04 = hue windows; the series rule becomes DATAVIZ-05 (recorded in migration-ledger.json#/ruleIdReassignment)",
+          "approval": "approve and declare effective once the gates pass: record ownerApproval, freeze as v0.9.4-mp1 with effective: true",
+          "warm_lane_lut_path": "declare 0.9.4 with the B-HUE gate scoped to anchors and series as the delta specifies; the interpolated LUT steps and class colours inside the earth window go back to the board as reported evidence (decided 2026-09-17T10:50:50+07:00)",
+          "pink_ruling": "pink is fine, just no purple (warm pink H 350–20° legal; violet window closed)",
+          "d_mid_01_chroma_tolerance": "±.001 confirmed",
+          "duration_d_mid_01_exception": "kept as declared by the delta although unused",
+          "motif_01_id": "kept with its lineage recorded",
+          "ladder_l3_wording": "the numeric table governs",
+          "layers_full_on_surface_canvas": "accepted at 1.30:1 per the table",
+          "v_pole_01_tolerance": "±.005 L (replaces ±.02 of 2026-09-15; both pass)",
+          "density_area_dark_mid": "ship the script derivation #CC7B4A; record the board value #CC7B4B",
+          "age_dark_mid": "#717D55 (board) ships as the declared exception age · D-DERIVE-01 (B-HUE-02 escape from the derived #787C53)",
+          "external_followups": "product icon tiles, motif repository hygiene, CityMETER/CityWiki sting bytes and real-screen review are post-approval follow-ups",
+          "owner_machine": "used only to write the full package into the Drive-synced folder; no attestation signing and no git push from there"
+        }
+      },
+      {
+        "decidedOn": "2026-09-16",
+        "evidenceRef": "owner-message:2026-09-16:motif-carrier-answers",
+        "decisions": {
+          "adopt_motif_placement_ladder": "the ladder approved on 2026-09-11 (montri-th/motif motif-quiet-fallback.json) enters the Design System",
+          "full_variant_carriers": "plain light carriers only",
+          "quiet_variant_carriers": "deep carriers including Brand Blue",
+          "colours_and_motif_files": "unchanged",
+          "rule_form": "new rule MOTIF-06; the MOTIF-04 host-surface sentence of patch r2 is removed",
+          "candidate_identity": "new candidate v0.9.4-mp0-candidate (0.9.4-r1) because the bytes change"
+        }
+      },
+      {
+        "decidedOn": "2026-09-15",
+        "evidenceRef": "owner-message:2026-09-15:0.9.3-answers",
+        "decisions": {
+          "accept_dataviz_03_dark_derivation": true,
+          "dark_derivation_input": "shipped light hex; heat dark mid/high use the script values (#A56810, #FFD1D3) with the board values recorded; V-POLE-01 tolerance ±.02 L",
+          "accept_household_high_rehue_and_heat_mid_trim": true,
+          "carry_forward_0_9_2_answers": [
+            "series_variant: dial-soft",
+            "accept_identity_deltas: true",
+            "owner_motion_01_scope: web_and_browser_documents"
+          ],
+          "motif_scope": "shared six kinds plus product overlays; ijji, CityChat, CityMETER and CityWiki approved officially at once (CityChat at current repository bytes commit a99f3c1e; CityMETER/CityWiki pre-approved pending Studio 1.4 production; other unapproved families are to be asked)",
+          "icon_set_portfolio": "approved as the official icon_set (product tiles open)",
+          "cta_cue_once_per_load_and_reveal_replay_on_reentry_without_cycling": "confirmed",
+          "no_data_label_never_on_hatch": "confirmed",
+          "dial_soft_sky_slot_is_energy_accent": "confirmed"
+        }
+      },
+      {
+        "decidedOn": "2026-09-15",
+        "evidenceRef": "owner-message:2026-09-15:six-issue-answers",
+        "decisions": {
+          "series_variant": "dial-soft",
+          "merge_density_household_with_age": "superseded by the r2 re-hue (household high #0B5D2A) accepted on the same day",
+          "accept_identity_deltas": true,
+          "owner_motion_01_scope": "web_and_browser_documents"
+        }
+      },
+      {
+        "decidedOn": "2026-09-11",
+        "evidenceRef": "montri-th/motif governance/attachment/owner-motion-01.json",
+        "decisions": {
+          "repetition": "every animation replays while visible and stops off-screen; outranks every LDS version"
+        }
+      }
+    ],
+    "predecessor": {
+      "dsVersion": "0.9.1",
+      "authoringRevision": "0.9.1-r8",
+      "machinePackage": "v0.9.1-mp7",
+      "masterSha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
+      "packageChecksumsSha256": "8ca2ff6a099f19214c4bf056aba6c7d44a7ac8c34307007e273741fee06d272a",
+      "packageRootAttestationSubjectSha256": "8ca2ff6a099f19214c4bf056aba6c7d44a7ac8c34307007e273741fee06d272a"
+    },
+    "supersededCandidates": [
+      {
+        "ref": "v0.9.3-mp0-candidate",
+        "rev": "0.9.3-r1",
+        "masterSha256": "39be0dc348062cc8b4c62befd26bcfdf2d3e3a644190e76e327ba819808bba81",
+        "checksumsSha256": "35bb66d7c953a2bec284ae5c3db207e33e74e941698bc71a83d521713e2038cf",
+        "ruleCatalogSha256": "6e17e245142b7aedc2728a992b69bd4c0323fe66d66968f438a67015dbb3bb8e",
+        "motifRegisterSha256": "aea9d125193e2466b9780bd2985185ae003f4bb1230d89fc2b359ada134a351a",
+        "packageZipSha256": "a1cd2a23f38345a1d8c200bf773dddcc66a387141df9ece917a3af43d7668eba",
+        "supersededOn": "2026-09-16",
+        "note": "Built on 2026-09-16 as 0.9.3-r1; superseded the same day by 0.9.3-r2 after the owner saw full motif variants disappear on the Brand Blue tiles of its showcase; never effective. Its MOTIF-04 placed full variants on beige, Brand Blue or a declared atmosphere, which the governed bytes contradict."
+      },
+      {
+        "ref": "v0.9.3-mp1-candidate",
+        "rev": "0.9.3-r2",
+        "masterSha256": "d4534fb41fa2e6e1ceb18c04c2323dd205600e5fc573392659c900ba92f1d272",
+        "checksumsSha256": "d300ad5143ef2031185a50d45682297621377797e95f1c9184978cd04542196b",
+        "ruleCatalogSha256": "09d0470f9b29eb4f9f8c88a9eeae7bfc09b9632715200c8c1a354ab3e5b64824",
+        "motifRegisterSha256": "c5fdaaca18780215c383626a2aab7de55a95766488a99c4a88e28b77e0f68a80",
+        "colourRegistrySha256": "3f7bfd1888e3a29296ee3e59c303672c7f22c9330db3a52ee7d94d8066f06886",
+        "colourSetId": "color-srgb-06",
+        "packageZipSha256": "884ab38eaa2f12b8bac1d7be3460f60a91afd4940db058c7ccfdd61f86809306",
+        "supersededOn": "2026-09-17",
+        "note": "Built on 2026-09-16 as 0.9.3-r2 (MOTIF-06); superseded on 2026-09-17 by this candidate after the board delta 0.9.2-r2 → 0.9.4-r1: its dark anchors of the warm families sat inside the earth window retired in v0.9.0 (brown by construction of the original DATAVIZ-03 formula), its series slot 2/3 inks and density.area high sat in the earth/plum lanes, no gate read a hue window, and slot 10 was rose; never effective. Everything the delta does not touch carries forward from it."
+      }
+    ],
+    "supersededCandidate": {
+      "ref": "v0.9.3-mp1-candidate",
+      "rev": "0.9.3-r2",
+      "masterSha256": "d4534fb41fa2e6e1ceb18c04c2323dd205600e5fc573392659c900ba92f1d272",
+      "checksumsSha256": "d300ad5143ef2031185a50d45682297621377797e95f1c9184978cd04542196b",
+      "ruleCatalogSha256": "09d0470f9b29eb4f9f8c88a9eeae7bfc09b9632715200c8c1a354ab3e5b64824",
+      "motifRegisterSha256": "c5fdaaca18780215c383626a2aab7de55a95766488a99c4a88e28b77e0f68a80",
+      "colourRegistrySha256": "3f7bfd1888e3a29296ee3e59c303672c7f22c9330db3a52ee7d94d8066f06886",
+      "colourSetId": "color-srgb-06",
+      "packageZipSha256": "884ab38eaa2f12b8bac1d7be3460f60a91afd4940db058c7ccfdd61f86809306",
+      "supersededOn": "2026-09-17",
+      "note": "immediate predecessor candidate; see supersededCandidates for the full lineage"
+    },
+    "withdrawnCandidate": {
+      "ref": "v0.9.2-mp0-candidate",
+      "rev": "0.9.2-r1",
+      "masterSha256": "111321e0deb3e6568236edb23ddbe9f718ee1cb9397688699c68e57779e7ddb2",
+      "registrySha256": "453e7faf465c38f1a15568b86e484a90d9664edbd88152e2f6cbb1f13589afd4",
+      "packageZipSha256": "1c3ce4ce3665eb861945c3b0bb5ef04894f7bb9764a8b73a3a7793b5ea282584",
+      "withdrawnOn": "2026-09-15",
+      "note": "Built earlier on 2026-09-15 from proposal r1; withdrawn by the owner in favour of the 0.9.3 candidate; never effective; used the colour set id color-srgb-06 with different bytes from the superseded 0.9.3 candidate (identify by hash); its DATAVIZ-03 (categorical series) became DATAVIZ-04 in 0.9.3 and DATAVIZ-05 here, and its BrandMotion component became MotifFrame."
+    },
+    "boardDelta": {
+      "name": "LDS Proposal Board delta 0.9.2-r2 → 0.9.4-r1 (owner message 2026-09-17)",
+      "sha256": "e727192666d5547b9519b21e8d4dc2132652414d8caafc859c864ba98520306f",
+      "file": "delta-0.9.2-r2-to-0.9.4-r1.md",
+      "appliedOn": "2026-09-17",
+      "baseline": "handoff-0.9.2 r2 proposal (a71b34c2…94815) = 0.9.3-r2 values (26/26 from-values matched)",
+      "changedValues": 26,
+      "newRules": [
+        "DATAVIZ-04"
+      ],
+      "amendedRules": [
+        "DATAVIZ-03",
+        "DATAVIZ-05 (A5.2)"
+      ],
+      "newGates": [
+        "D-STEP-03"
+      ],
+      "gateFixes": [
+        "V-POLE-01 ±.005 L"
+      ],
+      "filesNotDelivered": [
+        "tokens/ext-registry-0.9.4.proposal.css",
+        "tokens/dataviz-0.9.4.proposal.json",
+        "tokens/contrast-evidence-0.9.4.proposal.json",
+        "tools/validate-candidate-0.9.4.mjs",
+        "rules/rule-drafts-0.9.4.md"
+      ],
+      "reconstruction": "the five files were reconstructed from the delta table on the owner's instruction (RECONSTRUCTED); compare by hash when the board's files arrive",
+      "expectedVerification": "exit 0 · [B-HUE-01/02] clean · 3 declared exceptions · separation minimum light 10.2 / dark 9.7",
+      "measuredVerification": "exit 0 · B-HUE-01/02 clean over 180 values (the delta reports 200; counting difference reported to the board) · 3 declared exceptions used (water, built, age) + duration declared and unused · separation minimum light 10.2 / dark 9.7"
+    },
+    "releaseDate": "2026-09-17",
+    "candidateDate": "2026-09-17",
+    "locale": "th-TH",
+    "note": "First effective v0.9.4 release, frozen from the owner-approved candidate v0.9.4-mp0-candidate (0.9.4-r1) as 0.9.4-r2: the r2 handoff (DATAVIZ-02, DATAVIZ-03, GATE-01, MOTION-04, MOTIF-01…05, FAVICON-01, SOCIALFMT-01 amendment, EVID-05), the 0.9.3-r2 revision (MOTIF-06) and the board delta 0.9.2-r2 → 0.9.4-r1 (DATAVIZ-04 hue windows, DATAVIZ-03 warm lane + D-STEP-03, DATAVIZ-05 series v7 with the A5.2 ink amendment, V-POLE-01 fix, color-srgb-07). The owner-finalization condition is enforced by OUTPUT-CLARITY-01: unresolved workflow residue blocks public delivery instead of appearing as audience-visible caveats. This package supersedes v0.9.1-mp7 as the effective Design System release; 0.9.4-r2 changes no rule text (provenance-only edits recorded as sentence-ledger stage 5).",
+    "frozenFrom": {
+      "ref": "v0.9.4-mp0-candidate",
+      "authoringRevision": "0.9.4-r1",
+      "masterSha256": "1aec523b854e6d126d01defbf9b35c15f39bbb3668610d1608c5a80bf2347773",
+      "checksumsSha256": "73cf596ee47abfc69793765651cd1dcd62255c32fb891c362516b6c4262c5c77",
+      "candidateValidator": {
+        "ref": "validate-candidate-0.9.4.mjs",
+        "sha256": "0748ba60034223503792a47217e7492e54a3eb61644ea8a71516db784b366da9",
+        "disposition": "removed at the freeze; it asserts the candidate state and is superseded by validate-v0.9.4.mjs"
+      }
+    },
+    "frozenBy": {
+      "tool": "freeze-release.mjs",
+      "operator": "landometer-release-operator",
+      "keyId": "landometer.release.2026-09-23.01",
+      "note": "run by the release operator with the Ed25519 key pinned in owner-trust/v0.9.4; the private key never enters the package or the kit; every attestation's issuedAt is the operator's signing time passed as --issued-at"
+    },
+    "releaseDateBasis": "owner approval and declaration of 2026-09-17 (owner-message:2026-09-17:0.9.4-approval); the release operator's signing time is the issuedAt of the nine detached attestations"
+  },
+  "schemas": {
+    "buildCard": "0.9.3.2",
+    "artifactManifest": "3.2",
+    "conformanceReceipt": "1.2",
+    "claimRecord": "1.4",
+    "claimManifest": "1.1",
+    "agentAction": "1.5",
+    "agentActionDefinition": "1.3",
+    "agentActionAuthority": "1.3",
+    "agentActionRevocation": "1.2",
+    "agentActionReceipt": "1.3",
+    "agentConfirmationReceipt": "1.0",
+    "crawlerPurposePolicy": "1.0",
+    "structuredDataProjection": "1.1",
+    "capabilityConfig": "1.5",
+    "actionContracts": "1.1",
+    "formatImplementation": "1.6",
+    "assetRegistry": "1.9",
+    "assetApprovalReceipt": "1.0",
+    "disclosureAuthority": "1.0",
+    "sourceLineageReceipt": "1.0",
+    "claimEvidenceCapture": "1.0",
+    "verificationAttestation": "1.1",
+    "verificationTrustStore": "1.1",
+    "verificationTrustPolicy": "1.0",
+    "promotionSnapshot": "1.0",
+    "socialSidecar": "1.2",
+    "migrationLedger": "1.2",
+    "targetProfile": "1.3",
+    "formatKit": "1.4",
+    "token": "10",
+    "ruleCatalog": "1.9",
+    "formatPack": "1.7",
+    "componentContracts": "1.2",
+    "contrastEvidence": "1.2",
+    "motifRegister": "1.1"
+  },
+  "schemaIds": {
+    "buildCard": "https://landometer.org/design-system/0.9.4/build-card.schema.0.9.3.2.json",
+    "artifactManifest": "https://landometer.org/design-system/0.9.4/artifact-manifest.schema.3.2.json",
+    "conformanceReceipt": "https://landometer.org/design-system/0.9.4/conformance-receipt.schema.1.2.json",
+    "claimRecord": "https://landometer.org/design-system/0.9.4/claim-record.schema.1.4.json",
+    "claimManifest": "https://landometer.org/design-system/0.9.4/claim-manifest.schema.1.1.json",
+    "agentAction": "https://landometer.org/design-system/0.9.4/agent-action.schema.1.5.json",
+    "agentActionDefinition": "https://landometer.org/design-system/0.9.4/agent-action-definition.schema.1.3.json",
+    "agentActionAuthority": "https://landometer.org/design-system/0.9.4/agent-action-authority.schema.1.3.json",
+    "agentActionRevocation": "https://landometer.org/design-system/0.9.4/agent-action-revocation.schema.1.2.json",
+    "agentActionReceipt": "https://landometer.org/design-system/0.9.4/agent-action-receipt.schema.1.3.json",
+    "agentConfirmationReceipt": "https://landometer.org/design-system/0.9.4/agent-confirmation-receipt.schema.1.0.json",
+    "crawlerPurposePolicy": "https://landometer.org/design-system/0.9.4/crawler-purpose-policy.schema.1.0.json",
+    "structuredDataProjection": "https://landometer.org/design-system/0.9.4/structured-data-projection.schema.1.1.json",
+    "capabilityConfig": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+    "actionContracts": "https://landometer.org/design-system/0.9.4/action-contracts.schema.1.1.json",
+    "formatImplementation": "https://landometer.org/design-system/0.9.4/format-implementation.schema.1.6.json",
+    "assetRegistry": "https://landometer.org/design-system/0.9.4/asset-registry.schema.1.9.json",
+    "assetApprovalReceipt": "https://landometer.org/design-system/0.9.4/asset-approval-receipt.schema.1.0.json",
+    "disclosureAuthority": "https://landometer.org/design-system/0.9.4/disclosure-authority.schema.1.0.json",
+    "sourceLineageReceipt": "https://landometer.org/design-system/0.9.4/source-lineage-receipt.schema.1.0.json",
+    "claimEvidenceCapture": "https://landometer.org/design-system/0.9.4/claim-evidence-capture.schema.1.0.json",
+    "verificationAttestation": "https://landometer.org/design-system/0.9.4/verification-attestation.schema.1.1.json",
+    "verificationTrustStore": "https://landometer.org/design-system/0.9.4/verification-trust-store.schema.1.1.json",
+    "verificationTrustPolicy": "https://landometer.org/design-system/0.9.4/verification-trust-policy.schema.1.0.json",
+    "promotionSnapshot": "https://landometer.org/design-system/0.9.4/promotion-snapshot.schema.1.0.json",
+    "socialSidecar": "https://landometer.org/design-system/0.9.4/social-sidecar.schema.1.2.json",
+    "migrationLedger": "https://landometer.org/design-system/0.9.4/migration-ledger.schema.1.2.json",
+    "targetProfile": "https://landometer.org/design-system/0.9.4/target-profiles.schema.1.3.json",
+    "formatKit": "https://landometer.org/design-system/0.9.4/format-kits.schema.1.4.json",
+    "motifRegister": "https://landometer.org/design-system/0.9.4/motif-register.schema.1.1.json"
+  },
+  "sets": {
+    "color": {
+      "id": "color-srgb-07",
+      "disposition": "new_approved",
+      "reason": "A governed value change mints a new set id: 26 values of the superseded 0.9.3 candidate's color-srgb-06 change under the board delta (18 scale anchors — warm-lane darks, density.area, age, tradeoff and flow — and 8 series values with slot 10 rose → green); categorical series (v7), analytical scales (14 sequential + 6 diverging; light from proposal r2 + delta, dark derived under the amended DATAVIZ-03 with the declared age exception) and value states differ from color-srgb-05; brand, energy, foundation, semantic, signature, product and map values are byte-identical with color-srgb-05.",
+      "predecessorSetId": "color-srgb-05",
+      "supersededCandidateSetId": "color-srgb-06",
+      "supersededCandidateRegistrySha256": "3f7bfd1888e3a29296ee3e59c303672c7f22c9330db3a52ee7d94d8066f06886",
+      "withdrawnCandidateRegistrySha256": "453e7faf465c38f1a15568b86e484a90d9664edbd88152e2f6cbb1f13589afd4",
+      "parity": "every channel (registry, production CSS, ext CSS, tokens, DTCG export, showcase) resolves color-srgb-07; color-srgb-06 is never redefined",
+      "embeddedMetadataPrecedence": "The three color-srgb-07 registry files are byte-identical to the approved candidate's so that color-srgb-07 has exactly one byte identity (ship-color-set-with-release-parity); the lifecycle text embedded in them (status candidate, 0.9.4-r1) records their candidate provenance only. release.json is the sole authority for the current release lifecycle and package-validation state."
+    },
+    "motion": {
+      "id": "motion-riddim-approach-03",
+      "disposition": "new_approved",
+      "reason": "Adds identity motion (MOTION-04), the motif register (MOTIF-01…05), the measured motif carriers (MOTIF-06) and changes repetition semantics under OWNER-MOTION-01; approach timing, distance and easing values are unchanged.",
+      "predecessorSetId": "motion-riddim-approach-02"
+    },
+    "icon": {
+      "id": "icon-rounded-outline-01",
+      "disposition": "retained"
+    },
+    "typography": {
+      "id": "type-script-aware-02",
+      "disposition": "retained"
+    },
+    "layout": {
+      "id": "layout-cross-format-01",
+      "disposition": "retained"
+    }
+  },
+  "versionPolicy": {
+    "dsVersion": "Changes only when a normative design-system requirement changes.",
+    "authoringRevision": "Changes for editorial corrections that do not alter requirements.",
+    "schemaVersion": "Changes when a machine contract, enum, structure, or validation rule changes.",
+    "setId": "Changes only when values or semantic ownership in that set change.",
+    "machinePackage": "Changes whenever the generated package contents change.",
+    "artifactBuild": "Is independent from this release and identifies a particular output build.",
+    "productContentRelease": "Is independent from this release and MUST preserve its own evidence boundary."
+  },
+  "authority": {
+    "domainResolution": {
+      "portfolioIdentityAndSharedArchitecture": "owner-approved Landometer portfolio truth",
+      "productFactsCapabilitiesEvidenceAndPermissions": "owner-approved truth and evidence release of the named product",
+      "visualInteractionAccessibilityAndFormat": "effective Landometer Design System release and resolved packs",
+      "artifactIntentAudienceAndDelivery": "approved artifact Build Card within the authorities above",
+      "experimentsExamplesAndCandidates": "may inform work but cannot override any approved authority"
+    },
+    "candidateBoundary": "Attached proposals, handoffs, audits, benchmarks, examples, and live-site observations are evidence inputs; they are not normative merely because they are included in the source set.",
+    "sharedLayer": "Portfolio, methodology, and product architecture language MUST remain product-neutral across Land, Location, and Living.",
+    "productLayer": "Product-specific facts, audiences, sectors, permissions, data, and claims MUST remain inside their named product and evidence boundary.",
+    "ownerDecisionPrecedence": "OWNER-MOTION-01 outranks every Design System version for repetition; the answers of 2026-09-15 (six-issue round carried forward, and the 0.9.3 round), of 2026-09-16 (motif carriers, which bring the placement ladder approved on 2026-09-11 into the Design System) and of 2026-09-17 (board delta 0.9.2-r2 → 0.9.4-r1, rule numbering, approval, LUT path back to the board) govern this candidate."
+  },
+  "humanMachineParity": {
+    "automaticScope": "rule ID, title, acceptance ID, method, required-set, and format-pack structural coverage",
+    "semanticScope": "bilingual requirement and acceptance meaning",
+    "semanticReview": "required_manual_owner_review",
+    "approvedBy": "Landometer owner",
+    "approvedAt": "2026-09-17T10:30:13+07:00",
+    "evidenceRef": "owner-message:2026-09-17:0.9.4-approval",
+    "scope": "the owner approved the 0.9.4 candidate text and values on 17 September 2026 (as the v0.9.1 approval of 1 September 2026 was recorded for v0.9.1-mp7); every new or amended rule sentence of 0.9.4 is the board delta verbatim; the freeze changes no rule text. A separate bilingual re-read of the assembled master by the owner is listed under postApprovalFollowUps and is not claimed here."
+  },
+  "sources": [
+    {
+      "name": "Landometer Design System v0.9.1.md",
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19",
+      "role": "normative_predecessor"
+    },
+    {
+      "name": "Landometer-Design-System-v0.9.1-approved.zip",
+      "sha256": "a082ff39e7c36d802a85cbec8fa36a2ecd2a8117664b07373eb76774d0892b92",
+      "role": "predecessor_package"
+    },
+    {
+      "name": "Landometer-Design-System-v0.9.1-owner-trust.zip",
+      "sha256": "28c7a7d8045c95ab64b696ee66cba697cec4fe4627e684b11bfa08d14be1220e",
+      "role": "predecessor_trust_bundle"
+    },
+    {
+      "name": "Design system patch 0.9.3.zip (handoff-0.9.2 r2)",
+      "sha256": "1f0a34045b113ac2a3ccdef43656bf06df7ecf9f300050f7eb1f3da123ecabf4",
+      "role": "candidate_input_bundle"
+    },
+    {
+      "name": "handoff-0.9.2/tokens/dataviz-0.9.2.proposal.json (r2)",
+      "sha256": "a71b34c221d37cefdbe5a14d1f409d2445dbb02e32c1e05e241968b9e7a94815",
+      "role": "candidate_input_baseline_of_the_0.9.4_delta_and_source_of_every_light_value_the_delta_does_not_change"
+    },
+    {
+      "name": "LDS Proposal Board delta 0.9.2-r2 → 0.9.4-r1 (owner message 2026-09-17)",
+      "sha256": "e727192666d5547b9519b21e8d4dc2132652414d8caafc859c864ba98520306f",
+      "role": "candidate_input_board_delta_verbatim_rule_text_and_26_value_rows"
+    },
+    {
+      "name": "handoff-0.9.4/tokens/dataviz-0.9.4.proposal.json (RECONSTRUCTED from the delta table)",
+      "sha256": "3494a89e099155aed78b7f0051433005e1814bb311bf1da681a70cbb5422d22f",
+      "role": "reconstructed_candidate_input_compare_by_hash_when_the_board_file_arrives"
+    },
+    {
+      "name": "handoff-0.9.4/rules/rule-drafts-0.9.4.md (RECONSTRUCTED from rule-drafts-0.9.2.md r2 + the delta rule blocks)",
+      "sha256": "f3002ac0f36392071524c20bd7f7ad50682f868968f9bff49b00206fa42f0b4a",
+      "role": "reconstructed_candidate_input_compare_by_hash_when_the_board_file_arrives"
+    },
+    {
+      "name": "handoff-0.9.2/tokens/contrast-evidence-0.9.2.proposal.json (r2)",
+      "sha256": "4b412895c6295e202dd3b72d5f0aa1a4f53b39d50e4bfcc3bcdc86582855f07d",
+      "role": "candidate_input_board_evidence"
+    },
+    {
+      "name": "handoff-0.9.2/tools/validate-candidate-0.9.2.mjs (GATE-01 r2 tool)",
+      "sha256": "ae964d9efde3f0b4ea501091b052c22993c79888bccc27b68ff12887d7f3f329",
+      "role": "candidate_input_gate_tool_succeeded_by_validate-dataviz-gates-0.9.4.mjs"
+    },
+    {
+      "name": "handoff-0.9.2/rules/rule-drafts-0.9.2.md (r2)",
+      "sha256": "3c8dc2c92cac1767c1ed5431df3c5decf0380d85984e2e38174848759ffa7264",
+      "role": "candidate_input_rule_text_promoted_verbatim"
+    },
+    {
+      "name": "handoff-0.9.2/tokens/ext-registry-0.9.2.proposal.css (r2)",
+      "sha256": "e6da2a52358955efab09bdf9a583fb22d010f78f5a7eeaac8580e690a762debe",
+      "role": "candidate_input_not_adopted_for_default_variant"
+    },
+    {
+      "name": "handoff-0.9.2/README.md (r2)",
+      "sha256": "deb84e44f796f79e5e3c9b44aa1ce02fdc7ce913ff4ba25251bd2435be3ba24d",
+      "role": "candidate_input"
+    },
+    {
+      "name": "handoff-0.9.2/PROMPT.md (r2)",
+      "sha256": "8dea61c4daffbeecae6e6cfd02ac8fdf48e97d3ba63efe751d631b6ff31cd3d0",
+      "role": "candidate_input"
+    },
+    {
+      "name": "handoff-0.9.2/SOURCES.md (r2)",
+      "sha256": "8713417e26cf5e718e2402895d8b4454ce0391abdc57e8cddc90d3cfd17ea7d1",
+      "role": "candidate_input"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/landometer-motifs.js (1.2.1, commit a99f3c1e)",
+      "sha256": "3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2",
+      "role": "governed_runtime"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/landometer-motifs.css (1.2.1)",
+      "sha256": "7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e",
+      "role": "governed_runtime"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/dial-full.svg (1.2.1)",
+      "sha256": "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/dial-quiet.svg (1.2.1)",
+      "sha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/rings-full.svg (1.2.1)",
+      "sha256": "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/rings-quiet.svg (1.2.1)",
+      "sha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/layers-full.svg (1.2.1)",
+      "sha256": "a94a59a342df39591f490deec960bba2263bc1c453620c557ff84a1c47901843",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/layers-quiet.svg (1.2.1)",
+      "sha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/slice-full.svg (1.2.1)",
+      "sha256": "8d0dfb62d1ac92738afcd76e8b61b544a5c72bf10b165983235900558447b2df",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/slice-quiet.svg (1.2.1)",
+      "sha256": "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/cultivate-full.svg (1.2.1)",
+      "sha256": "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/cultivate-quiet.svg (1.2.1)",
+      "sha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/logo-full.svg (1.2.1)",
+      "sha256": "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/landometer/svg/logo-quiet.svg (1.2.1)",
+      "sha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14",
+      "role": "governed_fallback"
+    },
+    {
+      "name": "montri-th/motif assets/motif-library.json (1.2.1)",
+      "sha256": "77e8185104751e2c21c2e10fb8c5d771821bcb8123e02f116638fdbf3968d483",
+      "role": "governed_manifest"
+    },
+    {
+      "name": "montri-th/motif assets/motif-studio-library.json (Studio 1.3.0)",
+      "sha256": "945d7c9ab1437bf3ddc6acc863620e96f011f83b473c52c4fcb15303c39e3dcd",
+      "role": "governed_supplemental_manifest"
+    },
+    {
+      "name": "montri-th/motif assets/ijji/logo-sting/ijji-logo-sting.js (r3)",
+      "sha256": "1a1d1bc247b5deb92aa19e4d84524ac1f823454a9401b6ce53acf8716010433e",
+      "role": "product_overlay_runtime"
+    },
+    {
+      "name": "montri-th/motif assets/citychat/asset-register.json (1.0.1-proposal)",
+      "sha256": "6de6f350207f8d072a17563fe720abd04cda58fff7f93cfc7b6c1fac434245ac",
+      "role": "product_overlay_register_candidate_label_in_repository"
+    },
+    {
+      "name": "montri-th/motif governance/attachment/owner-motion-01.json",
+      "sha256": "d0cddaad923af81bb0634d53c460928e8bb6d0390be1c9412c92d550efc82d4e",
+      "role": "owner_decision"
+    },
+    {
+      "name": "montri-th/motif governance/owner-approval.json",
+      "sha256": "82e5614cf8545746becfc23318a3dff93c70c61f8a23ad628d69c6b70aa08fb0",
+      "role": "overlay_approval"
+    },
+    {
+      "name": "montri-th/motif governance/integration-source-record.json (1.3.0)",
+      "sha256": "77ad92279a026d43337299654c8c0570c2e9f911318b4356381ce755de591997",
+      "role": "integration_record"
+    },
+    {
+      "name": "montri-th/motif motif-quiet-fallback.json (landometer-quiet-fallback/1.0)",
+      "sha256": "eeaf5888d7e651d4d07db44d63a510bbc3ed3cce3d2e47aeae0d07614ee281e8",
+      "role": "owner_approved_placement_ladder_adopted_as_MOTIF-06"
+    },
+    {
+      "name": "montri-th/motif governance/attachment/quiet-contrast-evidence.json",
+      "sha256": "6735f2c88b32afa3130bfa3d23fa9de669f7ebcaf9d58e52b1467d0867786dc4",
+      "role": "ladder_measurement_evidence_reproduced_by_measure-motif-carriers-0.9.4.mjs"
+    },
+    {
+      "name": "montri-th/motif governance/attachment/owner-approval.json",
+      "sha256": "74b9309dcd2db2ae27dd700034754e5a83cea3075922cf000a6adfbe5803f7dc",
+      "role": "owner_approval_of_the_ladder (#/approvedSourceUpdates/quietFallbackLadder)"
+    },
+    {
+      "name": "montri-th/motif assets/identity/logo/landometer-symbol-color.png",
+      "sha256": "b818eeb6a6f4abeb7a8fac2b858de0e7a03a662dff371842a29ebfe4c21d12f6",
+      "role": "icon_set_source_identity"
+    },
+    {
+      "name": "Landometer_Master_Brand_Brief_v0_5_3_ecosystem_alignment_evidence_standard.md",
+      "sha256": "33041749f59bca930459dccc3637bad1a4884bf4cecc8e1a543f8ec3771fe87c",
+      "role": "portfolio_authority"
+    },
+    {
+      "name": "withdrawn candidate v0.9.2-mp0-candidate master (0.9.2-r1)",
+      "sha256": "111321e0deb3e6568236edb23ddbe9f718ee1cb9397688699c68e57779e7ddb2",
+      "role": "withdrawn_candidate_text_carried_by_sentence_ledger"
+    },
+    {
+      "name": "superseded candidate v0.9.3-mp0-candidate master (0.9.3-r1)",
+      "sha256": "39be0dc348062cc8b4c62befd26bcfdf2d3e3a644190e76e327ba819808bba81",
+      "role": "superseded_candidate_text_carried_by_sentence_ledger"
+    },
+    {
+      "name": "superseded candidate v0.9.3-mp1-candidate master (0.9.3-r2)",
+      "sha256": "d4534fb41fa2e6e1ceb18c04c2323dd205600e5fc573392659c900ba92f1d272",
+      "role": "superseded_candidate_text_carried_by_sentence_ledger"
+    },
+    {
+      "name": "superseded candidate v0.9.3-mp1-candidate colour registry color-srgb-06.tokens.json",
+      "sha256": "3f7bfd1888e3a29296ee3e59c303672c7f22c9330db3a52ee7d94d8066f06886",
+      "role": "superseded_candidate_colour_registry_baseline_of_anchorDeltaFromColorSrgb06"
+    }
+  ],
+  "files": {
+    "changelog": "CHANGELOG-0.9.4.md",
+    "normativeMaster": "Landometer Design System v0.9.4.md",
+    "identitySourceHorizontal": "Landometer-Logo-TransparentBG.png",
+    "readme": "README.md",
+    "checksums": "SHA256SUMS.txt",
+    "actionContractsExample": "action-contracts.example.json",
+    "actionContractsSchema": "action-contracts.schema.json",
+    "agentAuthorityAttestation": "agent-action-authority.example.attestation.json",
+    "agentActionAuthorityExample": "agent-action-authority.example.json",
+    "agentActionAuthoritySchema": "agent-action-authority.schema.json",
+    "agentActionDefinitionExample": "agent-action-definition.example.json",
+    "agentActionDefinitionSchema": "agent-action-definition.schema.json",
+    "agentActionInputExample": "agent-action-input.example.json",
+    "agentActionInputExampleSchema": "agent-action-input.example.schema.json",
+    "agentActionReceiptSchema": "agent-action-receipt.schema.json",
+    "agentRevocationAttestation": "agent-action-revocation.example.attestation.json",
+    "agentActionRevocationExample": "agent-action-revocation.example.json",
+    "agentActionRevocationSchema": "agent-action-revocation.schema.json",
+    "agentActionExample": "agent-action.example.json",
+    "agentActionSchema": "agent-action.schema.json",
+    "agentConfirmationReceiptSchema": "agent-confirmation-receipt.schema.json",
+    "artifactManifestExample": "artifact-manifest.example.json",
+    "artifactManifestSchema": "artifact-manifest.schema.json",
+    "licenseArvo": "arvo-OFL.txt",
+    "fontArvoLatin700": "arvo-latin-700-normal.woff2",
+    "assetApprovalAttestation": "asset-approval-receipt.attestation.json",
+    "assetApprovalReceipt": "asset-approval-receipt.json",
+    "assetApprovalReceiptSchema": "asset-approval-receipt.schema.json",
+    "assetRegistry": "asset-registry.json",
+    "assetRegistrySchema": "asset-registry.schema.json",
+    "licenseBaiJamjuree": "bai-jamjuree-OFL.txt",
+    "fontBaiJamjureeLatin400": "bai-jamjuree-latin-400-normal.woff2",
+    "fontBaiJamjureeLatin600": "bai-jamjuree-latin-600-normal.woff2",
+    "fontBaiJamjureeThai400": "bai-jamjuree-thai-400-normal.woff2",
+    "fontBaiJamjureeThai600": "bai-jamjuree-thai-600-normal.woff2",
+    "buildCardExample": "build-card.example.json",
+    "buildCardSchema": "build-card.schema.json",
+    "capabilityConfigSchema": "capability-config.schema.json",
+    "claimEvidenceAttestation": "claim-evidence-capture.example.attestation.json",
+    "claimEvidenceCaptureExample": "claim-evidence-capture.example.json",
+    "claimEvidenceCaptureSchema": "claim-evidence-capture.schema.json",
+    "claimManifestExample": "claim-manifest.example.json",
+    "claimManifestSchema": "claim-manifest.schema.json",
+    "claimRecordRebuild02UsageExample": "claim-record-rebuild02-usage.example.json",
+    "claimApprovalAttestation": "claim-record.example.approval.attestation.json",
+    "claimRecordExample": "claim-record.example.json",
+    "claimRecordSchema": "claim-record.schema.json",
+    "colorRegistryProductionCss": "color-srgb-07.production.css",
+    "colorRegistryScales": "color-srgb-07.scales.json",
+    "colorRegistryTokens": "color-srgb-07.tokens.json",
+    "componentContracts": "component-contracts.v0.9.4.json",
+    "conformanceReceiptAttestation": "conformance-receipt.example.attestation.json",
+    "conformanceReceiptExample": "conformance-receipt.example.json",
+    "conformanceReceiptSchema": "conformance-receipt.schema.json",
+    "contrastEvidence": "contrast-evidence.json",
+    "crawlerPurposePolicyExample": "crawler-purpose-policy.example.json",
+    "crawlerPurposePolicySchema": "crawler-purpose-policy.schema.json",
+    "disclosureAuthorityAttestation": "disclosure-authority.example.attestation.json",
+    "disclosureAuthorityExample": "disclosure-authority.example.json",
+    "disclosureAuthoritySchema": "disclosure-authority.schema.json",
+    "formatImplementationAppBrowserExample": "format-implementation.app-browser.example.json",
+    "formatImplementationAppNativeExample": "format-implementation.app-native.example.json",
+    "formatImplementationDeckPresentationExample": "format-implementation.deck-presentation.example.json",
+    "formatImplementationDocumentFlowExample": "format-implementation.document-flow.example.json",
+    "formatImplementationExample": "format-implementation.example.json",
+    "formatImplementationPdfFixedExample": "format-implementation.pdf-fixed.example.json",
+    "formatImplementationSchema": "format-implementation.schema.json",
+    "formatImplementationSocialStaticExample": "format-implementation.social-static.example.json",
+    "formatKits": "format-kits.json",
+    "formatKitsSchema": "format-kits.schema.json",
+    "formatPacks": "format-packs.json",
+    "releaseFreezer": "freeze-release.mjs",
+    "licenseIbmPlexThai": "ibm-plex-sans-thai-OFL.txt",
+    "licenseIbmPlexThaiLooped": "ibm-plex-sans-thai-looped-OFL.txt",
+    "fontIbmPlexThaiLoopedLatin700": "ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+    "fontIbmPlexThaiLoopedThai700": "ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+    "fontIbmPlexThaiThai400": "ibm-plex-sans-thai-thai-400-normal.woff2",
+    "licenseJetbrainsMono": "jetbrains-mono-OFL.txt",
+    "fontJetbrainsMonoLatin400": "jetbrains-mono-latin-400-normal.woff2",
+    "licenseMaterialSymbols": "material-symbols-Apache-2.0.txt",
+    "iconMaterialSymbolsRoundedNav300": "material-symbols-rounded-nav-300.woff2",
+    "iconMaterialSymbolsRoundedOpenInNew300": "material-symbols-rounded-open-in-new-300.woff2",
+    "motifCarrierTool": "measure-motif-carriers-0.9.4.mjs",
+    "migrationLedger": "migration-ledger.json",
+    "migrationLedgerSchema": "migration-ledger.schema.json",
+    "motifRegisterSchema": "motif-register.schema.json",
+    "motifRegister": "motif-register.v0.9.4.json",
+    "packageRootAttestation": "package-root.attestation.json",
+    "promotionSnapshotSchema": "promotion-snapshot.schema.json",
+    "releaseApprovalAttestation": "release-approval.attestation.json",
+    "release": "release.json",
+    "colorProjectionRenderer": "render-color-production.mjs",
+    "ruleCatalog": "rule-catalog.json",
+    "attestationSigner": "sign-verification-attestation.mjs",
+    "socialDestinationVerificationExample": "social-destination-verification.example.json",
+    "socialSidecarExample": "social-sidecar.example.json",
+    "socialSidecarSchema": "social-sidecar.schema.json",
+    "socialVisibleCopyInspectionExample": "social-visible-copy-inspection.example.json",
+    "sourceLineageReceiptSchema": "source-lineage-receipt.schema.json",
+    "structuredDataProjectionExample": "structured-data-projection.example.json",
+    "structuredDataProjectionSchema": "structured-data-projection.schema.json",
+    "targetProfiles": "target-profiles.json",
+    "targetProfilesSchema": "target-profiles.schema.json",
+    "tokens": "tokens.v0.9.4.json",
+    "dataVizGateTool": "validate-dataviz-gates-0.9.4.mjs",
+    "validator": "validate-v0.9.4.mjs",
+    "verificationAttestationSchema": "verification-attestation.schema.json",
+    "verificationTrustPolicySchema": "verification-trust-policy.schema.json",
+    "verificationTrustStoreSchema": "verification-trust-store.schema.json",
+    "attestationVerifier": "verify-attestation.mjs"
+  },
+  "carriedForward": {
+    "fromPackage": "v0.9.1-mp7",
+    "policy": "byte-identical except release-literal rewrite (v0.9.1-mp7 → v0.9.4-mp0-candidate, schema id base 0.9.1 → 0.9.4, tokens.v0.9.1.json → tokens.v0.9.4.json, lds-v0.9.1/ → lds-v0.9.4/, and the release-subject phrases \"v0.9.1 artifact conformance accepts\" and \"v0.9.1 never permits\" → v0.9.4); embedded package hash bindings and schema URLs are then rebound to the candidate bytes and declared schema ids; at the freeze the release literal v0.9.4-mp0-candidate → v0.9.4-mp1 was rewritten the same way (one identity field per file) and every embedded hash binding was recomputed again from the frozen bytes",
+    "entries": [
+      {
+        "name": "Landometer-Logo-TransparentBG.png",
+        "rewritten": false,
+        "predecessorSha256": "8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92"
+      },
+      {
+        "name": "action-contracts.example.json",
+        "rewritten": false,
+        "predecessorSha256": "ec1c967850b2d1965c6edb03d6b3b13e2721d4bdc8b7d2bd74c8de98d117a315"
+      },
+      {
+        "name": "action-contracts.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "cfe6125239088dc134bf91557040cc80a6300fa5c78627f125cfa5a465b4081e"
+      },
+      {
+        "name": "agent-action-authority.example.json",
+        "rewritten": true,
+        "predecessorSha256": "ce00c5ce43100efc2f3e2de12562131eaa0de9d68cd8c2fc1a458b54b195400f"
+      },
+      {
+        "name": "agent-action-authority.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "13d1a3f9176a6e148dd8fe4612f65e34775560c05e8d0b751e6f3516a85c4427"
+      },
+      {
+        "name": "agent-action-definition.example.json",
+        "rewritten": true,
+        "predecessorSha256": "5457ed50cf9f5bef34e74ab2deb5e054db6f0003ed6ca32804a1c76df65cd1c9"
+      },
+      {
+        "name": "agent-action-definition.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "9ddddb2cb4504b5d40b9af0e743be56ea718eb2aa3d9d6cd3c36eefbf86cd3ad"
+      },
+      {
+        "name": "agent-action-input.example.json",
+        "rewritten": false,
+        "predecessorSha256": "d02d1b0291b9d1c08a84b31c544ca09d38f8e4d24e2bf58fbadb3ea9da0c2c99"
+      },
+      {
+        "name": "agent-action-input.example.schema.json",
+        "rewritten": false,
+        "predecessorSha256": "13813cbf91cce77ff19776f22a64875dc57bbcaddf5a4194e6ff83ddf570ab0f"
+      },
+      {
+        "name": "agent-action-receipt.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "97aabc7632cddebe10c24f9b15eedc2f35659825d99bb322e34178a3429922b7"
+      },
+      {
+        "name": "agent-action-revocation.example.json",
+        "rewritten": true,
+        "predecessorSha256": "240b217bf4c8e3fd76fbe3fba549a06c4b6edf8f168f917512b537565bf89e7e"
+      },
+      {
+        "name": "agent-action-revocation.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "21fbe58968cebbd457f8330309f9045a38dc2df617c9a55f85d99a7f227d720e"
+      },
+      {
+        "name": "agent-action.example.json",
+        "rewritten": true,
+        "predecessorSha256": "f4e3345f7d910e33d61aa6e15e426ddec3ad1c007cb8307b44146045010afa4f"
+      },
+      {
+        "name": "agent-action.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "1fe4cbb6ca4f1fca6ec3bbfe2bc1aa89c2b61185ab3033ef63ac48fc26361234"
+      },
+      {
+        "name": "agent-confirmation-receipt.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "cac35cab76b3f14fcf9e6b860b609ef6e1fa40a80420b9cc8170edbf246b1665"
+      },
+      {
+        "name": "artifact-manifest.example.json",
+        "rewritten": true,
+        "predecessorSha256": "21622688cc5d8b6bef7d3262b8a0f691b0a1277cfa732d955b99f72df0956dda"
+      },
+      {
+        "name": "artifact-manifest.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "3f206d8ec53c5b5c722b7c090ddcadfebf0bf84aa96839ea851982fcdd513d79"
+      },
+      {
+        "name": "arvo-OFL.txt",
+        "rewritten": false,
+        "predecessorSha256": "f4f2cb57f7050c4e615863a39bf04811eada567d76d99b10b0f33d1e10e6cccd"
+      },
+      {
+        "name": "arvo-latin-700-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+      },
+      {
+        "name": "asset-approval-receipt.json",
+        "rewritten": true,
+        "predecessorSha256": "f172e6f717076cdff3d3d5c183e91d28de64d6714a072fee2efdd2d154b48bf5"
+      },
+      {
+        "name": "asset-approval-receipt.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "b8d0f21feee7e27a6869f2b89d9721b109383cab4d995854b38179ddf173e05b"
+      },
+      {
+        "name": "bai-jamjuree-OFL.txt",
+        "rewritten": false,
+        "predecessorSha256": "74b7deafa632a5ed301dc322fcc2867ac200402e06b6d0b0b01faf09b8514e3e"
+      },
+      {
+        "name": "bai-jamjuree-latin-400-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+      },
+      {
+        "name": "bai-jamjuree-latin-600-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+      },
+      {
+        "name": "bai-jamjuree-thai-400-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+      },
+      {
+        "name": "bai-jamjuree-thai-600-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+      },
+      {
+        "name": "claim-evidence-capture.example.json",
+        "rewritten": true,
+        "predecessorSha256": "58e3b907d00b3f8d824ea6c74f96f48f78da683bd67b7d56ca58cea6b90615f5"
+      },
+      {
+        "name": "claim-evidence-capture.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "bb5e28ad594d7a68143ef2f19fdf861541106e313e493ebc2fb8227e9753489b"
+      },
+      {
+        "name": "claim-manifest.example.json",
+        "rewritten": true,
+        "predecessorSha256": "b3b5628991e66742be6d3bcdb866952f35a59ec9aa06b349aec09dbbafb0e1b0"
+      },
+      {
+        "name": "claim-manifest.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "77797ac7af8104ad33208b341a101e00fbbbb511493efb0d8f6a82bb4347593b"
+      },
+      {
+        "name": "claim-record-rebuild02-usage.example.json",
+        "rewritten": false,
+        "predecessorSha256": "e22186fe8cac689e7767aa409eb46e5b3f9c627d497546dfd194cc5d963e2857"
+      },
+      {
+        "name": "claim-record.example.json",
+        "rewritten": false,
+        "predecessorSha256": "035d97614bb666ecafca54607bfd65aa769ee94d92ada6cdf46db6bce87fd393"
+      },
+      {
+        "name": "claim-record.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "96dbf1127af0d15417059771fe044670b17a07ba9d2fbf24b5d799d4b66f340b"
+      },
+      {
+        "name": "conformance-receipt.example.json",
+        "rewritten": true,
+        "predecessorSha256": "11c0e6213d579f05403f1a5acf7ebd8d3c24bc24978f7dcce50240cdc391205f"
+      },
+      {
+        "name": "conformance-receipt.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "4daf6cb11a9beabd684955739a43df61dc18cb965d3eb4b433b81a10db76b805"
+      },
+      {
+        "name": "crawler-purpose-policy.example.json",
+        "rewritten": true,
+        "predecessorSha256": "687215322163314149b8fbd7e73f62ea7712513bf89d2455613b0f5ec1b27876"
+      },
+      {
+        "name": "crawler-purpose-policy.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "7ad4fcd058f4d520e7682083bc1df41bad291c8d094b4fe70d2f337c5b45b0e5"
+      },
+      {
+        "name": "disclosure-authority.example.json",
+        "rewritten": true,
+        "predecessorSha256": "b317d798e13f0ebbb8428370425ce67249956a6aeaf1f174776790a28237c654"
+      },
+      {
+        "name": "disclosure-authority.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "51de4d2268e26234461efd8f4a1f14397036199f9c8121832576f663a9da7939"
+      },
+      {
+        "name": "format-implementation.app-browser.example.json",
+        "rewritten": true,
+        "predecessorSha256": "8bf4c143753a24835897cc8b07e39b426e202e156b4da0add9a3e532f71d82b2"
+      },
+      {
+        "name": "format-implementation.app-native.example.json",
+        "rewritten": true,
+        "predecessorSha256": "375ac65b3e420d75e7c475ee9f2c428bcd6e3c091c3282a0971855dbb75dedc0"
+      },
+      {
+        "name": "format-implementation.deck-presentation.example.json",
+        "rewritten": true,
+        "predecessorSha256": "ad53b768c68c9ab7471e417dd6145d390806f14c460e5474ae522eee65d2f867"
+      },
+      {
+        "name": "format-implementation.document-flow.example.json",
+        "rewritten": true,
+        "predecessorSha256": "b45ef5cdb6f46f7a45cc669defbf41ec1c4c9f0ee715bbdaf7adc916946db925"
+      },
+      {
+        "name": "format-implementation.example.json",
+        "rewritten": true,
+        "predecessorSha256": "4c6eabdc8b94d17fdf5c9bd292461a1601a92ab0ffd256329dc5a81a463968e0"
+      },
+      {
+        "name": "format-implementation.pdf-fixed.example.json",
+        "rewritten": true,
+        "predecessorSha256": "f4038d93fcbf761e54bce783b89adf6fec213309ff86f313573c710af18ea78c"
+      },
+      {
+        "name": "format-implementation.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "cf4d96ac1b97e10832c236504974da080be9cac048a0d6829c8c3692ff4cf888"
+      },
+      {
+        "name": "format-implementation.social-static.example.json",
+        "rewritten": true,
+        "predecessorSha256": "0f9499a1e0fb2824896e68b1d0cb190f89504250cb1bbf7aa9774f2c58be3d12"
+      },
+      {
+        "name": "ibm-plex-sans-thai-OFL.txt",
+        "rewritten": false,
+        "predecessorSha256": "1b4f4d1f1463b63f1356e7b6034ad5a94311b35ffb53cc4bf83f2fbda24450e4"
+      },
+      {
+        "name": "ibm-plex-sans-thai-looped-OFL.txt",
+        "rewritten": false,
+        "predecessorSha256": "e3ac4237aef600394644cdab2375d7011b0f80d2229ff05f47df2e61a109ab57"
+      },
+      {
+        "name": "ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+      },
+      {
+        "name": "ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+      },
+      {
+        "name": "ibm-plex-sans-thai-thai-400-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+      },
+      {
+        "name": "jetbrains-mono-OFL.txt",
+        "rewritten": false,
+        "predecessorSha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b"
+      },
+      {
+        "name": "jetbrains-mono-latin-400-normal.woff2",
+        "rewritten": false,
+        "predecessorSha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+      },
+      {
+        "name": "material-symbols-Apache-2.0.txt",
+        "rewritten": false,
+        "predecessorSha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+      },
+      {
+        "name": "material-symbols-rounded-nav-300.woff2",
+        "rewritten": false,
+        "predecessorSha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+      },
+      {
+        "name": "material-symbols-rounded-open-in-new-300.woff2",
+        "rewritten": false,
+        "predecessorSha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e"
+      },
+      {
+        "name": "promotion-snapshot.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "88f7e54abed48d524109886659d020f628f77f14a0a7d4315a993e76ac4e4cfe"
+      },
+      {
+        "name": "social-destination-verification.example.json",
+        "rewritten": false,
+        "predecessorSha256": "8f29be5a70a083c408f015efac3a31d78ef6dbcc295fce94795aee151f9fcce9"
+      },
+      {
+        "name": "social-sidecar.example.json",
+        "rewritten": true,
+        "predecessorSha256": "623b99ef94ca4cc200dc47ca3438a1c7502bec79e1373ecbc530497b601340f2"
+      },
+      {
+        "name": "social-sidecar.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "cddd8b64bbbed61772b4a1cb893750eaa82304a407a4f7f0d2e33252be7b15c6"
+      },
+      {
+        "name": "social-visible-copy-inspection.example.json",
+        "rewritten": false,
+        "predecessorSha256": "30bdcb9246b3be1c9ef3f0be2a1720796ac4ee2da6f19d920ece208268c8e29b"
+      },
+      {
+        "name": "source-lineage-receipt.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "22bd23f91e3a842773cfe5cc12eb7f84ae0a2b2e0850ed693dc7074f397c9636"
+      },
+      {
+        "name": "structured-data-projection.example.json",
+        "rewritten": true,
+        "predecessorSha256": "34501e7e7a8f3466d22f7e9262266a4ae6df44cc97a749f20b24db2b68b7bd3e"
+      },
+      {
+        "name": "structured-data-projection.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "45f28fee56b9a8559c3fe2d459ed40cc87bf183cda606118383fedee2a1d3172"
+      },
+      {
+        "name": "verification-attestation.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "4497a645bc1291914bb286ac1cf451c6381f25f42ac4068aadf0924c710a19eb"
+      },
+      {
+        "name": "verification-trust-policy.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "34c0a7169783765ec977a2895933de67ff83f8c2d1c5cdfa1abb83627a9b3c68"
+      },
+      {
+        "name": "verification-trust-store.schema.json",
+        "rewritten": true,
+        "predecessorSha256": "7e8959611766a356a98d234123653b4865e6b849cc6468841d4d8a5cb493ada1"
+      },
+      {
+        "name": "verify-attestation.mjs",
+        "rewritten": false,
+        "predecessorSha256": "d6a94c423cd829f6e2fd93366d326d30b90eacaf9d8b0a7dc3618e34b599fdc1"
+      }
+    ]
+  },
+  "regeneratedForCandidate": [
+    "asset-registry.json",
+    "asset-registry.schema.json",
+    "build-card.example.json",
+    "build-card.schema.json",
+    "capability-config.schema.json",
+    "format-kits.json",
+    "format-kits.schema.json",
+    "format-packs.json",
+    "migration-ledger.json",
+    "migration-ledger.schema.json",
+    "rule-catalog.json",
+    "target-profiles.json",
+    "target-profiles.schema.json"
+  ],
+  "newFiles": [
+    "Landometer Design System v0.9.4.md",
+    "tokens.v0.9.4.json",
+    "color-srgb-07.tokens.json",
+    "color-srgb-07.scales.json",
+    "color-srgb-07.production.css",
+    "render-color-production.mjs",
+    "contrast-evidence.json",
+    "component-contracts.v0.9.4.json",
+    "motif-register.v0.9.4.json",
+    "motif-register.schema.json",
+    "measure-motif-carriers-0.9.4.mjs",
+    "validate-dataviz-gates-0.9.4.mjs",
+    "validate-candidate-0.9.4.mjs",
+    "CHANGELOG-0.9.4.md",
+    "README.md"
+  ],
+  "integrity": {
+    "algorithm": "sha256",
+    "receipt": "SHA256SUMS.txt",
+    "coverage": "Every authoritative filename declared in release.files except SHA256SUMS.txt and package-root.attestation.json; those two non-circular checksum/signature mechanics are excluded and the detached package-root attestation signs SHA256SUMS.txt.",
+    "pathPolicy": "Package-relative plain filenames only; no absolute paths, parent traversal, or duplicate entries."
+  },
+  "promotionGate": {
+    "required": [
+      "owner approval is recorded",
+      "effective is set to true in a new immutable package",
+      "all automated checks pass",
+      "every predecessor rule has exactly one migration disposition",
+      "release identifiers are consistent across human and machine artifacts",
+      "OUTPUT-CLARITY-01 is required in every format pack and machine contract"
+    ],
+    "selfPromotionForbidden": true,
+    "artifactProductionBoundary": "This active Design System does not pre-certify a downstream artifact. Every artifact must independently resolve role-scoped assets, a native format implementation, evidence, permissions, and final-output receipts.",
+    "unresolvedDependencyBehavior": "block_or_internal_preview"
+  },
+  "frozenAtFreeze": {
+    "attestations": [
+      "agent-action-authority.example.attestation.json",
+      "agent-action-revocation.example.attestation.json",
+      "asset-approval-receipt.attestation.json",
+      "claim-evidence-capture.example.attestation.json",
+      "claim-record.example.approval.attestation.json",
+      "conformance-receipt.example.attestation.json",
+      "disclosure-authority.example.attestation.json",
+      "package-root.attestation.json",
+      "release-approval.attestation.json"
+    ],
+    "tools": {
+      "validator": "validate-v0.9.4.mjs (port of validate-v0.9.1.mjs; the artifact-level 0.9.4 rules FAVICON-01, SOCIALFMT-01 OG target, MOTION-04 and MOTIF-01…06 are checked on artifact bytes by build-kit/preflight-0.9.4.mjs, which the validator does not replace)",
+      "releaseFreezer": "freeze-release.mjs",
+      "attestationSigner": "sign-verification-attestation.mjs"
+    },
+    "removed": [
+      "validate-candidate-0.9.4.mjs"
+    ],
+    "byteIdenticalWithCandidate": [
+      "color-srgb-07.tokens.json",
+      "color-srgb-07.scales.json",
+      "color-srgb-07.production.css"
+    ],
+    "contractRepairs": [
+      {
+        "file": "capability-config.schema.json",
+        "change": "motionBrowserObserver declares reentryBehavior (const replay_on_reentry_while_visible), cycleWhileStill (const false) and repetitionAuthority (string) so that tokens.motion.approach — the motion capability configuration — validates against #/$defs/motion; additive, schema id 1.5 unchanged",
+        "foundBy": "validate-v0.9.4.mjs motion capability config check"
+      },
+      {
+        "file": "format-packs.json",
+        "change": "motion overlay requiredFields [mode, motionMoments] → [mode] (motion moments are a Build Card field, experience.motionMoments); 10 conditional-rule entries keyed by the non-capabilities identity_motion and motifs removed from the packs (the rules stay bound through capabilityRuleIds.motion and the motion overlay)",
+        "foundBy": "validate-v0.9.4.mjs format-pack overlay and conditional-trigger checks"
+      },
+      {
+        "file": "artifact-manifest.schema.json",
+        "change": "discoveryProjection declares iconSetId (id or null) and titlePattern (const \"[page] · [product]\") so that the web metadata projection can equal the 0.9.4 Build Card discovery contract verbatim; additive, schema id 3.2 unchanged",
+        "foundBy": "validate-v0.9.4.mjs artifact-manifest schema and projection checks"
+      },
+      {
+        "file": "render-color-production.mjs",
+        "change": "header comment names 0.9.4 instead of the 0.9.3 candidate; no logic change",
+        "foundBy": "freeze review"
+      }
+    ],
+    "resolutionRecomputed": "reference format-implementation records and the artifact manifest example carry the rule and test ids resolved by the frozen packs"
+  },
+  "postApprovalFollowUps": [
+    "owner bilingual re-read of the assembled 0.9.4 master (PARITY-01-B); the approval of 17 September 2026 is recorded as the review of the delta text and values",
+    "post-approval follow-ups outside this package (owner items of the master §21 closed on 2026-09-17): product icon tiles, CityChat repository label, CityMETER/CityWiki sting bytes, real-screen review of dark LUTs, the warm lane, slot 10 green and motif placements in both themes",
+    "motif repository hygiene: ladder, evidence and attachment approval absent from governance/SHA256SUMS.txt; ladder evidence path; ladder L3 wording; CityChat register label",
+    "back to the board: warm-lane LUT steps and class colours inside the earth window (110/1640 steps, 37 class colours); the 200-vs-180 audited-value count; the five undelivered delta files; semantic.warning #3B2E16/#A64A00 and the v5 alias #A87B00 outside the DATAVIZ-04 scope; slot 10 green vs mint ΔE 4.8 in the dark theme",
+    "CityMETER Lab comparison for topic 07",
+    "live byte comparison of the motif runtime on montri-th.github.io/motif against the manifest",
+    "validate-v0.9.4.mjs: extend the artifact-bundle fixtures and web initial-HTML checks to the 0.9.4 artifact rules (FAVICON-01, the OG target, MOTION-04, MOTIF-01…06), which build-kit/preflight-0.9.4.mjs checks on artifact bytes today"
+  ]
+}

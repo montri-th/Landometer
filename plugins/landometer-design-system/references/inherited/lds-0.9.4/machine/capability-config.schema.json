@@ -1,0 +1,1571 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+  "title": "Landometer typed capability configuration v1.5",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/dataTable"
+    },
+    {
+      "$ref": "#/$defs/dataVisualization"
+    },
+    {
+      "$ref": "#/$defs/map"
+    },
+    {
+      "$ref": "#/$defs/form"
+    },
+    {
+      "$ref": "#/$defs/authentication"
+    },
+    {
+      "$ref": "#/$defs/permissions"
+    },
+    {
+      "$ref": "#/$defs/sharing"
+    },
+    {
+      "$ref": "#/$defs/download"
+    },
+    {
+      "$ref": "#/$defs/externalEffect"
+    },
+    {
+      "$ref": "#/$defs/carousel"
+    },
+    {
+      "$ref": "#/$defs/socialFeed"
+    },
+    {
+      "$ref": "#/$defs/telemetry"
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "localeMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "typedActionContractBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256",
+        "schemaRef",
+        "schemaSha256"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "schemaSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "typedSchemaBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256",
+        "schemaId"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaId": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "uniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "nonEmptyObject": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "nonEmptyArray": {
+      "type": "array",
+      "minItems": 1
+    },
+    "stringOrObject": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        {
+          "$ref": "#/$defs/nonEmptyObject"
+        }
+      ]
+    },
+    "formSubmission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "destinationRef",
+        "method"
+      ],
+      "properties": {
+        "destinationRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "POST"
+          ]
+        }
+      }
+    },
+    "motion": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/motionBrowserObserver"
+        },
+        {
+          "$ref": "#/$defs/motionNativeState"
+        },
+        {
+          "$ref": "#/$defs/motionDeckSequence"
+        }
+      ]
+    },
+    "motionBrowserObserver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "opacityDurationMs",
+        "transformDurationMs",
+        "mediaDurationMs",
+        "blockDistancePx",
+        "inlineDistancePx",
+        "scaleFrom",
+        "staggerStepMs",
+        "staggerCapMs",
+        "staggerBeatCount",
+        "staggerDelayFormula",
+        "opacityEasing",
+        "transformEasing",
+        "pressEasing",
+        "observerThreshold",
+        "observerRootMargin",
+        "initializationWatchdogMs",
+        "reachedContentFailsafeFrames",
+        "finalHiddenFinalFlashForbidden",
+        "observersPerDocumentRoot",
+        "onceOnlyUnobserve",
+        "prePaintArmingRequiresNormalMotionAndObserver"
+      ],
+      "properties": {
+        "mode": {
+          "const": "browser_observer"
+        },
+        "opacityDurationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "transformDurationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mediaDurationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "blockDistancePx": {
+          "type": "number",
+          "minimum": 0
+        },
+        "inlineDistancePx": {
+          "type": "number",
+          "minimum": 0
+        },
+        "scaleFrom": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "staggerStepMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "staggerCapMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "staggerBeatCount": {
+          "const": 4
+        },
+        "staggerDelayFormula": {
+          "const": "min(zeroBasedSiblingIndex,3)*150ms"
+        },
+        "opacityEasing": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "transformEasing": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "pressEasing": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "observerThreshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "observerRootMargin": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "initializationWatchdogMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reachedContentFailsafeFrames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "finalHiddenFinalFlashForbidden": {
+          "const": true
+        },
+        "observersPerDocumentRoot": {
+          "const": 1
+        },
+        "onceOnlyUnobserve": {
+          "const": false
+        },
+        "prePaintArmingRequiresNormalMotionAndObserver": {
+          "const": true
+        },
+        "reentryBehavior": {
+          "const": "replay_on_reentry_while_visible"
+        },
+        "cycleWhileStill": {
+          "const": false
+        },
+        "repetitionAuthority": {
+          "type": "string",
+          "minLength": 1
+        },
+        "motionMoments": {
+          "$ref": "#/$defs/motionMoments"
+        },
+        "staticMotifPlacements": {
+          "$ref": "#/$defs/staticMotifPlacements"
+        }
+      }
+    },
+    "motionNativeState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "feedbackDurationMs",
+        "stateDurationMs",
+        "maximumTransitionMs",
+        "reducedMotionFinalState",
+        "layoutGeometry",
+        "interruptionFinalState"
+      ],
+      "properties": {
+        "mode": {
+          "const": "native_state"
+        },
+        "feedbackDurationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "stateDurationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximumTransitionMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reducedMotionFinalState": {
+          "const": "final_state"
+        },
+        "layoutGeometry": {
+          "const": "stable"
+        },
+        "interruptionFinalState": {
+          "const": "final_state"
+        }
+      }
+    },
+    "motionDeckSequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "sequencePurpose",
+        "trigger",
+        "stepDurationMs",
+        "maximumSteps",
+        "staticEquivalent",
+        "finalFrameRequired"
+      ],
+      "properties": {
+        "mode": {
+          "const": "presenter_sequence"
+        },
+        "sequencePurpose": {
+          "enum": [
+            "state",
+            "sequence",
+            "progress",
+            "spatial_relationship",
+            "cause_and_effect"
+          ]
+        },
+        "trigger": {
+          "enum": [
+            "manual_advance",
+            "on_slide_entry"
+          ]
+        },
+        "stepDurationMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maximumSteps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 12
+        },
+        "staticEquivalent": {
+          "const": "final_state"
+        },
+        "finalFrameRequired": {
+          "const": true
+        }
+      }
+    },
+    "ctaDiscoveryCue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recipeId",
+        "eligibleRole",
+        "requiredUserBenefit",
+        "trigger",
+        "repeatCountPerPageLoad",
+        "reentryBehavior",
+        "durationMs",
+        "durationCeilingMs",
+        "delayMs",
+        "easing",
+        "geometry",
+        "contentOpacityMinimum",
+        "layoutGeometryStable",
+        "pointerEvents",
+        "reducedMotion",
+        "observerFailure",
+        "staticEquivalent"
+      ],
+      "properties": {
+        "recipeId": {
+          "const": "motion.cta.discovery-cue.01"
+        },
+        "eligibleRole": {
+          "const": "primary_navigational_cta"
+        },
+        "requiredUserBenefit": {
+          "const": "discoverability"
+        },
+        "trigger": {
+          "const": "first_visible_entry"
+        },
+        "repeatCountPerPageLoad": {
+          "const": 1
+        },
+        "reentryBehavior": {
+          "const": "do_not_repeat"
+        },
+        "durationMs": {
+          "const": 540
+        },
+        "durationCeilingMs": {
+          "const": 600
+        },
+        "delayMs": {
+          "const": 0
+        },
+        "easing": {
+          "const": "cubic-bezier(.16,1,.3,1)"
+        },
+        "geometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "startPercent",
+            "endPercent",
+            "bandWidthPercent"
+          ],
+          "properties": {
+            "kind": {
+              "const": "inline_highlight_sweep"
+            },
+            "startPercent": {
+              "const": -120
+            },
+            "endPercent": {
+              "const": 120
+            },
+            "bandWidthPercent": {
+              "const": 28
+            }
+          }
+        },
+        "contentOpacityMinimum": {
+          "const": 1
+        },
+        "layoutGeometryStable": {
+          "const": true
+        },
+        "pointerEvents": {
+          "const": "none"
+        },
+        "reducedMotion": {
+          "const": "no_cue_final_state"
+        },
+        "observerFailure": {
+          "const": "no_cue_final_state"
+        },
+        "staticEquivalent": {
+          "const": "emphasis_without_motion"
+        }
+      }
+    },
+    "dataTable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "question",
+        "columns",
+        "rows",
+        "dataGrain",
+        "claimIds",
+        "evidenceIds",
+        "accessibleSummary",
+        "cellStates"
+      ],
+      "properties": {
+        "capability": {
+          "const": "data_table"
+        },
+        "question": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "columns": {
+          "$ref": "#/$defs/nonEmptyArray"
+        },
+        "rows": {
+          "$ref": "#/$defs/nonEmptyArray"
+        },
+        "dataGrain": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "claimIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "evidenceIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "accessibleSummary": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "cellStates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "measured_zero",
+              "no_data",
+              "out_of_scope",
+              "suppressed",
+              "not_yet"
+            ]
+          }
+        }
+      }
+    },
+    "dataVisualization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "question",
+        "measure",
+        "unit",
+        "denominator",
+        "time",
+        "geography",
+        "dataGrain",
+        "transform",
+        "uncertainty",
+        "schemaRelease",
+        "claimIds",
+        "evidenceIds",
+        "accessibleAlternative",
+        "scaleFamilies",
+        "valueStates"
+      ],
+      "properties": {
+        "capability": {
+          "const": "data_visualization"
+        },
+        "question": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "measure": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "unit": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "denominator": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "time": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "geography": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "dataGrain": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "transform": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "schemaRelease": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "claimIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "evidenceIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "accessibleAlternative": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "scaleFamilies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "activity",
+              "density.area",
+              "heat",
+              "risk",
+              "price",
+              "age",
+              "density.household",
+              "growth",
+              "confidence",
+              "count",
+              "water",
+              "density.capita",
+              "built",
+              "duration",
+              "balance",
+              "delta",
+              "tradeoff",
+              "flow",
+              "sentiment",
+              "anomaly"
+            ]
+          }
+        },
+        "seriesVariant": {
+          "enum": [
+            "soft",
+            "vivid",
+            "none"
+          ]
+        },
+        "valueStates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "measured_zero",
+              "no_data",
+              "out_of_scope",
+              "suppressed",
+              "not_yet"
+            ]
+          }
+        }
+      }
+    },
+    "map": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "geographyId",
+        "boundarySource",
+        "purpose",
+        "coveredArea",
+        "dataGrain",
+        "time",
+        "unit",
+        "schemaRelease",
+        "rightsAndAttribution",
+        "dataStates",
+        "nonSpatialAlternative",
+        "exportReceipt",
+        "scaleFamilies"
+      ],
+      "properties": {
+        "capability": {
+          "const": "map"
+        },
+        "geographyId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "boundarySource": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "purpose": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "coveredArea": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "dataGrain": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "time": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "unit": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "schemaRelease": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "rightsAndAttribution": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "dataStates": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "measured_zero",
+              "no_data",
+              "out_of_scope",
+              "suppressed",
+              "not_yet"
+            ]
+          }
+        },
+        "nonSpatialAlternative": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "exportReceipt": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "scaleFamilies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "activity",
+              "density.area",
+              "heat",
+              "risk",
+              "price",
+              "age",
+              "density.household",
+              "growth",
+              "confidence",
+              "count",
+              "water",
+              "density.capita",
+              "built",
+              "duration",
+              "balance",
+              "delta",
+              "tradeoff",
+              "flow",
+              "sentiment",
+              "anomaly"
+            ]
+          }
+        }
+      }
+    },
+    "form": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "purpose",
+        "fields",
+        "validation",
+        "submission",
+        "successState",
+        "errorState",
+        "privacyNoticeRef"
+      ],
+      "properties": {
+        "capability": {
+          "const": "form"
+        },
+        "purpose": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fields": {
+          "$ref": "#/$defs/nonEmptyArray"
+        },
+        "validation": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "submission": {
+          "$ref": "#/$defs/formSubmission"
+        },
+        "successState": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "errorState": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "privacyNoticeRef": {
+          "$ref": "#/$defs/safeRef"
+        }
+      }
+    },
+    "authentication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "identityProvider",
+        "entryState",
+        "successState",
+        "failureState",
+        "recoveryPath",
+        "sessionPolicy"
+      ],
+      "properties": {
+        "capability": {
+          "const": "authentication"
+        },
+        "identityProvider": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "entryState": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "successState": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "failureState": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "recoveryPath": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sessionPolicy": {
+          "$ref": "#/$defs/nonEmptyObject"
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "resource",
+        "actor",
+        "allowedOperations",
+        "decisionStates",
+        "denialRecovery"
+      ],
+      "properties": {
+        "capability": {
+          "const": "permissions"
+        },
+        "resource": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "actor": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "allowedOperations": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "decisionStates": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "denialRecovery": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "sharing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "objectRef",
+        "audiences",
+        "destinations",
+        "permissionPolicy",
+        "receiptPresentation",
+        "revocationPolicy"
+      ],
+      "properties": {
+        "capability": {
+          "const": "sharing"
+        },
+        "objectRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "audiences": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "destinations": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "permissionPolicy": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "receiptPresentation": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "revocationPolicy": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "download": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "resourceRef",
+        "fileName",
+        "mediaType",
+        "byteSize",
+        "integritySha256",
+        "rights",
+        "fallback"
+      ],
+      "properties": {
+        "capability": {
+          "const": "download"
+        },
+        "resourceRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "fileName": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "mediaType": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "byteSize": {
+          "type": "number",
+          "minimum": 0
+        },
+        "integritySha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "rights": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "fallback": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "externalEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "effectClass",
+        "external",
+        "cost",
+        "reversible",
+        "confirmationPolicy",
+        "permissionContract",
+        "progressPresentationContract",
+        "resultPresentationContract",
+        "recoveryContract",
+        "receiptSchemaBinding"
+      ],
+      "properties": {
+        "capability": {
+          "const": "external_effect"
+        },
+        "effectClass": {
+          "enum": [
+            "reversible",
+            "irreversible",
+            "destructive"
+          ]
+        },
+        "external": {
+          "const": true
+        },
+        "cost": {
+          "enum": [
+            "none",
+            "possible",
+            "known"
+          ]
+        },
+        "reversible": {
+          "type": "boolean"
+        },
+        "confirmationPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "beforeEffect",
+            "consequenceDisclosureByLocale",
+            "confirmLabelByLocale"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "explicit",
+                "step_up"
+              ]
+            },
+            "beforeEffect": {
+              "const": true
+            },
+            "consequenceDisclosureByLocale": {
+              "$ref": "#/$defs/localeMap"
+            },
+            "confirmLabelByLocale": {
+              "$ref": "#/$defs/localeMap"
+            }
+          }
+        },
+        "permissionContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "progressPresentationContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "resultPresentationContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "recoveryContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "receiptSchemaBinding": {
+          "$ref": "#/$defs/typedSchemaBinding"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "effectClass": {
+                "const": "reversible"
+              }
+            },
+            "required": [
+              "effectClass"
+            ]
+          },
+          "then": {
+            "properties": {
+              "reversible": {
+                "const": true
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effectClass": {
+                "enum": [
+                  "irreversible",
+                  "destructive"
+                ]
+              }
+            },
+            "required": [
+              "effectClass"
+            ]
+          },
+          "then": {
+            "properties": {
+              "reversible": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effectClass": {
+                "const": "destructive"
+              }
+            },
+            "required": [
+              "effectClass"
+            ]
+          },
+          "then": {
+            "properties": {
+              "confirmationPolicy": {
+                "properties": {
+                  "mode": {
+                    "const": "step_up"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "carousel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "items",
+        "currentItem",
+        "controls",
+        "keyboardBehavior",
+        "reducedMotionBehavior",
+        "staticFallback"
+      ],
+      "properties": {
+        "capability": {
+          "const": "carousel"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyArray"
+        },
+        "currentItem": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "number",
+              "minimum": 0
+            }
+          ]
+        },
+        "controls": {
+          "$ref": "#/$defs/nonEmptyObject"
+        },
+        "keyboardBehavior": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "reducedMotionBehavior": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "staticFallback": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "socialFeed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "source",
+        "items",
+        "ordering",
+        "refreshPolicy",
+        "emptyState",
+        "errorState",
+        "accessibleSummary"
+      ],
+      "properties": {
+        "capability": {
+          "const": "social_feed"
+        },
+        "source": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "items": {
+          "$ref": "#/$defs/nonEmptyArray"
+        },
+        "ordering": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "refreshPolicy": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "emptyState": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "errorState": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "accessibleSummary": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability",
+        "events",
+        "consentPolicy",
+        "dataClassification",
+        "retention",
+        "destinations",
+        "redaction",
+        "failureBehavior"
+      ],
+      "properties": {
+        "capability": {
+          "const": "telemetry"
+        },
+        "events": {
+          "$ref": "#/$defs/nonEmptyArray"
+        },
+        "consentPolicy": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "dataClassification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "retention": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "destinations": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "redaction": {
+          "$ref": "#/$defs/stringOrObject"
+        },
+        "failureBehavior": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "motionMoment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "job",
+        "beat",
+        "variant",
+        "hostSurface"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "dial",
+            "rings",
+            "layers",
+            "slice",
+            "cultivate",
+            "logo"
+          ]
+        },
+        "job": {
+          "enum": [
+            "orientation",
+            "opening",
+            "spatial_transition",
+            "section_orientation",
+            "layering",
+            "quiet_divider",
+            "action_closure",
+            "cultural_closure",
+            "handoff",
+            "animated_brand_opening"
+          ]
+        },
+        "beat": {
+          "enum": [
+            "opening",
+            "transition",
+            "closing"
+          ]
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "quiet"
+          ]
+        },
+        "surfaceId": {
+          "type": "string"
+        },
+        "overlayRef": {
+          "type": "string"
+        },
+        "hostSurface": {
+          "type": "string",
+          "pattern": "^(surface\\.canvas|surface\\.alt|surface\\.card|surface\\.raised|surface\\.soft|surface\\.blueTint|surface\\.beigeTint|brand\\.beige|brand\\.blue|atmosphere\\.ground\\.mist|atmosphere\\.measure\\.luminous|atmosphere\\.ground\\.current|atmosphere\\.measure\\.deep|surfaceAtmosphere\\.ground|surfaceAtmosphere\\.measure)(@(light|dark))?$",
+          "description": "MOTIF-06 carrier id from motif-register.v0.9.4.json#/carrierPolicy/carriers; themed ids are checked per rendered theme; <id>@light|@dark paints that theme's value in both themes"
+        },
+        "variantDark": {
+          "enum": [
+            "quiet"
+          ],
+          "description": "MOTIF-06 theme swap: full in the light theme, quiet in the dark theme"
+        },
+        "hostSurfaceHex": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string"
+            },
+            "dark": {
+              "type": "string"
+            }
+          }
+        },
+        "measuredContrast": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            },
+            "dark": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            }
+          },
+          "description": "weakest–strongest paint ratio from carrierPolicy.measured"
+        },
+        "contrastVerdict": {
+          "enum": [
+            "meaningCapable",
+            "decorativeOnly",
+            "invisible"
+          ]
+        },
+        "quietFallbackRung": {
+          "enum": [
+            "none",
+            "L2",
+            "L3",
+            "L4",
+            "L5"
+          ]
+        },
+        "fallbackAssetId": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "dial"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "orientation",
+                  "opening"
+                ]
+              },
+              "beat": {
+                "const": "opening"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "rings"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "spatial_transition",
+                  "section_orientation"
+                ]
+              },
+              "beat": {
+                "const": "transition"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "layers"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "layering",
+                  "quiet_divider"
+                ]
+              },
+              "beat": {
+                "const": "transition"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "slice"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "action_closure"
+                ]
+              },
+              "beat": {
+                "const": "closing"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "cultivate"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "cultural_closure",
+                  "handoff"
+                ]
+              },
+              "beat": {
+                "const": "closing"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "logo"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "animated_brand_opening"
+                ]
+              },
+              "beat": {
+                "const": "opening"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "motionMoments": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/motionMoment"
+      }
+    },
+    "staticMotifPlacement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "variant",
+        "hostSurface",
+        "format"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "dial",
+            "rings",
+            "layers",
+            "slice",
+            "cultivate",
+            "logo"
+          ]
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "quiet"
+          ]
+        },
+        "format": {
+          "enum": [
+            "web_public",
+            "deck_16x9",
+            "social_square_1080",
+            "document_pdf",
+            "video_owner_extension"
+          ]
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "hostSurface": {
+          "type": "string",
+          "pattern": "^(surface\\.canvas|surface\\.alt|surface\\.card|surface\\.raised|surface\\.soft|surface\\.blueTint|surface\\.beigeTint|brand\\.beige|brand\\.blue|atmosphere\\.ground\\.mist|atmosphere\\.measure\\.luminous|atmosphere\\.ground\\.current|atmosphere\\.measure\\.deep|surfaceAtmosphere\\.ground|surfaceAtmosphere\\.measure)(@(light|dark))?$",
+          "description": "MOTIF-06 carrier id from motif-register.v0.9.4.json#/carrierPolicy/carriers; themed ids are checked per rendered theme; <id>@light|@dark paints that theme's value in both themes"
+        },
+        "variantDark": {
+          "enum": [
+            "quiet"
+          ],
+          "description": "MOTIF-06 theme swap: full in the light theme, quiet in the dark theme"
+        },
+        "hostSurfaceHex": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string"
+            },
+            "dark": {
+              "type": "string"
+            }
+          }
+        },
+        "measuredContrast": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            },
+            "dark": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            }
+          },
+          "description": "weakest–strongest paint ratio from carrierPolicy.measured"
+        },
+        "contrastVerdict": {
+          "enum": [
+            "meaningCapable",
+            "decorativeOnly",
+            "invisible"
+          ]
+        },
+        "quietFallbackRung": {
+          "enum": [
+            "none",
+            "L2",
+            "L3",
+            "L4",
+            "L5"
+          ]
+        },
+        "fallbackAssetId": {
+          "type": "string"
+        }
+      },
+      "description": "MOTIF-06: every static final-state motif placement names its carrier"
+    },
+    "staticMotifPlacements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/staticMotifPlacement"
+      }
+    }
+  }
+}

@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "1.0",
+  "releaseRef": "v0.9.4-mp1",
+  "receiptId": "asset-approval.shared-foundations.2026-09-01",
+  "status": "approved",
+  "approvedBy": "Landometer owner",
+  "approvedAt": "2026-09-01T00:33:36+07:00",
+  "authorityEvidenceRef": "owner-message:2026-09-01:approve-v0.9.1",
+  "assets": [
+    {
+      "assetId": "font.arvo.latin.700",
+      "role": "text_font",
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "display_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Georgia, Cambria, Times New Roman, serif"
+    },
+    {
+      "assetId": "font.ibm-plex-thai-looped.latin.700",
+      "role": "text_font",
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "display_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Noto Sans Thai Looped, Leelawadee UI, Tahoma, sans-serif"
+    },
+    {
+      "assetId": "font.ibm-plex-thai-looped.thai.700",
+      "role": "text_font",
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "display_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Noto Sans Thai Looped, Leelawadee UI, Tahoma, sans-serif"
+    },
+    {
+      "assetId": "font.bai-jamjuree.latin.400",
+      "role": "text_font",
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "body_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif"
+    },
+    {
+      "assetId": "font.bai-jamjuree.thai.400",
+      "role": "text_font",
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "body_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif"
+    },
+    {
+      "assetId": "font.bai-jamjuree.latin.600",
+      "role": "text_font",
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "body_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif"
+    },
+    {
+      "assetId": "font.bai-jamjuree.thai.600",
+      "role": "text_font",
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "body_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif"
+    },
+    {
+      "assetId": "font.jetbrains-mono.latin.400",
+      "role": "text_font",
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "technical_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "SFMono-Regular, Consolas, Liberation Mono, monospace; use the body fallback for Thai glyph coverage"
+    },
+    {
+      "assetId": "font.ibm-plex-thai.thai.400",
+      "role": "text_font",
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "technical_text"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "OFL-1.1",
+      "fallback": "SFMono-Regular, Consolas, Liberation Mono, monospace; use the body fallback for Thai glyph coverage"
+    },
+    {
+      "assetId": "icon.material-symbols-rounded.open-in-new.300.01",
+      "role": "interface_icon",
+      "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "external_link"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "Apache-2.0",
+      "fallback": "approved inline vector or visible text label; never a missing-glyph box",
+      "glyphs": [
+        "open_in_new"
+      ]
+    },
+    {
+      "assetId": "icon.material-symbols-rounded.nav-7.300.01",
+      "role": "interface_icon",
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
+      "allowedFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "allowedSurfaceRoles": [
+        "interface_control",
+        "navigation",
+        "external_link"
+      ],
+      "allowedAudiences": [
+        "internal_preview",
+        "internal_operational",
+        "client",
+        "public"
+      ],
+      "publicationPermission": true,
+      "licenseOrPermission": "Apache-2.0",
+      "fallback": "approved inline vector or visible text label; never a missing-glyph box",
+      "glyphs": [
+        "open_in_new",
+        "menu",
+        "close",
+        "light_mode",
+        "dark_mode",
+        "contrast",
+        "groups"
+      ]
+    }
+  ]
+}

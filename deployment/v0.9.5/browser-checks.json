@@ -1,0 +1,28 @@
+{
+  "version": "0.9.5",
+  "build": "ui-20260929-lds095-01",
+  "date": "2026-09-29",
+  "method": "Codex in-app browser, real DOM and keyboard interaction",
+  "viewportWidths": [
+    320,
+    390,
+    768,
+    1440
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "horizontalOverflowFailures": 0,
+  "densityPanels": 4,
+  "familyCountCombinations": 60,
+  "familyCountPass": 60,
+  "familyCountFailures": [],
+  "fonts": "loaded",
+  "browserConsoleErrors": [],
+  "limitations": [
+    "Real user color-vision tests not performed",
+    "Cross-account ChatGPT/Claude activation not proved",
+    "No broad accessibility certificate"
+  ]
+}

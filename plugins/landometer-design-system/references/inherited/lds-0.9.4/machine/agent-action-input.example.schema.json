@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:landometer:agent-action-input:inspect-claim:1.0",
+  "title": "Inspect claim input fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claimId"],
+  "properties": { "claimId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]+$" } }
+}

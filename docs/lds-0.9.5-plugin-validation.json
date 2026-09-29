@@ -1,0 +1,37 @@
+{
+  "checkedOn": "2026-09-29",
+  "checks": [
+    {
+      "name": "portable plugin manifest",
+      "status": "pass",
+      "validator": "JSON Schema Draft202012",
+      "schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+      "schemaSha256": "0a4aad95ce337878ad38802ebf0daa3fde76abe3f65400c86bcbb1ec0b3ab883"
+    },
+    {
+      "name": "Codex compatibility plugin",
+      "status": "pass",
+      "validator": "plugin-creator validate_plugin.py"
+    },
+    {
+      "name": "skill frontmatter and placeholders",
+      "status": "pass",
+      "validator": "skill-creator quick_validate.py"
+    },
+    {
+      "name": "repository marketplace name",
+      "status": "pass",
+      "value": "landometer"
+    }
+  ],
+  "manifestSha256": {
+    "plugin.json": "61f0aef2584508a328325b51b31359e3f88e68c38b53ec5e3474d5f8cec4deb5",
+    ".codex-plugin/plugin.json": "9d17f19b5397aeaeb4d31af1ece41e4bb66ba1c5f226f48d7bd6924899655e2f",
+    ".claude-plugin/plugin.json": "f50479e8affb8f920ae9326bb5a30698bc3843e9b4bcf4f07a31942f50a053b3",
+    "skills/apply-landometer-design-system/SKILL.md": "6ce585ea746b09cc4d35c86f548a9d20f3e77828098da24142dce10ab826ffcd"
+  },
+  "limits": [
+    "Static packaging checks only; account import and runtime asset access require per-platform receipts.",
+    "Claude compatibility structure reviewed against official documented shape; account upload not performed by this check."
+  ]
+}

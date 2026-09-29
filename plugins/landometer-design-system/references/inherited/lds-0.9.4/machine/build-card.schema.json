@@ -1,0 +1,5341 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/build-card.schema.0.9.3.2.json",
+  "title": "Landometer Design System 0.9.4 Build Card 0.9.3.2",
+  "description": "Author-supplied intent and resolver-supplied configuration for one design output under the 0.9.4 resolved-only audience contract (approved by the owner on 17 September 2026; active and effective in the frozen package v0.9.4-mp1).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "artifact",
+    "authority",
+    "experience",
+    "locale",
+    "output",
+    "composition",
+    "navigation",
+    "identityImplementation",
+    "actions",
+    "capabilities",
+    "capabilityConfigRefs",
+    "publication",
+    "privacySecurity",
+    "audienceOutput",
+    "assumptions",
+    "assetRegistries",
+    "assets",
+    "qa"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "0.9.3.2"
+    },
+    "releaseRef": {
+      "const": "v0.9.4-mp1"
+    },
+    "artifact": {
+      "$ref": "#/$defs/artifact"
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    },
+    "experience": {
+      "$ref": "#/$defs/experience"
+    },
+    "locale": {
+      "$ref": "#/$defs/locale"
+    },
+    "output": {
+      "$ref": "#/$defs/output"
+    },
+    "composition": {
+      "$ref": "#/$defs/composition"
+    },
+    "navigation": {
+      "$ref": "#/$defs/navigation"
+    },
+    "identityImplementation": {
+      "$ref": "#/$defs/identityImplementation"
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/action"
+      },
+      "minItems": 1,
+      "maxItems": 12,
+      "contains": {
+        "type": "object",
+        "properties": {
+          "priority": {
+            "const": "primary"
+          }
+        },
+        "required": [
+          "priority"
+        ]
+      },
+      "minContains": 1,
+      "maxContains": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/capability"
+      },
+      "uniqueItems": true
+    },
+    "capabilityConfigRefs": {
+      "$ref": "#/$defs/capabilityConfigRefs"
+    },
+    "publication": {
+      "$ref": "#/$defs/publication"
+    },
+    "privacySecurity": {
+      "$ref": "#/$defs/privacySecurity"
+    },
+    "audienceOutput": {
+      "$ref": "#/$defs/audienceOutput"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assumption"
+      },
+      "uniqueItems": true
+    },
+    "assetRegistries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assetRegistryBinding"
+      },
+      "uniqueItems": true
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    },
+    "qa": {
+      "$ref": "#/$defs/qa"
+    },
+    "resolved": {
+      "$ref": "#/$defs/resolved",
+      "readOnly": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "artifact": {
+            "properties": {
+              "productScope": {
+                "const": "shared_landometer"
+              }
+            },
+            "required": [
+              "productScope"
+            ]
+          }
+        },
+        "required": [
+          "artifact"
+        ]
+      },
+      "then": {
+        "properties": {
+          "artifact": {
+            "not": {
+              "required": [
+                "namedProduct"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "targetProfileRef": {
+                "enum": [
+                  "target.web.responsive.360-1600.01",
+                  "target.app.browser-responsive.360-1600.01"
+                ]
+              },
+              "runtime": {
+                "const": "browser"
+              }
+            },
+            "required": [
+              "targetProfileRef",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "controlBudgets": {
+                "properties": {
+                  "minimumDirectTarget": {
+                    "const": {
+                      "value": 44,
+                      "unit": "css_px"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "targetProfileRef": {
+                "const": "target.app.native-responsive.360-1280.01"
+              },
+              "runtime": {
+                "const": "native"
+              }
+            },
+            "required": [
+              "targetProfileRef",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "controlBudgets": {
+                "properties": {
+                  "minimumDirectTarget": {
+                    "const": {
+                      "value": 44,
+                      "unit": "platform_dp"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "experience": {
+            "properties": {
+              "ctaDiscoveryCueAssignments": {
+                "minItems": 1
+              }
+            },
+            "required": [
+              "ctaDiscoveryCueAssignments"
+            ]
+          }
+        },
+        "required": [
+          "experience"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive"
+                ]
+              },
+              "runtime": {
+                "const": "browser"
+              },
+              "interactive": {
+                "const": true
+              }
+            },
+            "required": [
+              "formatProfile",
+              "runtime",
+              "interactive"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "motion"
+            }
+          }
+        },
+        "required": [
+          "capabilities"
+        ]
+      },
+      "then": {
+        "properties": {
+          "experience": {
+            "required": [
+              "motionDecision",
+              "motionBenefit",
+              "motionAssignments"
+            ],
+            "properties": {
+              "motionDecision": {
+                "const": "assigned"
+              },
+              "motionBenefit": {
+                "minItems": 1
+              },
+              "motionAssignments": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "experience": {
+            "required": [
+              "motionDecision",
+              "motionAssignments",
+              "noMotionReason"
+            ],
+            "properties": {
+              "motionDecision": {
+                "const": "no_motion"
+              },
+              "motionBenefit": {
+                "maxItems": 0
+              },
+              "motionAssignments": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "motion"
+            }
+          },
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive"
+                ]
+              },
+              "runtime": {
+                "const": "browser"
+              }
+            },
+            "required": [
+              "formatProfile",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "capabilities",
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "experience": {
+            "properties": {
+              "motionAssignments": {
+                "items": {
+                  "required": [
+                    "reducedMotion",
+                    "observerFailure"
+                  ],
+                  "allOf": [
+                    {
+                      "not": {
+                        "required": [
+                          "nativeInterruption"
+                        ]
+                      }
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "presenterSkip"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "motion"
+            }
+          },
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "app_interactive"
+              },
+              "runtime": {
+                "const": "native"
+              }
+            },
+            "required": [
+              "formatProfile",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "capabilities",
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "experience": {
+            "properties": {
+              "motionAssignments": {
+                "items": {
+                  "required": [
+                    "reducedMotion",
+                    "nativeInterruption"
+                  ],
+                  "allOf": [
+                    {
+                      "not": {
+                        "required": [
+                          "observerFailure"
+                        ]
+                      }
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "presenterSkip"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "motion"
+            }
+          },
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "deck_presentation"
+              },
+              "runtime": {
+                "const": "static"
+              }
+            },
+            "required": [
+              "formatProfile",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "capabilities",
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "experience": {
+            "properties": {
+              "motionAssignments": {
+                "items": {
+                  "required": [
+                    "presenterSkip"
+                  ],
+                  "allOf": [
+                    {
+                      "not": {
+                        "required": [
+                          "reducedMotion"
+                        ]
+                      }
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "observerFailure"
+                        ]
+                      }
+                    },
+                    {
+                      "not": {
+                        "required": [
+                          "nativeInterruption"
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "capabilities": {
+            "contains": {
+              "const": "claims"
+            }
+          }
+        },
+        "required": [
+          "capabilities"
+        ]
+      },
+      "then": {
+        "properties": {
+          "publication": {
+            "required": [
+              "claimManifestRef",
+              "claimManifestSha256",
+              "claimAsOf"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "anyOf": [
+          {
+            "properties": {
+              "output": {
+                "properties": {
+                  "formatProfile": {
+                    "const": "web_public"
+                  },
+                  "runtime": {
+                    "const": "browser"
+                  }
+                },
+                "required": [
+                  "formatProfile",
+                  "runtime"
+                ]
+              }
+            },
+            "required": [
+              "output"
+            ]
+          },
+          {
+            "properties": {
+              "output": {
+                "properties": {
+                  "formatProfile": {
+                    "const": "app_interactive"
+                  },
+                  "runtime": {
+                    "const": "browser"
+                  }
+                },
+                "required": [
+                  "formatProfile",
+                  "runtime"
+                ]
+              }
+            },
+            "required": [
+              "output"
+            ]
+          }
+        ]
+      },
+      "then": {
+        "properties": {
+          "publication": {
+            "required": [
+              "discovery"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "publication": {
+            "not": {
+              "required": [
+                "discovery"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "web_public"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "runtime": {
+                "const": "browser"
+              },
+              "interactive": {
+                "const": true
+              },
+              "targetProfileRef": {
+                "const": "target.web.responsive.360-1600.01"
+              }
+            },
+            "required": [
+              "interactive"
+            ],
+            "not": {
+              "required": [
+                "formatContext"
+              ]
+            }
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "site",
+                  "product"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "app_interactive"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "runtime": {
+                "enum": [
+                  "browser",
+                  "native"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "app_interactive"
+              },
+              "runtime": {
+                "const": "browser"
+              }
+            },
+            "required": [
+              "formatProfile",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "interactive": {
+                "const": true
+              },
+              "targetProfileRef": {
+                "const": "target.app.browser-responsive.360-1600.01"
+              }
+            },
+            "required": [
+              "interactive"
+            ],
+            "not": {
+              "required": [
+                "formatContext"
+              ]
+            }
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "site",
+                  "product"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "app_interactive"
+              },
+              "runtime": {
+                "const": "native"
+              }
+            },
+            "required": [
+              "formatProfile",
+              "runtime"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "interactive": {
+                "const": true
+              },
+              "targetProfileRef": {
+                "const": "target.app.native-responsive.360-1280.01"
+              }
+            },
+            "required": [
+              "interactive"
+            ],
+            "not": {
+              "required": [
+                "formatContext"
+              ]
+            }
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "site",
+                  "product"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "document_flow",
+                  "pdf_fixed",
+                  "deck_presentation",
+                  "social_static"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "runtime": {
+                "const": "static"
+              },
+              "interactive": {
+                "const": false
+              }
+            },
+            "required": [
+              "interactive"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "document_flow"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "targetProfileRef": {
+                "const": "target.document.a4-portrait.01"
+              }
+            },
+            "not": {
+              "required": [
+                "formatContext"
+              ]
+            }
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "document"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "pdf_fixed"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "targetProfileRef": {
+                "const": "target.pdf.a4-portrait.01"
+              }
+            },
+            "not": {
+              "required": [
+                "formatContext"
+              ]
+            }
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "document"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "deck_presentation"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "targetProfileRef": {
+                "const": "target.deck.16x9.01"
+              },
+              "formatContext": {
+                "$ref": "#/$defs/deckFormatContext"
+              }
+            },
+            "required": [
+              "formatContext"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "none",
+                  "deck"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "social_static"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "targetProfileRef": {
+                "const": "target.social.square.1080.01"
+              },
+              "formatContext": {
+                "$ref": "#/$defs/socialFormatContext"
+              }
+            },
+            "required": [
+              "formatContext"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "const": "none"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "items": {
+                  "required": [
+                    "breakpointExposure"
+                  ],
+                  "not": {
+                    "required": [
+                      "staticExposure"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "document_flow",
+                  "pdf_fixed",
+                  "deck_presentation",
+                  "social_static"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "not": {
+              "required": [
+                "controlBudgets"
+              ]
+            },
+            "properties": {
+              "destinations": {
+                "items": {
+                  "required": [
+                    "staticExposure"
+                  ],
+                  "not": {
+                    "required": [
+                      "breakpointExposure"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "document_flow"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "items": {
+                  "properties": {
+                    "staticExposure": {
+                      "enum": [
+                        "toc",
+                        "destination_cue",
+                        "not_exposed"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "pdf_fixed"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "items": {
+                  "properties": {
+                    "staticExposure": {
+                      "enum": [
+                        "pdf_bookmark",
+                        "destination_cue",
+                        "not_exposed"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "deck_presentation"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "items": {
+                  "properties": {
+                    "staticExposure": {
+                      "enum": [
+                        "deck_section_marker",
+                        "destination_cue",
+                        "not_exposed"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "document_flow"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          }
+        },
+        "required": [
+          "output",
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "contains": {
+                  "properties": {
+                    "kind": {
+                      "const": "anchor"
+                    },
+                    "staticExposure": {
+                      "const": "toc"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "staticExposure"
+                  ]
+                },
+                "minContains": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "pdf_fixed"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          }
+        },
+        "required": [
+          "output",
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "contains": {
+                  "properties": {
+                    "kind": {
+                      "const": "anchor"
+                    },
+                    "staticExposure": {
+                      "const": "pdf_bookmark"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "staticExposure"
+                  ]
+                },
+                "minContains": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "deck_presentation"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          }
+        },
+        "required": [
+          "output",
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "contains": {
+                  "properties": {
+                    "kind": {
+                      "const": "anchor"
+                    },
+                    "staticExposure": {
+                      "const": "deck_section_marker"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "staticExposure"
+                  ]
+                },
+                "minContains": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          }
+        },
+        "required": [
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive",
+                  "document_flow",
+                  "pdf_fixed",
+                  "deck_presentation"
+                ]
+              }
+            }
+          },
+          "composition": {
+            "required": [
+              "sideBookmarkEligible"
+            ],
+            "properties": {
+              "sideBookmarkEligible": {
+                "const": true
+              },
+              "sections": {
+                "minItems": 2
+              },
+              "componentIds": {
+                "contains": {
+                  "const": "component.bookmark.side.01"
+                },
+                "minContains": 1,
+                "maxContains": 1
+              }
+            }
+          },
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "const": "page"
+                    },
+                    "kind": {
+                      "const": "anchor"
+                    },
+                    "group": {
+                      "const": "page_local"
+                    }
+                  },
+                  "required": [
+                    "level",
+                    "kind",
+                    "group"
+                  ]
+                },
+                "minContains": 2
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "composition": {
+            "properties": {
+              "componentIds": {
+                "not": {
+                  "contains": {
+                    "const": "component.bookmark.side.01"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "const": "social_static"
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "omitted"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          }
+        },
+        "required": [
+          "output",
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "level": {
+                      "const": "page"
+                    },
+                    "kind": {
+                      "const": "anchor"
+                    },
+                    "group": {
+                      "const": "page_local"
+                    },
+                    "breakpointExposure": {
+                      "type": "object",
+                      "properties": {
+                        "desktop": {
+                          "const": "side_bookmark"
+                        },
+                        "mobile": {
+                          "const": "disclosure"
+                        }
+                      },
+                      "required": [
+                        "desktop",
+                        "mobile"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "level",
+                    "kind",
+                    "group",
+                    "breakpointExposure"
+                  ]
+                },
+                "minContains": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "mode": {
+                "not": {
+                  "const": "none"
+                }
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          }
+        },
+        "required": [
+          "output",
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "type": "object",
+                      "properties": {
+                        "current": {
+                          "const": "page"
+                        }
+                      },
+                      "required": [
+                        "current"
+                      ]
+                    },
+                    "minContains": 1,
+                    "maxContains": 1
+                  },
+                  {
+                    "contains": {
+                      "type": "object",
+                      "properties": {
+                        "current": {
+                          "const": "location"
+                        }
+                      },
+                      "required": [
+                        "current"
+                      ]
+                    },
+                    "minContains": 0,
+                    "maxContains": 1
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "web_public",
+                  "app_interactive"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          },
+          "navigation": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          }
+        },
+        "required": [
+          "output",
+          "navigation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "const": "anchor"
+                    },
+                    "group": {
+                      "const": "page_local"
+                    },
+                    "current": {
+                      "const": "location"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "group",
+                    "current"
+                  ]
+                },
+                "minContains": 1,
+                "maxContains": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "output": {
+            "properties": {
+              "formatProfile": {
+                "enum": [
+                  "document_flow",
+                  "pdf_fixed",
+                  "deck_presentation",
+                  "social_static"
+                ]
+              }
+            },
+            "required": [
+              "formatProfile"
+            ]
+          }
+        },
+        "required": [
+          "output"
+        ]
+      },
+      "then": {
+        "properties": {
+          "navigation": {
+            "properties": {
+              "destinations": {
+                "items": {
+                  "properties": {
+                    "current": {
+                      "const": "none"
+                    }
+                  },
+                  "required": [
+                    "current"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "httpsUrl": {
+      "type": "string",
+      "pattern": "^https://[^\\s]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "protectedLineRoleOrNull": {
+      "enum": [
+        "north_star",
+        "promise",
+        "cultural_activation",
+        null
+      ]
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "assetRegistryBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registryRef",
+        "sha256",
+        "schemaRef"
+      ],
+      "properties": {
+        "registryRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaRef": {
+          "const": "https://landometer.org/design-system/0.9.4/asset-registry.schema.1.9.json"
+        }
+      }
+    },
+    "capabilityConfigBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256",
+        "schemaRef"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaRef": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "typedActionContractBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256",
+        "schemaRef",
+        "schemaSha256"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "schemaSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "typedSchemaBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256",
+        "schemaId"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaId": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "owner",
+        "portfolioDomain",
+        "productScope",
+        "primaryJob"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{2,79}$"
+        },
+        "title": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "portfolioDomain": {
+          "enum": [
+            "shared",
+            "land",
+            "location",
+            "living"
+          ]
+        },
+        "productScope": {
+          "enum": [
+            "shared_landometer",
+            "named_product"
+          ]
+        },
+        "namedProduct": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "primaryJob": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "contentRelease": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "artifactBuild": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "not": {
+                  "const": "none"
+                }
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "destinations": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "productScope": {
+                "const": "named_product"
+              }
+            },
+            "required": [
+              "productScope"
+            ]
+          },
+          "then": {
+            "required": [
+              "namedProduct"
+            ]
+          }
+        }
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contentSource",
+        "evidenceBoundary",
+        "claimOwner",
+        "evidenceRefs",
+        "productBoundary"
+      ],
+      "properties": {
+        "contentSource": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "evidenceBoundary": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "claimOwner": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        },
+        "productBoundary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "sharedCapabilities",
+            "productSpecificCapabilities"
+          ],
+          "properties": {
+            "sharedCapabilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "uniqueItems": true
+            },
+            "productSpecificCapabilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "schemaRelease": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "comparisonPolicy": {
+          "enum": [
+            "not_applicable",
+            "same_schema_release",
+            "incompatibility_disclosed"
+          ]
+        }
+      }
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile",
+        "audience",
+        "entryQuestion",
+        "desiredOutcome",
+        "readingOrder",
+        "dominantObjectRef",
+        "firstAha",
+        "firstAhaEvidenceRef",
+        "prerequisitesBeforeAha",
+        "cleanCompletion",
+        "primaryActionRef",
+        "nextUsefulActionRef",
+        "motionDecision",
+        "motionAssignments",
+        "ctaDiscoveryCueAssignments"
+      ],
+      "properties": {
+        "profile": {
+          "enum": [
+            "portfolio_orientation",
+            "methodology_learning",
+            "product_orientation",
+            "evidence_report",
+            "interactive_task",
+            "editorial_place_story",
+            "adoption_change",
+            "campaign"
+          ]
+        },
+        "secondaryProfiles": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "enum": [
+              "portfolio_orientation",
+              "methodology_learning",
+              "product_orientation",
+              "evidence_report",
+              "interactive_task",
+              "editorial_place_story",
+              "adoption_change",
+              "campaign"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "audience": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "entryQuestion": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "desiredOutcome": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "dominantObjectRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "firstAha": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "firstAhaEvidenceRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "prerequisitesBeforeAha": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        },
+        "cleanCompletion": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "primaryActionRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "nextUsefulActionRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "readingOrder": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "ref"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "section",
+                  "action",
+                  "component"
+                ]
+              },
+              "ref": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          },
+          "uniqueItems": true
+        },
+        "urgency": {
+          "enum": [
+            "calm",
+            "standard",
+            "urgent"
+          ]
+        },
+        "motionBenefit": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "state",
+              "sequence",
+              "progress",
+              "spatial_relationship",
+              "cause_and_effect"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "motionDecision": {
+          "enum": [
+            "assigned",
+            "no_motion"
+          ]
+        },
+        "motionAssignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/motionAssignment"
+          },
+          "uniqueItems": true,
+          "maxItems": 24
+        },
+        "ctaDiscoveryCueAssignments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ctaDiscoveryCueAssignment"
+          },
+          "uniqueItems": true,
+          "maxItems": 1
+        },
+        "noMotionReason": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "motionMoments": {
+          "type": "array",
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/motionMoment"
+          },
+          "description": "MOTIF-04 joy budget: at most three motion moments per route, one per task surface; each moment names kind, job (allowedJobs of the kind), beat, variant and its MOTIF-06 host surface"
+        },
+        "staticMotifPlacements": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/staticMotifPlacement"
+          },
+          "description": "MOTIF-06: static final-state motif placements (web, deck, PDF, social) with their carriers"
+        },
+        "productOverlayRefs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          },
+          "description": "ids from motif-register.v0.9.4.json#/productOverlays used by this artifact (MOTIF-05)"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "motionDecision": {
+                "const": "assigned"
+              }
+            },
+            "required": [
+              "motionDecision"
+            ]
+          },
+          "then": {
+            "required": [
+              "motionBenefit"
+            ],
+            "properties": {
+              "motionBenefit": {
+                "minItems": 1
+              },
+              "motionAssignments": {
+                "minItems": 1
+              }
+            },
+            "not": {
+              "required": [
+                "noMotionReason"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "noMotionReason"
+            ],
+            "properties": {
+              "motionBenefit": {
+                "maxItems": 0
+              },
+              "motionAssignments": {
+                "maxItems": 0
+              },
+              "ctaDiscoveryCueAssignments": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "motionAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subject",
+        "role",
+        "benefit",
+        "protectedRole",
+        "initialVisibility",
+        "layoutGeometry",
+        "staticFallback"
+      ],
+      "properties": {
+        "subject": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "role": {
+          "enum": [
+            "section_opener",
+            "peer_group",
+            "paired_inline",
+            "proof_preview",
+            "contact_group"
+          ]
+        },
+        "benefit": {
+          "enum": [
+            "state",
+            "sequence",
+            "progress",
+            "spatial_relationship",
+            "cause_and_effect"
+          ]
+        },
+        "protectedRole": {
+          "enum": [
+            "none",
+            "hero",
+            "lcp_media",
+            "page_title",
+            "first_answer",
+            "primary_proof",
+            "primary_action",
+            "task_critical",
+            "status",
+            "focus_target",
+            "deep_link_target"
+          ]
+        },
+        "initialVisibility": {
+          "const": "visible"
+        },
+        "layoutGeometry": {
+          "const": "stable"
+        },
+        "staticFallback": {
+          "const": "final_state"
+        },
+        "reducedMotion": {
+          "const": "final_state"
+        },
+        "observerFailure": {
+          "const": "final_state"
+        },
+        "nativeInterruption": {
+          "const": "final_state"
+        },
+        "presenterSkip": {
+          "const": "final_state"
+        }
+      }
+    },
+    "ctaDiscoveryCueAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actionRef",
+        "recipeRef",
+        "requiredUserBenefit",
+        "rationale",
+        "trigger",
+        "repeatCountPerPageLoad",
+        "reducedMotion",
+        "observerFailure",
+        "staticEquivalent"
+      ],
+      "properties": {
+        "actionRef": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "recipeRef": {
+          "const": "tokens.v0.9.4.json#/motion/ctaDiscoveryCue"
+        },
+        "requiredUserBenefit": {
+          "const": "discoverability"
+        },
+        "rationale": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "trigger": {
+          "const": "first_visible_entry"
+        },
+        "repeatCountPerPageLoad": {
+          "const": 1
+        },
+        "reducedMotion": {
+          "const": "no_cue_final_state"
+        },
+        "observerFailure": {
+          "const": "no_cue_final_state"
+        },
+        "staticEquivalent": {
+          "const": "emphasis_without_motion"
+        }
+      }
+    },
+    "locale": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "available",
+        "states"
+      ],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "available": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+          },
+          "uniqueItems": true
+        },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "locale",
+              "status"
+            ],
+            "properties": {
+              "locale": {
+                "type": "string",
+                "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+              },
+              "status": {
+                "enum": [
+                  "source",
+                  "reviewed_translation",
+                  "draft_translation",
+                  "single_locale"
+                ]
+              }
+            }
+          }
+        },
+        "languageLinks": {
+          "type": "boolean"
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formatProfile",
+        "runtime",
+        "delivery",
+        "targetProfileRef"
+      ],
+      "properties": {
+        "formatProfile": {
+          "enum": [
+            "web_public",
+            "app_interactive",
+            "document_flow",
+            "pdf_fixed",
+            "deck_presentation",
+            "social_static"
+          ]
+        },
+        "runtime": {
+          "enum": [
+            "browser",
+            "native",
+            "static"
+          ]
+        },
+        "delivery": {
+          "enum": [
+            "screen",
+            "print",
+            "hybrid"
+          ]
+        },
+        "targetProfileRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "viewportOrPage": {
+          "type": "string",
+          "description": "Human-readable summary only; machine geometry resolves from targetProfileRef."
+        },
+        "channel": {
+          "type": "string"
+        },
+        "interactive": {
+          "type": "boolean"
+        },
+        "offlineRequired": {
+          "type": "boolean"
+        },
+        "formatContext": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/deckFormatContext"
+            },
+            {
+              "$ref": "#/$defs/socialFormatContext"
+            }
+          ]
+        }
+      }
+    },
+    "deckFormatContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "audienceSituation",
+        "roomType",
+        "screenDiagonalInches",
+        "viewingDistanceMeters",
+        "durationMinutes",
+        "presentationMode"
+      ],
+      "properties": {
+        "kind": {
+          "const": "deck_context"
+        },
+        "audienceSituation": {
+          "enum": [
+            "in_room",
+            "remote",
+            "self_guided",
+            "hybrid"
+          ]
+        },
+        "roomType": {
+          "enum": [
+            "meeting_room",
+            "conference_room",
+            "auditorium",
+            "remote_screen",
+            "self_guided_screen"
+          ]
+        },
+        "screenDiagonalInches": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "viewingDistanceMeters": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "durationMinutes": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "presentationMode": {
+          "enum": [
+            "presenter_led",
+            "self_guided",
+            "hybrid"
+          ]
+        }
+      }
+    },
+    "socialFormatContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "channel",
+        "campaignId",
+        "expiresAt"
+      ],
+      "properties": {
+        "kind": {
+          "const": "social_context"
+        },
+        "channel": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "campaignId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9.-]*$"
+        },
+        "expiresAt": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "headlineRole",
+        "density",
+        "sections",
+        "componentIds"
+      ],
+      "properties": {
+        "headlineRole": {
+          "enum": [
+            "north_star",
+            "promise",
+            "cultural_activation",
+            "ecosystem",
+            "product_loop",
+            "product_specific",
+            "editorial"
+          ]
+        },
+        "density": {
+          "enum": [
+            "spacious",
+            "standard",
+            "dense"
+          ]
+        },
+        "sections": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "purpose"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]*$"
+              },
+              "purpose": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "claimIds": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        },
+        "componentIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^component\\.[a-z0-9.-]+$"
+          }
+        },
+        "sideBookmarkEligible": {
+          "type": "boolean"
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "destinations",
+        "brandDestinationRef",
+        "sideBookmark",
+        "sideBookmarkUserBenefit"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "none",
+            "site",
+            "product",
+            "document",
+            "deck"
+          ]
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/navigationDestination"
+          },
+          "uniqueItems": true
+        },
+        "controlBudgets": {
+          "$ref": "#/$defs/navigationControlBudgets"
+        },
+        "brandDestinationRef": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sideBookmark": {
+          "enum": [
+            "selected",
+            "omitted"
+          ]
+        },
+        "sideBookmarkUserBenefit": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "site",
+                  "product"
+                ]
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "required": [
+              "controlBudgets"
+            ],
+            "properties": {
+              "destinations": {
+                "minItems": 1,
+                "items": {
+                  "properties": {
+                    "breakpointExposure": {
+                      "properties": {
+                        "desktop": {
+                          "not": {
+                            "const": "not_applicable"
+                          }
+                        },
+                        "mobile": {
+                          "not": {
+                            "const": "not_applicable"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "allOf": [
+                  {
+                    "contains": {
+                      "type": "object",
+                      "properties": {
+                        "breakpointExposure": {
+                          "type": "object",
+                          "properties": {
+                            "desktop": {
+                              "const": "header"
+                            }
+                          },
+                          "required": [
+                            "desktop"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "breakpointExposure"
+                      ]
+                    },
+                    "minContains": 0,
+                    "maxContains": 4
+                  },
+                  {
+                    "contains": {
+                      "type": "object",
+                      "properties": {
+                        "breakpointExposure": {
+                          "type": "object",
+                          "properties": {
+                            "mobile": {
+                              "const": "header"
+                            }
+                          },
+                          "required": [
+                            "mobile"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "breakpointExposure"
+                      ]
+                    },
+                    "minContains": 0,
+                    "maxContains": 2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sideBookmark": {
+                "const": "selected"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          },
+          "then": {
+            "properties": {
+              "destinations": {
+                "minItems": 2
+              },
+              "sideBookmarkUserBenefit": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sideBookmark": {
+                "const": "omitted"
+              }
+            },
+            "required": [
+              "sideBookmark"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sideBookmarkUserBenefit": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "enum": [
+                  "site",
+                  "product"
+                ]
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "brandDestinationRef": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "destinations": {
+                "contains": {
+                  "type": "object",
+                  "properties": {
+                    "role": {
+                      "const": "brand"
+                    }
+                  },
+                  "required": [
+                    "role"
+                  ]
+                },
+                "minContains": 1,
+                "maxContains": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "none"
+              }
+            },
+            "required": [
+              "mode"
+            ]
+          },
+          "then": {
+            "properties": {
+              "destinations": {
+                "maxItems": 0
+              },
+              "sideBookmark": {
+                "const": "omitted"
+              },
+              "brandDestinationRef": {
+                "type": "null"
+              },
+              "sideBookmarkUserBenefit": {
+                "type": "null"
+              }
+            },
+            "not": {
+              "required": [
+                "controlBudgets"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "navigationDestination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "role",
+        "label",
+        "labelByLocale",
+        "target",
+        "level",
+        "kind",
+        "group",
+        "current"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^destination\\.[a-z0-9.-]+$"
+        },
+        "role": {
+          "enum": [
+            "brand",
+            "primary",
+            "page_local",
+            "utility"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "labelByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "compactLabel": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "compactLabelByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "target": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "level": {
+          "enum": [
+            "ecosystem",
+            "property",
+            "page"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "route",
+            "anchor",
+            "external"
+          ]
+        },
+        "group": {
+          "enum": [
+            "primary",
+            "ecosystem",
+            "page_local",
+            "utility"
+          ]
+        },
+        "breakpointExposure": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "desktop",
+            "mobile"
+          ],
+          "properties": {
+            "desktop": {
+              "enum": [
+                "header",
+                "disclosure",
+                "side_bookmark",
+                "not_exposed",
+                "not_applicable"
+              ]
+            },
+            "mobile": {
+              "enum": [
+                "header",
+                "disclosure",
+                "not_exposed",
+                "not_applicable"
+              ]
+            }
+          }
+        },
+        "staticExposure": {
+          "enum": [
+            "toc",
+            "pdf_bookmark",
+            "deck_section_marker",
+            "destination_cue",
+            "not_exposed"
+          ]
+        },
+        "current": {
+          "enum": [
+            "none",
+            "page",
+            "location"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "anchor"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "pattern": "^#[a-z][a-z0-9-]*$"
+              },
+              "level": {
+                "const": "page"
+              },
+              "group": {
+                "const": "page_local"
+              },
+              "current": {
+                "enum": [
+                  "none",
+                  "location"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "route"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "current": {
+                "enum": [
+                  "none",
+                  "page"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "external"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "$ref": "#/$defs/httpsUrl"
+              },
+              "current": {
+                "const": "none"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "navigationControlBudgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "desktop",
+        "mobile",
+        "minimumDirectTarget"
+      ],
+      "properties": {
+        "desktop": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "brandRequired",
+            "maxControls"
+          ],
+          "properties": {
+            "brandRequired": {
+              "const": true
+            },
+            "maxControls": {
+              "const": 4
+            }
+          }
+        },
+        "mobile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "brandRequired",
+            "maxControls"
+          ],
+          "properties": {
+            "brandRequired": {
+              "const": true
+            },
+            "maxControls": {
+              "const": 2
+            }
+          }
+        },
+        "minimumDirectTarget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "unit"
+          ],
+          "properties": {
+            "value": {
+              "const": 44
+            },
+            "unit": {
+              "enum": [
+                "css_px",
+                "platform_dp"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "intent",
+        "priority",
+        "label",
+        "outcome",
+        "destinationBinding",
+        "availability",
+        "consequence",
+        "confirmation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "intent": {
+          "enum": [
+            "navigate",
+            "inspect",
+            "submit",
+            "create",
+            "save",
+            "share",
+            "download",
+            "external_handoff",
+            "draft",
+            "confirm",
+            "destructive"
+          ]
+        },
+        "priority": {
+          "enum": [
+            "primary",
+            "secondary",
+            "quiet",
+            "utility"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "compactLabel": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "labelByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "compactLabelByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "outcome": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "outcomeByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "destinationBinding": {
+          "$ref": "#/$defs/actionDestinationBinding"
+        },
+        "availability": {
+          "enum": [
+            "available",
+            "requires_permission",
+            "planned",
+            "unavailable"
+          ]
+        },
+        "availabilityReason": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "availabilityReasonByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "consequence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "class",
+            "external",
+            "cost",
+            "reversible"
+          ],
+          "properties": {
+            "class": {
+              "enum": [
+                "none",
+                "reversible",
+                "irreversible",
+                "destructive"
+              ]
+            },
+            "external": {
+              "type": "boolean"
+            },
+            "cost": {
+              "enum": [
+                "none",
+                "possible",
+                "known"
+              ]
+            },
+            "reversible": {
+              "type": "boolean"
+            }
+          }
+        },
+        "confirmation": {
+          "enum": [
+            "none",
+            "explicit",
+            "step_up"
+          ]
+        },
+        "permissionContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "progressPresentationContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "resultPresentationContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "recoveryContract": {
+          "$ref": "#/$defs/typedActionContractBinding"
+        },
+        "receiptSchemaBinding": {
+          "$ref": "#/$defs/typedSchemaBinding"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "availability": {
+                "const": "requires_permission"
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "required": [
+              "permissionContract"
+            ]
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "availability": {
+                "enum": [
+                  "planned",
+                  "unavailable"
+                ]
+              }
+            },
+            "required": [
+              "availability"
+            ]
+          },
+          "then": {
+            "properties": {
+              "priority": {
+                "not": {
+                  "const": "primary"
+                }
+              }
+            },
+            "required": [
+              "availabilityReason",
+              "availabilityReasonByLocale"
+            ]
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "consequence": {
+                "anyOf": [
+                  {
+                    "properties": {
+                      "class": {
+                        "not": {
+                          "const": "none"
+                        }
+                      }
+                    },
+                    "required": [
+                      "class"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "external": {
+                        "const": true
+                      }
+                    },
+                    "required": [
+                      "external"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "cost": {
+                        "enum": [
+                          "possible",
+                          "known"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "cost"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "consequence"
+            ]
+          },
+          "then": {
+            "properties": {
+              "confirmation": {
+                "enum": [
+                  "explicit",
+                  "step_up"
+                ]
+              }
+            },
+            "required": [
+              "progressPresentationContract",
+              "resultPresentationContract",
+              "recoveryContract",
+              "receiptSchemaBinding"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "consequence": {
+                "properties": {
+                  "class": {
+                    "const": "none"
+                  }
+                },
+                "required": [
+                  "class"
+                ]
+              }
+            },
+            "required": [
+              "consequence"
+            ]
+          },
+          "then": {
+            "properties": {
+              "consequence": {
+                "properties": {
+                  "reversible": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "consequence": {
+                "properties": {
+                  "class": {
+                    "const": "reversible"
+                  }
+                },
+                "required": [
+                  "class"
+                ]
+              }
+            },
+            "required": [
+              "consequence"
+            ]
+          },
+          "then": {
+            "properties": {
+              "consequence": {
+                "properties": {
+                  "reversible": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "consequence": {
+                "properties": {
+                  "class": {
+                    "enum": [
+                      "irreversible",
+                      "destructive"
+                    ]
+                  }
+                },
+                "required": [
+                  "class"
+                ]
+              }
+            },
+            "required": [
+              "consequence"
+            ]
+          },
+          "then": {
+            "properties": {
+              "consequence": {
+                "properties": {
+                  "reversible": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "actionDestinationBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "target",
+        "targetByLocale",
+        "presentation"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "anchor",
+            "route",
+            "external",
+            "download",
+            "form",
+            "contact",
+            "command"
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "targetByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "presentation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mode",
+            "technique"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "direct",
+                "static_equivalent"
+              ]
+            },
+            "technique": {
+              "enum": [
+                "direct_control",
+                "working_link",
+                "working_link_with_visible_destination",
+                "verified_qr_with_text",
+                "destination_cue",
+                "instruction"
+              ]
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "anchor"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "pattern": "^#[a-z][a-z0-9-]*$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "route"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "pattern": "^(?:/|\\./)(?!.*(?:^|/)\\.\\.(?:/|$))\\S+$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "external"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "$ref": "#/$defs/httpsUrl"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "download"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/httpsUrl"
+                  },
+                  {
+                    "pattern": "^(?:/|\\./)(?!.*(?:^|/)\\.\\.(?:/|$))\\S+$"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "form"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "anyOf": [
+                  {
+                    "$ref": "#/$defs/httpsUrl"
+                  },
+                  {
+                    "pattern": "^#[a-z][a-z0-9-]*$"
+                  },
+                  {
+                    "pattern": "^(?:/|\\./)(?!.*(?:^|/)\\.\\.(?:/|$))\\S+$"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "contact"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "pattern": "^(?:mailto:[^\\s@]+@[^\\s@]+|tel:\\+?[0-9(). -]{6,})$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "command"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "pattern": "^[a-z][a-z0-9.-]*$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "identityImplementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "surface"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "kind": {
+          "enum": [
+            "asset_identity",
+            "governed_text_identity"
+          ]
+        },
+        "surface": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "assetId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "registryRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "text": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "textByLocale": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minProperties": 1
+        },
+        "fontAssetIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "typographyBindingId": {
+          "type": "string",
+          "pattern": "^identity-typography\\."
+        },
+        "nativeMappingId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^fontmap\\.(?:macos|windows)\\."
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "logoAssetId": {
+          "type": "null"
+        },
+        "logoReconstructionAllowed": {
+          "const": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "asset_identity"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "assetId"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "registryRef"
+                  ]
+                },
+                {
+                  "required": [
+                    "text"
+                  ]
+                },
+                {
+                  "required": [
+                    "textByLocale"
+                  ]
+                },
+                {
+                  "required": [
+                    "fontAssetIds"
+                  ]
+                },
+                {
+                  "required": [
+                    "typographyBindingId"
+                  ]
+                },
+                {
+                  "required": [
+                    "nativeMappingId"
+                  ]
+                },
+                {
+                  "required": [
+                    "logoAssetId"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "governed_text_identity"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "registryRef",
+              "text",
+              "textByLocale",
+              "fontAssetIds",
+              "typographyBindingId",
+              "nativeMappingId",
+              "logoAssetId",
+              "logoReconstructionAllowed"
+            ],
+            "not": {
+              "required": [
+                "assetId"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "capability": {
+      "enum": [
+        "claims",
+        "evidence",
+        "data_table",
+        "data_visualization",
+        "map",
+        "form",
+        "authentication",
+        "permissions",
+        "sharing",
+        "download",
+        "external_effect",
+        "carousel",
+        "social_feed",
+        "motion",
+        "agent_action",
+        "telemetry"
+      ]
+    },
+    "capabilityConfigRefs": {
+      "type": "object",
+      "description": "One durable configuration or manifest reference for every declared capability. Cross-field validation requires these keys to equal capabilities exactly.",
+      "additionalProperties": false,
+      "properties": {
+        "claims": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "evidence": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "data_table": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "data_visualization": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "map": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "form": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "authentication": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "permissions": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "sharing": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "download": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "external_effect": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "carousel": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "social_feed": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "motion": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "agent_action": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        },
+        "telemetry": {
+          "$ref": "#/$defs/capabilityConfigBinding"
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "public",
+        "indexing",
+        "canonicalPolicy",
+        "machineReadable",
+        "layerRequirements"
+      ],
+      "properties": {
+        "public": {
+          "type": "boolean"
+        },
+        "indexing": {
+          "enum": [
+            "index",
+            "noindex",
+            "not_applicable"
+          ]
+        },
+        "canonicalPolicy": {
+          "enum": [
+            "self",
+            "declared_alternate",
+            "not_applicable"
+          ]
+        },
+        "machineReadable": {
+          "type": "boolean"
+        },
+        "discovery": {
+          "$ref": "#/$defs/discovery"
+        },
+        "layerRequirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "discovery",
+            "readability",
+            "action"
+          ],
+          "properties": {
+            "discovery": {
+              "const": "required"
+            },
+            "readability": {
+              "const": "required"
+            },
+            "action": {
+              "const": "required"
+            }
+          }
+        },
+        "claimManifestRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "claimManifestSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "claimAsOf": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "structuredDataTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "sitemapEligible": {
+          "type": "boolean"
+        },
+        "llmsNavigation": {
+          "enum": [
+            "not_applicable",
+            "optional",
+            "provided"
+          ]
+        }
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "pageKind",
+        "canonicalUrl",
+        "htmlLang",
+        "titleByLocale",
+        "descriptionByLocale",
+        "primaryHeadingByLocale",
+        "primaryAnswerByLocale",
+        "protectedLineRoles",
+        "robots",
+        "sitemap",
+        "localeRoutes",
+        "socialPreview",
+        "structuredDataBindings",
+        "crawlerPurposePolicy",
+        "visibleTruthOnly",
+        "initialHtmlRequired",
+        "iconSetId",
+        "titlePattern"
+      ],
+      "properties": {
+        "kind": {
+          "const": "web_discovery"
+        },
+        "pageKind": {
+          "enum": [
+            "portfolio_home",
+            "product_landing",
+            "detail",
+            "article",
+            "index",
+            "tool",
+            "dataset",
+            "search_results",
+            "utility"
+          ]
+        },
+        "canonicalUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "htmlLang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "titleByLocale": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "descriptionByLocale": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "primaryHeadingByLocale": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "primaryAnswerByLocale": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "protectedLineRoles": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "visibleScene",
+            "metadataScene",
+            "socialPreviewScene"
+          ],
+          "properties": {
+            "visibleScene": {
+              "$ref": "#/$defs/protectedLineRoleOrNull"
+            },
+            "metadataScene": {
+              "$ref": "#/$defs/protectedLineRoleOrNull"
+            },
+            "socialPreviewScene": {
+              "$ref": "#/$defs/protectedLineRoleOrNull"
+            }
+          }
+        },
+        "robots": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "index",
+            "follow"
+          ],
+          "properties": {
+            "index": {
+              "type": "boolean"
+            },
+            "follow": {
+              "type": "boolean"
+            }
+          }
+        },
+        "sitemap": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "included",
+            "loc"
+          ],
+          "properties": {
+            "included": {
+              "type": "boolean"
+            },
+            "loc": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "included": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "included"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "loc": {
+                    "$ref": "#/$defs/httpsUrl"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "loc": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "localeRoutes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "locale",
+              "url",
+              "canonicalUrl",
+              "alternates"
+            ],
+            "properties": {
+              "locale": {
+                "type": "string",
+                "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+              },
+              "url": {
+                "$ref": "#/$defs/httpsUrl"
+              },
+              "canonicalUrl": {
+                "$ref": "#/$defs/httpsUrl"
+              },
+              "alternates": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "locale",
+                    "url"
+                  ],
+                  "properties": {
+                    "locale": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+                        },
+                        {
+                          "const": "x-default"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "$ref": "#/$defs/httpsUrl"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "socialPreview": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "titleByLocale",
+            "descriptionByLocale",
+            "url",
+            "imageAssetId"
+          ],
+          "properties": {
+            "titleByLocale": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "descriptionByLocale": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "url": {
+              "$ref": "#/$defs/httpsUrl"
+            },
+            "imageAssetId": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/nonEmpty"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "imageAltByLocale": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "linkPreviewTargetRef": {
+              "const": "target.social.og.1200x630.01"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "imageAssetId": {
+                    "$ref": "#/$defs/nonEmpty"
+                  }
+                },
+                "required": [
+                  "imageAssetId"
+                ]
+              },
+              "then": {
+                "required": [
+                  "imageAltByLocale"
+                ]
+              }
+            }
+          ]
+        },
+        "structuredDataBindings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "sha256",
+              "schemaRef"
+            ],
+            "properties": {
+              "ref": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "schemaRef": {
+                "const": "https://landometer.org/design-system/0.9.4/structured-data-projection.schema.1.1.json"
+              }
+            }
+          }
+        },
+        "crawlerPurposePolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ref",
+            "sha256",
+            "schemaRef"
+          ],
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/safeRef"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "schemaRef": {
+              "const": "https://landometer.org/design-system/0.9.4/crawler-purpose-policy.schema.1.0.json"
+            }
+          }
+        },
+        "visibleTruthOnly": {
+          "const": true
+        },
+        "initialHtmlRequired": {
+          "type": "boolean"
+        },
+        "iconSetId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "asset-registry.json#/iconSets id; null blocks web delivery (FAVICON-01)"
+        },
+        "titlePattern": {
+          "const": "[page] · [product]"
+        }
+      }
+    },
+    "privacySecurity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dataClassification",
+        "personalData",
+        "redactionPolicy",
+        "agentActionPolicy"
+      ],
+      "properties": {
+        "dataClassification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "personalData": {
+          "type": "boolean"
+        },
+        "permissionsRequired": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "redactionPolicy": {
+          "enum": [
+            "not_required",
+            "required_before_delivery"
+          ]
+        },
+        "agentActionPolicy": {
+          "enum": [
+            "none",
+            "read_only",
+            "confirm_before_commit",
+            "owner_authorized"
+          ]
+        }
+      }
+    },
+    "assumption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "statement",
+        "impactDomain",
+        "status",
+        "rationale"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]{2,79}$"
+        },
+        "statement": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "impactDomain": {
+          "enum": [
+            "composition_only",
+            "truth",
+            "identity",
+            "rights",
+            "accessibility",
+            "locale_completeness",
+            "primary_action",
+            "evidence_interpretation"
+          ]
+        },
+        "status": {
+          "enum": [
+            "validated",
+            "bounded_non_blocking",
+            "unresolved_blocking"
+          ]
+        },
+        "rationale": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "resolutionRef": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "validated"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "resolutionRef"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "bounded_non_blocking"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "impactDomain": {
+                "const": "composition_only"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "impactDomain": {
+                "enum": [
+                  "truth",
+                  "identity",
+                  "rights",
+                  "accessibility",
+                  "locale_completeness",
+                  "primary_action",
+                  "evidence_interpretation"
+                ]
+              }
+            },
+            "required": [
+              "impactDomain"
+            ]
+          },
+          "then": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "validated",
+                  "unresolved_blocking"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "audienceOutput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "deliveryAudience",
+        "disclosurePurpose",
+        "internalGovernanceVisibility",
+        "unresolvedDependencyBehavior",
+        "placeholderPolicy",
+        "materialLimitationPresentation",
+        "blockingDependencyRefs"
+      ],
+      "properties": {
+        "mode": {
+          "const": "resolved_only"
+        },
+        "deliveryAudience": {
+          "enum": [
+            "internal_preview",
+            "internal_operational",
+            "client",
+            "public"
+          ]
+        },
+        "disclosurePurpose": {
+          "enum": [
+            "ordinary_experience",
+            "design_system_reference",
+            "provenance_record"
+          ]
+        },
+        "disclosureAuthorityRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "disclosureAuthoritySha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "disclosureAttestationRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "disclosureAttestationSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "internalGovernanceVisibility": {
+          "const": "hidden"
+        },
+        "unresolvedDependencyBehavior": {
+          "const": "block_or_internal_preview"
+        },
+        "placeholderPolicy": {
+          "const": "forbidden_in_resolved_delivery"
+        },
+        "materialLimitationPresentation": {
+          "const": "proximate_plain_language"
+        },
+        "blockingDependencyRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "disclosurePurpose": {
+                "enum": [
+                  "design_system_reference",
+                  "provenance_record"
+                ]
+              }
+            },
+            "required": [
+              "disclosurePurpose"
+            ]
+          },
+          "then": {
+            "required": [
+              "disclosureAuthorityRef",
+              "disclosureAuthoritySha256",
+              "disclosureAttestationRef",
+              "disclosureAttestationSha256"
+            ]
+          }
+        }
+      ]
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "role",
+        "surface",
+        "source",
+        "approvalStatus",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "identity",
+            "text_font",
+            "editorial",
+            "evidence",
+            "interface_icon",
+            "data_visualization",
+            "map",
+            "social_preview",
+            "atmosphere",
+            "ui_capture",
+            "provider_content",
+            "generated_vector"
+          ]
+        },
+        "surface": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "source": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "approvalStatus": {
+          "enum": [
+            "approved",
+            "candidate",
+            "unverified",
+            "rejected"
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "approvedBy": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "approvedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "approvalReceiptRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "approvalReceiptSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "fontRole": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fontFamily": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fontSubset": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fontWeight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "fontFallback": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fallback": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "glyphs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "uniqueItems": true
+        },
+        "licenseOrPermission": {
+          "type": "string"
+        },
+        "altOrTextEquivalent": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "approvalStatus": {
+                "const": "approved"
+              }
+            },
+            "required": [
+              "approvalStatus"
+            ]
+          },
+          "then": {
+            "required": [
+              "sha256",
+              "approvedBy",
+              "approvedAt",
+              "approvalReceiptRef",
+              "approvalReceiptSha256"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "text_font"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "required": [
+              "fontRole",
+              "fontFamily",
+              "fontSubset",
+              "fontWeight",
+              "fontFallback",
+              "licenseOrPermission"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "identity"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "required": [
+              "licenseOrPermission",
+              "fallback",
+              "altOrTextEquivalent"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "interface_icon"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "required": [
+              "licenseOrPermission",
+              "fallback",
+              "glyphs"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "editorial",
+                  "evidence",
+                  "data_visualization",
+                  "map",
+                  "social_preview",
+                  "atmosphere",
+                  "ui_capture",
+                  "provider_content",
+                  "generated_vector"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "required": [
+              "licenseOrPermission",
+              "fallback",
+              "altOrTextEquivalent"
+            ]
+          }
+        }
+      ]
+    },
+    "qa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "automated",
+        "manual",
+        "production"
+      ],
+      "properties": {
+        "automated": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "manual": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "production": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "exceptionIds": {
+          "type": "array",
+          "maxItems": 0,
+          "items": false
+        }
+      }
+    },
+    "resolved": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "experienceProfile",
+        "formatPack",
+        "targetProfileRef",
+        "capabilityPacks",
+        "requiredRules",
+        "setIds"
+      ],
+      "properties": {
+        "experienceProfile": {
+          "type": "string"
+        },
+        "formatPack": {
+          "type": "string"
+        },
+        "targetProfileRef": {
+          "type": "string"
+        },
+        "capabilityPacks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "requiredRules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "setIds": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "resolvedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resolverVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "motionMoment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "job",
+        "beat",
+        "variant",
+        "hostSurface"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "dial",
+            "rings",
+            "layers",
+            "slice",
+            "cultivate",
+            "logo"
+          ]
+        },
+        "job": {
+          "enum": [
+            "orientation",
+            "opening",
+            "spatial_transition",
+            "section_orientation",
+            "layering",
+            "quiet_divider",
+            "action_closure",
+            "cultural_closure",
+            "handoff",
+            "animated_brand_opening"
+          ]
+        },
+        "beat": {
+          "enum": [
+            "opening",
+            "transition",
+            "closing"
+          ]
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "quiet"
+          ]
+        },
+        "surfaceId": {
+          "type": "string"
+        },
+        "overlayRef": {
+          "type": "string"
+        },
+        "hostSurface": {
+          "type": "string",
+          "pattern": "^(surface\\.canvas|surface\\.alt|surface\\.card|surface\\.raised|surface\\.soft|surface\\.blueTint|surface\\.beigeTint|brand\\.beige|brand\\.blue|atmosphere\\.ground\\.mist|atmosphere\\.measure\\.luminous|atmosphere\\.ground\\.current|atmosphere\\.measure\\.deep|surfaceAtmosphere\\.ground|surfaceAtmosphere\\.measure)(@(light|dark))?$",
+          "description": "MOTIF-06 carrier id from motif-register.v0.9.4.json#/carrierPolicy/carriers; themed ids are checked per rendered theme; <id>@light|@dark paints that theme's value in both themes"
+        },
+        "variantDark": {
+          "enum": [
+            "quiet"
+          ],
+          "description": "MOTIF-06 theme swap: full in the light theme, quiet in the dark theme"
+        },
+        "hostSurfaceHex": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string"
+            },
+            "dark": {
+              "type": "string"
+            }
+          }
+        },
+        "measuredContrast": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            },
+            "dark": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            }
+          },
+          "description": "weakest–strongest paint ratio from carrierPolicy.measured"
+        },
+        "contrastVerdict": {
+          "enum": [
+            "meaningCapable",
+            "decorativeOnly",
+            "invisible"
+          ]
+        },
+        "quietFallbackRung": {
+          "enum": [
+            "none",
+            "L2",
+            "L3",
+            "L4",
+            "L5"
+          ]
+        },
+        "fallbackAssetId": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "dial"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "orientation",
+                  "opening"
+                ]
+              },
+              "beat": {
+                "const": "opening"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "rings"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "spatial_transition",
+                  "section_orientation"
+                ]
+              },
+              "beat": {
+                "const": "transition"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "layers"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "layering",
+                  "quiet_divider"
+                ]
+              },
+              "beat": {
+                "const": "transition"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "slice"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "action_closure"
+                ]
+              },
+              "beat": {
+                "const": "closing"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "cultivate"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "cultural_closure",
+                  "handoff"
+                ]
+              },
+              "beat": {
+                "const": "closing"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "logo"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "job": {
+                "enum": [
+                  "animated_brand_opening"
+                ]
+              },
+              "beat": {
+                "const": "opening"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "staticMotifPlacement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "variant",
+        "hostSurface",
+        "format"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "dial",
+            "rings",
+            "layers",
+            "slice",
+            "cultivate",
+            "logo"
+          ]
+        },
+        "variant": {
+          "enum": [
+            "full",
+            "quiet"
+          ]
+        },
+        "format": {
+          "enum": [
+            "web_public",
+            "deck_16x9",
+            "social_square_1080",
+            "document_pdf",
+            "video_owner_extension"
+          ]
+        },
+        "purpose": {
+          "type": "string"
+        },
+        "hostSurface": {
+          "type": "string",
+          "pattern": "^(surface\\.canvas|surface\\.alt|surface\\.card|surface\\.raised|surface\\.soft|surface\\.blueTint|surface\\.beigeTint|brand\\.beige|brand\\.blue|atmosphere\\.ground\\.mist|atmosphere\\.measure\\.luminous|atmosphere\\.ground\\.current|atmosphere\\.measure\\.deep|surfaceAtmosphere\\.ground|surfaceAtmosphere\\.measure)(@(light|dark))?$",
+          "description": "MOTIF-06 carrier id from motif-register.v0.9.4.json#/carrierPolicy/carriers; themed ids are checked per rendered theme; <id>@light|@dark paints that theme's value in both themes"
+        },
+        "variantDark": {
+          "enum": [
+            "quiet"
+          ],
+          "description": "MOTIF-06 theme swap: full in the light theme, quiet in the dark theme"
+        },
+        "hostSurfaceHex": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string"
+            },
+            "dark": {
+              "type": "string"
+            }
+          }
+        },
+        "measuredContrast": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "light": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            },
+            "dark": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}–[0-9]+\\.[0-9]{2}$"
+            }
+          },
+          "description": "weakest–strongest paint ratio from carrierPolicy.measured"
+        },
+        "contrastVerdict": {
+          "enum": [
+            "meaningCapable",
+            "decorativeOnly",
+            "invisible"
+          ]
+        },
+        "quietFallbackRung": {
+          "enum": [
+            "none",
+            "L2",
+            "L3",
+            "L4",
+            "L5"
+          ]
+        },
+        "fallbackAssetId": {
+          "type": "string"
+        }
+      },
+      "description": "MOTIF-06: every static final-state motif placement names its carrier"
+    }
+  }
+}

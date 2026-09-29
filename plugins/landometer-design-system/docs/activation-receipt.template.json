@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0",
+  "designSystemVersion": "0.9.5",
+  "platform": null,
+  "accountOrWorkspace": null,
+  "scope": null,
+  "releaseId": null,
+  "releaseManifestSha256": null,
+  "installMethod": null,
+  "installedAt": null,
+  "newSessionFoundSkill": null,
+  "assetReadEvidence": [],
+  "artifactCheck": {
+    "status": "not-run",
+    "report": null
+  },
+  "humanReview": {
+    "status": "not-run",
+    "reviewer": null
+  },
+  "status": "pending"
+}

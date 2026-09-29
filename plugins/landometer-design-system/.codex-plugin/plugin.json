@@ -1,0 +1,33 @@
+{
+  "name": "landometer-design-system",
+  "version": "0.9.5",
+  "description": "Apply Landometer DS 0.9.5: approved colors, retained brand voice, exact assets and verifiable output.",
+  "author": {
+    "name": "Landometer",
+    "url": "https://github.com/montri-th"
+  },
+  "homepage": "https://montri-th.github.io/Landometer/",
+  "repository": "https://github.com/montri-th/Landometer",
+  "keywords": [
+    "landometer",
+    "design-system",
+    "brand",
+    "data-visualization",
+    "thai"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Landometer DS 0.9.5",
+    "shortDescription": "Verified colors, brand guidance and ready-to-use assets.",
+    "longDescription": "The owner-approved LDS 0.9.5 color release, preserving the Landometer voice and visual foundations. Includes exact analytical lookup tables, CSS, fonts, logos, human guidance and deterministic checks.",
+    "developerName": "Landometer",
+    "category": "Productivity",
+    "capabilities": [],
+    "websiteURL": "https://montri-th.github.io/Landometer/",
+    "defaultPrompt": [
+      "Build this artifact with Landometer DS 0.9.5.",
+      "Review this design against Landometer DS 0.9.5.",
+      "Show the four warm density scales in both themes."
+    ]
+  }
+}

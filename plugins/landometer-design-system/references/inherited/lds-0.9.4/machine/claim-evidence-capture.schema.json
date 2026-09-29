@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/claim-evidence-capture.schema.1.0.json",
+  "title": "Landometer claim evidence capture v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "captureId",
+    "claimId",
+    "sourceRef",
+    "finalRef",
+    "capturedAt",
+    "mediaType",
+    "contentRef",
+    "contentSha256",
+    "contentByteCount",
+    "captureMethod"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "releaseRef": { "const": "v0.9.4-mp1" },
+    "captureId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,159}$" },
+    "claimId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$" },
+    "sourceRef": { "$ref": "#/$defs/nonEmpty" },
+    "finalRef": { "$ref": "#/$defs/nonEmpty" },
+    "capturedAt": { "type": "string", "format": "date-time" },
+    "httpStatus": { "type": ["integer", "null"], "minimum": 100, "maximum": 599 },
+    "mediaType": { "$ref": "#/$defs/nonEmpty" },
+    "contentRef": { "$ref": "#/$defs/safeRef" },
+    "contentSha256": { "$ref": "#/$defs/sha256" },
+    "contentByteCount": { "type": "integer", "minimum": 1 },
+    "captureMethod": { "enum": ["bundle_exact_bytes", "https_fetch", "authorized_export"] }
+  },
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\u0000-\\u001F]).+$"
+    }
+  }
+}

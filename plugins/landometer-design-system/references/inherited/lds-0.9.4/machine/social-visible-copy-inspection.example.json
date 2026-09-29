@@ -1,0 +1,63 @@
+{
+  "kind": "social_visible_copy_inspection",
+  "subjectPath": "creative/landometer-cultivation-th-square.png",
+  "subjectSha256": "9d5c263c587a6b3e692eb20a80f8e11d2367d54e2e9729248da71759d8a160eb",
+  "method": "ocr_plus_visual_review",
+  "result": "pass",
+  "inspectedAt": "2026-09-01T00:48:00+07:00",
+  "normalizationAlgorithm": "unicode_nfc_trim_collapse_whitespace_v1",
+  "ocrPerformed": true,
+  "visualReviewPerformed": true,
+  "normalizedOcrProjection": {
+    "claim": {
+      "text": "Let us cultivate our city with data.",
+      "limitations": [
+        {
+          "limitationId": "limitation.protected-line-boundary.01",
+          "text": "ข้อความนี้เป็นข้อความแบรนด์ของ Landometer ไม่ได้บอกข้อเท็จจริงเกี่ยวกับผลิตภัณฑ์ เมือง การจัดอันดับ หรือความสามารถ"
+        }
+      ]
+    },
+    "evidenceCues": [
+      {
+        "evidenceRef": "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines",
+        "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+        "cue": "หลักฐาน: การอนุมัติข้อความระดับพอร์ตโฟลิโอ",
+        "kind": "owner_approval"
+      }
+    ],
+    "action": {
+      "label": "ดูที่มา",
+      "outcome": "เปิดหน้าสาธารณะที่แสดงข้อความนี้",
+      "destinationCue": "montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html"
+    }
+  },
+  "visualReviewProjection": {
+    "claim": {
+      "text": "Let us cultivate our city with data.",
+      "limitations": [
+        {
+          "limitationId": "limitation.protected-line-boundary.01",
+          "text": "ข้อความนี้เป็นข้อความแบรนด์ของ Landometer ไม่ได้บอกข้อเท็จจริงเกี่ยวกับผลิตภัณฑ์ เมือง การจัดอันดับ หรือความสามารถ"
+        }
+      ]
+    },
+    "evidenceCues": [
+      {
+        "evidenceRef": "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines",
+        "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+        "cue": "หลักฐาน: การอนุมัติข้อความระดับพอร์ตโฟลิโอ",
+        "kind": "owner_approval"
+      }
+    ],
+    "action": {
+      "label": "ดูที่มา",
+      "outcome": "เปิดหน้าสาธารณะที่แสดงข้อความนี้",
+      "destinationCue": "montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html"
+    }
+  },
+  "normalizedProjectionSha256": "615a1b0504c7363dab961bdc11ded26d3cb756b97ba389b082a253a82ecb1086",
+  "unclassifiedVisibleText": [],
+  "extraClaimTexts": [],
+  "summary": "OCR and human visual review classified every visible copy item and found no extra claim or ungoverned text."
+}

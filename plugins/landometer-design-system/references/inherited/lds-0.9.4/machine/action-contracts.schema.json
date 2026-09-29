@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/action-contracts.schema.1.1.json",
+  "title": "Landometer typed action contracts v1.1",
+  "oneOf": [
+    { "$ref": "#/$defs/permission" },
+    { "$ref": "#/$defs/progress" },
+    { "$ref": "#/$defs/result" },
+    { "$ref": "#/$defs/recovery" },
+    { "$ref": "#/$defs/bundle" }
+  ],
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "safeRef": { "type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$" },
+    "uniqueStrings": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/nonEmpty" } },
+    "localeMap": { "type": "object", "minProperties": 1, "additionalProperties": { "$ref": "#/$defs/nonEmpty" } },
+    "permission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "contractId", "artifactId", "actionId", "resource", "actorClasses", "allowedOperations", "allowedClassifications", "decisionStates", "denialRecoveryByLocale"],
+      "properties": {
+        "schemaVersion": { "const": "1.1" },
+        "kind": { "const": "permission" },
+        "contractId": { "$ref": "#/$defs/nonEmpty" },
+        "artifactId": { "$ref": "#/$defs/nonEmpty" },
+        "actionId": { "$ref": "#/$defs/nonEmpty" },
+        "resource": { "$ref": "#/$defs/nonEmpty" },
+        "actorClasses": { "$ref": "#/$defs/uniqueStrings" },
+        "allowedOperations": { "$ref": "#/$defs/uniqueStrings" },
+        "allowedClassifications": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["public", "internal", "confidential", "restricted"] } },
+        "decisionStates": { "type": "array", "minItems": 5, "uniqueItems": true, "items": { "enum": ["allowed", "denied", "expired", "revoked", "unknown"] }, "contains": { "const": "denied" } },
+        "denialRecoveryByLocale": { "$ref": "#/$defs/localeMap" },
+        "authorityRef": { "$ref": "#/$defs/safeRef" }
+      }
+    },
+    "progress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "contractId", "states", "accessibleStatusByLocale", "completionNotImpliedBeforeTerminal", "cancellationPolicy"],
+      "properties": {
+        "schemaVersion": { "const": "1.1" },
+        "kind": { "const": "progress" },
+        "contractId": { "$ref": "#/$defs/nonEmpty" },
+        "states": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "enum": ["idle", "queued", "running", "succeeded", "failed", "cancelled"] }, "contains": { "const": "running" } },
+        "accessibleStatusByLocale": { "$ref": "#/$defs/localeMap" },
+        "completionNotImpliedBeforeTerminal": { "const": true },
+        "cancellationPolicy": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "contractId", "states", "messageByLocale", "accessibleAnnouncement", "receiptLinkPolicy"],
+      "properties": {
+        "schemaVersion": { "const": "1.1" },
+        "kind": { "const": "result" },
+        "contractId": { "$ref": "#/$defs/nonEmpty" },
+        "states": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": { "enum": ["succeeded", "partial", "empty", "failed", "cancelled"] },
+          "allOf": [
+            { "contains": { "const": "succeeded" }, "minContains": 1 },
+            { "contains": { "const": "failed" }, "minContains": 1 },
+            { "contains": { "const": "cancelled" }, "minContains": 1 }
+          ]
+        },
+        "messageByLocale": { "$ref": "#/$defs/localeMap" },
+        "accessibleAnnouncement": { "$ref": "#/$defs/nonEmpty" },
+        "receiptLinkPolicy": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "kind", "contractId", "failureStates", "preservesInput", "retryPolicy", "fallbackByLocale", "escalationPolicy"],
+      "properties": {
+        "schemaVersion": { "const": "1.1" },
+        "kind": { "const": "recovery" },
+        "contractId": { "$ref": "#/$defs/nonEmpty" },
+        "failureStates": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": { "enum": ["failed", "cancelled"] },
+          "allOf": [
+            { "contains": { "const": "failed" }, "minContains": 1 },
+            { "contains": { "const": "cancelled" }, "minContains": 1 }
+          ]
+        },
+        "preservesInput": { "type": "boolean" },
+        "retryPolicy": { "$ref": "#/$defs/nonEmpty" },
+        "fallbackByLocale": { "$ref": "#/$defs/localeMap" },
+        "escalationPolicy": { "$ref": "#/$defs/nonEmpty" }
+      }
+    },
+    "bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "permission", "progress", "result", "recovery"],
+      "properties": {
+        "schemaVersion": { "const": "1.1" },
+        "permission": { "$ref": "#/$defs/permission" },
+        "progress": { "$ref": "#/$defs/progress" },
+        "result": { "$ref": "#/$defs/result" },
+        "recovery": { "$ref": "#/$defs/recovery" }
+      }
+    }
+  }
+}
