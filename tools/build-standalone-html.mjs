@@ -8,7 +8,7 @@ import path from "node:path";
 const toolDir = path.dirname(fileURLToPath(import.meta.url));
 const toolName = path.basename(fileURLToPath(import.meta.url));
 const deploymentDir = path.resolve(toolDir, "../deployment");
-const sourcePath = path.join(deploymentDir, "index.html");
+const sourcePath = path.join(deploymentDir, "index.v0.9.1.html");
 const registryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.1.json");
 const historicalRegistryPath = path.join(deploymentDir, "assets/data/color-delivery.v0.9.0.json");
 const latestName = "landometer-design-system-v0.9.1-standalone.html";

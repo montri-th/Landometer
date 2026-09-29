@@ -1,0 +1,77 @@
+{
+  "checkedOn": "2026-09-29",
+  "status": "pass",
+  "checks": [
+    {
+      "name": "dry-run accepts complete source",
+      "status": "pass"
+    },
+    {
+      "name": "dry-run writes nothing",
+      "status": "pass"
+    },
+    {
+      "name": "dry-run records both local clients and separate account scope",
+      "status": "pass"
+    },
+    {
+      "name": "apply succeeds",
+      "status": "pass"
+    },
+    {
+      "name": "global preferences preserved",
+      "status": "pass"
+    },
+    {
+      "name": "single managed routing block",
+      "status": "pass"
+    },
+    {
+      "name": "historical resolver preserved at same relative base",
+      "status": "pass"
+    },
+    {
+      "name": "historical asset untouched",
+      "status": "pass"
+    },
+    {
+      "name": "historical apply explicit-only",
+      "status": "pass"
+    },
+    {
+      "name": "resolver UI updated",
+      "status": "pass"
+    },
+    {
+      "name": "flattened skill paths resolve",
+      "status": "pass"
+    },
+    {
+      "name": "both local clients installed",
+      "status": "pass"
+    },
+    {
+      "name": "replacement backups exist",
+      "status": "pass"
+    },
+    {
+      "name": "reapply is idempotent",
+      "status": "pass"
+    },
+    {
+      "name": "wrong nested release version rejected without mutation",
+      "status": "pass"
+    },
+    {
+      "name": "tampered asset rejected without mutation",
+      "status": "pass"
+    },
+    {
+      "name": "missing asset rejected without mutation",
+      "status": "pass"
+    }
+  ],
+  "checkCount": 17,
+  "scope": "Isolated temporary home, actual release package, both filesystem clients; no account/team activation or user-home mutation.",
+  "installerSha256": "f65924bb8969260ced6cbe10e734804e0fae24e687f9ab1be5d0e3fc0af779b1"
+}

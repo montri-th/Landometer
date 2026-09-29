@@ -1,4 +1,4 @@
-name: Validate active v0.9.1 release source
+name: Validate retained v0.9.1 evidence
 
 on:
   pull_request:
@@ -35,10 +35,10 @@ jobs:
         run: node tools/check-gradient-contrast.mjs --check
 
       - name: Validate repository release
-        run: node tools/validate-release.mjs
+        run: node tools/validate-v091-history.mjs
 
       - name: Verify experience contracts
-        run: node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs deployment/index.html
+        run: node skill/refine-landometer-experience/scripts/check-experience-contracts.mjs deployment/index.v0.9.1.html
 
       - name: Verify rendered container fit (SC-20 / [CONTAINER-FIT-01])
         run: |

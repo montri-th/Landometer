@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/claim-manifest.schema.1.1.json",
+  "title": "Landometer claim manifest v1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "releaseRef", "manifestId", "contentRelease", "owner", "records"],
+  "properties": {
+    "schemaVersion": { "const": "1.1" },
+    "releaseRef": { "const": "v0.9.4-mp1" },
+    "manifestId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$" },
+    "contentRelease": { "$ref": "#/$defs/nonEmpty" },
+    "owner": { "$ref": "#/$defs/nonEmpty" },
+    "records": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claimId", "recordRef", "sha256", "status", "publicProjectionEligible", "approvalAttestationRef", "approvalAttestationSha256", "evidenceCaptureRef", "evidenceCaptureSha256", "evidenceAttestationRef", "evidenceAttestationSha256"],
+        "properties": {
+          "claimId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$" },
+          "recordRef": { "type": "string", "pattern": "^[A-Za-z0-9._/-]+\\.json$" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "status": { "enum": ["draft", "reviewed", "approved", "superseded", "withdrawn", "expired"] },
+          "publicProjectionEligible": { "type": "boolean" },
+          "approvalAttestationRef": { "$ref": "#/$defs/safeRef" },
+          "approvalAttestationSha256": { "$ref": "#/$defs/sha256" },
+          "evidenceCaptureRef": { "$ref": "#/$defs/safeRef" },
+          "evidenceCaptureSha256": { "$ref": "#/$defs/sha256" },
+          "evidenceAttestationRef": { "$ref": "#/$defs/safeRef" },
+          "evidenceAttestationSha256": { "$ref": "#/$defs/sha256" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "safeRef": { "type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

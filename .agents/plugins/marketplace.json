@@ -1,0 +1,20 @@
+{
+  "name": "landometer",
+  "interface": {
+    "displayName": "Landometer"
+  },
+  "plugins": [
+    {
+      "name": "landometer-design-system",
+      "source": {
+        "source": "local",
+        "path": "./plugins/landometer-design-system"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.2",
+  "releaseRef": "v0.9.4-mp1",
+  "receiptId": "receipt.schema-fixture.identity-bytes.01",
+  "artifactId": "example.design-system.portfolio-brand-line.th",
+  "artifactBuildId": "fixture-authoring-01",
+  "checkId": "RECEIPT-SCHEMA-EXAMPLE",
+  "method": "automated",
+  "result": "fail",
+  "assertion": "This file demonstrates the receipt schema only and grants no artifact conformance state.",
+  "criterionSha256": "8a96fb35f7d1b2c742958b1161143834e17ddc20bc783f109120fc42cb77f2d5",
+  "protocolId": "lds-v0.9.4/RECEIPT-SCHEMA-EXAMPLE",
+  "owner": "qa-owner",
+  "checkedAt": "2026-09-01T01:00:00+07:00",
+  "subjectFiles": [
+    {
+      "path": "Landometer-Logo-TransparentBG.png",
+      "sha256": "8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92",
+      "mediaType": "image/png"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "path": "Landometer-Logo-TransparentBG.png",
+      "sha256": "8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92",
+      "mediaType": "image/png",
+      "kind": "other"
+    }
+  ],
+  "evidenceRefs": [
+    "Landometer-Logo-TransparentBG.png"
+  ],
+  "testCases": [
+    {
+      "id": "schema-example-only",
+      "fixture": "No artifact fixture",
+      "expected": "No conformance is granted",
+      "actual": "Schema shape only",
+      "result": "fail",
+      "evidenceRefs": [
+        "Landometer-Logo-TransparentBG.png"
+      ]
+    }
+  ],
+  "verification": {
+    "kind": "automated_runner",
+    "tool": "schema-example",
+    "toolVersion": "1.0",
+    "invocationId": "schema-example-only",
+    "startedAt": "2026-09-01T00:59:58+07:00",
+    "completedAt": "2026-09-01T00:59:59+07:00",
+    "exitCode": 1
+  },
+  "attestationRef": "conformance-receipt.example.attestation.json"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "landometer",
+  "owner": {
+    "name": "Landometer"
+  },
+  "metadata": {
+    "description": "Versioned Landometer design system assets and skills"
+  },
+  "plugins": [
+    {
+      "name": "landometer-design-system",
+      "source": "./plugins/landometer-design-system",
+      "version": "0.9.5",
+      "description": "Apply Landometer DS 0.9.5: approved colors, retained brand voice, exact assets and verifiable output."
+    }
+  ]
+}

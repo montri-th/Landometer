@@ -40,7 +40,7 @@ const OUTPUT_PATH = path.join(
   tmpdir(),
   "landometer-color-atlas.fragment.html",
 );
-const INDEX_PATH = path.join(PROJECT_ROOT, "deployment", "index.html");
+const INDEX_PATH = path.join(PROJECT_ROOT, "deployment", "index.v0.9.1.html");
 const START_MARKER = "<!-- COLOR_ATLAS_START -->";
 const END_MARKER = "<!-- COLOR_ATLAS_END -->";
 const SAMPLER_START_MARKER = "<!-- COLOR_SCALE_SAMPLER_START -->";

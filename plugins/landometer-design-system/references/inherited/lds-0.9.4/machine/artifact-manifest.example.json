@@ -1,0 +1,563 @@
+{
+  "schemaVersion": "3.2",
+  "release": {
+    "releaseRef": "v0.9.4-mp1",
+    "releaseTupleSha256": "a7b2543f6d71fcfcada9cc7535e488dd0b23a1cd46218c52765e7bf65ea4148d"
+  },
+  "artifact": {
+    "id": "example.design-system.portfolio-brand-line.th",
+    "buildCardRef": "build-card.example.json",
+    "buildCardSha256": "8d95290db03e2ef5874780551c1f7a13b2bee5cfde54a49e1c410632162160f2",
+    "artifactBuildId": "fixture-authoring-01",
+    "builtAt": "2026-09-01T00:40:00+07:00"
+  },
+  "resolution": {
+    "experienceProfile": "portfolio_orientation",
+    "secondaryExperienceProfiles": [],
+    "formatPack": "web.public.01",
+    "targetProfileRef": "target.web.responsive.360-1600.01",
+    "capabilityPacks": [
+      "claims",
+      "evidence",
+      "motion",
+      "agent_action"
+    ],
+    "resolvedRuleIds": [
+      "GOV-01",
+      "AUTHORITY-01",
+      "LAYER-01",
+      "COMPARE-01",
+      "EVIDENCE-01",
+      "OUTPUT-CLARITY-01",
+      "AHA-01",
+      "BRAND-01",
+      "LOGO-01",
+      "FAVICON-01",
+      "COLOR-01",
+      "SURFACE-01",
+      "TYPE-01",
+      "ICON-01",
+      "LAYOUT-01",
+      "CTRL-01",
+      "THEME-01",
+      "ASSET-DELIVERY-01",
+      "PROFILE-01",
+      "CAPABILITY-01",
+      "PARITY-01",
+      "NAV-01",
+      "NAV-02",
+      "BOOKMARK-01",
+      "CTA-01",
+      "CTA-02",
+      "MOTION-01",
+      "MOTION-02",
+      "MOTION-03",
+      "MOTION-04",
+      "MOTIF-01",
+      "MOTIF-02",
+      "MOTIF-03",
+      "MOTIF-04",
+      "MOTIF-05",
+      "MOTIF-06",
+      "A11Y-01",
+      "CLAIM-MACHINE-01",
+      "DISCOVERY-01",
+      "DISCOVERY-02",
+      "DISCOVERY-03",
+      "AGENT-01",
+      "SECURITY-01",
+      "WEBFMT-01",
+      "FORMAT-PARITY-01",
+      "COMPONENT-01",
+      "MEDIA-01",
+      "QA-01",
+      "RELEASE-01"
+    ],
+    "resolvedTestIds": [
+      "common.01",
+      "common.02",
+      "experience.portfolio_orientation.01",
+      "experience.portfolio_orientation.02",
+      "format.web.public.01.01",
+      "format.web.public.01.02",
+      "format.web.public.01.03",
+      "format.web.public.01.04",
+      "format.web.public.01.05",
+      "format.web.public.01.06",
+      "format.web.public.01.07",
+      "format.web.public.01.08",
+      "format.web.public.01.09",
+      "format.web.public.01.10",
+      "format.web.public.01.11",
+      "format.web.public.01.12",
+      "capability.claims.bound.01.01",
+      "capability.claims.bound.01.02",
+      "capability.claims.bound.01.03",
+      "capability.evidence.bound.01.01",
+      "capability.evidence.bound.01.02",
+      "capability.evidence.bound.01.03",
+      "capability.motion.approach.02.01",
+      "capability.motion.approach.02.02",
+      "capability.motion.approach.02.runtime.browser_observer.01",
+      "capability.motion.approach.02.runtime.browser_observer.02",
+      "capability.motion.approach.02.runtime.browser_observer.03",
+      "capability.agent.action.01.01",
+      "capability.agent.action.01.02",
+      "capability.agent.action.01.03",
+      "target.web.responsive.360-1600.01.fixture.360",
+      "target.web.responsive.360-1600.01.fixture.600",
+      "target.web.responsive.360-1600.01.fixture.900",
+      "target.web.responsive.360-1600.01.fixture.1200",
+      "target.web.responsive.360-1600.01.fixture.1440",
+      "target.web.responsive.360-1600.01.fixture.1600",
+      "target.web.responsive.360-1600.01.fixture.intermediate-stress",
+      "kit.web.base.01.control.01",
+      "kit.web.base.01.control.02",
+      "kit.web.base.01.control.03",
+      "kit.web.base.01.control.04",
+      "kit.web.base.01.control.05",
+      "kit.web.base.01.control.06",
+      "kit.web.base.01.control.07",
+      "kit.web.base.01.control.08",
+      "kit.web.base.01.control.09",
+      "kit.web.base.01.control.10",
+      "kit.web.base.01.control.11",
+      "kit.web.base.01.control.12",
+      "accessibility.web.keyboard",
+      "accessibility.web.screen-reader",
+      "accessibility.web.zoom-200",
+      "accessibility.web.reflow-400",
+      "accessibility.web.reduced-motion"
+    ],
+    "nonApplicableRuleIds": [
+      "EVID-05",
+      "DATAVIZ-01",
+      "DATAVIZ-02",
+      "DATAVIZ-03",
+      "GATE-01",
+      "DATAVIZ-04",
+      "DATAVIZ-05",
+      "MAP-01",
+      "APPFMT-01",
+      "DOCFMT-01",
+      "PDFFMT-01",
+      "DECKFMT-01",
+      "SOCIALFMT-01",
+      "CAROUSEL-01",
+      "SOCIAL-FEED-01"
+    ],
+    "exceptionRefs": []
+  },
+  "representation": {
+    "navigation": {
+      "mode": "site",
+      "brandDestinationRef": "destination.brand.landometer",
+      "destinations": [
+        {
+          "id": "destination.brand.landometer",
+          "role": "brand",
+          "label": "Landometer",
+          "labelByLocale": {
+            "th-TH": "Landometer",
+            "en": "Landometer"
+          },
+          "target": "./",
+          "level": "property",
+          "kind": "route",
+          "group": "primary",
+          "breakpointExposure": {
+            "desktop": "header",
+            "mobile": "header"
+          },
+          "current": "page"
+        },
+        {
+          "id": "destination.page.question",
+          "role": "page_local",
+          "label": "คำถามหลัก",
+          "labelByLocale": {
+            "th-TH": "คำถามหลัก",
+            "en": "Guiding question"
+          },
+          "target": "#question",
+          "level": "page",
+          "kind": "anchor",
+          "group": "page_local",
+          "breakpointExposure": {
+            "desktop": "side_bookmark",
+            "mobile": "disclosure"
+          },
+          "current": "none"
+        },
+        {
+          "id": "destination.page.protected-line",
+          "role": "page_local",
+          "label": "ข้อความที่คุ้มครอง",
+          "labelByLocale": {
+            "th-TH": "ข้อความที่คุ้มครอง",
+            "en": "Protected line"
+          },
+          "target": "#protected-line",
+          "level": "page",
+          "kind": "anchor",
+          "group": "page_local",
+          "breakpointExposure": {
+            "desktop": "side_bookmark",
+            "mobile": "disclosure"
+          },
+          "current": "location"
+        },
+        {
+          "id": "destination.page.source",
+          "role": "page_local",
+          "label": "แหล่งอ้างอิง",
+          "labelByLocale": {
+            "th-TH": "แหล่งอ้างอิง",
+            "en": "Source"
+          },
+          "target": "#source",
+          "level": "page",
+          "kind": "anchor",
+          "group": "page_local",
+          "breakpointExposure": {
+            "desktop": "side_bookmark",
+            "mobile": "disclosure"
+          },
+          "current": "none"
+        }
+      ],
+      "controlBudgets": {
+        "desktop": {
+          "brandRequired": true,
+          "maxControls": 4
+        },
+        "mobile": {
+          "brandRequired": true,
+          "maxControls": 2
+        },
+        "minimumDirectTarget": {
+          "value": 44,
+          "unit": "css_px"
+        }
+      },
+      "sideBookmark": "selected",
+      "sideBookmarkUserBenefit": "Keeps the guiding question, protected line, and source observation findable on a long bilingual page."
+    },
+    "actionIds": [
+      "inspect-claim",
+      "open-live-source"
+    ],
+    "claimIds": [
+      "claim.protected-line.cultural-activation.portfolio.v1"
+    ],
+    "claimManifestRef": "claim-manifest.example.json",
+    "claimManifestSha256": "db2fc8107192dc6dfcb3390fe7dc8b9ccb52455bb1f61d56c61b2510ef2e0bc0",
+    "claimAsOf": "2026-09-01T00:33:36+07:00",
+    "materialLimitations": [
+      {
+        "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+        "items": [
+          {
+            "id": "limitation.protected-line-boundary.01",
+            "text": "ข้อความนี้เป็นข้อความแบรนด์ของ Landometer ไม่ได้บอกข้อเท็จจริงเกี่ยวกับผลิตภัณฑ์ เมือง การจัดอันดับ หรือความสามารถ",
+            "textByLocale": {
+              "th-TH": "ข้อความนี้เป็นข้อความแบรนด์ของ Landometer ไม่ได้บอกข้อเท็จจริงเกี่ยวกับผลิตภัณฑ์ เมือง การจัดอันดับ หรือความสามารถ",
+              "en": "This is a Landometer brand line. It does not describe a product, city, ranking, or capability."
+            }
+          }
+        ]
+      }
+    ],
+    "localeStates": [
+      {
+        "locale": "th-TH",
+        "status": "source"
+      },
+      {
+        "locale": "en",
+        "status": "reviewed_translation"
+      }
+    ],
+    "outputClarity": {
+      "mode": "resolved_only",
+      "deliveryAudience": "public",
+      "disclosurePurpose": "design_system_reference",
+      "disclosureAuthorityRef": "disclosure-authority.example.json",
+      "disclosureAuthoritySha256": "182b050c34be1424de7f078a112bfd36f36cfd1719a08217787c38280a1d5e43",
+      "disclosureAttestationRef": "disclosure-authority.example.attestation.json",
+      "disclosureAttestationSha256": "ca8f9d0b9840fdaa71edb278281a54fcd7c79328f378f277f0e1fd1c2e6b8bff",
+      "internalGovernanceVisible": false,
+      "blockingDependencyRefs": [],
+      "placeholderCount": 0,
+      "materialLimitationRefs": [
+        "claim.protected-line.cultural-activation.portfolio.v1"
+      ]
+    }
+  },
+  "delivery": {
+    "files": [],
+    "contentInspections": [],
+    "assetBindings": [
+      {
+        "assetId": "font.arvo.latin.700",
+        "role": "text_font",
+        "surface": "display_text",
+        "registryRef": "asset-registry.json#font.arvo.latin.700",
+        "registrySha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+        "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37",
+        "approvalStatus": "approved",
+        "approvalReceiptRef": "asset-approval-receipt.json",
+        "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+        "fontRole": "display_latin",
+        "fontFamily": "Arvo",
+        "fontSubset": "latin",
+        "fontWeight": 700,
+        "fontFallback": "Georgia, Cambria, Times New Roman, serif",
+        "licenseOrPermission": "OFL-1.1"
+      },
+      {
+        "assetId": "font.ibm-plex-thai-looped.latin.700",
+        "role": "text_font",
+        "surface": "display_text",
+        "registryRef": "asset-registry.json#font.ibm-plex-thai-looped.latin.700",
+        "registrySha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+        "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526",
+        "approvalStatus": "approved",
+        "approvalReceiptRef": "asset-approval-receipt.json",
+        "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+        "fontRole": "display_thai",
+        "fontFamily": "IBM Plex Sans Thai Looped",
+        "fontSubset": "latin",
+        "fontWeight": 700,
+        "fontFallback": "Noto Sans Thai Looped, Leelawadee UI, Tahoma, sans-serif",
+        "licenseOrPermission": "OFL-1.1"
+      },
+      {
+        "assetId": "font.ibm-plex-thai-looped.thai.700",
+        "role": "text_font",
+        "surface": "display_text",
+        "registryRef": "asset-registry.json#font.ibm-plex-thai-looped.thai.700",
+        "registrySha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+        "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c",
+        "approvalStatus": "approved",
+        "approvalReceiptRef": "asset-approval-receipt.json",
+        "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+        "fontRole": "display_thai",
+        "fontFamily": "IBM Plex Sans Thai Looped",
+        "fontSubset": "thai",
+        "fontWeight": 700,
+        "fontFallback": "Noto Sans Thai Looped, Leelawadee UI, Tahoma, sans-serif",
+        "licenseOrPermission": "OFL-1.1"
+      },
+      {
+        "assetId": "font.bai-jamjuree.latin.400",
+        "role": "text_font",
+        "surface": "body_text",
+        "registryRef": "asset-registry.json#font.bai-jamjuree.latin.400",
+        "registrySha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+        "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19",
+        "approvalStatus": "approved",
+        "approvalReceiptRef": "asset-approval-receipt.json",
+        "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+        "fontRole": "body_ui",
+        "fontFamily": "Bai Jamjuree",
+        "fontSubset": "latin",
+        "fontWeight": 400,
+        "fontFallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif",
+        "licenseOrPermission": "OFL-1.1"
+      },
+      {
+        "assetId": "font.bai-jamjuree.thai.400",
+        "role": "text_font",
+        "surface": "body_text",
+        "registryRef": "asset-registry.json#font.bai-jamjuree.thai.400",
+        "registrySha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+        "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9",
+        "approvalStatus": "approved",
+        "approvalReceiptRef": "asset-approval-receipt.json",
+        "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+        "fontRole": "body_ui",
+        "fontFamily": "Bai Jamjuree",
+        "fontSubset": "thai",
+        "fontWeight": 400,
+        "fontFallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif",
+        "licenseOrPermission": "OFL-1.1"
+      },
+      {
+        "assetId": "icon.material-symbols-rounded.nav-7.300.01",
+        "role": "interface_icon",
+        "surface": "navigation",
+        "registryRef": "asset-registry.json#icon.material-symbols-rounded.nav-7.300.01",
+        "registrySha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+        "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
+        "approvalStatus": "approved",
+        "approvalReceiptRef": "asset-approval-receipt.json",
+        "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+        "licenseOrPermission": "Apache-2.0",
+        "fallback": "approved inline vector or visible text label; never a missing-glyph box",
+        "glyphs": [
+          "open_in_new",
+          "menu",
+          "close",
+          "light_mode",
+          "dark_mode",
+          "contrast",
+          "groups"
+        ]
+      }
+    ],
+    "metadataProjection": {
+      "kind": "web_discovery",
+      "pageKind": "article",
+      "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/th/",
+      "htmlLang": "th-TH",
+      "titleByLocale": {
+        "th-TH": "ตัวอย่าง Design System — ข้อความ cultural activation ของ Landometer",
+        "en": "Design System example — Landometer cultural-activation line"
+      },
+      "descriptionByLocale": {
+        "th-TH": "ตัวอย่างอ้างอิงสำหรับใช้ข้อความแบรนด์ Landometer อย่างถูกต้อง พร้อมข้อจำกัดที่ผู้อ่านเข้าใจได้",
+        "en": "A reference example for using a Landometer brand line correctly, with reader-friendly limitations."
+      },
+      "primaryHeadingByLocale": {
+        "th-TH": "Let us cultivate our city with data.",
+        "en": "Let us cultivate our city with data."
+      },
+      "primaryAnswerByLocale": {
+        "th-TH": "ข้อความนี้เป็น cultural activation ของ Landometer และไม่ใช่คำอ้างเรื่องผลิตภัณฑ์ เมือง หรือความสามารถ",
+        "en": "This line is Landometer's cultural activation, not a product, city, or capability claim."
+      },
+      "robots": {
+        "index": false,
+        "follow": true
+      },
+      "sitemap": {
+        "included": false,
+        "loc": null
+      },
+      "localeRoutes": [
+        {
+          "locale": "th-TH",
+          "url": "https://landometer.org/reference/portfolio-brand-line/th/",
+          "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/th/",
+          "alternates": [
+            {
+              "locale": "th-TH",
+              "url": "https://landometer.org/reference/portfolio-brand-line/th/"
+            },
+            {
+              "locale": "en",
+              "url": "https://landometer.org/reference/portfolio-brand-line/en/"
+            }
+          ]
+        },
+        {
+          "locale": "en",
+          "url": "https://landometer.org/reference/portfolio-brand-line/en/",
+          "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/en/",
+          "alternates": [
+            {
+              "locale": "th-TH",
+              "url": "https://landometer.org/reference/portfolio-brand-line/th/"
+            },
+            {
+              "locale": "en",
+              "url": "https://landometer.org/reference/portfolio-brand-line/en/"
+            }
+          ]
+        }
+      ],
+      "socialPreview": {
+        "titleByLocale": {
+          "th-TH": "Landometer — Visualize City, Shape Tomorrow.",
+          "en": "Landometer — Visualize City, Shape Tomorrow."
+        },
+        "descriptionByLocale": {
+          "th-TH": "ข้อความแบรนด์ที่คุ้มครอง พร้อมขอบเขตที่ถูกต้อง",
+          "en": "The protected brand line with its correct role boundary."
+        },
+        "url": "https://landometer.org/reference/portfolio-brand-line/th/",
+        "imageAssetId": null
+      },
+      "structuredDataBindings": [
+        {
+          "ref": "structured-data-projection.example.json",
+          "sha256": "2f98647b7dd1e1131192c9334159c3f4f7f30f50a0ad69e0eb9f0ca03929da36",
+          "schemaRef": "https://landometer.org/design-system/0.9.4/structured-data-projection.schema.1.1.json"
+        }
+      ],
+      "crawlerPurposePolicy": {
+        "ref": "crawler-purpose-policy.example.json",
+        "sha256": "b297e28e70b73557c4a7518a123913fc49747734ee340bc7cea0cad64b6c66bc",
+        "schemaRef": "https://landometer.org/design-system/0.9.4/crawler-purpose-policy.schema.1.0.json"
+      },
+      "visibleTruthOnly": true,
+      "initialHtmlRequired": true,
+      "protectedLineRoles": {
+        "visibleScene": "cultural_activation",
+        "metadataScene": null,
+        "socialPreviewScene": null
+      },
+      "iconSetId": "iconset.landometer.portfolio.symbol.01",
+      "titlePattern": "[page] · [product]"
+    },
+    "implementationBindings": {
+      "formatKit": {
+        "ref": "format-kits.json",
+        "sha256": "4ba82150e9e341787ffb99c889f493f3cdcc599f7cb7515033c993a2ab4d301f",
+        "schemaRef": "https://landometer.org/design-system/0.9.4/format-kits.schema.1.4.json",
+        "id": "kit.web.base.01"
+      },
+      "targetProfile": {
+        "ref": "target-profiles.json",
+        "sha256": "1e7bd71f7c45d1bdd9f04fc02e456d1ca9ec63af58f83425c70364e86df7133c",
+        "schemaRef": "https://landometer.org/design-system/0.9.4/target-profiles.schema.1.3.json",
+        "id": "target.web.responsive.360-1600.01"
+      },
+      "preset": {
+        "ref": "format-implementation.example.json",
+        "sha256": "a2be57698f91f674807eeff9bc00062a1eeca4421182e32c1e6f80061ccc3d02",
+        "schemaRef": "https://landometer.org/design-system/0.9.4/format-implementation.schema.1.6.json",
+        "id": "reference.web-public.brand-line.01"
+      }
+    },
+    "implementationSourceBindings": [],
+    "accessibilityProjection": {
+      "status": "not_tested",
+      "reason": "Accessibility evidence is absent at this conformance level."
+    }
+  },
+  "validation": {
+    "packageValidation": "passed",
+    "artifactAutomated": "pending",
+    "artifactManual": "pending",
+    "productionVerification": "pending",
+    "conformanceLevel": "package_validated",
+    "layerResults": {
+      "discovery": {
+        "result": "not_tested",
+        "reason": "This manifest is an authoring contract example; no artifact bytes are claimed.",
+        "owner": "artifact-owner",
+        "receiptRef": "not-applicable-until-artifact-qa",
+        "checkedAt": "2026-09-01T00:40:00+07:00"
+      },
+      "readability": {
+        "result": "not_tested",
+        "reason": "This manifest is an authoring contract example; no artifact bytes are claimed.",
+        "owner": "artifact-owner",
+        "receiptRef": "not-applicable-until-artifact-qa",
+        "checkedAt": "2026-09-01T00:40:00+07:00"
+      },
+      "action": {
+        "result": "not_tested",
+        "reason": "This manifest is an authoring contract example; no artifact bytes are claimed.",
+        "owner": "artifact-owner",
+        "receiptRef": "not-applicable-until-artifact-qa",
+        "checkedAt": "2026-09-01T00:40:00+07:00"
+      }
+    },
+    "resolvedTestResults": [],
+    "gateResults": [],
+    "promotionSnapshot": null
+  }
+}

@@ -497,7 +497,7 @@ try {
 let llmsSource = "";
 let llmsFilePresent = false;
 try {
-  llmsSource = await readFile(path.join(htmlDirectory, "llms.txt"), "utf8");
+  llmsSource = await readFile(path.join(htmlDirectory, path.basename(file) === "index.v0.9.1.html" ? "llms.v0.9.1.txt" : "llms.txt"), "utf8");
   llmsFilePresent = true;
 } catch {
   llmsSource = "";

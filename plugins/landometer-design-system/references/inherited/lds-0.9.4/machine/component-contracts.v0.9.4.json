@@ -1,0 +1,519 @@
+{
+  "schemaVersion": "1.2",
+  "releaseRef": "v0.9.4-mp1",
+  "status": "active",
+  "shape": "format-implementation.schema.json#/$defs/componentContract",
+  "note": "Governed component contracts introduced by the 0.9.3 candidate and carried into v0.9.4 unchanged (EvidenceCard, MotifFrame, MotionController, DataTable cellStates, MapLegend states). IDs are stable; an artifact-resolved implementation record copies a contract only for its exact format/runtime. component.brand-motion.01 of the withdrawn 0.9.2 candidate is superseded by component.motif-frame.01. Version 1.2 (0.9.3 candidate revision r2) adds the MOTIF-06 host-surface contract to MotifFrame; 0.9.4 changes no contract (MapLegend classes now resolve color-srgb-07.scales.json, whose class colours are reported under the DATAVIZ-04 hue audit).",
+  "contracts": [
+    {
+      "formatProfile": "web_public",
+      "runtime": "browser",
+      "contract": {
+        "componentId": "component.evidence-card.01",
+        "componentClass": "evidence_card",
+        "governingRuleIds": [
+          "EVID-05",
+          "EVIDENCE-01",
+          "CLAIM-MACHINE-01",
+          "COLOR-01",
+          "A11Y-01"
+        ],
+        "purpose": "Present one governed value with its state, dataset, source, date, boundary, limitation, permanent URL and receipt id so that a third-party AI answer or a link preview carries provenance the reader can verify.",
+        "nonPurpose": "It is not a decision card, not a chart, not identity, and never a control; it makes no claim beyond the bound claim record.",
+        "semanticRoles": [
+          "figure",
+          "definition_list",
+          "link"
+        ],
+        "contentContract": "Props value, unit, state (one of five EVID-05 states), dataset, source, asOf, boundary, limitation, url, receipt; Thai and English label sets; the 3px four-colour rule and the 3 × 3px measure line are decorative and aria-hidden; the one-line text fallback repeats every field in order.",
+        "localeStressFixtureIds": [
+          "format.web.public.01.08",
+          "target.web.responsive.360-1600.01.fixture.thai-latin-stress"
+        ],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "Value, unit, state glyph and label, dataset, source, as-of date, boundary, limitation, permanent link and receipt id are visible on one card without truncation at 320px width."
+          },
+          "hover": {
+            "status": "not_applicable",
+            "behavior": "Hover adds no information."
+          },
+          "focus": {
+            "status": "required",
+            "behavior": "The permanent link is the only focusable element and shows the governed focus ring."
+          },
+          "activePressed": {
+            "status": "not_applicable",
+            "behavior": "The card is not pressable."
+          },
+          "selectedCurrent": {
+            "status": "not_applicable",
+            "behavior": "The card carries no selection state."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "An unavailable claim blocks emission instead of rendering a disabled card."
+          },
+          "loading": {
+            "status": "not_applicable",
+            "behavior": "The card renders only from a resolved claim record."
+          },
+          "empty": {
+            "status": "required",
+            "behavior": "A value in state no_data, out_of_scope, suppressed or not_yet renders its glyph, reason and latest available value or expected date; the card never renders an empty value slot."
+          },
+          "error": {
+            "status": "not_applicable",
+            "behavior": "A record that fails to resolve blocks the card."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Following the link is not a success state."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "web_public",
+          "behavior": "Inline HTML with a one-line text fallback in the same DOM order; no logo, panel, gradient, motif or motion; the card survives copy-paste as plain text."
+        },
+        "accessibility": {
+          "name": "The card's accessible name is the value with unit and state in the reader's locale.",
+          "role": "figure with a definition list; the link is a native anchor.",
+          "value": "State is exposed as text, not colour or glyph alone.",
+          "order": "value → state → dataset → source → date → boundary → limitation → link → receipt.",
+          "status": "No live region; the card is static content."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/dataState/valueStates",
+          "tokens.v0.9.4.json#/evidenceCard",
+          "tokens.v0.9.4.json#/foundation/text.metadata",
+          "tokens.v0.9.4.json#/foundation/border.hairline"
+        ],
+        "evidencePermissionBoundary": "Every field comes from the bound claim record and its evidence capture; the card never widens scope, certainty or permission.",
+        "acceptanceFixtureIds": [
+          "EVID-05-A",
+          "EVID-05-B",
+          "EVID-05-C",
+          "EVIDENCE-01-A",
+          "accessibility.web.contrast"
+        ],
+        "antiPatterns": [
+          "Logo or gradient on the card",
+          "N/A or bare dash",
+          "Value without state",
+          "Rounded estimate presented as measured",
+          "Link that is not permanent",
+          "Motion or motif on the card"
+        ]
+      }
+    },
+    {
+      "formatProfile": "web_public",
+      "runtime": "browser",
+      "contract": {
+        "componentId": "component.motif-frame.01",
+        "componentClass": "motif_frame",
+        "governingRuleIds": [
+          "MOTION-04",
+          "MOTIF-01",
+          "MOTIF-02",
+          "MOTIF-03",
+          "MOTIF-04",
+          "MOTIF-05",
+          "MOTIF-06",
+          "MOTION-01",
+          "MEDIA-01",
+          "A11Y-01"
+        ],
+        "purpose": "Mount one registered motif (dial, rings, layers, slice, cultivate or the logo assembly) from the exact motif.v3 runtime bytes with a declared job and beat, replay it while visible under OWNER-MOTION-01 through the page's MotionController, and hold the governed final-state SVG everywhere else.",
+        "nonPurpose": "It is not identity of record, not navigation, not a favicon, not evidence, never a control, and never a product overlay (overlays use their own registered runtime).",
+        "semanticRoles": [
+          "presentation"
+        ],
+        "contentContract": "Attributes data-kind (dial|rings|layers|slice|cultivate|logo), data-job (one of the kind's allowedJobs in motif-register.v0.9.4.json; any other value throws and preflight fails), data-beat (opening|transition|closing, matching the kind), data-variant (full|quiet; the light-theme variant), data-variant-dark (optional, quiet only: MOTIF-06 theme swap), data-host-surface (required: a carrier id from motif-register.v0.9.4.json#/carrierPolicy/carriers, themed ids checked per rendered theme, <id>@light|@dark for a fixed ground; the pair must be in carrierPolicy.allowed or the frame is refused and not rendered), data-cycle-ms (≥ 2000; logo 6000); wraps <lm-motif kind=… autoplay=\"false\" [quiet] [ink=\"blue\" for full]> with the kind's final-state SVG in <noscript> (both SVGs in .lds-motif-noscript wrappers, data-theme-variant=\"light|dark\", when data-variant-dark is set); the frame paints invariant and theme-fixed carriers itself and compares the rendered ground behind it with the declared carrier; the frame owns one IntersectionObserver (threshold 0.14, rootMargin 0px 0px -8% 0px), calls play() on enter and every cycle while visible, clears the timer on exit, and subscribes to the page-level MotionController.",
+        "localeStressFixtureIds": [],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "The final state is visible before JavaScript runs and after every cycle."
+          },
+          "hover": {
+            "status": "not_applicable",
+            "behavior": "Hover does not start or stop the cycle."
+          },
+          "focus": {
+            "status": "not_applicable",
+            "behavior": "The element is aria-hidden and not focusable."
+          },
+          "activePressed": {
+            "status": "not_applicable",
+            "behavior": "Not pressable."
+          },
+          "selectedCurrent": {
+            "status": "not_applicable",
+            "behavior": "No selection state."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "Pause is a page-level control, not a component state."
+          },
+          "loading": {
+            "status": "not_applicable",
+            "behavior": "If the runtime never loads the static SVG stays in place (fail-open)."
+          },
+          "empty": {
+            "status": "not_applicable",
+            "behavior": "No content."
+          },
+          "error": {
+            "status": "required",
+            "behavior": "A MOTIF-06 refusal (carrier not allowed, ink without a governed record, rendered ground ≠ declared carrier, invalid swap) removes the frame from rendering (ladder rung L5) and logs the code; a runtime or SVG hash mismatch, an unregistered job or a forbidden region blocks delivery."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "web_public",
+          "behavior": "Browser only; document, PDF and deck rendered in a browser may mount it; exported static files, email and social creatives use the final-state SVG of the same kind and variant."
+        },
+        "accessibility": {
+          "name": "None; aria-hidden decorative motion.",
+          "role": "presentation",
+          "value": "None.",
+          "order": "Not in the reading order.",
+          "status": "prefers-reduced-motion holds the final state; pause shows the complete final state."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/motion/identity",
+          "tokens.v0.9.4.json#/motion/motifs",
+          "tokens.v0.9.4.json#/motion/motifs/carrierPolicy",
+          "tokens.v0.9.4.json#/motion/repetition",
+          "tokens.v0.9.4.json#/brand/blue",
+          "tokens.v0.9.4.json#/brand/beige",
+          "tokens.v0.9.4.json#/foundation"
+        ],
+        "evidencePermissionBoundary": "Motion carries no meaning; identity of record remains the approved PNG files; product overlays remain separate.",
+        "acceptanceFixtureIds": [
+          "MOTION-04-A",
+          "MOTION-04-B",
+          "MOTION-04-C",
+          "MOTIF-01-A",
+          "MOTIF-02-A",
+          "MOTIF-03-A",
+          "MOTIF-03-B",
+          "MOTIF-04-A",
+          "MOTIF-06-A",
+          "MOTIF-06-B",
+          "MOTION-01-B",
+          "accessibility.web.reduced-motion"
+        ],
+        "antiPatterns": [
+          "Editing runtime bytes",
+          "loop attribute without a viewport check",
+          "animation-iteration-count: infinite",
+          "Sampled wedge hex",
+          "Motif as favicon or OG image",
+          "Motif over the first answer, primary proof or primary action",
+          "A job outside the kind's allowedJobs",
+          "More than three moments on a route",
+          "Mixing a product overlay with a shared motif in one lockup",
+          "A full variant on Brand Blue, a dark surface or an atmosphere",
+          "A quiet variant on a light surface",
+          "A frame without data-host-surface",
+          "A declared carrier that differs from the painted ground",
+          "ink=\"beige\" or another ink without a governed file",
+          "Recolouring, plating or scrimming a motif to make it legible"
+        ]
+      }
+    },
+    {
+      "formatProfile": "web_public",
+      "runtime": "browser",
+      "contract": {
+        "componentId": "component.motion-controller.01",
+        "componentClass": "motion_controller",
+        "governingRuleIds": [
+          "MOTION-04",
+          "MOTIF-03",
+          "MOTION-01",
+          "A11Y-01",
+          "CTRL-01"
+        ],
+        "purpose": "Provide the single page-level pause/resume control that every MotifFrame (and any other OWNER-MOTION-01 replay) subscribes to; pause holds every motif at its complete final state, resume restarts cycles only for frames still at least 14% visible.",
+        "nonPurpose": "It is not a per-component toggle, not a preference store beyond the page, and never hides content.",
+        "semanticRoles": [
+          "button"
+        ],
+        "contentContract": "One <button class=\"lds-motion-pause\" type=\"button\" aria-pressed=\"false\"> per page with data-label-pause / data-label-resume in the page locale; exposes window.LandometerMotion { pause(), resume(), paused, subscribe(fn) }; MotifFrames register on connect and unregister on disconnect.",
+        "localeStressFixtureIds": [
+          "format.web.public.01.08"
+        ],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "Visible, reachable control with the pause label."
+          },
+          "hover": {
+            "status": "required",
+            "behavior": "Governed hover treatment; no motion."
+          },
+          "focus": {
+            "status": "required",
+            "behavior": "Governed focus ring; keyboard operable."
+          },
+          "activePressed": {
+            "status": "required",
+            "behavior": "aria-pressed true while paused; label switches to resume."
+          },
+          "selectedCurrent": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "Never disabled; with no motion on the page the control is omitted, not disabled."
+          },
+          "loading": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "empty": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "error": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "web_public",
+          "behavior": "Browser only; static formats have no control because nothing moves."
+        },
+        "accessibility": {
+          "name": "Pause motion / Resume motion in the page locale.",
+          "role": "button with aria-pressed",
+          "value": "Pressed state reflects paused.",
+          "order": "Before the first MotifFrame in reading order or in the page utility bar.",
+          "status": "State change is announced through aria-pressed."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/motion/repetition",
+          "tokens.v0.9.4.json#/control"
+        ],
+        "evidencePermissionBoundary": "None; the control carries no product meaning.",
+        "acceptanceFixtureIds": [
+          "MOTION-04-B",
+          "MOTIF-03-A",
+          "MOTIF-03-B",
+          "A11Y-01-A"
+        ],
+        "antiPatterns": [
+          "More than one controller per page",
+          "A controller that hides motifs instead of holding final state",
+          "Pause state persisted across pages without user intent"
+        ]
+      }
+    },
+    {
+      "formatProfile": "web_public",
+      "runtime": "browser",
+      "contract": {
+        "componentId": "component.data-table.01",
+        "componentClass": "data_table",
+        "governingRuleIds": [
+          "EVID-05",
+          "EVIDENCE-01",
+          "A11Y-01",
+          "FORMAT-PARITY-01"
+        ],
+        "purpose": "Present governed rows with a caption, headers, numeric alignment, a mobile strategy, and a cellStates prop that renders each value's EVID-05 state.",
+        "nonPurpose": "It is not a chart and does not compute or normalise values.",
+        "semanticRoles": [
+          "table",
+          "caption"
+        ],
+        "contentContract": "Props caption, columns, rows, cellStates (per-cell state from the five-value enum), noDataLabel is retained as a deprecated alias of the no_data label; state cells render the glyph plus reason in text.metadata; no_data rows sort last; suppressed cells print the threshold; not_yet cells print the expected date.",
+        "localeStressFixtureIds": [
+          "format.web.public.01.08"
+        ],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "Caption, headers and aligned numeric cells with units."
+          },
+          "hover": {
+            "status": "not_applicable",
+            "behavior": "Hover adds no information."
+          },
+          "focus": {
+            "status": "required",
+            "behavior": "Sortable headers, when present, are native buttons with visible focus."
+          },
+          "activePressed": {
+            "status": "not_applicable",
+            "behavior": "Not applicable beyond native button behaviour."
+          },
+          "selectedCurrent": {
+            "status": "required",
+            "behavior": "Sorted column is announced and marked without colour alone."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "Unavailable sort is omitted, not disabled."
+          },
+          "loading": {
+            "status": "required",
+            "behavior": "A loading table keeps its caption and headers and states that rows are loading."
+          },
+          "empty": {
+            "status": "required",
+            "behavior": "An empty result states what is unavailable, why, and the next action; it never renders 0 or N/A."
+          },
+          "error": {
+            "status": "required",
+            "behavior": "A failed load keeps the last good rows if any and states what failed."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "web_public",
+          "behavior": "Native table; on narrow viewports rows stack with header labels repeated; states keep glyph and reason in every layout."
+        },
+        "accessibility": {
+          "name": "Caption is the accessible name.",
+          "role": "table",
+          "value": "State cells expose the state label as text.",
+          "order": "Source order.",
+          "status": "Sort changes are announced politely."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/dataState/valueStates",
+          "tokens.v0.9.4.json#/foundation/text.metadata",
+          "tokens.v0.9.4.json#/typography"
+        ],
+        "evidencePermissionBoundary": "Rows come from bound claim/evidence IDs; the table never widens scope.",
+        "acceptanceFixtureIds": [
+          "EVID-05-A",
+          "EVID-05-B",
+          "A11Y-01-A"
+        ],
+        "antiPatterns": [
+          "N/A",
+          "Bare dash",
+          "Missing rendered as 0",
+          "State by colour alone",
+          "text.muted for state labels"
+        ]
+      }
+    },
+    {
+      "formatProfile": "web_public",
+      "runtime": "browser",
+      "contract": {
+        "componentId": "component.map-legend.01",
+        "componentClass": "map_legend",
+        "governingRuleIds": [
+          "MAP-01",
+          "DATAVIZ-02",
+          "DATAVIZ-03",
+          "EVID-05",
+          "A11Y-01"
+        ],
+        "purpose": "Explain a map overlay: layer, method, classes with units and denominator, and one row per present value state (noData, zero, outOfScope, suppressed, notYet), plus source, date and limitation.",
+        "nonPurpose": "It is not a control panel and does not restate claims beyond the bound record.",
+        "semanticRoles": [
+          "figure",
+          "list"
+        ],
+        "contentContract": "Props layer, method, classes (from color-srgb-07.scales.json classes 5/7/9 of one family and the current theme's LUT — dark classes are derived), unit with denominator, states (subset of the five), source, asOf, limitation; each state row shows swatch or pattern, glyph and label in text.metadata.",
+        "localeStressFixtureIds": [
+          "format.web.public.01.08"
+        ],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "Classes, unit with denominator, present state rows, source, date and limitation are visible."
+          },
+          "hover": {
+            "status": "not_applicable",
+            "behavior": "Hover adds no information."
+          },
+          "focus": {
+            "status": "not_applicable",
+            "behavior": "The legend is static content."
+          },
+          "activePressed": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "selectedCurrent": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          },
+          "loading": {
+            "status": "required",
+            "behavior": "A loading legend keeps its layer name and states that classes are loading."
+          },
+          "empty": {
+            "status": "required",
+            "behavior": "A layer with no rendered data shows the out_of_scope statement instead of an empty ramp."
+          },
+          "error": {
+            "status": "required",
+            "behavior": "A failed layer states what failed and keeps the last good legend if any."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Not applicable."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "web_public",
+          "behavior": "Inline figure adjacent to the map; static formats render the same rows beside the exported map."
+        },
+        "accessibility": {
+          "name": "Layer name is the accessible name.",
+          "role": "figure with a list",
+          "value": "Class ranges and state labels as text.",
+          "order": "classes → states → source → date → limitation.",
+          "status": "None."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/analyticalScales",
+          "tokens.v0.9.4.json#/dataState/valueStates",
+          "tokens.v0.9.4.json#/map"
+        ],
+        "evidencePermissionBoundary": "Legend text comes from the bound map overlay config; coverage is never implied beyond evidence.",
+        "acceptanceFixtureIds": [
+          "MAP-01-A",
+          "DATAVIZ-02-A",
+          "DATAVIZ-03-A",
+          "EVID-05-A",
+          "EVID-05-B"
+        ],
+        "antiPatterns": [
+          "Two families of one zone on one map",
+          "Missing rendered as lowest class",
+          "State rows omitted when the state occurs",
+          "Denominator omitted from the unit",
+          "Hand-typed dark class colours",
+          "A class anchor inside a retired hue window"
+        ]
+      }
+    }
+  ]
+}

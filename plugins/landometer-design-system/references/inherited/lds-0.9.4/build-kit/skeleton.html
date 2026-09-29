@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- FAVICON-01: title pattern [page] · [product], ≤ 60 characters, page first -->
+  <title>[หน้า] · [ผลิตภัณฑ์]</title>
+  <meta name="description" content="[what you will see] · [source · date] · [limitation]">
+  <link rel="canonical" href="https://[host]/[route]/th/">
+  <link rel="alternate" hreflang="th-TH" href="https://[host]/[route]/th/">
+  <link rel="alternate" hreflang="en" href="https://[host]/[route]/en/">
+  <meta name="robots" content="index, follow">
+
+  <!-- FAVICON-01: one approved icon set per property (iconset.landometer.portfolio.symbol.01), six sizes, never per page, never a status signal, never a motif -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-portfolio-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-portfolio-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="/icons/icon-portfolio-48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-portfolio-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F7F3">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#11191D">
+
+  <!-- SOCIALFMT-01 amendment: link preview bound to target.social.og.1200x630.01 — a static final state, never a motif frame -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="[object] [period/scope] · [product]">
+  <meta property="og:description" content="[what you will see] · [source · date] · [limitation]">
+  <meta property="og:url" content="https://[host]/[route]/th/">
+  <meta property="og:image" content="https://[host]/og/[route]-1200x630.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="[what the reader will see when they open the link]">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- THEME-01: auto follows prefers-color-scheme; an explicit reversible choice stamps data-theme="light|dark" on <html> -->
+  <!-- Governed colour projection (COLOR-01) + kit properties (light + DATAVIZ-03 dark) + components; fonts are the exact packaged WOFF2 files -->
+  <link rel="stylesheet" href="/lds/color-srgb-07.production.css">
+  <link rel="stylesheet" href="/lds/lds-0.9.4-ext.css">
+  <link rel="stylesheet" href="/lds/lds-0.9.4-components.css">
+  <link rel="stylesheet" href="/lds/motif/landometer-motifs.css">
+  <link rel="stylesheet" href="/lds/motif/motif-frame.css">
+  <style>
+    @font-face { font-family: "Arvo"; src: url("/lds/fonts/arvo-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+    @font-face { font-family: "IBM Plex Sans Thai Looped"; src: url("/lds/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; unicode-range: U+0E00-0E7F; }
+    @font-face { font-family: "Bai Jamjuree"; src: url("/lds/fonts/bai-jamjuree-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Bai Jamjuree"; src: url("/lds/fonts/bai-jamjuree-thai-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0E00-0E7F; }
+    @font-face { font-family: "Bai Jamjuree"; src: url("/lds/fonts/bai-jamjuree-latin-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Bai Jamjuree"; src: url("/lds/fonts/bai-jamjuree-thai-600-normal.woff2") format("woff2"); font-weight: 600; font-display: swap; unicode-range: U+0E00-0E7F; }
+    @font-face { font-family: "IBM Plex Sans Thai"; src: url("/lds/fonts/ibm-plex-sans-thai-thai-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; unicode-range: U+0E00-0E7F; }
+    @font-face { font-family: "JetBrains Mono"; src: url("/lds/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+    body { margin: 0; background: var(--surface-canvas); color: var(--text-primary); font-family: "Bai Jamjuree", system-ui, sans-serif; line-height: 1.5; }
+    main { max-inline-size: 1120px; margin-inline: auto; padding: 24px 16px 64px; display: grid; gap: 32px; }
+    h1 { font-family: "Arvo", "IBM Plex Sans Thai Looped", serif; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.25; margin: 0; text-wrap: balance; }
+    h2 { font-size: clamp(1.35rem, 2vw, 1.75rem); margin: 0 0 12px; }
+    header.site { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 16px; border-block-end: 1px solid var(--border-hairline); }
+    .identity { font-family: "Arvo", serif; font-weight: 700; color: var(--brand-blue); text-decoration: none; font-size: 1.25rem; } /* governed text identity when no role-approved header logo; never a motif */
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .hero { display: grid; gap: 24px; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 900px) { .hero { grid-template-columns: 3fr 2fr; } }
+    .cta { display: inline-flex; align-items: center; min-block-size: 44px; padding: 0 20px; border-radius: 999px; background: var(--brand-blue); color: #FFFFFF; text-decoration: none; font-weight: 600; }
+    .closing { display: grid; gap: 16px; justify-items: start; }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <a class="identity" href="/">Landometer</a>
+    <!-- MOTION-04 · component.motion-controller.01: exactly one page-level pause/resume control, before the first MotifFrame in reading order -->
+    <button class="lds-motion-pause" type="button" aria-pressed="false" data-label-pause="หยุดการเคลื่อนไหว · Pause motion" data-label-resume="เล่นต่อ · Resume motion">หยุดการเคลื่อนไหว · Pause motion</button>
+  </header>
+
+  <main>
+    <!-- Beat 1 INTENT · opening. The first answer is a forbidden region (MOTIF-04): the motif sits beside it, never over it. -->
+    <section class="hero" data-surface="hero" data-task-surface="hero">
+      <div>
+        <h1 data-region="first_answer">[คำตอบแรกของหน้า · first answer]</h1>
+        <p>[first useful value before any gate — AHA-01]</p>
+        <p><a class="cta" href="#evidence" data-region="primary_action">[primary action · ดูหลักฐาน]</a></p>
+      </div>
+      <!-- MOTION-04 / MOTIF-01…06 · component.motif-frame.01: kind logo · job animated_brand_opening · beat opening · exact runtime bytes; replays while ≥ 14% visible, stops off-screen -->
+      <!-- MOTIF-06: full variants sit on plain light carriers only; brand.beige does not change with the theme, and the frame paints it itself -->
+      <div class="lds-motif-frame" data-kind="logo" data-job="animated_brand_opening" data-beat="opening" data-variant="full" data-host-surface="brand.beige" data-cycle-ms="6000">
+        <lm-motif kind="logo" ink="blue" autoplay="false"></lm-motif>
+        <noscript><img src="/lds/motif/svg/logo-full.svg" alt="" width="600" height="300"></noscript>
+      </div>
+    </section>
+
+    <!-- Beat 2 AHA · the primary proof is a forbidden region: no motif inside this section's evidence grid -->
+    <section id="evidence" data-surface="evidence" data-task-surface="evidence" aria-labelledby="h-evidence">
+      <h2 id="h-evidence">EvidenceCard · component.evidence-card.01</h2>
+      <div class="grid" data-region="primary_proof">
+        <!-- one card per EVID-05 state; value, unit and state are props; every field comes from the bound claim record -->
+        <figure class="lds-evidence-card" data-state="measured_zero" aria-label="0 แห่ง · ศูนย์ (สำรวจแล้ว)">
+          <div class="lds-evidence-card__head"><span class="lds-trust-badge">ตรวจแล้ว · verified</span></div>
+          <div class="lds-evidence-card__value"><span>0</span><span class="lds-evidence-card__unit">แห่ง</span><span class="lds-evidence-card__state">ศูนย์ (สำรวจแล้ว) · Zero (measured)</span></div>
+          <p style="margin:0">ปี 2568 ไม่พบโรงงานใหม่ในตำบลนี้ (0 แห่ง)</p>
+          <dl><dt>dataset</dt><dd>[dataset id]</dd><dt>source</dt><dd>[publisher]</dd><dt>date</dt><dd>[as of]</dd><dt>boundary</dt><dd>[geography · grain]</dd><dt>limitation</dt><dd>[what this cannot establish]</dd></dl>
+          <div class="lds-evidence-card__foot"><span><i class="lds-evidence-card__measure" aria-hidden="true"></i><a href="https://[host]/claims/[claim-id]">[permanent URL]</a></span><span>receipt [id]</span></div>
+          <span class="lds-evidence-card__fallback">0 แห่ง · measured_zero · [dataset] · [publisher] · [as of] · [boundary] · [limitation] · https://[host]/claims/[claim-id] · receipt [id]</span>
+        </figure>
+        <figure class="lds-evidence-card" data-state="no_data" aria-label="— · ไม่มีข้อมูล">
+          <div class="lds-evidence-card__head"><span class="lds-trust-badge">ตรวจแล้ว · verified</span></div>
+          <div class="lds-evidence-card__value"><span>—</span><span class="lds-evidence-card__state">ไม่มีข้อมูล · No data</span></div>
+          <p style="margin:0">ยังไม่มีข้อมูลปี 2568 — ล่าสุดคือปี 2567 ([latest value] [unit])</p>
+          <dl><dt>dataset</dt><dd>[dataset id]</dd><dt>source</dt><dd>[publisher]</dd><dt>date</dt><dd>[as of]</dd><dt>boundary</dt><dd>[geography · grain]</dd><dt>limitation</dt><dd>[reason no data]</dd></dl>
+          <div class="lds-evidence-card__foot"><span><i class="lds-evidence-card__measure" aria-hidden="true"></i><a href="https://[host]/claims/[claim-id]">[permanent URL]</a></span><span>receipt [id]</span></div>
+          <span class="lds-evidence-card__fallback">— · no_data · latest [year] [value] · [dataset] · [publisher] · [as of] · [boundary] · [reason] · https://[host]/claims/[claim-id] · receipt [id]</span>
+        </figure>
+        <figure class="lds-evidence-card" data-state="out_of_scope" aria-label="นอกขอบเขตข้อมูล">
+          <div class="lds-evidence-card__head"><span class="lds-trust-badge">ตรวจแล้ว · verified</span></div>
+          <div class="lds-evidence-card__value"><span>นอกขอบเขต</span><span class="lds-evidence-card__state">นอกขอบเขตข้อมูล · Out of scope</span></div>
+          <p style="margin:0">[scope statement: พื้นที่นี้อยู่นอกขอบเขตของชุดข้อมูล]</p>
+          <dl><dt>dataset</dt><dd>[dataset id]</dd><dt>source</dt><dd>[publisher]</dd><dt>date</dt><dd>[as of]</dd><dt>boundary</dt><dd>[covered area]</dd><dt>limitation</dt><dd>[what is outside]</dd></dl>
+          <div class="lds-evidence-card__foot"><span><i class="lds-evidence-card__measure" aria-hidden="true"></i><a href="https://[host]/claims/[claim-id]">[permanent URL]</a></span><span>receipt [id]</span></div>
+          <span class="lds-evidence-card__fallback">out_of_scope · [scope statement] · [dataset] · [publisher] · [as of] · https://[host]/claims/[claim-id] · receipt [id]</span>
+        </figure>
+        <figure class="lds-evidence-card" data-state="suppressed" aria-label="‹5 · ปิดค่า">
+          <div class="lds-evidence-card__head"><span class="lds-trust-badge">ตรวจแล้ว · verified</span></div>
+          <div class="lds-evidence-card__value"><span>‹5</span><span class="lds-evidence-card__unit">[unit]</span><span class="lds-evidence-card__state">ปิดค่า (n&lt;5) · Suppressed (n&lt;5)</span></div>
+          <p style="margin:0">ปิดค่าเมื่อจำนวนต่ำกว่า 5 · เปิดค่าได้ที่ระดับ [aggregation level]</p>
+          <dl><dt>dataset</dt><dd>[dataset id]</dd><dt>source</dt><dd>[publisher]</dd><dt>date</dt><dd>[as of]</dd><dt>boundary</dt><dd>[geography · grain]</dd><dt>limitation</dt><dd>threshold n&lt;5</dd></dl>
+          <div class="lds-evidence-card__foot"><span><i class="lds-evidence-card__measure" aria-hidden="true"></i><a href="https://[host]/claims/[claim-id]">[permanent URL]</a></span><span>receipt [id]</span></div>
+          <span class="lds-evidence-card__fallback">‹5 [unit] · suppressed (n&lt;5; unlocks at [level]) · [dataset] · [publisher] · [as of] · [boundary] · https://[host]/claims/[claim-id] · receipt [id]</span>
+        </figure>
+        <figure class="lds-evidence-card" data-state="not_yet" aria-label="… · ยังไม่ถึงรอบข้อมูล">
+          <div class="lds-evidence-card__head"><span class="lds-trust-badge">ตรวจแล้ว · verified</span></div>
+          <div class="lds-evidence-card__value"><span>…</span><span class="lds-evidence-card__state">ยังไม่ถึงรอบข้อมูล · Not yet available</span></div>
+          <p style="margin:0">คาดว่าจะมีข้อมูล [expected date] ตามรอบ [source cadence]</p>
+          <dl><dt>dataset</dt><dd>[dataset id]</dd><dt>source</dt><dd>[publisher]</dd><dt>date</dt><dd>[expected]</dd><dt>boundary</dt><dd>[geography · grain]</dd><dt>limitation</dt><dd>[cadence]</dd></dl>
+          <div class="lds-evidence-card__foot"><span><i class="lds-evidence-card__measure" aria-hidden="true"></i><a href="https://[host]/claims/[claim-id]">[permanent URL]</a></span><span>receipt [id]</span></div>
+          <span class="lds-evidence-card__fallback">… · not_yet (expected [date], cadence [cadence]) · [dataset] · [publisher] · [boundary] · https://[host]/claims/[claim-id] · receipt [id]</span>
+        </figure>
+      </div>
+    </section>
+
+    <section data-surface="table" data-task-surface="table" aria-labelledby="h-table">
+      <h2 id="h-table">DataTable · cellStates</h2>
+      <table class="lds-table">
+        <caption>[question the table answers] · หน่วย [unit] · [as of]</caption>
+        <thead><tr><th scope="col">พื้นที่</th><th scope="col" class="num">[measure] ([unit])</th></tr></thead>
+        <tbody>
+          <tr><td data-label="พื้นที่">[area A]</td><td class="num" data-label="[measure]">1,240</td></tr>
+          <tr><td data-label="พื้นที่">[area B]</td><td class="num" data-state="measured_zero" data-label="[measure]"><span class="lds-cell-glyph">0</span><span class="lds-state-label">ศูนย์ (สำรวจแล้ว)</span></td></tr>
+          <tr><td data-label="พื้นที่">[area C]</td><td class="num" data-state="suppressed" data-label="[measure]"><span class="lds-cell-glyph">‹5</span><span class="lds-state-label">ปิดค่า n&lt;5 · เปิดที่ระดับอำเภอ</span></td></tr>
+          <tr><td data-label="พื้นที่">[area D]</td><td class="num" data-state="not_yet" data-label="[measure]"><span class="lds-cell-glyph">…</span><span class="lds-state-label">คาด [expected date]</span></td></tr>
+          <tr><td data-label="พื้นที่">[area E]</td><td class="num" data-state="out_of_scope" data-label="[measure]"><span class="lds-cell-glyph">นอกขอบเขต</span><span class="lds-state-label">[scope statement]</span></td></tr>
+          <!-- no_data: the hatch fills the glyph box only; the label is plain text beside it (owner decision 15 September 2026) -->
+          <tr data-state="no_data"><td data-label="พื้นที่">[area F]</td><td class="num" data-state="no_data" data-label="[measure]"><span class="lds-cell-glyph">—</span><span class="lds-state-label">ไม่มีข้อมูล 2568 · ล่าสุด 2567: [value]</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section data-surface="map" data-task-surface="map" data-scale-family="count" aria-labelledby="h-legend">
+      <h2 id="h-legend">MapLegend · state rows</h2>
+      <figure class="lds-map-legend">
+        <div class="lds-map-legend__title">[layer name]</div>
+        <div class="lds-map-legend__unit">[measure] · ต่อ [denominator] · classes 5 · family count (blue zone) · dark classes derived (DATAVIZ-03)</div>
+        <div class="lds-map-legend__classes" aria-hidden="true"><span style="background:var(--scale-count-low)"></span><span style="background:color-mix(in oklab, var(--scale-count-low), var(--scale-count-mid))"></span><span style="background:var(--scale-count-mid)"></span><span style="background:color-mix(in oklab, var(--scale-count-mid), var(--scale-count-high))"></span><span style="background:var(--scale-count-high)"></span></div>
+        <div class="lds-map-legend__labels"><span>[min]</span><span>[max] [unit]</span></div>
+        <ul class="lds-map-legend__states">
+          <li data-state="measured_zero"><span class="lds-legend-swatch"></span><span>0</span><span>ศูนย์ (สำรวจแล้ว)</span></li>
+          <li data-state="no_data"><span class="lds-legend-swatch"></span><span>—</span><span>ไม่มีข้อมูล</span></li>
+          <li data-state="out_of_scope"><span class="lds-legend-swatch"></span><span></span><span>นอกขอบเขตข้อมูล</span></li>
+          <li data-state="suppressed"><span class="lds-legend-swatch"></span><span>‹5</span><span>ปิดค่า (n&lt;5)</span></li>
+          <li data-state="not_yet"><span class="lds-legend-swatch"></span><span>…</span><span>ยังไม่ถึงรอบข้อมูล</span></li>
+        </ul>
+        <div class="lds-map-legend__source">[source] · [date] · [limitation]</div>
+      </figure>
+    </section>
+
+    <!-- Beat 3 NEXT ACTION · closing. Second and last motion moment of this route (budget: 3 per long route, 1 per task surface). -->
+    <section class="closing" data-surface="closing" data-task-surface="closing" aria-labelledby="h-closing">
+      <h2 id="h-closing">[ก้าวถัดไป · next action]</h2>
+      <p>[what the reader can do next · handoff to the receipt, the number or the decision log]</p>
+      <!-- component.motif-frame.01: kind cultivate · job handoff · beat closing · on the page canvas (surface.canvas changes with the theme),
+           so MOTIF-06 swaps the variant: full on the light canvas, quiet on the dark canvas (data-variant-dark). Without JavaScript the two
+           .lds-motif-noscript wrappers follow the same theme as the page (data-theme first, then the OS preference; motif-frame.css).
+           Alternatives that do not swap:
+           data-host-surface="brand.blue" with data-variant="quiet", or data-host-surface="surface.card@light" with data-variant="full". -->
+      <div class="lds-motif-frame" data-kind="cultivate" data-job="handoff" data-beat="closing" data-variant="full" data-variant-dark="quiet" data-host-surface="surface.canvas" data-cycle-ms="3000">
+        <lm-motif kind="cultivate" ink="blue" autoplay="false"></lm-motif>
+        <noscript><span class="lds-motif-noscript" data-theme-variant="light"><img src="/lds/motif/svg/cultivate-full.svg" alt="" width="600" height="300"></span><span class="lds-motif-noscript" data-theme-variant="dark"><img src="/lds/motif/svg/cultivate-quiet.svg" alt="" width="600" height="300"></span></noscript>
+      </div>
+      <!-- A third moment (rings or layers, beat transition, job spatial_transition | section_orientation | layering | quiet_divider) may sit between sections; a fourth is refused by MotifFrame and fails preflight. -->
+    </section>
+  </main>
+
+  <footer style="padding:24px 16px;border-block-start:1px solid var(--border-hairline);font-size:.8125rem;color:var(--text-metadata)">
+    [source ledger · rights · contact] — <a href="/llms.txt">llms.txt</a> is a navigation aid only
+  </footer>
+
+  <!-- MOTION-04: exact runtime bytes (never edited), then the MotionController, then MotifFrame -->
+  <script src="/lds/motif/landometer-motifs.js" defer></script>
+  <script src="/lds/motif/motion-controller.js" defer></script>
+  <script src="/lds/motif/motif-frame.js" defer></script>
+</body>
+</html>

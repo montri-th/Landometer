@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "attestationId": "attestation.claim.protected-line.v0.9.4-mp1",
+  "purpose": "claim_approval",
+  "subject": {
+    "ref": "claim-record.example.json",
+    "sha256": "035d97614bb666ecafca54607bfd65aa769ee94d92ada6cdf46db6bce87fd393",
+    "mediaType": "application/json"
+  },
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "expiresAt": null,
+  "signatureAlgorithm": "Ed25519",
+  "signatureEncoding": "base64",
+  "signature": "WMABi5VQ2R1b47yfT0FYk6M1+88O2CeMxi14q5w6nV1QKvSCJNkykFxGta7NA2WjrU6dVtKA0vbLCzcjI/L0Bg=="
+}
