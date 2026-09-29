@@ -19,7 +19,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-08.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.5.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20260929-lds095-03';
+const build = 'ui-20260930-lds095-04';
 const packagePath = 'package/assets/lds-0.9.5';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -208,7 +208,7 @@ html = html.replace('<details class="v090-sc-fold">', `<p class="v090-note" data
 html = html.replaceAll('color-delivery.v0.9.1.json · color-srgb-05 retained', 'release.json · v0.9.5-owner.1 · color-srgb-08');
 html = html.replaceAll('root, standalone และ Atlas ต้องอ้าง token/gradient ชุดเดียวกัน', 'คู่มือ Atlas และ package ต้องอ้าง token/gradient ชุดเดียวกัน');
 html = html.replaceAll('Root, standalone, and Atlas must resolve the same token and gradient set.', 'Guide, Atlas, and package must resolve the same token and gradient set.');
-html = html.replaceAll('<code>landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html</code>', '<code>v0.9.5-owner.1 · ui-20260929-lds095-03</code>');
+html = html.replaceAll('<code>landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html</code>', `<code>v0.9.5-owner.1 · ${build}</code>`);
 html = html.replaceAll('COLOR SET · SRGB-01', 'COLOR SET · SRGB-08');
 html = html.replaceAll('data-color-registry="color-srgb-05"', 'data-color-registry="color-srgb-08"');
 html = html.replaceAll('style="background:#89CEF6;', 'style="background:var(--series-08-fill);');
@@ -260,9 +260,13 @@ html = html.replace('    <section class="playground" id="play"', additions + '\n
 const resourcesStart = html.indexOf('<details class="library-group" id="library-resources">');
 const resourcesEnd = html.indexOf('</details>', resourcesStart);
 let resources = html.slice(resourcesStart, resourcesEnd);
+resources = resources.replace('คู่มือฉบับอ่านง่าย normative patch, skill ใช้ซ้ำ บันทึกการส่งมอบ SEO gate และตัวช่วยให้เครื่องค้นพบ', 'ไฟล์กติกาปัจจุบันสำหรับ Project Source คู่มือและ assets พร้อมบันทึก release และเอกสารเดิม');
+resources = resources.replace('Human-readable master, normative patch, reusable skill, release records, SEO gate, and machine-discovery aid.', 'Current Project Source rules, guide and assets, release records, and preserved history.');
+resources = resources.replace('<span class="library-count">10 records + gates</span>', `<span class="library-count">${bi('ปัจจุบัน + ประวัติ', 'Current + history')}</span>`);
 resources = resources.replace(/<p class="library-content-intro" data-th>[\s\S]*?<\/p>/, `<p class="library-content-intro" data-th>งานปัจจุบันใช้ชุด v0.9.5-owner.1 ที่เจ้าของอนุมัติ พร้อม color-srgb-08 คู่มือแบรนด์และ assets ใช้งานจริง เอกสาร 0.9.1 ด้านล่างยังอยู่ครบในฐานะประวัติและรากฐาน ไม่ใช่ชุดสีปัจจุบัน ตัวอย่างในหน้าไม่ใช่หลักฐานของเมืองหรือผลิตภัณฑ์</p>`);
 resources = resources.replace(/<p class="library-content-intro" data-en>[\s\S]*?<\/p>/, `<p class="library-content-intro" data-en>Current work uses the owner-approved v0.9.5-owner.1 distribution, color-srgb-08, brand guidance and ready assets. The complete 0.9.1 records remain below as history and foundations, not current color authority. Page examples are not city or product evidence.</p>`);
 resources = resources.replace('<div class="resource-grid">', `<div class="resource-grid lds095-current-resources">
+  <article><p class="resource-meta">CURRENT · DS 0.9.5 · PROJECT SOURCES</p><h5>${bi('ดาวน์โหลดกติกาครบชุดสำหรับ Project Source', 'Download the complete Project Source rule set')}</h5><p>${bi('0.9.5 เป็นกฎส่วนเพิ่ม: ต้องอ่านคู่มือใหม่พร้อม normative master 0.9.4 ที่สืบทอด และไฟล์ machine ที่ระบุรุ่นกับค่าสีจริง', '0.9.5 is an overlay: read the current guide together with the inherited 0.9.4 normative master and exact versioned machine files.')}</p><a class="download-action" href="project-source-0.9.5.md" id="resource-project-sources" download>${bi('ดาวน์โหลดรายการไฟล์ 0.9.5 และวิธีติดตั้ง', 'Download the 0.9.5 file list and setup')}</a><p><a href="${packagePath}/GUIDE.md" download>${bi('ดาวน์โหลดกฎส่วนเพิ่ม 0.9.5', 'Download 0.9.5 overlay')}</a> · <a href="package/references/inherited/lds-0.9.4/machine/Landometer%20Design%20System%20v0.9.4.md" download>${bi('ดาวน์โหลด normative master ที่สืบทอด', 'Download inherited normative master')}</a></p></article>
   <article><p class="resource-meta">CURRENT · DS 0.9.5 · OWNER-APPROVED · UNSIGNED</p><h5>${bi('คู่มือและเสียงแบรนด์ปัจจุบัน', 'Current guide and brand voice')}</h5><p><a href="${packagePath}/GUIDE.md">${bi('คู่มือ 0.9.5', '0.9.5 guide')}</a> · <a href="${packagePath}/brand/BRAND.md">Brand contract</a> · <a href="package/docs/brand-and-visual.md">Brand continuity</a></p></article>
   <article><p class="resource-meta">CURRENT · MACHINE + ASSETS</p><h5>${bi('สี ฟอนต์ โลโก้ และชุดสร้างงาน', 'Colors, fonts, logos and build kit')}</h5><p><a href="${packagePath}/machine/release.json">Release identity</a> · <a href="${packagePath}/machine/color-srgb-08.tokens.json">Colors</a> · <a href="${packagePath}/machine/color-srgb-08.scales.json">Scales</a> · <a href="${packagePath}/machine/lds-0.9.5.tokens.dtcg.json">Design tokens</a> · <a href="${packagePath}/build-kit/lds-0.9.5.css">Web CSS</a></p></article>
   <article><p class="resource-meta">CURRENT · INSTALL + VERIFY</p><h5>${bi('ติดตั้งและส่งต่อให้ทีม', 'Install and share with the team')}</h5><p><a href="https://github.com/montri-th/Landometer/releases/tag/v0.9.5">${bi('ดาวน์โหลดแพ็กเกจที่ล็อกเวอร์ชัน', 'Download the pinned package')}</a> · <a href="team-setup.md">${bi('คู่มือเปิดใช้แต่ละแพลตฟอร์ม', 'Platform activation guide')}</a> · <a href="site-manifest.json">${bi('บันทึกไฟล์หน้าเว็บปัจจุบัน', 'Current site receipt')}</a></p><p>${bi('การติดตั้งของคนหนึ่งไม่ยืนยันว่าทั้งทีมเปิดใช้แล้ว', 'One installation does not establish activation for the whole team.')}</p></article>

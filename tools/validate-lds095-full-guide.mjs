@@ -64,7 +64,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|5(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|08)/g, '<current-color-set>')
     .replace(/2026-09-(?:02|29)/g, '<release-date>')
-    .replace(/ui-202609(?:02-08|29-lds095-03)/g, '<current-site-build>');
+    .replace(/ui-202609(?:02-08|30-lds095-04)/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -156,7 +156,7 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.5'], ['data-machine-package-identity', 'v0.9.5-owner.1'],
-  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260929-lds095-03']
+  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260930-lds095-04']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.5\/"/.test(html), 'current guide canonical URL');
