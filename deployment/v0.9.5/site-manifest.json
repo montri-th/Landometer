@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.5",
   "colorSetId": "color-srgb-08",
   "packageId": "v0.9.5-owner.1",
-  "artifactBuildId": "ui-20260929-lds095-03",
+  "artifactBuildId": "ui-20260930-lds095-04",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -128,8 +128,8 @@
     },
     {
       "path": "v0.9.5/README.txt",
-      "bytes": 684,
-      "sha256": "8206b23069a34e0630aa762189db443b59cd131f5c70b0f145b841c93d1fec45"
+      "bytes": 721,
+      "sha256": "f6503b80a271e7e45e2902492df950ef15cd8331ccac10f5c0f8f60c8fe6d5b5"
     },
     {
       "path": "v0.9.5/app.css",
@@ -228,8 +228,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 1130391,
-      "sha256": "4d87e10ab6b94e3d3e11d88867057573ffb1e98491167725777a3890b49de23e"
+      "bytes": 1131906,
+      "sha256": "fab4c352c7f01b4b9ee1df44ea038a49e4785a5fedafbca393258558ea1dedd3"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
@@ -1647,6 +1647,11 @@
       "sha256": "9bd85f0c3007b4ddaac4a48872a926a4d9d588fa69d34d0568acd02e5bef478b"
     },
     {
+      "path": "v0.9.5/project-source-0.9.5.md",
+      "bytes": 4905,
+      "sha256": "9fd1d3b7df00a0d75d9ec2da01f2c4c40c273817ace3543ff04aaace31b9b3b4"
+    },
+    {
       "path": "v0.9.5/render.js",
       "bytes": 10952,
       "sha256": "9e02201199ba1a05aa7395e59857df6a4bb980d827586bf6888db02c507aee2c"
@@ -1663,8 +1668,8 @@
     },
     {
       "path": "v0.9.5/team-setup.md",
-      "bytes": 3530,
-      "sha256": "29dd88a6b17c97df7ed28737efb3773e47dfd9dfd45167acc52f1c647dc1c12f"
+      "bytes": 4068,
+      "sha256": "ff59a5f76ed76ae7f5d400f69d303730028609321a159b6013051a9f33316cc7"
     }
   ]
 }

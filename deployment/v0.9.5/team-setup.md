@@ -17,6 +17,8 @@
 | Human guide | `plugins/landometer-design-system/assets/lds-0.9.5/GUIDE.md` |
 | Per-surface evidence | `plugins/landometer-design-system/docs/activation-receipt.template.json` |
 
+For a ChatGPT Project that cannot read the verified plugin/skill files, use the [eight-file Project Source list](./project-source-0.9.5.md). Upload the linked Markdown and JSON files individually, apply the stated rule order in Project instructions, then test in a new chat. The 0.9.5 guide is an overlay on the inherited 0.9.4 normative master; neither the guide alone nor the historical 0.9.1 master is the complete current source. A Project Source upload does not install native fonts, logos, CSS, validators or Claude Design assets.
+
 The repository marketplace is named `landometer`, distinct from an operator’s existing `personal` marketplace. It must be imported/registered before a plugin manager can install from it. The local filesystem installer does not edit marketplace or account settings. Avoid installing both the standalone skill and plugin to the same client unless needed; they carry the same source but can appear twice in discovery.
 
 ## Local install and rollback

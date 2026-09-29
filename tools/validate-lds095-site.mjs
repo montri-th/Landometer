@@ -14,12 +14,12 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.5' && manifest.colorSetId === 'color-srgb-08', 'release identity');
 check(manifest.packageId === 'v0.9.5-owner.1', 'unchanged approved package identity');
-check(manifest.artifactBuildId === 'ui-20260929-lds095-03', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20260930-lds095-04', 'full-guide website build identity');
 check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
 check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
 const manifestPaths = manifest.assets.map(asset => asset.path);
 check(new Set(manifestPaths).size === manifestPaths.length, 'manifest paths are unique');
-for (const required of ['index.html', 'llms.txt', 'v0.9.5/index.html', 'v0.9.5/color-atlas.html', 'v0.9.5/data.js', 'v0.9.5/scoped-atlas.css', 'v0.9.5/embedded-atlas.js', 'v0.9.5/full-guide.js', 'v0.9.5/guide-token-aliases.css']) {
+for (const required of ['index.html', 'llms.txt', 'v0.9.5/index.html', 'v0.9.5/color-atlas.html', 'v0.9.5/project-source-0.9.5.md', 'v0.9.5/data.js', 'v0.9.5/scoped-atlas.css', 'v0.9.5/embedded-atlas.js', 'v0.9.5/full-guide.js', 'v0.9.5/guide-token-aliases.css']) {
   check(manifestPaths.includes(required), `manifest covers ${required}`);
 }
 for (const asset of manifest.assets) {
@@ -37,6 +37,11 @@ for (const id of ['start', 'categories', 'library', 'scale-lab', 'atmospheres'])
   check(atlas.includes(`id="${id}"`), `atlas retains static content ${id}`);
 }
 check(html.includes('id="lds095-color-atlas"') && html.includes('class="lds095-color-atlas"'), 'full guide integrates current approved color atlas inline');
+check(html.includes('id="resource-project-sources"') && html.includes('href="project-source-0.9.5.md"'), 'current Project Source download is visible');
+const projectSources = read('project-source-0.9.5.md');
+for (const name of ['GUIDE.md', 'BRAND.md', 'Landometer%20Design%20System%20v0.9.4.md', 'release.json', 'policy.json', 'tokens.v0.9.5.json', 'color-srgb-08.tokens.json', 'color-srgb-08.scales.json']) {
+  check(projectSources.includes(name), `Project Source list names ${name}`);
+}
 const context = {window: {}};
 vm.runInNewContext(read('data.js'), context, {timeout: 5000});
 const D = context.window.LDS_CANDIDATE;
