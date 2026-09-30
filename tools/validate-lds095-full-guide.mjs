@@ -67,7 +67,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|5(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|08)/g, '<current-color-set>')
     .replace(/2026-09-(?:02|29)/g, '<release-date>')
-    .replace(/ui-202609(?:02-08|30-lds095-(?:04|standalone-r2))/g, '<current-site-build>');
+    .replace(/ui-202609(?:02-08|30-lds095-(?:04|r2-docs1))/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -129,7 +129,7 @@ for (const state of ['measured', 'measured_zero', 'no_data', 'out_of_scope', 'su
 // Actual cascade, focus visibility and narrow/desktop geometry are reviewed
 // in the browser; this is deliberately not a CSS layout simulator.
 const guideOverrides = read('deployment/v0.9.5/full-guide.css').replace(/\/\*[\s\S]*?\*\//g, '');
-check(html.includes('href="full-guide.css?build=ui-20260930-lds095-standalone-r2"'), 'current guide loads navigation and integration overrides');
+check(html.includes('href="full-guide.css?build=ui-20260930-lds095-r2-docs1"'), 'current guide loads navigation and integration overrides');
 for (const state of ['page', 'location']) {
   const rules = [...guideOverrides.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(rule => rule[1].split(',').some(selector => selector.trim() === `.nav-panel a[aria-current="${state}"]`));
   const shadows = rules.flatMap(rule => [...rule[2].matchAll(/(?:^|;)\s*box-shadow\s*:\s*([^;]+)/g)].map(match => match[1].trim()));
@@ -159,7 +159,7 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.5'], ['data-machine-package-identity', 'v0.9.5-owner.1'],
-  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260930-lds095-standalone-r2']
+  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260930-lds095-r2-docs1']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.5\/"/.test(html), 'current guide canonical URL');
@@ -176,11 +176,15 @@ check(JSON.stringify(inlineHex(sharedGradients(original))) === JSON.stringify(in
 const productCards = source => [...source.matchAll(/<(article)\b[^>]*class="atlas-product-card"[^>]*>/g)]
   .map(start => balancedElement(source, start));
 const originalProducts = productCards(original), currentProducts = productCards(html);
-check(currentProducts.length === 4, 'complete atlas retains four product identity cards');
+check(currentProducts.length === 4, 'complete atlas retains all four product color cards');
 const currentProductTokens = JSON.parse(read('plugins/landometer-design-system/assets/lds-0.9.5/machine/color-srgb-08.tokens.json')).values.product;
 for (const [product, themes] of Object.entries(currentProductTokens)) {
-  const card = currentProducts.find(value => value.includes(`product.${product}.gradient`)) ?? '';
-  check(card.includes('data-scope="product-identity"') && card.includes('Product identity only'), `product identity boundary ${product}`);
+  const card = currentProducts.find(value => product === 'citywiki' ? value.includes('data-product="citywiki"') : value.includes(`product.${product}.gradient`)) ?? '';
+  if (product === 'citywiki') {
+    check(card.includes('data-scope="product-color-pair-preview"') && !card.includes('product.citywiki.gradient') && !card.includes('Product identity only'), 'CityWiki pair preview does not invent a normative gradient token or identity approval');
+    check(text(card).includes('Illustrative primary/accent pairing') && text(card).includes('ยังไม่มีสูตร gradient อัตลักษณ์ CityWiki ที่อนุมัติ'), 'CityWiki illustrative scope is explicit in both languages');
+    check(text(card).includes('Identity use requires an approved recipe and scope in the Add-on'), 'CityWiki identity-gradient use routes to an actual approved Add-on record');
+  } else check(card.includes('data-scope="product-identity"') && card.includes('Product identity only'), `product identity boundary ${product}`);
   for (const theme of ['light', 'dark']) {
     const start = new RegExp(`<(figure)\\b[^>]*data-theme-surface="${theme}"[^>]*>`).exec(card);
     const figure = balancedElement(card, start) ?? '';

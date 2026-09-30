@@ -19,7 +19,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-08.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.5.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20260930-lds095-standalone-r2';
+const build = 'ui-20260930-lds095-r2-docs1';
 const packagePath = 'package/assets/lds-0.9.5';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -149,12 +149,17 @@ completeAtlas = completeAtlas.replaceAll('<strong>18 × 41</strong>', '<strong>4
 completeAtlas = completeAtlas.replace(/<p><span data-th lang="th">LUT ด้านล่างอ่านจาก scales\.json[\s\S]*?<\/p>/, `<p>${bi('LUT ปัจจุบันอ่านจาก color-srgb-08.scales.json ของ v0.9.5-owner.1 ใช้เป็นชุดสีที่ตรวจสอบได้ ไม่ใช่หลักฐานของผลิตภัณฑ์ งานวิเคราะห์จริงต้อง bind schema, release, unit และ grain ที่เข้ากันก่อนใช้', 'Current LUTs come from color-srgb-08.scales.json in v0.9.5-owner.1. They are exact color assets, not product evidence. Real analysis must bind compatible schema, release, unit and grain before use.')}</p>`);
 completeAtlas = completeAtlas.replaceAll('color-srgb-05 retained', 'color-srgb-08');
 // Foundation/semantic/map and opacity/depth are unchanged registry values.
-// Product identity is regenerated from the current registry so the retained
-// CityWiki example cannot silently advertise its old warm identity.
+// Product previews use current registry values. CityWiki supplies primary/accent
+// roles, so its derived illustration must not claim an approved gradient recipe.
 completeAtlas = completeAtlas.replace(/<article class="atlas-product-card"[\s\S]*?<\/article>/g, card => {
   const match = card.match(/<code>product\.([^.]+)\.gradient<\/code>/);
   const product = match && values.product[match[1]];
   if (!product) return card; // ijji's approved cool identity is retained exactly.
+  if (match[1] === 'citywiki') {
+    card = card.replace('data-scope="product-identity"', 'data-scope="product-color-pair-preview" data-product="citywiki"')
+      .replace('<code>product.citywiki.gradient</code>', `<code>${bi('คู่สี primary / accent', 'Primary / accent pair')}</code>`)
+      .replace(/<p class="atlas-scope-note">[\s\S]*?<\/p>/, `<p class="atlas-scope-note">${bi('ตัวอย่างแสดงสี primary และ accent ร่วมกัน LDS และ Add-on ปัจจุบันยังไม่มีสูตร gradient อัตลักษณ์ CityWiki ที่อนุมัติ ใช้เป็นอัตลักษณ์ได้เมื่อมีสูตรและขอบเขตที่อนุมัติใน Add-on เท่านั้น', 'Illustrative primary/accent pairing. Current LDS and Add-on files do not supply an approved CityWiki identity-gradient recipe. Identity use requires an approved recipe and scope in the Add-on.')}</p>`);
+  }
   return card.replace(/<figure class="atlas-gradient-theme atlas-gradient-theme--pinned" data-theme-surface="(light|dark)">[\s\S]*?<\/figure>/g, (_figure, theme) => {
     const colors = product[theme];
     const stops = colors.map((color, i) => `${color} ${i * 100 / (colors.length - 1)}%`).join(', ');
@@ -269,7 +274,7 @@ resources = resources.replace('<div class="resource-grid">', `<div class="resour
   <article><p class="resource-meta">CURRENT · DS 0.9.5 · ONE FILE</p><h5>${bi('Normative v0.9.5 ครบในไฟล์เดียว', 'Complete v0.9.5 normative in one file')}</h5><p>${bi('โครงเอกสาร 0.9.1 ที่อัปเดตทุกหมวดเป็น 0.9.5 รวมกฎแบรนด์ ภาพ motion ส่วนประกอบ และข้อมูลสำหรับเครื่องไว้ด้วยกัน เลือกไฟล์เดียวแล้วใช้ได้ทั้งคนและ AI', 'The 0.9.1 document structure, updated throughout to 0.9.5. Brand, visuals, motion, components and exact machine data are consolidated for people and AI.')}</p><a class="download-action" href="normative/Landometer-Design-System-v0.9.5.md" id="resource-project-sources" download>${bi('ดาวน์โหลด normative v0.9.5 · ไฟล์เดียว', 'Download v0.9.5 normative · one file')}</a><p><a href="normative/Landometer-Design-System-v0.9.5.json" download>${bi('JSON สำหรับเครื่อง', 'Machine JSON')}</a> · <a href="project-source-0.9.5.md">${bi('วิธีติดตั้ง LDS + Add-on', 'LDS + Add-on setup')}</a></p><p><a href="normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md" download>ijji Add-on</a> · <a href="normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md" download>CityChat Add-on</a> · <a href="normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md" download>CityWiki Add-on</a> ${bi('Add-on แยกไฟล์ · ใช้คู่กับ LDS ฉบับเต็ม', 'Separate Add-ons · use alongside the complete LDS')}</p></article>
   <article><p class="resource-meta">CURRENT · DS 0.9.5 · OWNER-APPROVED · UNSIGNED</p><h5>${bi('คู่มือและเสียงแบรนด์ปัจจุบัน', 'Current guide and brand voice')}</h5><p>${bi('เสียงแบรนด์ ภาพ และรายละเอียดที่สืบทอดรวมอยู่ใน normative ปัจจุบันแล้ว', 'Brand voice, visuals and retained detail are integrated into the current normative.')}</p><p><a href="normative/Landometer-Design-System-v0.9.5.md">${bi('อ่านกติกาแบรนด์ฉบับสมบูรณ์', 'Read the complete brand rules')}</a></p></article>
   <article><p class="resource-meta">CURRENT · MACHINE + ASSETS</p><h5>${bi('สี ฟอนต์ โลโก้ และชุดสร้างงาน', 'Colors, fonts, logos and build kit')}</h5><p><a href="${packagePath}/machine/release.json">Release identity</a> · <a href="${packagePath}/machine/color-srgb-08.tokens.json">Colors</a> · <a href="${packagePath}/machine/color-srgb-08.scales.json">Scales</a> · <a href="${packagePath}/machine/lds-0.9.5.tokens.dtcg.json">Design tokens</a> · <a href="${packagePath}/build-kit/lds-0.9.5.css">Web CSS</a></p></article>
-  <article><p class="resource-meta">CURRENT · INSTALL + VERIFY</p><h5>${bi('ติดตั้งและส่งต่อให้ทีม', 'Install and share with the team')}</h5><p><a href="https://github.com/montri-th/Landometer/releases/tag/v0.9.5-standalone-r2">${bi('ดาวน์โหลดแพ็กเกจที่ล็อกเวอร์ชัน', 'Download the pinned package')}</a> · <a href="team-setup.md">${bi('คู่มือเปิดใช้แต่ละแพลตฟอร์ม', 'Platform activation guide')}</a> · <a href="site-manifest.json">${bi('บันทึกไฟล์หน้าเว็บปัจจุบัน', 'Current site receipt')}</a></p><p>${bi('การติดตั้งของคนหนึ่งไม่ยืนยันว่าทั้งทีมเปิดใช้แล้ว', 'One installation does not establish activation for the whole team.')}</p></article>
+  <article><p class="resource-meta">CURRENT · INSTALL + VERIFY</p><h5>${bi('ติดตั้งและส่งต่อให้ทีม', 'Install and share with the team')}</h5><p><a href="https://github.com/montri-th/Landometer/releases/tag/v0.9.5-standalone-r2-docs1">${bi('ดาวน์โหลดแพ็กเกจที่ล็อกเวอร์ชัน', 'Download the pinned package')}</a> · <a href="team-setup.md">${bi('คู่มือเปิดใช้แต่ละแพลตฟอร์ม', 'Platform activation guide')}</a> · <a href="site-manifest.json">${bi('บันทึกไฟล์หน้าเว็บปัจจุบัน', 'Current site receipt')}</a></p><p>${bi('การติดตั้งของคนหนึ่งไม่ยืนยันว่าทั้งทีมเปิดใช้แล้ว', 'One installation does not establish activation for the whole team.')}</p></article>
 </div><h4>${bi('เอกสารเดิมและประวัติจาก 0.9.1', 'Preserved 0.9.1 documents and history')}</h4><p>${bi('คงชื่อรุ่น วันที่ checksum และขอบเขตเดิมไว้ เพื่อให้ตรวจย้อนกลับได้', 'Original versions, dates, checksums and boundaries remain unchanged for traceability.')}</p><div class="resource-grid lds095-historical-resources" data-resource-scope="historical">`);
 resources = resources.replaceAll('OWNER-APPROVED · MARKDOWN · 0.9.1-R8', 'HISTORICAL · OWNER-APPROVED · MARKDOWN · 0.9.1-R8');
 resources = resources.replaceAll('MACHINE-READABLE · RELEASE CONTEXT', 'HISTORICAL · MACHINE-READABLE · 0.9.1 RELEASE CONTEXT');

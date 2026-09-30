@@ -2,7 +2,7 @@
 
 ใช้ release เดียวกันทั้งทีม: คู่มือสำหรับคน + token/gradient + ฟอนต์/โลโก้ + skill + ตัวตรวจ ไม่ต้องคัดสีเอง คู่มือนี้อธิบายวิธีเปิดใช้ ไม่ใช่หลักฐานว่าทุกบัญชีติดตั้งแล้ว
 
-## Project Source — ไฟล์เดียวต่อโปรเจกต์
+## Project Source — LDS หนึ่งไฟล์ · งานผลิตภัณฑ์ใช้สองไฟล์คู่กัน
 
 อัปโหลด `Landometer-Design-System-v0.9.5.md` ฉบับเต็มจาก [หน้าดาวน์โหลด normative](https://montri-th.github.io/Landometer/v0.9.5/project-source-0.9.5.md) เข้า Project Sources / Files / Knowledge ทุก Project ที่ใช้ LDS งาน ijji ให้เพิ่ม `ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md`; งาน CityChat ให้เพิ่ม `CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md` เป็น **สองไฟล์คู่กัน** CityWiki ใช้ LDS คู่กับ Add-on ของตนเช่นกัน
 
@@ -12,7 +12,7 @@ LDS เป็นกฎกลางฉบับเต็มตามโครง 
 
 ## เริ่มใช้ในเครื่อง — Codex และ Claude Code
 
-ดาวน์โหลดหรือ clone repository ที่ tag `v0.9.5-standalone-r2` หรือ commit ที่ตรงกันของ DS 0.9.5 แล้วเปิดโฟลเดอร์นั้น ต้องมี Python 3 และ Node.js:
+ดาวน์โหลดหรือ clone repository ที่ tag `v0.9.5-standalone-r2-docs1` หรือ commit ที่ตรงกันของ DS 0.9.5 แล้วเปิดโฟลเดอร์นั้น ต้องมี Python 3 และ Node.js:
 
 ```sh
 python3 tools/install-lds095.py
