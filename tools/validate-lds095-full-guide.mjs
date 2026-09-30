@@ -179,7 +179,7 @@ const originalProducts = productCards(original), currentProducts = productCards(
 check(currentProducts.length === 4, 'complete atlas retains all four product color cards');
 const currentProductTokens = JSON.parse(read('plugins/landometer-design-system/assets/lds-0.9.5/machine/color-srgb-08.tokens.json')).values.product;
 for (const [product, themes] of Object.entries(currentProductTokens)) {
-  const card = currentProducts.find(value => product === 'citywiki' ? value.includes('data-product="citywiki"') : value.includes(`product.${product}.gradient`)) ?? '';
+  const card = currentProducts.find(value => value.includes(`data-product="${product}"`)) ?? '';
   if (product === 'citywiki') {
     check(card.includes('data-scope="product-color-pair-preview"') && !card.includes('product.citywiki.gradient') && !card.includes('Product identity only'), 'CityWiki pair preview does not invent a normative gradient token or identity approval');
     check(text(card).includes('Illustrative primary/accent pairing') && text(card).includes('ยังไม่มีสูตร gradient อัตลักษณ์ CityWiki ที่อนุมัติ'), 'CityWiki illustrative scope is explicit in both languages');
@@ -193,9 +193,17 @@ for (const [product, themes] of Object.entries(currentProductTokens)) {
     check(text(figure).includes(themes[theme].join(' → ')), `current product gradient labels ${product}/${theme}`);
   }
 }
+const citymeterCard = currentProducts.find(value => value.includes('data-product="citymeter"')) ?? '';
+const retainedCitymeter = JSON.parse(read('deployment/assets/data/color-delivery.v0.9.0.json')).productIdentityGradients.citymeter;
+check(JSON.stringify(retainedCitymeter) === JSON.stringify(currentProductTokens.citymeter), 'CityMETER retained approved recipe matches both current theme pairs exactly');
+check(read('normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml').includes('citymeter: unchanged') && citymeterCard.includes('product-identity-gradients.approval.yml') && text(citymeterCard).includes('Retained approved identity recipe'), 'CityMETER identity claim is explicitly tied to its retained owner record');
+check(text(atlas).includes('Product colors—identity recipes and pair previews') && text(atlas).includes('แยกสูตรอัตลักษณ์ที่อนุมัติแล้วออกจากตัวอย่างคู่สี'), 'product section distinguishes approved recipes from illustrative pairings in both languages');
+check(!currentProducts.some(card => /<code>product\.[^.]+\.gradient<\/code>/.test(card)), 'product card labels do not invent current registry token paths');
+const citychatProfile = JSON.parse(read('plugins/landometer-design-system/references/standalone-product-profiles/citychat.json')).identityGradient;
+check(['light', 'dark'].every(theme => JSON.stringify(citychatProfile[theme]) === JSON.stringify(currentProductTokens.citychat[theme])), 'CityChat approved current Add-on recipe matches both theme previews');
 const originalIjji = originalProducts.find(value => value.includes('product.ijji.gradient'));
-const currentIjji = currentProducts.find(value => value.includes('product.ijji.gradient'));
-check(Boolean(currentIjji) && text(originalIjji) === text(currentIjji) && JSON.stringify(inlineHex(originalIjji)) === JSON.stringify(inlineHex(currentIjji)), 'ijji cool identity and product-specific boundary remain unchanged');
+const currentIjji = currentProducts.find(value => value.includes('data-product="ijji"'));
+check(Boolean(currentIjji) && text(originalIjji).replace('product.ijji.gradient', 'สูตรอัตลักษณ์ที่อนุมัติ Approved identity recipe') === text(currentIjji) && JSON.stringify(inlineHex(originalIjji)) === JSON.stringify(inlineHex(currentIjji)), 'ijji cool identity and product-specific boundary remain unchanged');
 const inlineAtlas = element(atlas, 'lds095-color-atlas') ?? '';
 check(/^<div\b[^>]*class="[^"]*\blds095-color-atlas\b/.test(inlineAtlas), 'approved atlas is integrated inline in the retained complete-atlas location');
 check(!/<iframe\b/i.test(inlineAtlas) && !/<iframe\b[^>]*id="lds095-color-atlas"/.test(atlas), 'atlas uses normal page content without a nested scrolling frame');

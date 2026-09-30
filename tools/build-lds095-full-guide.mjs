@@ -149,14 +149,23 @@ completeAtlas = completeAtlas.replaceAll('<strong>18 × 41</strong>', '<strong>4
 completeAtlas = completeAtlas.replace(/<p><span data-th lang="th">LUT ด้านล่างอ่านจาก scales\.json[\s\S]*?<\/p>/, `<p>${bi('LUT ปัจจุบันอ่านจาก color-srgb-08.scales.json ของ v0.9.5-owner.1 ใช้เป็นชุดสีที่ตรวจสอบได้ ไม่ใช่หลักฐานของผลิตภัณฑ์ งานวิเคราะห์จริงต้อง bind schema, release, unit และ grain ที่เข้ากันก่อนใช้', 'Current LUTs come from color-srgb-08.scales.json in v0.9.5-owner.1. They are exact color assets, not product evidence. Real analysis must bind compatible schema, release, unit and grain before use.')}</p>`);
 completeAtlas = completeAtlas.replaceAll('color-srgb-05 retained', 'color-srgb-08');
 // Foundation/semantic/map and opacity/depth are unchanged registry values.
-// Product previews use current registry values. CityWiki supplies primary/accent
-// roles, so its derived illustration must not claim an approved gradient recipe.
+// Separate approved product recipes from role-pair illustrations; descriptive
+// card labels do not invent product.*.gradient paths in the current registry.
+completeAtlas = completeAtlas.replace('Product identity—พื้นที่เฉพาะผลิตภัณฑ์', 'สีผลิตภัณฑ์—สูตรอัตลักษณ์และตัวอย่างคู่สี')
+  .replace('Product identity—product scope only', 'Product colors—identity recipes and pair previews')
+  .replace('ตัวอย่างเหล่านี้บอกว่าอยู่ในผลิตภัณฑ์ใด ห้ามนำไปเข้ารหัสค่า สถานะ หรือเปรียบเทียบข้ามผลิตภัณฑ์', 'แยกสูตรอัตลักษณ์ที่อนุมัติแล้วออกจากตัวอย่างคู่สีตามป้ายกำกับแต่ละชุด ทุกชุดห้ามใช้เข้ารหัสค่า สถานะ หรือเปรียบเทียบข้ามผลิตภัณฑ์')
+  .replace('These specimens identify product scope. Never use them to encode magnitude, state, or cross-product comparison.', 'Each card distinguishes an approved identity recipe from an illustrative color pairing. Never use either to encode magnitude, state, or cross-product comparison.');
 completeAtlas = completeAtlas.replace(/<article class="atlas-product-card"[\s\S]*?<\/article>/g, card => {
   const match = card.match(/<code>product\.([^.]+)\.gradient<\/code>/);
   const product = match && values.product[match[1]];
-  if (!product) return card; // ijji's approved cool identity is retained exactly.
+  if (match) card = card.replace('data-scope="product-identity"', `data-scope="product-identity" data-product="${match[1]}"`);
+  if (match?.[1] !== 'citywiki') card = card.replace(/<code>product\.[^.]+\.gradient<\/code>/, `<code>${bi('สูตรอัตลักษณ์ที่อนุมัติ', 'Approved identity recipe')}</code>`);
+  if (!product) return card; // ijji's approved cool identity paints are retained exactly.
+  if (match[1] === 'citymeter') {
+    card = card.replace(/<p class="atlas-scope-note">[\s\S]*?<\/p>/, `<p class="atlas-scope-note">${bi('สูตรอัตลักษณ์ที่สืบทอดและอนุมัติไว้ สีตรงกับ primary / accent ปัจจุบัน ใช้เฉพาะอัตลักษณ์ผลิตภัณฑ์ ห้ามใช้แทนข้อมูล สถานะ หรือหลักฐาน', 'Retained approved identity recipe; its colors match the current primary/accent pair. Product identity only; never encode data, states or evidence.')} <a href="https://github.com/montri-th/Landometer/blob/main/normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml">${bi('บันทึกการอนุมัติ', 'Approval record')}</a> · <a href="../assets/data/color-delivery.v0.9.0.json">${bi('ทะเบียนสูตรที่สืบทอด', 'Retained recipe registry')}</a></p>`);
+  }
   if (match[1] === 'citywiki') {
-    card = card.replace('data-scope="product-identity"', 'data-scope="product-color-pair-preview" data-product="citywiki"')
+    card = card.replace('data-scope="product-identity"', 'data-scope="product-color-pair-preview"')
       .replace('<code>product.citywiki.gradient</code>', `<code>${bi('คู่สี primary / accent', 'Primary / accent pair')}</code>`)
       .replace(/<p class="atlas-scope-note">[\s\S]*?<\/p>/, `<p class="atlas-scope-note">${bi('ตัวอย่างแสดงสี primary และ accent ร่วมกัน LDS และ Add-on ปัจจุบันยังไม่มีสูตร gradient อัตลักษณ์ CityWiki ที่อนุมัติ ใช้เป็นอัตลักษณ์ได้เมื่อมีสูตรและขอบเขตที่อนุมัติใน Add-on เท่านั้น', 'Illustrative primary/accent pairing. Current LDS and Add-on files do not supply an approved CityWiki identity-gradient recipe. Identity use requires an approved recipe and scope in the Add-on.')}</p>`);
   }

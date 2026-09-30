@@ -8783,15 +8783,15 @@ html { scroll-padding-top: 84px; }
     </div>
     <div class="atlas-subfamily">
       <header class="atlas-subfamily-head">
-        <h6><span data-th lang="th">Product identity—พื้นที่เฉพาะผลิตภัณฑ์</span><span data-en lang="en">Product identity—product scope only</span></h6>
-        <p><span data-th lang="th">ตัวอย่างเหล่านี้บอกว่าอยู่ในผลิตภัณฑ์ใด ห้ามนำไปเข้ารหัสค่า สถานะ หรือเปรียบเทียบข้ามผลิตภัณฑ์</span><span data-en lang="en">These specimens identify product scope. Never use them to encode magnitude, state, or cross-product comparison.</span></p>
+        <h6><span data-th lang="th">สีผลิตภัณฑ์—สูตรอัตลักษณ์และตัวอย่างคู่สี</span><span data-en lang="en">Product colors—identity recipes and pair previews</span></h6>
+        <p><span data-th lang="th">แยกสูตรอัตลักษณ์ที่อนุมัติแล้วออกจากตัวอย่างคู่สีตามป้ายกำกับแต่ละชุด ทุกชุดห้ามใช้เข้ารหัสค่า สถานะ หรือเปรียบเทียบข้ามผลิตภัณฑ์</span><span data-en lang="en">Each card distinguishes an approved identity recipe from an illustrative color pairing. Never use either to encode magnitude, state, or cross-product comparison.</span></p>
       </header>
       <div class="atlas-product-grid">
 
-          <article class="atlas-product-card" data-scope="product-identity">
+          <article class="atlas-product-card" data-scope="product-identity" data-product="citymeter">
             <header class="atlas-product-head">
               <strong>CityMETER</strong>
-              <code>product.citymeter.gradient</code>
+              <code><span data-th>สูตรอัตลักษณ์ที่อนุมัติ</span><span data-en>Approved identity recipe</span></code>
             </header>
             <div class="atlas-product-pair">
 
@@ -8799,7 +8799,7 @@ html { scroll-padding-top: 84px; }
 
               <figure class="atlas-gradient-theme atlas-gradient-theme--pinned" data-theme-surface="dark"><span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);background:linear-gradient(135deg, #4C99D5 0%, #59C7E8 100%);background:linear-gradient(135deg in srgb, #4C99D5 0%, #59C7E8 100%)" aria-hidden="true"></span><figcaption><strong>Dark</strong><code>#4C99D5 → #59C7E8</code><span class="atlas-theme-surface-note"><span data-th>แสดงบนพื้นของธีมที่ระบุเสมอ</span><span data-en>Pinned to the named theme surface</span></span></figcaption></figure>
             </div>
-            <p class="atlas-scope-note"><span data-th lang="th">ใช้บอกอัตลักษณ์ของผลิตภัณฑ์นี้เท่านั้น ห้ามใช้แทนข้อมูลหรือสถานะ</span><span data-en lang="en">Product identity only—never data magnitude or semantic state</span></p>
+            <p class="atlas-scope-note"><span data-th>สูตรอัตลักษณ์ที่สืบทอดและอนุมัติไว้ สีตรงกับ primary / accent ปัจจุบัน ใช้เฉพาะอัตลักษณ์ผลิตภัณฑ์ ห้ามใช้แทนข้อมูล สถานะ หรือหลักฐาน</span><span data-en>Retained approved identity recipe; its colors match the current primary/accent pair. Product identity only; never encode data, states or evidence.</span> <a href="https://github.com/montri-th/Landometer/blob/main/normative-patches/landometer-design-system-v0.9.0-product-identity-gradients.approval.yml"><span data-th>บันทึกการอนุมัติ</span><span data-en>Approval record</span></a> · <a href="../assets/data/color-delivery.v0.9.0.json"><span data-th>ทะเบียนสูตรที่สืบทอด</span><span data-en>Retained recipe registry</span></a></p>
             <p class="atlas-gradient-foreground"><span data-th>ใช้ opaque panel หรือ scrim สำหรับข้อความ และตรวจ contrast บนงานจริง</span><span data-en>Use an opaque panel or scrim for text and check contrast in the actual artifact.</span></p>
           </article>
           <article class="atlas-product-card" data-scope="product-color-pair-preview" data-product="citywiki">
@@ -8816,10 +8816,10 @@ html { scroll-padding-top: 84px; }
             <p class="atlas-scope-note"><span data-th>ตัวอย่างแสดงสี primary และ accent ร่วมกัน LDS และ Add-on ปัจจุบันยังไม่มีสูตร gradient อัตลักษณ์ CityWiki ที่อนุมัติ ใช้เป็นอัตลักษณ์ได้เมื่อมีสูตรและขอบเขตที่อนุมัติใน Add-on เท่านั้น</span><span data-en>Illustrative primary/accent pairing. Current LDS and Add-on files do not supply an approved CityWiki identity-gradient recipe. Identity use requires an approved recipe and scope in the Add-on.</span></p>
             <p class="atlas-gradient-foreground"><span data-th>ใช้ opaque panel หรือ scrim สำหรับข้อความ และตรวจ contrast บนงานจริง</span><span data-en>Use an opaque panel or scrim for text and check contrast in the actual artifact.</span></p>
           </article>
-          <article class="atlas-product-card" data-scope="product-identity">
+          <article class="atlas-product-card" data-scope="product-identity" data-product="citychat">
             <header class="atlas-product-head">
               <strong>CityChat</strong>
-              <code>product.citychat.gradient</code>
+              <code><span data-th>สูตรอัตลักษณ์ที่อนุมัติ</span><span data-en>Approved identity recipe</span></code>
             </header>
             <div class="atlas-product-pair">
 
@@ -8830,10 +8830,10 @@ html { scroll-padding-top: 84px; }
             <p class="atlas-scope-note"><span data-th lang="th">ใช้บอกอัตลักษณ์ของผลิตภัณฑ์นี้เท่านั้น ห้ามใช้แทนข้อมูลหรือสถานะ</span><span data-en lang="en">Product identity only—never data magnitude or semantic state</span></p>
             <p class="atlas-gradient-foreground"><span data-th>ใช้ opaque panel หรือ scrim สำหรับข้อความ และตรวจ contrast บนงานจริง</span><span data-en>Use an opaque panel or scrim for text and check contrast in the actual artifact.</span></p>
           </article>
-          <article class="atlas-product-card" data-scope="product-identity">
+          <article class="atlas-product-card" data-scope="product-identity" data-product="ijji">
             <header class="atlas-product-head">
               <strong>ijji</strong>
-              <code>product.ijji.gradient</code>
+              <code><span data-th>สูตรอัตลักษณ์ที่อนุมัติ</span><span data-en>Approved identity recipe</span></code>
             </header>
             <div class="atlas-product-pair">
 

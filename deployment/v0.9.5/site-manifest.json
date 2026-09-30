@@ -12,6 +12,11 @@
   "contentBaseline": "ui-20260902-08 (0.9.1 full handbook)",
   "assets": [
     {
+      "path": "assets/data/color-delivery.v0.9.0.json",
+      "bytes": 18503,
+      "sha256": "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5"
+    },
+    {
       "path": "assets/downloads/landometer-design-system-v0.9.1.md",
       "bytes": 208463,
       "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19"
@@ -228,8 +233,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 1133067,
-      "sha256": "ec91a945b9d08693915576920562ab25472dc6fa5eec44e69c03c8d40f51451e"
+      "bytes": 1134349,
+      "sha256": "52a3ea083ae26ef28997ccdcf7acfb1124c5ed9c984729d6ca9a656c0db2009b"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
