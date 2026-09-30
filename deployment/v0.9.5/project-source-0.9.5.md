@@ -6,10 +6,10 @@
 
 | งาน | ดาวน์โหลดสำหรับคน + AI | ทางเลือกสำหรับเครื่อง | Bytes (.md) | SHA-256 (.md) |
 |---|---|---|---:|---|
-| Landometer Design System v0.9.5 | [ดาวน์โหลด .md](./normative/Landometer-Design-System-v0.9.5.md) | [JSON](./normative/Landometer-Design-System-v0.9.5.json) | 1,109,428 | `23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40` |
-| ijji Add-on v0.5.5 for LDS v0.9.5 | [ดาวน์โหลด .md](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md) | [JSON](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json) | 226,340 | `32439af40a29c93a886c6fc60337dc71bfb32299873f8a58cbda422b525c2b2b` |
-| CityChat Add-on v0.9.2 for LDS v0.9.5 | [ดาวน์โหลด .md](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md) | [JSON](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json) | 22,506 | `d570d37c9d4ed3e5cadf44d7711072971fda2b7b643e9dce9376acf1ceb3d187` |
-| CityWiki Add-on v1.0.0 for LDS v0.9.5 | [ดาวน์โหลด .md](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md) | [JSON](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json) | 62,828 | `8788bdef37932885d69a5906afaa192ada0cda8d80aaaa1a8d4d69983cdf9456` |
+| Landometer Design System v0.9.5 | [ดาวน์โหลด .md](./normative/Landometer-Design-System-v0.9.5.md) | [JSON](./normative/Landometer-Design-System-v0.9.5.json) | 1,116,504 | `164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee` |
+| ijji Add-on v0.5.5 for LDS v0.9.5 | [ดาวน์โหลด .md](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md) | [JSON](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json) | 226,568 | `3491c849e7b40a03b7ee60da34acdfde2330b57bc2414b220651d249e3f7aaf1` |
+| CityChat Add-on v0.9.2 for LDS v0.9.5 | [ดาวน์โหลด .md](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md) | [JSON](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json) | 22,734 | `cf991dca7a7edce72f7f6e1fc862cd791c263d548f730ed54372266badcd8954` |
+| CityWiki Add-on v1.0.0 for LDS v0.9.5 | [ดาวน์โหลด .md](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md) | [JSON](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json) | 63,056 | `b5a4b293ff452e3b8ddf145352b9c8975effa15967f8fbed4c0f449dc5a99cf3` |
 
 ## ติดตั้งใน ChatGPT หรือ Claude Project
 
@@ -18,4 +18,4 @@
 3. ยกเลิกเอกสาร DS/add-on รุ่นก่อนและชุด 8 ไฟล์เดิมจากแหล่งกฎปัจจุบัน เก็บ brief, research, data, evidence และข้อกำหนดธุรกิจที่ไม่ถูกแทนที่ไว้ ประวัติที่ล็อกรุ่นใช้เฉพาะเมื่อผู้ใช้ระบุ
 4. เปิด session ใหม่ ทดสอบ documentId, releaseRef, colorSetId และค่า density.capita dark 7 classes จาก LDS รวมทั้งกฎเฉพาะผลิตภัณฑ์จาก Add-on ตรวจว่าอ่านไฟล์จริงทั้งคู่ในงานผลิตภัณฑ์
 
-Revision: `standalone-0.9.5-r2` · approved design values: `v0.9.5-owner.1 / color-srgb-08` · unsigned owner distribution. LDS ฉบับเต็มรวมกฎกลางและค่าจริงครบในหนึ่งไฟล์; Add-on แยกไฟล์ให้กฎเฉพาะผลิตภัณฑ์; font/logo/runtime binaries ใช้ assets จริงที่ระบุ URL และ hash ไว้ในเอกสาร ดาวน์โหลดชุดติดตั้งจาก [คู่มือทีม](./team-setup.md)
+Revision: `standalone-0.9.5-r3` · approved design values: `v0.9.5-owner.1 / color-srgb-08` · unsigned owner distribution. LDS ฉบับเต็มรวมกฎกลางและค่าจริงครบในหนึ่งไฟล์; Add-on แยกไฟล์ให้กฎเฉพาะผลิตภัณฑ์; font/logo/runtime binaries ใช้ assets จริงที่ระบุ URL และ hash ไว้ในเอกสาร ดาวน์โหลดชุดติดตั้งจาก [คู่มือทีม](./team-setup.md)

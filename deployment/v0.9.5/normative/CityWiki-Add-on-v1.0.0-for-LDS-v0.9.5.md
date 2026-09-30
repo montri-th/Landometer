@@ -1554,9 +1554,9 @@ This consolidation uses the current shared LDS foundation and retains the produc
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citywiki-addon-1.0.0-lds-0.9.5-r2","documentRevision":"standalone-0.9.5-r2","documentKind":"addon","title":"CityWiki Add-on v1.0.0 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"citywiki","productVersion":"1.0.0","humanSha256":"a215b5fb9369048229f0c99d9e24226e30f18c767f9e27d657f3c7bc6014bc45","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citywiki-addon-1.0.0-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"CityWiki Add-on v1.0.0 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"citywiki","productVersion":"1.0.0","humanSha256":"a215b5fb9369048229f0c99d9e24226e30f18c767f9e27d657f3c7bc6014bc45","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.5.md"},
-"baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r2","path":"Landometer-Design-System-v0.9.5.md","sha256":"23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
+"baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r3","path":"Landometer-Design-System-v0.9.5.md","sha256":"164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
 "productProfile":{
 "schemaVersion":"lds-product-addon-profile-1",
 "profileId":"citywiki",
@@ -1564,7 +1564,7 @@ This consolidation uses the current shared LDS foundation and retains the produc
 "productVersions":{"designSystem":"1.0.0","contentSpecification":"2.4","manifest":"1.1"},
 "consolidationRevision":"standalone-0.9.5-r2",
 "effectiveDate":"2026-09-30",
-"parentDesignSystem":{"name":"Landometer Design System","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned-owner-approved","integration":"Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md","documentRevision":"standalone-0.9.5-r2","publicationTag":"v0.9.5-standalone-r2"},
+"parentDesignSystem":{"name":"Landometer Design System","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned-owner-approved","integration":"Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md","documentRevision":"standalone-0.9.5-r3","publicationTag":"v0.9.5-standalone-r3"},
 "document":{"path":"citywiki.md","sha256":"c5173cee84218b8c600c38fec4c5e733c576091b7b0a9827e1871698637ec3f6"},
 "sourceProvenance":[{"name":"landometer_citywiki_design_system_v1_0_charming_voice_integrated(1).md","repository":null,"sha256":"19288fb8b68c57d69eefc85984ade84f8bdd350fa544504bad067e314483889a","bytes":54232,"role":"complete CityWiki1.0.0 voice/editorial/component/QA profile"}],
 "externalDesignRuleDocumentsRequired":[{"role":"shared_foundation","dsVersion":"0.9.5","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md"}],
@@ -1581,7 +1581,7 @@ This consolidation uses the current shared LDS foundation and retains the produc
 "embedsSharedFoundation":false
 },
 "productProfileSources":[{"path":"references/standalone-product-profiles/citywiki.md","bytes":57054,"sha256":"c5173cee84218b8c600c38fec4c5e733c576091b7b0a9827e1871698637ec3f6"},{"path":"references/standalone-product-profiles/citywiki.json","bytes":3072,"sha256":"8376108dea737ba34eecd82c89722fc0b6520cc1c577abdae76ebc4299f18ae3"}],
-"validationBoundary":{"document":"Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.","scope":"Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.","evidence":"Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."}
+"validationBoundary":{"document":"Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.","scope":"Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.","foundationRebinding":"Only parentDesignSystem.documentRevision and publicationTag are updated from the source profile to the current r3 foundation; original consolidation provenance and all product rules/values are preserved.","evidence":"Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."}
 }
 ```
 <!-- LDS_MACHINE_END -->

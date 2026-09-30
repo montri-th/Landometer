@@ -18,6 +18,8 @@ Use at most one protected line as a headline within one scene. Supporting system
 
 ## Visual identity
 
+The owner permits wordmark colour changes, including a different colour per letter, while preserving letterforms and proportions. Gray is optional. The official logo may appear on readable light or dark backgrounds. Assess Brand Blue problems for the actual pairing; do not infer a blanket dark-background ban or apply motif full/quiet restrictions to official logo PNGs. This permission does not recolour the symbol or change UI/data colour contracts.
+
 Retain the approved logo artwork, official fonts, core brand and foundation tokens, semantic states, map colors, typography, control, theme and layout contracts. All seven shared atmosphere gradient recipes are preserved. Brand logo-only colors belong inside the approved logo assets rather than ordinary UI swatches. Keep the product’s own evidence, capabilities, permissions, workflow and claims separate from the shared portfolio identity.
 
 The approved color changes are scoped: dark categorical soft/vivid palettes; analytical families; and four more distinct warm density scales. Categorical light values, IDs and non-color cues remain stable. Decorative atmosphere gradients do not encode analytical magnitude.
