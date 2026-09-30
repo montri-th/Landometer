@@ -1,6 +1,6 @@
 # Landometer Design System 0.9.5
 
-[Open the design system](https://montri-th.github.io/Landometer/v0.9.5/) · [Download 0.9.5](https://github.com/montri-th/Landometer/releases/tag/v0.9.5) · [Team setup](docs/lds-0.9.5-team-activation.md)
+[Open the design system](https://montri-th.github.io/Landometer/v0.9.5/) · [Download 0.9.5](https://github.com/montri-th/Landometer/releases/tag/v0.9.5-standalone-r2) · [Team setup](docs/lds-0.9.5-team-activation.md)
 
 DS 0.9.5 adopts the owner-approved R2.1 palette: ten improved dark categorical colors, twenty analytical families in both themes, and four distinct warm density families—orange for area, rose for population, scarlet for household and gold for built area. Light categorical colors, brand voice, visual foundations, fonts, logos and the seven shared atmosphere gradients are retained.
 
@@ -8,11 +8,14 @@ The package includes human guidance, machine JSON/DTCG tokens, production CSS, e
 
 The website carries forward the complete 0.9.1 Implementation Playground: Brand DNA, Voice and Visual, work-object examples, handoff and checklist, foundations, components, data visualization, experience patterns and product adaptations. The approved 0.9.5 Color Atlas is integrated into that handbook. The preserved source is `deployment/index.v0.9.1.html`; `tools/build-lds095-full-guide.mjs` applies explicit current-release updates without rewriting that archive.
 
-Website build `ui-20260929-lds095-03` removes decorative left-rail highlights and gives the new evidence/motion guidance its own responsive layout, preventing squeezed headings and overlapping paragraphs. Targeted browser geometry and keyboard checks are recorded in `deployment/v0.9.5/browser-checks.json`.
+Website build `ui-20260930-lds095-standalone-r2` removes decorative left-rail highlights and gives the new evidence/motion guidance its own responsive layout, preventing squeezed headings and overlapping paragraphs. Earlier navigation/evidence layout checks remain recorded in `deployment/v0.9.5/browser-checks.json`; current download guidance receives a separate rendered review.
+
+The current normative uses the complete 0.9.1 document structure updated in place to 0.9.5, including machine JSON. Use the full LDS base; for ijji, CityChat or CityWiki also use its separate Product Add-on. This replaces the old predecessor-master-plus-overlay/eight-file installation without duplicating LDS inside product files. Document revision `standalone-0.9.5-r2` records this consolidation while approved design values remain `v0.9.5-owner.1 / color-srgb-08`.
 
 ## Use it
 
-- [Human guide](plugins/landometer-design-system/assets/lds-0.9.5/GUIDE.md)
+- [One-file standalone normative — people and machines](plugins/landometer-design-system/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.md)
+- [Separate Product Add-ons and Project Source setup](deployment/v0.9.5/project-source-0.9.5.md)
 - [Brand voice and visual principles](plugins/landometer-design-system/assets/lds-0.9.5/brand/BRAND.md)
 - [Machine release and exact entrypoints](plugins/landometer-design-system/assets/lds-0.9.5/machine/release.json)
 - [Portable AI skill](plugins/landometer-design-system/skills/apply-landometer-design-system/SKILL.md)
@@ -33,7 +36,7 @@ The repository has ChatGPT/Codex and Claude marketplace manifests. Local install
 - Design System: **0.9.5**
 - Color Set: **color-srgb-08**
 - Package: **v0.9.5-owner.1**
-- Web build: **ui-20260929-lds095-03**
+- Web build: **ui-20260930-lds095-standalone-r2**
 - Approval: Montri approved R2.1 for implementation and selected 0.9.5 on 29 September 2026.
 - This is an owner-approved **unsigned distribution**, with exact hashes. The inherited signature authenticates 0.9.4 only; it does not sign 0.9.5. No private signing key is included or used.
 - Package integrity, output conformance, visual accessibility, and account activation are separate evidence.

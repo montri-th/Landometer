@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.5/standalone-0.9.5-r2/schemas/scoped-check-receipt.schema.json",
+  "title": "Standalone0.9.5 scoped document/package check",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "releaseRef",
+    "kind",
+    "signatureStatus",
+    "fullArtifactConformance",
+    "checkedAt",
+    "checks",
+    "limitations"
+  ],
+  "properties": {
+    "releaseRef": {
+      "const": "v0.9.5-owner.1"
+    },
+    "kind": {
+      "const": "scoped_document_package_check"
+    },
+    "signatureStatus": {
+      "const": "unsigned"
+    },
+    "fullArtifactConformance": {
+      "const": false
+    },
+    "checkedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "result",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail",
+              "not_run"
+            ]
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

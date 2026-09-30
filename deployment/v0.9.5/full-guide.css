@@ -30,3 +30,6 @@
  .lds095-integration__chapter--evidence{grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(32px,5vw,64px);align-items:start}
 }
 @media print{.lds095-atlas-links{display:none}}
+/* The fixed page bookmark needs a real outside gutter. The complete hamburger
+   index remains available at widths where the bookmark would cover content. */
+@media(max-width:1439px){.side-bookmark{display:none}}

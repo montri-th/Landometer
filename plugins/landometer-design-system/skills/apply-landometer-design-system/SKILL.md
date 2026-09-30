@@ -12,7 +12,7 @@ Use this package for new Landometer work and owner-authorized migrations. First 
 The package root is two directories above this skill. Resolve relative paths from this file, not the current working directory.
 
 1. Read [`release.json`](../../assets/lds-0.9.5/machine/release.json) and [`brand-and-visual.md`](../../docs/brand-and-visual.md). Run `node <package-root>/scripts/verify.mjs --json` when execution is available. Stop using package assets if integrity verification fails; preserve the diagnostic and resolve the mismatch.
-2. Read the [full 0.9.5 guide](../../assets/lds-0.9.5/GUIDE.md), [normative brand reference](../../assets/lds-0.9.5/brand/BRAND.md), and the relevant machine contract named by the release. Use the supplied fonts, official logo files, CSS and tokens directly. Do not recreate or approximate logo artwork, numerical colors, gradient stops or font binaries.
+2. Read the [complete standalone 0.9.5 normative](../../assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.md). It contains all current human rules and exact machine contracts in one document. For ijji, CityChat or CityWiki work, read the matching separate Product Add-on in the same directory alongside the complete LDS base. The Add-on contains only product-specific rules and binds the exact base. Never replace LDS with an Add-on or duplicate LDS inside product files. Earlier master/overlay/fragmented sources are superseded for new work. Use the supplied fonts, official logo files, CSS and tokens directly. Do not recreate or approximate logo artwork, numerical colors, gradient stops or font binaries.
 3. Record version `0.9.5`, the actual release ID and manifest SHA-256 in the artifact handoff. Package integrity, artifact checks and human review are different evidence: report each truthfully. This owner-approved release is not a newly cryptographically signed machine package; the inherited 0.9.4 signed baseline remains immutable.
 
 If the environment cannot execute the verifier, inspect the release and exact files available, label runtime verification as pending, and do not claim a full validation pass. If a required asset is absent, retrieve the same pinned package from the repository or report that missing dependency; do not invent an equivalent.
@@ -27,7 +27,9 @@ If the environment cannot execute the verifier, inspect the release and exact fi
 
 ## Build for people and machines
 
-Keep the 0.9.1 brand voice and visual foundations described in the brand guide. Use calm, clear, evidence-aware, civic-minded, action-capable language. Preserve protected wording exactly, native Thai review, truthful evidence states, source/limitations near claims and product boundaries. Use visible focus and readable light/dark states; test the delivered format rather than assuming CSS tokens alone prove accessibility.
+Use the brand voice and visual foundations consolidated in the current standalone normative. Use calm, clear, evidence-aware, civic-minded, action-capable language. Preserve protected wording exactly, native Thai review, truthful evidence states, source/limitations near claims and product boundaries. Use visible focus and readable light/dark states; test the delivered format rather than assuming CSS tokens alone prove accessibility.
+
+Use `node <package-root>/scripts/read-normative.mjs <standalone-file> --summary` to verify document identity; omit `--summary` for the lossless machine projection. Exact colors and the runtime selector share the same approved source.
 
 For code or HTML, run `node <package-root>/scripts/check-artifact.mjs <artifact-file>` on the resulting supported artifact. Follow its declared coverage; a static color check is not a browser, accessibility, brand-voice or full design-system certificate. The host repository should require its release checks before merge. For slides, documents and design files, retain exact tokens and assets and review the rendered export alongside the human guide.
 

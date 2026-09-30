@@ -2,9 +2,17 @@
 
 ใช้ release เดียวกันทั้งทีม: คู่มือสำหรับคน + token/gradient + ฟอนต์/โลโก้ + skill + ตัวตรวจ ไม่ต้องคัดสีเอง คู่มือนี้อธิบายวิธีเปิดใช้ ไม่ใช่หลักฐานว่าทุกบัญชีติดตั้งแล้ว
 
+## Project Source — ไฟล์เดียวต่อโปรเจกต์
+
+อัปโหลด `Landometer-Design-System-v0.9.5.md` ฉบับเต็มจาก [หน้าดาวน์โหลด normative](https://montri-th.github.io/Landometer/v0.9.5/project-source-0.9.5.md) เข้า Project Sources / Files / Knowledge ทุก Project ที่ใช้ LDS งาน ijji ให้เพิ่ม `ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md`; งาน CityChat ให้เพิ่ม `CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md` เป็น **สองไฟล์คู่กัน** CityWiki ใช้ LDS คู่กับ Add-on ของตนเช่นกัน
+
+LDS เป็นกฎกลางฉบับเต็มตามโครง 0.9.1 ที่อัปเดตเป็น 0.9.5; Add-on แยกเป็นกฎผลิตภัณฑ์ ไม่รวม LDS ซ้ำ ทั้งสองมีข้อมูลคนและเครื่อง ไม่ต้องใช้ master 0.9.4, overlay รุ่นก่อน หรือชุด 8 ไฟล์ JSON เป็นทางเลือกแทน Markdown ของเอกสารนั้น ไม่ต้องอัปโหลดทั้งสองรูปแบบ
+
+ตั้ง Instructions ให้ยึด LDS ฉบับนี้และ Add-on ตาม scope แล้วลบหรือยกเลิก DS/add-on revision เก่าที่ถูกแทนที่ เก็บ brief, research, data, evidence และข้อกำหนดธุรกิจไว้ เปิดแชตใหม่ทดสอบให้อ่าน documentId, releaseRef, ค่าสีจริงจาก LDS และกฎ product/voice/motion จากเอกสารที่เกี่ยวข้อง พร้อมตรวจชิ้นงานจริงก่อนส่งมอบ
+
 ## เริ่มใช้ในเครื่อง — Codex และ Claude Code
 
-ดาวน์โหลดหรือ clone repository ที่ tag/commit ของ DS 0.9.5 แล้วเปิดโฟลเดอร์นั้น ต้องมี Python 3 และ Node.js:
+ดาวน์โหลดหรือ clone repository ที่ tag `v0.9.5-standalone-r2` หรือ commit ที่ตรงกันของ DS 0.9.5 แล้วเปิดโฟลเดอร์นั้น ต้องมี Python 3 และ Node.js:
 
 ```sh
 python3 tools/install-lds095.py
@@ -37,7 +45,7 @@ python3 tools/install-lds095.py --apply
 
 ## Claude Design — ผู้ดูแลแบรนด์
 
-นำเข้า `assets/lds-0.9.5/GUIDE.md`, `brand/BRAND.md`, `machine/tokens.v0.9.5.json`, `machine/color-srgb-08.tokens.json`, `machine/color-srgb-08.scales.json`, `machine/color-srgb-08.production.css`, ฟอนต์/โลโก้จาก `build-kit/assets/` และ atlas ที่อนุมัติ จากภายใน plugin เดียวกัน
+นำเข้า LDS normative ฉบับเต็มพร้อม Product Add-on ที่เกี่ยวข้องจาก `assets/lds-0.9.5/normative/` พร้อม `machine/color-srgb-08.production.css`, ฟอนต์/โลโก้จาก `build-kit/assets/` และ atlas ที่อนุมัติ ข้อมูล tokens, สี, scales และ schemas รวมอยู่ใน normative แล้ว ใช้ `scripts/read-normative.mjs` เพื่ออ่าน structured contracts ของฉบับปัจจุบัน จากภายใน plugin เดียวกัน
 
 ตรวจค่าที่ Claude ดึงเข้า โดยเฉพาะ density ทั้ง 4 โทน, categorical พื้นมืด, ฟอนต์/โลโก้ และ gradient แบรนด์เดิม จากนั้น Publish และตั้งเป็น **organization default** ให้ผู้ดูแลแบรนด์รับผิดชอบการเปลี่ยนค่าเริ่มต้น Design System ต้องเปิดใช้แยกจาก plugin และค่าที่ดึงอัตโนมัติต้องตรวจเทียบไฟล์ต้นทาง [นำเข้า Design System](https://support.claude.com/en/articles/14604397-set-up-your-design-system-in-claude-design), [จัดการค่าเริ่มต้น](https://support.claude.com/en/articles/16994751-artifacts-admin-guide-for-team-and-enterprise-plans)
 

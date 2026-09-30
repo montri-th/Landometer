@@ -1,7 +1,7 @@
 {
   "name": "landometer-design-system",
-  "version": "0.9.5",
-  "description": "Apply Landometer DS 0.9.5: approved colors, retained brand voice, exact assets and verifiable output.",
+  "version": "0.9.5+standalone.2",
+  "description": "LDS 0.9.5 complete standalone normative, exact assets and product editions for consistent human and AI work.",
   "author": {
     "name": "Landometer",
     "url": "https://github.com/montri-th"

@@ -1,0 +1,903 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.5/standalone-0.9.5-r2/schemas/format-implementation.schema.json",
+  "title": "Landometer format implementation record v1.6",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "recordKind",
+    "recordId",
+    "authoringPlatform",
+    "formatProfile",
+    "runtime",
+    "targetProfileRef",
+    "formatKitId",
+    "tokenRef",
+    "tokenSha256",
+    "resolutionContext",
+    "requirements"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.6"
+    },
+    "releaseRef": {
+      "const": "v0.9.5-owner.1"
+    },
+    "recordKind": {
+      "description": "reference_example is package learning material and is never sufficient for artifact QA; artifact_resolved is derived for and bound to one exact Build Card and artifact build.",
+      "enum": [
+        "reference_example",
+        "artifact_resolved"
+      ]
+    },
+    "recordId": {
+      "description": "Stable reference ID, or for artifact_resolved exactly implementation.<artifactId>.<artifactBuildId>.",
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "authoringPlatform": {
+      "description": "The platform whose exact typography mappings and portability fixtures are resolved by this record.",
+      "enum": [
+        "browser",
+        "macos",
+        "windows"
+      ]
+    },
+    "formatProfile": {
+      "enum": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ]
+    },
+    "runtime": {
+      "enum": [
+        "browser",
+        "native",
+        "static"
+      ]
+    },
+    "targetProfileRef": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "formatKitId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "tokenRef": {
+      "$ref": "#/$defs/safeRef"
+    },
+    "tokenSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifactBinding": {
+      "description": "Exact downstream artifact and Build Card byte binding. Forbidden on a shipped reference_example and mandatory on artifact_resolved.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactId",
+        "artifactBuildId",
+        "buildCardRef",
+        "buildCardSha256"
+      ],
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "artifactBuildId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "buildCardRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "buildCardSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "resolutionContext": {
+      "description": "The exact experience, capabilities, side-bookmark choice, and component inventory used to derive the record's rules and tests.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "experienceProfile",
+        "secondaryExperienceProfiles",
+        "capabilities",
+        "sideBookmarkSelected",
+        "componentIds"
+      ],
+      "properties": {
+        "experienceProfile": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "secondaryExperienceProfiles": {
+          "$ref": "#/$defs/uniqueStringSet"
+        },
+        "capabilities": {
+          "$ref": "#/$defs/uniqueStringSet"
+        },
+        "sideBookmarkSelected": {
+          "type": "boolean"
+        },
+        "componentIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolvedAssetIds",
+        "identityAssetIds",
+        "identityImplementationIds",
+        "identityTypographyBindingIds",
+        "fontAssetIds",
+        "iconAssetIds",
+        "nativeFontMappingIds",
+        "nonWebIconPolicyId",
+        "portabilityFixtureIds",
+        "layoutSetId",
+        "componentRuleIds",
+        "componentIds",
+        "componentContracts",
+        "resolvedRuleIds",
+        "resolvedTestIds",
+        "accessibilityFixtureIds"
+      ],
+      "properties": {
+        "resolvedAssetIds": {
+          "$ref": "#/$defs/assetIds"
+        },
+        "identityAssetIds": {
+          "$ref": "#/$defs/assetIds"
+        },
+        "identityImplementationIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "identityTypographyBindingIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "fontAssetIds": {
+          "$ref": "#/$defs/assetIds"
+        },
+        "iconAssetIds": {
+          "$ref": "#/$defs/assetIds"
+        },
+        "nativeFontMappingIds": {
+          "$ref": "#/$defs/assetIds"
+        },
+        "nonWebIconPolicyId": {
+          "anyOf": [
+            {
+              "const": "icon-policy.non-web.visible-label.01"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "portabilityFixtureIds": {
+          "$ref": "#/$defs/assetIds"
+        },
+        "layoutSetId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "componentRuleIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "componentIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "componentContracts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/componentContract"
+          }
+        },
+        "resolvedRuleIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "resolvedTestIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "accessibilityFixtureIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "recordKind": {
+            "const": "artifact_resolved"
+          }
+        },
+        "required": [
+          "recordKind"
+        ]
+      },
+      "then": {
+        "required": [
+          "artifactBinding"
+        ]
+      },
+      "else": {
+        "not": {
+          "required": [
+            "artifactBinding"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "runtime": {
+            "const": "browser"
+          }
+        },
+        "required": [
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authoringPlatform": {
+            "const": "browser"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "runtime": {
+            "enum": [
+              "native",
+              "static"
+            ]
+          }
+        },
+        "required": [
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authoringPlatform": {
+            "enum": [
+              "macos",
+              "windows"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "runtime": {
+            "const": "browser"
+          }
+        },
+        "required": [
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "requirements": {
+            "properties": {
+              "nativeFontMappingIds": {
+                "maxItems": 0
+              },
+              "nonWebIconPolicyId": {
+                "type": "null"
+              },
+              "portabilityFixtureIds": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "runtime": {
+            "enum": [
+              "native",
+              "static"
+            ]
+          }
+        },
+        "required": [
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "requirements": {
+            "properties": {
+              "fontAssetIds": {
+                "maxItems": 0
+              },
+              "iconAssetIds": {
+                "maxItems": 0
+              },
+              "nativeFontMappingIds": {
+                "minItems": 1
+              },
+              "nonWebIconPolicyId": {
+                "const": "icon-policy.non-web.visible-label.01"
+              },
+              "portabilityFixtureIds": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "web_public"
+          }
+        },
+        "required": [
+          "formatProfile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "runtime": {
+            "const": "browser"
+          },
+          "targetProfileRef": {
+            "const": "target.web.responsive.360-1600.01"
+          },
+          "formatKitId": {
+            "const": "kit.web.base.01"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "app_interactive"
+          },
+          "runtime": {
+            "const": "browser"
+          }
+        },
+        "required": [
+          "formatProfile",
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "targetProfileRef": {
+            "const": "target.app.browser-responsive.360-1600.01"
+          },
+          "formatKitId": {
+            "const": "kit.app.base.01"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "app_interactive"
+          },
+          "runtime": {
+            "const": "native"
+          }
+        },
+        "required": [
+          "formatProfile",
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "targetProfileRef": {
+            "const": "target.app.native-responsive.360-1280.01"
+          },
+          "formatKitId": {
+            "const": "kit.app.base.01"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "app_interactive"
+          }
+        },
+        "required": [
+          "formatProfile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "runtime": {
+            "enum": [
+              "browser",
+              "native"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "document_flow"
+          }
+        },
+        "required": [
+          "formatProfile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "runtime": {
+            "const": "static"
+          },
+          "targetProfileRef": {
+            "const": "target.document.a4-portrait.01"
+          },
+          "formatKitId": {
+            "const": "kit.document.flow.01"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "pdf_fixed"
+          }
+        },
+        "required": [
+          "formatProfile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "runtime": {
+            "const": "static"
+          },
+          "targetProfileRef": {
+            "const": "target.pdf.a4-portrait.01"
+          },
+          "formatKitId": {
+            "const": "kit.pdf.fixed.01"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "deck_presentation"
+          }
+        },
+        "required": [
+          "formatProfile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "runtime": {
+            "const": "static"
+          },
+          "targetProfileRef": {
+            "const": "target.deck.16x9.01"
+          },
+          "formatKitId": {
+            "const": "kit.deck.presentation.01"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "formatProfile": {
+            "const": "social_static"
+          }
+        },
+        "required": [
+          "formatProfile"
+        ]
+      },
+      "then": {
+        "properties": {
+          "runtime": {
+            "const": "static"
+          },
+          "targetProfileRef": {
+            "enum": [
+              "target.social.square.1080.01",
+              "target.social.og.1200x630.01"
+            ]
+          },
+          "formatKitId": {
+            "const": "kit.social.static.01"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "uniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "uniqueStringSet": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "assetIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "componentState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "behavior"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "required",
+            "not_applicable"
+          ]
+        },
+        "behavior": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "componentContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "componentId",
+        "componentClass",
+        "governingRuleIds",
+        "purpose",
+        "nonPurpose",
+        "semanticRoles",
+        "contentContract",
+        "localeStressFixtureIds",
+        "states",
+        "formatBehavior",
+        "accessibility",
+        "tokenRefs",
+        "evidencePermissionBoundary",
+        "acceptanceFixtureIds",
+        "antiPatterns"
+      ],
+      "properties": {
+        "componentId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "componentClass": {
+          "enum": [
+            "navigation",
+            "disclosure",
+            "side_bookmark",
+            "navigational_cta",
+            "stateful_cta",
+            "other"
+          ]
+        },
+        "governingRuleIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "purpose": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "nonPurpose": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "semanticRoles": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "contentContract": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "localeStressFixtureIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "states": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "default",
+            "hover",
+            "focus",
+            "activePressed",
+            "selectedCurrent",
+            "disabled",
+            "loading",
+            "empty",
+            "error",
+            "success"
+          ],
+          "properties": {
+            "default": {
+              "$ref": "#/$defs/componentState"
+            },
+            "hover": {
+              "$ref": "#/$defs/componentState"
+            },
+            "focus": {
+              "$ref": "#/$defs/componentState"
+            },
+            "activePressed": {
+              "$ref": "#/$defs/componentState"
+            },
+            "selectedCurrent": {
+              "$ref": "#/$defs/componentState"
+            },
+            "disabled": {
+              "$ref": "#/$defs/componentState"
+            },
+            "loading": {
+              "$ref": "#/$defs/componentState"
+            },
+            "empty": {
+              "$ref": "#/$defs/componentState"
+            },
+            "error": {
+              "$ref": "#/$defs/componentState"
+            },
+            "success": {
+              "$ref": "#/$defs/componentState"
+            }
+          }
+        },
+        "formatBehavior": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "formatProfile",
+            "behavior"
+          ],
+          "properties": {
+            "formatProfile": {
+              "enum": [
+                "web_public",
+                "app_interactive",
+                "document_flow",
+                "pdf_fixed",
+                "deck_presentation",
+                "social_static"
+              ]
+            },
+            "behavior": {
+              "$ref": "#/$defs/nonEmpty"
+            }
+          }
+        },
+        "accessibility": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "role",
+            "value",
+            "order",
+            "status"
+          ],
+          "properties": {
+            "name": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "role": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "value": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "order": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "status": {
+              "$ref": "#/$defs/nonEmpty"
+            }
+          }
+        },
+        "tokenRefs": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "evidencePermissionBoundary": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "acceptanceFixtureIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "antiPatterns": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "componentClass": {
+                "const": "navigational_cta"
+              }
+            },
+            "required": [
+              "componentClass"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semanticRoles": {
+                "items": {
+                  "enum": [
+                    "link",
+                    "text",
+                    "destination_cue"
+                  ]
+                }
+              },
+              "states": {
+                "properties": {
+                  "selectedCurrent": {
+                    "properties": {
+                      "status": {
+                        "const": "not_applicable"
+                      }
+                    }
+                  },
+                  "disabled": {
+                    "properties": {
+                      "status": {
+                        "const": "not_applicable"
+                      }
+                    }
+                  },
+                  "loading": {
+                    "properties": {
+                      "status": {
+                        "const": "not_applicable"
+                      }
+                    }
+                  },
+                  "empty": {
+                    "properties": {
+                      "status": {
+                        "const": "not_applicable"
+                      }
+                    }
+                  },
+                  "error": {
+                    "properties": {
+                      "status": {
+                        "const": "not_applicable"
+                      }
+                    }
+                  },
+                  "success": {
+                    "properties": {
+                      "status": {
+                        "const": "not_applicable"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "componentClass": {
+                "const": "stateful_cta"
+              }
+            },
+            "required": [
+              "componentClass"
+            ]
+          },
+          "then": {
+            "properties": {
+              "semanticRoles": {
+                "contains": {
+                  "const": "button"
+                }
+              },
+              "states": {
+                "properties": {
+                  "disabled": {
+                    "properties": {
+                      "status": {
+                        "const": "required"
+                      }
+                    }
+                  },
+                  "loading": {
+                    "properties": {
+                      "status": {
+                        "const": "required"
+                      }
+                    }
+                  },
+                  "error": {
+                    "properties": {
+                      "status": {
+                        "const": "required"
+                      }
+                    }
+                  },
+                  "success": {
+                    "properties": {
+                      "status": {
+                        "const": "required"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.5 contract, revision standalone-0.9.5-r2. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

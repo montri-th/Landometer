@@ -14,10 +14,14 @@
 | Shared skill | `plugins/landometer-design-system/skills/apply-landometer-design-system/SKILL.md` |
 | Local installer | `tools/install-lds095.py` — dry-run by default |
 | Machine assets | `plugins/landometer-design-system/assets/lds-0.9.5/machine/` |
-| Human guide | `plugins/landometer-design-system/assets/lds-0.9.5/GUIDE.md` |
+| Complete normative | `plugins/landometer-design-system/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.md` |
 | Per-surface evidence | `plugins/landometer-design-system/docs/activation-receipt.template.json` |
 
-For a ChatGPT Project that cannot read the verified plugin/skill files, use the [eight-file Project Source list](../deployment/v0.9.5/project-source-0.9.5.md). Upload the linked Markdown and JSON files individually, apply the stated rule order in Project instructions, then test in a new chat. The 0.9.5 guide is an overlay on the inherited 0.9.4 normative master; neither the guide alone nor the historical 0.9.1 master is the complete current source. A Project Source upload does not install native fonts, logos, CSS, validators or Claude Design assets.
+For ChatGPT or Claude Projects, upload the **complete standalone LDS 0.9.5 Markdown** from the [Project Source selector](../deployment/v0.9.5/project-source-0.9.5.md). For ijji or CityChat, also upload its **separate current Product Add-on**. CityWiki uses the same base-plus-profile arrangement. The base follows the 0.9.1 structure updated in place to 0.9.5 and includes exact machine JSON. Product Add-ons contain product rules only; they bind the exact base and do not copy LDS. No 0.9.4 master, predecessor overlay or eight-file set is required. JSON is a lossless alternative to each document's Markdown; do not upload both formats.
+
+Set Project Instructions to name LDS as the current shared normative and the applicable Add-on as scoped product rules. Remove or retire previous DS masters, fragmented machine sources and replaced Add-on revisions after the new sources are available; preserve business briefs, research, factual evidence, rights and product operational requirements. Test retrieval in a new session from both files where applicable: document identities, exact density.capita dark seven-class colors, protected voice, motion and product rules. Uploading normative documents does not install binary fonts, logos or runtime code: use the complete plugin assets for rendering.
+
+Current document/distribution revision: **standalone-0.9.5-r2**. Approved design values remain **v0.9.5-owner.1 / color-srgb-08**. Use the [standalone release](https://github.com/montri-th/Landometer/releases/tag/v0.9.5-standalone-r2); earlier distributions remain historical records.
 
 The repository marketplace is named `landometer`, distinct from an operator’s existing `personal` marketplace. It must be imported/registered before a plugin manager can install from it. The local filesystem installer does not edit marketplace or account settings. Avoid installing both the standalone skill and plugin to the same client unless needed; they carry the same source but can appear twice in discovery.
 
