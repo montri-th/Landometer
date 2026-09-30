@@ -499,7 +499,7 @@
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/SHA256SUMS.txt",
       "bytes": 33459,
-      "sha256": "538d27a574b79a7f57827fc8035c6a229ccc7233f6db8dd33139d5e4b60d681d"
+      "sha256": "ff912e71955d7afc0855034592397b76b1609ddf5699073a1244f5690808a767"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/brand/BRAND.md",
@@ -1833,8 +1833,8 @@
     },
     {
       "path": "v0.9.5/package/scripts/verify.mjs",
-      "bytes": 18648,
-      "sha256": "63227eb2c693df5f32527760d756cc826918e7cebd6c8b6867c5bdede9443736"
+      "bytes": 19116,
+      "sha256": "d172e6676a4e8c1e5197e08cb3021638301c5ffaed00cfd7c8d71ec62c9858d8"
     },
     {
       "path": "v0.9.5/package/skills/apply-landometer-design-system/SKILL.md",
