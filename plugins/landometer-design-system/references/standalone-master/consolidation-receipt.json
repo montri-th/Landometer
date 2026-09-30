@@ -1,5 +1,5 @@
 {
-  "documentId": "standalone-0.9.5-r2",
+  "documentId": "standalone-0.9.5-r3",
   "releaseRef": "v0.9.5-owner.1",
   "source": {
     "path": "plugins/landometer-design-system/references/inherited/lds-0.9.4/machine/Landometer Design System v0.9.4.md",
@@ -7,8 +7,8 @@
   },
   "output": {
     "path": "plugins/landometer-design-system/references/standalone-master/Landometer-Design-System-v0.9.5.human.md",
-    "sha256": "59dcb238b3fd2544532a837b314005d4ad83c9a22e52e8d4f7e771674803f26c",
-    "bytes": 264313
+    "sha256": "2b1aaca78f5a32ee3c0b2b51c9f650096670f963d8621ea152df2bff1f29d13d",
+    "bytes": 266796
   },
   "ruleIds": [
     "RELEASE-01",
@@ -230,7 +230,7 @@
       "start": "# Landometer Design System v0.9.4",
       "end": "## 1. วิธีอ่านและบังคับใช้",
       "sourceSha256": "2624619b64a1512072d35bc452cb49087fca069cee5a18ce55011446b98b262f",
-      "replacementSha256": "8c542c55586673b75813e90c2ffddedca6fdc584007655576d71fb5181438a0f"
+      "replacementSha256": "e65b4276fb9f4c2615bd72566a3e3083b2dd05252aebceb7a284bd0be7d43416"
     },
     {
       "type": "range",
@@ -463,6 +463,41 @@
       "count": 1,
       "old": "- LAYOUT-01-B — manual: essential content ไม่ clipped, orphaned, ซ่อนหลัง navigation หรือ split โดยไม่มี continuation cue",
       "next": "- LAYOUT-01-B — manual: essential content ไม่ clipped, orphaned, ซ่อนหลัง navigation หรือ split โดยไม่มี continuation cue; selected states contain no decorative brackets/colored left rails, while keyboard focus and meaningful chart/table borders remain visible"
+    },
+    {
+      "type": "replacement",
+      "label": "owner wordmark colour and dark background permission",
+      "count": 1,
+      "old": "**LOGO-01 — Use an approved identity implementation.** ",
+      "next": "**LOGO-01 — Use an approved identity implementation.** Landometer wordmark MAY change colour, including a different colour for each letter, while preserving its letterforms and proportions. Gray is an optional versatile default, not a required identity colour. This owner-authorized wordmark colour treatment does not require separate permission for each colour. The official logo MAY appear on light or dark backgrounds when the complete name and symbol remain legible at the actual size. Evaluate a Brand Blue visibility problem for that specific pairing; it does not prohibit dark backgrounds generally. MOTIF-06 full/quiet carrier restrictions apply to registered motifs, not official logo PNGs. This permission changes wordmark colour only; it does not authorize symbol recolouring, redrawing or distortion, or change interface/data colour contracts.\n\n"
+    },
+    {
+      "type": "replacement",
+      "label": "permitted wordmark rendition hash identity",
+      "count": 1,
+      "old": "approved asset identity ต้องตรง role/surface/rights/SHA-256/receipt/minimum-size/clear-space;",
+      "next": "approved asset identity ต้องตรง role/surface/rights/SHA-256/receipt/minimum-size/clear-space; wordmark colour rendition ที่ LOGO-01 อนุญาตคง source provenance และบันทึก hash ของไฟล์ผลลัพธ์จริง ห้ามอ้าง hash เดิมแทนไฟล์ที่เปลี่ยน และไม่ต้องขอ approval ใหม่แยกต่อสี;"
+    },
+    {
+      "type": "replacement",
+      "label": "identity visual scope",
+      "count": 1,
+      "old": "asset identity ใช้ clear space/minimum size/contrast/direct surface ตรง approved variant;",
+      "next": "asset identity ใช้ clear space/minimum size/contrast/direct surface ตรง approved variant และ wordmark colour permission ของ LOGO-01; light/dark ทั้งสองใช้ได้เมื่อชื่อและสัญลักษณ์อ่านได้ครบ ห้ามใช้ MOTIF-06 เป็น blanket dark-background ban ของ official logo;"
+    },
+    {
+      "type": "replacement",
+      "label": "wordmark exception to identity media restriction",
+      "count": 1,
+      "old": "- identity — ห้าม crop, recolor, distort;",
+      "next": "- identity — ห้าม crop หรือ distort; เปลี่ยนสีเฉพาะ wordmark ได้ตาม LOGO-01 รวมถึงตัวอักษรละสี โดยคง letterforms/proportions; ข้อห้าม recolor ส่วนอื่นยังคงเดิม;"
+    },
+    {
+      "type": "replacement",
+      "label": "wordmark exception to motion acceptance",
+      "count": 1,
+      "old": "identity PNG ไม่ถูก animate, recolor หรือ redraw",
+      "next": "identity PNG ไม่ถูก animate หรือ redraw; wordmark colour changes ตาม LOGO-01 ใช้ได้ โดยคงรูปทรงและไม่เปลี่ยนสี symbol"
     },
     {
       "type": "replacement",

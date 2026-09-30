@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.5",
   "colorSetId": "color-srgb-08",
   "packageId": "v0.9.5-owner.1",
-  "artifactBuildId": "ui-20260930-lds095-r2-docs1",
+  "artifactBuildId": "ui-20260930-lds095-r3",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -233,8 +233,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 1134349,
-      "sha256": "52a3ea083ae26ef28997ccdcf7acfb1124c5ed9c984729d6ca9a656c0db2009b"
+      "bytes": 1135872,
+      "sha256": "21092c74519279024d43c6c1f93c037db292c6e26a45eb575274841e15675226"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
@@ -428,53 +428,53 @@
     },
     {
       "path": "v0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json",
-      "bytes": 24737,
-      "sha256": "37953ba8d41080c86a0f831d6480b84e5b6776bbeb306f43494a0ac3090627b7"
+      "bytes": 24973,
+      "sha256": "0eb1d4cbf102d409d16f2a5059fd553c342ac79a66c5269d876ef94288e7976e"
     },
     {
       "path": "v0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md",
-      "bytes": 22506,
-      "sha256": "d570d37c9d4ed3e5cadf44d7711072971fda2b7b643e9dce9376acf1ceb3d187"
+      "bytes": 22734,
+      "sha256": "cf991dca7a7edce72f7f6e1fc862cd791c263d548f730ed54372266badcd8954"
     },
     {
       "path": "v0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json",
-      "bytes": 66325,
-      "sha256": "d7976583f1afc361267248e0152f259e2452584da0e4d533fe0a17cc781d95ad"
+      "bytes": 66561,
+      "sha256": "66f6e0b7ecbe20ccccb14673b5e330e8cbb5b71f2dcfc15df90bacf59d793a8d"
     },
     {
       "path": "v0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md",
-      "bytes": 62828,
-      "sha256": "8788bdef37932885d69a5906afaa192ada0cda8d80aaaa1a8d4d69983cdf9456"
+      "bytes": 63056,
+      "sha256": "b5a4b293ff452e3b8ddf145352b9c8975effa15967f8fbed4c0f449dc5a99cf3"
     },
     {
       "path": "v0.9.5/normative/Landometer-Design-System-v0.9.5.json",
-      "bytes": 1838136,
-      "sha256": "22f2e0d1ff6f04df912e152349ce4acfa786d691e9409e6f7ff919eed5a2d7fd"
+      "bytes": 1845607,
+      "sha256": "fef7096794ef6c9a619a53233342fa0bb6202313afd694db5dc15b73f985c28e"
     },
     {
       "path": "v0.9.5/normative/Landometer-Design-System-v0.9.5.md",
-      "bytes": 1109428,
-      "sha256": "23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40"
+      "bytes": 1116504,
+      "sha256": "164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee"
     },
     {
       "path": "v0.9.5/normative/document-set.json",
       "bytes": 4637,
-      "sha256": "418a64b7d48b0aac9b6292e7f403d3a991f8ceb087e3d5fea7c7aa8c45662b6d"
+      "sha256": "5d330a8d5abd92ff6c3e8fc617761d2a16875fa617aeaef97f545ecdbef4f7c9"
     },
     {
       "path": "v0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json",
-      "bytes": 252069,
-      "sha256": "eed7c24b597f59c5059eb5bf7afdab011915355097445803be029d3bc568b985"
+      "bytes": 252305,
+      "sha256": "abb41cbdee1546fb28ffe6fbd7b0ffad7352ec9c3a3a9fb6871cfd5088b06b42"
     },
     {
       "path": "v0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md",
-      "bytes": 226340,
-      "sha256": "32439af40a29c93a886c6fc60337dc71bfb32299873f8a58cbda422b525c2b2b"
+      "bytes": 226568,
+      "sha256": "3491c849e7b40a03b7ee60da34acdfde2330b57bc2414b220651d249e3f7aaf1"
     },
     {
       "path": "v0.9.5/normative/source-policy.json",
-      "bytes": 2995,
-      "sha256": "efcf7605b61687639f822ca687e5f6096cbd9933419e93e86bb943861b9862e9"
+      "bytes": 3074,
+      "sha256": "8cc997282b0334a2e204038faed824bc0fd6ec86508bc6712bf6017876599271"
     },
     {
       "path": "v0.9.5/og-preview.png",
@@ -499,7 +499,7 @@
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/SHA256SUMS.txt",
       "bytes": 33459,
-      "sha256": "5dc7d14546948188170b093165f0d30cbda387d7b449ece3cc46a8169ba2631d"
+      "sha256": "d53531adf40bb012e3ae9a9b5b5ba25edd855e4ca9272c9dc6a9e63c1f42cbe0"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/brand/BRAND.md",
@@ -803,53 +803,53 @@
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json",
-      "bytes": 24737,
-      "sha256": "37953ba8d41080c86a0f831d6480b84e5b6776bbeb306f43494a0ac3090627b7"
+      "bytes": 24973,
+      "sha256": "0eb1d4cbf102d409d16f2a5059fd553c342ac79a66c5269d876ef94288e7976e"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md",
-      "bytes": 22506,
-      "sha256": "d570d37c9d4ed3e5cadf44d7711072971fda2b7b643e9dce9376acf1ceb3d187"
+      "bytes": 22734,
+      "sha256": "cf991dca7a7edce72f7f6e1fc862cd791c263d548f730ed54372266badcd8954"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json",
-      "bytes": 66325,
-      "sha256": "d7976583f1afc361267248e0152f259e2452584da0e4d533fe0a17cc781d95ad"
+      "bytes": 66561,
+      "sha256": "66f6e0b7ecbe20ccccb14673b5e330e8cbb5b71f2dcfc15df90bacf59d793a8d"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md",
-      "bytes": 62828,
-      "sha256": "8788bdef37932885d69a5906afaa192ada0cda8d80aaaa1a8d4d69983cdf9456"
+      "bytes": 63056,
+      "sha256": "b5a4b293ff452e3b8ddf145352b9c8975effa15967f8fbed4c0f449dc5a99cf3"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.json",
-      "bytes": 1838136,
-      "sha256": "22f2e0d1ff6f04df912e152349ce4acfa786d691e9409e6f7ff919eed5a2d7fd"
+      "bytes": 1845607,
+      "sha256": "fef7096794ef6c9a619a53233342fa0bb6202313afd694db5dc15b73f985c28e"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.md",
-      "bytes": 1109428,
-      "sha256": "23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40"
+      "bytes": 1116504,
+      "sha256": "164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/document-set.json",
       "bytes": 4637,
-      "sha256": "418a64b7d48b0aac9b6292e7f403d3a991f8ceb087e3d5fea7c7aa8c45662b6d"
+      "sha256": "5d330a8d5abd92ff6c3e8fc617761d2a16875fa617aeaef97f545ecdbef4f7c9"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json",
-      "bytes": 252069,
-      "sha256": "eed7c24b597f59c5059eb5bf7afdab011915355097445803be029d3bc568b985"
+      "bytes": 252305,
+      "sha256": "abb41cbdee1546fb28ffe6fbd7b0ffad7352ec9c3a3a9fb6871cfd5088b06b42"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md",
-      "bytes": 226340,
-      "sha256": "32439af40a29c93a886c6fc60337dc71bfb32299873f8a58cbda422b525c2b2b"
+      "bytes": 226568,
+      "sha256": "3491c849e7b40a03b7ee60da34acdfde2330b57bc2414b220651d249e3f7aaf1"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/source-policy.json",
-      "bytes": 2995,
-      "sha256": "efcf7605b61687639f822ca687e5f6096cbd9933419e93e86bb943861b9862e9"
+      "bytes": 3074,
+      "sha256": "8cc997282b0334a2e204038faed824bc0fd6ec86508bc6712bf6017876599271"
     },
     {
       "path": "v0.9.5/package/docs/activation-receipt.template.json",
@@ -858,13 +858,13 @@
     },
     {
       "path": "v0.9.5/package/docs/activation-th.md",
-      "bytes": 10976,
-      "sha256": "f72da8a862a3af793658ccb31f8e537aa91be7f46322100daadfa84eed824cc1"
+      "bytes": 10970,
+      "sha256": "13a5f13bd9a9aa7d4389780ae9a08a0c28f860ae4eb1d67b7333e630b97f0160"
     },
     {
       "path": "v0.9.5/package/docs/brand-and-visual.md",
-      "bytes": 3082,
-      "sha256": "cc5f556793ccd9eed15089218d1d58ebf8474a62c1944dd0dd7e6a11019aa243"
+      "bytes": 3536,
+      "sha256": "1c757256aaa51c2046c1fe2cc842be9aea1ea46f03704dacd6347fc9e757ebaf"
     },
     {
       "path": "v0.9.5/package/plugin.json",
@@ -1688,8 +1688,8 @@
     },
     {
       "path": "v0.9.5/package/references/standalone-master/Landometer-Design-System-v0.9.5.human.md",
-      "bytes": 264313,
-      "sha256": "59dcb238b3fd2544532a837b314005d4ad83c9a22e52e8d4f7e771674803f26c"
+      "bytes": 266796,
+      "sha256": "2b1aaca78f5a32ee3c0b2b51c9f650096670f963d8621ea152df2bff1f29d13d"
     },
     {
       "path": "v0.9.5/package/references/standalone-master/README.md",
@@ -1708,8 +1708,8 @@
     },
     {
       "path": "v0.9.5/package/references/standalone-master/consolidation-receipt.json",
-      "bytes": 33384,
-      "sha256": "e2410231c4b60931c6e4dc8456edbf2065b8feecf26c743593a7bd1d15204e75"
+      "bytes": 36772,
+      "sha256": "2366595a2dee5e48010755347f014b7728eaa04dbf1d9668a8d9609fc6033b86"
     },
     {
       "path": "v0.9.5/package/references/standalone-master/dataviz.md",
@@ -1738,8 +1738,8 @@
     },
     {
       "path": "v0.9.5/package/references/standalone-master/release.md",
-      "bytes": 10017,
-      "sha256": "6c13fa230af8c47f1a1dc0bae452226feb339c80bd337641650d39bb6037d191"
+      "bytes": 10649,
+      "sha256": "7eb9d0e8fe818954a771f49725f2110ab55f3f35e31831f5ce74120c4b5fda96"
     },
     {
       "path": "v0.9.5/package/references/standalone-master/roles.md",
@@ -1833,13 +1833,13 @@
     },
     {
       "path": "v0.9.5/package/scripts/verify.mjs",
-      "bytes": 16882,
-      "sha256": "51cb816fac0f8e82db67f91610cb2431b51b8aee23559a270a8d9d373e2abd8b"
+      "bytes": 17981,
+      "sha256": "aff5bfa915d8450ca3b6da2350b1a2f62a5e18dd893e3f2802b5546b721d06f7"
     },
     {
       "path": "v0.9.5/package/skills/apply-landometer-design-system/SKILL.md",
-      "bytes": 5701,
-      "sha256": "b4f277059a85eecc38a9f68f2ab37e3c5d9be0e38a73e5bb2897783c2738f636"
+      "bytes": 6253,
+      "sha256": "e0a3586e3b746aa700dd8b8d87ae0b957d21d3799d47995eeda7f2fabf70c136"
     },
     {
       "path": "v0.9.5/package/skills/apply-landometer-design-system/agents/openai.yaml",
@@ -1849,7 +1849,7 @@
     {
       "path": "v0.9.5/project-source-0.9.5.md",
       "bytes": 4231,
-      "sha256": "3b342dfc10b748eedd4b0b678cdb944430817a9f005048425ac0d0f486ee53cc"
+      "sha256": "29bfb090736e56df17e846ca221b16e67f78930a888e365a1dbbf1e0e6a61102"
     },
     {
       "path": "v0.9.5/render.js",
@@ -2028,8 +2028,8 @@
     },
     {
       "path": "v0.9.5/team-setup.md",
-      "bytes": 5226,
-      "sha256": "6b6fd148bdf8f003f0839a8f1d996a3ecf8506fdf6673ca9c0a26d34feff3292"
+      "bytes": 5340,
+      "sha256": "ab10fa498e630c94d5baa2e5b275374d3a1e37076908270df88752e054ada1a3"
     }
   ]
 }

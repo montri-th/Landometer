@@ -52,7 +52,7 @@ export function verifyPackage(){
  const baseFile='Landometer-Design-System-v0.9.5.md',basePath=resolve(P,'normative',baseFile),baseHash=documentSet.documents.find(doc=>doc.product==='landometer')?.files.find(file=>file.path===baseFile)?.sha256;
  const addonFiles={ijji:'ijji-Add-on-v0.5.5-for-LDS-v0.9.5',citychat:'CityChat-Add-on-v0.9.2-for-LDS-v0.9.5',citywiki:'CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5'};
  check('standalone-base-byte-identity',/^[a-f0-9]{64}$/.test(baseHash??'')&&hash(basePath)===baseHash);
- check('standalone-final-revision',documentSet.revision==='standalone-0.9.5-r2');
+ check('standalone-final-revision',documentSet.revision==='standalone-0.9.5-r3');
  for(const doc of documentSet.documents){
   const prefix='standalone:'+doc.product+':';
   check(prefix+'two-alternative-projections',doc.files.length===2&&doc.files.some(f=>f.path.endsWith('.md'))&&doc.files.some(f=>f.path.endsWith('.json')));
@@ -61,12 +61,12 @@ export function verifyPackage(){
   const parsed=readNormative(resolve(P,'normative',md.path)),mirror=readNormative(resolve(P,'normative',js.path));
   const machine=parsed.machine;
   check(prefix+'lossless-human-machine-parity',eq(parsed,mirror));
-  check(prefix+'document-identity',parsed.document.documentId===doc.documentId&&parsed.document.product===doc.product&&parsed.document.documentRevision==='standalone-0.9.5-r2'&&doc.kind===(doc.product==='landometer'?'base':'addon'));
+  check(prefix+'document-identity',parsed.document.documentId===doc.documentId&&parsed.document.product===doc.product&&parsed.document.documentRevision==='standalone-0.9.5-r3'&&doc.kind===(doc.product==='landometer'?'base':'addon'));
   if(doc.product!=='landometer'){
    const binding=machine.baseDocument;
    check(prefix+'separate-addon',parsed.document.documentKind==='addon'&&parsed.document.requiredNormativeFiles===2&&machine.release.normativeDependency===baseFile);
    check(prefix+'exact-filenames',md.path===addonFiles[doc.product]+'.md'&&js.path===addonFiles[doc.product]+'.json');
-   check(prefix+'exact-base-binding',binding?.path===baseFile&&binding?.sha256===baseHash&&binding?.sha256===hash(basePath)&&binding?.documentId==='lds-0.9.5-landometer-standalone-r2');
+   check(prefix+'exact-base-binding',binding?.path===baseFile&&binding?.sha256===baseHash&&binding?.sha256===hash(basePath)&&binding?.documentId==='lds-0.9.5-landometer-standalone-r3');
    check(prefix+'current-identity',binding?.dsVersion==='0.9.5'&&binding?.releaseRef==='v0.9.5-owner.1'&&binding?.colorSetId==='color-srgb-08'&&machine.release.dsVersion==='0.9.5'&&machine.release.releaseRef==='v0.9.5-owner.1'&&machine.release.colorSetId==='color-srgb-08');
    check(prefix+'unsigned-boundary',machine.release.signatureStatus==='unsigned'&&machine.release.signedRelease===false);
    check(prefix+'no-base-duplication',['tokens','ruleCatalog','analyticalScales','colorRegistry','schemas','contracts','assetFiles'].every(key=>!Object.hasOwn(machine,key)));
@@ -76,7 +76,7 @@ export function verifyPackage(){
    for(const source of machine.productProfileSources??[]){const p=resolve(ROOT,source.path);check(prefix+'product-source:'+source.path,p.startsWith(ROOT+sep)&&existsSync(p)&&hash(p)===source.sha256&&statSync(p).size===source.bytes);}
    continue;
   }
-  check(prefix+'one-complete-base',md.path===baseFile&&parsed.document.documentId==='lds-0.9.5-landometer-standalone-r2'&&parsed.document.requiredNormativeFiles===1&&machine.release.normativeDependency==='none');
+  check(prefix+'one-complete-base',md.path===baseFile&&parsed.document.documentId==='lds-0.9.5-landometer-standalone-r3'&&parsed.document.requiredNormativeFiles===1&&machine.release.normativeDependency==='none');
   check(prefix+'unsigned-boundary',machine.release.signatureStatus==='unsigned'&&machine.release.signedRelease===false);
   check(prefix+'all64-rules',eq(machine.ruleCatalog.rules.map(r=>r.id).sort(),coreCatalog.rules.map(r=>r.id).sort())&&machine.ruleCatalog.rules.length===64);
   check(prefix+'all139-acceptances',eq(machine.ruleCatalog.rules.flatMap(r=>r.acceptance.map(a=>a.checkId)).sort(),coreCatalog.rules.flatMap(r=>r.acceptance.map(a=>a.checkId)).sort()));
@@ -96,6 +96,10 @@ export function verifyPackage(){
   check(prefix+'square-valid',validateSchema(sidecar.properties.artifact,{...art,targetProfileRef:'target.social.square.1080.01',creativeWidthPx:1080,creativeHeightPx:1080},sidecar).length===0);
   check(prefix+'scoped-check-never-full-conformance',machine.schemas['scoped-check-receipt.schema.json'].properties.fullArtifactConformance.const===false&&machine.schemas['conformance-receipt.schema.json'].required.includes('attestationRef'));
   check(prefix+'new-registry-does-not-claim-old-signature',machine.contracts.assetRegistry.approvalAttestationRef===null&&machine.contracts.assetRegistry.approvalAttestationSha256===null);
+  const identity=machine.policy.identity;
+  check(prefix+'wordmark-colour-permission',identity?.wordmark?.colourChangeAllowed===true&&identity.wordmark.perLetterColourAllowed===true&&identity.wordmark.grayRequired===false&&identity.wordmark.perColourApprovalRequired===false&&identity.wordmark.preserveLetterforms===true&&identity.wordmark.preserveProportions===true);
+  check(prefix+'logo-background-scope',identity?.officialLogo?.lightBackgroundAllowed===true&&identity.officialLogo.darkBackgroundAllowed===true&&identity.officialLogo.blanketDarkBan===false&&identity.officialLogo.motifCarrierRulesApply===false&&identity.officialLogo.brandBlueAssessedPerPairing===true);
+  check(prefix+'wordmark-human-machine-scope',machine.ruleCatalog.rules.find(r=>r.id==='LOGO-01').requirement.includes('different colour for each letter')&&machine.ruleCatalog.rules.find(r=>r.id==='MOTION-04').acceptance.find(a=>a.checkId==='MOTION-04-A').criterion.includes('wordmark colour changes ตาม LOGO-01 ใช้ได้')&&!parsed.humanMarkdown.includes('identity — ห้าม crop, recolor, distort'));
   check(prefix+'explicit-owner-visual-preference',machine.ruleCatalog.rules.find(r=>r.id==='LAYOUT-01').requirement.includes('bracket')&&machine.policy.sourceRules['LAYOUT-01'].includes('left'));
  }
  const failed=checks.filter(x=>!x.pass);return {releaseRef:'v0.9.5-owner.1',status:failed.length?'FAIL':'PASS',checks:checks.length,passed:checks.length-failed.length,failed,warnings,minimumAdjacentClassDeltaE:minClass,minimumDarkSequentialLowContrast:minDark,signatureStatus:'unsigned-owner-approved',scope:'Package parity, inherited signed source, analytical math, CSS projection and standalone document/schema consistency only. No artifact or team-installation conformance claim.'};

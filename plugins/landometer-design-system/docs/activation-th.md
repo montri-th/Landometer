@@ -12,7 +12,7 @@ LDS เป็นกฎกลางฉบับเต็มตามโครง 
 
 ## เริ่มใช้ในเครื่อง — Codex และ Claude Code
 
-ดาวน์โหลดหรือ clone repository ที่ tag `v0.9.5-standalone-r2-docs1` หรือ commit ที่ตรงกันของ DS 0.9.5 แล้วเปิดโฟลเดอร์นั้น ต้องมี Python 3 และ Node.js:
+ดาวน์โหลดหรือ clone repository ที่ tag `v0.9.5-standalone-r3` หรือ commit ที่ตรงกันของ DS 0.9.5 แล้วเปิดโฟลเดอร์นั้น ต้องมี Python 3 และ Node.js:
 
 ```sh
 python3 tools/install-lds095.py

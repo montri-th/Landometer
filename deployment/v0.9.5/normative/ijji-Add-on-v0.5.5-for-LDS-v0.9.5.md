@@ -2598,9 +2598,9 @@ AI stop conditions:
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"ijji-addon-0.5.5-lds-0.9.5-r2","documentRevision":"standalone-0.9.5-r2","documentKind":"addon","title":"ijji Add-on v0.5.5 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"ijji","productVersion":"0.5.5","humanSha256":"745ae65210d9163045f55010c4a7f3fd7166576022e472769532f1c00e9584e9","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"ijji-addon-0.5.5-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"ijji Add-on v0.5.5 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"ijji","productVersion":"0.5.5","humanSha256":"745ae65210d9163045f55010c4a7f3fd7166576022e472769532f1c00e9584e9","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.5.md"},
-"baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r2","path":"Landometer-Design-System-v0.9.5.md","sha256":"23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
+"baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r3","path":"Landometer-Design-System-v0.9.5.md","sha256":"164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
 "productProfile":{
 "schemaVersion":"lds-product-addon-profile-1",
 "profileId":"ijji",
@@ -2608,7 +2608,7 @@ AI stop conditions:
 "productVersions":{"designSystem":"0.5.2","addon":"0.5.5"},
 "consolidationRevision":"standalone-0.9.5-r2",
 "effectiveDate":"2026-09-30",
-"parentDesignSystem":{"name":"Landometer Design System","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned-owner-approved","integration":"Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md","documentRevision":"standalone-0.9.5-r2","publicationTag":"v0.9.5-standalone-r2"},
+"parentDesignSystem":{"name":"Landometer Design System","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned-owner-approved","integration":"Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md","documentRevision":"standalone-0.9.5-r3","publicationTag":"v0.9.5-standalone-r3"},
 "document":{"path":"ijji.md","sha256":"d0d3b0bae113122ef41a5603e0f992e19d3ceaed0600a1cb14566afe8dc6ce53"},
 "sourceProvenance":[
 {"name":"ijji_Design_System_v0.5-draft.2_2026-08-22.md","repository":null,"sha256":"dcd0537a021f97116f31cc4c0d2ee231ddb606b7bce9c972c686b43d94cc339c","bytes":117560,"role":"product behavior and governed fixtures imported by approved DS0.5.0"},
@@ -3227,7 +3227,7 @@ AI stop conditions:
 "embedsSharedFoundation":false
 },
 "productProfileSources":[{"path":"references/standalone-product-profiles/ijji.md","bytes":163496,"sha256":"d0d3b0bae113122ef41a5603e0f992e19d3ceaed0600a1cb14566afe8dc6ce53"},{"path":"references/standalone-product-profiles/ijji.json","bytes":75331,"sha256":"1f0fd404d8e007e0eb121b5aad4a2a4960cf80dbe2848d9391edd34f6e027e47"}],
-"validationBoundary":{"document":"Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.","scope":"Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.","evidence":"Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."}
+"validationBoundary":{"document":"Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.","scope":"Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.","foundationRebinding":"Only parentDesignSystem.documentRevision and publicationTag are updated from the source profile to the current r3 foundation; original consolidation provenance and all product rules/values are preserved.","evidence":"Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."}
 }
 ```
 <!-- LDS_MACHINE_END -->

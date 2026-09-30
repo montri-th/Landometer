@@ -14,7 +14,7 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.5' && manifest.colorSetId === 'color-srgb-08', 'release identity');
 check(manifest.packageId === 'v0.9.5-owner.1', 'unchanged approved package identity');
-check(manifest.artifactBuildId === 'ui-20260930-lds095-r2-docs1', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20260930-lds095-r3', 'full-guide website build identity');
 check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
 check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
 const manifestPaths = manifest.assets.map(asset => asset.path);
@@ -47,7 +47,7 @@ check(!/ฉบับ ijji, CityChat และ CityWiki รวม LDS ครบ�
 check(!/ijji-LDS-v0\.9\.5-standalone|CityChat-LDS-v0\.9\.5-standalone|CityWiki-LDS-v0\.9\.5-standalone/.test(projectSources+html+manifestPaths.join(' ')), 'current resource links do not serve retired combined product editions');
 const baseDocument = documentSet.documents.find(doc => doc.product === 'landometer');
 const baseFile = baseDocument.files.find(file => file.path.endsWith('.md'));
-check(baseDocument.kind === 'base' && baseFile.path === 'Landometer-Design-System-v0.9.5.md' && /^[a-f0-9]{64}$/.test(baseFile.sha256) && hash(readFileSync(join(site, 'normative', baseFile.path))) === baseFile.sha256 && documentSet.revision === 'standalone-0.9.5-r2', 'current r2 base download matches declared exact bytes');
+check(baseDocument.kind === 'base' && baseFile.path === 'Landometer-Design-System-v0.9.5.md' && /^[a-f0-9]{64}$/.test(baseFile.sha256) && hash(readFileSync(join(site, 'normative', baseFile.path))) === baseFile.sha256 && documentSet.revision === 'standalone-0.9.5-r3', 'current r3 base download matches declared exact bytes');
 check(!/Landometer%20Design%20System%20v0\.9\.4\.md|\]\([^)]*GUIDE\.md\)|\]\([^)]*BRAND\.md\)/.test(projectSources), 'Project Source setup has no legacy multi-file normative dependencies');
 for (const doc of documentSet.documents) {
   check(doc.kind === (doc.product === 'landometer' ? 'base' : 'addon'), `${doc.product}: base/Add-on classification`);

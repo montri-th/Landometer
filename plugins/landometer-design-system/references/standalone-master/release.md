@@ -7,9 +7,9 @@
 | Identity | Exact value |
 |---|---|
 | DS version | `0.9.5` |
-| Document ID | `lds-0.9.5-landometer-standalone-r2` |
+| Document ID | `lds-0.9.5-landometer-standalone-r3` |
 | Release | `v0.9.5-owner.1` |
-| Standalone document | `standalone-0.9.5-r2` |
+| Standalone document | `standalone-0.9.5-r3` |
 | Color set | `color-srgb-08` |
 | Categorical registry | `landometer-series-10-v8` |
 | Approval | Owner-approved 29 September 2026 |
@@ -39,7 +39,7 @@
 | Typography | `type-script-aware-02` | approved script-aware fonts and role scales |
 | Layout | `layout-cross-format-01` | responsive/format composition and owner-selected visual constraints |
 
-**RELEASE-01 — Release identifiers have one source.** Release, schema, set, kit และ package identifiers MUST resolve จาก `machine.release` และ embedded contracts; published identities are immutable. Canonical schema `$id` MUST include the schema version and MUST NOT be reused for an incompatible contract. Generated artifacts MUST NOT contain conflicting current release identifiers. This document uses DS `0.9.5`, release `v0.9.5-owner.1`, color set `color-srgb-08` and document `standalone-0.9.5-r2`; document consolidation does not relabel historical signed subjects.
+**RELEASE-01 — Release identifiers have one source.** Release, schema, set, kit และ package identifiers MUST resolve จาก `machine.release` และ embedded contracts; published identities are immutable. Canonical schema `$id` MUST include the schema version and MUST NOT be reused for an incompatible contract. Generated artifacts MUST NOT contain conflicting current release identifiers. This document uses DS `0.9.5`, release `v0.9.5-owner.1`, color set `color-srgb-08` and document `standalone-0.9.5-r3`; document consolidation does not relabel historical signed subjects.
 
 Acceptance:
 
@@ -65,8 +65,10 @@ Acceptance:
 | Artifact build | implementation ของงานหนึ่ง build เปลี่ยน |
 | Product content/data release | product-owned evidence หรือ content เปลี่ยน แยกจาก DS |
 
+Revision r3 explicitly records the owner’s 30 September 2026 clarification: wordmark colour is flexible, including per-letter colours; gray is optional; the official logo is permitted on readable light and dark backgrounds. It corrects the inherited blanket recolour wording and prevents motif carrier restrictions from being misapplied to official logos. This is an owner-directed policy clarification, not an editorial-only or cryptographically signed change; DS 0.9.5, its approved colour sets, original assets and unchanged schema identities remain in place.
+
 Normative change MUST NOT hide in an editorial revision. `latest` is a discovery convenience, never a receipt identity. Preserve exact published source bytes and their signatures; historical signatures apply only to their original subjects. Package integrity, final-artifact quality and account/team activation are distinct evidence.
 
 ### 0.3 One-file reading and source provenance
 
-Read current rules in their normal chapters. The machine block contains current policies, the stable rule catalog, tokens, exact 41-stop LUTs, format/component/motif contracts and schema resources. Historical source hashes and the deterministic consolidation record are provenance in Appendix A, not extra reading or installation dependencies. The complete shared foundation is `Landometer-Design-System-v0.9.5.md`; it needs no earlier LDS master or overlay. For product-scoped work, load this same complete LDS foundation plus the separate current product Add-on. An Add-on contains product-specific rules and depends on the shared foundation; it does not duplicate or replace the complete LDS. Product facts, identity assets and permissions remain product-owned under LAYER-01. In Project Sources, retire the superseded `Landometer-Design-System-v0.9.5-standalone.md` document revision r1 for new work; the active shared document is this r2 revision.
+Read current rules in their normal chapters. The machine block contains current policies, the stable rule catalog, tokens, exact 41-stop LUTs, format/component/motif contracts and schema resources. Historical source hashes and the deterministic consolidation record are provenance in Appendix A, not extra reading or installation dependencies. The complete shared foundation is `Landometer-Design-System-v0.9.5.md`; it needs no earlier LDS master or overlay. For product-scoped work, load this same complete LDS foundation plus the separate current product Add-on. An Add-on contains product-specific rules and depends on the shared foundation; it does not duplicate or replace the complete LDS. Product facts, identity assets and permissions remain product-owned under LAYER-01. In Project Sources, retire the superseded `Landometer-Design-System-v0.9.5-standalone.md` document revision r1 for new work; the active shared document is this r3 revision; supersede r2 and r2-docs1 Project Source copies for current work.

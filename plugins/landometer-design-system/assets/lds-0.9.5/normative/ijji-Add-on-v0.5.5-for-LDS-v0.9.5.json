@@ -1,8 +1,8 @@
 {
   "document": {
     "schemaVersion": "lds-standalone-document-1",
-    "documentId": "ijji-addon-0.5.5-lds-0.9.5-r2",
-    "documentRevision": "standalone-0.9.5-r2",
+    "documentId": "ijji-addon-0.5.5-lds-0.9.5-r3",
+    "documentRevision": "standalone-0.9.5-r3",
     "documentKind": "addon",
     "title": "ijji Add-on v0.5.5 for LDS v0.9.5",
     "dsVersion": "0.9.5",
@@ -18,8 +18,8 @@
   "machine": {
     "document": {
       "schemaVersion": "lds-standalone-document-1",
-      "documentId": "ijji-addon-0.5.5-lds-0.9.5-r2",
-      "documentRevision": "standalone-0.9.5-r2",
+      "documentId": "ijji-addon-0.5.5-lds-0.9.5-r3",
+      "documentRevision": "standalone-0.9.5-r3",
       "documentKind": "addon",
       "title": "ijji Add-on v0.5.5 for LDS v0.9.5",
       "dsVersion": "0.9.5",
@@ -40,9 +40,9 @@
       "normativeDependency": "Landometer-Design-System-v0.9.5.md"
     },
     "baseDocument": {
-      "documentId": "lds-0.9.5-landometer-standalone-r2",
+      "documentId": "lds-0.9.5-landometer-standalone-r3",
       "path": "Landometer-Design-System-v0.9.5.md",
-      "sha256": "23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40",
+      "sha256": "164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee",
       "dsVersion": "0.9.5",
       "releaseRef": "v0.9.5-owner.1",
       "colorSetId": "color-srgb-08"
@@ -65,8 +65,8 @@
         "signatureStatus": "unsigned-owner-approved",
         "integration": "Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.",
         "markdownUrl": "https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md",
-        "documentRevision": "standalone-0.9.5-r2",
-        "publicationTag": "v0.9.5-standalone-r2"
+        "documentRevision": "standalone-0.9.5-r3",
+        "publicationTag": "v0.9.5-standalone-r3"
       },
       "document": {
         "path": "ijji.md",
@@ -1628,6 +1628,7 @@
     "validationBoundary": {
       "document": "Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.",
       "scope": "Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.",
+      "foundationRebinding": "Only parentDesignSystem.documentRevision and publicationTag are updated from the source profile to the current r3 foundation; original consolidation provenance and all product rules/values are preserved.",
       "evidence": "Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."
     }
   }

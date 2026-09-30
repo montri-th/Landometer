@@ -14,10 +14,10 @@ def archive(name,chosen):
   for f in chosen:
    info=zipfile.ZipInfo('landometer-design-system/'+f.relative_to(source).as_posix(),(2026,9,29,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;info.external_attr=0o644<<16;z.writestr(info,f.read_bytes())
  return {'file':name,'bytes':dest.stat().st_size,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'files':len(chosen)}
-all_package=archive('landometer-design-system-0.9.5-standalone-r2-docs1.zip',files)
+all_package=archive('landometer-design-system-0.9.5-standalone-r3.zip',files)
 # The exact same full package is the source for Design import. Its documented
 # import checklist tells designers which guide/assets to select, without
 # silently dropping dependencies from the portable source.
 (out/'SHA256SUMS.txt').write_text(all_package['sha256']+'  '+all_package['file']+'\n')
-(out/'download-manifest.json').write_text(json.dumps({'version':'0.9.5','package':'v0.9.5-owner.1','documentRevision':'standalone-0.9.5-r2','distributionRevision':'standalone-0.9.5-r2-docs1','signed':False,'assets':[all_package]},indent=2)+'\n')
+(out/'download-manifest.json').write_text(json.dumps({'version':'0.9.5','package':'v0.9.5-owner.1','documentRevision':'standalone-0.9.5-r3','distributionRevision':'standalone-0.9.5-r3','signed':False,'assets':[all_package]},indent=2)+'\n')
 print(json.dumps(all_package,indent=2))

@@ -98,9 +98,9 @@ Record the exact build, scope, assets, tests, observed render, unresolved limita
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citychat-addon-0.9.2-lds-0.9.5-r2","documentRevision":"standalone-0.9.5-r2","documentKind":"addon","title":"CityChat Add-on v0.9.2 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"citychat","productVersion":"0.9.2","humanSha256":"c42ca5eab36c3fafc8719a36ecdf2d14e0409bd5fa9686323e2e62365711a36d","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citychat-addon-0.9.2-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"CityChat Add-on v0.9.2 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"citychat","productVersion":"0.9.2","humanSha256":"c42ca5eab36c3fafc8719a36ecdf2d14e0409bd5fa9686323e2e62365711a36d","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.5.md"},
-"baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r2","path":"Landometer-Design-System-v0.9.5.md","sha256":"23bdbcdb2e8b2a1f10b04d1ea40cf9e88bee5b33112ad9676dd7c273fdc98f40","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
+"baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r3","path":"Landometer-Design-System-v0.9.5.md","sha256":"164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
 "productProfile":{
 "schemaVersion":"lds-product-addon-profile-1",
 "profileId":"citychat",
@@ -108,7 +108,7 @@ Record the exact build, scope, assets, tests, observed render, unresolved limita
 "productVersions":{"addon":"0.9.2"},
 "consolidationRevision":"standalone-0.9.5-r2",
 "effectiveDate":"2026-09-30",
-"parentDesignSystem":{"name":"Landometer Design System","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned-owner-approved","integration":"Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md","documentRevision":"standalone-0.9.5-r2","publicationTag":"v0.9.5-standalone-r2"},
+"parentDesignSystem":{"name":"Landometer Design System","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned-owner-approved","integration":"Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md","documentRevision":"standalone-0.9.5-r3","publicationTag":"v0.9.5-standalone-r3"},
 "document":{"path":"citychat.md","sha256":"e9481cb43f3a5ef7e274da64d4ba5a2ccc42936e92d09df9a269d0ca9fafdc60"},
 "sourceProvenance":[{"name":"citychat-ds-addon-v0.9.2-project-source.md","repository":"montri-th/CityChat","sha256":"31801f57a1e82c47c5e1b584278ca8d66ff1104880df45f31fdfd156675ec3d5","bytes":16663,"role":"complete current CityChat product rules"},{"name":"citychat-ds-addon-v0.9.2-binding.json","repository":"montri-th/CityChat","sha256":"92351871191a19a8fe9427f1412907b58170e6b44df938a0ed7e111df2a33cf8","bytes":2181,"role":"original owner-directed migration binding"}],
 "externalDesignRuleDocumentsRequired":[{"role":"shared_foundation","dsVersion":"0.9.5","markdownUrl":"https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md"}],
@@ -125,7 +125,7 @@ Record the exact build, scope, assets, tests, observed render, unresolved limita
 "embedsSharedFoundation":false
 },
 "productProfileSources":[{"path":"references/standalone-product-profiles/citychat.md","bytes":16351,"sha256":"e9481cb43f3a5ef7e274da64d4ba5a2ccc42936e92d09df9a269d0ca9fafdc60"},{"path":"references/standalone-product-profiles/citychat.json","bytes":3711,"sha256":"f10de26a3fe044e9dfc62bc8efe2654a08d29c7a8eb1482804da54f2b5f5146a"}],
-"validationBoundary":{"document":"Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.","scope":"Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.","evidence":"Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."}
+"validationBoundary":{"document":"Product-only Add-on. Read with the exact complete LDS 0.9.5 base identified above.","scope":"Product rules apply only within their declared scope. Shared LDS rules and exact machine values are not duplicated or redefined here.","foundationRebinding":"Only parentDesignSystem.documentRevision and publicationTag are updated from the source profile to the current r3 foundation; original consolidation provenance and all product rules/values are preserved.","evidence":"Keep approved product briefs, factual data and evidence separately. This design contract cannot establish product capability or artifact conformance."}
 }
 ```
 <!-- LDS_MACHINE_END -->

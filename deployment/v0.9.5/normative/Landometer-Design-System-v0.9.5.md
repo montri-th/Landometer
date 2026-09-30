@@ -7,9 +7,9 @@
 | Identity | Exact value |
 |---|---|
 | DS version | `0.9.5` |
-| Document ID | `lds-0.9.5-landometer-standalone-r2` |
+| Document ID | `lds-0.9.5-landometer-standalone-r3` |
 | Release | `v0.9.5-owner.1` |
-| Standalone document | `standalone-0.9.5-r2` |
+| Standalone document | `standalone-0.9.5-r3` |
 | Color set | `color-srgb-08` |
 | Categorical registry | `landometer-series-10-v8` |
 | Approval | Owner-approved 29 September 2026 |
@@ -39,7 +39,7 @@
 | Typography | `type-script-aware-02` | approved script-aware fonts and role scales |
 | Layout | `layout-cross-format-01` | responsive/format composition and owner-selected visual constraints |
 
-**RELEASE-01 — Release identifiers have one source.** Release, schema, set, kit และ package identifiers MUST resolve จาก `machine.release` และ embedded contracts; published identities are immutable. Canonical schema `$id` MUST include the schema version and MUST NOT be reused for an incompatible contract. Generated artifacts MUST NOT contain conflicting current release identifiers. This document uses DS `0.9.5`, release `v0.9.5-owner.1`, color set `color-srgb-08` and document `standalone-0.9.5-r2`; document consolidation does not relabel historical signed subjects.
+**RELEASE-01 — Release identifiers have one source.** Release, schema, set, kit และ package identifiers MUST resolve จาก `machine.release` และ embedded contracts; published identities are immutable. Canonical schema `$id` MUST include the schema version and MUST NOT be reused for an incompatible contract. Generated artifacts MUST NOT contain conflicting current release identifiers. This document uses DS `0.9.5`, release `v0.9.5-owner.1`, color set `color-srgb-08` and document `standalone-0.9.5-r3`; document consolidation does not relabel historical signed subjects.
 
 Acceptance:
 
@@ -65,11 +65,13 @@ Acceptance:
 | Artifact build | implementation ของงานหนึ่ง build เปลี่ยน |
 | Product content/data release | product-owned evidence หรือ content เปลี่ยน แยกจาก DS |
 
+Revision r3 explicitly records the owner’s 30 September 2026 clarification: wordmark colour is flexible, including per-letter colours; gray is optional; the official logo is permitted on readable light and dark backgrounds. It corrects the inherited blanket recolour wording and prevents motif carrier restrictions from being misapplied to official logos. This is an owner-directed policy clarification, not an editorial-only or cryptographically signed change; DS 0.9.5, its approved colour sets, original assets and unchanged schema identities remain in place.
+
 Normative change MUST NOT hide in an editorial revision. `latest` is a discovery convenience, never a receipt identity. Preserve exact published source bytes and their signatures; historical signatures apply only to their original subjects. Package integrity, final-artifact quality and account/team activation are distinct evidence.
 
 ### 0.3 One-file reading and source provenance
 
-Read current rules in their normal chapters. The machine block contains current policies, the stable rule catalog, tokens, exact 41-stop LUTs, format/component/motif contracts and schema resources. Historical source hashes and the deterministic consolidation record are provenance in Appendix A, not extra reading or installation dependencies. The complete shared foundation is `Landometer-Design-System-v0.9.5.md`; it needs no earlier LDS master or overlay. For product-scoped work, load this same complete LDS foundation plus the separate current product Add-on. An Add-on contains product-specific rules and depends on the shared foundation; it does not duplicate or replace the complete LDS. Product facts, identity assets and permissions remain product-owned under LAYER-01. In Project Sources, retire the superseded `Landometer-Design-System-v0.9.5-standalone.md` document revision r1 for new work; the active shared document is this r2 revision.
+Read current rules in their normal chapters. The machine block contains current policies, the stable rule catalog, tokens, exact 41-stop LUTs, format/component/motif contracts and schema resources. Historical source hashes and the deterministic consolidation record are provenance in Appendix A, not extra reading or installation dependencies. The complete shared foundation is `Landometer-Design-System-v0.9.5.md`; it needs no earlier LDS master or overlay. For product-scoped work, load this same complete LDS foundation plus the separate current product Add-on. An Add-on contains product-specific rules and depends on the shared foundation; it does not duplicate or replace the complete LDS. Product facts, identity assets and permissions remain product-owned under LAYER-01. In Project Sources, retire the superseded `Landometer-Design-System-v0.9.5-standalone.md` document revision r1 for new work; the active shared document is this r3 revision; supersede r2 and r2-docs1 Project Source copies for current work.
 
 ## 1. วิธีอ่านและบังคับใช้
 
@@ -344,12 +346,14 @@ CTA/copy สำหรับ Thai MUST ผ่าน native review; การต�
 
 ### 4.3 Identity roles
 
-**LOGO-01 — Use an approved identity implementation.** ทุก output ที่ `brandRequired: true` MUST bind `identityImplementation` ที่ approved หนึ่งรายการ Logo, wordmark, symbol, favicon และ social mark MUST ใช้ owner-approved asset ตรง declared role หากยังไม่มี logo asset ที่ approved สำหรับ role/surface นั้น MAY ใช้ canonical portfolio name เป็น governed live-text identity ที่ bind approved fonts ได้ แต่ MUST ระบุ `kind: governed_text_identity`, ใช้ canonical text ครบทุก delivered locale, ตั้ง `logoAssetId: null` และ `logoReconstructionAllowed: false`; MUST NOT ทำ live type ให้เลียนแบบ wordmark หรือ invent compact mark
+**LOGO-01 — Use an approved identity implementation.** Landometer wordmark MAY change colour, including a different colour for each letter, while preserving its letterforms and proportions. Gray is an optional versatile default, not a required identity colour. This owner-authorized wordmark colour treatment does not require separate permission for each colour. The official logo MAY appear on light or dark backgrounds when the complete name and symbol remain legible at the actual size. Evaluate a Brand Blue visibility problem for that specific pairing; it does not prohibit dark backgrounds generally. MOTIF-06 full/quiet carrier restrictions apply to registered motifs, not official logo PNGs. This permission changes wordmark colour only; it does not authorize symbol recolouring, redrawing or distortion, or change interface/data colour contracts.
+
+ทุก output ที่ `brandRequired: true` MUST bind `identityImplementation` ที่ approved หนึ่งรายการ Logo, wordmark, symbol, favicon และ social mark MUST ใช้ owner-approved asset ตรง declared role หากยังไม่มี logo asset ที่ approved สำหรับ role/surface นั้น MAY ใช้ canonical portfolio name เป็น governed live-text identity ที่ bind approved fonts ได้ แต่ MUST ระบุ `kind: governed_text_identity`, ใช้ canonical text ครบทุก delivered locale, ตั้ง `logoAssetId: null` และ `logoReconstructionAllowed: false`; MUST NOT ทำ live type ให้เลียนแบบ wordmark หรือ invent compact mark
 
 Acceptance:
 
-- LOGO-01-A — automated: brand-required output resolve identity implementation หนึ่งรายการพอดี—approved asset identity ต้องตรง role/surface/rights/SHA-256/receipt/minimum-size/clear-space; governed text identity ต้องตรง canonical locale text, approved font bindings, null `logoAssetId`, disabled reconstruction และ artifact-resolved format-implementation record ต้อง bind implementation ID เดียวกัน
-- LOGO-01-B — visual: asset identity ใช้ clear space/minimum size/contrast/direct surface ตรง approved variant; governed text identity ยังคงเป็น live text ที่อ่านได้และไม่ impersonate wordmark ที่ไม่ได้รับอนุมัติ
+- LOGO-01-A — automated: brand-required output resolve identity implementation หนึ่งรายการพอดี—approved asset identity ต้องตรง role/surface/rights/SHA-256/receipt/minimum-size/clear-space; wordmark colour rendition ที่ LOGO-01 อนุญาตคง source provenance และบันทึก hash ของไฟล์ผลลัพธ์จริง ห้ามอ้าง hash เดิมแทนไฟล์ที่เปลี่ยน และไม่ต้องขอ approval ใหม่แยกต่อสี; governed text identity ต้องตรง canonical locale text, approved font bindings, null `logoAssetId`, disabled reconstruction และ artifact-resolved format-implementation record ต้อง bind implementation ID เดียวกัน
+- LOGO-01-B — visual: asset identity ใช้ clear space/minimum size/contrast/direct surface ตรง approved variant และ wordmark colour permission ของ LOGO-01; light/dark ทั้งสองใช้ได้เมื่อชื่อและสัญลักษณ์อ่านได้ครบ ห้ามใช้ MOTIF-06 เป็น blanket dark-background ban ของ official logo; governed text identity ยังคงเป็น live text ที่อ่านได้และไม่ impersonate wordmark ที่ไม่ได้รับอนุมัติ
 
 Logo ไม่ใช่ interface icon และ interface icon ไม่ใช่ product identity ถ้าไม่มี approved contrast-safe variant สำหรับ surface นั้น ให้เปลี่ยน surface/variant หรือไม่ใช้ ห้ามรับ contrast risk เพราะ implementation สวยใน screenshot เดียว
 
@@ -547,7 +551,7 @@ Acceptance:
 
 Governed roles:
 
-- identity — ห้าม crop, recolor, distort; ไฟล์อัตลักษณ์ทางการไม่เคลื่อนไหว ส่วน animated variant ของ mark มีทางเดียวคือ `motif.v3` kind `logo` ตาม MOTION-04 ซึ่งเป็น generated_vector ไม่ใช่ identity file
+- identity — ห้าม crop หรือ distort; เปลี่ยนสีเฉพาะ wordmark ได้ตาม LOGO-01 รวมถึงตัวอักษรละสี โดยคง letterforms/proportions; ข้อห้าม recolor ส่วนอื่นยังคงเดิม; ไฟล์อัตลักษณ์ทางการไม่เคลื่อนไหว ส่วน animated variant ของ mark มีทางเดียวคือ `motif.v3` kind `logo` ตาม MOTION-04 ซึ่งเป็น generated_vector ไม่ใช่ identity file
 - evidence — ห้ามเปลี่ยนส่วนที่ทำให้ข้อสรุปเปลี่ยน; caption/source อยู่ใกล้
 - editorial — crop ได้ตาม focal point และ rights record
 - atmosphere — decorate ได้แต่ subordinate และ aria-hidden เมื่อไม่มี meaning
@@ -849,7 +853,7 @@ Machine binding: `machine.tokens#/motion/identity` (runtime ids, hashes, cycle 6
 
 Acceptance:
 
-- MOTION-04-A — automated: runtime js/css bytes ที่ deliver มี SHA-256 ตรงค่าข้างบน; fallback svg ตรง `governance/SHA256SUMS.txt` ของ motif 1.2.1 (`90e9543f…`, `5b6798cd…`); ไม่มี `animation-iteration-count: infinite` ใน delivered CSS; observer threshold/rootMargin/cycle ตรง token; page-level pause control มีอยู่; identity PNG ไม่ถูก animate, recolor หรือ redraw
+- MOTION-04-A — automated: runtime js/css bytes ที่ deliver มี SHA-256 ตรงค่าข้างบน; fallback svg ตรง `governance/SHA256SUMS.txt` ของ motif 1.2.1 (`90e9543f…`, `5b6798cd…`); ไม่มี `animation-iteration-count: infinite` ใน delivered CSS; observer threshold/rootMargin/cycle ตรง token; page-level pause control มีอยู่; identity PNG ไม่ถูก animate หรือ redraw; wordmark colour changes ตาม LOGO-01 ใช้ได้ โดยคงรูปทรงและไม่เปลี่ยนสี symbol
 - MOTION-04-B — interaction: เข้า viewport ≥ 14% แล้วเล่นทันทีและเล่นซ้ำทุก 6,000 ms ขณะยังมองเห็น; ออกจาก viewport แล้วหยุดค้าง final state; pause แสดง final state ครบ; reduced motion, no-JS และ print แสดง final state โดยไม่เริ่มรอบ
 - MOTION-04-C — manual: motion ไม่ทับ first answer, primary action, navigation, favicon หรือ OG image และไม่ถือความหมาย หลักฐาน หรือสถานะใด ๆ
 
@@ -1886,8 +1890,23 @@ The machine payload that follows is part of this same normative document. Its cu
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"lds-0.9.5-landometer-standalone-r2","documentRevision":"standalone-0.9.5-r2","title":"Landometer Design System v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"landometer","structureBaseline":"Landometer Design System v0.9.1","humanSha256":"59dcb238b3fd2544532a837b314005d4ad83c9a22e52e8d4f7e771674803f26c","requiredNormativeFiles":1,"supersedes":"Previous LDS Project Source masters, overlays and fragmented machine sources for new work in this scope."},
-"release":{"dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","machinePackage":"v0.9.5-owner.1","authoringRevision":"0.9.5-owner.1","colorSetId":"color-srgb-08","status":"owner-approved","effectiveFor":"work explicitly adopting this owner distribution","signatureStatus":"unsigned","signedRelease":false,"ownerApproval":{"date":"2026-09-29","authority":"Montri","reference":"owner-message:2026-09-29:approve-r2.1-and-implement-ds0.9.5"},"documentRevision":"standalone-0.9.5-r2","normativeDependency":"none","consolidationApproval":{"date":"2026-09-30","authority":"Montri","scope":"Consolidate the complete current normative into one v0.9.5 document using the v0.9.1 structure; retire conflicting prior Project Sources."}},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"lds-0.9.5-landometer-standalone-r3","documentRevision":"standalone-0.9.5-r3","title":"Landometer Design System v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"landometer","structureBaseline":"Landometer Design System v0.9.1","humanSha256":"2b1aaca78f5a32ee3c0b2b51c9f650096670f963d8621ea152df2bff1f29d13d","requiredNormativeFiles":1,"supersedes":"Previous LDS Project Source masters, overlays and fragmented machine sources for new work in this scope."},
+"release":{
+"dsVersion":"0.9.5",
+"releaseRef":"v0.9.5-owner.1",
+"machinePackage":"v0.9.5-owner.1",
+"authoringRevision":"0.9.5-owner.1",
+"colorSetId":"color-srgb-08",
+"status":"owner-approved",
+"effectiveFor":"work explicitly adopting this owner distribution",
+"signatureStatus":"unsigned",
+"signedRelease":false,
+"ownerApproval":{"date":"2026-09-29","authority":"Montri","reference":"owner-message:2026-09-29:approve-r2.1-and-implement-ds0.9.5"},
+"documentRevision":"standalone-0.9.5-r3",
+"normativeDependency":"none",
+"consolidationApproval":{"date":"2026-09-30","authority":"Montri","scope":"Consolidate the complete current normative into one v0.9.5 document using the v0.9.1 structure; retire conflicting prior Project Sources."},
+"identityClarification":{"date":"2026-09-30","authority":"Montri","basis":"Current owner messages permit wordmark colour changes including per-letter colours and confirm the official logo on a dark background.","statements":["wordmark ผมให้เปลี่ยนสีได้นะ ไม่ซีเรียส จะเอาตัวอักษรละสีเลยก็ได้ไม่ติด ดูส่งเสริมความหลากหลายดี ที่เลือกสีเทาทีแรกเพราะจะได้ ใช้ได้ทั้ง background สว่างและมืดใน logo แบบเดียว","logo on dark background แสดงได้สิ มีปัญหาอะไรครับ"]}
+},
 "policy":{
 "schemaVersion":"lds-standalone-policy-0.9.5-r1",
 "releaseRef":"v0.9.5-owner.1",
@@ -1904,6 +1923,7 @@ The machine payload that follows is part of this same normative document. Its cu
 "SOCIALFMT-01":"Full inherited sidecar contract admits square1080x1080 and OG1200x630 using the new schema; creative hash and dimensions required.",
 "GOV-01/RELEASE-01":"This owner-approved distribution is unsigned. An artifact may pin this exact channel and report scoped checks, but MUST NOT fabricate or inherit a signed 0.9.5 receipt or call itself fully conformant from package verification.",
 "LAYOUT-01":"No decorative bracket-shaped highlights or colored left rails for selected navigation, tabs, cards or callouts. Use restrained background, text weight and spacing. Preserve visible keyboard focus and meaningful data borders.",
+"LOGO-01":"Landometer wordmark MAY change colour, including a different colour for each letter, while preserving its letterforms and proportions. Gray is an optional versatile default, not a required identity colour. This owner-authorized wordmark colour treatment does not require separate permission for each colour. The official logo MAY appear on light or dark backgrounds when the complete name and symbol remain legible at the actual size. Evaluate a Brand Blue visibility problem for that specific pairing; it does not prohibit dark backgrounds generally. MOTIF-06 full/quiet carrier restrictions apply to registered motifs, not official logo PNGs. This permission changes wordmark colour only; it does not authorize symbol recolouring, redrawing or distortion, or change interface/data colour contracts.",
 "QA-01":"Review actual rendered Thai and English content at narrow and desktop widths, including every new section, squeezed headings and sibling overlap. Exact package checks do not replace artifact review or prove signed conformance."
 },
 "analytical":{
@@ -1942,7 +1962,14 @@ The machine payload that follows is part of this same normative document. Its cu
 "categorical":{"stableIds":true,"bindBy":"category ID","nonColorCuesRequired":true,"darkInkMinContrastOnCanvas":4.5,"fillSeparation":">=1px border.default or ink outline; do not imply all light fills meet3:1","vividAndEnergyAccentShareSurface":false},
 "forbiddenAliases":["--ldm-series-NN-light","--ldm-series-NN-dark","--ldm-product-ijji-*","--scale-density-*"],
 "brand":{"voice":["calm","clear","evidence-aware","civic-minded","action-capable"],"preserve":["protected lines and roles","brand core","foundation","semantic states","typography","logo assets","7 atmosphere recipes","layout and motion contracts"],"ijjiIdentity":"ground.mist for light; #59C7E8 to #3BD3CB for dark. Retired warm product aliases must not be used as identity."},
-"verificationBounds":["Package parity and analytical math are automated.","Rendering, actual surface contrast, native Thai copy, source truth, threshold semantics, CVD/grayscale usability and each output format require artifact review.","No claim of signed0.9.5 release, complete conformance, universal platform enforcement or team installation.","Gold density nine-class minimum >=2.2 but below3.0; prefer5–7 for small marks.","Inherited open governance/product-icon/motif/signing follow-ups remain open unless specifically resolved here."]
+"verificationBounds":["Package parity and analytical math are automated.","Rendering, actual surface contrast, native Thai copy, source truth, threshold semantics, CVD/grayscale usability and each output format require artifact review.","No claim of signed0.9.5 release, complete conformance, universal platform enforcement or team installation.","Gold density nine-class minimum >=2.2 but below3.0; prefer5–7 for small marks.","Inherited open governance/product-icon/motif/signing follow-ups remain open unless specifically resolved here."],
+"identity":{
+"scope":"Landometer official logo and wordmark",
+"ownerDirection":{"date":"2026-09-30","authority":"Montri","basis":"Current owner messages permit wordmark colour changes including per-letter colours and confirm the official logo on a dark background.","statements":["wordmark ผมให้เปลี่ยนสีได้นะ ไม่ซีเรียส จะเอาตัวอักษรละสีเลยก็ได้ไม่ติด ดูส่งเสริมความหลากหลายดี ที่เลือกสีเทาทีแรกเพราะจะได้ ใช้ได้ทั้ง background สว่างและมืดใน logo แบบเดียว","logo on dark background แสดงได้สิ มีปัญหาอะไรครับ"]},
+"wordmark":{"colourChangeAllowed":true,"perLetterColourAllowed":true,"grayRequired":false,"preserveLetterforms":true,"preserveProportions":true,"perColourApprovalRequired":false},
+"officialLogo":{"lightBackgroundAllowed":true,"darkBackgroundAllowed":true,"actualSizeLegibilityRequired":true,"brandBlueAssessedPerPairing":true,"blanketDarkBan":false,"motifCarrierRulesApply":false},
+"scopeBoundary":"Wordmark colour permission does not recolour the symbol or modify interface, analytical or registered motif colour contracts."
+}
 },
 "resourceAliases":{
 "policy.json":"#/machine/policy",
@@ -2006,7 +2033,7 @@ The machine payload that follows is part of this same normative document. Its cu
 "scope":"all",
 "requirement":"Artifact manifests, receipts and sidecars MUST bind exact `releaseRef` and a canonical tuple hash derived from the active contract. `machine.release` records owner-approved status, approver, date and unsigned signature status. Approval does not certify every artifact or activate every account. Internal approval workflow, rule/schema identifiers and package state MUST NOT appear on an ordinary audience-facing product surface. A DS-reference or provenance document MAY show only the identifiers/facts necessary for that purpose under its recorded disclosure authority; unresolved dependencies, debug details, placeholders and local/source paths remain prohibited on audience-facing output.",
 "acceptance":[{"checkId":"GOV-01-A","method":"automated","criterion":"release binding resolves `v0.9.5-owner.1`, owner/date, color set and `signedRelease: false`; artifact tuple/hash resolves that exact release, without inherited or fabricated 0.9.5 signing claims"},{"checkId":"GOV-01-B","method":"manual","criterion":"ordinary audience-facing surfaces contain no internal approval workflow or irrelevant machine identifiers; DS/provenance disclosure stays within its declared purpose and actual evidence"}],
-"sourceTextSha256":"60523149cf8666d3353191dbbc14f4743200095e0e56678db839886462dcfa09",
+"sourceTextSha256":"0530e30f47b290f565b9d26a344ba0dda63cf4b73bbac5ae1452df3ef8796a76",
 "sourceRuleId":"GOV-01"
 },
 {
@@ -2067,9 +2094,12 @@ The machine payload that follows is part of this same normative document. Its cu
 "section":"identity",
 "normativeLevel":"MUST",
 "scope":"all",
-"requirement":"ทุก output ที่ `brandRequired: true` MUST bind `identityImplementation` ที่ approved หนึ่งรายการ Logo, wordmark, symbol, favicon และ social mark MUST ใช้ owner-approved asset ตรง declared role หากยังไม่มี logo asset ที่ approved สำหรับ role/surface นั้น MAY ใช้ canonical portfolio name เป็น governed live-text identity ที่ bind approved fonts ได้ แต่ MUST ระบุ `kind: governed_text_identity`, ใช้ canonical text ครบทุก delivered locale, ตั้ง `logoAssetId: null` และ `logoReconstructionAllowed: false`; MUST NOT ทำ live type ให้เลียนแบบ wordmark หรือ invent compact mark",
-"acceptance":[{"checkId":"LOGO-01-A","method":"automated","criterion":"brand-required output resolve identity implementation หนึ่งรายการพอดี—approved asset identity ต้องตรง role/surface/rights/SHA-256/receipt/minimum-size/clear-space; governed text identity ต้องตรง canonical locale text, approved font bindings, null `logoAssetId`, disabled reconstruction และ artifact-resolved format-implementation record ต้อง bind implementation ID เดียวกัน"},{"checkId":"LOGO-01-B","method":"visual","criterion":"asset identity ใช้ clear space/minimum size/contrast/direct surface ตรง approved variant; governed text identity ยังคงเป็น live text ที่อ่านได้และไม่ impersonate wordmark ที่ไม่ได้รับอนุมัติ"}],
-"sourceTextSha256":"640d62c86081db872a9b428c3bd377d4a3c0048e0fc75a0e473d699c8859ada2",
+"requirement":"Landometer wordmark MAY change colour, including a different colour for each letter, while preserving its letterforms and proportions. Gray is an optional versatile default, not a required identity colour. This owner-authorized wordmark colour treatment does not require separate permission for each colour. The official logo MAY appear on light or dark backgrounds when the complete name and symbol remain legible at the actual size. Evaluate a Brand Blue visibility problem for that specific pairing; it does not prohibit dark backgrounds generally. MOTIF-06 full/quiet carrier restrictions apply to registered motifs, not official logo PNGs. This permission changes wordmark colour only; it does not authorize symbol recolouring, redrawing or distortion, or change interface/data colour contracts.\n\n\nทุก output ที่ `brandRequired: true` MUST bind `identityImplementation` ที่ approved หนึ่งรายการ Logo, wordmark, symbol, favicon และ social mark MUST ใช้ owner-approved asset ตรง declared role หากยังไม่มี logo asset ที่ approved สำหรับ role/surface นั้น MAY ใช้ canonical portfolio name เป็น governed live-text identity ที่ bind approved fonts ได้ แต่ MUST ระบุ `kind: governed_text_identity`, ใช้ canonical text ครบทุก delivered locale, ตั้ง `logoAssetId: null` และ `logoReconstructionAllowed: false`; MUST NOT ทำ live type ให้เลียนแบบ wordmark หรือ invent compact mark",
+"acceptance":[
+{"checkId":"LOGO-01-A","method":"automated","criterion":"brand-required output resolve identity implementation หนึ่งรายการพอดี—approved asset identity ต้องตรง role/surface/rights/SHA-256/receipt/minimum-size/clear-space; wordmark colour rendition ที่ LOGO-01 อนุญาตคง source provenance และบันทึก hash ของไฟล์ผลลัพธ์จริง ห้ามอ้าง hash เดิมแทนไฟล์ที่เปลี่ยน และไม่ต้องขอ approval ใหม่แยกต่อสี; governed text identity ต้องตรง canonical locale text, approved font bindings, null `logoAssetId`, disabled reconstruction และ artifact-resolved format-implementation record ต้อง bind implementation ID เดียวกัน"},
+{"checkId":"LOGO-01-B","method":"visual","criterion":"asset identity ใช้ clear space/minimum size/contrast/direct surface ตรง approved variant และ wordmark colour permission ของ LOGO-01; light/dark ทั้งสองใช้ได้เมื่อชื่อและสัญลักษณ์อ่านได้ครบ ห้ามใช้ MOTIF-06 เป็น blanket dark-background ban ของ official logo; governed text identity ยังคงเป็น live text ที่อ่านได้และไม่ impersonate wordmark ที่ไม่ได้รับอนุมัติ"}
+],
+"sourceTextSha256":"2c75f4b3ff9c7bc027c48d948cb465739ae4f6d9c9b7aa58a19de06d0e5607d3",
 "sourceRuleId":"LOGO-01"
 },
 {
@@ -2249,8 +2279,8 @@ The machine payload that follows is part of this same normative document. Its cu
 "normativeLevel":"MUST",
 "scope":"web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
 "requirement":"The official artwork files never animate. The mark's parts may assemble only through `landometer.motif.v3` kind=\"logo\" (montri-th/motif release 1.2.1; js SHA-256 `3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2`, css `7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e`) with `logo-full.svg` / `logo-quiet.svg` as the final-state fallback. Bytes are never edited; the wedge stays token-derived (`color-mix(in lch, energy.sky 48%, brand.blue)`), never a sampled hex.\n\n\n**Repetition (OWNER-MOTION-01, 11 September 2026, outranks every LDS version).** Every animation plays as soon as ≥ 14% of it is in the viewport and replays for as long as it stays visible; it stops when it leaves the viewport. Cycles are repeated finite plays (never `animation-iteration-count: infinite`), ≥ 2,000 ms; the logo cycle is 6,000 ms so its final state stays visible between plays. One page-level pause/resume control exists. `prefers-reduced-motion: reduce`, no-JavaScript and print routes render the final state and start no cycle. State-bound motifs (`motif.progress`) still appear only while the real state runs.\n\n**Still prohibited.** Hue cycling, shape distortion, motion carrying evidence or meaning, motion over the first answer or the primary action, motifs in navigation, favicon or OG images (official identity files only).\n\nขอบเขตตามคำตัดสินของเจ้าของ 15 กันยายน 2569: กฎนี้ใช้กับ `web_public`, `app_interactive.browser` และ document/PDF/deck ที่ render ในเบราว์เซอร์; ไฟล์ static ที่ export แล้ว (PDF, PPTX, PNG, email) ใช้ final state เท่านั้น การเล่นซ้ำครอบคลุม decorative และ identity motion (motif runtime ทุก kind และ approach reveal เมื่อกลับเข้า viewport) ส่วน CTA discovery cue ยังคงเล่นครั้งเดียวต่อ page load ตาม §7.3 เพราะเป็น motion เหนือ primary action ซึ่งข้อห้ามของกฎนี้ยังคงอยู่ (ยืนยันแล้ว 15 กันยายน 2569) motif อีกห้าตัว (dial, rings, layers, slice, cultivate) และ product overlay อยู่ใต้ §8.6\n\nMachine binding: `machine.tokens#/motion/identity` (runtime ids, hashes, cycle 6,000 ms, observer threshold 0.14 กับ rootMargin `0px 0px -8% 0px`, page control, reduced-motion และ no-JS behavior) และ `machine.contracts.componentContracts#component.motif-frame.01` MotifFrame wrapper ใช้ observer ของตัวเองแล้วเรียก `play()` ของ runtime ทุกรอบขณะมองเห็น (runtime ตั้ง `autoplay=\"false\"`) จึงไม่แก้ byte ของ runtime และไม่พึ่ง attribute `loop` ซึ่งไม่ผูกกับ viewport เมื่อ autoplay ปิด; ปุ่ม pause/resume ระดับหน้าเป็นของ `component.motion-controller.01` ตัวเดียวที่ทุก MotifFrame บนหน้าแชร์\n\nความต่างที่เจ้าของยอมรับและบันทึกไว้ (15 กันยายน 2569): ไฟล์อัตลักษณ์ PNG มีลิ่ม `#0195CB` และหมุด `#1E4497` ส่วน motif v3 ใช้ลิ่ม token-derived ที่เบราว์เซอร์แสดง ≈ `#1F87CE` และหมุด `#1D4497` (token) รัศมีต่างกัน ≤ 0.6% ไฟล์ PNG ทางการยังเป็น identity of record; motif เป็น animated assembly reference ไม่ใช่ identity file และไม่มีการ re-export PNG",
-"acceptance":[{"checkId":"MOTION-04-A","method":"automated","criterion":"runtime js/css bytes ที่ deliver มี SHA-256 ตรงค่าข้างบน; fallback svg ตรง `governance/SHA256SUMS.txt` ของ motif 1.2.1 (`90e9543f…`, `5b6798cd…`); ไม่มี `animation-iteration-count: infinite` ใน delivered CSS; observer threshold/rootMargin/cycle ตรง token; page-level pause control มีอยู่; identity PNG ไม่ถูก animate, recolor หรือ redraw"},{"checkId":"MOTION-04-B","method":"interaction","criterion":"เข้า viewport ≥ 14% แล้วเล่นทันทีและเล่นซ้ำทุก 6,000 ms ขณะยังมองเห็น; ออกจาก viewport แล้วหยุดค้าง final state; pause แสดง final state ครบ; reduced motion, no-JS และ print แสดง final state โดยไม่เริ่มรอบ"},{"checkId":"MOTION-04-C","method":"manual","criterion":"motion ไม่ทับ first answer, primary action, navigation, favicon หรือ OG image และไม่ถือความหมาย หลักฐาน หรือสถานะใด ๆ"}],
-"sourceTextSha256":"a6555f7ccf533631cc09b1ccc2bae7afa42a589537fed1be124d79374d91c711",
+"acceptance":[{"checkId":"MOTION-04-A","method":"automated","criterion":"runtime js/css bytes ที่ deliver มี SHA-256 ตรงค่าข้างบน; fallback svg ตรง `governance/SHA256SUMS.txt` ของ motif 1.2.1 (`90e9543f…`, `5b6798cd…`); ไม่มี `animation-iteration-count: infinite` ใน delivered CSS; observer threshold/rootMargin/cycle ตรง token; page-level pause control มีอยู่; identity PNG ไม่ถูก animate หรือ redraw; wordmark colour changes ตาม LOGO-01 ใช้ได้ โดยคงรูปทรงและไม่เปลี่ยนสี symbol"},{"checkId":"MOTION-04-B","method":"interaction","criterion":"เข้า viewport ≥ 14% แล้วเล่นทันทีและเล่นซ้ำทุก 6,000 ms ขณะยังมองเห็น; ออกจาก viewport แล้วหยุดค้าง final state; pause แสดง final state ครบ; reduced motion, no-JS และ print แสดง final state โดยไม่เริ่มรอบ"},{"checkId":"MOTION-04-C","method":"manual","criterion":"motion ไม่ทับ first answer, primary action, navigation, favicon หรือ OG image และไม่ถือความหมาย หลักฐาน หรือสถานะใด ๆ"}],
+"sourceTextSha256":"3365e51d1fb147f2a57f60f53346ec65d4b4cc29f282649c3688ccc8388ab706",
 "sourceRuleId":"MOTION-04"
 },
 {
@@ -2516,7 +2546,7 @@ The machine payload that follows is part of this same normative document. Its cu
 "scope":"all",
 "requirement":"Crop, animation และ decorative treatment MUST gated ด้วย semantic role ของ asset Identity, evidence, maps, charts, UI captures และ provider content MUST fixed เว้นแต่ approved role อนุญาต transformation; alternative และ attribution MUST survive export",
 "acceptance":[{"checkId":"MEDIA-01-A","method":"automated","criterion":"asset ทุกชิ้นมี governed role, source, rights, exact SHA-256, approval status, fallback และ text equivalent เมื่อ required; เฉพาะ `approvalStatus: approved` MUST มี `approvalReceiptRef` + `approvalReceiptSha256` ส่วน non-approved asset เป็น blocker และอยู่ได้เฉพาะ internal preview"},{"checkId":"MEDIA-01-B","method":"visual","criterion":"responsive/export crops รักษา evidence-bearing subject, identity geometry และ attribution"}],
-"sourceTextSha256":"ee665620537b1c7ff7d402344d08b76b2e2d67ace369bd70ae692abd71d2fcb5",
+"sourceTextSha256":"d429de3bbffbf49754df4fde6bb014cc032002552d2440764dc667be2bf114bf",
 "sourceRuleId":"MEDIA-01"
 },
 {"id":"CAROUSEL-01","title":"Looping carousels keep one semantic cycle","section":"components","normativeLevel":"MUST","scope":"screen","requirement":"Loop carousel MUST มี semantic source cycle เดียว Visual clones MUST hidden from accessibility, inert, ไม่มี IDs/IDREF, non-focusable และไม่มี repeated meaningful alternative User controls MUST visible และ autoplay MUST off by default","acceptance":[{"checkId":"CAROUSEL-01-A","method":"automated","criterion":"clone audit ผ่าน aria-hidden/equivalent, inert, no duplicate IDs, no focus descendants และ no repeated alternatives"},{"checkId":"CAROUSEL-01-B","method":"interaction","criterion":"previous, next, focus, resize, touch, reduced-motion และ end-to-start preserve context"}],"sourceTextSha256":"169af7273e04c802fd13e8d2a42f1525455295d9ba66428daf2674d5d9eb3e6b","sourceRuleId":"CAROUSEL-01"},
@@ -2528,9 +2558,9 @@ The machine payload that follows is part of this same normative document. Its cu
 "section":"release",
 "normativeLevel":"MUST",
 "scope":"all",
-"requirement":"Release, schema, set, kit และ package identifiers MUST resolve จาก `machine.release` และ embedded contracts; published identities are immutable. Canonical schema `$id` MUST include the schema version and MUST NOT be reused for an incompatible contract. Generated artifacts MUST NOT contain conflicting current release identifiers. This document uses DS `0.9.5`, release `v0.9.5-owner.1`, color set `color-srgb-08` and document `standalone-0.9.5-r2`; document consolidation does not relabel historical signed subjects.",
+"requirement":"Release, schema, set, kit และ package identifiers MUST resolve จาก `machine.release` และ embedded contracts; published identities are immutable. Canonical schema `$id` MUST include the schema version and MUST NOT be reused for an incompatible contract. Generated artifacts MUST NOT contain conflicting current release identifiers. This document uses DS `0.9.5`, release `v0.9.5-owner.1`, color set `color-srgb-08` and document `standalone-0.9.5-r3`; document consolidation does not relabel historical signed subjects.",
 "acceptance":[{"checkId":"RELEASE-01-A","method":"automated","criterion":"human master, embedded catalog/contracts, current tokens and artifact binding resolve the same release; unchanged schema `$id` identities remain exact and locally resolvable in the embedded schema collection"},{"checkId":"RELEASE-01-B","method":"manual","criterion":"provenance/change record identifies each consolidated rule, schema or value projection and its migration effect without claiming an unperformed approval or signature"}],
-"sourceTextSha256":"32962a7dc70e64a2772b19f73d6058740c8b08d4e07c780e1f9bc9a1d5fb7736",
+"sourceTextSha256":"8ca677ec5a1b7f5aa0d07815b93175a03d0352983678c3c9e5186b58143b0184",
 "sourceRuleId":"RELEASE-01"
 }
 ]
@@ -7157,7 +7187,7 @@ The machine payload that follows is part of this same normative document. Its cu
 {"path":"references/inherited/lds-0.9.4/machine/asset-registry.json","sha256":"03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae","bytes":57033,"role":"historical-input-only","url":"https://montri-th.github.io/Landometer/v0.9.5/package/references/inherited/lds-0.9.4/machine/asset-registry.json"},
 {"path":"references/inherited/lds-0.9.4/machine/motif-register.v0.9.4.json","sha256":"bc70e4c06d4d54142cf804ac1ae7b8192401675c64e243efde6d1550ccd68035","bytes":217184,"role":"historical-input-only","url":"https://montri-th.github.io/Landometer/v0.9.5/package/references/inherited/lds-0.9.4/machine/motif-register.v0.9.4.json"}
 ],
-"humanMasterSha256":"59dcb238b3fd2544532a837b314005d4ad83c9a22e52e8d4f7e771674803f26c"
+"humanMasterSha256":"2b1aaca78f5a32ee3c0b2b51c9f650096670f963d8621ea152df2bff1f29d13d"
 },
 "normalizationLog":[
 {"area":"identity","change":"Current schema IDs use a unique standalone-0.9.5-r2 namespace; current release bindings and all mapped schema references resolve to 0.9.5. Historical source bytes remain untouched."},
