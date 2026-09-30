@@ -19,7 +19,10 @@ const escape = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 // builds may derive from it; an edit to the archive is never silently accepted.
 check(hash(original) === '1581689d4b0beee36eed53559f6df19f4cff74d06632d4ea2c878b94a7666e7b', 'original v0.9.1 hosted source is byte-preserved');
 const packageRelease = read('plugins/landometer-design-system/assets/lds-0.9.5/machine/release.json');
-check(hash(packageRelease) === '9a2725d21927a19b0d78d04455ad95ad0e7571ce2d45d74da21a17786cc9e829', 'approved package identity remains unchanged by website restoration');
+const packageIdentity = JSON.parse(packageRelease).release;
+check(packageIdentity.dsVersion === '0.9.5' && packageIdentity.releaseRef === 'v0.9.5-owner.1' && packageIdentity.colorSetId === 'color-srgb-08', 'standalone packaging retains approved design/color identity');
+check(packageIdentity.signatureStatus === 'unsigned' && packageIdentity.signedRelease === false, 'standalone packaging does not inherit a cryptographic signature');
+check(read('deployment/v0.9.5/package/assets/lds-0.9.5/machine/release.json') === packageRelease, 'website serves exact current package metadata');
 
 function element(source, id) {
   const start = new RegExp(`<([a-z][\\w:-]*)\\b[^>]*\\bid=["']${escape(id)}["'][^>]*>`, 'i').exec(source);
@@ -64,7 +67,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|5(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|08)/g, '<current-color-set>')
     .replace(/2026-09-(?:02|29)/g, '<release-date>')
-    .replace(/ui-202609(?:02-08|30-lds095-04)/g, '<current-site-build>');
+    .replace(/ui-202609(?:02-08|30-lds095-(?:04|standalone-r2))/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -126,7 +129,7 @@ for (const state of ['measured', 'measured_zero', 'no_data', 'out_of_scope', 'su
 // Actual cascade, focus visibility and narrow/desktop geometry are reviewed
 // in the browser; this is deliberately not a CSS layout simulator.
 const guideOverrides = read('deployment/v0.9.5/full-guide.css').replace(/\/\*[\s\S]*?\*\//g, '');
-check(html.includes('href="full-guide.css"'), 'current guide loads navigation and integration overrides');
+check(html.includes('href="full-guide.css?build=ui-20260930-lds095-standalone-r2"'), 'current guide loads navigation and integration overrides');
 for (const state of ['page', 'location']) {
   const rules = [...guideOverrides.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(rule => rule[1].split(',').some(selector => selector.trim() === `.nav-panel a[aria-current="${state}"]`));
   const shadows = rules.flatMap(rule => [...rule[2].matchAll(/(?:^|;)\s*box-shadow\s*:\s*([^;]+)/g)].map(match => match[1].trim()));
@@ -156,7 +159,7 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.5'], ['data-machine-package-identity', 'v0.9.5-owner.1'],
-  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260930-lds095-04']
+  ['data-color-registry', 'color-srgb-08'], ['data-artifact-build', 'ui-20260930-lds095-standalone-r2']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.5\/"/.test(html), 'current guide canonical URL');
@@ -222,7 +225,9 @@ for (const variant of ['soft', 'vivid', 'light']) {
 }
 check(!atlas.includes('color-srgb-05'), 'current atlas does not reintroduce old color authority');
 check(!html.includes('Current implementation authority is Landometer Design System 0.9.1-r8'), 'retained guidance does not claim obsolete current authority');
-check(html.includes('package/assets/lds-0.9.5/GUIDE.md'), 'current human guide is linked');
+check(html.includes('normative/Landometer-Design-System-v0.9.5.md'), 'complete current human and machine normative is linked');
+for (const addon of ['ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md', 'CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md', 'CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md']) check(html.includes(`normative/${addon}`), `separate product Add-on download is linked: ${addon}`);
+check(!/normative\/(?:ijji|CityChat|CityWiki)-LDS-v0\.9\.5-standalone\.md/.test(html), 'resources do not prescribe combined product DS editions');
 check(html.includes('package/assets/lds-0.9.5/machine/release.json'), 'current machine release is linked');
 check(/historical|archiv|ประวัติ|เดิม|ย้อนหลัง/i.test(text(element(html, 'library-resources'))), 'retained resource records are visibly distinguished as historical');
 check(/historical|archiv|ประวัติ|ย้อนหลัง/i.test(text(element(html, 'v090-additions'))), 'retained preflight results are labeled historical');

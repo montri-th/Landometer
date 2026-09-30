@@ -1,0 +1,641 @@
+{
+  "documentId": "standalone-0.9.5-r2",
+  "releaseRef": "v0.9.5-owner.1",
+  "source": {
+    "path": "plugins/landometer-design-system/references/inherited/lds-0.9.4/machine/Landometer Design System v0.9.4.md",
+    "sha256": "8e6e89a52b6a1ba0dc3c39f4f51b6b82e84e1281811713bd14fd36ab0f2d1886"
+  },
+  "output": {
+    "path": "plugins/landometer-design-system/references/standalone-master/Landometer-Design-System-v0.9.5.human.md",
+    "sha256": "59dcb238b3fd2544532a837b314005d4ad83c9a22e52e8d4f7e771674803f26c",
+    "bytes": 264313
+  },
+  "ruleIds": [
+    "RELEASE-01",
+    "GOV-01",
+    "AUTHORITY-01",
+    "LAYER-01",
+    "COMPARE-01",
+    "AHA-01",
+    "EVIDENCE-01",
+    "EVID-05",
+    "OUTPUT-CLARITY-01",
+    "A11Y-01",
+    "SECURITY-01",
+    "BRAND-01",
+    "LOGO-01",
+    "FAVICON-01",
+    "COLOR-01",
+    "SURFACE-01",
+    "TYPE-01",
+    "ICON-01",
+    "LAYOUT-01",
+    "MEDIA-01",
+    "COMPONENT-01",
+    "CTRL-01",
+    "THEME-01",
+    "ASSET-DELIVERY-01",
+    "NAV-01",
+    "NAV-02",
+    "BOOKMARK-01",
+    "CTA-01",
+    "CTA-02",
+    "MOTION-01",
+    "MOTION-02",
+    "MOTION-03",
+    "MOTION-04",
+    "MOTIF-01",
+    "MOTIF-02",
+    "MOTIF-03",
+    "MOTIF-04",
+    "MOTIF-05",
+    "MOTIF-06",
+    "CAROUSEL-01",
+    "SOCIAL-FEED-01",
+    "CLAIM-MACHINE-01",
+    "DISCOVERY-01",
+    "DISCOVERY-02",
+    "DISCOVERY-03",
+    "AGENT-01",
+    "FORMAT-PARITY-01",
+    "WEBFMT-01",
+    "APPFMT-01",
+    "DOCFMT-01",
+    "PDFFMT-01",
+    "DECKFMT-01",
+    "SOCIALFMT-01",
+    "DATAVIZ-01",
+    "DATAVIZ-02",
+    "DATAVIZ-03",
+    "GATE-01",
+    "DATAVIZ-04",
+    "DATAVIZ-05",
+    "MAP-01",
+    "PARITY-01",
+    "PROFILE-01",
+    "CAPABILITY-01",
+    "QA-01"
+  ],
+  "acceptanceIds": [
+    "RELEASE-01-A",
+    "RELEASE-01-B",
+    "GOV-01-A",
+    "GOV-01-B",
+    "AUTHORITY-01-A",
+    "AUTHORITY-01-B",
+    "AUTHORITY-01-C",
+    "LAYER-01-A",
+    "LAYER-01-B",
+    "COMPARE-01-A",
+    "COMPARE-01-B",
+    "AHA-01-A",
+    "AHA-01-B",
+    "EVIDENCE-01-A",
+    "EVIDENCE-01-B",
+    "EVID-05-A",
+    "EVID-05-B",
+    "EVID-05-C",
+    "OUTPUT-CLARITY-01-A",
+    "OUTPUT-CLARITY-01-B",
+    "OUTPUT-CLARITY-01-C",
+    "A11Y-01-A",
+    "A11Y-01-B",
+    "SECURITY-01-A",
+    "SECURITY-01-B",
+    "BRAND-01-A",
+    "BRAND-01-B",
+    "LOGO-01-A",
+    "LOGO-01-B",
+    "FAVICON-01-A",
+    "FAVICON-01-B",
+    "COLOR-01-A",
+    "COLOR-01-B",
+    "SURFACE-01-A",
+    "SURFACE-01-B",
+    "TYPE-01-A",
+    "TYPE-01-B",
+    "ICON-01-A",
+    "ICON-01-B",
+    "LAYOUT-01-A",
+    "LAYOUT-01-B",
+    "MEDIA-01-A",
+    "MEDIA-01-B",
+    "COMPONENT-01-A",
+    "COMPONENT-01-B",
+    "CTRL-01-A",
+    "CTRL-01-B",
+    "THEME-01-A",
+    "THEME-01-B",
+    "ASSET-DELIVERY-01-A",
+    "ASSET-DELIVERY-01-B",
+    "NAV-01-A",
+    "NAV-01-B",
+    "NAV-01-C",
+    "NAV-02-A",
+    "NAV-02-B",
+    "BOOKMARK-01-A",
+    "BOOKMARK-01-B",
+    "CTA-01-A",
+    "CTA-01-B",
+    "CTA-01-C",
+    "CTA-02-A",
+    "CTA-02-B",
+    "MOTION-01-A",
+    "MOTION-01-B",
+    "MOTION-02-A",
+    "MOTION-02-B",
+    "MOTION-03-A",
+    "MOTION-03-B",
+    "MOTION-04-A",
+    "MOTION-04-B",
+    "MOTION-04-C",
+    "MOTIF-01-A",
+    "MOTIF-01-B",
+    "MOTIF-02-A",
+    "MOTIF-02-B",
+    "MOTIF-03-A",
+    "MOTIF-03-B",
+    "MOTIF-04-A",
+    "MOTIF-04-B",
+    "MOTIF-05-A",
+    "MOTIF-05-B",
+    "MOTIF-06-A",
+    "MOTIF-06-B",
+    "MOTIF-06-C",
+    "CAROUSEL-01-A",
+    "CAROUSEL-01-B",
+    "SOCIAL-FEED-01-A",
+    "SOCIAL-FEED-01-B",
+    "CLAIM-MACHINE-01-A",
+    "CLAIM-MACHINE-01-B",
+    "DISCOVERY-01-A",
+    "DISCOVERY-01-B",
+    "DISCOVERY-02-A",
+    "DISCOVERY-02-B",
+    "DISCOVERY-03-A",
+    "DISCOVERY-03-B",
+    "DISCOVERY-03-C",
+    "DISCOVERY-03-D",
+    "AGENT-01-A",
+    "AGENT-01-B",
+    "FORMAT-PARITY-01-A",
+    "FORMAT-PARITY-01-B",
+    "FORMAT-PARITY-01-C",
+    "WEBFMT-01-A",
+    "WEBFMT-01-B",
+    "APPFMT-01-A",
+    "APPFMT-01-B",
+    "DOCFMT-01-A",
+    "DOCFMT-01-B",
+    "PDFFMT-01-A",
+    "PDFFMT-01-B",
+    "DECKFMT-01-A",
+    "DECKFMT-01-B",
+    "SOCIALFMT-01-A",
+    "SOCIALFMT-01-B",
+    "DATAVIZ-01-A",
+    "DATAVIZ-01-B",
+    "DATAVIZ-02-A",
+    "DATAVIZ-02-B",
+    "DATAVIZ-03-A",
+    "DATAVIZ-03-B",
+    "DATAVIZ-03-C",
+    "GATE-01-A",
+    "GATE-01-B",
+    "DATAVIZ-04-A",
+    "DATAVIZ-04-B",
+    "DATAVIZ-05-A",
+    "DATAVIZ-05-B",
+    "MAP-01-A",
+    "MAP-01-B",
+    "PARITY-01-A",
+    "PARITY-01-B",
+    "PROFILE-01-A",
+    "PROFILE-01-B",
+    "CAPABILITY-01-A",
+    "CAPABILITY-01-B",
+    "QA-01-A",
+    "QA-01-B"
+  ],
+  "contractReferences": [
+    "assetRegistry",
+    "componentContracts",
+    "formatPacks",
+    "motifRegister"
+  ],
+  "operations": [
+    {
+      "type": "range",
+      "name": "release",
+      "start": "# Landometer Design System v0.9.4",
+      "end": "## 1. วิธีอ่านและบังคับใช้",
+      "sourceSha256": "2624619b64a1512072d35bc452cb49087fca069cee5a18ce55011446b98b262f",
+      "replacementSha256": "8c542c55586673b75813e90c2ffddedca6fdc584007655576d71fb5181438a0f"
+    },
+    {
+      "type": "range",
+      "name": "evidence",
+      "start": "**EVID-05 —",
+      "end": "**EvidenceCard**",
+      "sourceSha256": "c0265d2bbbe20ef70e53b674bccd20e62ef81bca08fe87737734a2598c692e6e",
+      "replacementSha256": "03294a97438a453454c079b333ad1c729564933d2c21b1b5b4421a75e2792186"
+    },
+    {
+      "type": "range",
+      "name": "color",
+      "start": "**COLOR-01 —",
+      "end": "#### Canonical brand และ energy colors",
+      "sourceSha256": "c8b6a0b3e3831e435a4b9884c129e985a16058e2cde49f720f56b8caadafbe97",
+      "replacementSha256": "a10d08f2429d5246c845c9dc24acf2c741226345b42c45e190836d4105a558b0"
+    },
+    {
+      "type": "range",
+      "name": "dataviz",
+      "start": "**DATAVIZ-02 —",
+      "end": "**MAP-01 —",
+      "sourceSha256": "573f915d2dd05e9712e0ab094505a7706a237e7558c9351c64c84979929c5bb8",
+      "replacementSha256": "eae548a306c45f3483b472780169779b256c152370ec9d36baf6c38d5eb9cf1a"
+    },
+    {
+      "type": "range",
+      "name": "activation",
+      "start": "### 14.5 Release activation",
+      "end": "## 15. Migration",
+      "sourceSha256": "b77c34e9d190f1820ff8a83af8d7830a4eadb08739246b458ddc31918c8fe379",
+      "replacementSha256": "8826c38fa75003c833ec5179c9594560dc258be2a07b66e67a136dad6d8d7f8e"
+    },
+    {
+      "type": "range",
+      "name": "migration",
+      "start": "## 15. Migration",
+      "end": "## 16. Learning",
+      "sourceSha256": "ea5e7fde907be61d0dc0c72c9ba413eec3a63322541ebe1bccf0e0a5445958dd",
+      "replacementSha256": "6881182fa597c5af12d8749253f4a5b24ee9a36359585a5b9804d04fca995ceb"
+    },
+    {
+      "type": "range",
+      "name": "inventory",
+      "start": "## 17. Package inventory",
+      "end": "### 17.1 Artifact manifest contract",
+      "sourceSha256": "17f99a2a4923e9f6b1bab0636dc95aff72d50baa0fe39c7bfe2670bf32d54e39",
+      "replacementSha256": "eb9b027d7e57358fd9bd9283a2ee9b4d1527b4e7ee7a839b1c9d8714ecd269a5"
+    },
+    {
+      "type": "range",
+      "name": "roles",
+      "start": "## 20. Roles:",
+      "end": "## 21. คำตัดสิน",
+      "sourceSha256": "c56202834caeab8bfc8c4d3fdecbb4a46b6e2ab9da6ddf576956bcf130e33e2e",
+      "replacementSha256": "d38b4d8196fa2fa4fe4e1db9e65f80c89dd3710a08c7c29f33ffb9e8224b896d"
+    },
+    {
+      "type": "range",
+      "name": "followups",
+      "start": "## 21. คำตัดสิน",
+      "end": null,
+      "sourceSha256": "7b38049bca985bf39f2483e0832538c42804689fd15723eeaff80e2e839e1691",
+      "replacementSha256": "e393277dd12b635556d3dcf4fff159b4c310668d3e37f3ce2844d8df5b71f42b"
+    },
+    {
+      "type": "replacement",
+      "label": "six-state introduction",
+      "count": 1,
+      "old": "ค่าทุกช่องต้องถือหนึ่งในห้าสถานะของ EVID-05 ด้านล่าง",
+      "next": "ค่าทุกช่องต้องถือหนึ่งในหกสถานะของ EVID-05 ด้านล่าง"
+    },
+    {
+      "type": "replacement",
+      "label": "map six states",
+      "count": 1,
+      "old": "ห้าสถานะของค่าตาม EVID-05 (`measured_zero`, `no_data`, `out_of_scope`, `suppressed`, `not_yet`)",
+      "next": "หกสถานะของค่าตาม EVID-05 (`measured`, `measured_zero`, `no_data`, `out_of_scope`, `suppressed`, `not_yet`)"
+    },
+    {
+      "type": "replacement",
+      "label": "map enum",
+      "count": 1,
+      "old": "enum ห้าค่าของ EVID-05",
+      "next": "enum หกค่าของ EVID-05"
+    },
+    {
+      "type": "replacement",
+      "label": "component six-state enum",
+      "count": 1,
+      "old": "เพิ่ม prop `cellStates` enum ห้าค่า",
+      "next": "prop `cellStates` uses all six EVID-05 states"
+    },
+    {
+      "type": "replacement",
+      "label": "current component contract framing",
+      "count": 1,
+      "old": "v0.9.4 เพิ่ม governed component contracts ห้ารายการ",
+      "next": "Current governed component contracts ห้ารายการ"
+    },
+    {
+      "type": "replacement",
+      "label": "social two decoded targets",
+      "count": 1,
+      "old": "Creative bytes MUST decode เป็น canvas 1080 × 1080 ตาม target profile ไม่ใช่เชื่อ metadata declaration อย่างเดียว",
+      "next": "Creative bytes MUST decode เป็น canvas ตรง selected target profile: 1080 × 1080 สำหรับ square หรือ 1200 × 630 สำหรับ OG ไม่ใช่เชื่อ metadata declaration หรือ raster header อย่างเดียว"
+    },
+    {
+      "type": "replacement",
+      "label": "current social schema",
+      "count": 1,
+      "old": "`social-sidecar.schema.json` v1.2",
+      "next": "current `social-sidecar.schema.json` in `machine.schemas`"
+    },
+    {
+      "type": "replacement",
+      "label": "AI analytical plan",
+      "count": 1,
+      "old": "15. dark anchors ที่ใช้ทุกค่าเท่ากับผลของสูตร DATAVIZ-03 และ `contrast-evidence.json` ที่ใหม่กว่า token/CSS ที่ ship (GATE-01)",
+      "next": "15. LUT, class indices และ categorical values ตรง approved theme-specific records ทุกค่า; domain, denominator, thresholds และ outlier policy ตรง renderer/legend/accessible table/export; ตรวจทั้งสองธีมตาม GATE-01"
+    },
+    {
+      "type": "replacement",
+      "label": "current QG12",
+      "count": 1,
+      "old": "| QG-12 data colour (GATE-01) | `contrast-evidence.json` ของ release ผ่านทุกเกตทั้งสองธีมโดยมีเฉพาะ exception ที่ประกาศ; dark override ในหน้าเท่ากับผลของสูตร DATAVIZ-03 (warm lane ใช้สูตรของ lane); ทุก `--scale-*`/`--series-*` ของหน้าอยู่นอกหน้าต่างสีที่ถอนแล้ว (DATAVIZ-04) |",
+      "next": "| QG-12 data colour (GATE-01) | Exact LUT/class/series parity ทั้งสองธีม, 41 samples ต่อ family/theme, approved step/hue checks และ evidence ที่ bind hashes ของค่าที่ส่งจริง; ไม่มี runtime interpolation หรือ alias ที่ห้ามใช้; contrast/legend/CVD และขนาดจริงตรวจแยกใน artifact |"
+    },
+    {
+      "type": "replacement",
+      "label": "current test matrix",
+      "count": 1,
+      "old": "- dataviz/data states (v0.9.4): dark anchors equal the DATAVIZ-03 derivation (warm lane by its own formula) or a declared exception, no analytical value inside a retired hue window (DATAVIZ-04), GATE-01 evidence current, scale family per zone, series variant vs energy accent on the same surface, five value states rendered and labelled, no 0/null without state in machine output",
+      "next": "- dataviz/data states: exact approved theme LUTs and class indices, no analytical sample inside an applicable retired hue window, current GATE-01 evidence, scale family per analytical surface/zone, series variant versus energy accent, six labelled value states, and no numeric/null machine value without its state"
+    },
+    {
+      "type": "replacement",
+      "label": "current DoD values",
+      "count": 1,
+      "old": "14. (v0.9.4) every chart or map resolves its scale families per zone and its series variant, every 0 or empty value carries one of the five states, and no machine payload emits 0/null without a state",
+      "next": "14. Every chart or map resolves its scale families per analytical surface/zone and series variant; every governed value carries one of the six EVID-05 states, with finite nonzero/zero/null machine values as defined."
+    },
+    {
+      "type": "replacement",
+      "label": "current DoD color",
+      "count": 1,
+      "old": "every dark scale anchor equals its DATAVIZ-03 derivation (or a declared exception), no analytical anchor or series value sits in a retired hue window (DATAVIZ-04), and the release's GATE-01 evidence is newer than the tokens and CSS it covers",
+      "next": "every delivered scale sample/class and series value equals the approved theme-specific record, no analytical value sits in an applicable retired hue window (DATAVIZ-04), and GATE-01 evidence binds the exact delivered asset hashes"
+    },
+    {
+      "type": "replacement",
+      "label": "unsigned current package boundary",
+      "count": 1,
+      "old": "- package ไม่ bundle trust anchor ที่ให้อำนาจตัวเอง `SHA256SUMS.txt` cover authoritative package files ทุกไฟล์ ยกเว้น checksum file เองและ detached `package-root.attestation.json` เพื่อหลีกเลี่ยง circular hash; validator MUST verify root signature ด้วย external `package_release` trust store + external caller-pinned policy ก่อนเชื่อ release หรือทำ downstream validation",
+      "next": "- This release is an unsigned owner-approved distribution. Its package checksum and exact source parity MUST be verified when execution is available; these checks do not create a cryptographic signature or authorize artifact promotion. Historical signatures authenticate only their original subjects. A consumer requiring signed package authority MUST report that requirement unsatisfied for this distribution. The package MUST NOT create a trust anchor that authorizes itself."
+    },
+    {
+      "type": "replacement",
+      "label": "truthful parity review",
+      "count": 1,
+      "old": "Owner-recorded bilingual semantic review ของ release นี้เป็นคำตัดสิน authoritative ว่า Thai human rule และ English machine projection มี meaning เดียวกัน Validator ตรวจได้เฉพาะ rule ID, title และ acceptance-ID structure; ผลผ่านของ validator MUST NOT ถูกอ้างว่าได้ตรวจความหมายหรือคุณภาพภาษาแล้ว การแก้คำ normative ภาษาไทยหรืออังกฤษหลัง owner review—even เมื่อตั้งใจให้เป็น editorial—ทำให้ semantic review เดิมใช้ไม่ได้ และ MUST มี owner-recorded bilingual semantic review ใหม่ก่อน freeze/release",
+      "next": "Owner-recorded bilingual semantic review applies only to the exact reviewed text and machine projection. This consolidated document preserves current obligations and records the source and changed ranges; generation or automated parity MUST NOT be presented as a fresh owner bilingual review. Validator ตรวจได้เฉพาะสิ่งที่รายงานว่าตรวจจริง; ผลผ่าน MUST NOT ถูกอ้างว่าได้ตรวจความหมายหรือคุณภาพภาษาแล้ว การเปลี่ยน normative meaning หลัง owner review ต้องมี owner-recorded review ใหม่ก่อนอ้าง semantic approval."
+    },
+    {
+      "type": "replacement",
+      "label": "owner visual preference",
+      "count": 1,
+      "old": "**LAYOUT-01 — Layout preserves hierarchy across formats.** Composition MUST รักษา primary reading path, responsive/page-safe gutters, deliberate density และความสัมพันธ์ที่รับรู้ได้ระหว่าง question, evidence, interpretation และ next action",
+      "next": "**LAYOUT-01 — Layout preserves hierarchy across formats.** Composition MUST รักษา primary reading path, responsive/page-safe gutters, deliberate density และความสัมพันธ์ที่รับรู้ได้ระหว่าง question, evidence, interpretation และ next action\n\nSelected navigation, tabs, cards and callouts MUST NOT use decorative bracket-shaped highlights or colored left-rail accents. Use restrained background, text weight and spacing. Keep visible keyboard focus outlines and meaningful chart/table borders. Review actual rendered Thai/English text at narrow and desktop widths, including every newly added section, for squeezed headings and overlapping siblings; token/hash checks do not establish readable composition."
+    },
+    {
+      "type": "replacement",
+      "label": "current replay lifecycle",
+      "count": 1,
+      "old": "Browser runtime เท่านั้น: หนึ่ง document root ใช้ shared IntersectionObserver หนึ่งตัว; ตั้งแต่ v0.9.4 approach reveal เล่นซ้ำเมื่อ element กลับเข้า viewport (replay on re-entry ตาม OWNER-MOTION-01) แทน once-only unobserve แต่ไม่วนซ้ำขณะ element ยังอยู่นิ่งในจอ เพราะ content reveal ที่วนจะกลายเป็น perpetual flicker ซึ่ง OWNER-MOTION-01 ยังห้าม (เจ้าของยืนยันการตีความนี้เมื่อ 15 กันยายน 2569)",
+      "next": "Browser runtime เท่านั้น: หนึ่ง document root ใช้ shared IntersectionObserver หนึ่งตัว; approach reveal เล่นซ้ำเมื่อ element กลับเข้า viewport (replay on re-entry ตาม OWNER-MOTION-01) และไม่วนซ้ำขณะ element ยังอยู่นิ่งในจอ เพราะ content reveal ที่วนจะกลายเป็น perpetual flicker ซึ่งยังห้ามอยู่"
+    },
+    {
+      "type": "replacement",
+      "label": "product identity conditional truth",
+      "count": 1,
+      "old": "ส่วน product tile ยังเปิดอยู่จนกว่าจะมี identity gradient ที่อนุมัติต่อผลิตภัณฑ์",
+      "next": "ส่วน product tile ต้อง resolve identity gradient และ asset bytes ที่อนุมัติต่อผลิตภัณฑ์จาก Add-on แยกของผลิตภัณฑ์ปัจจุบัน ซึ่งใช้ร่วมกับ LDS ฉบับเต็มนี้"
+    },
+    {
+      "type": "replacement",
+      "label": "CityChat source status is history",
+      "count": 1,
+      "old": "ทั้งที่ `assets/citychat/asset-register.json` ใน repo motif ยังติดป้าย candidate — การอัปเดตป้ายใน repo นั้นเป็นงานตาม",
+      "next": "โดยป้าย candidate ของทะเบียนต้นทางเป็นบันทึกประวัติ ณ วันที่รับ bytes ไม่ใช่ข้อสรุปสถานะเว็บปัจจุบัน; ใช้ approval/hash record ที่ส่งพร้อม Add-on แยกของผลิตภัณฑ์"
+    },
+    {
+      "type": "replacement",
+      "label": "product sting conditional truth",
+      "count": 1,
+      "old": "CityMETER และ CityWiki stings pre-approved รอผลิตใน Studio 1.4 (ยังไม่มี bytes จึงยังใช้ไม่ได้)",
+      "next": "CityMETER และ CityWiki stings มี historical pre-approval; ใช้ได้ต่อเมื่อ current product registry มี approved bytes และ exact hash จริง"
+    },
+    {
+      "type": "replacement",
+      "label": "standalone Build Card schema",
+      "count": 1,
+      "old": "Build Card schema ฉบับเต็มอยู่ใน `build-card.schema.json` และ canonical copyable fixture อยู่ใน `build-card.example.json` Human master นี้ตั้งใจไม่ทำสำเนา `schemaVersion`, version-qualified schema ID หรือ hash value เพราะค่าดังกล่าว MUST resolve จาก `release.json`, active schema และ bytes ของ binding ปัจจุบันเท่านั้น ไม่ใช่จาก prose",
+      "next": "Build Card schema ฉบับเต็มอยู่ใน `machine.schemas[\"build-card.schema.json\"]`; สร้าง record ของงานจาก schema ที่รวมไว้แล้ว Example fixture เมื่อมีเป็น optional reference เท่านั้นและไม่ใช่ product evidence ค่า `schemaVersion`, version-qualified schema ID และ hash MUST resolve จาก `machine.release`, embedded active schema และ bytes ของ binding ปัจจุบัน ไม่ใช่คัดจาก prose หรือ historical fixture"
+    },
+    {
+      "type": "replacement",
+      "label": "standalone artifact schema",
+      "count": 1,
+      "old": "ใช้ schema identity ของ Artifact Manifest จาก `release.json.schemaIds` และใช้ `artifact-manifest.schema.json` bytes ปัจจุบันเป็น machine contract ห้ามคัดลอก version, schema ID หรือ hash จาก prose `artifact-manifest.example.json` เป็น canonical `package_validated` fixture; จะได้สถานะ pass เมื่อ validator รับรองเท่านั้น ตารางนี้เป็น human field map ไม่ใช่ copyable template",
+      "next": "ใช้ schema identity และ contract ของ Artifact Manifest จาก `machine.schemas[\"artifact-manifest.schema.json\"]` ห้ามคัดลอก version, schema ID หรือ hash จาก prose Example fixture เมื่อมีเป็น optional reference ไม่ให้สถานะ pass แก่งานใหม่ ตารางนี้เป็น human field map; สร้างและตรวจ record ของงานกับ embedded schema และ bytes ของงานจริง"
+    },
+    {
+      "type": "replacement",
+      "label": "standalone social schema",
+      "count": 1,
+      "old": "ใช้ `social-sidecar.example.json` เป็น shape เท่านั้น ไม่ใช่ข้อมูลอนุมัติสำหรับงานใหม่",
+      "next": "สร้าง shape จาก embedded current social-sidecar schema; example เมื่อมีเป็น optional reference ไม่ใช่ข้อมูลอนุมัติสำหรับงานใหม่"
+    },
+    {
+      "type": "replacement",
+      "label": "layout rendered acceptance",
+      "count": 1,
+      "old": "- LAYOUT-01-A — visual: reading order ชัดที่ minimum, nominal และ maximum target sizes",
+      "next": "- LAYOUT-01-A — visual: reading order ชัดที่ minimum, nominal และ maximum target sizes; actual Thai/English narrow/desktop content has no squeezed heading or sibling overlap, including newly added sections"
+    },
+    {
+      "type": "replacement",
+      "label": "layout preference acceptance",
+      "count": 1,
+      "old": "- LAYOUT-01-B — manual: essential content ไม่ clipped, orphaned, ซ่อนหลัง navigation หรือ split โดยไม่มี continuation cue",
+      "next": "- LAYOUT-01-B — manual: essential content ไม่ clipped, orphaned, ซ่อนหลัง navigation หรือ split โดยไม่มี continuation cue; selected states contain no decorative brackets/colored left rails, while keyboard focus and meaningful chart/table borders remain visible"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference tokens.v0.9.4.json",
+      "count": 6,
+      "old": "tokens.v0.9.4.json",
+      "next": "machine.tokens"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference component-contracts.v0.9.4.json",
+      "count": 4,
+      "old": "component-contracts.v0.9.4.json",
+      "next": "machine.contracts.componentContracts"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference motif-register.v0.9.4.json",
+      "count": 8,
+      "old": "motif-register.v0.9.4.json",
+      "next": "machine.contracts.motifRegister"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference rule-catalog.json",
+      "count": 2,
+      "old": "rule-catalog.json",
+      "next": "machine.ruleCatalog"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference format-packs.json",
+      "count": 5,
+      "old": "format-packs.json",
+      "next": "machine.contracts.formatPacks"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference asset-registry.json",
+      "count": 2,
+      "old": "asset-registry.json",
+      "next": "machine.contracts.assetRegistry"
+    },
+    {
+      "type": "replacement",
+      "label": "embedded reference `release.json`",
+      "count": 2,
+      "old": "`release.json`",
+      "next": "`machine.release`"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose Static social ใน v0.9.4",
+      "count": 1,
+      "old": "Static social ใน v0.9.4",
+      "next": "Static social ใน v0.9.5"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose v0.9.4 ไม่รับ exception",
+      "count": 1,
+      "old": "v0.9.4 ไม่รับ exception",
+      "next": "v0.9.5 ไม่รับ exception"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose ### 14.4 No artifact exception channel in v0.9.4",
+      "count": 1,
+      "old": "### 14.4 No artifact exception channel in v0.9.4",
+      "next": "### 14.4 No artifact exception channel in v0.9.5"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose ซึ่ง v0.9.4 ยังไม่ให้ exception path",
+      "count": 1,
+      "old": "ซึ่ง v0.9.4 ยังไม่ให้ exception path",
+      "next": "ซึ่ง v0.9.5 ยังไม่ให้ exception path"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose sourceVersion: v0.9.4-mp1",
+      "count": 1,
+      "old": "sourceVersion: v0.9.4-mp1",
+      "next": "sourceVersion: v0.9.5-owner.1"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose motion-riddim-approach-02",
+      "count": 2,
+      "old": "motion-riddim-approach-02",
+      "next": "motion-riddim-approach-03"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose Navigation v0.9.4 มีสามระดับ",
+      "count": 1,
+      "old": "Navigation v0.9.4 มีสามระดับ",
+      "next": "Navigation มีสามระดับ"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose parallax MUST remain disabled in v0.9.4",
+      "count": 1,
+      "old": "parallax MUST remain disabled in v0.9.4",
+      "next": "parallax MUST remain disabled in v0.9.5"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose v0.9.4 มี `reference_example` เจ็ดรายการ ครบหก primary formats (carried from v0.9.1-mp7; social static reference gains the OG target at freeze)",
+      "count": 1,
+      "old": "v0.9.4 มี `reference_example` เจ็ดรายการ ครบหก primary formats (carried from v0.9.1-mp7; social static reference gains the OG target at freeze)",
+      "next": "The seven reference-example positions below cover six primary formats, including square and OG social targets. Example files are optional, non-normative learning aids; create the artifact record from the embedded format/target/schema contracts"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose (v0.9.4)",
+      "count": 4,
+      "old": "(v0.9.4)",
+      "next": "(v0.9.5)"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose basis of the LUT interpolation and ΔE measurements",
+      "count": 1,
+      "old": "basis of the LUT interpolation and ΔE measurements",
+      "next": "basis of approved LUT construction and ΔE measurements; runtime uses exact samples"
+    },
+    {
+      "type": "replacement",
+      "label": "current prose หรือ series จาก `#/categoricalSeries`",
+      "count": 1,
+      "old": "หรือ series จาก `#/categoricalSeries`",
+      "next": "หรือ series จาก `machine.tokens#/categoricalSeries`"
+    },
+    {
+      "type": "replacement",
+      "label": "migration shortcut",
+      "count": 1,
+      "old": "| ย้ายงานจาก v0.9.1-r8 | §15 | migration-ledger.json; ห้ามเดา rule ที่ไม่มี disposition; ตาราง sentence-level บอกว่าประโยคไหนถูกแทนด้วยอะไร |",
+      "next": "| ย้ายงานจากรุ่นเดิม | §15 | ใช้ข้อกำหนดที่รวมแล้วในฉบับนี้; lineage เป็นหลักฐานประวัติ ไม่ใช่ไฟล์ที่ต้องอัปโหลดเพิ่ม |"
+    },
+    {
+      "type": "replacement",
+      "label": "role shortcut",
+      "count": 1,
+      "old": "| ทำงานตามบทบาท (AI/agent, dev, designer, product, marketing, sales, ผู้อ่านทั่วไป) | §20 | คู่มือสั้นต่อบทบาทใน `roles/` พร้อมสิ่งที่ต้องโหลด ต้องรัน และต้องไม่ทำ |",
+      "next": "| ทำงานตามบทบาท (AI/agent, dev, designer, product, marketing, sales, ผู้อ่านทั่วไป) | §20 | ทางเริ่มตามบทบาทและ embedded records ที่ต้องใช้ในไฟล์นี้ |"
+    },
+    {
+      "type": "replacement",
+      "label": "foundation analytical cross-reference",
+      "count": 1,
+      "old": "Registry ของ release นี้คือ `machine.tokens#/analyticalScales` (DATAVIZ-02; dark anchors ตาม DATAVIZ-03) และ `#/categoricalSeries` (DATAVIZ-05); ทุกค่าวิเคราะห์ทั้งสองธีมต้องอยู่นอกหน้าต่างสี earth และ violet ที่ v0.9.0 ถอนแล้ว (DATAVIZ-04); ผลเกตทั้งสองธีมอยู่ใน `contrast-evidence.json` (GATE-01)",
+      "next": "Registry ของ release นี้คือ `machine.analyticalScales` (DATAVIZ-02; exact dark LUT ตาม DATAVIZ-03) และ `machine.tokens.categoricalSeries` (DATAVIZ-05); ทุกค่าวิเคราะห์ทั้งสองธีมต้องผ่านหน้าต่างสีที่กำหนดใน DATAVIZ-04; ผลตรวจ GATE-01 ต้อง bind ค่าปัจจุบันและ reported scope จริง"
+    },
+    {
+      "type": "replacement",
+      "label": "artifact raw registry boundary",
+      "count": 1,
+      "old": "the two color-srgb-07 files, the two color-srgb-06 files of the superseded 0.9.3 candidate and the four color-srgb-05 files retained in v0.9.1-mp7",
+      "next": "raw registries with internal provenance from any release; the standalone DS reference itself is purpose-scoped documentation, while ordinary product outputs emit only the necessary sanitized roles/values"
+    },
+    {
+      "type": "replacement",
+      "label": "honest catalog coverage",
+      "count": 1,
+      "old": "### 17.2 Current catalog coverage\n\nThe machine catalog includes and validates:",
+      "next": "### 17.2 Current catalog coverage\n\nThe current machine catalog covers the following 64 stable rule IDs. Coverage is not an assertion that every final artifact has passed their applicable checks:"
+    },
+    {
+      "type": "editorial",
+      "label": "escape literal pipes inside table code spans",
+      "count": 2
+    }
+  ]
+}

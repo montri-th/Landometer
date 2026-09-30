@@ -14,7 +14,7 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.5' && manifest.colorSetId === 'color-srgb-08', 'release identity');
 check(manifest.packageId === 'v0.9.5-owner.1', 'unchanged approved package identity');
-check(manifest.artifactBuildId === 'ui-20260930-lds095-04', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20260930-lds095-standalone-r2', 'full-guide website build identity');
 check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
 check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
 const manifestPaths = manifest.assets.map(asset => asset.path);
@@ -39,9 +39,33 @@ for (const id of ['start', 'categories', 'library', 'scale-lab', 'atmospheres'])
 check(html.includes('id="lds095-color-atlas"') && html.includes('class="lds095-color-atlas"'), 'full guide integrates current approved color atlas inline');
 check(html.includes('id="resource-project-sources"') && html.includes('href="project-source-0.9.5.md"'), 'current Project Source download is visible');
 const projectSources = read('project-source-0.9.5.md');
-for (const name of ['GUIDE.md', 'BRAND.md', 'Landometer%20Design%20System%20v0.9.4.md', 'release.json', 'policy.json', 'tokens.v0.9.5.json', 'color-srgb-08.tokens.json', 'color-srgb-08.scales.json']) {
-  check(projectSources.includes(name), `Project Source list names ${name}`);
+const documentSet = JSON.parse(read('normative/document-set.json'));
+check(same(documentSet.documents.map(doc => doc.product), ['landometer', 'ijji', 'citychat', 'citywiki']), 'shared LDS base and three separate product Add-ons');
+check(/(?:2|สอง)\s*ไฟล์/.test(projectSources) && /Add-on/.test(projectSources) && /(?:1|หนึ่ง)\s*ไฟล์/.test(projectSources), 'Project Source setup distinguishes one LDS file from LDS plus product Add-on');
+check(!/ฉบับ ijji, CityChat และ CityWiki รวม LDS ครบแล้ว|four one-file editions|ไม่ต้องเพิ่ม LDS อีกไฟล์|เลือกและอัปโหลดเพียงหนึ่งไฟล์/.test(projectSources), 'Project Source setup does not claim product Add-ons contain the base');
+check(!/ijji-LDS-v0\.9\.5-standalone|CityChat-LDS-v0\.9\.5-standalone|CityWiki-LDS-v0\.9\.5-standalone/.test(projectSources+html+manifestPaths.join(' ')), 'current resource links do not serve retired combined product editions');
+const baseDocument = documentSet.documents.find(doc => doc.product === 'landometer');
+const baseFile = baseDocument.files.find(file => file.path.endsWith('.md'));
+check(baseDocument.kind === 'base' && baseFile.path === 'Landometer-Design-System-v0.9.5.md' && /^[a-f0-9]{64}$/.test(baseFile.sha256) && hash(readFileSync(join(site, 'normative', baseFile.path))) === baseFile.sha256 && documentSet.revision === 'standalone-0.9.5-r2', 'current r2 base download matches declared exact bytes');
+check(!/Landometer%20Design%20System%20v0\.9\.4\.md|\]\([^)]*GUIDE\.md\)|\]\([^)]*BRAND\.md\)/.test(projectSources), 'Project Source setup has no legacy multi-file normative dependencies');
+for (const doc of documentSet.documents) {
+  check(doc.kind === (doc.product === 'landometer' ? 'base' : 'addon'), `${doc.product}: base/Add-on classification`);
+  if (doc.product !== 'landometer') {
+    const projection = JSON.parse(read(`normative/${doc.files.find(file => file.path.endsWith('.json')).path}`));
+    check(projection.document.documentKind === 'addon' && projection.document.requiredNormativeFiles === 2 && projection.machine.baseDocument.path === baseFile.path && projection.machine.baseDocument.sha256 === baseFile.sha256, `${doc.product}: separate Add-on binds exact shared base`);
+  }
+  check(doc.files.length === 2 && doc.files.some(file => file.path.endsWith('.md')) && doc.files.some(file => file.path.endsWith('.json')), `${doc.product}: human and machine alternatives`);
+  for (const file of doc.files) {
+    const bytes = readFileSync(join(site, 'normative', file.path));
+    check(bytes.length === file.bytes && hash(bytes) === file.sha256, `${doc.product}: standalone download parity ${file.path}`);
+    check(projectSources.includes(`./normative/${file.path}`), `${doc.product}: setup links exact ${file.path}`);
+    check(manifestPaths.includes(`v0.9.5/normative/${file.path}`) && manifestPaths.includes(`v0.9.5/package/assets/lds-0.9.5/normative/${file.path}`), `${doc.product}: live manifest covers both distributed paths ${file.path}`);
+    const packaged = readFileSync(join(site, 'package/assets/lds-0.9.5/normative', file.path));
+    check(bytes.equals(packaged), `${doc.product}: direct and packaged download bytes match ${file.path}`);
+    if (file.path.endsWith('.md')) check(html.includes(`href="normative/${file.path}"`), `${doc.product}: visible direct normative download`);
+  }
 }
+check(manifestPaths.includes('v0.9.5/normative/document-set.json'), 'live manifest covers normative document inventory');
 const context = {window: {}};
 vm.runInNewContext(read('data.js'), context, {timeout: 5000});
 const D = context.window.LDS_CANDIDATE;
