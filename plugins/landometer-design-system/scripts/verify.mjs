@@ -17,6 +17,14 @@ export function verifyPackage(){
  for(const line of sums){const m=line.match(/^([a-f0-9]{64})  (.+)$/);if(!m){check('checksum-line',false,line);continue;}const path=resolve(ROOT,m[2]);check('safe-path:'+m[2],path.startsWith(ROOT+sep)&&realpathSync(path).startsWith(realpathSync(ROOT)+sep)&&relative(ROOT,path).split(sep).every((_,i,a)=>!lstatSync(resolve(ROOT,...a.slice(0,i+1))).isSymbolicLink()));check('sha256:'+m[2],existsSync(path)&&hash(path)===m[1]);listed.push(m[2]);}
  const files=dir=>readdirSync(dir).flatMap(n=>{const p=resolve(dir,n);return statSync(p).isDirectory()?files(p):[relative(ROOT,p).split(sep).join('/')];});
  check('checksum-covers-all-assets',files(P).filter(p=>!p.endsWith('/SHA256SUMS.txt')).every(p=>listed.includes(p)));
+ // A flattened filesystem skill intentionally omits plugin-manager manifests.
+ const pluginPaths=['plugin.json','.codex-plugin/plugin.json','.claude-plugin/plugin.json'].map(file=>resolve(ROOT,file));
+ const flattenedSkill=existsSync(resolve(ROOT,'SKILL.md'))&&!existsSync(resolve(ROOT,'skills/apply-landometer-design-system/SKILL.md'));
+ if(flattenedSkill)check('flattened-skill-without-plugin-manager-metadata',pluginPaths.every(file=>!existsSync(file)));
+ else{
+  check('complete-plugin-manifests',pluginPaths.every(file=>existsSync(file)));
+  if(pluginPaths.every(file=>existsSync(file)))check('current-plugin-distribution',pluginPaths.map(json).every(m=>m.version==='0.9.5+standalone.3.docs1'&&m.description.includes('separate product Add-ons')&&!m.description.includes('product editions')));
+ }
  const source=resolve(ROOT,'references/approved-r2.1.json');check('approved-R2.1-exact',hash(source)==='ebe57188c0824577628f8913a62f1c0794d1522214c54af63703281dfb07e011');
  const approved=json(source),manifest=json(resolve(P,'machine/release.json')),tokens=json(resolve(P,'machine/tokens.v0.9.5.json')),registry=json(resolve(P,'machine/color-srgb-08.tokens.json')),scales=json(resolve(P,'machine/color-srgb-08.scales.json')).scales,base=json(resolve(B,'machine/tokens.v0.9.4.json')),policy=json(resolve(P,'machine/policy.json'));
  check('exact-identity',manifest.release.dsVersion==='0.9.5'&&manifest.release.releaseRef==='v0.9.5-owner.1'&&manifest.release.colorSetId==='color-srgb-08');
@@ -64,6 +72,7 @@ export function verifyPackage(){
   check(prefix+'document-identity',parsed.document.documentId===doc.documentId&&parsed.document.product===doc.product&&parsed.document.documentRevision==='standalone-0.9.5-r3'&&doc.kind===(doc.product==='landometer'?'base':'addon'));
   if(doc.product!=='landometer'){
    const binding=machine.baseDocument;
+   check(prefix+'visible-current-revision',parsed.humanMarkdown.slice(0,3000).includes('**เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.5-r3`')&&parsed.humanMarkdown.slice(0,3000).includes(parsed.document.documentId)&&parsed.humanMarkdown.includes('original consolidation history only'));
    check(prefix+'separate-addon',parsed.document.documentKind==='addon'&&parsed.document.requiredNormativeFiles===2&&machine.release.normativeDependency===baseFile);
    check(prefix+'exact-filenames',md.path===addonFiles[doc.product]+'.md'&&js.path===addonFiles[doc.product]+'.json');
    check(prefix+'exact-base-binding',binding?.path===baseFile&&binding?.sha256===baseHash&&binding?.sha256===hash(basePath)&&binding?.documentId==='lds-0.9.5-landometer-standalone-r3');

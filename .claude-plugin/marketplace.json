@@ -10,8 +10,8 @@
     {
       "name": "landometer-design-system",
       "source": "./plugins/landometer-design-system",
-      "version": "0.9.5+standalone.2.docs1",
-      "description": "Apply Landometer DS 0.9.5: approved colors, retained brand voice, exact assets and verifiable output."
+      "version": "0.9.5+standalone.3.docs1",
+      "description": "Apply the complete LDS 0.9.5 base with separate product Add-ons, approved colours, retained brand voice and exact assets."
     }
   ]
 }

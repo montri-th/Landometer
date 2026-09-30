@@ -1,6 +1,7 @@
 {
   "schemaVersion": "lds-source-policy-1",
   "documentRevision": "standalone-0.9.5-r3",
+  "distributionRevision": "standalone-0.9.5-r3-docs1",
   "status": "current",
   "baseDocument": {
     "documentId": "lds-0.9.5-landometer-standalone-r3",
@@ -15,7 +16,7 @@
       "product": "ijji",
       "documentId": "ijji-addon-0.5.5-lds-0.9.5-r3",
       "path": "ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md",
-      "sha256": "3491c849e7b40a03b7ee60da34acdfde2330b57bc2414b220651d249e3f7aaf1",
+      "sha256": "15342baba840fa1757551187bae9cab2ad325364ea98d472b14590ce2bd46512",
       "requiredNormativeFiles": 2,
       "requires": {
         "documentId": "lds-0.9.5-landometer-standalone-r3",
@@ -30,7 +31,7 @@
       "product": "citychat",
       "documentId": "citychat-addon-0.9.2-lds-0.9.5-r3",
       "path": "CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md",
-      "sha256": "cf991dca7a7edce72f7f6e1fc862cd791c263d548f730ed54372266badcd8954",
+      "sha256": "0f4e375cfc761b238b77cbfcf75fc15f583b2cd5fee181714ae590c7897c12c8",
       "requiredNormativeFiles": 2,
       "requires": {
         "documentId": "lds-0.9.5-landometer-standalone-r3",
@@ -45,7 +46,7 @@
       "product": "citywiki",
       "documentId": "citywiki-addon-1.0.0-lds-0.9.5-r3",
       "path": "CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md",
-      "sha256": "b5a4b293ff452e3b8ddf145352b9c8975effa15967f8fbed4c0f449dc5a99cf3",
+      "sha256": "9e15b00debddeb0070ec5741a3a9cb1504d7cd6c79a5d1d7da3cacaf9daada51",
       "requiredNormativeFiles": 2,
       "requires": {
         "documentId": "lds-0.9.5-landometer-standalone-r3",
