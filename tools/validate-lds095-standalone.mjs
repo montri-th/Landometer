@@ -40,6 +40,7 @@ for(const doc of set.documents){
   check(binding?.dsVersion==='0.9.5'&&binding?.releaseRef==='v0.9.5-owner.1'&&binding?.colorSetId==='color-srgb-08',doc.product+': base identity binding');
   check(['tokens','ruleCatalog','analyticalScales','colorRegistry','schemas','contracts','assetFiles'].every(key=>!Object.hasOwn(machine,key)),doc.product+': no duplicated LDS base');
   check(Boolean(machine.productProfile),doc.product+': product profile embedded');
+  check(humanMarkdown.slice(0,3000).includes('**เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.5-r3`')&&humanMarkdown.slice(0,3000).includes(document.documentId)&&humanMarkdown.includes('original consolidation history only'),doc.product+': current human revision and historical consolidation are distinct');
   const expectedProfile=json(join(plugin,'references/standalone-product-profiles',doc.product+'.json'));
   expectedProfile.parentDesignSystem.documentRevision='standalone-0.9.5-r3';
   expectedProfile.parentDesignSystem.publicationTag='v0.9.5-standalone-r3';

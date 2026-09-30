@@ -6,6 +6,16 @@
 
 Add-on ใช้ได้เฉพาะ ijji และเฉพาะขอบเขตที่ระบุ ไม่แก้กฎกลางหรือสร้าง product fact / capability ใหม่ ข้อกำหนด shared rule IDs ทุกตัว resolve จาก ruleCatalog ของ base ที่ล็อกไว้ หากขัดกันนอกขอบเขต product override ให้รายงานความต่างก่อนใช้
 
+**เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.5-r3`
+
+**Document ID:** `ijji-addon-0.5.5-lds-0.9.5-r3`
+
+**Distribution:** `standalone-0.9.5-r3-docs1` · **Complete LDS base:** `standalone-0.9.5-r3`
+
+ข้อความ consolidation r2 ในส่วน product profile ด้านล่างเป็นประวัติการรวบรวมกฎผลิตภัณฑ์ ไม่ใช่รุ่นเอกสารหรือ LDS base ที่ต้องใช้ปัจจุบัน ให้ใช้ current revision และ exact base binding ในเอกสารนี้
+
+The r2 consolidation label in the retained product profile below records its original consolidation history only. It does not request an older Add-on or LDS base. Use the current revision and exact base binding in this document. Product rules are unchanged.
+
 # ijji Add-on 0.5.5 — for LDS 0.9.5
 
 **Required foundation:** [Landometer Design System 0.9.5 — complete base normative](https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md). For a product Project Source, upload the base Markdown and this Add-on Markdown: two design files. Do not upload a duplicated combined product/base file.
@@ -2598,7 +2608,7 @@ AI stop conditions:
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"ijji-addon-0.5.5-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"ijji Add-on v0.5.5 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"ijji","productVersion":"0.5.5","humanSha256":"745ae65210d9163045f55010c4a7f3fd7166576022e472769532f1c00e9584e9","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"ijji-addon-0.5.5-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"ijji Add-on v0.5.5 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"ijji","productVersion":"0.5.5","humanSha256":"168e0e0a2005efeb293d2432223079b1329cc5a28bf894191c84d5309321aff3","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.5.md"},
 "baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r3","path":"Landometer-Design-System-v0.9.5.md","sha256":"164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
 "productProfile":{

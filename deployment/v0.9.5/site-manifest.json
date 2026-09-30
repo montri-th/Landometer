@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.5",
   "colorSetId": "color-srgb-08",
   "packageId": "v0.9.5-owner.1",
-  "artifactBuildId": "ui-20260930-lds095-r3",
+  "artifactBuildId": "ui-20260930-lds095-r3-docs1",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -233,8 +233,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 1135872,
-      "sha256": "21092c74519279024d43c6c1f93c037db292c6e26a45eb575274841e15675226"
+      "bytes": 1135908,
+      "sha256": "925894c4ebead384700c73c31651e1426fb3e260fdc62827bbf5aec7b8ba545a"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
@@ -428,23 +428,23 @@
     },
     {
       "path": "v0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json",
-      "bytes": 24973,
-      "sha256": "0eb1d4cbf102d409d16f2a5059fd553c342ac79a66c5269d876ef94288e7976e"
+      "bytes": 25907,
+      "sha256": "6e75e9e298707f2202c9c4bdc302d63a54ebef87bde46b1effa7e6442424d707"
     },
     {
       "path": "v0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md",
-      "bytes": 22734,
-      "sha256": "cf991dca7a7edce72f7f6e1fc862cd791c263d548f730ed54372266badcd8954"
+      "bytes": 23658,
+      "sha256": "0f4e375cfc761b238b77cbfcf75fc15f583b2cd5fee181714ae590c7897c12c8"
     },
     {
       "path": "v0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json",
-      "bytes": 66561,
-      "sha256": "66f6e0b7ecbe20ccccb14673b5e330e8cbb5b71f2dcfc15df90bacf59d793a8d"
+      "bytes": 67495,
+      "sha256": "13d8645c5a01d2eb33a5cbe5e9ecebc6e01916198d41f509b297b2e4fe2b2a3a"
     },
     {
       "path": "v0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md",
-      "bytes": 63056,
-      "sha256": "b5a4b293ff452e3b8ddf145352b9c8975effa15967f8fbed4c0f449dc5a99cf3"
+      "bytes": 63980,
+      "sha256": "9e15b00debddeb0070ec5741a3a9cb1504d7cd6c79a5d1d7da3cacaf9daada51"
     },
     {
       "path": "v0.9.5/normative/Landometer-Design-System-v0.9.5.json",
@@ -458,23 +458,23 @@
     },
     {
       "path": "v0.9.5/normative/document-set.json",
-      "bytes": 4637,
-      "sha256": "5d330a8d5abd92ff6c3e8fc617761d2a16875fa617aeaef97f545ecdbef4f7c9"
+      "bytes": 4692,
+      "sha256": "fc21e3588f149785ff6b9bfb3f41eed53fd0fb0c8f395e09adfa2743e9dab6f3"
     },
     {
       "path": "v0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json",
-      "bytes": 252305,
-      "sha256": "abb41cbdee1546fb28ffe6fbd7b0ffad7352ec9c3a3a9fb6871cfd5088b06b42"
+      "bytes": 253235,
+      "sha256": "c4c53fd29d62faf4d913f2524f3a24fcf37ed3e481ac1d5a1e8fd10a768e142f"
     },
     {
       "path": "v0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md",
-      "bytes": 226568,
-      "sha256": "3491c849e7b40a03b7ee60da34acdfde2330b57bc2414b220651d249e3f7aaf1"
+      "bytes": 227488,
+      "sha256": "15342baba840fa1757551187bae9cab2ad325364ea98d472b14590ce2bd46512"
     },
     {
       "path": "v0.9.5/normative/source-policy.json",
-      "bytes": 3074,
-      "sha256": "8cc997282b0334a2e204038faed824bc0fd6ec86508bc6712bf6017876599271"
+      "bytes": 3129,
+      "sha256": "548b805db762405d48c24b0e8e24f167d822be82155b4456e991f14498cae4fd"
     },
     {
       "path": "v0.9.5/og-preview.png",
@@ -483,13 +483,13 @@
     },
     {
       "path": "v0.9.5/package/.claude-plugin/plugin.json",
-      "bytes": 524,
-      "sha256": "59ce0fde7a9ef81e0d85a2521a35aaac65acc1bec27b4cdb1227550ee93bddda"
+      "bytes": 528,
+      "sha256": "65620fb7e32308c070b1c2ddb698613b7a4a3bfa631767274716f16413e12e66"
     },
     {
       "path": "v0.9.5/package/.codex-plugin/plugin.json",
-      "bytes": 1275,
-      "sha256": "d577a9094bf3a9ed219dbfee11e484f562e929be4b0c1f5a9b3638f552b6e0f0"
+      "bytes": 1279,
+      "sha256": "6651ded289d3d8b82f5212919ca200f71cd9df46035667231f55a3e77e1eb824"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/GUIDE.md",
@@ -499,7 +499,7 @@
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/SHA256SUMS.txt",
       "bytes": 33459,
-      "sha256": "d53531adf40bb012e3ae9a9b5b5ba25edd855e4ca9272c9dc6a9e63c1f42cbe0"
+      "sha256": "538d27a574b79a7f57827fc8035c6a229ccc7233f6db8dd33139d5e4b60d681d"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/brand/BRAND.md",
@@ -803,23 +803,23 @@
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json",
-      "bytes": 24973,
-      "sha256": "0eb1d4cbf102d409d16f2a5059fd553c342ac79a66c5269d876ef94288e7976e"
+      "bytes": 25907,
+      "sha256": "6e75e9e298707f2202c9c4bdc302d63a54ebef87bde46b1effa7e6442424d707"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md",
-      "bytes": 22734,
-      "sha256": "cf991dca7a7edce72f7f6e1fc862cd791c263d548f730ed54372266badcd8954"
+      "bytes": 23658,
+      "sha256": "0f4e375cfc761b238b77cbfcf75fc15f583b2cd5fee181714ae590c7897c12c8"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json",
-      "bytes": 66561,
-      "sha256": "66f6e0b7ecbe20ccccb14673b5e330e8cbb5b71f2dcfc15df90bacf59d793a8d"
+      "bytes": 67495,
+      "sha256": "13d8645c5a01d2eb33a5cbe5e9ecebc6e01916198d41f509b297b2e4fe2b2a3a"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md",
-      "bytes": 63056,
-      "sha256": "b5a4b293ff452e3b8ddf145352b9c8975effa15967f8fbed4c0f449dc5a99cf3"
+      "bytes": 63980,
+      "sha256": "9e15b00debddeb0070ec5741a3a9cb1504d7cd6c79a5d1d7da3cacaf9daada51"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.json",
@@ -833,23 +833,23 @@
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/document-set.json",
-      "bytes": 4637,
-      "sha256": "5d330a8d5abd92ff6c3e8fc617761d2a16875fa617aeaef97f545ecdbef4f7c9"
+      "bytes": 4692,
+      "sha256": "fc21e3588f149785ff6b9bfb3f41eed53fd0fb0c8f395e09adfa2743e9dab6f3"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json",
-      "bytes": 252305,
-      "sha256": "abb41cbdee1546fb28ffe6fbd7b0ffad7352ec9c3a3a9fb6871cfd5088b06b42"
+      "bytes": 253235,
+      "sha256": "c4c53fd29d62faf4d913f2524f3a24fcf37ed3e481ac1d5a1e8fd10a768e142f"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md",
-      "bytes": 226568,
-      "sha256": "3491c849e7b40a03b7ee60da34acdfde2330b57bc2414b220651d249e3f7aaf1"
+      "bytes": 227488,
+      "sha256": "15342baba840fa1757551187bae9cab2ad325364ea98d472b14590ce2bd46512"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/normative/source-policy.json",
-      "bytes": 3074,
-      "sha256": "8cc997282b0334a2e204038faed824bc0fd6ec86508bc6712bf6017876599271"
+      "bytes": 3129,
+      "sha256": "548b805db762405d48c24b0e8e24f167d822be82155b4456e991f14498cae4fd"
     },
     {
       "path": "v0.9.5/package/docs/activation-receipt.template.json",
@@ -858,8 +858,8 @@
     },
     {
       "path": "v0.9.5/package/docs/activation-th.md",
-      "bytes": 10970,
-      "sha256": "13a5f13bd9a9aa7d4389780ae9a08a0c28f860ae4eb1d67b7333e630b97f0160"
+      "bytes": 10976,
+      "sha256": "f393d3bf999194ee5273c8de2de0f06b8e661e6afccee39d401a1b0531432ef1"
     },
     {
       "path": "v0.9.5/package/docs/brand-and-visual.md",
@@ -868,8 +868,8 @@
     },
     {
       "path": "v0.9.5/package/plugin.json",
-      "bytes": 1429,
-      "sha256": "240b8e967fb36ee62496aecda55a9fec00675b60a6c71eb9b9f6797418e830ea"
+      "bytes": 1433,
+      "sha256": "bbc3ebbbad168195812817c549d0b3564fab4de81fa6c14fbcc48cb6cf586815"
     },
     {
       "path": "v0.9.5/package/references/approved-r2.1.json",
@@ -1833,8 +1833,8 @@
     },
     {
       "path": "v0.9.5/package/scripts/verify.mjs",
-      "bytes": 17981,
-      "sha256": "aff5bfa915d8450ca3b6da2350b1a2f62a5e18dd893e3f2802b5546b721d06f7"
+      "bytes": 18648,
+      "sha256": "63227eb2c693df5f32527760d756cc826918e7cebd6c8b6867c5bdede9443736"
     },
     {
       "path": "v0.9.5/package/skills/apply-landometer-design-system/SKILL.md",
@@ -1849,7 +1849,7 @@
     {
       "path": "v0.9.5/project-source-0.9.5.md",
       "bytes": 4231,
-      "sha256": "29bfb090736e56df17e846ca221b16e67f78930a888e365a1dbbf1e0e6a61102"
+      "sha256": "1f29293cc9867044de96e143c95cf63b1ac67fd48a81a1cc2e0207bb0870c993"
     },
     {
       "path": "v0.9.5/render.js",
@@ -2028,8 +2028,8 @@
     },
     {
       "path": "v0.9.5/team-setup.md",
-      "bytes": 5340,
-      "sha256": "ab10fa498e630c94d5baa2e5b275374d3a1e37076908270df88752e054ada1a3"
+      "bytes": 5566,
+      "sha256": "a02abc95fcbca25a8f0e16daac31b217ad13f4a6a5a33fd4604c9afe8d8522b9"
     }
   ]
 }

@@ -6,6 +6,16 @@
 
 Add-on ใช้ได้เฉพาะ CityWiki และเฉพาะขอบเขตที่ระบุ ไม่แก้กฎกลางหรือสร้าง product fact / capability ใหม่ ข้อกำหนด shared rule IDs ทุกตัว resolve จาก ruleCatalog ของ base ที่ล็อกไว้ หากขัดกันนอกขอบเขต product override ให้รายงานความต่างก่อนใช้
 
+**เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.5-r3`
+
+**Document ID:** `citywiki-addon-1.0.0-lds-0.9.5-r3`
+
+**Distribution:** `standalone-0.9.5-r3-docs1` · **Complete LDS base:** `standalone-0.9.5-r3`
+
+ข้อความ consolidation r2 ในส่วน product profile ด้านล่างเป็นประวัติการรวบรวมกฎผลิตภัณฑ์ ไม่ใช่รุ่นเอกสารหรือ LDS base ที่ต้องใช้ปัจจุบัน ให้ใช้ current revision และ exact base binding ในเอกสารนี้
+
+The r2 consolidation label in the retained product profile below records its original consolidation history only. It does not request an older Add-on or LDS base. Use the current revision and exact base binding in this document. Product rules are unchanged.
+
 # CityWiki Add-on profile 1.0.0 — for LDS 0.9.5
 
 **Required foundation:** [Landometer Design System 0.9.5 — complete base normative](https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md). For a product Project Source, upload the base Markdown and this Add-on Markdown: two design files. Do not upload a duplicated combined product/base file.
@@ -1554,7 +1564,7 @@ This consolidation uses the current shared LDS foundation and retains the produc
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citywiki-addon-1.0.0-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"CityWiki Add-on v1.0.0 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"citywiki","productVersion":"1.0.0","humanSha256":"a215b5fb9369048229f0c99d9e24226e30f18c767f9e27d657f3c7bc6014bc45","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citywiki-addon-1.0.0-lds-0.9.5-r3","documentRevision":"standalone-0.9.5-r3","documentKind":"addon","title":"CityWiki Add-on v1.0.0 for LDS v0.9.5","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","product":"citywiki","productVersion":"1.0.0","humanSha256":"de7b5b97ea4fdb95165798ff369fb32155d4c91ccad8b5f19e96a3a36fb60adf","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.5 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.5.md"},
 "baseDocument":{"documentId":"lds-0.9.5-landometer-standalone-r3","path":"Landometer-Design-System-v0.9.5.md","sha256":"164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee","dsVersion":"0.9.5","releaseRef":"v0.9.5-owner.1","colorSetId":"color-srgb-08"},
 "productProfile":{
