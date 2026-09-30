@@ -8,7 +8,7 @@ Add-on ใช้ได้เฉพาะ CityChat และเฉพาะขอ
 
 **เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.6-r1`
 
-**Document ID:** `citychat-addon-0.9.2-lds-0.9.6-r3`
+**Document ID:** `citychat-addon-0.9.2-lds-0.9.6-r1`
 
 **Distribution:** `standalone-0.9.6-r1` · **Complete LDS base:** `standalone-0.9.6-r1`
 
@@ -108,7 +108,7 @@ Record the exact build, scope, assets, tests, observed render, unresolved limita
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citychat-addon-0.9.2-lds-0.9.6-r3","documentRevision":"standalone-0.9.6-r1","documentKind":"addon","title":"CityChat Add-on v0.9.2 for LDS v0.9.6","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","product":"citychat","productVersion":"0.9.2","humanSha256":"8c4823887fc4dba0771c5566d13d3649df72f99d266f480e37ae7aea301d7db6","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.6 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citychat-addon-0.9.2-lds-0.9.6-r1","documentRevision":"standalone-0.9.6-r1","documentKind":"addon","title":"CityChat Add-on v0.9.2 for LDS v0.9.6","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","product":"citychat","productVersion":"0.9.2","humanSha256":"c2f86a3f63cf96bfa3613db5ef329f111fe55f449ed5c85d04d1ec50bcf91c6d","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.6 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.6.md"},
 "baseDocument":{"documentId":"lds-0.9.6-landometer-standalone-r1","path":"Landometer-Design-System-v0.9.6.md","sha256":"c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09"},
 "productProfile":{

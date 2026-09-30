@@ -33,6 +33,7 @@ for(const doc of set.documents){
  check(!/read (?:the )?(?:full )?inherited master|ต้องอ่าน.*master 0\.9\.4|upload.*eight files/i.test(humanMarkdown),doc.product+': no superseded onboarding');
  check(!/\/Users\/|localhost|127\.0\.0\.1|github_pat_|ghp_[A-Za-z0-9]/.test(humanMarkdown+JSON.stringify(machine)),doc.product+': no local paths or credentials');
  if(doc.product!=='landometer'){
+  check(document.documentId===doc.product+'-addon-'+document.productVersion+'-lds-0.9.6-r1',doc.product+': exact current Add-on document ID');
   check(document.documentKind==='addon'&&document.requiredNormativeFiles===2&&machine.release.normativeDependency===baseFile,doc.product+': base plus separate Add-on contract');
   check(md.path===addonFiles[doc.product]+'.md'&&js.path===addonFiles[doc.product]+'.json',doc.product+': exact separately versioned Add-on filenames');
   const binding=machine.baseDocument;
