@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.5",
   "colorSetId": "color-srgb-08",
   "packageId": "v0.9.5-owner.1",
-  "artifactBuildId": "ui-20260930-lds095-standalone-r2",
+  "artifactBuildId": "ui-20260930-lds095-r2-docs1",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -11,6 +11,11 @@
   "artifactConformance": "bounded-checks-only",
   "contentBaseline": "ui-20260902-08 (0.9.1 full handbook)",
   "assets": [
+    {
+      "path": "assets/data/color-delivery.v0.9.0.json",
+      "bytes": 18503,
+      "sha256": "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5"
+    },
     {
       "path": "assets/downloads/landometer-design-system-v0.9.1.md",
       "bytes": 208463,
@@ -228,8 +233,8 @@
     },
     {
       "path": "v0.9.5/index.html",
-      "bytes": 1132628,
-      "sha256": "8f845791bffde9839670c12bef24cbac820535094e864eae0f0680b38db66e60"
+      "bytes": 1134349,
+      "sha256": "52a3ea083ae26ef28997ccdcf7acfb1124c5ed9c984729d6ca9a656c0db2009b"
     },
     {
       "path": "v0.9.5/lds/color-srgb-07.production.css",
@@ -478,13 +483,13 @@
     },
     {
       "path": "v0.9.5/package/.claude-plugin/plugin.json",
-      "bytes": 518,
-      "sha256": "5c4296f1669b6070976bc77957d5294ea43661c318d0313befd3190db6500443"
+      "bytes": 524,
+      "sha256": "59ce0fde7a9ef81e0d85a2521a35aaac65acc1bec27b4cdb1227550ee93bddda"
     },
     {
       "path": "v0.9.5/package/.codex-plugin/plugin.json",
-      "bytes": 1269,
-      "sha256": "1ddbaf238897c9107e8d4f7d29c8111d9ebabd9dc0d1cfd6b983e6f8d1fe43d2"
+      "bytes": 1275,
+      "sha256": "d577a9094bf3a9ed219dbfee11e484f562e929be4b0c1f5a9b3638f552b6e0f0"
     },
     {
       "path": "v0.9.5/package/assets/lds-0.9.5/GUIDE.md",
@@ -853,8 +858,8 @@
     },
     {
       "path": "v0.9.5/package/docs/activation-th.md",
-      "bytes": 10911,
-      "sha256": "39175913096e9c2bea31b8e317f5f6e991287ca64f74d60d9dce459a9ab25dd2"
+      "bytes": 10976,
+      "sha256": "f72da8a862a3af793658ccb31f8e537aa91be7f46322100daadfa84eed824cc1"
     },
     {
       "path": "v0.9.5/package/docs/brand-and-visual.md",
@@ -863,8 +868,8 @@
     },
     {
       "path": "v0.9.5/package/plugin.json",
-      "bytes": 1423,
-      "sha256": "2bf551f29c5390944f497e55a5e0654124929da988b5bd5de0ecaa1de8e3f2b7"
+      "bytes": 1429,
+      "sha256": "240b8e967fb36ee62496aecda55a9fec00675b60a6c71eb9b9f6797418e830ea"
     },
     {
       "path": "v0.9.5/package/references/approved-r2.1.json",
@@ -2023,8 +2028,8 @@
     },
     {
       "path": "v0.9.5/team-setup.md",
-      "bytes": 5138,
-      "sha256": "217eaac3871576e41b3c01309158dfa9892142a73f32b0b0dc43685049f038f8"
+      "bytes": 5226,
+      "sha256": "6b6fd148bdf8f003f0839a8f1d996a3ecf8506fdf6673ca9c0a26d34feff3292"
     }
   ]
 }

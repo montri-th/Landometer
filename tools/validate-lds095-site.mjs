@@ -14,7 +14,7 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.5' && manifest.colorSetId === 'color-srgb-08', 'release identity');
 check(manifest.packageId === 'v0.9.5-owner.1', 'unchanged approved package identity');
-check(manifest.artifactBuildId === 'ui-20260930-lds095-standalone-r2', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20260930-lds095-r2-docs1', 'full-guide website build identity');
 check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
 check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
 const manifestPaths = manifest.assets.map(asset => asset.path);
@@ -39,6 +39,7 @@ for (const id of ['start', 'categories', 'library', 'scale-lab', 'atmospheres'])
 check(html.includes('id="lds095-color-atlas"') && html.includes('class="lds095-color-atlas"'), 'full guide integrates current approved color atlas inline');
 check(html.includes('id="resource-project-sources"') && html.includes('href="project-source-0.9.5.md"'), 'current Project Source download is visible');
 const projectSources = read('project-source-0.9.5.md');
+check(read('package/docs/activation-th.md').includes('LDS หนึ่งไฟล์ · งานผลิตภัณฑ์ใช้สองไฟล์คู่กัน') && !read('package/docs/activation-th.md').includes('ไฟล์เดียวต่อโปรเจกต์'), 'activation heading distinguishes base-only and product installations');
 const documentSet = JSON.parse(read('normative/document-set.json'));
 check(same(documentSet.documents.map(doc => doc.product), ['landometer', 'ijji', 'citychat', 'citywiki']), 'shared LDS base and three separate product Add-ons');
 check(/(?:2|สอง)\s*ไฟล์/.test(projectSources) && /Add-on/.test(projectSources) && /(?:1|หนึ่ง)\s*ไฟล์/.test(projectSources), 'Project Source setup distinguishes one LDS file from LDS plus product Add-on');
