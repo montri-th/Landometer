@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "pageKind": "article",
+  "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/th/",
+  "visibleTruthOnly": true,
+  "entities": [
+    {
+      "entityId": "https://landometer.org/reference/portfolio-brand-line/th/#article",
+      "role": "page",
+      "identityBasis": "canonical_page",
+      "types": [
+        "Article"
+      ],
+      "nameByLocale": {
+        "th-TH": "ตัวอย่าง Design System — ข้อความ cultural activation ของ Landometer",
+        "en": "Design System example — Landometer cultural-activation line"
+      },
+      "url": "https://landometer.org/reference/portfolio-brand-line/th/",
+      "claimIds": [
+        "claim.protected-line.cultural-activation.portfolio.v1"
+      ]
+    },
+    {
+      "entityId": "urn:landometer:claim-subject:protected-line:cultural-activation",
+      "role": "subject",
+      "identityBasis": "projected_claim_entity",
+      "types": [
+        "CreativeWork"
+      ],
+      "nameByLocale": {
+        "th-TH": "Landometer cultural activation",
+        "en": "Landometer cultural activation"
+      },
+      "url": "https://landometer.org/reference/portfolio-brand-line/th/",
+      "claimIds": [
+        "claim.protected-line.cultural-activation.portfolio.v1"
+      ]
+    }
+  ]
+}

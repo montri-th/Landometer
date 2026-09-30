@@ -1,0 +1,12 @@
+{
+  "releaseRef": "v0.9.6-owner.1",
+  "status": "PASS",
+  "checks": 7411,
+  "passed": 7411,
+  "failed": [],
+  "warnings": [],
+  "minimumAdjacentClassDeltaE": 3.2310454167268086,
+  "minimumDarkSequentialLowContrast": 3.044036359693005,
+  "signatureStatus": "unsigned-owner-approved",
+  "scope": "Package parity, inherited signed source, analytical math, CSS projection and standalone document/schema consistency only. No artifact or team-installation conformance claim."
+}

@@ -1,0 +1,46 @@
+{
+  "frozen": "v0.9.4-mp1",
+  "dsVersion": "0.9.4",
+  "authoringRevision": "0.9.4-r2",
+  "rulesetId": "lds-rules-0.9.4",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "signingKeySpkiSha256": "0242a576a012482bdbced2992e143f219fbc4cfc47881acd2f4bb49fa89efcab",
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "files": 110,
+  "checksummedFiles": 108,
+  "checksumsSha256": "9a261eb4df7bf3be5cf1e23f7fb2bd7079c67ca481fc55dccc7049ac52d325cc",
+  "packageRootSubjectSha256": "9a261eb4df7bf3be5cf1e23f7fb2bd7079c67ca481fc55dccc7049ac52d325cc",
+  "releaseJsonSha256": "6231ccfa6c67dea65abd9bb9597f14448ddc9f285be949e4efa026978e1d4419",
+  "masterSha256": "8e6e89a52b6a1ba0dc3c39f4f51b6b82e84e1281811713bd14fd36ab0f2d1886",
+  "frozenFrom": {
+    "ref": "v0.9.4-mp0-candidate",
+    "authoringRevision": "0.9.4-r1",
+    "masterSha256": "1aec523b854e6d126d01defbf9b35c15f39bbb3668610d1608c5a80bf2347773",
+    "checksumsSha256": "73cf596ee47abfc69793765651cd1dcd62255c32fb891c362516b6c4262c5c77",
+    "candidateValidator": {
+      "ref": "validate-candidate-0.9.4.mjs",
+      "sha256": "0748ba60034223503792a47217e7492e54a3eb61644ea8a71516db784b366da9",
+      "disposition": "removed at the freeze; it asserts the candidate state and is superseded by validate-v0.9.4.mjs"
+    }
+  },
+  "untouchedRefs": [
+    "asset-registry.json: ref=montri-th/motif assets/identity/logo/landometer-symbol-color.png",
+    "social-sidecar.example.json: buildCardRef=fixtures/social-static/build-card.json"
+  ],
+  "log": [
+    "candidate v0.9.4-mp0-candidate verified: 98 checksummed files, master 1aec523b…, SHA256SUMS 73cf596e…",
+    "kit applied: 6 files (master 0.9.4-r2 8e6e89a5…, 22 provenance-only edits), removed validate-candidate-0.9.4.mjs",
+    "release literal v0.9.4-mp0-candidate → v0.9.4-mp1 rewritten in 55 text files; color-srgb-07.tokens.json, color-srgb-07.scales.json, color-srgb-07.production.css kept byte-identical",
+    "contract repairs: 4 (capability-config.schema.json, format-packs.json, artifact-manifest.schema.json, render-color-production.mjs); asset-registry.json now binds the asset-approval attestation",
+    "resolution recompute: 7 reference records (2 changed) and the artifact manifest example resolve 49 rules / 54 tests for the web reference; 15 rules non-applicable",
+    "status candidate → active in 10 governed documents; tokens embeddedMetadataRole → historical_provenance_only; sentence ledger stage 5 appended (22 edits)",
+    "release.json: v0.9.4-mp1 active/effective, 110 files declared, owner approval 2026-09-17T10:30:13+07:00, release date 2026-09-17",
+    "signed the five leaf attestations (claim approval, claim evidence capture, disclosure authority, asset approval, conformance receipt example)",
+    "hash rebind (after the leaf attestations): 110 bindings recomputed in 5 pass(es); 4 refs are not package files (bundle paths) and stay as declared",
+    "hash rebind (before the revocation attestation): 2 bindings recomputed in 2 pass(es); 4 refs are not package files (bundle paths) and stay as declared",
+    "hash rebind (after the revocation attestation): 2 bindings recomputed in 2 pass(es); 3 refs are not package files (bundle paths) and stay as declared",
+    "hash rebind (after the authority attestation): 1 bindings recomputed in 2 pass(es); 2 refs are not package files (bundle paths) and stay as declared",
+    "signed the release-approval attestation over release.json"
+  ]
+}

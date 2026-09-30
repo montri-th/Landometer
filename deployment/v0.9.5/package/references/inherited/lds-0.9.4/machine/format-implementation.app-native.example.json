@@ -1,0 +1,256 @@
+{
+  "schemaVersion": "1.6",
+  "releaseRef": "v0.9.4-mp1",
+  "recordKind": "reference_example",
+  "recordId": "reference.app-native.macos.portfolio-base.01",
+  "authoringPlatform": "macos",
+  "formatProfile": "app_interactive",
+  "runtime": "native",
+  "targetProfileRef": "target.app.native-responsive.360-1280.01",
+  "formatKitId": "kit.app.base.01",
+  "tokenRef": "tokens.v0.9.4.json",
+  "tokenSha256": "55515178603e4a5b45a660e23996fbb197b5bb431c7565640f6b9c60e438614d",
+  "resolutionContext": {
+    "experienceProfile": "portfolio_orientation",
+    "secondaryExperienceProfiles": [],
+    "capabilities": [],
+    "sideBookmarkSelected": false,
+    "componentIds": [
+      "component.cta.primary-navigational.01"
+    ]
+  },
+  "requirements": {
+    "resolvedAssetIds": [],
+    "identityAssetIds": [],
+    "identityImplementationIds": [
+      "identity.text.landometer.portfolio-name.01"
+    ],
+    "identityTypographyBindingIds": [
+      "identity-typography.app-header.macos.01"
+    ],
+    "fontAssetIds": [],
+    "iconAssetIds": [],
+    "nativeFontMappingIds": [
+      "fontmap.macos.identity-latin.georgia-bold.01",
+      "fontmap.macos.display-latin.georgia-bold.01",
+      "fontmap.macos.display-thai.thonburi-bold.01",
+      "fontmap.macos.body-ui.thonburi.01",
+      "fontmap.macos.body-ui-emphasis.thonburi-bold.01"
+    ],
+    "nonWebIconPolicyId": "icon-policy.non-web.visible-label.01",
+    "portabilityFixtureIds": [
+      "portability.macos.identity-latin.availability",
+      "portability.macos.identity-latin.no-substitution",
+      "portability.macos.identity-latin.fixed-export",
+      "portability.macos.display-latin.availability",
+      "portability.macos.display-latin.no-substitution",
+      "portability.macos.display-latin.fixed-export",
+      "portability.macos.display-thai.availability",
+      "portability.macos.display-thai.no-substitution",
+      "portability.macos.display-thai.fixed-export",
+      "portability.macos.body-ui.availability",
+      "portability.macos.body-ui.no-substitution",
+      "portability.macos.body-ui.fixed-export",
+      "portability.macos.body-ui-emphasis.availability",
+      "portability.macos.body-ui-emphasis.no-substitution",
+      "portability.macos.body-ui-emphasis.fixed-export",
+      "identity.app-header.native.minimum-size",
+      "portability.non-web.icon.visible-label",
+      "portability.non-web.icon.no-glyph-substitution",
+      "portability.non-web.icon.vector-hash-and-text-equivalent"
+    ],
+    "layoutSetId": "layout-cross-format-01",
+    "componentRuleIds": [
+      "CTA-01"
+    ],
+    "componentIds": [
+      "component.cta.primary-navigational.01"
+    ],
+    "componentContracts": [
+      {
+        "componentId": "component.cta.primary-navigational.01",
+        "componentClass": "navigational_cta",
+        "governingRuleIds": [
+          "CTA-01"
+        ],
+        "purpose": "Expose one truthful navigational destination with a complete locale label and no simulated state change.",
+        "nonPurpose": "It does not submit, mutate, load, report success, own recovery, or imitate an unavailable control.",
+        "semanticRoles": [
+          "link"
+        ],
+        "contentContract": "Bind one complete verb-led locale label to one real route, anchor, external URL, download, contact path, or truthful static destination cue.",
+        "localeStressFixtureIds": [
+          "format.app.interactive.01.04",
+          "target.app.native-responsive.360-1280.01.fixture.dynamic-type-200"
+        ],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "The complete label, destination, and truthful outcome are immediately perceivable."
+          },
+          "hover": {
+            "status": "not_applicable",
+            "behavior": "This reference record does not depend on a pointer-hover state."
+          },
+          "focus": {
+            "status": "required",
+            "behavior": "Visible focus remains on the direct semantic action and follows governed reading order."
+          },
+          "activePressed": {
+            "status": "required",
+            "behavior": "Pressed feedback is finite and invokes the declared route at most once."
+          },
+          "selectedCurrent": {
+            "status": "not_applicable",
+            "behavior": "A navigational CTA never masquerades as a current-page or current-location indicator."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "An unavailable destination is omitted or replaced by a truthful instruction, never shown as a mystery disabled action."
+          },
+          "loading": {
+            "status": "not_applicable",
+            "behavior": "A navigational destination does not present a stateful loading contract."
+          },
+          "empty": {
+            "status": "not_applicable",
+            "behavior": "A navigational destination does not present a stateful empty-result contract."
+          },
+          "error": {
+            "status": "not_applicable",
+            "behavior": "Route failure belongs to the destination environment and must not be pre-rendered as a false component state."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Navigation success is the resolved destination, not a simulated terminal component state."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "app_interactive",
+          "behavior": "Use a direct browser route or native route action with stable focus and state restoration."
+        },
+        "accessibility": {
+          "name": "The accessible or visible name is the complete locale-specific action label.",
+          "role": "Use one ordinary link with the exact destination.",
+          "value": "No busy, progress, success, error, permission, or receipt state belongs to a navigational CTA.",
+          "order": "The action follows its decision context and precedes lower-priority destinations in the intended reading order.",
+          "status": "Destination availability and failure recovery belong to the route or document context, not this CTA."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/control/inlineTextLink",
+          "tokens.v0.9.4.json#/foundation/interaction.focus.ring"
+        ],
+        "evidencePermissionBoundary": "The action only navigates to its declared destination and never implies claim authority, execution authority, or successful completion.",
+        "acceptanceFixtureIds": [
+          "CTA-01-A",
+          "CTA-01-B",
+          "CTA-01-C",
+          "accessibility.app.native.touch"
+        ],
+        "antiPatterns": [
+          "Generic Learn more label",
+          "Ellipsized or truncated outcome label",
+          "Unresolved destination string",
+          "Static artwork styled as an interactive button",
+          "Completion implied before the destination resolves"
+        ]
+      }
+    ],
+    "resolvedRuleIds": [
+      "GOV-01",
+      "AUTHORITY-01",
+      "LAYER-01",
+      "COMPARE-01",
+      "EVIDENCE-01",
+      "OUTPUT-CLARITY-01",
+      "AHA-01",
+      "BRAND-01",
+      "LOGO-01",
+      "COLOR-01",
+      "SURFACE-01",
+      "TYPE-01",
+      "ICON-01",
+      "LAYOUT-01",
+      "CTRL-01",
+      "THEME-01",
+      "ASSET-DELIVERY-01",
+      "PROFILE-01",
+      "CAPABILITY-01",
+      "PARITY-01",
+      "NAV-01",
+      "NAV-02",
+      "CTA-01",
+      "CTA-02",
+      "A11Y-01",
+      "CLAIM-MACHINE-01",
+      "SECURITY-01",
+      "APPFMT-01",
+      "FORMAT-PARITY-01",
+      "COMPONENT-01",
+      "MEDIA-01",
+      "QA-01",
+      "RELEASE-01"
+    ],
+    "resolvedTestIds": [
+      "common.01",
+      "common.02",
+      "experience.portfolio_orientation.01",
+      "experience.portfolio_orientation.02",
+      "format.app.interactive.01.01",
+      "format.app.interactive.01.02",
+      "format.app.interactive.01.03",
+      "format.app.interactive.01.04",
+      "format.app.interactive.01.05",
+      "format.app.interactive.01.06",
+      "format.app.interactive.01.07",
+      "format.app.interactive.01.runtime.native.01",
+      "format.app.interactive.01.runtime.native.02",
+      "target.app.native-responsive.360-1280.01.fixture.compact-360",
+      "target.app.native-responsive.360-1280.01.fixture.regular-768",
+      "target.app.native-responsive.360-1280.01.fixture.expanded-1280",
+      "target.app.native-responsive.360-1280.01.fixture.dynamic-type-200",
+      "target.app.native-responsive.360-1280.01.fixture.safe-area-interruption",
+      "kit.app.base.01.control.01",
+      "kit.app.base.01.control.02",
+      "kit.app.base.01.control.03",
+      "kit.app.base.01.control.04",
+      "kit.app.base.01.control.05",
+      "kit.app.base.01.control.06",
+      "accessibility.app.native.keyboard",
+      "accessibility.app.native.accessibility-api",
+      "accessibility.app.native.touch",
+      "accessibility.app.native.state-recovery",
+      "accessibility.app.native.dynamic-type-200",
+      "accessibility.app.native.safe-area-interruption",
+      "accessibility.app.native.reduced-motion",
+      "portability.macos.identity-latin.availability",
+      "portability.macos.identity-latin.no-substitution",
+      "portability.macos.identity-latin.fixed-export",
+      "portability.macos.display-latin.availability",
+      "portability.macos.display-latin.no-substitution",
+      "portability.macos.display-latin.fixed-export",
+      "portability.macos.display-thai.availability",
+      "portability.macos.display-thai.no-substitution",
+      "portability.macos.display-thai.fixed-export",
+      "portability.macos.body-ui.availability",
+      "portability.macos.body-ui.no-substitution",
+      "portability.macos.body-ui.fixed-export",
+      "portability.macos.body-ui-emphasis.availability",
+      "portability.macos.body-ui-emphasis.no-substitution",
+      "portability.macos.body-ui-emphasis.fixed-export",
+      "identity.app-header.native.minimum-size",
+      "portability.non-web.icon.visible-label",
+      "portability.non-web.icon.no-glyph-substitution",
+      "portability.non-web.icon.vector-hash-and-text-equivalent"
+    ],
+    "accessibilityFixtureIds": [
+      "accessibility.app.native.keyboard",
+      "accessibility.app.native.accessibility-api",
+      "accessibility.app.native.touch",
+      "accessibility.app.native.state-recovery",
+      "accessibility.app.native.dynamic-type-200",
+      "accessibility.app.native.safe-area-interruption",
+      "accessibility.app.native.reduced-motion"
+    ]
+  }
+}

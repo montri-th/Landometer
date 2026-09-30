@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "releaseRef": "v0.9.4-mp1",
+  "authorityId": "disclosure.design-system-reference.portfolio-brand-line.01",
+  "artifactId": "example.design-system.portfolio-brand-line.th",
+  "purpose": "design_system_reference",
+  "status": "approved",
+  "authorizedBy": "Landometer owner",
+  "authorizedAt": "2026-09-01T00:33:36+07:00",
+  "authorityEvidenceRef": "owner-message:2026-09-01:approve-v0.9.1",
+  "allowedFieldClasses": [
+    "release_identifiers",
+    "schema_examples"
+  ]
+}

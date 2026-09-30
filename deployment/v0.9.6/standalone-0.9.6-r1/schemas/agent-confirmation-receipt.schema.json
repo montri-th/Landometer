@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.6/standalone-0.9.6-r1/schemas/agent-confirmation-receipt.schema.json",
+  "title": "Landometer agent action confirmation receipt v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "confirmationId",
+    "artifactId",
+    "actionId",
+    "actorId",
+    "confirmedBy",
+    "inputRef",
+    "inputSha256",
+    "consequence",
+    "confirmedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "releaseRef": {
+      "const": "v0.9.6-owner.1"
+    },
+    "confirmationId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,159}$"
+    },
+    "artifactId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "actionId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "actorId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "confirmedBy": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "inputRef": {
+      "$ref": "#/$defs/safeRef"
+    },
+    "inputSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "consequence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "external",
+        "cost",
+        "reversible",
+        "summary"
+      ],
+      "properties": {
+        "class": {
+          "enum": [
+            "none",
+            "reversible",
+            "irreversible",
+            "destructive"
+          ]
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "cost": {
+          "enum": [
+            "none",
+            "possible",
+            "known"
+          ]
+        },
+        "reversible": {
+          "type": "boolean"
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "confirmedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\u0000-\\u001F]).+$"
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.6 contract, revision standalone-0.9.6-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

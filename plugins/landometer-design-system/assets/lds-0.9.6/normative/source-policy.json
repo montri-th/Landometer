@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "lds-source-policy-1",
+  "documentRevision": "standalone-0.9.6-r1",
+  "distributionRevision": "standalone-0.9.6-r1",
+  "status": "current",
+  "baseDocument": {
+    "documentId": "lds-0.9.6-landometer-standalone-r1",
+    "path": "Landometer-Design-System-v0.9.6.md",
+    "sha256": "c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91",
+    "dsVersion": "0.9.6",
+    "releaseRef": "v0.9.6-owner.1",
+    "colorSetId": "color-srgb-09"
+  },
+  "productAddons": [
+    {
+      "product": "ijji",
+      "documentId": "ijji-addon-0.5.5-lds-0.9.6-r3",
+      "path": "ijji-Add-on-v0.5.5-for-LDS-v0.9.6.md",
+      "sha256": "8b8fe59105252db5a25f0bcb1ef7c65eafe29220cba503697979a44661e467b2",
+      "requiredNormativeFiles": 2,
+      "requires": {
+        "documentId": "lds-0.9.6-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.6.md",
+        "sha256": "c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91",
+        "dsVersion": "0.9.6",
+        "releaseRef": "v0.9.6-owner.1",
+        "colorSetId": "color-srgb-09"
+      }
+    },
+    {
+      "product": "citychat",
+      "documentId": "citychat-addon-0.9.2-lds-0.9.6-r3",
+      "path": "CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.md",
+      "sha256": "ec4f443fd877b09160ec134a69e186e17c00463836c195cf7f5b35c1c260fed4",
+      "requiredNormativeFiles": 2,
+      "requires": {
+        "documentId": "lds-0.9.6-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.6.md",
+        "sha256": "c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91",
+        "dsVersion": "0.9.6",
+        "releaseRef": "v0.9.6-owner.1",
+        "colorSetId": "color-srgb-09"
+      }
+    },
+    {
+      "product": "citywiki",
+      "documentId": "citywiki-addon-1.0.0-lds-0.9.6-r3",
+      "path": "CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.md",
+      "sha256": "e92e6778b300bb4111bda0bc2831cb545bc1e17be896b5a5f30cbe8859fc42f3",
+      "requiredNormativeFiles": 2,
+      "requires": {
+        "documentId": "lds-0.9.6-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.6.md",
+        "sha256": "c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91",
+        "dsVersion": "0.9.6",
+        "releaseRef": "v0.9.6-owner.1",
+        "colorSetId": "color-srgb-09"
+      }
+    }
+  ],
+  "supersededForNewWork": [
+    "All earlier LDS 0.9.5 standalone revisions for new 0.9.6 work",
+    "LDS 0.9.1 and 0.9.4 normative masters",
+    "LDS 0.9.6 overlay GUIDE.md and separate BRAND.md as mandatory inputs",
+    "Earlier eight-file LDS Project Source sets",
+    "Earlier product Add-on revisions whose rules are replaced by the applicable current Add-on"
+  ],
+  "preserve": [
+    "Business and product briefs",
+    "Factual evidence, research and datasets",
+    "Explicitly version-pinned historical work",
+    "Original immutable release records and cryptographic provenance"
+  ],
+  "machineAuthority": "The complete LDS 0.9.6 base supplies shared structured contracts. A separate applicable product Add-on supplies only product-specific rules. No predecessor master is required."
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.2",
+  "releaseRef": "v0.9.4-mp1",
+  "revocationId": "agent-revocation.example.inspect-claim.01",
+  "authorityId": "agent-authority.example.inspect-claim.01",
+  "decisionPhase": "pre_start",
+  "executionNonce": "nonce.example.inspect-claim.2026-09-01.01",
+  "buildCardRef": "build-card.example.json",
+  "buildCardSha256": "8d95290db03e2ef5874780551c1f7a13b2bee5cfde54a49e1c410632162160f2",
+  "artifactId": "example.design-system.portfolio-brand-line.th",
+  "actionId": "inspect-claim",
+  "actorId": "example-reader",
+  "status": "not_revoked",
+  "checkedAt": "2026-09-23T15:46:08+07:00",
+  "revokedAt": null,
+  "reason": null,
+  "decisionBy": "Landometer owner",
+  "evidenceRef": "owner-message:2026-09-01:approve-v0.9.1"
+}

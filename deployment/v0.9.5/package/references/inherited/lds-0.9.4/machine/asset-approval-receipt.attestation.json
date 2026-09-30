@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "attestationId": "attestation.asset.shared-foundations.v0.9.4-mp1",
+  "purpose": "asset_approval",
+  "subject": {
+    "ref": "asset-approval-receipt.json",
+    "sha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+    "mediaType": "application/json"
+  },
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "expiresAt": null,
+  "signatureAlgorithm": "Ed25519",
+  "signatureEncoding": "base64",
+  "signature": "dtOBSgIRJz1+EpU270p0qNQYWF5q+3UDZ64OmAXVF9zWrnz1Mt/Fry08B2K8+3AFHbp2w4ccZsGOKSNbhZXSCg=="
+}

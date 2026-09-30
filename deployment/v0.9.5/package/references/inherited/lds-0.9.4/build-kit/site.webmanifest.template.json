@@ -1,0 +1,24 @@
+{
+  "name": "[product name]",
+  "short_name": "[short]",
+  "description": "[what you will see]",
+  "lang": "th",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F7F3",
+  "theme_color": "#1D4497",
+  "icons": [
+    {
+      "src": "/icons/icon-portfolio-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-portfolio-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

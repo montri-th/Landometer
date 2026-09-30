@@ -1,0 +1,2445 @@
+{
+  "schema": "lds-public-site-1",
+  "designSystemVersion": "0.9.6",
+  "colorSetId": "color-srgb-09",
+  "packageId": "v0.9.6-owner.1",
+  "artifactBuildId": "ui-20261001-lds096-r1",
+  "approval": "owner-approved",
+  "cryptographicSignature": "not-claimed",
+  "indexable": false,
+  "evidenceStatus": "source_limited_with_synthetic_examples",
+  "artifactConformance": "bounded-checks-only",
+  "contentBaseline": "ui-20260902-08 (0.9.1 full handbook)",
+  "assets": [
+    {
+      "path": "assets/data/color-delivery.v0.9.0.json",
+      "bytes": 18503,
+      "sha256": "aa6833b5286f6eb957925cb0c538c951d6822217fb83b051a71473ff2bdbd9c5"
+    },
+    {
+      "path": "assets/downloads/landometer-design-system-v0.9.1.md",
+      "bytes": 208463,
+      "sha256": "64f5d6277b557176502285bc65890ecc4c81faf4b97946eb5e3a2ef2c0d90d19"
+    },
+    {
+      "path": "assets/fonts/arvo-latin-700-normal.woff2",
+      "bytes": 17348,
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-latin-400-normal.woff2",
+      "bytes": 11596,
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-latin-600-normal.woff2",
+      "bytes": 11844,
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-thai-400-normal.woff2",
+      "bytes": 9168,
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+    },
+    {
+      "path": "assets/fonts/bai-jamjuree-thai-600-normal.woff2",
+      "bytes": 9808,
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+      "bytes": 18012,
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+      "bytes": 14176,
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+    },
+    {
+      "path": "assets/fonts/ibm-plex-sans-thai-thai-400-normal.woff2",
+      "bytes": 11804,
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+    },
+    {
+      "path": "assets/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "bytes": 21168,
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    },
+    {
+      "path": "assets/fonts/material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+    },
+    {
+      "path": "assets/images/landometer-logo-banner.png",
+      "bytes": 184476,
+      "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535"
+    },
+    {
+      "path": "assets/images/landometer-symbol-transparent.png",
+      "bytes": 11001,
+      "sha256": "35a1496f6e8c502cef82f0a46de5dacff98718ff9f5a6c07ccc3783d76e3ae85"
+    },
+    {
+      "path": "assets/images/team-hero.jpg",
+      "bytes": 182387,
+      "sha256": "50048eb0d0eeaf8b17e086bebc504389033bcc0673d453363c27581aa11579fb"
+    },
+    {
+      "path": "build-card.v0.9.1.yml",
+      "bytes": 19033,
+      "sha256": "00f8d654b18aaf7dc5e4b03ae9df30c2f56908712b97256c1892ed25ec9303bf"
+    },
+    {
+      "path": "control-inventory.v0.9.0.json",
+      "bytes": 51282,
+      "sha256": "b5e641732721dc2ac518b2a753bb9515e86199956d846006a3b4c6b89cf32fe1"
+    },
+    {
+      "path": "implementation-notes.v0.9.1.md",
+      "bytes": 21229,
+      "sha256": "0e64b4a8dbce6edf378b3425dccce4ca43fb9e6f108f2d50e0b29e4a00a78dc3"
+    },
+    {
+      "path": "index.html",
+      "bytes": 581,
+      "sha256": "ee0c19a240e413b1020e8827f0e406115b04ae3d09bcf2385944175ab38cb3d0"
+    },
+    {
+      "path": "index.v0.9.1.html",
+      "bytes": 1098560,
+      "sha256": "1581689d4b0beee36eed53559f6df19f4cff74d06632d4ea2c878b94a7666e7b"
+    },
+    {
+      "path": "landometer-design-system-v0.9.1-standalone.color-srgb-05.ui-20260902-08.html",
+      "bytes": 2033098,
+      "sha256": "f24b14705e504ac479aadb4eac4241550f10104c9b959e72bac642a963c89497"
+    },
+    {
+      "path": "llms.txt",
+      "bytes": 1854,
+      "sha256": "3fc3471359e29d69533468451d0def92bc0100bdd87fff305bd7cfedada04395"
+    },
+    {
+      "path": "qa/v0.9.1-manual-gates.md",
+      "bytes": 20173,
+      "sha256": "753fc043f16c46cf9b58b1ef456a653f4445ab4e2d582e083ee4715305f2bf7f"
+    },
+    {
+      "path": "site-manifest.v0.9.1.json",
+      "bytes": 17935,
+      "sha256": "4106c2327e79eba0218e4c89dc3137aa37b609134e0bc0ac5fcfb225b1488123"
+    },
+    {
+      "path": "v0.9.6/README.txt",
+      "bytes": 1000,
+      "sha256": "1bc91006bbeb0bb2308d81a4065eabfd022ad805b43f38ebc9ff8f1ceb855bb6"
+    },
+    {
+      "path": "v0.9.6/app.css",
+      "bytes": 16379,
+      "sha256": "aaab43ee9c69703ab08911d6c7b762ec8ab116acdd45a299fe51b668e8af84db"
+    },
+    {
+      "path": "v0.9.6/app.js",
+      "bytes": 3530,
+      "sha256": "82fd0f70123ae149bc1dde64952a205628e6071a812066e9c013bb0f83502607"
+    },
+    {
+      "path": "v0.9.6/base-render.js",
+      "bytes": 1463,
+      "sha256": "4ce4e29aed9baa5d887df735742aaaac133f6c609ae5547fe629bb9e650117c1"
+    },
+    {
+      "path": "v0.9.6/candidate.css",
+      "bytes": 4859,
+      "sha256": "18ff12bb95c348dc1bf0e1838848dc47682b73808698f78b1864c3c7d7871985"
+    },
+    {
+      "path": "v0.9.6/color-atlas.html",
+      "bytes": 336452,
+      "sha256": "4a934f622b5700a4e236b6fea90f0376bb38f0bba6e8b3fc8df0bbb3eed2db60"
+    },
+    {
+      "path": "v0.9.6/data.js",
+      "bytes": 128639,
+      "sha256": "e0eed0ce1a87a678be7e2872051723e964e16337515a8ae3f615043a0a9e6ca2"
+    },
+    {
+      "path": "v0.9.6/embedded-atlas.js",
+      "bytes": 3098,
+      "sha256": "61d25ece56c7e958afcf41d1bdbbe3e31f7166aba0de4f58e521aa2348ee0cdc"
+    },
+    {
+      "path": "v0.9.6/full-guide.css",
+      "bytes": 2277,
+      "sha256": "cd51e63c28c824b77dc7414c6a3eef179c302a0e3a7377013e410a813269db85"
+    },
+    {
+      "path": "v0.9.6/full-guide.js",
+      "bytes": 387,
+      "sha256": "c4553c849f320ea16173dadd55fb2fe2245e0fb3b6f91710f4822de05c8a32f3"
+    },
+    {
+      "path": "v0.9.6/guide-token-aliases.css",
+      "bytes": 6557,
+      "sha256": "705299e1898fc65bec62096cbae9e93f707362e06d3c14099eb1d4678d7e9749"
+    },
+    {
+      "path": "v0.9.6/icons/generate-icon-set.py",
+      "bytes": 4611,
+      "sha256": "32dd794b1e8272fa0ddb6e28949e8e6dce4718b45a11610f06441eb024dbfc99"
+    },
+    {
+      "path": "v0.9.6/icons/icon-portfolio-16.png",
+      "bytes": 768,
+      "sha256": "c100627d5e8fc9d21d168dbf15f9fdab7f5d6931b04df5164e58137df77feca8"
+    },
+    {
+      "path": "v0.9.6/icons/icon-portfolio-180.png",
+      "bytes": 8893,
+      "sha256": "41ac1e302345d29d791fcc26a5e7111aeb3a4e222dff63685743b43d0fdd6ef0"
+    },
+    {
+      "path": "v0.9.6/icons/icon-portfolio-192.png",
+      "bytes": 11929,
+      "sha256": "1d8bbd3d8656a83f33c51364d333bba7ca328faf3ae713238fa9450f7810bf8e"
+    },
+    {
+      "path": "v0.9.6/icons/icon-portfolio-32.png",
+      "bytes": 1773,
+      "sha256": "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9"
+    },
+    {
+      "path": "v0.9.6/icons/icon-portfolio-48.png",
+      "bytes": 2897,
+      "sha256": "443857069292f6910b9e5cc0383cab6da4273acf1e18a47745864729fc46e08e"
+    },
+    {
+      "path": "v0.9.6/icons/icon-portfolio-512.png",
+      "bytes": 28124,
+      "sha256": "d8939f6cc7891c47bbb3dce1ddb04d4c30ce4c7e78e29f6fb0061858dafc881f"
+    },
+    {
+      "path": "v0.9.6/icons/icon-set.json",
+      "bytes": 3284,
+      "sha256": "aea8f5a7f9793c14a6b183706627e4c2390388b7d8c49129eceacdd9b0bce7a4"
+    },
+    {
+      "path": "v0.9.6/index.html",
+      "bytes": 1111258,
+      "sha256": "af0c87a802e20f7b4b7c5214939e498536d8a122d04ffa1d59d42fb260837c0b"
+    },
+    {
+      "path": "v0.9.6/lds/color-srgb-07.production.css",
+      "bytes": 14096,
+      "sha256": "60fbdbf1df810980e3f233d4861c6e9f39790c4d63bdb29bf09c0d4c016d288b"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/arvo-latin-700-normal.woff2",
+      "bytes": 17348,
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/bai-jamjuree-latin-400-normal.woff2",
+      "bytes": 11596,
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/bai-jamjuree-latin-600-normal.woff2",
+      "bytes": 11844,
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/bai-jamjuree-thai-400-normal.woff2",
+      "bytes": 9168,
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/bai-jamjuree-thai-600-normal.woff2",
+      "bytes": 9808,
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+      "bytes": 18012,
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+      "bytes": 14176,
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/ibm-plex-sans-thai-thai-400-normal.woff2",
+      "bytes": 11804,
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/jetbrains-mono-latin-400-normal.woff2",
+      "bytes": 21168,
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/licenses/arvo-OFL.txt",
+      "bytes": 4508,
+      "sha256": "f4f2cb57f7050c4e615863a39bf04811eada567d76d99b10b0f33d1e10e6cccd"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/licenses/bai-jamjuree-OFL.txt",
+      "bytes": 5487,
+      "sha256": "74b7deafa632a5ed301dc322fcc2867ac200402e06b6d0b0b01faf09b8514e3e"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/licenses/ibm-plex-sans-thai-OFL.txt",
+      "bytes": 4796,
+      "sha256": "1b4f4d1f1463b63f1356e7b6034ad5a94311b35ffb53cc4bf83f2fbda24450e4"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/licenses/ibm-plex-sans-thai-looped-OFL.txt",
+      "bytes": 4832,
+      "sha256": "e3ac4237aef600394644cdab2375d7011b0f80d2229ff05f47df2e61a109ab57"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/licenses/jetbrains-mono-OFL.txt",
+      "bytes": 4524,
+      "sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/licenses/material-symbols-Apache-2.0.txt",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+    },
+    {
+      "path": "v0.9.6/lds/fonts/material-symbols-rounded-open-in-new-300.woff2",
+      "bytes": 1124,
+      "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e"
+    },
+    {
+      "path": "v0.9.6/lds/lds-0.9.4-components.css",
+      "bytes": 7193,
+      "sha256": "a179b1b33481cda9f793d83c204e1f6d1ebe882ca15aa262d7b443c0dfc054d4"
+    },
+    {
+      "path": "v0.9.6/lds/lds-0.9.4-ext.css",
+      "bytes": 15899,
+      "sha256": "6918b1a481223b8a8b444831e59ed2dedb4e7404bb0a05dcc48d0492716bc02f"
+    },
+    {
+      "path": "v0.9.6/lds/motif/landometer-motifs.css",
+      "bytes": 11190,
+      "sha256": "7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e"
+    },
+    {
+      "path": "v0.9.6/lds/motif/landometer-motifs.js",
+      "bytes": 17845,
+      "sha256": "3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2"
+    },
+    {
+      "path": "v0.9.6/lds/motif/motif-frame.css",
+      "bytes": 5783,
+      "sha256": "bce9aa3cab8f4f61a15a97bd8dac0835a052b35e0bf19c58d73c160c194a7fc1"
+    },
+    {
+      "path": "v0.9.6/lds/motif/motif-frame.js",
+      "bytes": 27265,
+      "sha256": "ea96e0099526068126ab726634763d60825046dfd285134b3897087436aebb2b"
+    },
+    {
+      "path": "v0.9.6/lds/motif/motif-library.json",
+      "bytes": 120161,
+      "sha256": "77e8185104751e2c21c2e10fb8c5d771821bcb8123e02f116638fdbf3968d483"
+    },
+    {
+      "path": "v0.9.6/lds/motif/motion-controller.js",
+      "bytes": 4175,
+      "sha256": "9199d94ae0f61af69dade73cbb6326898556749d6a1a36038580f59be153b37f"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/cultivate-full.svg",
+      "bytes": 984,
+      "sha256": "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/cultivate-quiet.svg",
+      "bytes": 1190,
+      "sha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/dial-full.svg",
+      "bytes": 674,
+      "sha256": "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/dial-quiet.svg",
+      "bytes": 733,
+      "sha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/layers-full.svg",
+      "bytes": 741,
+      "sha256": "a94a59a342df39591f490deec960bba2263bc1c453620c557ff84a1c47901843"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/layers-quiet.svg",
+      "bytes": 1274,
+      "sha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/logo-full.svg",
+      "bytes": 1252,
+      "sha256": "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/logo-quiet.svg",
+      "bytes": 1979,
+      "sha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/rings-full.svg",
+      "bytes": 552,
+      "sha256": "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/rings-quiet.svg",
+      "bytes": 833,
+      "sha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/slice-full.svg",
+      "bytes": 280,
+      "sha256": "8d0dfb62d1ac92738afcd76e8b61b544a5c72bf10b165983235900558447b2df"
+    },
+    {
+      "path": "v0.9.6/lds/motif/svg/slice-quiet.svg",
+      "bytes": 350,
+      "sha256": "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b"
+    },
+    {
+      "path": "v0.9.6/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.json",
+      "bytes": 26313,
+      "sha256": "bbb5e7e3b223373c68604e7c71f7661fb1f301d4d7f3d24f82aeebff754071cb"
+    },
+    {
+      "path": "v0.9.6/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.md",
+      "bytes": 24010,
+      "sha256": "ec4f443fd877b09160ec134a69e186e17c00463836c195cf7f5b35c1c260fed4"
+    },
+    {
+      "path": "v0.9.6/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.json",
+      "bytes": 67911,
+      "sha256": "0044001623eaa8223c2f914577da8b197efaf4050ece24c4dc9d4160ce0cf3a2"
+    },
+    {
+      "path": "v0.9.6/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.md",
+      "bytes": 64342,
+      "sha256": "e92e6778b300bb4111bda0bc2831cb545bc1e17be896b5a5f30cbe8859fc42f3"
+    },
+    {
+      "path": "v0.9.6/normative/Landometer-Design-System-v0.9.6.json",
+      "bytes": 1851669,
+      "sha256": "f3dd5392e4fdc9b3bda8e9435e9252f68b3617b1be66f736fa5e42eca1f4694f"
+    },
+    {
+      "path": "v0.9.6/normative/Landometer-Design-System-v0.9.6.md",
+      "bytes": 1122346,
+      "sha256": "c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91"
+    },
+    {
+      "path": "v0.9.6/normative/document-set.json",
+      "bytes": 4686,
+      "sha256": "e022faf5abed5f5d564e5c6afbafbf27046898dae8487134feb85983c0e4c636"
+    },
+    {
+      "path": "v0.9.6/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.json",
+      "bytes": 253631,
+      "sha256": "ee5202d5e701b54d6597e2c39c78b3d4cb18f00f77ad96961ac0998fb7048ed7"
+    },
+    {
+      "path": "v0.9.6/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.md",
+      "bytes": 227830,
+      "sha256": "8b8fe59105252db5a25f0bcb1ef7c65eafe29220cba503697979a44661e467b2"
+    },
+    {
+      "path": "v0.9.6/normative/source-policy.json",
+      "bytes": 3113,
+      "sha256": "12ddee5e6a36f376f88f7c83d624bad6d5a74f1ea25765a16da3173487a29fc6"
+    },
+    {
+      "path": "v0.9.6/package/.claude-plugin/plugin.json",
+      "bytes": 509,
+      "sha256": "f2db818869729de2ca2f4316fae4f46ebf0be124123ebd7942009eefbb9ae13a"
+    },
+    {
+      "path": "v0.9.6/package/.codex-plugin/plugin.json",
+      "bytes": 1260,
+      "sha256": "118111925cf669136448af91aba1b9f4ee71b5f6382fe16666229e60a123d4e4"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/GUIDE.md",
+      "bytes": 8479,
+      "sha256": "b890cd7d8e7b109b505bb237ac191116af01d587c74a8b837b95b8467f17fa55"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/SHA256SUMS.txt",
+      "bytes": 33459,
+      "sha256": "ff912e71955d7afc0855034592397b76b1609ddf5699073a1244f5690808a767"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/brand/BRAND.md",
+      "bytes": 5206,
+      "sha256": "cfff35e3774c17779101abcf05a473f9b302e3c4e82eee8133bb316743592ca9"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/Landometer-Logo-TransparentBG.png",
+      "bytes": 903326,
+      "sha256": "8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/arvo-OFL.txt",
+      "bytes": 4508,
+      "sha256": "f4f2cb57f7050c4e615863a39bf04811eada567d76d99b10b0f33d1e10e6cccd"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/arvo-latin-700-normal.woff2",
+      "bytes": 17348,
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/bai-jamjuree-OFL.txt",
+      "bytes": 5487,
+      "sha256": "74b7deafa632a5ed301dc322fcc2867ac200402e06b6d0b0b01faf09b8514e3e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/bai-jamjuree-latin-400-normal.woff2",
+      "bytes": 11596,
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/bai-jamjuree-latin-600-normal.woff2",
+      "bytes": 11844,
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/bai-jamjuree-thai-400-normal.woff2",
+      "bytes": 9168,
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/bai-jamjuree-thai-600-normal.woff2",
+      "bytes": 9808,
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/ibm-plex-sans-thai-OFL.txt",
+      "bytes": 4796,
+      "sha256": "1b4f4d1f1463b63f1356e7b6034ad5a94311b35ffb53cc4bf83f2fbda24450e4"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/ibm-plex-sans-thai-looped-OFL.txt",
+      "bytes": 4832,
+      "sha256": "e3ac4237aef600394644cdab2375d7011b0f80d2229ff05f47df2e61a109ab57"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+      "bytes": 18012,
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+      "bytes": 14176,
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/ibm-plex-sans-thai-thai-400-normal.woff2",
+      "bytes": 11804,
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/jetbrains-mono-OFL.txt",
+      "bytes": 4524,
+      "sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/jetbrains-mono-latin-400-normal.woff2",
+      "bytes": 21168,
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/material-symbols-Apache-2.0.txt",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/assets/material-symbols-rounded-open-in-new-300.woff2",
+      "bytes": 1124,
+      "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/example.html",
+      "bytes": 4513,
+      "sha256": "7fc91efa5deda07dedeb7be3015d42c4d873152008e3d3c835a38d688ae7d54b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/fonts.css",
+      "bytes": 1786,
+      "sha256": "a2564ee20060ac90db6b6ef2b2e18d54671005e4b6736823d2ebb2c0ddb3fbd6"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/generate-icon-set.py",
+      "bytes": 4611,
+      "sha256": "32dd794b1e8272fa0ddb6e28949e8e6dce4718b45a11610f06441eb024dbfc99"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-portfolio-16.png",
+      "bytes": 768,
+      "sha256": "c100627d5e8fc9d21d168dbf15f9fdab7f5d6931b04df5164e58137df77feca8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-portfolio-180.png",
+      "bytes": 8893,
+      "sha256": "41ac1e302345d29d791fcc26a5e7111aeb3a4e222dff63685743b43d0fdd6ef0"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-portfolio-192.png",
+      "bytes": 11929,
+      "sha256": "1d8bbd3d8656a83f33c51364d333bba7ca328faf3ae713238fa9450f7810bf8e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-portfolio-32.png",
+      "bytes": 1773,
+      "sha256": "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-portfolio-48.png",
+      "bytes": 2897,
+      "sha256": "443857069292f6910b9e5cc0383cab6da4273acf1e18a47745864729fc46e08e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-portfolio-512.png",
+      "bytes": 28124,
+      "sha256": "d8939f6cc7891c47bbb3dce1ddb04d4c30ce4c7e78e29f6fb0061858dafc881f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/icons/icon-set.json",
+      "bytes": 3284,
+      "sha256": "aea8f5a7f9793c14a6b183706627e4c2390388b7d8c49129eceacdd9b0bce7a4"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/lds-0.9.5-components.css",
+      "bytes": 7108,
+      "sha256": "bd37478955a405cd3f871185799399201b95278e943b47d4084d39357a3f8527"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/lds-0.9.5-ext.css",
+      "bytes": 26891,
+      "sha256": "53aa80491e936439a2ffcb5758fed5f27f5f5fc19acee8ac58f589baf08494e8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/lds-0.9.5.css",
+      "bytes": 137,
+      "sha256": "f49c0d9ee9cc0362c5d982faa2362261b5a9d93f91172c667f58473da0ce0d55"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/landometer-motifs.css",
+      "bytes": 11190,
+      "sha256": "7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/landometer-motifs.js",
+      "bytes": 17845,
+      "sha256": "3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/motif-frame.css",
+      "bytes": 5783,
+      "sha256": "bce9aa3cab8f4f61a15a97bd8dac0835a052b35e0bf19c58d73c160c194a7fc1"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/motif-frame.js",
+      "bytes": 27265,
+      "sha256": "ea96e0099526068126ab726634763d60825046dfd285134b3897087436aebb2b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/motif-library.json",
+      "bytes": 120161,
+      "sha256": "77e8185104751e2c21c2e10fb8c5d771821bcb8123e02f116638fdbf3968d483"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/motion-controller.js",
+      "bytes": 4175,
+      "sha256": "9199d94ae0f61af69dade73cbb6326898556749d6a1a36038580f59be153b37f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/cultivate-full.svg",
+      "bytes": 984,
+      "sha256": "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/cultivate-quiet.svg",
+      "bytes": 1190,
+      "sha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/dial-full.svg",
+      "bytes": 674,
+      "sha256": "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/dial-quiet.svg",
+      "bytes": 733,
+      "sha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/layers-full.svg",
+      "bytes": 741,
+      "sha256": "a94a59a342df39591f490deec960bba2263bc1c453620c557ff84a1c47901843"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/layers-quiet.svg",
+      "bytes": 1274,
+      "sha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/logo-full.svg",
+      "bytes": 1252,
+      "sha256": "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/logo-quiet.svg",
+      "bytes": 1979,
+      "sha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/rings-full.svg",
+      "bytes": 552,
+      "sha256": "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/rings-quiet.svg",
+      "bytes": 833,
+      "sha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/slice-full.svg",
+      "bytes": 280,
+      "sha256": "8d0dfb62d1ac92738afcd76e8b61b544a5c72bf10b165983235900558447b2df"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/build-kit/motif/svg/slice-quiet.svg",
+      "bytes": 350,
+      "sha256": "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/color-registry.json",
+      "bytes": 125612,
+      "sha256": "50aca050b6f5792956f98f73343fc1655fe81de71b5f8aee522ab1bbb96a27ba"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/color-srgb-08.production.css",
+      "bytes": 132925,
+      "sha256": "4a94147d42daf50542d348c601d86e040b28de9a3c8b83b0e149d6bec80bd34b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/color-srgb-08.scales.json",
+      "bytes": 108435,
+      "sha256": "ee00c547a19d08ba50d7ddaf3af287b8c52551415fa57bda52b41249f98e501f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/color-srgb-08.tokens.json",
+      "bytes": 11865,
+      "sha256": "6f9f1ea5f946bc566bd6b736f0c9369344a264ef15ef31afe53dd23a58be102b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/evidence-value.schema.json",
+      "bytes": 1553,
+      "sha256": "816624244b9ee75cf687c734de4e82a104b12db243bf3ff3f0ecd68eb6781547"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/lds-0.9.5.tokens.dtcg.json",
+      "bytes": 1023763,
+      "sha256": "b83948844872d99669915e6c5d518f58da69f25299bbbda78a50c0482997d1ec"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/policy.json",
+      "bytes": 4591,
+      "sha256": "9a91a74a726e259adba1908043b3e11b203420b1f9cc0130bb5692705f2c1949"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/release.json",
+      "bytes": 2537,
+      "sha256": "9a2725d21927a19b0d78d04455ad95ad0e7571ce2d45d74da21a17786cc9e829"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/social-sidecar.schema.json",
+      "bytes": 23856,
+      "sha256": "4e1baf3bb7bec2ea624cfa393945266e7cdd9ca7f83ad861b6aa619b7d300544"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/machine/tokens.v0.9.5.json",
+      "bytes": 53938,
+      "sha256": "460e70d6e7c10e3ecd484056c6ae54cf7dc8a99865011be633834b3ba8c1e98b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.json",
+      "bytes": 25907,
+      "sha256": "6e75e9e298707f2202c9c4bdc302d63a54ebef87bde46b1effa7e6442424d707"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.5.md",
+      "bytes": 23658,
+      "sha256": "0f4e375cfc761b238b77cbfcf75fc15f583b2cd5fee181714ae590c7897c12c8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.json",
+      "bytes": 67495,
+      "sha256": "13d8645c5a01d2eb33a5cbe5e9ecebc6e01916198d41f509b297b2e4fe2b2a3a"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.5.md",
+      "bytes": 63980,
+      "sha256": "9e15b00debddeb0070ec5741a3a9cb1504d7cd6c79a5d1d7da3cacaf9daada51"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.json",
+      "bytes": 1845607,
+      "sha256": "fef7096794ef6c9a619a53233342fa0bb6202313afd694db5dc15b73f985c28e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.md",
+      "bytes": 1116504,
+      "sha256": "164dbb5566107a4a0d09ebebbf8f00c1c0b89c53af3be6967e2fcd9caa95d4ee"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/document-set.json",
+      "bytes": 4692,
+      "sha256": "fc21e3588f149785ff6b9bfb3f41eed53fd0fb0c8f395e09adfa2743e9dab6f3"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.json",
+      "bytes": 253235,
+      "sha256": "c4c53fd29d62faf4d913f2524f3a24fcf37ed3e481ac1d5a1e8fd10a768e142f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.5.md",
+      "bytes": 227488,
+      "sha256": "15342baba840fa1757551187bae9cab2ad325364ea98d472b14590ce2bd46512"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.5/normative/source-policy.json",
+      "bytes": 3129,
+      "sha256": "548b805db762405d48c24b0e8e24f167d822be82155b4456e991f14498cae4fd"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/GUIDE.md",
+      "bytes": 741,
+      "sha256": "080ac337d32c539064cde22b02540bec0cd7d50c66bbd8a9182d0f485ef247c8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/SHA256SUMS.txt",
+      "bytes": 41410,
+      "sha256": "099bc6b51471db6ba5cc13c64ca354e96cfdbedf05cf3e756740af713fb91c20"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/brand/BRAND.md",
+      "bytes": 5285,
+      "sha256": "131ee94c5dafb00ce4147bd8c41e25a9763bf0baa51bfde73c40ddf4b74911c8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/Landometer-Logo-TransparentBG.png",
+      "bytes": 903326,
+      "sha256": "8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/arvo-OFL.txt",
+      "bytes": 4508,
+      "sha256": "f4f2cb57f7050c4e615863a39bf04811eada567d76d99b10b0f33d1e10e6cccd"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/arvo-latin-700-normal.woff2",
+      "bytes": 17348,
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/bai-jamjuree-OFL.txt",
+      "bytes": 5487,
+      "sha256": "74b7deafa632a5ed301dc322fcc2867ac200402e06b6d0b0b01faf09b8514e3e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/bai-jamjuree-latin-400-normal.woff2",
+      "bytes": 11596,
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/bai-jamjuree-latin-600-normal.woff2",
+      "bytes": 11844,
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/bai-jamjuree-thai-400-normal.woff2",
+      "bytes": 9168,
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/bai-jamjuree-thai-600-normal.woff2",
+      "bytes": 9808,
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/ibm-plex-sans-thai-OFL.txt",
+      "bytes": 4796,
+      "sha256": "1b4f4d1f1463b63f1356e7b6034ad5a94311b35ffb53cc4bf83f2fbda24450e4"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/ibm-plex-sans-thai-looped-OFL.txt",
+      "bytes": 4832,
+      "sha256": "e3ac4237aef600394644cdab2375d7011b0f80d2229ff05f47df2e61a109ab57"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+      "bytes": 18012,
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+      "bytes": 14176,
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/ibm-plex-sans-thai-thai-400-normal.woff2",
+      "bytes": 11804,
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/jetbrains-mono-OFL.txt",
+      "bytes": 4524,
+      "sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/jetbrains-mono-latin-400-normal.woff2",
+      "bytes": 21168,
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/material-symbols-Apache-2.0.txt",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/assets/material-symbols-rounded-open-in-new-300.woff2",
+      "bytes": 1124,
+      "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/example.html",
+      "bytes": 4513,
+      "sha256": "7fc91efa5deda07dedeb7be3015d42c4d873152008e3d3c835a38d688ae7d54b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/fonts.css",
+      "bytes": 1786,
+      "sha256": "a2564ee20060ac90db6b6ef2b2e18d54671005e4b6736823d2ebb2c0ddb3fbd6"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/generate-icon-set.py",
+      "bytes": 4611,
+      "sha256": "32dd794b1e8272fa0ddb6e28949e8e6dce4718b45a11610f06441eb024dbfc99"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-portfolio-16.png",
+      "bytes": 768,
+      "sha256": "c100627d5e8fc9d21d168dbf15f9fdab7f5d6931b04df5164e58137df77feca8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-portfolio-180.png",
+      "bytes": 8893,
+      "sha256": "41ac1e302345d29d791fcc26a5e7111aeb3a4e222dff63685743b43d0fdd6ef0"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-portfolio-192.png",
+      "bytes": 11929,
+      "sha256": "1d8bbd3d8656a83f33c51364d333bba7ca328faf3ae713238fa9450f7810bf8e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-portfolio-32.png",
+      "bytes": 1773,
+      "sha256": "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-portfolio-48.png",
+      "bytes": 2897,
+      "sha256": "443857069292f6910b9e5cc0383cab6da4273acf1e18a47745864729fc46e08e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-portfolio-512.png",
+      "bytes": 28124,
+      "sha256": "d8939f6cc7891c47bbb3dce1ddb04d4c30ce4c7e78e29f6fb0061858dafc881f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/icons/icon-set.json",
+      "bytes": 3284,
+      "sha256": "aea8f5a7f9793c14a6b183706627e4c2390388b7d8c49129eceacdd9b0bce7a4"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/lds-0.9.6-components.css",
+      "bytes": 7108,
+      "sha256": "b38456260d058bf18fd8fa2071e75d64e594fd98d1b56137fc8686cd7e26e2d3"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/lds-0.9.6-ext.css",
+      "bytes": 26891,
+      "sha256": "aea58af23c87b1882975efe160663cc9c6713423b0073265b8fb28ea1e777f38"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/lds-0.9.6.css",
+      "bytes": 137,
+      "sha256": "b7c27b424eabe2d7edc1239563e868e9fd55c3863dff4f1add4b06d0b9e4b30e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/landometer-motifs.css",
+      "bytes": 11190,
+      "sha256": "7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/landometer-motifs.js",
+      "bytes": 17845,
+      "sha256": "3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/motif-frame.css",
+      "bytes": 5783,
+      "sha256": "bce9aa3cab8f4f61a15a97bd8dac0835a052b35e0bf19c58d73c160c194a7fc1"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/motif-frame.js",
+      "bytes": 27265,
+      "sha256": "ea96e0099526068126ab726634763d60825046dfd285134b3897087436aebb2b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/motif-library.json",
+      "bytes": 120161,
+      "sha256": "77e8185104751e2c21c2e10fb8c5d771821bcb8123e02f116638fdbf3968d483"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/motion-controller.js",
+      "bytes": 4175,
+      "sha256": "9199d94ae0f61af69dade73cbb6326898556749d6a1a36038580f59be153b37f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/cultivate-full.svg",
+      "bytes": 984,
+      "sha256": "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/cultivate-quiet.svg",
+      "bytes": 1190,
+      "sha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/dial-full.svg",
+      "bytes": 674,
+      "sha256": "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/dial-quiet.svg",
+      "bytes": 733,
+      "sha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/layers-full.svg",
+      "bytes": 741,
+      "sha256": "a94a59a342df39591f490deec960bba2263bc1c453620c557ff84a1c47901843"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/layers-quiet.svg",
+      "bytes": 1274,
+      "sha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/logo-full.svg",
+      "bytes": 1252,
+      "sha256": "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/logo-quiet.svg",
+      "bytes": 1979,
+      "sha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/rings-full.svg",
+      "bytes": 552,
+      "sha256": "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/rings-quiet.svg",
+      "bytes": 833,
+      "sha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/slice-full.svg",
+      "bytes": 280,
+      "sha256": "8d0dfb62d1ac92738afcd76e8b61b544a5c72bf10b165983235900558447b2df"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/build-kit/motif/svg/slice-quiet.svg",
+      "bytes": 350,
+      "sha256": "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/color-registry.json",
+      "bytes": 126993,
+      "sha256": "4783a8cc18b20cedcaf279180976c52dd6a9bfa5b2a920e2585974f57db61727"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/color-srgb-09.production.css",
+      "bytes": 132946,
+      "sha256": "6b9051d7d5234683006391e12e1cd2e5b8654eccb4d633d3857c419a362dee04"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/color-srgb-09.scales.json",
+      "bytes": 107121,
+      "sha256": "f016326cab1d0d229161acf926964e21799f86e3117fb9e14f3d3047b81f1341"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/color-srgb-09.tokens.json",
+      "bytes": 11865,
+      "sha256": "00b10d65b14516f11bc71b73149e5ce4fc8c9c6312e7eca32c2b0fa8ff8cf67d"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/evidence-value.schema.json",
+      "bytes": 1558,
+      "sha256": "00d6dc74c2069c8584827033836d16cf82a22e2c76c166d52a0c4f6f34770d2d"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/lds-0.9.6.tokens.dtcg.json",
+      "bytes": 1026909,
+      "sha256": "db0d742b2eb37a5b321d6c3309c0e670e0a0bf6ba24b827543bacef13e5c27f8"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/policy.json",
+      "bytes": 5416,
+      "sha256": "5aad576e07779813ac38be6e1459bab3db2ae6fa42ba415193ef913d676f4dab"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/release.json",
+      "bytes": 2957,
+      "sha256": "669e38a2004ed0c1487e5a46828b88eae6e4a7cd8c63f717fe0fcd1c5e4c1227"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/social-sidecar.schema.json",
+      "bytes": 23861,
+      "sha256": "8d16d2e2afedbf73a9b0293705db0839f7c10b70d1fd9b927fe00edf4b2f1df1"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/machine/tokens.v0.9.6.json",
+      "bytes": 53938,
+      "sha256": "44fe8e4584fbb53cf6e682598328a40598b653d6154623bed068a099f0cf6308"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.json",
+      "bytes": 26313,
+      "sha256": "bbb5e7e3b223373c68604e7c71f7661fb1f301d4d7f3d24f82aeebff754071cb"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.md",
+      "bytes": 24010,
+      "sha256": "ec4f443fd877b09160ec134a69e186e17c00463836c195cf7f5b35c1c260fed4"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.json",
+      "bytes": 67911,
+      "sha256": "0044001623eaa8223c2f914577da8b197efaf4050ece24c4dc9d4160ce0cf3a2"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.md",
+      "bytes": 64342,
+      "sha256": "e92e6778b300bb4111bda0bc2831cb545bc1e17be896b5a5f30cbe8859fc42f3"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/Landometer-Design-System-v0.9.6.json",
+      "bytes": 1851669,
+      "sha256": "f3dd5392e4fdc9b3bda8e9435e9252f68b3617b1be66f736fa5e42eca1f4694f"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/Landometer-Design-System-v0.9.6.md",
+      "bytes": 1122346,
+      "sha256": "c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/document-set.json",
+      "bytes": 4686,
+      "sha256": "e022faf5abed5f5d564e5c6afbafbf27046898dae8487134feb85983c0e4c636"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.json",
+      "bytes": 253631,
+      "sha256": "ee5202d5e701b54d6597e2c39c78b3d4cb18f00f77ad96961ac0998fb7048ed7"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.md",
+      "bytes": 227830,
+      "sha256": "8b8fe59105252db5a25f0bcb1ef7c65eafe29220cba503697979a44661e467b2"
+    },
+    {
+      "path": "v0.9.6/package/assets/lds-0.9.6/normative/source-policy.json",
+      "bytes": 3113,
+      "sha256": "12ddee5e6a36f376f88f7c83d624bad6d5a74f1ea25765a16da3173487a29fc6"
+    },
+    {
+      "path": "v0.9.6/package/docs/activation-receipt.template.json",
+      "bytes": 454,
+      "sha256": "6260801eeebb4b1f724bb8d287b30547bca9b26e9712527e6e31bcb3b9f560ef"
+    },
+    {
+      "path": "v0.9.6/package/docs/activation-th.md",
+      "bytes": 10962,
+      "sha256": "d2684138ee636d8730ae0df57a404b306c2c913dbc657e529af91eff40c71b20"
+    },
+    {
+      "path": "v0.9.6/package/docs/brand-and-visual.md",
+      "bytes": 3750,
+      "sha256": "7e3c561e23320deea4ace6ad8f6b33a7ca7110e1318794380aeeb8823e2dc98a"
+    },
+    {
+      "path": "v0.9.6/package/plugin.json",
+      "bytes": 1414,
+      "sha256": "8ee08760d0c27790788d4e6f8d72b291eed0ab0215b602ee641ac012dbf50687"
+    },
+    {
+      "path": "v0.9.6/package/references/approved-0.9.6.json",
+      "bytes": 475356,
+      "sha256": "a63d367ff982a1603a597ed9d9a6466cc2678a84c671e8d37e255c05e9b00797"
+    },
+    {
+      "path": "v0.9.6/package/references/approved-r2.1.json",
+      "bytes": 497180,
+      "sha256": "ebe57188c0824577628f8913a62f1c0794d1522214c54af63703281dfb07e011"
+    },
+    {
+      "path": "v0.9.6/package/references/approved-sequential-r2.json",
+      "bytes": 114054,
+      "sha256": "0ae97bf20fe51521ddb71aed3f5ae99f5206cd934492eff4934e97a29765e4fa"
+    },
+    {
+      "path": "v0.9.6/package/references/evidence-value.repair.schema.json",
+      "bytes": 930,
+      "sha256": "377382bb02f8e474449bd0ee841be7a7653c569f63ac8d75ea14e1c16a2bfd59"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/FREEZE-RECEIPT-v0.9.4-mp1.json",
+      "bytes": 3473,
+      "sha256": "8f21b1496d5d7fd7ea28f7fd5d802b4742cdfbd961b8d1a4c1ff68ea4448adef"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/SHA256SUMS.txt",
+      "bytes": 3096,
+      "sha256": "d843eceb397910a73c5e6a9e49ce4c6a2d099853297b6f6a2536b3fc937b293d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/generate-icon-set.py",
+      "bytes": 4611,
+      "sha256": "32dd794b1e8272fa0ddb6e28949e8e6dce4718b45a11610f06441eb024dbfc99"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-portfolio-16.png",
+      "bytes": 768,
+      "sha256": "c100627d5e8fc9d21d168dbf15f9fdab7f5d6931b04df5164e58137df77feca8"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-portfolio-180.png",
+      "bytes": 8893,
+      "sha256": "41ac1e302345d29d791fcc26a5e7111aeb3a4e222dff63685743b43d0fdd6ef0"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-portfolio-192.png",
+      "bytes": 11929,
+      "sha256": "1d8bbd3d8656a83f33c51364d333bba7ca328faf3ae713238fa9450f7810bf8e"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-portfolio-32.png",
+      "bytes": 1773,
+      "sha256": "5cd19dee724f1a72b2bdcd41467a26e03f76a4bc2d7bd1fe12de6b8b5de665c9"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-portfolio-48.png",
+      "bytes": 2897,
+      "sha256": "443857069292f6910b9e5cc0383cab6da4273acf1e18a47745864729fc46e08e"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-portfolio-512.png",
+      "bytes": 28124,
+      "sha256": "d8939f6cc7891c47bbb3dce1ddb04d4c30ce4c7e78e29f6fb0061858dafc881f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/icons/icon-set.json",
+      "bytes": 3284,
+      "sha256": "aea8f5a7f9793c14a6b183706627e4c2390388b7d8c49129eceacdd9b0bce7a4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/lds-0.9.4-components.css",
+      "bytes": 7193,
+      "sha256": "a179b1b33481cda9f793d83c204e1f6d1ebe882ca15aa262d7b443c0dfc054d4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/lds-0.9.4-ext.css",
+      "bytes": 15899,
+      "sha256": "6918b1a481223b8a8b444831e59ed2dedb4e7404bb0a05dcc48d0492716bc02f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/llms.txt.template",
+      "bytes": 1005,
+      "sha256": "c36d5d863207b5c6cc7178e757db549bd5acc466f04e3c73953c9dbe4cc9150c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/landometer-motifs.css",
+      "bytes": 11190,
+      "sha256": "7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/landometer-motifs.js",
+      "bytes": 17845,
+      "sha256": "3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/motif-frame.css",
+      "bytes": 5783,
+      "sha256": "bce9aa3cab8f4f61a15a97bd8dac0835a052b35e0bf19c58d73c160c194a7fc1"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/motif-frame.js",
+      "bytes": 27265,
+      "sha256": "ea96e0099526068126ab726634763d60825046dfd285134b3897087436aebb2b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/motif-library.json",
+      "bytes": 120161,
+      "sha256": "77e8185104751e2c21c2e10fb8c5d771821bcb8123e02f116638fdbf3968d483"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/motion-controller.js",
+      "bytes": 4175,
+      "sha256": "9199d94ae0f61af69dade73cbb6326898556749d6a1a36038580f59be153b37f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/cultivate-full.svg",
+      "bytes": 984,
+      "sha256": "ce494d792c12d73949a3dc8e6d18f6f93faa6aeab33d18b2de0889ab4af5af12"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/cultivate-quiet.svg",
+      "bytes": 1190,
+      "sha256": "edf8538107d30b078f0d7657bac054722ee88bdc10ddf7db00e63f44d077935f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/dial-full.svg",
+      "bytes": 674,
+      "sha256": "7ecfd1165a3e7ad25a0bb01b9680c35f71ff8a98edfd411dfe1b712cee12654d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/dial-quiet.svg",
+      "bytes": 733,
+      "sha256": "2e624d80b604891ad2ed3e4d5cc6268d2383f39f740ef1def5012c49aee0da1f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/layers-full.svg",
+      "bytes": 741,
+      "sha256": "a94a59a342df39591f490deec960bba2263bc1c453620c557ff84a1c47901843"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/layers-quiet.svg",
+      "bytes": 1274,
+      "sha256": "e3e2bf65bcd38d34d0a07910bef44917eab76fdaf097131ec133d163f6a65a03"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/logo-full.svg",
+      "bytes": 1252,
+      "sha256": "90e9543f2f86a18f891331c13be25038b4334ca7dbe55b194650bc441e3558e1"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/logo-quiet.svg",
+      "bytes": 1979,
+      "sha256": "5b6798cdb6c3ada246286e6ce3386644f383c4f987a267e5c5db392809403e14"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/rings-full.svg",
+      "bytes": 552,
+      "sha256": "b50ec8fa3828ee5b3504ff05e0c47c1ae55f6b644225482454ec319809552286"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/rings-quiet.svg",
+      "bytes": 833,
+      "sha256": "d494be1f72e833704cd3c20d9d41f60599991d6efd5f670a86e40a7296eb566b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/slice-full.svg",
+      "bytes": 280,
+      "sha256": "8d0dfb62d1ac92738afcd76e8b61b544a5c72bf10b165983235900558447b2df"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/motif/svg/slice-quiet.svg",
+      "bytes": 350,
+      "sha256": "c72114d43b81584cbb46251a5519f768087259bf135216f6ea7933a83df4de6b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/og-1200x630.template.html",
+      "bytes": 5753,
+      "sha256": "800cdadccd59bd1730b5b26d42279c738600f174e3f3fbcc72b3c0ce9cb43c4a"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/preflight-0.9.4.mjs",
+      "bytes": 45029,
+      "sha256": "0c864644aa150f3e0c8865ebf27a1c0496f291f07f8a0715b65b9d7ad51502f0"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/preflight-0.9.4.yml",
+      "bytes": 9050,
+      "sha256": "df8ce0ef76bbe60c81ac37e888ffe405d0d581dc8b3ab93f07a9193e58f22f5a"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/site.webmanifest.template.json",
+      "bytes": 514,
+      "sha256": "66d8e82bb0181ea906d200d7b0b42a015e91b3b4f27dcd344a6229ba37f03b5c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/build-kit/skeleton.html",
+      "bytes": 20810,
+      "sha256": "c00218ff85e0a1d266426d21eef77a345b8e6969756ffa7568635760fc25fe83"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/CHANGELOG-0.9.4.md",
+      "bytes": 46759,
+      "sha256": "3b1bd0b362ba8663d72ba9b67437318bd527eb32023c71eede71c67d2513291c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/Landometer Design System v0.9.4.md",
+      "bytes": 360440,
+      "sha256": "8e6e89a52b6a1ba0dc3c39f4f51b6b82e84e1281811713bd14fd36ab0f2d1886"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/Landometer-Logo-TransparentBG.png",
+      "bytes": 903326,
+      "sha256": "8d706f8021bc4b4fdc0e89117244b54868687b74045be54002321de7aaa7ef92"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/README.md",
+      "bytes": 13084,
+      "sha256": "6d330133e4db5480fa0c3d5a956ec97afd9215efa0bd727c01040e872a036236"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/SHA256SUMS.txt",
+      "bytes": 10653,
+      "sha256": "9a261eb4df7bf3be5cf1e23f7fb2bd7079c67ca481fc55dccc7049ac52d325cc"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/action-contracts.example.json",
+      "bytes": 2693,
+      "sha256": "5adac89e8e57a57b9dfb04a7247287934a373e26d95c797abd88505597020804"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/action-contracts.schema.json",
+      "bytes": 5324,
+      "sha256": "9a1f8df47ed98491c06d28a6e2801b73c059624aac0f0de7aaa0d7d6087251f3"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-authority.example.attestation.json",
+      "bytes": 685,
+      "sha256": "286f0c29b7c6dedf474820f3f83ac405d507a3d6d89c60715f6404e325d1705d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-authority.example.json",
+      "bytes": 1418,
+      "sha256": "ba68d7913de5e170caea05d814a75e12f22d4b67bb1b7a4fee7e33c0b18a65b6"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-authority.schema.json",
+      "bytes": 3565,
+      "sha256": "2b9f5fb574e293c5b5169e6c671fd6b57057612285019530f065fb4434ea03d2"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-definition.example.json",
+      "bytes": 1515,
+      "sha256": "aec4e72148d230521040616524e6f6cc56be963845ff24ea9fa13377b527dd00"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-definition.schema.json",
+      "bytes": 6083,
+      "sha256": "e5b8f0b3f23b54d068943440c8d7b8dc7a4be3abc4b889f0d4f12e0c4e35c5d0"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-input.example.json",
+      "bytes": 73,
+      "sha256": "d02d1b0291b9d1c08a84b31c544ca09d38f8e4d24e2bf58fbadb3ea9da0c2c99"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-input.example.schema.json",
+      "bytes": 340,
+      "sha256": "13813cbf91cce77ff19776f22a64875dc57bbcaddf5a4194e6ff83ddf570ab0f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-receipt.schema.json",
+      "bytes": 6547,
+      "sha256": "5ee54451d64aca120ddd50b63a6fe7920f56220782195769470bc31b61e59fa1"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-revocation.example.attestation.json",
+      "bytes": 688,
+      "sha256": "31ab36acba66fd1098c88f540f3b4ea431d9fe1fde13ebb2d50c335ea8719e9d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-revocation.example.json",
+      "bytes": 747,
+      "sha256": "ef6c6f271d9dbd85930b46c53590801f72ad84e8858cf0377d22fbbd60fb7824"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action-revocation.schema.json",
+      "bytes": 2377,
+      "sha256": "c050b8156aeb6a1c671afd7fe1bdd25e22ab8ab194c6a023f1057d06101dd9a8"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action.example.json",
+      "bytes": 3132,
+      "sha256": "eaf203810cf7d80ae61246577c20e0c46eab98547be32097a58b07e1e394bfb7"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-action.schema.json",
+      "bytes": 16362,
+      "sha256": "0d3077c9c313b3595874ab23b723728909c4091a4daf4dfb722e8d85835367db"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/agent-confirmation-receipt.schema.json",
+      "bytes": 1850,
+      "sha256": "f188f4bc876589ebfd59944afa1aaf4afc6b5e45533f6e18746cf69aecdd5043"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/artifact-manifest.example.json",
+      "bytes": 21346,
+      "sha256": "9d59f631e87a7ea6a3bd1ceca76c69fb435345c503a9d6d171acc5e0cc67081d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/artifact-manifest.schema.json",
+      "bytes": 61140,
+      "sha256": "6c66d1e72059f5625af2c4c9e3d376e27f0b2c5f8b5655fe66baaea526484c17"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/arvo-OFL.txt",
+      "bytes": 4508,
+      "sha256": "f4f2cb57f7050c4e615863a39bf04811eada567d76d99b10b0f33d1e10e6cccd"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/arvo-latin-700-normal.woff2",
+      "bytes": 17348,
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/asset-approval-receipt.attestation.json",
+      "bytes": 671,
+      "sha256": "1a7c27fb3d9ef2decbf5728f2949b7518b17c1fa159cf99992453e34d4567e95"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/asset-approval-receipt.json",
+      "bytes": 7423,
+      "sha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/asset-approval-receipt.schema.json",
+      "bytes": 3259,
+      "sha256": "39c6d46bd68f98a55315d9540ba5d3d88f449b4ca27883727bfb5fffe5d84966"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/asset-registry.json",
+      "bytes": 57033,
+      "sha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/asset-registry.schema.json",
+      "bytes": 35951,
+      "sha256": "80fe1d9bf734a6d456b7740c1e1e712529f0dae6e9f98f377d1168b5ed6e519d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/bai-jamjuree-OFL.txt",
+      "bytes": 5487,
+      "sha256": "74b7deafa632a5ed301dc322fcc2867ac200402e06b6d0b0b01faf09b8514e3e"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/bai-jamjuree-latin-400-normal.woff2",
+      "bytes": 11596,
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/bai-jamjuree-latin-600-normal.woff2",
+      "bytes": 11844,
+      "sha256": "5ae338ac0db4222226ad96bf1b4b460030c3af1affabb475c67bf218b2eaa83f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/bai-jamjuree-thai-400-normal.woff2",
+      "bytes": 9168,
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/bai-jamjuree-thai-600-normal.woff2",
+      "bytes": 9808,
+      "sha256": "547483c6fbedcc13f4c04489c4ec3f6be4c69877ae7cd4cfbf4a0d289889ba32"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/build-card.example.json",
+      "bytes": 24119,
+      "sha256": "8d95290db03e2ef5874780551c1f7a13b2bee5cfde54a49e1c410632162160f2"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/build-card.schema.json",
+      "bytes": 125057,
+      "sha256": "a25b8b7eea6f3563ae8bf474bd7edc191695bc9b6d30c6c5cff589ed2d493e9d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/capability-config.schema.json",
+      "bytes": 36867,
+      "sha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-evidence-capture.example.attestation.json",
+      "bytes": 692,
+      "sha256": "746e882f6a556ed81df450827fa94cefb7b36980bc71c9ee45ad66d76387c47f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-evidence-capture.example.json",
+      "bytes": 598,
+      "sha256": "3fc60926aceb47300eb151fea9cba51513186015bf5bbf49e4955f1b586132f1"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-evidence-capture.schema.json",
+      "bytes": 1625,
+      "sha256": "c8e868ce423176ba4d51a92552c28e56210616316eac39216c23c073b5bc66bc"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-manifest.example.json",
+      "bytes": 1049,
+      "sha256": "db2fc8107192dc6dfcb3390fe7dc8b9ccb52455bb1f61d56c61b2510ef2e0bc0"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-manifest.schema.json",
+      "bytes": 2153,
+      "sha256": "3f53a2f9e8ca88b398f5fb871e0b0de01e488db552ce9fedc3942f8d9d79f11a"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-record-rebuild02-usage.example.json",
+      "bytes": 3370,
+      "sha256": "e22186fe8cac689e7767aa409eb46e5b3f9c627d497546dfd194cc5d963e2857"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-record.example.approval.attestation.json",
+      "bytes": 665,
+      "sha256": "74696365a80bdd7bc542a5a6437d9d6fabce18fe0f4ca8bcece653e45480f258"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-record.example.json",
+      "bytes": 2867,
+      "sha256": "035d97614bb666ecafca54607bfd65aa769ee94d92ada6cdf46db6bce87fd393"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/claim-record.schema.json",
+      "bytes": 14734,
+      "sha256": "a60137d4d53c6835beb0cb119da2e057c1e6669e2735865856c248ad6105549c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/color-srgb-07.production.css",
+      "bytes": 14096,
+      "sha256": "60fbdbf1df810980e3f233d4861c6e9f39790c4d63bdb29bf09c0d4c016d288b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/color-srgb-07.scales.json",
+      "bytes": 89508,
+      "sha256": "20c01359d12dc09af64b5f26b058bc7bc55a7bf7d758ab1162da5060cf0c0496"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/color-srgb-07.tokens.json",
+      "bytes": 79346,
+      "sha256": "34bceb74787e9c3402b3e7e2386aa1ec741b04c4451a3607cd1005c660beb535"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/component-contracts.v0.9.4.json",
+      "bytes": 23329,
+      "sha256": "7b96abf1558de2ebe7ce17744f043034905900278662c053d396cd135be57296"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/conformance-receipt.example.attestation.json",
+      "bytes": 686,
+      "sha256": "fd281bf721207eb21a601d7241605caf7e8b58a1096cb645ffbd9c8a708022d2"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/conformance-receipt.example.json",
+      "bytes": 1752,
+      "sha256": "aec71ae6a5c03042fedd56e38e439cfee538a75cc280236a6f0c59f5ed6cbd89"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/conformance-receipt.schema.json",
+      "bytes": 8232,
+      "sha256": "c0947d20e19363858a73c672bf3f7f3e576935e5049687da22f1e34f67e153f3"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/contrast-evidence.json",
+      "bytes": 130344,
+      "sha256": "b52f27cc9d26e3f9331aa8e4c13ef0f78850398a514beb73c7cb4b51c69b5ca3"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/crawler-purpose-policy.example.json",
+      "bytes": 1313,
+      "sha256": "b297e28e70b73557c4a7518a123913fc49747734ee340bc7cea0cad64b6c66bc"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/crawler-purpose-policy.schema.json",
+      "bytes": 2841,
+      "sha256": "a5b20397879de83e5fdb69700691fe2403903904c7bfd081a59a1268ff6a3cc1"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/disclosure-authority.example.attestation.json",
+      "bytes": 693,
+      "sha256": "ca8f9d0b9840fdaa71edb278281a54fcd7c79328f378f277f0e1fd1c2e6b8bff"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/disclosure-authority.example.json",
+      "bytes": 502,
+      "sha256": "182b050c34be1424de7f078a112bfd36f36cfd1719a08217787c38280a1d5e43"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/disclosure-authority.schema.json",
+      "bytes": 1855,
+      "sha256": "b742e4e8d171c300f2fcd864ee44b40e4ec82e294750ba65795ade28546abafe"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.app-browser.example.json",
+      "bytes": 8817,
+      "sha256": "8a813769e385bdfc2ed06c4d400476d8fa6b07a54c7a6b35ad28fe6c98977625"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.app-native.example.json",
+      "bytes": 10508,
+      "sha256": "83493fa764cdfca3f677232f727c4d843919b99e68af1b6b70225aff5243dbe9"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.deck-presentation.example.json",
+      "bytes": 10105,
+      "sha256": "d3bc6be07bd5864376bc326b2eeba0441d91155a86199c6b7987acbd7eac9fa4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.document-flow.example.json",
+      "bytes": 10056,
+      "sha256": "7875f3f84bcab935d7d400117022f5f2c51fda18b2ecbff41a01b31e3c5d7ff4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.example.json",
+      "bytes": 20449,
+      "sha256": "a2be57698f91f674807eeff9bc00062a1eeca4421182e32c1e6f80061ccc3d02"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.pdf-fixed.example.json",
+      "bytes": 10062,
+      "sha256": "32211b08775080cf69fc47be9efb0325a9e23e5b3994d84df521ad852367eb67"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.schema.json",
+      "bytes": 13727,
+      "sha256": "0042e38259389370735492a3fb0148239279574c8ddf8fee788f42bb2557e7e5"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-implementation.social-static.example.json",
+      "bytes": 10216,
+      "sha256": "5742fe06b9f8a5b61ada8d300df3b31d9f3a5c5338b3f86b858d441db17450ff"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-kits.json",
+      "bytes": 7695,
+      "sha256": "4ba82150e9e341787ffb99c889f493f3cdcc599f7cb7515033c993a2ab4d301f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-kits.schema.json",
+      "bytes": 2435,
+      "sha256": "95341f3b219222c3cd2c29019845ceb11c69c865739293f7adbd72d81e17a7f5"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/format-packs.json",
+      "bytes": 95513,
+      "sha256": "69d21cc220d29cb5d3350244bbd00fbd3d53556e051dad37ba42a4091c465095"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/freeze-release.mjs",
+      "bytes": 63532,
+      "sha256": "fef16936349ad523fd4cb390b41c6847e086fb8071bb96e1544af49c70be8827"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/ibm-plex-sans-thai-OFL.txt",
+      "bytes": 4796,
+      "sha256": "1b4f4d1f1463b63f1356e7b6034ad5a94311b35ffb53cc4bf83f2fbda24450e4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/ibm-plex-sans-thai-looped-OFL.txt",
+      "bytes": 4832,
+      "sha256": "e3ac4237aef600394644cdab2375d7011b0f80d2229ff05f47df2e61a109ab57"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/ibm-plex-sans-thai-looped-latin-700-normal.woff2",
+      "bytes": 18012,
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/ibm-plex-sans-thai-looped-thai-700-normal.woff2",
+      "bytes": 14176,
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/ibm-plex-sans-thai-thai-400-normal.woff2",
+      "bytes": 11804,
+      "sha256": "2d66381c26d32bf2a95bfe559d1a5ed5475fcdac3fa128e45a33301010d42056"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/jetbrains-mono-OFL.txt",
+      "bytes": 4524,
+      "sha256": "403581b69dac5cff4079205e01c6b467e56af449ecbd7247693ddb1baafa005b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/jetbrains-mono-latin-400-normal.woff2",
+      "bytes": 21168,
+      "sha256": "14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/material-symbols-Apache-2.0.txt",
+      "bytes": 11357,
+      "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/material-symbols-rounded-nav-300.woff2",
+      "bytes": 2500,
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/material-symbols-rounded-open-in-new-300.woff2",
+      "bytes": 1124,
+      "sha256": "778b29f8befe5ba7a8f0f8188d4c12e3c53d00810dac10337609b04d8506d46e"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/measure-motif-carriers-0.9.4.mjs",
+      "bytes": 15247,
+      "sha256": "578794bbc943e87851c2412ffb90b07f92ba792f3ff8404b28eca42dd15eb349"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/migration-ledger.json",
+      "bytes": 438488,
+      "sha256": "9e17fb20526e746ba501a415448c9b7361d20a33d110d68a037c02cda10e65db"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/migration-ledger.schema.json",
+      "bytes": 8581,
+      "sha256": "9c5e47814c41e960ec86cd5e9a4b92a45e15520dcecdd3353bfa652bbee24d51"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/motif-register.schema.json",
+      "bytes": 33671,
+      "sha256": "8648bb0615bdad478055f8ab36f5c747052965cccddf4b09d6c733a8f9cef859"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/motif-register.v0.9.4.json",
+      "bytes": 217184,
+      "sha256": "bc70e4c06d4d54142cf804ac1ae7b8192401675c64e243efde6d1550ccd68035"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/package-root.attestation.json",
+      "bytes": 638,
+      "sha256": "a1403133b6d4b80c7337a02e54b5ad354377d0812b33afdfd4fba6474f23ffda"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/promotion-snapshot.schema.json",
+      "bytes": 3646,
+      "sha256": "4cac7ff6c905be2f0d3f0d755227dbc30069ae840e116bbb27bdcc1a532c77d4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/release-approval.attestation.json",
+      "bytes": 641,
+      "sha256": "2d52950c03c795d43fdce624d590856fda55769a7f70b7ca14fc59fae288a826"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/release.json",
+      "bytes": 61269,
+      "sha256": "6231ccfa6c67dea65abd9bb9597f14448ddc9f285be949e4efa026978e1d4419"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/render-color-production.mjs",
+      "bytes": 4586,
+      "sha256": "e6356363850025206fe3a6c641048b01ec5097a3b6f88e495f3d8808c929fb8f"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/rule-catalog.json",
+      "bytes": 102681,
+      "sha256": "3406d9aeceaff5771153b882a701812b85e5b690db17fc1fb2a31155c8e340fa"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/sign-verification-attestation.mjs",
+      "bytes": 1873,
+      "sha256": "322e5925ec526ed34cb5e71874d76cd7d90b271b770113112a4bc4e57903c5cf"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/social-destination-verification.example.json",
+      "bytes": 468,
+      "sha256": "8f29be5a70a083c408f015efac3a31d78ef6dbcc295fce94795aee151f9fcce9"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/social-sidecar.example.json",
+      "bytes": 5575,
+      "sha256": "2132ae84c457dc057069c0b40de5957da077a12e6b6ff74dc384305838fb99b4"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/social-sidecar.schema.json",
+      "bytes": 17216,
+      "sha256": "4da2941c04e0a17e67c86e0ad4a8d66ccead3793579cab37bfebf759724c573a"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/social-visible-copy-inspection.example.json",
+      "bytes": 3133,
+      "sha256": "30bdcb9246b3be1c9ef3f0be2a1720796ac4ee2da6f19d920ece208268c8e29b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/source-lineage-receipt.schema.json",
+      "bytes": 2419,
+      "sha256": "f7fe607e8af545c5b34f01a7532e6457c8ff64f1b898be3b0e162aba686c0fe2"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/structured-data-projection.example.json",
+      "bytes": 1339,
+      "sha256": "2f98647b7dd1e1131192c9334159c3f4f7f30f50a0ad69e0eb9f0ca03929da36"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/structured-data-projection.schema.json",
+      "bytes": 2651,
+      "sha256": "c89309bb231e2f668b02914fd83930a2b3c19fea8b132e0a62f7af2e25dc1cf8"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/target-profiles.json",
+      "bytes": 16758,
+      "sha256": "1e7bd71f7c45d1bdd9f04fc02e456d1ca9ec63af58f83425c70364e86df7133c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/target-profiles.schema.json",
+      "bytes": 2879,
+      "sha256": "23473cb5f3e09e8078b62ff9d11539d5d27af2eb06ca057aa77a7e4c61278c62"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/tokens.v0.9.4.json",
+      "bytes": 96040,
+      "sha256": "55515178603e4a5b45a660e23996fbb197b5bb431c7565640f6b9c60e438614d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/validate-dataviz-gates-0.9.4.mjs",
+      "bytes": 24693,
+      "sha256": "db66cfec71132491d2ab445c11057045b26b190a6bdd3efe9e2e78affbc0d962"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/validate-v0.9.4.mjs",
+      "bytes": 692190,
+      "sha256": "95c41f2d275718d4133fbc1f16b0aa4284a6406cba17c1fee073404841dac250"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/verification-attestation.schema.json",
+      "bytes": 2302,
+      "sha256": "be0e7c384f130f0034ef6ce285adaee53be1094d9222f45121a1c62330061140"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/verification-trust-policy.schema.json",
+      "bytes": 1531,
+      "sha256": "37cd784a38be49c8cdeac281f237da181cf54f0757e3b06e86e3a5fae54cf59c"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/verification-trust-store.schema.json",
+      "bytes": 2669,
+      "sha256": "1e3651fcd7ad7a9ffd30f7daa467595575b1febe389721e5fef113ad3d3758cc"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/machine/verify-attestation.mjs",
+      "bytes": 5099,
+      "sha256": "d6a94c423cd829f6e2fd93366d326d30b90eacaf9d8b0a7dc3618e34b599fdc1"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/README.md",
+      "bytes": 4597,
+      "sha256": "400cb46db57fa38d9994b1950c176b6ebd4dea7329163ee09c89718e842bc630"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/SHA256SUMS.txt",
+      "bytes": 743,
+      "sha256": "4aea22a23e2a7d88cb43035193261a044e34686e66905b2f445b7a3f3ca13c4d"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/for-ai-agents.md",
+      "bytes": 12726,
+      "sha256": "bccbc63b781486e6d430a8ac1f6fea6fc630b130d9d20c68547208ee1c04a657"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/for-designers.md",
+      "bytes": 16031,
+      "sha256": "96d034a92a8f7baa324b64f16dd85b101c42d2c9115c3de689f8642d5f012816"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/for-developers.md",
+      "bytes": 12697,
+      "sha256": "8e279dc2cc8d1b1951de2819b32e669f572a15b19664911b6f7fe7f9b905c01b"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/for-marketing.md",
+      "bytes": 13610,
+      "sha256": "36c86eae1a053bb6b3123d94a93594ce141f4f84e5a4470dc73a26a524ae7f68"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/for-product.md",
+      "bytes": 11242,
+      "sha256": "52d86d37cb99a47434c919dcd95073d480750fdd8ebc85e0ee50b18f6311aae0"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/for-sales.md",
+      "bytes": 8586,
+      "sha256": "e7f7321c11504179218ae039f8b2b765e66e8f54ba13389a2a274921c151abeb"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/lds-0.9.4.tokens.dtcg.json",
+      "bytes": 40862,
+      "sha256": "f87e27b2943f75f2cd6a1baae8e58bb2ca064a0fb1922bf95fa5e47c659bca62"
+    },
+    {
+      "path": "v0.9.6/package/references/inherited/lds-0.9.4/roles/quick-start.md",
+      "bytes": 12887,
+      "sha256": "984cada0fd0cb796970f61532873335fd4e5e95163603dca588c4531ecf2f83a"
+    },
+    {
+      "path": "v0.9.6/package/references/owner-trust/v0.9.4/PINNED-SPKI-SHA256.txt",
+      "bytes": 65,
+      "sha256": "234d188eaa481dc2eb8f36531fd6d1277df128177082df698dc2906d0a87517f"
+    },
+    {
+      "path": "v0.9.6/package/references/owner-trust/v0.9.4/README.md",
+      "bytes": 2160,
+      "sha256": "0e4a966ec165e945c8808caa801af73e80d613e840966b39945be78cfd9c44fd"
+    },
+    {
+      "path": "v0.9.6/package/references/owner-trust/v0.9.4/package-release-trust-policy.json",
+      "bytes": 463,
+      "sha256": "47915568793368b6a8189b4557938987ab32187771d1779f652f070d365b08d2"
+    },
+    {
+      "path": "v0.9.6/package/references/owner-trust/v0.9.4/package-release-trust-store.json",
+      "bytes": 864,
+      "sha256": "5d7babb85e6bedf7f4d8bd13189015dd0ac42c3e6e5f8d6bbfd4d6a2e47e9d98"
+    },
+    {
+      "path": "v0.9.6/package/references/social-sidecar.repair.schema.json",
+      "bytes": 23923,
+      "sha256": "792600614891e1bb8faaac22a7e01fa35cfd8d49e67ad5ca60fd69cafafb86b7"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master-0.9.6/Landometer-Design-System-v0.9.6.human.md",
+      "bytes": 270508,
+      "sha256": "982c005fac6a773ce3b2bf7c37c01143a7a29d02446aba2fba16fa45bbdeadb4"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master-0.9.6/consolidation-receipt.json",
+      "bytes": 5909,
+      "sha256": "9a0c1dc8c8951a4aa3fe53c2b0d12457d376359ba89c481268ea1533fcb183b8"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/Landometer-Design-System-v0.9.5.human.md",
+      "bytes": 266796,
+      "sha256": "2b1aaca78f5a32ee3c0b2b51c9f650096670f963d8621ea152df2bff1f29d13d"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/README.md",
+      "bytes": 2844,
+      "sha256": "ab8fbff6c34569c07a4dcd463221f5bc43faeb96811c6cc588d75bb34fa54e3f"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/activation.md",
+      "bytes": 2230,
+      "sha256": "c1912e6269a78f1f6e9359d2046313ebe80022818e977aff47205d6ae9ee2351"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/color.md",
+      "bytes": 1930,
+      "sha256": "b8714b161bcc3414bbeb277b3352c2baacf53eb388f0ffc15f87c00fa7ce302f"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/consolidation-receipt.json",
+      "bytes": 36772,
+      "sha256": "2366595a2dee5e48010755347f014b7728eaa04dbf1d9668a8d9609fc6033b86"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/dataviz.md",
+      "bytes": 10311,
+      "sha256": "75b675ad645c8401de97e232efca400842f68eb6466a555a82cbc6b79f1fa833"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/evidence.md",
+      "bytes": 3473,
+      "sha256": "17ba6ba1f918f2f1fe0d34390dfa15bdee3a6fe6a16c33ec1f1107d77bd03374"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/followups.md",
+      "bytes": 3067,
+      "sha256": "ca50ece518f3900e55ea84f06f520b1c7aba97c06a3974bde89b0ebc15a38bdc"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/inventory.md",
+      "bytes": 2434,
+      "sha256": "b805da9266c45e1730bb77c46763e6cea68528d57c74866d72086c374b5694de"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/migration.md",
+      "bytes": 2615,
+      "sha256": "ded36c8f93937640c717e10ade1ce292cc3f866e1b95252f56269bb7f3b1ee17"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/release.md",
+      "bytes": 10649,
+      "sha256": "7eb9d0e8fe818954a771f49725f2110ab55f3f35e31831f5ce74120c4b5fda96"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-master/roles.md",
+      "bytes": 2573,
+      "sha256": "da5a9c847aaa01b7f18927be0d5421edc45f3104d83f301880fe2537a69ee351"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles-0.9.6/citychat.json",
+      "bytes": 4094,
+      "sha256": "34273032fadbde732edb582f24370351ddff0b41a6f809aa95a9fe586c535697"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles-0.9.6/citychat.md",
+      "bytes": 16361,
+      "sha256": "6fd49c661535f8addca27ff27304239ac4ff9c7b8a6e69de733ab80b7174659a"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles-0.9.6/citywiki.json",
+      "bytes": 3455,
+      "sha256": "b7844426d8b3a49c68d1f749c97a1111a052c9c249c92134c4b8c31cd1259cdc"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles-0.9.6/citywiki.md",
+      "bytes": 57074,
+      "sha256": "809f8d8e8ca094d32f878a30f401e7a130ee127c5df160dfbd83d67aae081e0e"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles-0.9.6/ijji.json",
+      "bytes": 75714,
+      "sha256": "a36398dc4c3e63e6ceb2436cd17be09c588f0ec7750a5beac1f2972378a0eb63"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles-0.9.6/ijji.md",
+      "bytes": 163496,
+      "sha256": "50d9d73a005cdc6888da79bd0f2ac6a45820f832b5aa9f9b7070aae471421200"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles/citychat.json",
+      "bytes": 3711,
+      "sha256": "f10de26a3fe044e9dfc62bc8efe2654a08d29c7a8eb1482804da54f2b5f5146a"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles/citychat.md",
+      "bytes": 16351,
+      "sha256": "e9481cb43f3a5ef7e274da64d4ba5a2ccc42936e92d09df9a269d0ca9fafdc60"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles/citywiki.json",
+      "bytes": 3072,
+      "sha256": "8376108dea737ba34eecd82c89722fc0b6520cc1c577abdae76ebc4299f18ae3"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles/citywiki.md",
+      "bytes": 57054,
+      "sha256": "c5173cee84218b8c600c38fec4c5e733c576091b7b0a9827e1871698637ec3f6"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles/ijji.json",
+      "bytes": 75331,
+      "sha256": "1f0fd404d8e007e0eb121b5aad4a2a4960cf80dbe2848d9391edd34f6e027e47"
+    },
+    {
+      "path": "v0.9.6/package/references/standalone-product-profiles/ijji.md",
+      "bytes": 163496,
+      "sha256": "d0d3b0bae113122ef41a5603e0f992e19d3ceaed0600a1cb14566afe8dc6ce53"
+    },
+    {
+      "path": "v0.9.6/package/references/verification-0.9.5.json",
+      "bytes": 430,
+      "sha256": "ad7b38dc81488ea79aad54e1e79f4d4c67bb029d5803f71df2f1d6be4b82b523"
+    },
+    {
+      "path": "v0.9.6/package/references/verification-0.9.6.json",
+      "bytes": 472,
+      "sha256": "2686d58af2be1756d88a5c805d10ac80546f80c7abe8538e65e5b14e08b75539"
+    },
+    {
+      "path": "v0.9.6/package/references/verification-notes-0.9.5.md",
+      "bytes": 1541,
+      "sha256": "43a73b9aa89d96abce71f786f4032dbd32edd08c46d659de77e964526e2501c9"
+    },
+    {
+      "path": "v0.9.6/package/references/verification-notes-0.9.6.md",
+      "bytes": 952,
+      "sha256": "4805324607879b08cd0775f78b92cc3be498df627b49acf11c968d10ea536238"
+    },
+    {
+      "path": "v0.9.6/package/scripts/build-assets.py",
+      "bytes": 11644,
+      "sha256": "5abdfabf1b5cce7ab14050e45f310eb50ab3288bf1bbbce395574ffc3702eda2"
+    },
+    {
+      "path": "v0.9.6/package/scripts/check-artifact.mjs",
+      "bytes": 4017,
+      "sha256": "21d6578db5f306b80ae0afdaf4f0f022cc5fb47bfd2b6a3068688629b82029c9"
+    },
+    {
+      "path": "v0.9.6/package/scripts/checksums.py",
+      "bytes": 1131,
+      "sha256": "f296a4f128d19616b38b5f5af3cd652ee0a36d074332d6fd36dfbc00de478266"
+    },
+    {
+      "path": "v0.9.6/package/scripts/raster-dimensions.mjs",
+      "bytes": 2190,
+      "sha256": "2d83f91649a1924b0ba6611b184ba8cfc6e8f260d29beafaa411c717e742bcaf"
+    },
+    {
+      "path": "v0.9.6/package/scripts/read-normative.mjs",
+      "bytes": 1973,
+      "sha256": "b79b20c6d4d1dfa33d162f0bc5ecac07755bc45b473e08021d77a0886e45037c"
+    },
+    {
+      "path": "v0.9.6/package/scripts/schema-helpers.mjs",
+      "bytes": 8350,
+      "sha256": "7b74a884c382595d672c1c079dfc7af6e2916234cae4d0cf745078d1669bca8e"
+    },
+    {
+      "path": "v0.9.6/package/scripts/select-scale.mjs",
+      "bytes": 2397,
+      "sha256": "128f6d3d57680552d2afa86db744b5143a8f29998e5d08bd57cc0587f563c5ff"
+    },
+    {
+      "path": "v0.9.6/package/scripts/validate-social.mjs",
+      "bytes": 2029,
+      "sha256": "ef237d531541a891064a5040983b7ad086d5703648e5bcf9a38de648993ac2d1"
+    },
+    {
+      "path": "v0.9.6/package/scripts/value-state.mjs",
+      "bytes": 6677,
+      "sha256": "c282177f6dd03eba0af3102bd92e3480661812b1aa1844df16b8690398849598"
+    },
+    {
+      "path": "v0.9.6/package/scripts/verify.mjs",
+      "bytes": 23527,
+      "sha256": "ee5e4ab23f018fc8ba5edd38cc6f5159fda102d6c1e804e22ac0805aec657721"
+    },
+    {
+      "path": "v0.9.6/package/skills/apply-landometer-design-system/SKILL.md",
+      "bytes": 6511,
+      "sha256": "6ca2555c6efba0e366bea0b3268f95eb2543122cb3fd7afedc3cd4571de3b9f6"
+    },
+    {
+      "path": "v0.9.6/package/skills/apply-landometer-design-system/agents/openai.yaml",
+      "bytes": 292,
+      "sha256": "3639315f3d890988484b6c40988603078be068e4f7487ffbee91072d03cc7e9e"
+    },
+    {
+      "path": "v0.9.6/project-source-0.9.6.md",
+      "bytes": 4231,
+      "sha256": "bf4ec1682a149dc20a96dcecb340d38f46bd4bfd6d326d2d43830bdba7cdb6e9"
+    },
+    {
+      "path": "v0.9.6/render.js",
+      "bytes": 10072,
+      "sha256": "91b29217578cb8ba96bef0abeba5215f0ec9878ff3f5b0bb8162cab56561d748"
+    },
+    {
+      "path": "v0.9.6/scoped-atlas.css",
+      "bytes": 182716,
+      "sha256": "f0975efc95af704d5def51bc8440a096e83c4ae40241b0488c2a10045d8eb12c"
+    },
+    {
+      "path": "v0.9.6/site.webmanifest",
+      "bytes": 361,
+      "sha256": "8683a09315efd7dc7d5d53f68c8c195f1a462474a383624500e5981973c1284c"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/action-contracts.schema.json",
+      "bytes": 7768,
+      "sha256": "707ee5ddeb4a33bb0c2d024c2caa56e6f4f9d81b069eef2e37ffc2f8efae8bf7"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/agent-action-authority.schema.json",
+      "bytes": 5070,
+      "sha256": "050234067cb3e34b88f17752ce9d029136cab70640b0cbdbe6af0011cffad2a0"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/agent-action-definition.schema.json",
+      "bytes": 10286,
+      "sha256": "7e3ce9499eb74adab0113d20e0606453dd44698eb6039c4456a2d3dec15d6ea4"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/agent-action-receipt.schema.json",
+      "bytes": 10032,
+      "sha256": "e056b349a1be0ebe28436f912a314e7b9067032b586b3047632f14c8ed117a38"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/agent-action-revocation.schema.json",
+      "bytes": 3519,
+      "sha256": "81614490044683e7173a2726d20fd92fbb5a5cf756b48c9407acf4f3682f658e"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/agent-action.schema.json",
+      "bytes": 28915,
+      "sha256": "1d428a4274117687db78cfa4d35fef8cf2dc8472a11ac198a4cd0ba0b55ae544"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/agent-confirmation-receipt.schema.json",
+      "bytes": 2526,
+      "sha256": "09bcd877d50839329d9c4407162438b60e86ce1bd9902235ea27ea481bf358be"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/artifact-manifest.schema.json",
+      "bytes": 100836,
+      "sha256": "5c99906f40db52058f1f4a6ab57ad050c348e54fc2325b6c41eb48b9f1427148"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/asset-approval-receipt.schema.json",
+      "bytes": 5053,
+      "sha256": "41b2cd1db7a24e3eb1ebbfeddc1d38e05a94f755979427ed9ce0f76edfc48c27"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/asset-registry.schema.json",
+      "bytes": 36225,
+      "sha256": "914cde9fdc19b4fe8d8a6fc92e941d59839556b6a1be6b26e038c2689b074a95"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/build-card.schema.json",
+      "bytes": 125472,
+      "sha256": "b435a5ffef27f799ff455d30fcc82965aff32f33b7cc9be87d645b0393929133"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/capability-config.schema.json",
+      "bytes": 37181,
+      "sha256": "d6ebdda3d23fde47c01fa86ed0ec8f8171c2aa808f93cc9a58fa442512eb838b"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/claim-evidence-capture.schema.json",
+      "bytes": 2159,
+      "sha256": "05ce1e1ad0325a73b59c88d57c5d8036b66ca44817051938fd822874e7441c69"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/claim-manifest.schema.json",
+      "bytes": 3067,
+      "sha256": "caee7c307adfbbb3bf7b67f5e575867a5b723a0867dd642f93a4acbd4728f87f"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/claim-record.schema.json",
+      "bytes": 23436,
+      "sha256": "3e26889c9b197e8d4b07b25bd81108ea4ddac09aedc7dc40c8da9c507c90ede9"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/conformance-receipt.schema.json",
+      "bytes": 11480,
+      "sha256": "400327b377e491298294397d13f936acb1ad1f13e75f27f928ddb62d3d9b07cf"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/crawler-purpose-policy.schema.json",
+      "bytes": 4983,
+      "sha256": "808ed1b3e5c13579cff3c00417f6d195f3e4cf7f988dd0958b2cec5d78abe2f3"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/disclosure-authority.schema.json",
+      "bytes": 2875,
+      "sha256": "4477bf48b44c9ba9908383631370d24b96aecbab7cba4b92fff2e2703cee53c2"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/evidence-value.schema.json",
+      "bytes": 1655,
+      "sha256": "5db33c9b90ffbaceebe65090febc3ee11c78d6beceaac9d4c8cf97b00f70ffb3"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/format-implementation.schema.json",
+      "bytes": 21374,
+      "sha256": "d3e33e12df94ea72dfe70610a825697ba1ebe635c0420bd6a0a02ea6ed2b0dcc"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/format-kits.schema.json",
+      "bytes": 2709,
+      "sha256": "420e126a1e2d4de0dc33742037b710e83a7895c8ececb2f276246212b5bae241"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/migration-ledger.schema.json",
+      "bytes": 8860,
+      "sha256": "72911259cdab59911761248c14359412cae38681a53fe6d5ba53b1df02709066"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/motif-register.schema.json",
+      "bytes": 33945,
+      "sha256": "8f7b3c8ba376f55dd0f6b0cde0381190181db2fd1a86764e37219cfaba323a94"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/promotion-snapshot.schema.json",
+      "bytes": 4888,
+      "sha256": "07d025264a86ffb8c60c976914c7661fd2d95f251a8f7850f034262285bd6370"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/scoped-check-receipt.schema.json",
+      "bytes": 1543,
+      "sha256": "eebb4993e43e16d1a5b2e104d0eaeade04101e2e9c7abb0bf3b833eb21dfa740"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/social-sidecar.schema.json",
+      "bytes": 25247,
+      "sha256": "f6e53960f5dc53fb08433c5324344618b825ca50d5cb83b7a8987c39441382bc"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/source-lineage-receipt.schema.json",
+      "bytes": 3199,
+      "sha256": "de411413e7de003544cc69a45defb1141396c5839f4f3defe79b6e42edeae1e2"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/structured-data-projection.schema.json",
+      "bytes": 4321,
+      "sha256": "29695d4467e1e9bda4e6ec10758a9925f0ce4dada8b76180322310953c9de6ba"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/target-profiles.schema.json",
+      "bytes": 3153,
+      "sha256": "38f9c2cf8035db51f333bee7f7c7516217fae136a381f61914bf10e4a6bccf93"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/verification-attestation.schema.json",
+      "bytes": 2860,
+      "sha256": "0e8f60abe627453e767ce28114f72fbbb346a23507489e201ddcd2b5d981d461"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/verification-trust-policy.schema.json",
+      "bytes": 2183,
+      "sha256": "b8a8f92933820b066b6d6162b03604c18d8389736ca3ef6f0712347e7ccf0fa1"
+    },
+    {
+      "path": "v0.9.6/standalone-0.9.6-r1/schemas/verification-trust-store.schema.json",
+      "bytes": 3319,
+      "sha256": "0ee9f0385a682711b27fc04c3704efc225ed46de390baff1d55af4d61362587f"
+    },
+    {
+      "path": "v0.9.6/team-setup.md",
+      "bytes": 6001,
+      "sha256": "9856844a497cfe24e0f12fcf14943e9159af31d98fd43d6a55a2206dc93103b1"
+    }
+  ]
+}

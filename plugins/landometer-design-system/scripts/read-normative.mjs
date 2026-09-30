@@ -20,7 +20,7 @@ export function readNormative(file){
  const hash=createHash('sha256').update(value.humanMarkdown).digest('hex');
  if(value.document.humanSha256!==hash)throw Error('Human document hash mismatch');
  if(JSON.stringify(value.document)!==JSON.stringify(value.machine.document))throw Error('Document identities disagree');
- if(value.document.dsVersion!=='0.9.5'||value.document.colorSetId!=='color-srgb-08'||value.document.releaseRef!=='v0.9.5-owner.1')throw Error('Unexpected LDS identity');
+ if(value.document.dsVersion!=='0.9.6'||value.document.colorSetId!=='color-srgb-09'||value.document.releaseRef!=='v0.9.6-owner.1')throw Error('Unexpected LDS identity');
  return value;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(resolve(process.argv[1])).href){

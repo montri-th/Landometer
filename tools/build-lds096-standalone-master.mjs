@@ -1,0 +1,43 @@
+#!/usr/bin/env node
+/** Preserve the complete 0.9.5 master structure; replace only active identity and sequential rules. */
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+const root=path.resolve(import.meta.dirname,'..');
+const plugin=path.join(root,'plugins/landometer-design-system');
+const source='assets/lds-0.9.5/normative/Landometer-Design-System-v0.9.5.json';
+const prior=JSON.parse(fs.readFileSync(path.join(plugin,source),'utf8'));
+const sha=x=>createHash('sha256').update(x).digest('hex');
+const original=prior.humanMarkdown;
+const previous=JSON.parse(fs.readFileSync(path.join(plugin,'assets/lds-0.9.5/machine/color-srgb-08.scales.json'),'utf8'));
+const current=JSON.parse(fs.readFileSync(path.join(plugin,'assets/lds-0.9.6/machine/color-srgb-09.scales.json'),'utf8'));
+const frozen=[];
+// Actual historical statements keep their release/version dates.
+let text=original.replace(/^Revision r3 explicitly records.*$/m,m=>{frozen.push('Retained identity clarification from LDS 0.9.5: '+m);return '@@HISTORICAL_'+(frozen.length-1)+'@@'}).replace(/^\| DS 0\.9\.5[^\n]+$/gm,m=>{frozen.push(m);return '@@HISTORICAL_'+(frozen.length-1)+'@@'});
+text=text.replaceAll('0.9.5','0.9.6').replaceAll('color-srgb-08','color-srgb-09').replaceAll('standalone-0.9.6-r3','standalone-0.9.6-r1').replaceAll('landometer-standalone-r3','landometer-standalone-r1');
+text=text.replace(/@@HISTORICAL_(\d+)@@/g,(_,i)=>frozen[Number(i)]);
+text=text.replace('Owner-approved 29 September 2026','Owner-approved 1 October 2026');
+text=text.replace(/In Project Sources, retire the superseded `Landometer-Design-System-v0\.9\.6-standalone\.md`[^\n]+/, 'For new work adopting 0.9.6, replace earlier LDS Project Source normative/overlay copies with this complete file and the applicable separate 0.9.6-bound Add-on. Keep business evidence and explicitly pinned historical work. Do not load 0.9.5 or 0.9.4 as extra design authorities for a 0.9.6 artifact.');
+const oldIntro='**DATAVIZ-02 — Sequential scales use exact approved samples and semantic families.**';
+const newIntro='**DATAVIZ-02 — Sequential scales use three distinct-hue anchors and exact approved samples.**';
+if(!text.includes(oldIntro))throw Error('Missing sequential rule');
+text=text.replace(oldIntro,newIntro);
+const lead='Every intermediate knot and sample MUST remain exact. Do not interpolate a new palette at consumption, rebuild from endpoints/three anchors, or mix light and dark records.';
+const added='\n\nEvery sequential family MUST have three explicit approved anchors at positions 0%, 50%, 100% (LUT indices 0, 20, 40). The middle anchor MUST take a visibly different hue from the end; it is not merely a paler version of the end colour. Light-theme ramps begin with brand beige `#F2F1DF` and travel through the distinct middle hue to the approved high colour, for example cream → green → blue. Dark ramps use their independently approved start/end and matching distinct middle hue. OKLab lightness and relative luminance remain strictly one-way: decreasing in light and increasing in dark. This middle hue is a perceptual turn within one numerical direction, not zero, balance, a target threshold or a diverging pivot. All density families remain warm.\n\nThe three anchors define the authoring construction; consumers MUST use the delivered exact 41-sample LUT, never reproduce interpolation in CSS, HSL, a design tool or the application. A two-colour endpoint average, including a middle that is only a lighter end colour, is not the 0.9.6 sequential design.\n\n| Family | Light anchors: low → middle → high | Dark anchors: low → middle → high |\n|---|---|---|\n'+current.scales.filter(s=>s.kind==='sequential'&&s.theme==='light').map(s=>`| \`${s.scaleId}\` | ${s.anchors.map(x=>'`'+x+'`').join(' → ')} | ${current.scales.find(d=>d.scaleId===s.scaleId&&d.theme==='dark').anchors.map(x=>'`'+x+'`').join(' → ')} |`).join('\n');
+if(!text.includes(lead))throw Error('Missing exact sequential consumption clause');
+text=text.replace(lead,lead+added);
+text=text.replace('the gold nine-class minimum is below the optional 3.0 aspiration, so review it at delivered size.','all approved 0.9.6 sequential class sets also exceed the optional 3.0 diagnostic aspiration, and still require review at delivered size.');
+text=text.replace('selected family/theme resolves an exact current LUT with 41 samples;','selected family/theme resolves an exact current LUT with 41 samples and its three approved anchors at 0/20/40; every sequential record matches the owner-approved distinct-middle-hue R2 source and both lightness/luminance remain one-way;');
+text=text.replace('## 15. Migration to v0.9.6','## 15. Migration to v0.9.6\n\nThe only numerical colour change from 0.9.5 is the 28 sequential family/theme records: 14 light and 14 dark. Adopt all approved anchors, 41 samples and 3/5/7/9 classes together; replace the stylesheet/token import and pin `color-srgb-09`. The 12 diverging records, categorical values, atmosphere recipes, foundation, fonts, logo source files, brand voice and motif/animation contracts remain unchanged. A product Add-on remains separate and binds this complete base by exact hash. Historical 0.9.5 release files retain their identities and bytes.');
+text=text.replace('| DS 0.9.5 GUIDE / BRAND / policy / release | approved current policy, protected brand wording and unsigned release status |','| DS 0.9.5 GUIDE / BRAND / policy / release | historical baseline: retained protected brand wording and non-gradient obligations; current release identity comes from 0.9.6 |');
+text=text.replace('| DS 0.9.5 tokens / color-srgb-08 registries | exact approved values, six-state contract, theme-specific LUTs and category colors |','| DS 0.9.5 tokens / color-srgb-08 registries | historical baseline: unchanged diverging, categorical, atmosphere and foundation values; six-state contract and all other preserved tokens |\n| Owner-approved sequential R2 / DS 0.9.6 color-srgb-09 | current 28 sequential records, three distinct-hue anchors, exact theme LUTs and class sets; approval source SHA-256 `0ae97bf20fe51521ddb71aed3f5ae99f5206cd934492eff4934e97a29765e4fa` |');
+const ids=s=>[...s.matchAll(/^\*\*([A-Z][A-Z0-9-]*-\d{2}) —/gm)].map(x=>x[1]);
+const accept=s=>[...s.matchAll(/^- ([A-Z][A-Z0-9-]*-\d{2}-[A-Z]) —/gm)].map(x=>x[1]);
+if(JSON.stringify(ids(original))!==JSON.stringify(ids(text))||JSON.stringify(accept(original))!==JSON.stringify(accept(text)))throw Error('Rule/check IDs changed');
+for(const s of current.scales.filter(s=>s.kind==='diverging'))if(JSON.stringify(s)!==JSON.stringify(previous.scales.find(p=>p.scaleId===s.scaleId&&p.theme===s.theme)))throw Error('Diverging record changed');
+const dir=path.join(plugin,'references/standalone-master-0.9.6');fs.mkdirSync(dir,{recursive:true});
+text=text.trimEnd()+'\n';
+const filename='Landometer-Design-System-v0.9.6.human.md';fs.writeFileSync(path.join(dir,filename),text);
+const receipt={documentId:'standalone-0.9.6-r1',releaseRef:'v0.9.6-owner.1',source:{path:source,sha256:sha(fs.readFileSync(path.join(plugin,source))),humanSha256:sha(original)},output:{path:'references/standalone-master-0.9.6/'+filename,sha256:sha(text),bytes:Buffer.byteLength(text)},ruleIds:ids(text),acceptanceIds:accept(text),changes:['Current release and colour identity0.9.6/color-srgb-09','DATAVIZ-02 distinct middle hue with explicit three anchors and monotonic luminance','Approved exact28 sequential records; all12 diverging records preserved','Current Project Source migration; product Add-ons remain separate'],historicalStatementsPreserved:frozen,ownerApproval:{date:'2026-10-01',scope:'Owner approved the displayed R2 palette and requested release 0.9.6 across channels; this is not a claim of a new cryptographic signature or exhaustive bilingual review.'}};
+fs.writeFileSync(path.join(dir,'consolidation-receipt.json'),JSON.stringify(receipt,null,2)+'\n');
+console.log(JSON.stringify({output:filename,rules:ids(text).length,acceptances:accept(text).length,sha256:sha(text)}));

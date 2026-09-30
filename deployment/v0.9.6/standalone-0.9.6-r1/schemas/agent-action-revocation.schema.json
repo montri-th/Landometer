@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.6/standalone-0.9.6-r1/schemas/agent-action-revocation.schema.json",
+  "title": "Landometer phase-bound agent action revocation decision v1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "revocationId",
+    "authorityId",
+    "decisionPhase",
+    "executionNonce",
+    "buildCardRef",
+    "buildCardSha256",
+    "artifactId",
+    "actionId",
+    "actorId",
+    "status",
+    "checkedAt",
+    "revokedAt",
+    "reason",
+    "decisionBy",
+    "evidenceRef"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.2"
+    },
+    "releaseRef": {
+      "const": "v0.9.6-owner.1"
+    },
+    "revocationId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "authorityId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "decisionPhase": {
+      "enum": [
+        "pre_start",
+        "terminal_boundary"
+      ]
+    },
+    "executionNonce": {
+      "$ref": "#/$defs/nonce"
+    },
+    "buildCardRef": {
+      "$ref": "#/$defs/safeRef"
+    },
+    "buildCardSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifactId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "actionId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "actorId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "status": {
+      "enum": [
+        "not_revoked",
+        "revoked"
+      ]
+    },
+    "checkedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "revokedAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "decisionBy": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "evidenceRef": {
+      "$ref": "#/$defs/nonEmpty"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "not_revoked"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "revokedAt": {
+            "type": "null"
+          },
+          "reason": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "revoked"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "revokedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reason": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.6 contract, revision standalone-0.9.6-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}
