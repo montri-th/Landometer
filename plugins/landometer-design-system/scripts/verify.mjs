@@ -73,6 +73,7 @@ export function verifyPackage(){
   if(doc.product!=='landometer'){
    const binding=machine.baseDocument;
    check(prefix+'visible-current-revision',parsed.humanMarkdown.slice(0,3000).includes('**เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.6-r1`')&&parsed.humanMarkdown.slice(0,3000).includes(parsed.document.documentId)&&parsed.humanMarkdown.includes('original consolidation history only'));
+   check(prefix+'current-addon-id',parsed.document.documentId===doc.product+'-addon-'+parsed.document.productVersion+'-lds-0.9.6-r1');
    check(prefix+'separate-addon',parsed.document.documentKind==='addon'&&parsed.document.requiredNormativeFiles===2&&machine.release.normativeDependency===baseFile);
    check(prefix+'exact-filenames',md.path===addonFiles[doc.product]+'.md'&&js.path===addonFiles[doc.product]+'.json');
    check(prefix+'exact-base-binding',binding?.path===baseFile&&binding?.sha256===baseHash&&binding?.sha256===hash(basePath)&&binding?.documentId==='lds-0.9.6-landometer-standalone-r1');

@@ -8,7 +8,7 @@ Add-on ใช้ได้เฉพาะ ijji และเฉพาะขอบ�
 
 **เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.6-r1`
 
-**Document ID:** `ijji-addon-0.5.5-lds-0.9.6-r3`
+**Document ID:** `ijji-addon-0.5.5-lds-0.9.6-r1`
 
 **Distribution:** `standalone-0.9.6-r1` · **Complete LDS base:** `standalone-0.9.6-r1`
 
@@ -2608,7 +2608,7 @@ AI stop conditions:
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"ijji-addon-0.5.5-lds-0.9.6-r3","documentRevision":"standalone-0.9.6-r1","documentKind":"addon","title":"ijji Add-on v0.5.5 for LDS v0.9.6","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","product":"ijji","productVersion":"0.5.5","humanSha256":"40546092f3003ac6daacf7c977e62079d0bc17b794c4ed6269ea867a0bae7293","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.6 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"ijji-addon-0.5.5-lds-0.9.6-r1","documentRevision":"standalone-0.9.6-r1","documentKind":"addon","title":"ijji Add-on v0.5.5 for LDS v0.9.6","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","product":"ijji","productVersion":"0.5.5","humanSha256":"290062249ba7247470bd66360b23254e758967bef6e7c1de686a7c106e3a4457","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.6 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.6.md"},
 "baseDocument":{"documentId":"lds-0.9.6-landometer-standalone-r1","path":"Landometer-Design-System-v0.9.6.md","sha256":"c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09"},
 "productProfile":{

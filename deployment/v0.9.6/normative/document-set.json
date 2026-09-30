@@ -33,7 +33,7 @@
       "requiredNormativeFiles": 2,
       "product": "ijji",
       "title": "ijji Add-on v0.5.5 for LDS v0.9.6",
-      "documentId": "ijji-addon-0.5.5-lds-0.9.6-r3",
+      "documentId": "ijji-addon-0.5.5-lds-0.9.6-r1",
       "baseDocument": {
         "documentId": "lds-0.9.6-landometer-standalone-r1",
         "path": "Landometer-Design-System-v0.9.6.md",
@@ -46,13 +46,13 @@
         {
           "path": "ijji-Add-on-v0.5.5-for-LDS-v0.9.6.md",
           "bytes": 227830,
-          "sha256": "8b8fe59105252db5a25f0bcb1ef7c65eafe29220cba503697979a44661e467b2",
+          "sha256": "289d5c57e932e8433f41d28e4663caa5baa92e7b2b0f806b3fef536354074e3d",
           "use": "Product Add-on for people, AI and Project Sources; upload alongside the complete LDS 0.9.6 base."
         },
         {
           "path": "ijji-Add-on-v0.5.5-for-LDS-v0.9.6.json",
           "bytes": 253631,
-          "sha256": "ee5202d5e701b54d6597e2c39c78b3d4cb18f00f77ad96961ac0998fb7048ed7",
+          "sha256": "09c96c391cf5fc623a2795dbb43dd3952e7ff9b525b6e4fe94adb7e506cdd875",
           "use": "Lossless machine alternative to this Add-on Markdown; do not upload both."
         }
       ]
@@ -62,7 +62,7 @@
       "requiredNormativeFiles": 2,
       "product": "citychat",
       "title": "CityChat Add-on v0.9.2 for LDS v0.9.6",
-      "documentId": "citychat-addon-0.9.2-lds-0.9.6-r3",
+      "documentId": "citychat-addon-0.9.2-lds-0.9.6-r1",
       "baseDocument": {
         "documentId": "lds-0.9.6-landometer-standalone-r1",
         "path": "Landometer-Design-System-v0.9.6.md",
@@ -75,13 +75,13 @@
         {
           "path": "CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.md",
           "bytes": 24010,
-          "sha256": "ec4f443fd877b09160ec134a69e186e17c00463836c195cf7f5b35c1c260fed4",
+          "sha256": "18171bf024bb20affe452ceddaf39db5c2b08a13ea4208741043ceed8ef0fae4",
           "use": "Product Add-on for people, AI and Project Sources; upload alongside the complete LDS 0.9.6 base."
         },
         {
           "path": "CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.json",
           "bytes": 26313,
-          "sha256": "bbb5e7e3b223373c68604e7c71f7661fb1f301d4d7f3d24f82aeebff754071cb",
+          "sha256": "8079f496fdd70a08bd35d9c82c6c30cb2fa73d252eb959658e6044e4e714f836",
           "use": "Lossless machine alternative to this Add-on Markdown; do not upload both."
         }
       ]
@@ -91,7 +91,7 @@
       "requiredNormativeFiles": 2,
       "product": "citywiki",
       "title": "CityWiki Add-on v1.0.0 for LDS v0.9.6",
-      "documentId": "citywiki-addon-1.0.0-lds-0.9.6-r3",
+      "documentId": "citywiki-addon-1.0.0-lds-0.9.6-r1",
       "baseDocument": {
         "documentId": "lds-0.9.6-landometer-standalone-r1",
         "path": "Landometer-Design-System-v0.9.6.md",
@@ -104,13 +104,13 @@
         {
           "path": "CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.md",
           "bytes": 64342,
-          "sha256": "e92e6778b300bb4111bda0bc2831cb545bc1e17be896b5a5f30cbe8859fc42f3",
+          "sha256": "5933752d1f76a251926a55e43567fb2c0020bbf8e1b3708dbe66d8d571c9158e",
           "use": "Product Add-on for people, AI and Project Sources; upload alongside the complete LDS 0.9.6 base."
         },
         {
           "path": "CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.json",
           "bytes": 67911,
-          "sha256": "0044001623eaa8223c2f914577da8b197efaf4050ece24c4dc9d4160ce0cf3a2",
+          "sha256": "9292e2d45b361aec735771a85ba5f43f09a1a95fc88dae3e7016d1037e6d94a4",
           "use": "Lossless machine alternative to this Add-on Markdown; do not upload both."
         }
       ]

@@ -8,7 +8,7 @@ Add-on ใช้ได้เฉพาะ CityWiki และเฉพาะขอ
 
 **เอกสารปัจจุบัน / Current document revision:** `standalone-0.9.6-r1`
 
-**Document ID:** `citywiki-addon-1.0.0-lds-0.9.6-r3`
+**Document ID:** `citywiki-addon-1.0.0-lds-0.9.6-r1`
 
 **Distribution:** `standalone-0.9.6-r1` · **Complete LDS base:** `standalone-0.9.6-r1`
 
@@ -1564,7 +1564,7 @@ This consolidation uses the current shared LDS foundation and retains the produc
 <!-- LDS_MACHINE_BEGIN -->
 ```json
 {
-"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citywiki-addon-1.0.0-lds-0.9.6-r3","documentRevision":"standalone-0.9.6-r1","documentKind":"addon","title":"CityWiki Add-on v1.0.0 for LDS v0.9.6","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","product":"citywiki","productVersion":"1.0.0","humanSha256":"d3942cbeb90247c2f2021f20e18f41540e2cbf1937861c8a7240c5da431b6414","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.6 base, never a predecessor master."},
+"document":{"schemaVersion":"lds-standalone-document-1","documentId":"citywiki-addon-1.0.0-lds-0.9.6-r1","documentRevision":"standalone-0.9.6-r1","documentKind":"addon","title":"CityWiki Add-on v1.0.0 for LDS v0.9.6","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","product":"citywiki","productVersion":"1.0.0","humanSha256":"5a409cb8c5dbbef9fadac88944930070c2049ff00bbf91c3fc41aab89fff16ad","requiredNormativeFiles":2,"supersedes":"Previous product design-rule Add-ons within this product scope. Requires the complete LDS 0.9.6 base, never a predecessor master."},
 "release":{"dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09","signatureStatus":"unsigned","signedRelease":false,"normativeDependency":"Landometer-Design-System-v0.9.6.md"},
 "baseDocument":{"documentId":"lds-0.9.6-landometer-standalone-r1","path":"Landometer-Design-System-v0.9.6.md","sha256":"c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91","dsVersion":"0.9.6","releaseRef":"v0.9.6-owner.1","colorSetId":"color-srgb-09"},
 "productProfile":{

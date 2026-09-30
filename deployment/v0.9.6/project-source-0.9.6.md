@@ -7,9 +7,9 @@
 | งาน | ดาวน์โหลดสำหรับคน + AI | ทางเลือกสำหรับเครื่อง | Bytes (.md) | SHA-256 (.md) |
 |---|---|---|---:|---|
 | Landometer Design System v0.9.6 | [ดาวน์โหลด .md](./normative/Landometer-Design-System-v0.9.6.md) | [JSON](./normative/Landometer-Design-System-v0.9.6.json) | 1,122,346 | `c2bed69f48a1fc3c23df1e8010684578bfcf5ef33701a819f65abf18542a3c91` |
-| ijji Add-on v0.5.5 for LDS v0.9.6 | [ดาวน์โหลด .md](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.md) | [JSON](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.json) | 227,830 | `8b8fe59105252db5a25f0bcb1ef7c65eafe29220cba503697979a44661e467b2` |
-| CityChat Add-on v0.9.2 for LDS v0.9.6 | [ดาวน์โหลด .md](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.md) | [JSON](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.json) | 24,010 | `ec4f443fd877b09160ec134a69e186e17c00463836c195cf7f5b35c1c260fed4` |
-| CityWiki Add-on v1.0.0 for LDS v0.9.6 | [ดาวน์โหลด .md](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.md) | [JSON](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.json) | 64,342 | `e92e6778b300bb4111bda0bc2831cb545bc1e17be896b5a5f30cbe8859fc42f3` |
+| ijji Add-on v0.5.5 for LDS v0.9.6 | [ดาวน์โหลด .md](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.md) | [JSON](./normative/ijji-Add-on-v0.5.5-for-LDS-v0.9.6.json) | 227,830 | `289d5c57e932e8433f41d28e4663caa5baa92e7b2b0f806b3fef536354074e3d` |
+| CityChat Add-on v0.9.2 for LDS v0.9.6 | [ดาวน์โหลด .md](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.md) | [JSON](./normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.6.json) | 24,010 | `18171bf024bb20affe452ceddaf39db5c2b08a13ea4208741043ceed8ef0fae4` |
+| CityWiki Add-on v1.0.0 for LDS v0.9.6 | [ดาวน์โหลด .md](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.md) | [JSON](./normative/CityWiki-Add-on-v1.0.0-for-LDS-v0.9.6.json) | 64,342 | `5933752d1f76a251926a55e43567fb2c0020bbf8e1b3708dbe66d8d571c9158e` |
 
 ## ติดตั้งใน ChatGPT หรือ Claude Project
 
