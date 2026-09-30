@@ -1,0 +1,1236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.6/standalone-0.9.6-r1/schemas/motif-register.schema.json",
+  "title": "Landometer motif register v1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "status",
+    "ruleIds",
+    "source",
+    "jobRegistry",
+    "beats",
+    "joyBudget",
+    "sharedFamily",
+    "productOverlays",
+    "carrierPolicy",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.1"
+    },
+    "releaseRef": {
+      "const": "v0.9.6-owner.1"
+    },
+    "status": {
+      "enum": [
+        "candidate",
+        "active"
+      ]
+    },
+    "ruleIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "repository",
+        "commit",
+        "manifest"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "commitDate": {
+          "type": "string"
+        },
+        "manifest": {
+          "type": "object",
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "properties": {
+            "path": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": true
+        },
+        "studioManifest": {
+          "type": "object"
+        },
+        "hashVerification": {
+          "type": "string"
+        },
+        "governanceNote": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "jobRegistry": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "beats": {
+      "type": "object",
+      "required": [
+        "INTENT",
+        "AHA",
+        "NEXT_ACTION",
+        "kindsByBeat"
+      ],
+      "properties": {
+        "INTENT": {
+          "const": "opening"
+        },
+        "AHA": {
+          "const": "transition"
+        },
+        "NEXT_ACTION": {
+          "const": "closing"
+        },
+        "kindsByBeat": {
+          "type": "object",
+          "required": [
+            "opening",
+            "transition",
+            "closing"
+          ]
+        }
+      }
+    },
+    "joyBudget": {
+      "type": "object",
+      "required": [
+        "perLongRoute",
+        "perTaskSurface",
+        "forbiddenRegions"
+      ],
+      "properties": {
+        "perLongRoute": {
+          "const": 3
+        },
+        "perTaskSurface": {
+          "const": 1
+        },
+        "forbiddenRegions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "first_answer",
+              "primary_proof",
+              "primary_action"
+            ]
+          },
+          "minItems": 3
+        }
+      }
+    },
+    "sharedFamily": {
+      "type": "object",
+      "required": [
+        "id",
+        "runtime",
+        "kinds",
+        "replayContract"
+      ],
+      "properties": {
+        "id": {
+          "const": "landometer.motif.v3"
+        },
+        "runtime": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "assetId",
+              "path",
+              "sha256"
+            ],
+            "properties": {
+              "assetId": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "bytes": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "kinds": {
+          "type": "object",
+          "required": [
+            "dial",
+            "rings",
+            "layers",
+            "slice",
+            "cultivate",
+            "logo"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "dial": {
+              "type": "object",
+              "required": [
+                "beat",
+                "allowedJobs",
+                "prohibitedJobs",
+                "cycleMs",
+                "variants",
+                "allowedCarriers"
+              ],
+              "properties": {
+                "allowedCarriers": {
+                  "$ref": "#/$defs/allowedPair"
+                },
+                "beat": {
+                  "enum": [
+                    "opening",
+                    "transition",
+                    "closing"
+                  ]
+                },
+                "allowedJobs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "prohibitedJobs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cycleMs": {
+                  "type": "integer",
+                  "minimum": 2000
+                },
+                "variants": {
+                  "type": "object",
+                  "required": [
+                    "full",
+                    "quiet"
+                  ],
+                  "properties": {
+                    "full": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    "quiet": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "rings": {
+              "type": "object",
+              "required": [
+                "beat",
+                "allowedJobs",
+                "prohibitedJobs",
+                "cycleMs",
+                "variants",
+                "allowedCarriers"
+              ],
+              "properties": {
+                "allowedCarriers": {
+                  "$ref": "#/$defs/allowedPair"
+                },
+                "beat": {
+                  "enum": [
+                    "opening",
+                    "transition",
+                    "closing"
+                  ]
+                },
+                "allowedJobs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "prohibitedJobs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cycleMs": {
+                  "type": "integer",
+                  "minimum": 2000
+                },
+                "variants": {
+                  "type": "object",
+                  "required": [
+                    "full",
+                    "quiet"
+                  ],
+                  "properties": {
+                    "full": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    "quiet": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "layers": {
+              "type": "object",
+              "required": [
+                "beat",
+                "allowedJobs",
+                "prohibitedJobs",
+                "cycleMs",
+                "variants",
+                "allowedCarriers"
+              ],
+              "properties": {
+                "allowedCarriers": {
+                  "$ref": "#/$defs/allowedPair"
+                },
+                "beat": {
+                  "enum": [
+                    "opening",
+                    "transition",
+                    "closing"
+                  ]
+                },
+                "allowedJobs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "prohibitedJobs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cycleMs": {
+                  "type": "integer",
+                  "minimum": 2000
+                },
+                "variants": {
+                  "type": "object",
+                  "required": [
+                    "full",
+                    "quiet"
+                  ],
+                  "properties": {
+                    "full": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    "quiet": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "slice": {
+              "type": "object",
+              "required": [
+                "beat",
+                "allowedJobs",
+                "prohibitedJobs",
+                "cycleMs",
+                "variants",
+                "allowedCarriers"
+              ],
+              "properties": {
+                "allowedCarriers": {
+                  "$ref": "#/$defs/allowedPair"
+                },
+                "beat": {
+                  "enum": [
+                    "opening",
+                    "transition",
+                    "closing"
+                  ]
+                },
+                "allowedJobs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "prohibitedJobs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cycleMs": {
+                  "type": "integer",
+                  "minimum": 2000
+                },
+                "variants": {
+                  "type": "object",
+                  "required": [
+                    "full",
+                    "quiet"
+                  ],
+                  "properties": {
+                    "full": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    "quiet": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "cultivate": {
+              "type": "object",
+              "required": [
+                "beat",
+                "allowedJobs",
+                "prohibitedJobs",
+                "cycleMs",
+                "variants",
+                "allowedCarriers"
+              ],
+              "properties": {
+                "allowedCarriers": {
+                  "$ref": "#/$defs/allowedPair"
+                },
+                "beat": {
+                  "enum": [
+                    "opening",
+                    "transition",
+                    "closing"
+                  ]
+                },
+                "allowedJobs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "prohibitedJobs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cycleMs": {
+                  "type": "integer",
+                  "minimum": 2000
+                },
+                "variants": {
+                  "type": "object",
+                  "required": [
+                    "full",
+                    "quiet"
+                  ],
+                  "properties": {
+                    "full": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    "quiet": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "additionalProperties": true
+            },
+            "logo": {
+              "type": "object",
+              "required": [
+                "beat",
+                "allowedJobs",
+                "prohibitedJobs",
+                "cycleMs",
+                "variants",
+                "allowedCarriers"
+              ],
+              "properties": {
+                "allowedCarriers": {
+                  "$ref": "#/$defs/allowedPair"
+                },
+                "beat": {
+                  "enum": [
+                    "opening",
+                    "transition",
+                    "closing"
+                  ]
+                },
+                "allowedJobs": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "prohibitedJobs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cycleMs": {
+                  "type": "integer",
+                  "minimum": 2000
+                },
+                "variants": {
+                  "type": "object",
+                  "required": [
+                    "full",
+                    "quiet"
+                  ],
+                  "properties": {
+                    "full": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    },
+                    "quiet": {
+                      "type": "object",
+                      "required": [
+                        "assetId",
+                        "path",
+                        "sha256"
+                      ],
+                      "properties": {
+                        "assetId": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "sha256": {
+                          "type": "string",
+                          "pattern": "^[a-f0-9]{64}$"
+                        },
+                        "bytes": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  }
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "productOverlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "product",
+          "approval",
+          "assets"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "product": {
+            "type": "string"
+          },
+          "approval": {
+            "type": "object",
+            "required": [
+              "status",
+              "decidedOn",
+              "evidenceRef"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "owner_approved",
+                  "pre_approved_pending_production",
+                  "candidate"
+                ]
+              },
+              "decidedOn": {
+                "type": "string"
+              },
+              "evidenceRef": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
+          "assets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "carrierPolicy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "ruleId",
+        "status",
+        "authority",
+        "method",
+        "bands",
+        "placement",
+        "themeRule",
+        "inkRule",
+        "refusal",
+        "carriers",
+        "classes",
+        "ladder",
+        "agentFields",
+        "ladderParity",
+        "allowed",
+        "measured"
+      ],
+      "properties": {
+        "ruleId": {
+          "const": "MOTIF-06"
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "active"
+          ]
+        },
+        "authority": {
+          "type": "object",
+          "required": [
+            "decision",
+            "ladder",
+            "evidence"
+          ],
+          "properties": {
+            "ladder": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256",
+                "approval"
+              ],
+              "properties": {
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "approval": {
+                  "type": "object",
+                  "required": [
+                    "path",
+                    "sha256",
+                    "pointer"
+                  ],
+                  "properties": {
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  }
+                }
+              }
+            },
+            "evidence": {
+              "type": "object",
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "properties": {
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              }
+            }
+          }
+        },
+        "bands": {
+          "type": "object",
+          "required": [
+            "meaningCapableMin",
+            "decorativeOnlyMin",
+            "invisibleMax"
+          ],
+          "properties": {
+            "meaningCapableMin": {
+              "const": 3
+            },
+            "decorativeOnlyMin": {
+              "const": 1.3
+            },
+            "invisibleMax": {
+              "const": 1.29
+            }
+          }
+        },
+        "placement": {
+          "type": "object",
+          "required": [
+            "full",
+            "quiet"
+          ],
+          "properties": {
+            "full": {
+              "type": "object",
+              "required": [
+                "carrierClasses",
+                "ink"
+              ],
+              "properties": {
+                "carrierClasses": {
+                  "const": [
+                    "light_plain"
+                  ]
+                },
+                "ink": {
+                  "const": "blue"
+                }
+              }
+            },
+            "quiet": {
+              "type": "object",
+              "required": [
+                "carrierClasses",
+                "ink"
+              ],
+              "properties": {
+                "carrierClasses": {
+                  "const": [
+                    "deep_plain",
+                    "deep_atmosphere"
+                  ]
+                },
+                "ink": {
+                  "const": "sky"
+                }
+              }
+            }
+          }
+        },
+        "carriers": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "type",
+              "themed",
+              "tokenRef"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "solid",
+                  "gradient"
+                ]
+              },
+              "themed": {
+                "type": "boolean"
+              },
+              "tokenRef": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "classes": {
+          "type": "object",
+          "required": [
+            "light_plain",
+            "deep_plain",
+            "light_atmosphere",
+            "deep_atmosphere"
+          ]
+        },
+        "ladder": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": [
+              "rung",
+              "name",
+              "action"
+            ]
+          }
+        },
+        "ladderParity": {
+          "type": "object",
+          "required": [
+            "compared",
+            "equal"
+          ]
+        },
+        "allowed": {
+          "type": "object",
+          "required": [
+            "dial",
+            "rings",
+            "layers",
+            "slice",
+            "cultivate",
+            "logo"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "dial": {
+              "$ref": "#/$defs/allowedPair"
+            },
+            "rings": {
+              "$ref": "#/$defs/allowedPair"
+            },
+            "layers": {
+              "$ref": "#/$defs/allowedPair"
+            },
+            "slice": {
+              "$ref": "#/$defs/allowedPair"
+            },
+            "cultivate": {
+              "$ref": "#/$defs/allowedPair"
+            },
+            "logo": {
+              "$ref": "#/$defs/allowedPair"
+            }
+          }
+        },
+        "measured": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "variant",
+              "carrier",
+              "carrierClass",
+              "paints",
+              "weakest",
+              "strongest",
+              "verdict",
+              "shapeIntact",
+              "allowed"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "dial",
+                  "rings",
+                  "layers",
+                  "slice",
+                  "cultivate",
+                  "logo"
+                ]
+              },
+              "variant": {
+                "enum": [
+                  "full",
+                  "quiet"
+                ]
+              },
+              "carrier": {
+                "type": "string"
+              },
+              "carrierClass": {
+                "enum": [
+                  "light_plain",
+                  "deep_plain",
+                  "light_atmosphere",
+                  "deep_atmosphere"
+                ]
+              },
+              "weakest": {
+                "type": "number"
+              },
+              "strongest": {
+                "type": "number"
+              },
+              "verdict": {
+                "enum": [
+                  "meaningCapable",
+                  "decorativeOnly",
+                  "invisible"
+                ]
+              },
+              "shapeIntact": {
+                "type": "boolean"
+              },
+              "allowed": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "candidateBriefsStudio14": {
+      "type": "array"
+    },
+    "boundaries": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "allowedPair": {
+      "type": "object",
+      "required": [
+        "full",
+        "quiet"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "full": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "quiet": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.6 contract, revision standalone-0.9.6-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

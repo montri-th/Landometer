@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.5",
+  "releaseRef": "v0.9.4-mp1",
+  "definitionRef": "agent-action-definition.example.json",
+  "definitionSha256": "aec4e72148d230521040616524e6f6cc56be963845ff24ea9fa13377b527dd00",
+  "definitionSchemaRef": "https://landometer.org/design-system/0.9.4/agent-action-definition.schema.1.3.json",
+  "actionId": "inspect-claim",
+  "scope": {
+    "artifactId": "example.design-system.portfolio-brand-line.th",
+    "actor": "example-reader",
+    "actorClass": "human_user",
+    "productScope": "shared_landometer",
+    "allowedOperation": "inspect"
+  },
+  "inputs": {
+    "schemaRef": "agent-action-input.example.schema.json",
+    "schemaSha256": "13813cbf91cce77ff19776f22a64875dc57bbcaddf5a4194e6ff83ddf570ab0f",
+    "schemaId": "urn:landometer:agent-action-input:inspect-claim:1.0",
+    "valueRef": "agent-action-input.example.json",
+    "valueSha256": "d02d1b0291b9d1c08a84b31c544ca09d38f8e4d24e2bf58fbadb3ea9da0c2c99",
+    "classification": "public"
+  },
+  "permission": {
+    "policy": "read_only",
+    "status": "not_required",
+    "authorityRef": "agent-action-authority.example.json",
+    "authoritySha256": "ba68d7913de5e170caea05d814a75e12f22d4b67bb1b7a4fee7e33c0b18a65b6",
+    "authoritySchemaRef": "https://landometer.org/design-system/0.9.4/agent-action-authority.schema.1.3.json",
+    "authorityAttestationRef": "agent-action-authority.example.attestation.json",
+    "authorityAttestationSha256": "286f0c29b7c6dedf474820f3f83ac405d507a3d6d89c60715f6404e325d1705d"
+  },
+  "sideEffect": {
+    "class": "none",
+    "external": false,
+    "cost": "none",
+    "summary": "Read-only navigation; no external or persistent effect.",
+    "reversible": true
+  },
+  "confirmation": {
+    "required": false,
+    "state": "not_required",
+    "confirmedBy": null,
+    "confirmedAt": null,
+    "receiptRef": null,
+    "receiptSha256": null,
+    "attestationRef": null,
+    "attestationSha256": null
+  },
+  "execution": {
+    "executionId": null,
+    "executionNonce": "nonce.example.inspect-claim.2026-09-01.01",
+    "buildCardRef": "build-card.example.json",
+    "buildCardSha256": "8d95290db03e2ef5874780551c1f7a13b2bee5cfde54a49e1c410632162160f2",
+    "terminalRevocationRef": null,
+    "terminalRevocationSha256": null,
+    "terminalRevocationSchemaRef": null,
+    "terminalRevocationAttestationRef": null,
+    "terminalRevocationAttestationSha256": null,
+    "status": "not_started",
+    "startedAt": null,
+    "effectAt": null,
+    "completedAt": null,
+    "resultSchemaRef": "https://landometer.org/design-system/0.9.4/claim-record.schema.1.4.json",
+    "resultSchemaSha256": "a60137d4d53c6835beb0cb119da2e057c1e6669e2735865856c248ad6105549c",
+    "receiptSchemaRef": "https://landometer.org/design-system/0.9.4/agent-action-receipt.schema.1.3.json",
+    "receiptSchemaSha256": "5ee54451d64aca120ddd50b63a6fe7920f56220782195769470bc31b61e59fa1",
+    "resultRef": null,
+    "errorBehavior": "Remain on the current artifact, preserve state, and expose a direct readable fallback.",
+    "recoveryRef": null,
+    "receiptRef": null,
+    "receiptAttestationRef": null,
+    "receiptAttestationSha256": null
+  }
+}

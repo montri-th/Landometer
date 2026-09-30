@@ -1,0 +1,2434 @@
+{
+  "schemaVersion": "1.7",
+  "releaseRef": "v0.9.4-mp1",
+  "status": "active",
+  "resolution": {
+    "rule": "Resolve exactly one base format pack from output.formatProfile, one primary experience rule set, every declared secondary experience rule set, and only declared capability requirements from the Build Card.",
+    "visualSamenessRequired": false,
+    "semanticParityRequired": true,
+    "unknownProfileBehavior": "block"
+  },
+  "testIdPolicy": {
+    "scheme": "scope_id_plus_one_based_matrix_index",
+    "commonPrefix": "common",
+    "experiencePrefix": "experience",
+    "formatPrefix": "format",
+    "capabilityPrefix": "capability",
+    "targetPrefix": "target",
+    "kitPrefix": "kit",
+    "accessibilityPrefix": "accessibility",
+    "derivation": {
+      "common": "common.{two-digit one-based commonTestMatrix index}",
+      "experience": "experience.{profile}.{two-digit one-based experienceProfileTestMatrix index}",
+      "format": "format.{pack id}.{two-digit one-based pack testMatrix index}; runtime-specific additions use format.{pack id}.runtime.{runtime}.{two-digit one-based testMatrixByRuntime index}",
+      "capability": "capability.{overlay id}.{two-digit one-based overlay testMatrix index}; runtime-class additions use capability.{overlay id}.runtime.{runtime class}.{two-digit one-based testMatrixByRuntimeClass index}",
+      "target": "{target profile id}.fixture.{exact requiredFixtures value}",
+      "kit": "{format kit id}.control.{two-digit one-based requiredImplementationControls index}",
+      "accessibility": "use the exact ID from accessibilityFixtureIdsByConformanceVariant[formatProfile.runtime]",
+      "portability": "use the exact ordered IDs derived from the selected authoring platform's native font mappings, identity typography binding, and non-web icon policy"
+    },
+    "resolutionOrder": [
+      "common",
+      "primary_experience",
+      "secondary_experience_in_declared_order",
+      "format",
+      "capability_in_declared_order",
+      "target",
+      "kit",
+      "accessibility",
+      "platform_portability"
+    ]
+  },
+  "accessibilityFixtureIdsByConformanceVariant": {
+    "web_public.browser": [
+      "accessibility.web.keyboard",
+      "accessibility.web.screen-reader",
+      "accessibility.web.zoom-200",
+      "accessibility.web.reflow-400",
+      "accessibility.web.reduced-motion"
+    ],
+    "app_interactive.browser": [
+      "accessibility.app.browser.keyboard",
+      "accessibility.app.browser.screen-reader",
+      "accessibility.app.browser.touch",
+      "accessibility.app.browser.state-recovery",
+      "accessibility.app.browser.zoom-200",
+      "accessibility.app.browser.reflow-400",
+      "accessibility.app.browser.reduced-motion"
+    ],
+    "app_interactive.native": [
+      "accessibility.app.native.keyboard",
+      "accessibility.app.native.accessibility-api",
+      "accessibility.app.native.touch",
+      "accessibility.app.native.state-recovery",
+      "accessibility.app.native.dynamic-type-200",
+      "accessibility.app.native.safe-area-interruption",
+      "accessibility.app.native.reduced-motion"
+    ],
+    "document_flow.static": [
+      "accessibility.document.native-structure",
+      "accessibility.document.reading-order",
+      "accessibility.document.links",
+      "accessibility.document.thai-latin",
+      "accessibility.document.pdf-export"
+    ],
+    "pdf_fixed.static": [
+      "accessibility.pdf.tags-order",
+      "accessibility.pdf.alternatives",
+      "accessibility.pdf.text-extraction",
+      "accessibility.pdf.links-bookmarks",
+      "accessibility.pdf.print"
+    ],
+    "deck_presentation.static": [
+      "accessibility.deck.alt-reading-order",
+      "accessibility.deck.distance-legibility",
+      "accessibility.deck.thai-latin",
+      "accessibility.deck.links-qr",
+      "accessibility.deck.pdf-export"
+    ],
+    "social_static.static": [
+      "accessibility.social.contrast-legibility",
+      "accessibility.social.safe-area",
+      "accessibility.social.thai-latin",
+      "accessibility.social.crop",
+      "accessibility.social.destination-cue"
+    ]
+  },
+  "accessibilityFixtureCriteria": {
+    "accessibility.web.keyboard": "Every interactive control, disclosure, navigation target, and CTA is operable in a logical keyboard sequence without a keyboard trap.",
+    "accessibility.web.screen-reader": "Initial HTML exposes the same headings, landmarks, names, states, relationships, claims, limitations, and actions to a screen reader as the visible page.",
+    "accessibility.web.zoom-200": "At 200 percent zoom, content and controls remain readable, operable, complete, and free from obstructive overlap.",
+    "accessibility.web.reflow-400": "At 400 percent reflow, primary meaning and actions remain available without two-dimensional scrolling except for intrinsically two-dimensional content.",
+    "accessibility.web.reduced-motion": "Reduced-motion and failed-observer states expose the stable final content and preserve every task and deep-link target.",
+    "accessibility.app.browser.keyboard": "In the browser runtime, every task control and state transition is keyboard operable with logical focus order and no keyboard trap.",
+    "accessibility.app.browser.screen-reader": "In the browser runtime, headings, landmarks, control names, permissions, progress, results, errors, and recovery are programmatically exposed and announced.",
+    "accessibility.app.browser.touch": "In the browser runtime, every direct touch control meets the governed target size and remains operable without precision gestures.",
+    "accessibility.app.browser.state-recovery": "In the browser runtime, interrupted, failed, denied, expired, revoked, and cancelled states preserve recoverable input and expose an understandable next step.",
+    "accessibility.app.browser.zoom-200": "At 200 percent browser zoom, task content and controls remain readable, operable, complete, and free from obstructive overlap.",
+    "accessibility.app.browser.reflow-400": "At 400 percent browser reflow, the complete task and recovery path remain available without two-dimensional scrolling except for intrinsically two-dimensional content.",
+    "accessibility.app.browser.reduced-motion": "In the browser runtime, reduced-motion and failed-observer states preserve task state, causality, progress, and the same reachable final result.",
+    "accessibility.app.native.keyboard": "In the declared native runtime, every keyboard-supported task control and state transition follows platform focus order without a trap.",
+    "accessibility.app.native.accessibility-api": "In the declared native runtime, task structure, control names, permissions, progress, results, errors, and recovery are exposed through the platform accessibility API and announced.",
+    "accessibility.app.native.touch": "In the declared native runtime, every direct touch control meets the governed platform target size and remains operable without precision gestures.",
+    "accessibility.app.native.state-recovery": "In the declared native runtime, interrupted, failed, denied, expired, revoked, cancelled, backgrounded, restored, and view-disposed states preserve recoverable input, semantic native-view order, platform accessibility traversal order, and an understandable next step.",
+    "accessibility.app.native.dynamic-type-200": "At the governed 200 percent platform text-scaling fixture, task content and controls remain readable, operable, complete, and free from clipping or obstruction.",
+    "accessibility.app.native.safe-area-interruption": "Across the governed native safe-area and interruption fixture, essential content, focus, progress, and recovery remain visible and operable.",
+    "accessibility.app.native.reduced-motion": "In the declared native runtime, reduced-motion and interrupted-transition states preserve task state, causality, progress, and the same reachable final result.",
+    "accessibility.document.native-structure": "The native document uses real title, heading, paragraph, list, table, caption, note, and link structures where those roles occur.",
+    "accessibility.document.reading-order": "Native reading order exactly preserves the intended section, figure, table, note, and action sequence.",
+    "accessibility.document.links": "Every document link and cross-reference has a descriptive label and resolves to its declared destination.",
+    "accessibility.document.thai-latin": "Thai and Latin text remains readable, selectable, correctly ordered, and free of missing or substituted glyphs.",
+    "accessibility.document.pdf-export": "The governed PDF export preserves document meaning, reading order, alternatives, links, evidence, and material limitations.",
+    "accessibility.pdf.tags-order": "PDF tags, heading hierarchy, and reading order preserve the intended content sequence without duplicate or orphaned meaningful content.",
+    "accessibility.pdf.alternatives": "Meaningful images, figures, tables, and data in the PDF have accurate alternatives or proximate equivalents.",
+    "accessibility.pdf.text-extraction": "Thai and Latin text extracts in the intended order without missing glyphs, unintended outlines, or semantic loss.",
+    "accessibility.pdf.links-bookmarks": "PDF links and bookmarks are descriptive, complete, ordered, and resolve to their declared destinations.",
+    "accessibility.pdf.print": "The PDF remains legible with sufficient text and non-text contrast in the declared screen and print conditions.",
+    "accessibility.deck.alt-reading-order": "Every slide preserves meaningful alternative text and a logical object reading order consistent with the spoken or visual sequence.",
+    "accessibility.deck.distance-legibility": "Primary ideas, labels, evidence cues, and actions remain legible at the declared room-distance fixture.",
+    "accessibility.deck.thai-latin": "Thai and Latin text remains readable and free of missing glyphs, overflow, or unintended substitution in editable and exported deck states.",
+    "accessibility.deck.links-qr": "Every link and QR action has a descriptive visible label and resolves to the same verified destination.",
+    "accessibility.deck.pdf-export": "Static PDF export preserves slide meaning, source cues, reading order, alternatives, links, and material limitations.",
+    "accessibility.social.contrast-legibility": "The social creative preserves readable message, identity, evidence cue, and destination cue at feed size with sufficient contrast.",
+    "accessibility.social.safe-area": "No essential message, identity, evidence cue, or destination cue enters the governed platform-safe exclusion area.",
+    "accessibility.social.thai-latin": "Thai and Latin text remains readable and free of missing glyphs, overflow, or unintended substitution in final channel bytes.",
+    "accessibility.social.crop": "The governed target — 1080 × 1080 square or 1200 × 630 link preview — preserves the complete approved message, identity, evidence cue, and destination cue under its crop fixtures; any other ratio is unknown and blocks in this release.",
+    "accessibility.social.destination-cue": "The static creative presents one truthful, readable destination cue without simulating an unavailable interactive control."
+  },
+  "accessibilityProjectionContract": {
+    "statusAtArtifactQa": "verified",
+    "readingOrder": "composition_sections_exact",
+    "contrast": {
+      "normalTextMin": 4.5,
+      "largeTextMin": 3,
+      "nonTextMin": 3
+    },
+    "contentAlternativeTriggers": {
+      "images": {
+        "assetRoles": [
+          "editorial",
+          "evidence",
+          "map",
+          "social_preview",
+          "ui_capture",
+          "provider_content",
+          "generated_vector"
+        ],
+        "whenPresent": "verified",
+        "whenAbsent": "not_applicable"
+      },
+      "data": {
+        "capabilities": [
+          "data_table",
+          "data_visualization",
+          "map"
+        ],
+        "whenPresent": "verified",
+        "whenAbsent": "not_applicable"
+      }
+    },
+    "motionWithoutCapability": {
+      "alternative": "not_applicable",
+      "reducedMotion": "not_applicable",
+      "observerFailure": "not_applicable"
+    },
+    "variants": {
+      "web_public.browser": {
+        "semanticStructure": {
+          "headings": "verified",
+          "landmarks": "verified",
+          "controls": "verified"
+        },
+        "interaction": {
+          "keyboard": "verified",
+          "focus": "verified",
+          "touch": "verified"
+        },
+        "textLayout": {
+          "zoom200": "verified",
+          "reflow400": "verified"
+        },
+        "motionWithCapability": {
+          "alternative": "verified",
+          "reducedMotion": "verified",
+          "observerFailure": "final_state"
+        }
+      },
+      "app_interactive.browser": {
+        "semanticStructure": {
+          "headings": "verified",
+          "landmarks": "verified",
+          "controls": "verified"
+        },
+        "interaction": {
+          "keyboard": "verified",
+          "focus": "verified",
+          "touch": "verified"
+        },
+        "textLayout": {
+          "zoom200": "verified",
+          "reflow400": "verified"
+        },
+        "motionWithCapability": {
+          "alternative": "verified",
+          "reducedMotion": "verified",
+          "observerFailure": "final_state"
+        }
+      },
+      "app_interactive.native": {
+        "semanticStructure": {
+          "headings": "verified",
+          "landmarks": "not_applicable",
+          "controls": "verified"
+        },
+        "interaction": {
+          "keyboard": "verified",
+          "focus": "verified",
+          "touch": "verified"
+        },
+        "textLayout": {
+          "zoom200": "not_applicable",
+          "reflow400": "not_applicable"
+        },
+        "motionWithCapability": {
+          "alternative": "verified",
+          "reducedMotion": "verified",
+          "observerFailure": "not_applicable"
+        }
+      },
+      "document_flow.static": {
+        "semanticStructure": {
+          "headings": "verified",
+          "landmarks": "not_applicable",
+          "controls": "verified"
+        },
+        "interaction": {
+          "keyboard": "not_applicable",
+          "focus": "not_applicable",
+          "touch": "not_applicable"
+        },
+        "textLayout": {
+          "zoom200": "not_applicable",
+          "reflow400": "not_applicable"
+        },
+        "motionWithCapability": null
+      },
+      "pdf_fixed.static": {
+        "semanticStructure": {
+          "headings": "verified",
+          "landmarks": "not_applicable",
+          "controls": "verified"
+        },
+        "interaction": {
+          "keyboard": "not_applicable",
+          "focus": "not_applicable",
+          "touch": "not_applicable"
+        },
+        "textLayout": {
+          "zoom200": "not_applicable",
+          "reflow400": "not_applicable"
+        },
+        "motionWithCapability": null
+      },
+      "deck_presentation.static": {
+        "semanticStructure": {
+          "headings": "not_applicable",
+          "landmarks": "not_applicable",
+          "controls": "not_applicable"
+        },
+        "interaction": {
+          "keyboard": "not_applicable",
+          "focus": "not_applicable",
+          "touch": "not_applicable"
+        },
+        "textLayout": {
+          "zoom200": "not_applicable",
+          "reflow400": "not_applicable"
+        },
+        "motionWithCapability": {
+          "alternative": "verified",
+          "reducedMotion": "not_applicable",
+          "observerFailure": "not_applicable"
+        }
+      },
+      "social_static.static": {
+        "semanticStructure": {
+          "headings": "not_applicable",
+          "landmarks": "not_applicable",
+          "controls": "not_applicable"
+        },
+        "interaction": {
+          "keyboard": "not_applicable",
+          "focus": "not_applicable",
+          "touch": "not_applicable"
+        },
+        "textLayout": {
+          "zoom200": "not_applicable",
+          "reflow400": "not_applicable"
+        },
+        "motionWithCapability": null
+      }
+    }
+  },
+  "acceptanceOverridesByConformanceVariant": {
+    "web_public.browser": {
+      "AHA-01-B": {
+        "method": "interaction",
+        "criterion": "Browser first-run, denied-permission, unauthenticated, and no-sharing fixtures expose the earliest feasible useful value and a safe next route without a prerequisite that is not essential."
+      },
+      "CTA-01-B": {
+        "method": "interaction",
+        "criterion": "Each browser CTA activates its declared destination once, preserves input and state on failure, and exposes a perceivable result or recovery route."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact web_public.browser accessibility fixture set passes with hash-bound evidence for keyboard, screen reader, 200 percent zoom, 400 percent reflow, and reduced motion."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "Browser light, dark, auto, and forced-color fixtures preserve identical meaning and actions while passing identity, text, control, focus, graphics, and data contrast gates."
+      }
+    },
+    "app_interactive.browser": {
+      "AHA-01-B": {
+        "method": "interaction",
+        "criterion": "Browser-app first-run, denied-permission, unauthenticated, and no-sharing fixtures expose the earliest feasible useful task value and a safe next route."
+      },
+      "CTA-01-B": {
+        "method": "interaction",
+        "criterion": "Each browser-app CTA activates its declared destination once, preserves task input and state on failure, and exposes a perceivable result or recovery route."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact app_interactive.browser accessibility fixture set passes with hash-bound evidence for keyboard, screen reader, touch, state recovery, 200 percent zoom, 400 percent reflow, and reduced motion."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "Browser-app light, dark, auto, and forced-color fixtures preserve identical task meaning and actions while passing identity, text, control, focus, graphics, and data contrast gates."
+      }
+    },
+    "app_interactive.native": {
+      "AHA-01-B": {
+        "method": "interaction",
+        "criterion": "Native-app first-run, denied-permission, unauthenticated, and no-sharing fixtures expose the earliest feasible useful task value and a safe platform-native next route."
+      },
+      "CTA-01-B": {
+        "method": "interaction",
+        "criterion": "Each native-app CTA invokes its declared route or command once, preserves task input and state on interruption or failure, and exposes a perceivable result or recovery route."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact app_interactive.native accessibility fixture set passes with hash-bound evidence for platform keyboard support, accessibility API, touch, state recovery, 200 percent text scaling, safe-area interruption, and reduced motion."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "Native light, dark, and platform high-contrast fixtures preserve identical task meaning and actions while passing identity, text, control, focus, graphics, and data contrast gates."
+      }
+    },
+    "document_flow.static": {
+      "AHA-01-B": {
+        "method": "manual",
+        "criterion": "The native flowing document exposes its earliest useful answer before nonessential supporting material, and no unavailable interactive gate is presented as required."
+      },
+      "CTA-01-B": {
+        "method": "manual",
+        "criterion": "Every flowing-document action is a working descriptive link, cross-reference, contact instruction, or destination cue whose declared outcome is present in the final document and PDF export."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact document_flow.static accessibility fixture set passes with hash-bound evidence for native structure, reading order, links, Thai–Latin text, and governed PDF export."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "The fixed screen and print styles declared for the flowing document preserve identical meaning and pass identity, text, link, graphics, and data contrast gates in native and PDF-export bytes."
+      }
+    },
+    "pdf_fixed.static": {
+      "AHA-01-B": {
+        "method": "manual",
+        "criterion": "The fixed PDF exposes its earliest useful answer before nonessential supporting pages, and no unavailable interactive gate is presented as required."
+      },
+      "CTA-01-B": {
+        "method": "manual",
+        "criterion": "Every fixed-PDF action is a working descriptive link, bookmark, contact instruction, or destination cue whose declared outcome remains present in final PDF bytes."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact pdf_fixed.static accessibility fixture set passes with hash-bound evidence for tags and order, alternatives, text extraction, links and bookmarks, and print legibility."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "The fixed PDF screen and print renderings preserve identical meaning and pass identity, text, link, graphics, and data contrast gates without requiring runtime theme switching."
+      }
+    },
+    "deck_presentation.static": {
+      "AHA-01-B": {
+        "method": "manual",
+        "criterion": "The deck exposes its earliest useful idea before nonessential supporting slides in both presenter-led and static-export sequences, with no unavailable interactive gate."
+      },
+      "CTA-01-B": {
+        "method": "manual",
+        "criterion": "Every deck action is a working descriptive link, verified QR destination, or explicit instruction whose declared outcome remains present in editable and static-export bytes."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact deck_presentation.static accessibility fixture set passes with hash-bound evidence for alternatives and reading order, room-distance legibility, Thai–Latin text, links and QR, and PDF export."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "The selected deck theme and its static PDF export preserve identical meaning and pass distance-legible identity, text, link, graphics, and data contrast gates without runtime theme switching."
+      }
+    },
+    "social_static.static": {
+      "AHA-01-B": {
+        "method": "visual",
+        "criterion": "The final social image makes its single useful message legible at the governed feed-size fixture before supporting detail, with no unavailable interactive gate."
+      },
+      "CTA-01-B": {
+        "method": "visual",
+        "criterion": "The final social image contains one truthful readable destination cue and does not render a control, state change, or completion that the static format cannot provide."
+      },
+      "A11Y-01-B": {
+        "method": "accessibility",
+        "criterion": "The exact social_static.static accessibility fixture set passes with hash-bound evidence for feed-size contrast and legibility, safe area, Thai–Latin text, crop, and destination cue."
+      },
+      "THEME-01-B": {
+        "method": "visual",
+        "criterion": "The selected static social theme preserves the approved message and passes identity, text, graphics, and data contrast gates in final channel bytes without implying runtime theme switching."
+      }
+    }
+  },
+  "productionTestIds": [
+    "format.web.public.01.09"
+  ],
+  "experienceProfileRuleIds": {
+    "portfolio_orientation": [
+      "AHA-01",
+      "BRAND-01",
+      "NAV-01"
+    ],
+    "methodology_learning": [
+      "AHA-01",
+      "COMPARE-01",
+      "EVIDENCE-01",
+      "CLAIM-MACHINE-01"
+    ],
+    "product_orientation": [
+      "AHA-01",
+      "EVIDENCE-01",
+      "NAV-01",
+      "CTA-01"
+    ],
+    "evidence_report": [
+      "COMPARE-01",
+      "EVIDENCE-01",
+      "CLAIM-MACHINE-01",
+      "FORMAT-PARITY-01"
+    ],
+    "interactive_task": [
+      "CTA-01",
+      "CTA-02",
+      "A11Y-01",
+      "MOTION-02",
+      "SECURITY-01"
+    ],
+    "editorial_place_story": [
+      "AHA-01",
+      "EVIDENCE-01",
+      "TYPE-01",
+      "MEDIA-01"
+    ],
+    "adoption_change": [
+      "AHA-01",
+      "EVIDENCE-01",
+      "FORMAT-PARITY-01"
+    ],
+    "campaign": [
+      "BRAND-01",
+      "CTA-01",
+      "MEDIA-01",
+      "DISCOVERY-01"
+    ]
+  },
+  "experienceProfileTestMatrix": {
+    "portfolio_orientation": [
+      "portfolio identity is distinct from product claims",
+      "one portfolio-level job and next action remain dominant"
+    ],
+    "methodology_learning": [
+      "method, grain, evidence, and limitation are learnable before comparison",
+      "schema incompatibility remains explicit"
+    ],
+    "product_orientation": [
+      "named product truth stays inside its evidence boundary",
+      "primary product route and CTA are direct"
+    ],
+    "evidence_report": [
+      "claims resolve to approved records",
+      "comparison, source, uncertainty, and limitation survive export"
+    ],
+    "interactive_task": [
+      "permission, consequence, progress, result, and recovery are complete",
+      "keyboard, touch, reduced-motion, and interruption states preserve the task"
+    ],
+    "editorial_place_story": [
+      "place narrative and evidence remain distinguishable",
+      "media rights, alternatives, and source context remain bound"
+    ],
+    "adoption_change": [
+      "before and after keep the same facts",
+      "the design move, AHA, boundary, and next action are observable"
+    ],
+    "campaign": [
+      "one approved message and destination dominate",
+      "identity, claim, governed square target, and discovery metadata remain aligned"
+    ]
+  },
+  "navigationContract": {
+    "destinationLevels": [
+      "ecosystem",
+      "property",
+      "page"
+    ],
+    "destinationKinds": [
+      "route",
+      "anchor",
+      "external"
+    ],
+    "destinationGroups": [
+      "primary",
+      "ecosystem",
+      "page_local",
+      "utility"
+    ],
+    "currentValues": [
+      "none",
+      "page",
+      "location"
+    ],
+    "currentMeaning": {
+      "none": "The destination is not the current route/page or current in-page location.",
+      "page": "The route destination identifies the current page; exactly one is required for a non-empty interactive navigation model.",
+      "location": "The anchor destination identifies the current in-page location; at most one exists and an interactive side bookmark requires exactly one."
+    },
+    "currentCardinality": {
+      "interactiveFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "interactiveNonEmptyMode": {
+        "page": "exactly_one",
+        "location": "zero_or_one"
+      },
+      "interactiveSideBookmark": {
+        "location": "exactly_one"
+      },
+      "staticFormatProfiles": [
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "static": {
+        "page": "zero",
+        "location": "zero"
+      },
+      "noneMode": {
+        "destinations": "zero",
+        "page": "zero",
+        "location": "zero"
+      }
+    },
+    "breakpointExposure": {
+      "desktop": [
+        "header",
+        "disclosure",
+        "side_bookmark",
+        "not_exposed",
+        "not_applicable"
+      ],
+      "mobile": [
+        "header",
+        "disclosure",
+        "not_exposed",
+        "not_applicable"
+      ]
+    },
+    "staticExposureValues": [
+      "toc",
+      "pdf_bookmark",
+      "deck_section_marker",
+      "destination_cue",
+      "not_exposed"
+    ],
+    "staticProjectionContract": {
+      "applicableConformanceVariants": [
+        "document_flow.static",
+        "pdf_fixed.static",
+        "deck_presentation.static"
+      ],
+      "outputGroupOrder": [
+        "global_related_destinations",
+        "page_index"
+      ],
+      "groups": {
+        "global_related_destinations": {
+          "selectors": [
+            {
+              "kind": "route",
+              "levels": [
+                "ecosystem",
+                "property"
+              ]
+            },
+            {
+              "kind": "external",
+              "levels": [
+                "ecosystem",
+                "property",
+                "page"
+              ]
+            }
+          ],
+          "requiredStaticExposure": "destination_cue",
+          "representationByFormatProfile": {
+            "document_flow": "related_destination_group",
+            "pdf_fixed": "related_destination_group",
+            "deck_presentation": "opening_or_closing_related_destination_group"
+          }
+        },
+        "page_index": {
+          "selectors": [
+            {
+              "kind": "anchor",
+              "levels": [
+                "page"
+              ],
+              "groups": [
+                "page_local"
+              ]
+            }
+          ],
+          "requiredStaticExposureByFormatProfile": {
+            "document_flow": "toc",
+            "pdf_fixed": "pdf_bookmark",
+            "deck_presentation": "deck_section_marker"
+          },
+          "representationByFormatProfile": {
+            "document_flow": "heading_derived_toc",
+            "pdf_fixed": "heading_derived_pdf_bookmarks",
+            "deck_presentation": "heading_derived_section_markers"
+          }
+        }
+      },
+      "invariants": {
+        "eachDestinationExactlyOneGroup": true,
+        "preserveFields": [
+          "id",
+          "kind",
+          "level",
+          "group",
+          "target",
+          "label",
+          "labelByLocale"
+        ],
+        "preserveRelativeOrderWithinGroup": true,
+        "duplicateDestinationIdsForbidden": true,
+        "duplicateTargetsForbidden": true,
+        "kindOrLevelConversionForbidden": true,
+        "headingAnchorResolutionRequired": true
+      },
+      "unsupportedDestinationBehavior": "block"
+    },
+    "variants": {
+      "web_public.browser": {
+        "allowedModes": [
+          "none",
+          "site",
+          "product"
+        ],
+        "exposureField": "breakpointExposure",
+        "sideBookmarkExposure": {
+          "desktop": "side_bookmark",
+          "mobile": "disclosure"
+        }
+      },
+      "app_interactive.browser": {
+        "allowedModes": [
+          "none",
+          "site",
+          "product"
+        ],
+        "exposureField": "breakpointExposure",
+        "sideBookmarkExposure": {
+          "desktop": "side_bookmark",
+          "mobile": "disclosure"
+        }
+      },
+      "app_interactive.native": {
+        "allowedModes": [
+          "none",
+          "site",
+          "product"
+        ],
+        "exposureField": "breakpointExposure",
+        "sideBookmarkExposure": {
+          "desktop": "side_bookmark",
+          "mobile": "disclosure"
+        }
+      },
+      "document_flow.static": {
+        "allowedModes": [
+          "none",
+          "document"
+        ],
+        "exposureField": "staticExposure",
+        "sideBookmarkExposure": "toc"
+      },
+      "pdf_fixed.static": {
+        "allowedModes": [
+          "none",
+          "document"
+        ],
+        "exposureField": "staticExposure",
+        "sideBookmarkExposure": "pdf_bookmark"
+      },
+      "deck_presentation.static": {
+        "allowedModes": [
+          "none",
+          "deck"
+        ],
+        "exposureField": "staticExposure",
+        "sideBookmarkExposure": "deck_section_marker"
+      },
+      "social_static.static": {
+        "allowedModes": [
+          "none"
+        ],
+        "exposureField": "staticExposure",
+        "sideBookmarkExposure": null
+      }
+    },
+    "controlBudgetConformanceVariants": [
+      "web_public.browser",
+      "app_interactive.browser",
+      "app_interactive.native"
+    ],
+    "controlBudgetsByConformanceVariant": {
+      "web_public.browser": {
+        "desktop": {
+          "brandRequired": true,
+          "maxControls": 4
+        },
+        "mobile": {
+          "brandRequired": true,
+          "maxControls": 2
+        },
+        "minimumDirectTarget": {
+          "value": 44,
+          "unit": "css_px"
+        }
+      },
+      "app_interactive.browser": {
+        "desktop": {
+          "brandRequired": true,
+          "maxControls": 4
+        },
+        "mobile": {
+          "brandRequired": true,
+          "maxControls": 2
+        },
+        "minimumDirectTarget": {
+          "value": 44,
+          "unit": "css_px"
+        }
+      },
+      "app_interactive.native": {
+        "desktop": {
+          "brandRequired": true,
+          "maxControls": 4
+        },
+        "mobile": {
+          "brandRequired": true,
+          "maxControls": 2
+        },
+        "minimumDirectTarget": {
+          "value": 44,
+          "unit": "platform_dp"
+        }
+      }
+    },
+    "sideBookmarkCompatibleFormatProfiles": [
+      "web_public",
+      "app_interactive",
+      "document_flow",
+      "pdf_fixed",
+      "deck_presentation"
+    ]
+  },
+  "componentContractTemplates": {
+    "resolution": "An artifact-resolved implementation record may copy a component contract only from its exact format/runtime reference record or from one exact-format template below. Unknown component IDs, cross-format templates, and caller-authored substitutes block promotion.",
+    "unknownComponentBehavior": "block",
+    "templates": [
+      {
+        "formatProfile": "document_flow",
+        "runtime": "static",
+        "contract": {
+          "componentId": "component.bookmark.side.01",
+          "componentClass": "side_bookmark",
+          "governingRuleIds": [
+            "BOOKMARK-01"
+          ],
+          "purpose": "Project stable page headings into one heading-derived table of contents while keeping ecosystem, property, and external destinations in a separate related-destination group.",
+          "nonPurpose": "It is not global navigation, a browser side rail, a disclosure widget, or a current-location indicator.",
+          "semanticRoles": [
+            "heading_index",
+            "link"
+          ],
+          "contentContract": "Use at least two real locale-labelled page-local heading anchors in source heading order with exact IDs and targets; never mix global or related destinations into the table of contents.",
+          "localeStressFixtureIds": [
+            "format.document.flow.01.08",
+            "target.document.a4-portrait.01.fixture.thai-latin-stress"
+          ],
+          "states": {
+            "default": {
+              "status": "required",
+              "behavior": "The heading-derived table of contents is readable, complete, and ordered like the document headings."
+            },
+            "hover": {
+              "status": "not_applicable",
+              "behavior": "The static document contract does not depend on pointer hover."
+            },
+            "focus": {
+              "status": "not_applicable",
+              "behavior": "The source document preserves descriptive links and native reading order without manufacturing browser focus behavior."
+            },
+            "activePressed": {
+              "status": "not_applicable",
+              "behavior": "The static document contract does not manufacture a pressed state."
+            },
+            "selectedCurrent": {
+              "status": "not_applicable",
+              "behavior": "A static document table of contents does not invent a live current-location state."
+            },
+            "disabled": {
+              "status": "not_applicable",
+              "behavior": "Broken or unavailable heading anchors block validation instead of becoming disabled entries."
+            },
+            "loading": {
+              "status": "not_applicable",
+              "behavior": "All indexed headings exist before the document is emitted."
+            },
+            "empty": {
+              "status": "required",
+              "behavior": "The table of contents is omitted when fewer than two useful heading anchors remain."
+            },
+            "error": {
+              "status": "not_applicable",
+              "behavior": "Broken heading anchors fail validation rather than becoming a visible component state."
+            },
+            "success": {
+              "status": "not_applicable",
+              "behavior": "Following a document cross-reference is not a success state."
+            }
+          },
+          "formatBehavior": {
+            "formatProfile": "document_flow",
+            "behavior": "Use a native heading-derived table of contents with descriptive cross-references; emit global and related destinations separately."
+          },
+          "accessibility": {
+            "name": "The table of contents has an exact locale-specific heading or accessible name.",
+            "role": "Use native document headings, lists, and descriptive cross-references.",
+            "value": "No current-location or expanded browser state is exposed.",
+            "order": "Entry order exactly matches source heading order and native reading order.",
+            "status": "Every table-of-contents entry resolves to its declared heading target."
+          },
+          "tokenRefs": [
+            "tokens.v0.9.4.json#/control/inlineTextLink"
+          ],
+          "evidencePermissionBoundary": "The page index provides orientation only and never changes claim scope, evidence authority, or permission.",
+          "acceptanceFixtureIds": [
+            "BOOKMARK-01-A",
+            "BOOKMARK-01-B",
+            "format.document.flow.01.08",
+            "accessibility.document.links"
+          ],
+          "antiPatterns": [
+            "Browser side rail in a document",
+            "Global routes mixed into the table of contents",
+            "One-anchor table of contents",
+            "Invented current-location state"
+          ]
+        }
+      },
+      {
+        "formatProfile": "pdf_fixed",
+        "runtime": "static",
+        "contract": {
+          "componentId": "component.bookmark.side.01",
+          "componentClass": "side_bookmark",
+          "governingRuleIds": [
+            "BOOKMARK-01"
+          ],
+          "purpose": "Project stable page headings into heading-derived PDF bookmarks while keeping ecosystem, property, and external destinations in a separate related-destination group.",
+          "nonPurpose": "It is not global navigation, a browser side rail, a disclosure widget, or a current-location indicator.",
+          "semanticRoles": [
+            "heading_index",
+            "link"
+          ],
+          "contentContract": "Use at least two real locale-labelled page-local heading anchors in source heading order with exact IDs and targets; never mix global or related destinations into PDF bookmarks.",
+          "localeStressFixtureIds": [
+            "format.pdf.fixed.01.09",
+            "target.pdf.a4-portrait.01.fixture.thai-latin-stress"
+          ],
+          "states": {
+            "default": {
+              "status": "required",
+              "behavior": "PDF bookmarks are readable, complete, and ordered like the tagged source headings."
+            },
+            "hover": {
+              "status": "not_applicable",
+              "behavior": "The fixed PDF contract does not depend on browser pointer hover."
+            },
+            "focus": {
+              "status": "not_applicable",
+              "behavior": "The PDF preserves descriptive link annotations and tag order without manufacturing browser focus behavior."
+            },
+            "activePressed": {
+              "status": "not_applicable",
+              "behavior": "The fixed PDF contract does not manufacture a pressed state."
+            },
+            "selectedCurrent": {
+              "status": "not_applicable",
+              "behavior": "Static PDF bookmarks do not invent a live current-location state."
+            },
+            "disabled": {
+              "status": "not_applicable",
+              "behavior": "Broken or unavailable bookmark targets block validation instead of becoming disabled entries."
+            },
+            "loading": {
+              "status": "not_applicable",
+              "behavior": "All bookmark targets exist before the PDF is emitted."
+            },
+            "empty": {
+              "status": "required",
+              "behavior": "PDF bookmarks are omitted when fewer than two useful heading anchors remain."
+            },
+            "error": {
+              "status": "not_applicable",
+              "behavior": "Broken PDF bookmark targets fail validation rather than becoming a visible component state."
+            },
+            "success": {
+              "status": "not_applicable",
+              "behavior": "Following a PDF bookmark is not a success state."
+            }
+          },
+          "formatBehavior": {
+            "formatProfile": "pdf_fixed",
+            "behavior": "Use heading-derived PDF bookmarks and tagged link annotations; emit global and related destinations separately."
+          },
+          "accessibility": {
+            "name": "The PDF bookmark index has exact locale-specific labels.",
+            "role": "Use heading-derived bookmarks and descriptive tagged links.",
+            "value": "No current-location or expanded browser state is exposed.",
+            "order": "Bookmark order exactly matches source heading and tag order.",
+            "status": "Every PDF bookmark resolves to its declared heading target."
+          },
+          "tokenRefs": [
+            "tokens.v0.9.4.json#/control/inlineTextLink"
+          ],
+          "evidencePermissionBoundary": "The page index provides orientation only and never changes claim scope, evidence authority, or permission.",
+          "acceptanceFixtureIds": [
+            "BOOKMARK-01-A",
+            "BOOKMARK-01-B",
+            "format.pdf.fixed.01.09",
+            "accessibility.pdf.links-bookmarks"
+          ],
+          "antiPatterns": [
+            "Browser side rail in a PDF",
+            "Global routes mixed into PDF bookmarks",
+            "One-anchor PDF bookmark set",
+            "Invented current-location state"
+          ]
+        }
+      },
+      {
+        "formatProfile": "deck_presentation",
+        "runtime": "static",
+        "contract": {
+          "componentId": "component.bookmark.side.01",
+          "componentClass": "side_bookmark",
+          "governingRuleIds": [
+            "BOOKMARK-01"
+          ],
+          "purpose": "Project stable page headings into heading-derived deck section markers while keeping ecosystem, property, and external destinations in a separate opening or closing related-destination group.",
+          "nonPurpose": "It is not global navigation, a browser side rail, a disclosure widget, or a current-location indicator.",
+          "semanticRoles": [
+            "section_index",
+            "destination_cue"
+          ],
+          "contentContract": "Use at least two real locale-labelled page-local heading anchors in source section order with exact IDs and targets; never mix global or related destinations into section markers.",
+          "localeStressFixtureIds": [
+            "format.deck.presentation.01.08",
+            "target.deck.16x9.01.fixture.thai-latin-stress"
+          ],
+          "states": {
+            "default": {
+              "status": "required",
+              "behavior": "Section markers are readable, complete, and ordered like the governed slide sections."
+            },
+            "hover": {
+              "status": "not_applicable",
+              "behavior": "The presentation contract does not depend on pointer hover."
+            },
+            "focus": {
+              "status": "not_applicable",
+              "behavior": "The deck preserves slide-object and accessibility order without manufacturing browser focus behavior."
+            },
+            "activePressed": {
+              "status": "not_applicable",
+              "behavior": "The presentation contract does not manufacture a pressed state."
+            },
+            "selectedCurrent": {
+              "status": "not_applicable",
+              "behavior": "Static section markers do not invent a live current-location state."
+            },
+            "disabled": {
+              "status": "not_applicable",
+              "behavior": "Broken or unavailable section targets block validation instead of becoming disabled entries."
+            },
+            "loading": {
+              "status": "not_applicable",
+              "behavior": "All section targets exist before the deck is emitted."
+            },
+            "empty": {
+              "status": "required",
+              "behavior": "Section markers are omitted when fewer than two useful heading anchors remain."
+            },
+            "error": {
+              "status": "not_applicable",
+              "behavior": "Broken section targets fail validation rather than becoming a visible component state."
+            },
+            "success": {
+              "status": "not_applicable",
+              "behavior": "Following a deck section marker is not a success state."
+            }
+          },
+          "formatBehavior": {
+            "formatProfile": "deck_presentation",
+            "behavior": "Use heading-derived section markers; emit global and related destinations in a separate opening or closing group."
+          },
+          "accessibility": {
+            "name": "Section markers use exact locale-specific labels.",
+            "role": "Use readable section labels or descriptive presentation links without imitating a browser control.",
+            "value": "No current-location or expanded browser state is exposed.",
+            "order": "Marker order exactly matches governed slide-section and accessibility order.",
+            "status": "Every section marker resolves to its declared section target."
+          },
+          "tokenRefs": [
+            "tokens.v0.9.4.json#/control/inlineTextLink"
+          ],
+          "evidencePermissionBoundary": "The page index provides orientation only and never changes claim scope, evidence authority, or permission.",
+          "acceptanceFixtureIds": [
+            "BOOKMARK-01-A",
+            "BOOKMARK-01-B",
+            "format.deck.presentation.01.08",
+            "accessibility.deck.alt-reading-order"
+          ],
+          "antiPatterns": [
+            "Browser side rail in a deck",
+            "Global routes mixed into section markers",
+            "One-anchor section index",
+            "Invented current-location state"
+          ]
+        }
+      }
+    ]
+  },
+  "ctaDestinationContract": {
+    "kinds": [
+      "anchor",
+      "route",
+      "external",
+      "download",
+      "form",
+      "contact",
+      "command"
+    ],
+    "profiles": {
+      "web_public": {
+        "mode": "direct",
+        "techniques": [
+          "direct_control"
+        ],
+        "kinds": [
+          "anchor",
+          "route",
+          "external",
+          "download",
+          "form",
+          "contact",
+          "command"
+        ]
+      },
+      "app_interactive": {
+        "mode": "direct",
+        "techniques": [
+          "direct_control"
+        ],
+        "kinds": [
+          "anchor",
+          "route",
+          "external",
+          "download",
+          "form",
+          "contact",
+          "command"
+        ]
+      },
+      "document_flow": {
+        "mode": "static_equivalent",
+        "techniques": [
+          "working_link",
+          "instruction"
+        ],
+        "kinds": [
+          "anchor",
+          "route",
+          "external",
+          "download",
+          "form",
+          "contact",
+          "command"
+        ]
+      },
+      "pdf_fixed": {
+        "mode": "static_equivalent",
+        "techniques": [
+          "working_link_with_visible_destination",
+          "instruction"
+        ],
+        "kinds": [
+          "anchor",
+          "route",
+          "external",
+          "download",
+          "form",
+          "contact",
+          "command"
+        ]
+      },
+      "deck_presentation": {
+        "mode": "static_equivalent",
+        "techniques": [
+          "working_link_with_visible_destination",
+          "verified_qr_with_text",
+          "instruction"
+        ],
+        "kinds": [
+          "anchor",
+          "route",
+          "external",
+          "download",
+          "form",
+          "contact",
+          "command"
+        ]
+      },
+      "social_static": {
+        "mode": "static_equivalent",
+        "techniques": [
+          "destination_cue"
+        ],
+        "kinds": [
+          "route",
+          "external",
+          "download",
+          "form",
+          "contact"
+        ]
+      }
+    },
+    "commandStaticTechnique": "instruction",
+    "unknownKindOrProfileBehavior": "block"
+  },
+  "motionAssignmentContract": {
+    "decisionValues": [
+      "assigned",
+      "no_motion"
+    ],
+    "commonAssignmentRequiredFields": [
+      "subject",
+      "role",
+      "benefit",
+      "protectedRole",
+      "initialVisibility",
+      "layoutGeometry",
+      "staticFallback"
+    ],
+    "assignmentRequiredFieldsByRuntimeClass": {
+      "browser_observer": [
+        "reducedMotion",
+        "observerFailure"
+      ],
+      "native_state": [
+        "reducedMotion",
+        "nativeInterruption"
+      ],
+      "presenter_sequence": [
+        "presenterSkip"
+      ]
+    },
+    "roles": [
+      "section_opener",
+      "peer_group",
+      "paired_inline",
+      "proof_preview",
+      "contact_group"
+    ],
+    "benefits": [
+      "state",
+      "sequence",
+      "progress",
+      "spatial_relationship",
+      "cause_and_effect"
+    ],
+    "finalStateRequirements": {
+      "initialVisibility": "visible",
+      "layoutGeometry": "stable",
+      "staticFallback": "final_state",
+      "reducedMotion": "final_state",
+      "observerFailure": "final_state",
+      "nativeInterruption": "final_state",
+      "presenterSkip": "final_state"
+    },
+    "noMotionDecision": {
+      "decision": "no_motion",
+      "assignments": [],
+      "reasonRequired": true
+    }
+  },
+  "commonRuleIds": [
+    "GOV-01",
+    "AUTHORITY-01",
+    "LAYER-01",
+    "COMPARE-01",
+    "EVIDENCE-01",
+    "OUTPUT-CLARITY-01",
+    "AHA-01",
+    "BRAND-01",
+    "LOGO-01",
+    "COLOR-01",
+    "SURFACE-01",
+    "TYPE-01",
+    "ICON-01",
+    "LAYOUT-01",
+    "THEME-01",
+    "ASSET-DELIVERY-01",
+    "PROFILE-01",
+    "CAPABILITY-01",
+    "PARITY-01",
+    "CTA-01",
+    "CTA-02",
+    "A11Y-01",
+    "CLAIM-MACHINE-01",
+    "SECURITY-01",
+    "FORMAT-PARITY-01",
+    "MEDIA-01",
+    "COMPONENT-01",
+    "QA-01",
+    "RELEASE-01"
+  ],
+  "commonTestMatrix": [
+    "final visible bytes and metadata contain no internal governance state, placeholder, local path, fixture ID, or unresolved-dependency wording",
+    "every visible material limitation is specific, proximal, plain-language, and linked to its affected claim or action"
+  ],
+  "capabilityRuleIds": {
+    "claims": [
+      "EVIDENCE-01",
+      "CLAIM-MACHINE-01"
+    ],
+    "evidence": [
+      "EVIDENCE-01"
+    ],
+    "data_table": [
+      "EVIDENCE-01",
+      "A11Y-01",
+      "FORMAT-PARITY-01",
+      "EVID-05"
+    ],
+    "data_visualization": [
+      "DATAVIZ-01",
+      "DATAVIZ-02",
+      "DATAVIZ-03",
+      "DATAVIZ-04",
+      "DATAVIZ-05",
+      "GATE-01",
+      "EVID-05"
+    ],
+    "map": [
+      "MAP-01",
+      "DATAVIZ-02",
+      "DATAVIZ-03",
+      "DATAVIZ-04",
+      "GATE-01",
+      "EVID-05"
+    ],
+    "form": [
+      "CTA-01",
+      "CTA-02",
+      "A11Y-01",
+      "SECURITY-01"
+    ],
+    "authentication": [
+      "A11Y-01",
+      "SECURITY-01"
+    ],
+    "permissions": [
+      "A11Y-01",
+      "SECURITY-01"
+    ],
+    "sharing": [
+      "CTA-01",
+      "SECURITY-01",
+      "FORMAT-PARITY-01"
+    ],
+    "download": [
+      "CTA-01",
+      "SECURITY-01",
+      "FORMAT-PARITY-01"
+    ],
+    "external_effect": [
+      "CTA-01",
+      "SECURITY-01",
+      "QA-01"
+    ],
+    "carousel": [
+      "CAROUSEL-01"
+    ],
+    "social_feed": [
+      "SOCIAL-FEED-01"
+    ],
+    "motion": [
+      "MOTION-01",
+      "MOTION-02",
+      "MOTION-03",
+      "MOTION-04",
+      "MOTIF-01",
+      "MOTIF-02",
+      "MOTIF-03",
+      "MOTIF-04",
+      "MOTIF-05",
+      "MOTIF-06"
+    ],
+    "agent_action": [
+      "AGENT-01",
+      "SECURITY-01"
+    ],
+    "telemetry": [
+      "SECURITY-01",
+      "QA-01"
+    ]
+  },
+  "packs": [
+    {
+      "id": "web.public.01",
+      "formatProfile": "web_public",
+      "title": "Public web",
+      "kitRef": "kit.web.base.01",
+      "targetProfileRefs": [
+        "target.web.responsive.360-1600.01"
+      ],
+      "requiredRuleIds": [
+        "WEBFMT-01",
+        "NAV-01",
+        "NAV-02",
+        "CTRL-01",
+        "DISCOVERY-01",
+        "DISCOVERY-02",
+        "DISCOVERY-03",
+        "FAVICON-01"
+      ],
+      "requiredRuleIdsByRuntime": {
+        "browser": []
+      },
+      "conditionalRuleIds": {
+        "side_bookmark": [
+          "BOOKMARK-01"
+        ],
+        "motion": [
+          "MOTION-01",
+          "MOTION-02",
+          "MOTION-03"
+        ],
+        "carousel": [
+          "CAROUSEL-01"
+        ],
+        "social_feed": [
+          "SOCIAL-FEED-01"
+        ],
+        "agent_action": [
+          "AGENT-01"
+        ]
+      },
+      "requiredOutputs": [
+        "semantic initial HTML",
+        "responsive and print styles",
+        "canonical and locale graph",
+        "page-kind structured data",
+        "social preview metadata for the square feed creative and the 1200 × 630 link preview",
+        "six-size icon set with web manifest and theme-color (FAVICON-01)",
+        "title in the pattern [page] · [product]",
+        "optional llms.txt navigation aid",
+        "no-script primary meaning",
+        "production verification receipt"
+      ],
+      "testMatrix": [
+        "minimum nominal and maximum supported viewport",
+        "Thai and English",
+        "light and dark when offered",
+        "keyboard touch and assistive technology",
+        "no JavaScript",
+        "reduced motion",
+        "slow blocked and failed third party",
+        "initial versus hydrated versus restored history",
+        "deployed canonical URL",
+        "icon set sizes, manifest, theme-color and title pattern resolve",
+        "OG 1200 × 630 recognisers, safe areas and metadata templates",
+        "motif job, beat, joy budget, placement, measured carrier in both themes and hash parity (MOTIF-01…06) when identity motion or motifs are present"
+      ]
+    },
+    {
+      "id": "app.interactive.01",
+      "formatProfile": "app_interactive",
+      "title": "Interactive product",
+      "kitRef": "kit.app.base.01",
+      "targetProfileRefs": [
+        "target.app.browser-responsive.360-1600.01",
+        "target.app.native-responsive.360-1280.01"
+      ],
+      "requiredRuleIds": [
+        "APPFMT-01",
+        "NAV-01",
+        "NAV-02",
+        "CTRL-01"
+      ],
+      "requiredRuleIdsByRuntime": {
+        "browser": [
+          "DISCOVERY-01",
+          "DISCOVERY-02",
+          "DISCOVERY-03"
+        ],
+        "native": []
+      },
+      "conditionalRuleIds": {
+        "side_bookmark": [
+          "BOOKMARK-01"
+        ],
+        "motion": [
+          "MOTION-01",
+          "MOTION-02",
+          "MOTION-03"
+        ],
+        "carousel": [
+          "CAROUSEL-01"
+        ],
+        "social_feed": [
+          "SOCIAL-FEED-01"
+        ],
+        "agent_action": [
+          "AGENT-01"
+        ]
+      },
+      "requiredOutputs": [
+        "state model",
+        "direct semantic controls",
+        "permission and action contract",
+        "recovery and receipt behavior",
+        "accessible final state for reduced motion"
+      ],
+      "testMatrix": [
+        "idle loading success empty partial stale permission and error",
+        "keyboard touch and assistive technology",
+        "minimum nominal and maximum supported viewport",
+        "Thai and English",
+        "reduced motion",
+        "network interruption and restoration",
+        "history and session restoration"
+      ],
+      "testMatrixByRuntime": {
+        "browser": [
+          "initial HTML, hydrated state, restored history, canonical URL, and browser discovery projection preserve the same task meaning",
+          "200 percent zoom, 400 percent reflow, failed observer, and browser safe-area fixtures preserve the complete task and recovery path"
+        ],
+        "native": [
+          "platform accessibility API, 200 percent dynamic type, native safe area, and hardware-keyboard fixtures preserve the complete task",
+          "backgrounding, interruption, process restoration, denied permission, and interrupted transition preserve state and a truthful recovery path"
+        ]
+      }
+    },
+    {
+      "id": "document.flow.01",
+      "formatProfile": "document_flow",
+      "title": "Flowing document",
+      "kitRef": "kit.document.flow.01",
+      "targetProfileRefs": [
+        "target.document.a4-portrait.01"
+      ],
+      "requiredRuleIds": [
+        "DOCFMT-01"
+      ],
+      "conditionalRuleIds": {
+        "side_bookmark": [
+          "BOOKMARK-01"
+        ]
+      },
+      "requiredOutputs": [
+        "semantic heading hierarchy",
+        "table of contents when length warrants",
+        "working links and cross-references",
+        "labelled tables and figures",
+        "source notes and version identity",
+        "accessible document properties"
+      ],
+      "testMatrix": [
+        "native structure inspection",
+        "Thai and English stress text",
+        "page break and orphan control",
+        "links and cross-references",
+        "tables and figures",
+        "screen and print rendering",
+        "export to PDF parity",
+        "ecosystem property route and external destinations remain in one related-destination group while page anchors remain only in the heading-derived table of contents with exact IDs kinds levels targets labels relative order and no duplicates"
+      ]
+    },
+    {
+      "id": "pdf.fixed.01",
+      "formatProfile": "pdf_fixed",
+      "title": "Fixed PDF",
+      "kitRef": "kit.pdf.fixed.01",
+      "targetProfileRefs": [
+        "target.pdf.a4-portrait.01"
+      ],
+      "requiredRuleIds": [
+        "PDFFMT-01"
+      ],
+      "conditionalRuleIds": {
+        "side_bookmark": [
+          "BOOKMARK-01"
+        ]
+      },
+      "requiredOutputs": [
+        "print-safe fixed pages",
+        "tags and reading order when required",
+        "bookmarks when length warrants",
+        "working links",
+        "embedded or approved fallback fonts",
+        "extractable text where possible",
+        "document metadata and evidence references"
+      ],
+      "testMatrix": [
+        "all-pages visual render",
+        "Thai and English stress text",
+        "text extraction",
+        "font and glyph inventory",
+        "tags reading order and alternatives",
+        "bookmarks and links",
+        "screen and print contrast",
+        "file integrity",
+        "ecosystem property route and external destinations remain in one related-destination group while page anchors remain only in heading-derived PDF bookmarks with exact IDs kinds levels targets labels relative order and no duplicates"
+      ]
+    },
+    {
+      "id": "deck.presentation.01",
+      "formatProfile": "deck_presentation",
+      "title": "Presentation deck",
+      "kitRef": "kit.deck.presentation.01",
+      "targetProfileRefs": [
+        "target.deck.16x9.01"
+      ],
+      "requiredRuleIds": [
+        "DECKFMT-01"
+      ],
+      "conditionalRuleIds": {
+        "side_bookmark": [
+          "BOOKMARK-01"
+        ],
+        "motion": [
+          "MOTION-01",
+          "MOTION-03"
+        ]
+      },
+      "requiredOutputs": [
+        "one primary idea per slide",
+        "section progress or agenda",
+        "distance-legible hierarchy",
+        "source cues and appendix references",
+        "working links or QR destinations for actions",
+        "editable structure when required"
+      ],
+      "testMatrix": [
+        "slide montage",
+        "distance legibility",
+        "Thai and English stress text",
+        "overflow and safe area",
+        "links QR and source references",
+        "alt text and reading order",
+        "static PDF export parity",
+        "ecosystem property route and external destinations remain in one opening or closing related-destination group while page anchors remain only in heading-derived section markers with exact IDs kinds levels targets labels relative order and no duplicates"
+      ]
+    },
+    {
+      "id": "social.static.01",
+      "formatProfile": "social_static",
+      "title": "Static social media",
+      "kitRef": "kit.social.static.01",
+      "targetProfileRefs": [
+        "target.social.square.1080.01",
+        "target.social.og.1200x630.01"
+      ],
+      "requiredRuleIds": [
+        "SOCIALFMT-01"
+      ],
+      "conditionalRuleIds": {},
+      "requiredOutputs": [
+        "one approved message",
+        "exactly one governed target per creative: 1080 × 1080 square for feed posts or 1200 × 630 for link previews; every other ratio blocks because no governed extension registry ships",
+        "safe-area-compliant composition",
+        "approved identity implementation",
+        "source or destination cue",
+        "three recognisers on the 1200 × 630 creative",
+        "static final state (no motif, no overlay)"
+      ],
+      "testMatrix": [
+        "1080 × 1080 feed-size legibility",
+        "square target and center-crop fixture; no undeclared ratio",
+        "Thai and English stress text",
+        "safe areas and overlays",
+        "identity and contrast",
+        "file type size and color profile",
+        "claim and destination parity",
+        "1200 × 630 recognisers, text-safe 1000 × 560, central 630 square and 2:1 crop fixtures",
+        "og:title ≤ 60 and og:description ≤ 155 template parity"
+      ]
+    }
+  ],
+  "overlays": [
+    {
+      "id": "claims.bound.01",
+      "capability": "claims",
+      "title": "Governed claims overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "EVIDENCE-01",
+        "CLAIM-MACHINE-01",
+        "OUTPUT-CLARITY-01"
+      ],
+      "requiredFields": [
+        "schemaVersion",
+        "releaseRef",
+        "manifestId",
+        "contentRelease",
+        "owner",
+        "records"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/claim-manifest.schema.1.1.json",
+      "configSchemaSha256": "3f53a2f9e8ca88b398f5fb871e0b0de01e488db552ce9fedc3942f8d9d79f11a",
+      "configRefContract": "Build Card capabilityConfigRefs.claims resolves a hash-bound claim manifest containing every requiredFields entry.",
+      "testMatrix": [
+        "every projected claim resolves through the manifest to immutable record bytes",
+        "status, locale, temporal validity, rights, and public eligibility match the delivery audience",
+        "material limitations remain specific and proximal in every supported format"
+      ],
+      "fallback": "omit the claim-dependent module or keep the artifact as an internal preview"
+    },
+    {
+      "id": "evidence.bound.01",
+      "capability": "evidence",
+      "title": "Evidence binding overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "EVIDENCE-01",
+        "CLAIM-MACHINE-01"
+      ],
+      "requiredFields": [
+        "schemaVersion",
+        "releaseRef",
+        "manifestId",
+        "contentRelease",
+        "owner",
+        "records"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/claim-manifest.schema.1.1.json",
+      "configSchemaSha256": "3f53a2f9e8ca88b398f5fb871e0b0de01e488db552ce9fedc3942f8d9d79f11a",
+      "configRefContract": "Build Card capabilityConfigRefs.evidence resolves a hash-bound claim manifest containing every requiredFields entry.",
+      "testMatrix": [
+        "each evidence-bearing statement resolves to an approved claim record",
+        "source, grain, release, rights, confidence, and limitation boundaries remain inspectable",
+        "cross-product or cross-city comparisons declare schema and release compatibility"
+      ],
+      "fallback": "present only approved non-evidentiary orientation copy and remove unsupported comparisons"
+    },
+    {
+      "id": "data.table.01",
+      "capability": "data_table",
+      "title": "Data table overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "EVIDENCE-01",
+        "A11Y-01",
+        "FORMAT-PARITY-01",
+        "EVID-05"
+      ],
+      "requiredFields": [
+        "capability",
+        "question",
+        "columns",
+        "rows",
+        "dataGrain",
+        "claimIds",
+        "evidenceIds",
+        "accessibleSummary",
+        "cellStates"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.data_table resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "headers, units, grain, missing values, and sorting preserve the governed proposition",
+        "the accessible summary, claims, evidence, and visible table preserve the same analytical meaning",
+        "cells render their state with glyph, reason, and metadata ink"
+      ],
+      "testMatrixByFormatClass": {
+        "interactive": [
+          "keyboard and assistive-technology reading order matches the visual table and every interactive sort or selection state",
+          "loading, empty, partial, error, and reset states preserve headers, units, grain, sources, and material limitations"
+        ],
+        "static": [
+          "the final static table preserves headers, units, grain, missing values, sources, and material limitations without implying sorting or selection controls",
+          "native structure, tagged export, slide reading order, or social-size summary is verified according to the selected static format"
+        ]
+      },
+      "fallback": "labelled static table or concise structured summary with the same proposition"
+    },
+    {
+      "id": "form.transaction.01",
+      "capability": "form",
+      "title": "Form transaction overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "CTA-01",
+        "CTA-02",
+        "A11Y-01",
+        "SECURITY-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "purpose",
+        "fields",
+        "validation",
+        "submission",
+        "successState",
+        "errorState",
+        "privacyNoticeRef"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.form resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "labels, requirements, validation, and errors are direct and programmatically associated",
+        "submission consequence and data use are clear before commitment",
+        "success, duplicate, interruption, and recovery states preserve user input safely"
+      ],
+      "fallback": "a direct contact or task route that preserves purpose, privacy notice, and next step"
+    },
+    {
+      "id": "authentication.session.01",
+      "capability": "authentication",
+      "title": "Authentication overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "A11Y-01",
+        "SECURITY-01",
+        "CTA-02"
+      ],
+      "requiredFields": [
+        "capability",
+        "identityProvider",
+        "entryState",
+        "successState",
+        "failureState",
+        "recoveryPath",
+        "sessionPolicy"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.authentication resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "entry, success, failure, expiry, and recovery states are keyboard and screen-reader operable",
+        "identity-provider and session boundaries are explicit before data leaves the artifact",
+        "failed authentication never exposes restricted content or internal diagnostics"
+      ],
+      "fallback": "retain public read-only content and provide a safe sign-in recovery route"
+    },
+    {
+      "id": "permissions.decision.01",
+      "capability": "permissions",
+      "title": "Permission decision overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "A11Y-01",
+        "SECURITY-01",
+        "AUTHORITY-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "resource",
+        "actor",
+        "allowedOperations",
+        "decisionStates",
+        "denialRecovery"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.permissions resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "allowed, denied, expired, revoked, and unknown decisions remain distinguishable",
+        "controls do not imply authority before a hash-bound permission decision exists",
+        "denial explains the safe recovery path without leaking protected details"
+      ],
+      "fallback": "read-only state with a bounded request-access or return route"
+    },
+    {
+      "id": "sharing.boundary.01",
+      "capability": "sharing",
+      "title": "Sharing overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "CTA-01",
+        "SECURITY-01",
+        "FORMAT-PARITY-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "objectRef",
+        "audiences",
+        "destinations",
+        "permissionPolicy",
+        "receiptPresentation",
+        "revocationPolicy"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.sharing resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "audience, destination, consequence, and revocation boundary are clear before sharing",
+        "private or restricted content cannot be projected to a broader audience",
+        "static formats preserve a verified destination cue without simulating completion"
+      ],
+      "fallback": "copy a governed canonical reference without transmitting restricted content"
+    },
+    {
+      "id": "download.integrity.01",
+      "capability": "download",
+      "title": "Download integrity overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "CTA-01",
+        "SECURITY-01",
+        "FORMAT-PARITY-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "resourceRef",
+        "fileName",
+        "mediaType",
+        "byteSize",
+        "integritySha256",
+        "rights",
+        "fallback"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.download resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "file name, type, size, rights, and consequence are visible before download",
+        "delivered bytes match the declared integrity hash",
+        "unavailable or failed downloads provide a truthful recovery route"
+      ],
+      "fallback": "open a governed canonical source page with equivalent meaning"
+    },
+    {
+      "id": "external.effect.01",
+      "capability": "external_effect",
+      "title": "External effect overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "CTA-01",
+        "CTA-02",
+        "SECURITY-01",
+        "QA-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "effectClass",
+        "external",
+        "cost",
+        "reversible",
+        "confirmationPolicy",
+        "permissionContract",
+        "progressPresentationContract",
+        "resultPresentationContract",
+        "recoveryContract",
+        "receiptSchemaBinding"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.external_effect resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "externality, cost, reversibility, and confirmation match the immutable action definition",
+        "progress never implies completion and terminal state produces a bound receipt",
+        "failure, cancellation, retry, and recovery preserve authority and user control"
+      ],
+      "fallback": "provide an inspectable draft or handoff without committing the external effect"
+    },
+    {
+      "id": "carousel.sequence.01",
+      "capability": "carousel",
+      "title": "Carousel overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "CAROUSEL-01",
+        "A11Y-01",
+        "MOTION-02"
+      ],
+      "requiredFields": [
+        "capability",
+        "items",
+        "currentItem",
+        "controls",
+        "keyboardBehavior",
+        "reducedMotionBehavior",
+        "staticFallback"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.carousel resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "current item, total count, previous, and next controls are perceivable and operable",
+        "focus, swipe, keyboard, autoplay, and reduced-motion behavior preserve order and control",
+        "no-script and static representations expose the same essential sequence"
+      ],
+      "fallback": "ordered static list exposing every essential item"
+    },
+    {
+      "id": "social.feed.01",
+      "capability": "social_feed",
+      "title": "Social feed overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "SOCIAL-FEED-01",
+        "MEDIA-01",
+        "SECURITY-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "source",
+        "items",
+        "ordering",
+        "refreshPolicy",
+        "emptyState",
+        "errorState",
+        "accessibleSummary"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.social_feed resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "source, ordering, age, and refresh state remain visible and truthful",
+        "loading, empty, partial, stale, blocked, and failed provider states preserve the primary page meaning",
+        "provider content rights, alternatives, and outbound destinations are bound"
+      ],
+      "fallback": "static approved highlights plus a direct source link"
+    },
+    {
+      "id": "motion.approach.02",
+      "capability": "motion",
+      "title": "Beneficial motion overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "deck_presentation"
+      ],
+      "compatibleConformanceVariants": [
+        "web_public.browser",
+        "app_interactive.browser",
+        "app_interactive.native",
+        "deck_presentation.static"
+      ],
+      "requiredRuleIds": [
+        "MOTION-01",
+        "MOTION-03",
+        "A11Y-01",
+        "MOTION-02",
+        "MOTION-04",
+        "MOTIF-01",
+        "MOTIF-02",
+        "MOTIF-03",
+        "MOTIF-04",
+        "MOTIF-05",
+        "MOTIF-06"
+      ],
+      "requiredRuleIdsByRuntimeClass": {
+        "browser_observer": [
+          "MOTION-02",
+          "MOTION-03"
+        ],
+        "native_state": [
+          "MOTION-02",
+          "MOTION-03"
+        ],
+        "presenter_sequence": [
+          "MOTION-03"
+        ]
+      },
+      "requiredFieldsByRuntimeClass": {
+        "browser_observer": [
+          "mode",
+          "opacityDurationMs",
+          "transformDurationMs",
+          "mediaDurationMs",
+          "blockDistancePx",
+          "inlineDistancePx",
+          "scaleFrom",
+          "staggerStepMs",
+          "staggerCapMs",
+          "staggerBeatCount",
+          "staggerDelayFormula",
+          "opacityEasing",
+          "transformEasing",
+          "pressEasing",
+          "observerThreshold",
+          "observerRootMargin",
+          "initializationWatchdogMs",
+          "reachedContentFailsafeFrames",
+          "finalHiddenFinalFlashForbidden",
+          "observersPerDocumentRoot",
+          "onceOnlyUnobserve",
+          "prePaintArmingRequiresNormalMotionAndObserver"
+        ],
+        "native_state": [
+          "mode",
+          "feedbackDurationMs",
+          "stateDurationMs",
+          "maximumTransitionMs",
+          "reducedMotionFinalState",
+          "layoutGeometry",
+          "interruptionFinalState"
+        ],
+        "presenter_sequence": [
+          "mode",
+          "sequencePurpose",
+          "trigger",
+          "stepDurationMs",
+          "maximumSteps",
+          "staticEquivalent",
+          "finalFrameRequired"
+        ]
+      },
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json#/$defs/motion",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.motion resolves a hash-bound configuration whose schema variant and complete required field set exactly match the selected runtime class.",
+      "testMatrix": [
+        "motion is assigned only when it clarifies state, sequence, progress, causality, or spatial continuity and the static final state preserves the same meaning",
+        "identity motion and motifs replay while at least 14% visible, stop off-screen, hold final state under reduced motion, no-JavaScript, and print, use no infinite iteration, carry registered jobs, stay within three moments per route, and sit on a measured carrier in every rendered theme"
+      ],
+      "testMatrixByRuntimeClass": {
+        "browser_observer": [
+          "reduced motion exposes the complete final state without dependence on observers or animation events",
+          "late initialization, restored history, blocked script, failed observer, and final-hidden-state probes cannot hide content",
+          "browser approach entry uses only opacity and transform with the exact motion-riddim-approach-02 timing distance direction and four-beat stagger formula while layout focus reading order and scroll position remain stable"
+        ],
+        "native_state": [
+          "platform reduced-motion mode preserves the complete final state and task causality without decorative movement",
+          "backgrounding, interruption, cancellation, restoration, and view disposal cannot hide content, lose progress, or leave an ambiguous transition state",
+          "native view order and platform accessibility traversal order preserve the same semantic reading sequence before, during, and after the state transition",
+          "native motion uses only the selected native_state configuration and stable native layout lifecycle without browser opacity-transform recipes observer fields Riddim distance tokens or stagger formulas"
+        ],
+        "presenter_sequence": [
+          "manual advance and presenter skip both reach the complete governed final frame without changing the approved slide meaning",
+          "static export contains the complete final frame and does not depend on browser observers, runtime reduced-motion APIs, or animation events",
+          "presenter motion uses only the selected presenter_sequence configuration and preserves slide object order and the complete final frame without browser observer fields opacity-transform recipes or Riddim stagger tokens"
+        ]
+      },
+      "fallback": "immediate complete final state with no transform or staged reveal",
+      "requiredFields": [
+        "mode"
+      ]
+    },
+    {
+      "id": "agent.action.01",
+      "capability": "agent_action",
+      "title": "Agent action overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "AGENT-01",
+        "SECURITY-01",
+        "AUTHORITY-01",
+        "CTA-02"
+      ],
+      "requiredFields": [
+        "schemaVersion",
+        "releaseRef",
+        "definitionId",
+        "artifactId",
+        "actionId",
+        "allowedActorClasses",
+        "productScope",
+        "operation",
+        "input",
+        "permissionPolicy",
+        "sideEffect",
+        "confirmationPolicy",
+        "resultSchemaRef",
+        "resultSchemaSha256",
+        "receiptSchemaRef",
+        "receiptSchemaSha256",
+        "errorBehavior",
+        "recoveryPolicy"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/agent-action-definition.schema.1.3.json",
+      "configSchemaSha256": "e5b8f0b3f23b54d068943440c8d7b8dc7a4be3abc4b889f0d4f12e0c4e35c5d0",
+      "configRefContract": "Build Card capabilityConfigRefs.agent_action resolves a hash-bound immutable agent action definition containing every requiredFields entry.",
+      "testMatrix": [
+        "definition, actor, product scope, input schema, authority, operation, and side-effect axes remain hash-bound",
+        "external or costly actions require their distinct authority classes and consequential actions require confirmation",
+        "succeeded, failed, and cancelled terminal states bind result, recovery, and audience-safe receipt projections"
+      ],
+      "fallback": "read-only inspection or a human-reviewable draft with no committed side effect"
+    },
+    {
+      "id": "telemetry.privacy.01",
+      "capability": "telemetry",
+      "title": "Telemetry overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive"
+      ],
+      "requiredRuleIds": [
+        "SECURITY-01",
+        "QA-01",
+        "OUTPUT-CLARITY-01"
+      ],
+      "requiredFields": [
+        "capability",
+        "events",
+        "consentPolicy",
+        "dataClassification",
+        "retention",
+        "destinations",
+        "redaction",
+        "failureBehavior"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.telemetry resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "events collect only declared fields under the effective consent and classification policy",
+        "destinations, retention, redaction, opt-out, and deletion behavior are enforceable",
+        "blocked or failed telemetry never blocks the primary user outcome or leaks diagnostics"
+      ],
+      "fallback": "disable telemetry while preserving the complete user experience"
+    },
+    {
+      "id": "data.visualization.01",
+      "capability": "data_visualization",
+      "title": "Data visualization overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "DATAVIZ-01",
+        "COMPARE-01",
+        "EVIDENCE-01",
+        "COLOR-01",
+        "A11Y-01",
+        "CLAIM-MACHINE-01",
+        "FORMAT-PARITY-01",
+        "DATAVIZ-02",
+        "DATAVIZ-03",
+        "DATAVIZ-04",
+        "DATAVIZ-05",
+        "GATE-01",
+        "EVID-05"
+      ],
+      "requiredFields": [
+        "capability",
+        "question",
+        "measure",
+        "unit",
+        "denominator",
+        "time",
+        "geography",
+        "dataGrain",
+        "transform",
+        "uncertainty",
+        "schemaRelease",
+        "claimIds",
+        "evidenceIds",
+        "accessibleAlternative",
+        "scaleFamilies",
+        "valueStates"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.data_visualization resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "question measure unit denominator time geography and grain are visible or directly available",
+        "scale transform uncertainty missing states claims evidence schema and content release preserve the approved analytical meaning",
+        "scale families per zone, series variant vs energy accent, derived dark anchors (warm lane by its formula), no analytical value inside a retired hue window, and the five value states resolve and render"
+      ],
+      "testMatrixByFormatClass": {
+        "interactive": [
+          "keyboard, screen reader, touch, focus, selection, filtering, and reset states expose the same proposition as the visual encoding",
+          "loading, empty, partial, error, and restored states preserve scale, annotation, uncertainty, source, and material limitation"
+        ],
+        "static": [
+          "the final static visual and its proximate table or structured alternative expose the same proposition without implying unavailable interaction",
+          "native document structure, PDF tags, slide reading order, or social feed-size fixture preserves labels, sources, uncertainty, and material limitations"
+        ]
+      },
+      "fallback": "labelled static final state plus an accessible table or equivalent"
+    },
+    {
+      "id": "map.spatial.01",
+      "capability": "map",
+      "title": "Spatial map overlay",
+      "compatibleFormatProfiles": [
+        "web_public",
+        "app_interactive",
+        "document_flow",
+        "pdf_fixed",
+        "deck_presentation",
+        "social_static"
+      ],
+      "requiredRuleIds": [
+        "MAP-01",
+        "COMPARE-01",
+        "EVIDENCE-01",
+        "COLOR-01",
+        "A11Y-01",
+        "CLAIM-MACHINE-01",
+        "FORMAT-PARITY-01",
+        "MEDIA-01",
+        "DATAVIZ-02",
+        "DATAVIZ-03",
+        "DATAVIZ-04",
+        "GATE-01",
+        "EVID-05"
+      ],
+      "requiredFields": [
+        "capability",
+        "geographyId",
+        "boundarySource",
+        "purpose",
+        "coveredArea",
+        "dataGrain",
+        "time",
+        "unit",
+        "schemaRelease",
+        "rightsAndAttribution",
+        "dataStates",
+        "nonSpatialAlternative",
+        "exportReceipt",
+        "scaleFamilies"
+      ],
+      "configSchemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json",
+      "configSchemaSha256": "58c9c7bdbbb355002fb3cd62e7bc07c96f64640759ffcc388dbeddfa1c1d4a38",
+      "configRefContract": "Build Card capabilityConfigRefs.map resolves an object containing every requiredFields entry.",
+      "testMatrix": [
+        "geography boundary coverage grain time unit projection claim evidence rights attribution schema and export receipt are declared",
+        "no-data out-of-scope and low-confidence states remain distinct without color alone and preserve the bounded spatial meaning",
+        "map units carry one of the five value states and the legend shows every present state; dark classes are derived; no class anchor sits in a retired hue window"
+      ],
+      "testMatrixByFormatClass": {
+        "interactive": [
+          "keyboard, screen reader, touch, focus, selected, pan, zoom, and reset states expose the same bounded meaning as the visual map",
+          "loading, empty, partial, error, restored, and unavailable-layer states preserve boundary, coverage, source, and material limitations"
+        ],
+        "static": [
+          "the final static map and its proximate non-spatial alternative expose the same bounded meaning without selected, focus, pan, or zoom affordances",
+          "native document structure, PDF tags, slide reading order, or social feed-size fixture preserves geography, legend, source, uncertainty, and material limitations"
+        ]
+      },
+      "fallback": "labelled static map plus a non-spatial summary or table"
+    }
+  ],
+  "equivalenceMap": {
+    "identity": {
+      "web_public": "role-approved identity asset in the header, or governed live-text identity when no approved logo role exists",
+      "app_interactive": "role-approved identity asset in the app header, or governed live-text identity when no approved logo role exists",
+      "document_flow": "role-approved identity asset, or governed text identity in native document text",
+      "pdf_fixed": "role-approved identity asset, or governed text identity preserved as tagged or extractable text",
+      "deck_presentation": "role-approved identity asset, or governed text identity on the title and closing slides",
+      "social_static": "role-approved channel-safe identity asset, or governed text identity; never reconstruct a logo"
+    },
+    "navigation": {
+      "web_public": "semantic site and page navigation",
+      "app_interactive": "semantic product and task navigation",
+      "document_flow": "ecosystem and property routes plus external destinations in a related-destination group separate from the page index",
+      "pdf_fixed": "ecosystem and property routes plus external destinations in a related-destination group separate from PDF bookmarks",
+      "deck_presentation": "ecosystem and property routes plus external destinations in an opening or closing related-destination group separate from section markers",
+      "social_static": "not applicable; preserve a single destination cue"
+    },
+    "sideBookmark": {
+      "web_public": "anchored page index that moves into the mobile disclosure",
+      "app_interactive": "task or section index only when stable useful sections exist",
+      "document_flow": "heading-derived page index represented only as the table of contents",
+      "pdf_fixed": "heading-derived page index represented only as PDF bookmarks and visible contents",
+      "deck_presentation": "heading-derived page index represented only as the agenda or section-progress markers",
+      "social_static": "omit"
+    },
+    "primaryCTA": {
+      "web_public": "typed destination binding rendered as a direct control",
+      "app_interactive": "typed destination binding rendered as a direct control with result recovery and receipt when consequential",
+      "document_flow": "typed destination binding rendered as a working link or explicit instruction",
+      "pdf_fixed": "typed destination binding rendered as a working link with visible destination or explicit instruction",
+      "deck_presentation": "typed destination binding rendered as a working link with visible destination, verified QR with text, or explicit instruction",
+      "social_static": "typed route, external, download, form, or contact destination rendered as one specific destination cue"
+    },
+    "motion": {
+      "web_public": "role-gated enhancement with visible source and reduced-motion final state",
+      "app_interactive": "state and causality feedback with reduced-motion final state",
+      "document_flow": "static final state and structural sequence",
+      "pdf_fixed": "static final state and structural sequence",
+      "deck_presentation": "static final state by default; presenter animation only when sequence meaning requires it",
+      "social_static": "static final state; no motif, overlay or animated identity on OG or feed creatives"
+    },
+    "evidence": {
+      "web_public": "visible disclosure linked to stable claim and source records",
+      "app_interactive": "in-context disclosure linked to stable claim and source records",
+      "document_flow": "source note footnote or endnote plus evidence appendix when needed",
+      "pdf_fixed": "source note footnote or endnote plus evidence appendix when needed",
+      "deck_presentation": "compact slide cue plus source appendix",
+      "social_static": "compact evidence cue plus durable destination"
+    },
+    "receipt": {
+      "web_public": "runtime success error and reference state",
+      "app_interactive": "runtime result recovery and durable receipt proportional to consequence",
+      "document_flow": "audience-relevant document version or source record; internal production receipt remains in the artifact manifest",
+      "pdf_fixed": "final-byte validation recorded in the internal artifact manifest; expose only audience-relevant version or source metadata",
+      "deck_presentation": "audience-relevant version or source slide; internal production receipt remains in the artifact manifest",
+      "social_static": "publication sidecar kept outside the audience creative"
+    },
+    "interfaceIcon": {
+      "web_public": "approved outline rounded icon rendered with FILL 0 and accessible name through its control",
+      "app_interactive": "approved outline rounded icon rendered with FILL 0 and accessible name through its control",
+      "document_flow": "approved vector or embedded glyph with text equivalent and font-safe export",
+      "pdf_fixed": "outlined or embedded vector with text equivalent",
+      "deck_presentation": "editable approved vector or font-safe embedded glyph with text equivalent",
+      "social_static": "outlined approved vector; never substitute an interface icon for a logo"
+    }
+  }
+}

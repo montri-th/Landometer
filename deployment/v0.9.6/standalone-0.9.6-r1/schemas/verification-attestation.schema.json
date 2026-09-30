@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.6/standalone-0.9.6-r1/schemas/verification-attestation.schema.json",
+  "title": "Landometer detached verification attestation v1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "attestationId",
+    "purpose",
+    "subject",
+    "issuerId",
+    "keyId",
+    "issuedAt",
+    "expiresAt",
+    "signatureAlgorithm",
+    "signatureEncoding",
+    "signature"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.1"
+    },
+    "releaseRef": {
+      "const": "v0.9.6-owner.1"
+    },
+    "attestationId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,159}$"
+    },
+    "purpose": {
+      "enum": [
+        "release_approval",
+        "asset_approval",
+        "disclosure_authority",
+        "automated_conformance",
+        "human_conformance",
+        "production_conformance",
+        "claim_approval",
+        "claim_evidence_capture",
+        "agent_authority",
+        "agent_revocation",
+        "agent_execution",
+        "agent_confirmation",
+        "source_lineage",
+        "package_root",
+        "promotion_snapshot"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256",
+        "mediaType"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "mediaType": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "issuerId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "keyId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._:-]{2,159}$"
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "signatureAlgorithm": {
+      "const": "Ed25519"
+    },
+    "signatureEncoding": {
+      "const": "base64"
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9+/]{80,}={0,2}$"
+    }
+  },
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[\\u0000-\\u001F]).+$"
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.6 contract, revision standalone-0.9.6-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

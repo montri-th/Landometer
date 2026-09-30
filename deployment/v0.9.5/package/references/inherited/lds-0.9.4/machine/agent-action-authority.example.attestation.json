@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "attestationId": "attestation.agent-authority.inspect-claim.v0.9.4-mp1",
+  "purpose": "agent_authority",
+  "subject": {
+    "ref": "agent-action-authority.example.json",
+    "sha256": "ba68d7913de5e170caea05d814a75e12f22d4b67bb1b7a4fee7e33c0b18a65b6",
+    "mediaType": "application/json"
+  },
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "expiresAt": null,
+  "signatureAlgorithm": "Ed25519",
+  "signatureEncoding": "base64",
+  "signature": "A6DM8G6C9cJgPZ4EB8H0wU1zjQevhtCKpEn1pQx4WYwLnK23+m4wZVe2G+TKfgqKaYtXaFXKL+sQupK3gjbnAg=="
+}

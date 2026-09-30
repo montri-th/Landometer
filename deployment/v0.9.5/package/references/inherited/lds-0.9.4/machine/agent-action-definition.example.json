@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "1.3",
+  "releaseRef": "v0.9.4-mp1",
+  "definitionId": "agent-action-definition.inspect-claim.01",
+  "artifactId": "example.design-system.portfolio-brand-line.th",
+  "actionId": "inspect-claim",
+  "allowedActorClasses": [
+    "human_user",
+    "authorized_agent"
+  ],
+  "productScope": "shared_landometer",
+  "operation": "inspect",
+  "input": {
+    "schemaRef": "agent-action-input.example.schema.json",
+    "schemaSha256": "13813cbf91cce77ff19776f22a64875dc57bbcaddf5a4194e6ff83ddf570ab0f",
+    "schemaId": "urn:landometer:agent-action-input:inspect-claim:1.0",
+    "allowedClassifications": [
+      "public"
+    ]
+  },
+  "permissionPolicy": "read_only",
+  "sideEffect": {
+    "class": "none",
+    "external": false,
+    "cost": "none",
+    "summary": "Read-only navigation; no external or persistent effect.",
+    "reversible": true
+  },
+  "confirmationPolicy": {
+    "required": false,
+    "mode": "none"
+  },
+  "resultSchemaRef": "https://landometer.org/design-system/0.9.4/claim-record.schema.1.4.json",
+  "resultSchemaSha256": "a60137d4d53c6835beb0cb119da2e057c1e6669e2735865856c248ad6105549c",
+  "receiptSchemaRef": "https://landometer.org/design-system/0.9.4/agent-action-receipt.schema.1.3.json",
+  "receiptSchemaSha256": "5ee54451d64aca120ddd50b63a6fe7920f56220782195769470bc31b61e59fa1",
+  "errorBehavior": "Remain on the current artifact, preserve state, and expose a direct readable fallback.",
+  "recoveryPolicy": "No recovery mutation is required for a read-only inspection."
+}

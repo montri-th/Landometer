@@ -1,0 +1,393 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/migration-ledger.schema.1.2.json",
+  "title": "Landometer predecessor-rule migration ledger v1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "status",
+    "predecessor",
+    "expectedRuleCount",
+    "countingNote",
+    "dispositionVocabulary",
+    "entries",
+    "newRuleIds",
+    "sentenceLedger",
+    "ruleIdReassignment",
+    "supersededCandidates",
+    "valueDeltas"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.2"
+    },
+    "releaseRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dsVersion",
+        "authoringRevision",
+        "rulesetId",
+        "machinePackage"
+      ],
+      "properties": {
+        "dsVersion": {
+          "const": "0.9.4"
+        },
+        "authoringRevision": {
+          "const": "0.9.4-r2"
+        },
+        "rulesetId": {
+          "const": "lds-rules-0.9.4"
+        },
+        "machinePackage": {
+          "const": "v0.9.4-mp1"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "candidate",
+        "active"
+      ]
+    },
+    "predecessor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dsVersion",
+        "authoringRevision",
+        "sourceFile",
+        "sha256"
+      ],
+      "properties": {
+        "dsVersion": {
+          "const": "0.9.1"
+        },
+        "authoringRevision": {
+          "const": "0.9.1-r8"
+        },
+        "sourceFile": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "expectedRuleCount": {
+      "const": 50
+    },
+    "countingNote": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "dispositionVocabulary": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "retained",
+          "amended_in_place",
+          "superseded_by",
+          "deprecated_alias",
+          "moved_to_product_pack",
+          "removed_with_owner_reason"
+        ]
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 50,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "predecessorRuleId",
+          "disposition",
+          "targetRuleIds",
+          "ownerRationale"
+        ],
+        "properties": {
+          "predecessorRuleId": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9-]*-[0-9]{2}$"
+          },
+          "disposition": {
+            "enum": [
+              "retained",
+              "amended_in_place",
+              "superseded_by",
+              "deprecated_alias",
+              "moved_to_product_pack",
+              "removed_with_owner_reason"
+            ]
+          },
+          "targetRuleIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Z][A-Z0-9-]*-[0-9]{2}$"
+            },
+            "uniqueItems": true
+          },
+          "ownerRationale": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "targetProductPackRef": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "newRuleIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9-]*-[0-9]{2}$"
+      }
+    },
+    "withdrawnCandidate": {
+      "type": "object"
+    },
+    "supersededCandidate": {
+      "type": "object",
+      "required": [
+        "ref",
+        "rev",
+        "masterSha256",
+        "packageZipSha256",
+        "supersededOn",
+        "amendments"
+      ],
+      "properties": {
+        "amendments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "ruleId",
+              "change",
+              "decidedOn",
+              "evidenceRef"
+            ]
+          }
+        }
+      }
+    },
+    "supersededCandidates": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "rev",
+          "masterSha256",
+          "packageZipSha256",
+          "supersededOn"
+        ]
+      }
+    },
+    "ruleIdReassignment": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "fromRuleId",
+          "toRuleId",
+          "title",
+          "stage",
+          "reason",
+          "decidedOn",
+          "evidenceRef",
+          "consumerRule"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "fromRuleId": {
+            "type": "string"
+          },
+          "toRuleId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "stage": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "decidedOn": {
+            "type": "string"
+          },
+          "evidenceRef": {
+            "type": "string"
+          },
+          "consumerRule": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "valueDeltas": {
+      "type": "object",
+      "required": [
+        "source",
+        "baseline",
+        "rows"
+      ],
+      "properties": {
+        "source": {
+          "type": "object",
+          "required": [
+            "name",
+            "sha256"
+          ]
+        },
+        "baseline": {
+          "type": "string"
+        },
+        "shippedDifferences": {
+          "type": "array"
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 26,
+          "maxItems": 26,
+          "items": {
+            "type": "object",
+            "required": [
+              "token",
+              "theme",
+              "from",
+              "to",
+              "why"
+            ],
+            "properties": {
+              "token": {
+                "type": "string",
+                "pattern": "^--(scale|series)-"
+              },
+              "theme": {
+                "enum": [
+                  "light",
+                  "dark"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "pattern": "^#[0-9A-F]{6}$"
+              },
+              "to": {
+                "type": "string",
+                "pattern": "^#[0-9A-F]{6}$"
+              },
+              "why": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "ruleIdReuse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ruleId",
+          "lineage",
+          "consumerRule",
+          "disposition"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "ruleId": {
+            "type": "string"
+          },
+          "lineage": {
+            "type": "string"
+          },
+          "consumerRule": {
+            "type": "string"
+          },
+          "disposition": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "sentenceLedger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "stage",
+          "editId",
+          "kind",
+          "newText",
+          "reason",
+          "affects"
+        ],
+        "properties": {
+          "stage": {
+            "type": "string"
+          },
+          "editId": {
+            "type": "string"
+          },
+          "rule": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "type": "string"
+          },
+          "superseded": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "oldText": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "newText": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "affects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

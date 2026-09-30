@@ -1,0 +1,232 @@
+{
+  "schemaVersion": "1.6",
+  "releaseRef": "v0.9.4-mp1",
+  "recordKind": "reference_example",
+  "recordId": "reference.app-browser.portfolio-base.01",
+  "authoringPlatform": "browser",
+  "formatProfile": "app_interactive",
+  "runtime": "browser",
+  "targetProfileRef": "target.app.browser-responsive.360-1600.01",
+  "formatKitId": "kit.app.base.01",
+  "tokenRef": "tokens.v0.9.4.json",
+  "tokenSha256": "55515178603e4a5b45a660e23996fbb197b5bb431c7565640f6b9c60e438614d",
+  "resolutionContext": {
+    "experienceProfile": "portfolio_orientation",
+    "secondaryExperienceProfiles": [],
+    "capabilities": [],
+    "sideBookmarkSelected": false,
+    "componentIds": [
+      "component.cta.primary-navigational.01"
+    ]
+  },
+  "requirements": {
+    "resolvedAssetIds": [
+      "font.arvo.latin.700",
+      "font.bai-jamjuree.latin.400",
+      "font.bai-jamjuree.latin.600",
+      "font.bai-jamjuree.thai.400",
+      "font.bai-jamjuree.thai.600",
+      "font.ibm-plex-thai-looped.latin.700",
+      "font.ibm-plex-thai-looped.thai.700"
+    ],
+    "identityAssetIds": [],
+    "identityImplementationIds": [
+      "identity.text.landometer.portfolio-name.01"
+    ],
+    "identityTypographyBindingIds": [
+      "identity-typography.app-header.browser.01"
+    ],
+    "fontAssetIds": [
+      "font.arvo.latin.700",
+      "font.ibm-plex-thai-looped.latin.700",
+      "font.ibm-plex-thai-looped.thai.700",
+      "font.bai-jamjuree.latin.400",
+      "font.bai-jamjuree.thai.400",
+      "font.bai-jamjuree.latin.600",
+      "font.bai-jamjuree.thai.600"
+    ],
+    "iconAssetIds": [],
+    "nativeFontMappingIds": [],
+    "nonWebIconPolicyId": null,
+    "portabilityFixtureIds": [],
+    "layoutSetId": "layout-cross-format-01",
+    "componentRuleIds": [
+      "CTA-01"
+    ],
+    "componentIds": [
+      "component.cta.primary-navigational.01"
+    ],
+    "componentContracts": [
+      {
+        "componentId": "component.cta.primary-navigational.01",
+        "componentClass": "navigational_cta",
+        "governingRuleIds": [
+          "CTA-01"
+        ],
+        "purpose": "Expose one truthful navigational destination with a complete locale label and no simulated state change.",
+        "nonPurpose": "It does not submit, mutate, load, report success, own recovery, or imitate an unavailable control.",
+        "semanticRoles": [
+          "link"
+        ],
+        "contentContract": "Bind one complete verb-led locale label to one real route, anchor, external URL, download, contact path, or truthful static destination cue.",
+        "localeStressFixtureIds": [
+          "format.app.interactive.01.04",
+          "target.app.browser-responsive.360-1600.01.fixture.intermediate-stress"
+        ],
+        "states": {
+          "default": {
+            "status": "required",
+            "behavior": "The complete label, destination, and truthful outcome are immediately perceivable."
+          },
+          "hover": {
+            "status": "required",
+            "behavior": "Pointer hover adds finite emphasis without changing target, label, or geometry."
+          },
+          "focus": {
+            "status": "required",
+            "behavior": "Visible focus remains on the direct semantic action and follows governed reading order."
+          },
+          "activePressed": {
+            "status": "required",
+            "behavior": "Pressed feedback is finite and invokes the declared route at most once."
+          },
+          "selectedCurrent": {
+            "status": "not_applicable",
+            "behavior": "A navigational CTA never masquerades as a current-page or current-location indicator."
+          },
+          "disabled": {
+            "status": "not_applicable",
+            "behavior": "An unavailable destination is omitted or replaced by a truthful instruction, never shown as a mystery disabled action."
+          },
+          "loading": {
+            "status": "not_applicable",
+            "behavior": "A navigational destination does not present a stateful loading contract."
+          },
+          "empty": {
+            "status": "not_applicable",
+            "behavior": "A navigational destination does not present a stateful empty-result contract."
+          },
+          "error": {
+            "status": "not_applicable",
+            "behavior": "Route failure belongs to the destination environment and must not be pre-rendered as a false component state."
+          },
+          "success": {
+            "status": "not_applicable",
+            "behavior": "Navigation success is the resolved destination, not a simulated terminal component state."
+          }
+        },
+        "formatBehavior": {
+          "formatProfile": "app_interactive",
+          "behavior": "Use a direct browser route or native route action with stable focus and state restoration."
+        },
+        "accessibility": {
+          "name": "The accessible or visible name is the complete locale-specific action label.",
+          "role": "Use one ordinary link with the exact destination.",
+          "value": "No busy, progress, success, error, permission, or receipt state belongs to a navigational CTA.",
+          "order": "The action follows its decision context and precedes lower-priority destinations in the intended reading order.",
+          "status": "Destination availability and failure recovery belong to the route or document context, not this CTA."
+        },
+        "tokenRefs": [
+          "tokens.v0.9.4.json#/control/inlineTextLink",
+          "tokens.v0.9.4.json#/foundation/interaction.focus.ring"
+        ],
+        "evidencePermissionBoundary": "The action only navigates to its declared destination and never implies claim authority, execution authority, or successful completion.",
+        "acceptanceFixtureIds": [
+          "CTA-01-A",
+          "CTA-01-B",
+          "CTA-01-C",
+          "accessibility.app.browser.keyboard"
+        ],
+        "antiPatterns": [
+          "Generic Learn more label",
+          "Ellipsized or truncated outcome label",
+          "Unresolved destination string",
+          "Static artwork styled as an interactive button",
+          "Completion implied before the destination resolves"
+        ]
+      }
+    ],
+    "resolvedRuleIds": [
+      "GOV-01",
+      "AUTHORITY-01",
+      "LAYER-01",
+      "COMPARE-01",
+      "EVIDENCE-01",
+      "OUTPUT-CLARITY-01",
+      "AHA-01",
+      "BRAND-01",
+      "LOGO-01",
+      "COLOR-01",
+      "SURFACE-01",
+      "TYPE-01",
+      "ICON-01",
+      "LAYOUT-01",
+      "CTRL-01",
+      "THEME-01",
+      "ASSET-DELIVERY-01",
+      "PROFILE-01",
+      "CAPABILITY-01",
+      "PARITY-01",
+      "NAV-01",
+      "NAV-02",
+      "CTA-01",
+      "CTA-02",
+      "A11Y-01",
+      "CLAIM-MACHINE-01",
+      "DISCOVERY-01",
+      "DISCOVERY-02",
+      "DISCOVERY-03",
+      "SECURITY-01",
+      "APPFMT-01",
+      "FORMAT-PARITY-01",
+      "COMPONENT-01",
+      "MEDIA-01",
+      "QA-01",
+      "RELEASE-01"
+    ],
+    "resolvedTestIds": [
+      "common.01",
+      "common.02",
+      "experience.portfolio_orientation.01",
+      "experience.portfolio_orientation.02",
+      "format.app.interactive.01.01",
+      "format.app.interactive.01.02",
+      "format.app.interactive.01.03",
+      "format.app.interactive.01.04",
+      "format.app.interactive.01.05",
+      "format.app.interactive.01.06",
+      "format.app.interactive.01.07",
+      "format.app.interactive.01.runtime.browser.01",
+      "format.app.interactive.01.runtime.browser.02",
+      "target.app.browser-responsive.360-1600.01.fixture.360",
+      "target.app.browser-responsive.360-1600.01.fixture.600",
+      "target.app.browser-responsive.360-1600.01.fixture.900",
+      "target.app.browser-responsive.360-1600.01.fixture.1200",
+      "target.app.browser-responsive.360-1600.01.fixture.1440",
+      "target.app.browser-responsive.360-1600.01.fixture.1600",
+      "target.app.browser-responsive.360-1600.01.fixture.intermediate-stress",
+      "kit.app.base.01.control.01",
+      "kit.app.base.01.control.02",
+      "kit.app.base.01.control.03",
+      "kit.app.base.01.control.04",
+      "kit.app.base.01.control.05",
+      "kit.app.base.01.control.06",
+      "accessibility.app.browser.keyboard",
+      "accessibility.app.browser.screen-reader",
+      "accessibility.app.browser.touch",
+      "accessibility.app.browser.state-recovery",
+      "accessibility.app.browser.zoom-200",
+      "accessibility.app.browser.reflow-400",
+      "accessibility.app.browser.reduced-motion"
+    ],
+    "accessibilityFixtureIds": [
+      "accessibility.app.browser.keyboard",
+      "accessibility.app.browser.screen-reader",
+      "accessibility.app.browser.touch",
+      "accessibility.app.browser.state-recovery",
+      "accessibility.app.browser.zoom-200",
+      "accessibility.app.browser.reflow-400",
+      "accessibility.app.browser.reduced-motion"
+    ]
+  }
+}

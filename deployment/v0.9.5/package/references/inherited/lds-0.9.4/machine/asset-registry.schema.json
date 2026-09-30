@@ -1,0 +1,1550 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/asset-registry.schema.1.9.json",
+  "title": "Landometer role-scoped asset, identity typography, and portability registry 1.9",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "status",
+    "productionEligibility",
+    "packageBytesIncluded",
+    "approvalAttestationRef",
+    "approvalAttestationSha256",
+    "sourceProvenance",
+    "resolutionPolicy",
+    "identity",
+    "textIdentityImplementations",
+    "fonts",
+    "iconSubsets",
+    "nonWebPortability",
+    "portabilityFixtureCriteria",
+    "media",
+    "iconSets",
+    "motifRegisterRef"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.9"
+    },
+    "releaseRef": {
+      "const": "v0.9.4-mp1"
+    },
+    "status": {
+      "enum": [
+        "candidate",
+        "active"
+      ]
+    },
+    "productionEligibility": {
+      "const": "per_asset_role"
+    },
+    "packageBytesIncluded": {
+      "const": true
+    },
+    "approvalAttestationRef": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approvalAttestationSha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sourceProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "identity": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "textIdentity": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fontsAndIcons": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "media": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "resolutionPolicy": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "role",
+          "defaultUse",
+          "provenanceRef",
+          "packageFile",
+          "mediaType",
+          "bytes",
+          "sha256",
+          "pixelDimensions",
+          "approvalStatus",
+          "allowedSurfaces",
+          "rights",
+          "fallback",
+          "altOrTextEquivalent",
+          "minimumSize",
+          "clearSpace",
+          "reconstructionAllowed",
+          "cropAllowed",
+          "note"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "role": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "defaultUse": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "provenanceRef": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "packageFile": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "mediaType": {
+            "const": "image/png"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "pixelDimensions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "width",
+              "height"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          },
+          "approvalStatus": {
+            "$ref": "#/$defs/approval"
+          },
+          "approvalDetail": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedBy": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvalReceiptRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "approvalReceiptSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "allowedSurfaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "uniqueItems": true
+          },
+          "rights": {
+            "$ref": "#/$defs/rights"
+          },
+          "fallback": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "altOrTextEquivalent": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "minimumSize": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/minimumSizeRecord"
+                }
+              }
+            ]
+          },
+          "clearSpace": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/$defs/clearSpaceRecord"
+              }
+            ]
+          },
+          "reconstructionAllowed": {
+            "const": false
+          },
+          "cropAllowed": {
+            "const": false
+          },
+          "note": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "approvalStatus": {
+                  "const": "approved"
+                }
+              },
+              "required": [
+                "approvalStatus"
+              ]
+            },
+            "then": {
+              "required": [
+                "approvedBy",
+                "approvedAt",
+                "approvalReceiptRef",
+                "approvalReceiptSha256"
+              ],
+              "properties": {
+                "allowedSurfaces": {
+                  "minItems": 1
+                },
+                "minimumSize": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "#/$defs/minimumSizeRecord"
+                  }
+                },
+                "clearSpace": {
+                  "$ref": "#/$defs/clearSpaceRecord"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "textIdentityImplementations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "role",
+          "canonicalText",
+          "localePolicy",
+          "approvalStatus",
+          "approvedBy",
+          "approvedAt",
+          "authorityEvidenceRef",
+          "allowedFormatProfiles",
+          "allowedSurfaces",
+          "allowedAudiences",
+          "publicationPermission",
+          "fontPolicy",
+          "typographyBindings",
+          "logoAssetId",
+          "logoReconstructionAllowed",
+          "fallback",
+          "note"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^identity\\.text\\."
+          },
+          "kind": {
+            "const": "governed_text_identity"
+          },
+          "role": {
+            "const": "portfolio_name"
+          },
+          "canonicalText": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "localePolicy": {
+            "const": "same_canonical_text_in_every_locale"
+          },
+          "approvalStatus": {
+            "const": "approved"
+          },
+          "approvedBy": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "authorityEvidenceRef": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "allowedFormatProfiles": {
+            "$ref": "#/$defs/formatProfiles"
+          },
+          "allowedSurfaces": {
+            "$ref": "#/$defs/uniqueStrings"
+          },
+          "allowedAudiences": {
+            "$ref": "#/$defs/audiences"
+          },
+          "publicationPermission": {
+            "const": true
+          },
+          "fontPolicy": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "typographyBindings": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/identityTypographyBinding"
+            }
+          },
+          "logoAssetId": {
+            "type": "null"
+          },
+          "logoReconstructionAllowed": {
+            "const": false
+          },
+          "fallback": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "note": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    "fonts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "family",
+          "role",
+          "subset",
+          "weight",
+          "file",
+          "packageFile",
+          "mediaType",
+          "bytes",
+          "sha256",
+          "license",
+          "licenseFileRef",
+          "approvalStatus",
+          "approvedBy",
+          "approvedAt",
+          "approvalReceiptRef",
+          "approvalReceiptSha256"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "family": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "role": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "subset": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1000
+          },
+          "file": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "packageFile": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "mediaType": {
+            "const": "font/woff2"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "license": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "licenseFileRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "approvalStatus": {
+            "const": "approved"
+          },
+          "approvedBy": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvalReceiptRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "approvalReceiptSha256": {
+            "$ref": "#/$defs/sha256"
+          }
+        }
+      }
+    },
+    "iconSubsets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "family",
+          "role",
+          "file",
+          "packageFile",
+          "mediaType",
+          "bytes",
+          "sha256",
+          "axes",
+          "glyphs",
+          "license",
+          "licenseFileRef",
+          "approvalStatus",
+          "approvedBy",
+          "approvedAt",
+          "approvalReceiptRef",
+          "approvalReceiptSha256"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "family": {
+            "const": "Material Symbols Rounded"
+          },
+          "role": {
+            "const": "interface_icon"
+          },
+          "file": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "packageFile": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "mediaType": {
+            "const": "font/woff2"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "axes": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "FILL",
+              "wght",
+              "GRAD",
+              "opsz"
+            ],
+            "properties": {
+              "FILL": {
+                "const": 0
+              },
+              "wght": {
+                "const": 300
+              },
+              "GRAD": {
+                "const": 0
+              },
+              "opsz": {
+                "type": "number"
+              }
+            }
+          },
+          "glyphs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "uniqueItems": true
+          },
+          "license": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "licenseFileRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "approvalStatus": {
+            "const": "approved"
+          },
+          "approvedBy": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvalReceiptRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "approvalReceiptSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "note": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    "nonWebPortability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approvalStatus",
+        "approvedBy",
+        "approvedAt",
+        "authorityEvidenceRef",
+        "selectionPolicy",
+        "supportedPlatforms",
+        "nativeFontMappings",
+        "interfaceIconPolicy"
+      ],
+      "properties": {
+        "approvalStatus": {
+          "const": "approved"
+        },
+        "approvedBy": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "approvedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "authorityEvidenceRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "selectionPolicy": {
+          "const": "select_one_exact_platform_mapping_and_record_it; unavailable_mapping_blocks_delivery"
+        },
+        "supportedPlatforms": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "macos",
+              "windows"
+            ]
+          },
+          "allOf": [
+            {
+              "contains": {
+                "const": "macos"
+              }
+            },
+            {
+              "contains": {
+                "const": "windows"
+              }
+            }
+          ]
+        },
+        "nativeFontMappings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/nativeFontMapping"
+          }
+        },
+        "interfaceIconPolicy": {
+          "$ref": "#/$defs/nonWebIconPolicy"
+        }
+      }
+    },
+    "portabilityFixtureCriteria": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "role",
+          "provenanceRef",
+          "packageFile",
+          "mediaType",
+          "bytes",
+          "sha256",
+          "approvalStatus",
+          "allowedSurfaces",
+          "rights",
+          "fallback",
+          "altOrTextEquivalent",
+          "note"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "role": {
+            "enum": [
+              "editorial",
+              "evidence",
+              "data_visualization",
+              "map",
+              "social_preview",
+              "atmosphere",
+              "ui_capture",
+              "provider_content",
+              "generated_vector"
+            ]
+          },
+          "provenanceRef": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "packageFile": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "mediaType": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "approvalStatus": {
+            "$ref": "#/$defs/approval"
+          },
+          "approvalDetail": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedBy": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "approvedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "approvalReceiptRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "approvalReceiptSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "allowedSurfaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            "uniqueItems": true
+          },
+          "rights": {
+            "$ref": "#/$defs/rights"
+          },
+          "fallback": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "altOrTextEquivalent": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "note": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "approvalStatus": {
+                  "const": "approved"
+                }
+              },
+              "required": [
+                "approvalStatus"
+              ]
+            },
+            "then": {
+              "required": [
+                "approvedBy",
+                "approvedAt",
+                "approvalReceiptRef",
+                "approvalReceiptSha256"
+              ],
+              "properties": {
+                "allowedSurfaces": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "licenseFiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "license",
+          "packageFile",
+          "mediaType",
+          "bytes",
+          "sha256"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "license": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "packageFile": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "mediaType": {
+            "const": "text/plain"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          }
+        }
+      }
+    },
+    "fallbacks": {
+      "type": "object",
+      "required": [
+        "displayLatin",
+        "displayThai",
+        "body",
+        "technical",
+        "interfaceIcon"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "displayLatin": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "displayThai": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "body": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "technical": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "interfaceIcon": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "iconSets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "role",
+          "property",
+          "composition",
+          "sizesPx",
+          "files",
+          "approvalStatus",
+          "rights",
+          "fallback",
+          "altOrTextEquivalent"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^iconset\\."
+          },
+          "role": {
+            "const": "icon_set"
+          },
+          "property": {
+            "enum": [
+              "portfolio",
+              "product"
+            ]
+          },
+          "composition": {
+            "type": "string"
+          },
+          "sizesPx": {
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+              "enum": [
+                16,
+                32,
+                48,
+                180,
+                192,
+                512
+              ]
+            }
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "sizePx",
+                "role",
+                "file",
+                "sha256",
+                "bytes"
+              ],
+              "properties": {
+                "sizePx": {
+                  "type": "integer"
+                },
+                "role": {
+                  "enum": [
+                    "favicon",
+                    "apple-touch",
+                    "manifest",
+                    "manifest-maskable"
+                  ]
+                },
+                "file": {
+                  "type": "string"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "bytes": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "approvalStatus": {
+            "enum": [
+              "candidate",
+              "approved"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "motifRegisterRef": {
+      "type": "object",
+      "required": [
+        "ref",
+        "sha256"
+      ],
+      "properties": {
+        "ref": {
+          "const": "motif-register.v0.9.4.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "textIdentityImplementations": {
+            "minItems": 1
+          }
+        },
+        "required": [
+          "textIdentityImplementations"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sourceProvenance": {
+            "required": [
+              "textIdentity"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "identity": {
+            "minItems": 1
+          }
+        },
+        "required": [
+          "identity"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sourceProvenance": {
+            "required": [
+              "identity"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "fonts": {
+            "minItems": 1
+          }
+        },
+        "required": [
+          "fonts"
+        ]
+      },
+      "then": {
+        "required": [
+          "licenseFiles",
+          "fallbacks"
+        ],
+        "properties": {
+          "sourceProvenance": {
+            "required": [
+              "fontsAndIcons"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "iconSubsets": {
+            "minItems": 1
+          }
+        },
+        "required": [
+          "iconSubsets"
+        ]
+      },
+      "then": {
+        "required": [
+          "licenseFiles",
+          "fallbacks"
+        ],
+        "properties": {
+          "sourceProvenance": {
+            "required": [
+              "fontsAndIcons"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "media": {
+            "minItems": 1
+          }
+        },
+        "required": [
+          "media"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sourceProvenance": {
+            "required": [
+              "media"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "approval": {
+      "enum": [
+        "approved",
+        "candidate",
+        "unverified",
+        "rejected"
+      ]
+    },
+    "uniqueStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/nonEmpty"
+      }
+    },
+    "formatProfiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "web_public",
+          "app_interactive",
+          "document_flow",
+          "pdf_fixed",
+          "deck_presentation",
+          "social_static"
+        ]
+      }
+    },
+    "audiences": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "internal_preview",
+          "internal_operational",
+          "client",
+          "public"
+        ]
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "publicationPermission",
+        "allowedAudiences",
+        "conditions"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "public",
+            "licensed",
+            "internal",
+            "restricted",
+            "unknown"
+          ]
+        },
+        "publicationPermission": {
+          "type": "boolean"
+        },
+        "allowedAudiences": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "internal_preview",
+              "internal_operational",
+              "client",
+              "public"
+            ]
+          }
+        },
+        "conditions": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "minimumSizeRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "surface",
+        "axis",
+        "value",
+        "unit",
+        "evidenceRef"
+      ],
+      "properties": {
+        "surface": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "axis": {
+          "enum": [
+            "width",
+            "height"
+          ]
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0.01
+        },
+        "unit": {
+          "enum": [
+            "css_px",
+            "px",
+            "mm",
+            "pt",
+            "in"
+          ]
+        },
+        "evidenceRef": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "clearSpaceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "basis",
+        "minimumFactor",
+        "evidenceRef"
+      ],
+      "properties": {
+        "basis": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "minimumFactor": {
+          "type": "number",
+          "minimum": 0
+        },
+        "evidenceRef": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "identityTypographyBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "surface",
+        "formatProfile",
+        "renderingContext",
+        "platform",
+        "fontSourceKind",
+        "fontAssetIds",
+        "nativeMappingId",
+        "family",
+        "postScriptName",
+        "weight",
+        "style",
+        "size",
+        "minimumSize",
+        "sizeUnit",
+        "trackingEm",
+        "lineHeight",
+        "clearSpaceEm",
+        "substitutionAllowed",
+        "finalOutputPolicy",
+        "requiredFixtureIds"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^identity-typography\\."
+        },
+        "surface": {
+          "enum": [
+            "web_header",
+            "app_header",
+            "document_identity",
+            "pdf_identity",
+            "deck_identity",
+            "social_identity"
+          ]
+        },
+        "formatProfile": {
+          "enum": [
+            "web_public",
+            "app_interactive",
+            "document_flow",
+            "pdf_fixed",
+            "deck_presentation",
+            "social_static"
+          ]
+        },
+        "renderingContext": {
+          "enum": [
+            "browser",
+            "native_editable",
+            "fixed_export",
+            "raster_export"
+          ]
+        },
+        "platform": {
+          "anyOf": [
+            {
+              "enum": [
+                "browser",
+                "macos",
+                "windows"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fontSourceKind": {
+          "enum": [
+            "packaged_web_font",
+            "governed_native_mapping"
+          ]
+        },
+        "fontAssetIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "nativeMappingId": {
+          "$ref": "#/$defs/nullableNonEmpty"
+        },
+        "family": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "postScriptName": {
+          "$ref": "#/$defs/nullableNonEmpty"
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "style": {
+          "const": "normal"
+        },
+        "size": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "minimumSize": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "sizeUnit": {
+          "enum": [
+            "css_px",
+            "pt"
+          ]
+        },
+        "trackingEm": {
+          "type": "number",
+          "minimum": -0.05,
+          "maximum": 0.2
+        },
+        "lineHeight": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 2
+        },
+        "clearSpaceEm": {
+          "type": "number",
+          "minimum": 0.5
+        },
+        "substitutionAllowed": {
+          "const": false
+        },
+        "finalOutputPolicy": {
+          "enum": [
+            "live_text_exact_packaged_font",
+            "exact_native_font_live_text_and_embed_or_authorized_projection"
+          ]
+        },
+        "requiredFixtureIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "fontSourceKind": {
+                "const": "packaged_web_font"
+              }
+            },
+            "required": [
+              "fontSourceKind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fontAssetIds": {
+                "minItems": 1
+              },
+              "nativeMappingId": {
+                "type": "null"
+              },
+              "platform": {
+                "const": "browser"
+              },
+              "sizeUnit": {
+                "const": "css_px"
+              },
+              "postScriptName": {
+                "type": "null"
+              },
+              "finalOutputPolicy": {
+                "const": "live_text_exact_packaged_font"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "fontSourceKind": {
+                "const": "governed_native_mapping"
+              }
+            },
+            "required": [
+              "fontSourceKind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "fontAssetIds": {
+                "maxItems": 0
+              },
+              "nativeMappingId": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "platform": {
+                "enum": [
+                  "macos",
+                  "windows"
+                ]
+              },
+              "sizeUnit": {
+                "const": "pt"
+              },
+              "postScriptName": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "finalOutputPolicy": {
+                "const": "exact_native_font_live_text_and_embed_or_authorized_projection"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "nativeFontMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "platform",
+        "allowedFormatProfiles",
+        "role",
+        "family",
+        "postScriptName",
+        "weight",
+        "style",
+        "substitutionAllowed",
+        "editableSourcePolicy",
+        "fixedExportPolicy",
+        "vectorProjectionPolicy",
+        "requiredFixtureIds"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^fontmap\\.(?:macos|windows)\\."
+        },
+        "platform": {
+          "enum": [
+            "macos",
+            "windows"
+          ]
+        },
+        "allowedFormatProfiles": {
+          "$ref": "#/$defs/nonWebFormatProfiles"
+        },
+        "role": {
+          "enum": [
+            "identity_latin",
+            "display_latin",
+            "display_thai",
+            "body_ui",
+            "body_ui_emphasis",
+            "technical_latin",
+            "technical_thai"
+          ]
+        },
+        "family": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "postScriptName": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "style": {
+          "const": "normal"
+        },
+        "substitutionAllowed": {
+          "const": false
+        },
+        "editableSourcePolicy": {
+          "const": "exact_named_font_available_and_live_text_or_delivery_blocks"
+        },
+        "fixedExportPolicy": {
+          "const": "embed_exact_font_or_use_approved_vector_projection_or_verified_raster_pixels"
+        },
+        "vectorProjectionPolicy": {
+          "const": "approved_generated_vector_asset_with_exact_hash_only"
+        },
+        "requiredFixtureIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    },
+    "nonWebIconPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "defaultRepresentation",
+        "fontGlyphSubstitutionAllowed",
+        "vectorProjectionPolicy",
+        "editableSourcePolicy",
+        "fixedExportPolicy",
+        "requiredFixtureIds"
+      ],
+      "properties": {
+        "policyId": {
+          "const": "icon-policy.non-web.visible-label.01"
+        },
+        "defaultRepresentation": {
+          "const": "visible_text_label"
+        },
+        "fontGlyphSubstitutionAllowed": {
+          "const": false
+        },
+        "vectorProjectionPolicy": {
+          "const": "approved_generated_vector_asset_with_exact_hash_only"
+        },
+        "editableSourcePolicy": {
+          "const": "retain_complete_visible_label; optional_icon_must_be_registered_vector"
+        },
+        "fixedExportPolicy": {
+          "const": "retain_complete_visible_label; vector_icon_requires_exact_registered_hash_and_text_equivalent"
+        },
+        "requiredFixtureIds": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      }
+    },
+    "nullableNonEmpty": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nonWebFormatProfiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "app_interactive",
+          "document_flow",
+          "pdf_fixed",
+          "deck_presentation",
+          "social_static"
+        ]
+      }
+    }
+  }
+}

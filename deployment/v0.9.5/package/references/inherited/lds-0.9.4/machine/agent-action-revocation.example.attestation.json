@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "attestationId": "attestation.agent-revocation.inspect-claim.v0.9.4-mp1",
+  "purpose": "agent_revocation",
+  "subject": {
+    "ref": "agent-action-revocation.example.json",
+    "sha256": "ef6c6f271d9dbd85930b46c53590801f72ad84e8858cf0377d22fbbd60fb7824",
+    "mediaType": "application/json"
+  },
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "expiresAt": null,
+  "signatureAlgorithm": "Ed25519",
+  "signatureEncoding": "base64",
+  "signature": "0kXdeWepEN4qwQ37we3xBCZyyJoCJBTJ8/Ux3Vgfsy+KFgWuB5YRv0FtFO4wb8er6ss+TQnOXmCaz0ZyBl2WCg=="
+}

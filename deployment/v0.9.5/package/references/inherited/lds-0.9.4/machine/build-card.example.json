@@ -1,0 +1,686 @@
+{
+  "schemaVersion": "0.9.3.2",
+  "releaseRef": "v0.9.4-mp1",
+  "artifact": {
+    "id": "example.design-system.portfolio-brand-line.th",
+    "title": "Design System reference: Landometer cultural-activation line",
+    "owner": "portfolio-owner",
+    "portfolioDomain": "shared",
+    "productScope": "shared_landometer",
+    "primaryJob": "Understand one protected line and the boundary of what it authorizes"
+  },
+  "authority": {
+    "contentSource": [
+      "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines"
+    ],
+    "evidenceBoundary": "owner-approved portfolio wording only; the Rebuild02 link is a separately labelled usage reference",
+    "claimOwner": "portfolio-owner",
+    "evidenceRefs": [
+      "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines"
+    ],
+    "productBoundary": {
+      "sharedCapabilities": [
+        "protected_brand_lines"
+      ],
+      "productSpecificCapabilities": []
+    },
+    "comparisonPolicy": "not_applicable"
+  },
+  "experience": {
+    "profile": "portfolio_orientation",
+    "audience": [
+      "design-system implementers",
+      "AI design agents"
+    ],
+    "entryQuestion": "What is the protected cultural-activation line, and what does it authorize?",
+    "desiredOutcome": "Recognize the exact line without treating it as a product or evidence claim",
+    "dominantObjectRef": "claim.protected-line.cultural-activation.portfolio.v1",
+    "firstAha": "The protected line is exact wording with a narrow identity role—not a product claim",
+    "firstAhaEvidenceRef": "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines",
+    "prerequisitesBeforeAha": [],
+    "cleanCompletion": "The reader can repeat the exact line and state its boundary",
+    "primaryActionRef": "inspect-claim",
+    "nextUsefulActionRef": "open-live-source",
+    "readingOrder": [
+      {
+        "kind": "section",
+        "ref": "question"
+      },
+      {
+        "kind": "section",
+        "ref": "protected-line"
+      },
+      {
+        "kind": "section",
+        "ref": "source"
+      },
+      {
+        "kind": "action",
+        "ref": "inspect-claim"
+      },
+      {
+        "kind": "action",
+        "ref": "open-live-source"
+      }
+    ],
+    "urgency": "calm",
+    "motionBenefit": [
+      "sequence"
+    ],
+    "motionDecision": "assigned",
+    "motionAssignments": [
+      {
+        "subject": "source",
+        "role": "proof_preview",
+        "benefit": "sequence",
+        "protectedRole": "deep_link_target",
+        "initialVisibility": "visible",
+        "layoutGeometry": "stable",
+        "staticFallback": "final_state",
+        "reducedMotion": "final_state",
+        "observerFailure": "final_state"
+      }
+    ],
+    "ctaDiscoveryCueAssignments": [
+      {
+        "actionRef": "inspect-claim",
+        "recipeRef": "tokens.v0.9.4.json#/motion/ctaDiscoveryCue",
+        "requiredUserBenefit": "discoverability",
+        "rationale": "A single first-entry cue helps readers find the primary in-page inspection link without delaying or hiding content.",
+        "trigger": "first_visible_entry",
+        "repeatCountPerPageLoad": 1,
+        "reducedMotion": "no_cue_final_state",
+        "observerFailure": "no_cue_final_state",
+        "staticEquivalent": "emphasis_without_motion"
+      }
+    ],
+    "motionMoments": [
+      {
+        "kind": "logo",
+        "job": "animated_brand_opening",
+        "beat": "opening",
+        "variant": "full",
+        "surfaceId": "hero",
+        "hostSurface": "brand.beige",
+        "hostSurfaceHex": {
+          "light": "#F2F1DF",
+          "dark": "#F2F1DF"
+        },
+        "measuredContrast": {
+          "light": "1.48–7.92",
+          "dark": "1.48–7.92"
+        },
+        "contrastVerdict": "meaningCapable",
+        "quietFallbackRung": "none"
+      },
+      {
+        "kind": "cultivate",
+        "job": "handoff",
+        "beat": "closing",
+        "variant": "full",
+        "variantDark": "quiet",
+        "surfaceId": "closing",
+        "hostSurface": "surface.canvas",
+        "hostSurfaceHex": {
+          "light": "#F6F7F3",
+          "dark": "#11191D"
+        },
+        "measuredContrast": {
+          "light": "1.57–8.39",
+          "dark": "4.05–10.23"
+        },
+        "contrastVerdict": "meaningCapable",
+        "quietFallbackRung": "L3"
+      }
+    ],
+    "staticMotifPlacements": [],
+    "productOverlayRefs": []
+  },
+  "locale": {
+    "primary": "th-TH",
+    "available": [
+      "th-TH",
+      "en"
+    ],
+    "states": [
+      {
+        "locale": "th-TH",
+        "status": "source"
+      },
+      {
+        "locale": "en",
+        "status": "reviewed_translation"
+      }
+    ],
+    "languageLinks": true
+  },
+  "output": {
+    "formatProfile": "web_public",
+    "runtime": "browser",
+    "delivery": "screen",
+    "targetProfileRef": "target.web.responsive.360-1600.01",
+    "viewportOrPage": "responsive 360–1600 CSS px",
+    "interactive": true,
+    "offlineRequired": false
+  },
+  "composition": {
+    "headlineRole": "cultural_activation",
+    "density": "standard",
+    "sections": [
+      {
+        "id": "question",
+        "purpose": "Establish the governed question"
+      },
+      {
+        "id": "protected-line",
+        "purpose": "Show the exact protected line, evidence cue, and role boundary",
+        "claimIds": [
+          "claim.protected-line.cultural-activation.portfolio.v1"
+        ]
+      },
+      {
+        "id": "source",
+        "purpose": "Provide the separately bounded Rebuild02 usage observation after the protected line and its role boundary"
+      }
+    ],
+    "componentIds": [
+      "component.navigation.unified.01",
+      "component.navigation.disclosure.01",
+      "component.bookmark.side.01",
+      "component.cta.primary-navigational.01"
+    ],
+    "sideBookmarkEligible": true
+  },
+  "navigation": {
+    "mode": "site",
+    "brandDestinationRef": "destination.brand.landometer",
+    "destinations": [
+      {
+        "id": "destination.brand.landometer",
+        "role": "brand",
+        "label": "Landometer",
+        "labelByLocale": {
+          "th-TH": "Landometer",
+          "en": "Landometer"
+        },
+        "target": "./",
+        "level": "property",
+        "kind": "route",
+        "group": "primary",
+        "breakpointExposure": {
+          "desktop": "header",
+          "mobile": "header"
+        },
+        "current": "page"
+      },
+      {
+        "id": "destination.page.question",
+        "role": "page_local",
+        "label": "คำถามหลัก",
+        "labelByLocale": {
+          "th-TH": "คำถามหลัก",
+          "en": "Guiding question"
+        },
+        "target": "#question",
+        "level": "page",
+        "kind": "anchor",
+        "group": "page_local",
+        "breakpointExposure": {
+          "desktop": "side_bookmark",
+          "mobile": "disclosure"
+        },
+        "current": "none"
+      },
+      {
+        "id": "destination.page.protected-line",
+        "role": "page_local",
+        "label": "ข้อความที่คุ้มครอง",
+        "labelByLocale": {
+          "th-TH": "ข้อความที่คุ้มครอง",
+          "en": "Protected line"
+        },
+        "target": "#protected-line",
+        "level": "page",
+        "kind": "anchor",
+        "group": "page_local",
+        "breakpointExposure": {
+          "desktop": "side_bookmark",
+          "mobile": "disclosure"
+        },
+        "current": "location"
+      },
+      {
+        "id": "destination.page.source",
+        "role": "page_local",
+        "label": "แหล่งอ้างอิง",
+        "labelByLocale": {
+          "th-TH": "แหล่งอ้างอิง",
+          "en": "Source"
+        },
+        "target": "#source",
+        "level": "page",
+        "kind": "anchor",
+        "group": "page_local",
+        "breakpointExposure": {
+          "desktop": "side_bookmark",
+          "mobile": "disclosure"
+        },
+        "current": "none"
+      }
+    ],
+    "controlBudgets": {
+      "desktop": {
+        "brandRequired": true,
+        "maxControls": 4
+      },
+      "mobile": {
+        "brandRequired": true,
+        "maxControls": 2
+      },
+      "minimumDirectTarget": {
+        "value": 44,
+        "unit": "css_px"
+      }
+    },
+    "sideBookmark": "selected",
+    "sideBookmarkUserBenefit": "Keeps the guiding question, protected line, and source observation findable on a long bilingual page."
+  },
+  "identityImplementation": {
+    "id": "identity.text.landometer.portfolio-name.01",
+    "kind": "governed_text_identity",
+    "surface": "web_header",
+    "registryRef": "asset-registry.json",
+    "text": "Landometer",
+    "textByLocale": {
+      "th-TH": "Landometer",
+      "en": "Landometer"
+    },
+    "fontAssetIds": [
+      "font.arvo.latin.700"
+    ],
+    "typographyBindingId": "identity-typography.web-header.browser.01",
+    "nativeMappingId": null,
+    "logoAssetId": null,
+    "logoReconstructionAllowed": false
+  },
+  "actions": [
+    {
+      "id": "inspect-claim",
+      "intent": "inspect",
+      "priority": "primary",
+      "label": "ดูข้อความและขอบเขต",
+      "compactLabel": "ดูขอบเขต",
+      "labelByLocale": {
+        "th-TH": "ดูข้อความและขอบเขต",
+        "en": "Inspect the line and boundary"
+      },
+      "compactLabelByLocale": {
+        "th-TH": "ดูขอบเขต",
+        "en": "Inspect boundary"
+      },
+      "outcome": "ไปยังข้อความที่ถูกต้องและขอบเขตบทบาท",
+      "outcomeByLocale": {
+        "th-TH": "ไปยังข้อความที่ถูกต้องและขอบเขตบทบาท",
+        "en": "Move to the exact protected line and its role boundary"
+      },
+      "destinationBinding": {
+        "kind": "anchor",
+        "target": "#protected-line",
+        "targetByLocale": {
+          "th-TH": "#protected-line",
+          "en": "#protected-line"
+        },
+        "presentation": {
+          "mode": "direct",
+          "technique": "direct_control"
+        }
+      },
+      "availability": "available",
+      "consequence": {
+        "class": "none",
+        "external": false,
+        "cost": "none",
+        "reversible": true
+      },
+      "confirmation": "none"
+    },
+    {
+      "id": "open-live-source",
+      "intent": "navigate",
+      "priority": "secondary",
+      "label": "เปิดแหล่งอ้างอิง",
+      "compactLabel": "เปิดแหล่งอ้างอิง",
+      "labelByLocale": {
+        "th-TH": "เปิดแหล่งอ้างอิง",
+        "en": "Open the source"
+      },
+      "compactLabelByLocale": {
+        "th-TH": "เปิดแหล่งอ้างอิง",
+        "en": "Open source"
+      },
+      "outcome": "เปิดหน้าสาธารณะที่แสดงข้อความนี้",
+      "outcomeByLocale": {
+        "th-TH": "เปิดหน้าสาธารณะที่แสดงข้อความนี้",
+        "en": "Open the public page where the line is visibly used"
+      },
+      "destinationBinding": {
+        "kind": "external",
+        "target": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+        "targetByLocale": {
+          "th-TH": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+          "en": "https://montri-th.github.io/rebuild02/Landometer-Home-EN.dc.html"
+        },
+        "presentation": {
+          "mode": "direct",
+          "technique": "direct_control"
+        }
+      },
+      "availability": "available",
+      "consequence": {
+        "class": "none",
+        "external": false,
+        "cost": "none",
+        "reversible": true
+      },
+      "confirmation": "none"
+    }
+  ],
+  "capabilities": [
+    "claims",
+    "evidence",
+    "motion",
+    "agent_action"
+  ],
+  "capabilityConfigRefs": {
+    "claims": {
+      "ref": "claim-manifest.example.json",
+      "sha256": "db2fc8107192dc6dfcb3390fe7dc8b9ccb52455bb1f61d56c61b2510ef2e0bc0",
+      "schemaRef": "https://landometer.org/design-system/0.9.4/claim-manifest.schema.1.1.json"
+    },
+    "evidence": {
+      "ref": "claim-manifest.example.json",
+      "sha256": "db2fc8107192dc6dfcb3390fe7dc8b9ccb52455bb1f61d56c61b2510ef2e0bc0",
+      "schemaRef": "https://landometer.org/design-system/0.9.4/claim-manifest.schema.1.1.json"
+    },
+    "motion": {
+      "ref": "tokens.v0.9.4.json#/motion/approach",
+      "sha256": "55515178603e4a5b45a660e23996fbb197b5bb431c7565640f6b9c60e438614d",
+      "schemaRef": "https://landometer.org/design-system/0.9.4/capability-config.schema.1.5.json#/$defs/motion"
+    },
+    "agent_action": {
+      "ref": "agent-action-definition.example.json",
+      "sha256": "aec4e72148d230521040616524e6f6cc56be963845ff24ea9fa13377b527dd00",
+      "schemaRef": "https://landometer.org/design-system/0.9.4/agent-action-definition.schema.1.3.json"
+    }
+  },
+  "publication": {
+    "public": true,
+    "indexing": "noindex",
+    "canonicalPolicy": "self",
+    "machineReadable": true,
+    "discovery": {
+      "kind": "web_discovery",
+      "pageKind": "article",
+      "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/th/",
+      "htmlLang": "th-TH",
+      "titleByLocale": {
+        "th-TH": "ตัวอย่าง Design System — ข้อความ cultural activation ของ Landometer",
+        "en": "Design System example — Landometer cultural-activation line"
+      },
+      "descriptionByLocale": {
+        "th-TH": "ตัวอย่างอ้างอิงสำหรับใช้ข้อความแบรนด์ Landometer อย่างถูกต้อง พร้อมข้อจำกัดที่ผู้อ่านเข้าใจได้",
+        "en": "A reference example for using a Landometer brand line correctly, with reader-friendly limitations."
+      },
+      "primaryHeadingByLocale": {
+        "th-TH": "Let us cultivate our city with data.",
+        "en": "Let us cultivate our city with data."
+      },
+      "primaryAnswerByLocale": {
+        "th-TH": "ข้อความนี้เป็น cultural activation ของ Landometer และไม่ใช่คำอ้างเรื่องผลิตภัณฑ์ เมือง หรือความสามารถ",
+        "en": "This line is Landometer's cultural activation, not a product, city, or capability claim."
+      },
+      "robots": {
+        "index": false,
+        "follow": true
+      },
+      "sitemap": {
+        "included": false,
+        "loc": null
+      },
+      "localeRoutes": [
+        {
+          "locale": "th-TH",
+          "url": "https://landometer.org/reference/portfolio-brand-line/th/",
+          "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/th/",
+          "alternates": [
+            {
+              "locale": "th-TH",
+              "url": "https://landometer.org/reference/portfolio-brand-line/th/"
+            },
+            {
+              "locale": "en",
+              "url": "https://landometer.org/reference/portfolio-brand-line/en/"
+            }
+          ]
+        },
+        {
+          "locale": "en",
+          "url": "https://landometer.org/reference/portfolio-brand-line/en/",
+          "canonicalUrl": "https://landometer.org/reference/portfolio-brand-line/en/",
+          "alternates": [
+            {
+              "locale": "th-TH",
+              "url": "https://landometer.org/reference/portfolio-brand-line/th/"
+            },
+            {
+              "locale": "en",
+              "url": "https://landometer.org/reference/portfolio-brand-line/en/"
+            }
+          ]
+        }
+      ],
+      "socialPreview": {
+        "titleByLocale": {
+          "th-TH": "Landometer — Visualize City, Shape Tomorrow.",
+          "en": "Landometer — Visualize City, Shape Tomorrow."
+        },
+        "descriptionByLocale": {
+          "th-TH": "ข้อความแบรนด์ที่คุ้มครอง พร้อมขอบเขตที่ถูกต้อง",
+          "en": "The protected brand line with its correct role boundary."
+        },
+        "url": "https://landometer.org/reference/portfolio-brand-line/th/",
+        "imageAssetId": null
+      },
+      "structuredDataBindings": [
+        {
+          "ref": "structured-data-projection.example.json",
+          "sha256": "2f98647b7dd1e1131192c9334159c3f4f7f30f50a0ad69e0eb9f0ca03929da36",
+          "schemaRef": "https://landometer.org/design-system/0.9.4/structured-data-projection.schema.1.1.json"
+        }
+      ],
+      "crawlerPurposePolicy": {
+        "ref": "crawler-purpose-policy.example.json",
+        "sha256": "b297e28e70b73557c4a7518a123913fc49747734ee340bc7cea0cad64b6c66bc",
+        "schemaRef": "https://landometer.org/design-system/0.9.4/crawler-purpose-policy.schema.1.0.json"
+      },
+      "visibleTruthOnly": true,
+      "initialHtmlRequired": true,
+      "protectedLineRoles": {
+        "visibleScene": "cultural_activation",
+        "metadataScene": null,
+        "socialPreviewScene": null
+      },
+      "iconSetId": "iconset.landometer.portfolio.symbol.01",
+      "titlePattern": "[page] · [product]"
+    },
+    "layerRequirements": {
+      "discovery": "required",
+      "readability": "required",
+      "action": "required"
+    },
+    "claimManifestRef": "claim-manifest.example.json",
+    "claimManifestSha256": "db2fc8107192dc6dfcb3390fe7dc8b9ccb52455bb1f61d56c61b2510ef2e0bc0",
+    "claimAsOf": "2026-09-01T00:33:36+07:00",
+    "sitemapEligible": false,
+    "llmsNavigation": "optional"
+  },
+  "privacySecurity": {
+    "dataClassification": "public",
+    "personalData": false,
+    "permissionsRequired": [],
+    "redactionPolicy": "not_required",
+    "agentActionPolicy": "read_only"
+  },
+  "audienceOutput": {
+    "mode": "resolved_only",
+    "deliveryAudience": "public",
+    "disclosurePurpose": "design_system_reference",
+    "internalGovernanceVisibility": "hidden",
+    "unresolvedDependencyBehavior": "block_or_internal_preview",
+    "placeholderPolicy": "forbidden_in_resolved_delivery",
+    "materialLimitationPresentation": "proximate_plain_language",
+    "blockingDependencyRefs": [],
+    "disclosureAuthorityRef": "disclosure-authority.example.json",
+    "disclosureAuthoritySha256": "182b050c34be1424de7f078a112bfd36f36cfd1719a08217787c38280a1d5e43",
+    "disclosureAttestationRef": "disclosure-authority.example.attestation.json",
+    "disclosureAttestationSha256": "ca8f9d0b9840fdaa71edb278281a54fcd7c79328f378f277f0e1fd1c2e6b8bff"
+  },
+  "assumptions": [],
+  "assetRegistries": [
+    {
+      "registryRef": "asset-registry.json",
+      "sha256": "03cda249cd06028a0289812446bffa588e4208f4a1411f199508ab32d1384eae",
+      "schemaRef": "https://landometer.org/design-system/0.9.4/asset-registry.schema.1.9.json"
+    }
+  ],
+  "assets": [
+    {
+      "id": "font.arvo.latin.700",
+      "role": "text_font",
+      "surface": "display_text",
+      "source": "asset-registry.json#font.arvo.latin.700",
+      "approvalStatus": "approved",
+      "sha256": "3d908a2c04ec4c59d26d1454008b2d6744480654663a5f88e439f6483976bd37",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-01T00:33:36+07:00",
+      "approvalReceiptRef": "asset-approval-receipt.json",
+      "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+      "fontRole": "display_latin",
+      "fontFamily": "Arvo",
+      "fontSubset": "latin",
+      "fontWeight": 700,
+      "fontFallback": "Georgia, Cambria, Times New Roman, serif",
+      "licenseOrPermission": "OFL-1.1"
+    },
+    {
+      "id": "font.ibm-plex-thai-looped.latin.700",
+      "role": "text_font",
+      "surface": "display_text",
+      "source": "asset-registry.json#font.ibm-plex-thai-looped.latin.700",
+      "approvalStatus": "approved",
+      "sha256": "47eb0fe82a8b96cc5f1ac057e2edad4d2550d6b73d4aa030697bf1678047c526",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-01T00:33:36+07:00",
+      "approvalReceiptRef": "asset-approval-receipt.json",
+      "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+      "fontRole": "display_thai",
+      "fontFamily": "IBM Plex Sans Thai Looped",
+      "fontSubset": "latin",
+      "fontWeight": 700,
+      "fontFallback": "Noto Sans Thai Looped, Leelawadee UI, Tahoma, sans-serif",
+      "licenseOrPermission": "OFL-1.1"
+    },
+    {
+      "id": "font.ibm-plex-thai-looped.thai.700",
+      "role": "text_font",
+      "surface": "display_text",
+      "source": "asset-registry.json#font.ibm-plex-thai-looped.thai.700",
+      "approvalStatus": "approved",
+      "sha256": "fa03fc4dda6a69763997e79d50e0437795d06c02e1798bdacf3a2f5e685cea2c",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-01T00:33:36+07:00",
+      "approvalReceiptRef": "asset-approval-receipt.json",
+      "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+      "fontRole": "display_thai",
+      "fontFamily": "IBM Plex Sans Thai Looped",
+      "fontSubset": "thai",
+      "fontWeight": 700,
+      "fontFallback": "Noto Sans Thai Looped, Leelawadee UI, Tahoma, sans-serif",
+      "licenseOrPermission": "OFL-1.1"
+    },
+    {
+      "id": "font.bai-jamjuree.latin.400",
+      "role": "text_font",
+      "surface": "body_text",
+      "source": "asset-registry.json#font.bai-jamjuree.latin.400",
+      "approvalStatus": "approved",
+      "sha256": "5200faf54f32adc1dc47b8522adbd1399e739f4ce5c9236866806c04d6397b19",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-01T00:33:36+07:00",
+      "approvalReceiptRef": "asset-approval-receipt.json",
+      "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+      "fontRole": "body_ui",
+      "fontFamily": "Bai Jamjuree",
+      "fontSubset": "latin",
+      "fontWeight": 400,
+      "fontFallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif",
+      "licenseOrPermission": "OFL-1.1"
+    },
+    {
+      "id": "font.bai-jamjuree.thai.400",
+      "role": "text_font",
+      "surface": "body_text",
+      "source": "asset-registry.json#font.bai-jamjuree.thai.400",
+      "approvalStatus": "approved",
+      "sha256": "357f8fe9fd08973568a061a2fc266a07819cdc33e8c9bb2b39985cc4ec49bfa9",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-01T00:33:36+07:00",
+      "approvalReceiptRef": "asset-approval-receipt.json",
+      "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+      "fontRole": "body_ui",
+      "fontFamily": "Bai Jamjuree",
+      "fontSubset": "thai",
+      "fontWeight": 400,
+      "fontFallback": "Noto Sans Thai, Leelawadee UI, Tahoma, sans-serif",
+      "licenseOrPermission": "OFL-1.1"
+    },
+    {
+      "id": "icon.material-symbols-rounded.nav-7.300.01",
+      "role": "interface_icon",
+      "surface": "navigation",
+      "source": "asset-registry.json#icon.material-symbols-rounded.nav-7.300.01",
+      "approvalStatus": "approved",
+      "sha256": "d7e283106ed2898726b24504c4e0f5ad524292984a90a4d29553c7dcf53b9657",
+      "approvedBy": "Landometer owner",
+      "approvedAt": "2026-09-01T00:33:36+07:00",
+      "approvalReceiptRef": "asset-approval-receipt.json",
+      "approvalReceiptSha256": "fe4400d2d2e2a25a0232c9e64870bd814d41cca83acf6f17f5c6000535262e75",
+      "licenseOrPermission": "Apache-2.0",
+      "fallback": "approved inline vector or visible text label; never a missing-glyph box",
+      "glyphs": [
+        "open_in_new",
+        "menu",
+        "close",
+        "light_mode",
+        "dark_mode",
+        "contrast",
+        "groups"
+      ]
+    }
+  ],
+  "qa": {
+    "automated": [
+      "common",
+      "web-public",
+      "discovery"
+    ],
+    "manual": [
+      "Thai-native-review",
+      "evidence-boundary-review"
+    ],
+    "production": [
+      "deployed-canonical-origin"
+    ],
+    "exceptionIds": []
+  }
+}

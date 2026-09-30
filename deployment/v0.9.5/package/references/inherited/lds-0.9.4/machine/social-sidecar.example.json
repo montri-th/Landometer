@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.2",
+  "releaseRef": "v0.9.4-mp1",
+  "kind": "social_static_publication_sidecar",
+  "sidecarId": "sidecar.social.landometer-cultivation.th.2026-09",
+  "publicationStatus": "example_only",
+  "generatedAt": "2026-09-01T00:50:00+07:00",
+  "promotionCheckedAt": "2026-09-01T00:50:00+07:00",
+  "productionObservedAt": null,
+  "artifact": {
+    "artifactId": "social.landometer-cultivation.th.square",
+    "artifactBuildId": "social.landometer-cultivation.th.square.20260901.01",
+    "builtAt": "2026-09-01T00:40:00+07:00",
+    "formatProfile": "social_static",
+    "targetProfileRef": "target.social.square.1080.01",
+    "buildCardRef": "fixtures/social-static/build-card.json",
+    "buildCardSha256": "f73bf1c3f96c008ce2646acac4216da8b29b536c0f56b9817792132ef2423978",
+    "creativePath": "creative/landometer-cultivation-th-square.png",
+    "creativeSha256": "9d5c263c587a6b3e692eb20a80f8e11d2367d54e2e9729248da71759d8a160eb",
+    "creativeMediaType": "image/png"
+  },
+  "locale": {
+    "primary": "th-TH",
+    "languageDirection": "ltr"
+  },
+  "campaign": {
+    "campaignId": "campaign.cultivate-city.2026",
+    "channel": "instagram.feed",
+    "name": "Cultivate our city — cultural activation",
+    "startsAt": "2026-09-01T00:00:00+07:00",
+    "expiryBasis": "fixed_timestamp",
+    "expiresAt": "2027-08-31T23:59:59+07:00"
+  },
+  "claimBinding": {
+    "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+    "claimManifestRef": "claim-manifest.example.json",
+    "claimManifestSha256": "db2fc8107192dc6dfcb3390fe7dc8b9ccb52455bb1f61d56c61b2510ef2e0bc0",
+    "claimRecordRef": "claim-record.example.json",
+    "claimRecordSha256": "035d97614bb666ecafca54607bfd65aa769ee94d92ada6cdf46db6bce87fd393",
+    "claimAsOf": "2026-09-01T00:33:36+07:00",
+    "validityBasis": "timeless",
+    "validUntil": null,
+    "visibleText": "Let us cultivate our city with data.",
+    "visibleLimitations": [
+      {
+        "limitationId": "limitation.protected-line-boundary.01",
+        "text": "ข้อความนี้เป็นข้อความแบรนด์ของ Landometer ไม่ได้บอกข้อเท็จจริงเกี่ยวกับผลิตภัณฑ์ เมือง การจัดอันดับ หรือความสามารถ"
+      }
+    ]
+  },
+  "evidenceBindings": [
+    {
+      "evidenceRef": "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines",
+      "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+      "visibleCue": "หลักฐาน: การอนุมัติข้อความระดับพอร์ตโฟลิโอ",
+      "evidenceKind": "owner_approval",
+      "observedAt": "2026-09-01T00:33:36+07:00"
+    }
+  ],
+  "actionBinding": {
+    "actionId": "open-live-source",
+    "availability": "available",
+    "label": "ดูที่มา",
+    "outcome": "เปิดหน้าสาธารณะที่แสดงข้อความนี้",
+    "destinationKind": "external",
+    "destination": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+    "presentation": {
+      "mode": "static_equivalent",
+      "technique": "destination_cue"
+    },
+    "destinationCue": "montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+    "destinationVerification": {
+      "status": "passed",
+      "method": "http_head_or_get",
+      "observedDestination": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+      "observedAt": "2026-09-01T00:45:00+07:00",
+      "freshnessTtlSeconds": 900,
+      "evidenceRef": "social-destination-verification.example.json",
+      "evidenceSha256": "8f29be5a70a083c408f015efac3a31d78ef6dbcc295fce94795aee151f9fcce9"
+    }
+  },
+  "rights": {
+    "status": "public",
+    "publicationPermission": true,
+    "licenseOrPermission": "Owner-approved public portfolio cultural-activation wording.",
+    "rightsSourceRef": "claim-record.example.json",
+    "rightsSourceSha256": "035d97614bb666ecafca54607bfd65aa769ee94d92ada6cdf46db6bce87fd393",
+    "allowedChannels": [
+      "instagram.feed"
+    ],
+    "allowedLocales": [
+      "th-TH"
+    ],
+    "validFrom": "2026-09-01T00:33:36+07:00",
+    "expiryBasis": "no_expiry",
+    "expiresAt": null
+  },
+  "visibleCopyInspection": {
+    "subjectPath": "creative/landometer-cultivation-th-square.png",
+    "subjectSha256": "9d5c263c587a6b3e692eb20a80f8e11d2367d54e2e9729248da71759d8a160eb",
+    "method": "ocr_plus_visual_review",
+    "result": "pass",
+    "inspectedAt": "2026-09-01T00:48:00+07:00",
+    "normalizationAlgorithm": "unicode_nfc_trim_collapse_whitespace_v1",
+    "normalizedProjectionSha256": "615a1b0504c7363dab961bdc11ded26d3cb756b97ba389b082a253a82ecb1086",
+    "evidenceRef": "social-visible-copy-inspection.example.json",
+    "evidenceSha256": "30bdcb9246b3be1c9ef3f0be2a1720796ac4ee2da6f19d920ece208268c8e29b"
+  },
+  "outputClarity": {
+    "mode": "resolved_only",
+    "workflowState": "resolved",
+    "blockingDependencyRefs": [],
+    "placeholderCount": 0,
+    "unresolvedWorkflowLanguagePresent": false,
+    "audienceProjectionId": "social_sidecar_audience_v2",
+    "audienceTextHashAlgorithm": "sha256_canonical_json_v1",
+    "audienceTextSha256": "5d6507a3bd2cb7e6fc7b22ae4bd251c6905fff8ed637960a28771bc550ba33b8",
+    "visibleCopyProjectionId": "social_visible_copy_projection_v1",
+    "visibleCopyNormalization": "unicode_nfc_trim_collapse_whitespace_v1",
+    "visibleCopySha256": "615a1b0504c7363dab961bdc11ded26d3cb756b97ba389b082a253a82ecb1086"
+  }
+}

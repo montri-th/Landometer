@@ -1,4 +1,4 @@
-name: Validate LDS 0.9.5
+name: Validate LDS 0.9.6
 on:
   pull_request:
     branches: [main]
@@ -6,6 +6,7 @@ on:
 permissions:
   contents: read
 jobs:
+  # Keep this required check context stable across release versions.
   validate-lds095:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -18,9 +19,9 @@ jobs:
         run: node tools/validate-release.mjs
       - name: Check installer dry-run and isolated install
         run: |
-          python3 tools/install-lds095.py --home /tmp/lds095-install --json
-          python3 tools/install-lds095.py --home /tmp/lds095-install --apply --json
-          node /tmp/lds095-install/.agents/skills/apply-landometer-design-system/scripts/verify.mjs --json
-          node /tmp/lds095-install/.claude/skills/apply-landometer-design-system/scripts/verify.mjs --json
+          python3 tools/install-lds096.py --home /tmp/lds096-install --json
+          python3 tools/install-lds096.py --home /tmp/lds096-install --apply --json
+          node /tmp/lds096-install/.agents/skills/apply-landometer-design-system/scripts/verify.mjs --json
+          node /tmp/lds096-install/.claude/skills/apply-landometer-design-system/scripts/verify.mjs --json
       - name: Check whitespace
         run: git diff --check

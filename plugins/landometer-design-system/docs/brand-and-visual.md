@@ -1,6 +1,6 @@
-# Landometer DS 0.9.5: brand and visual continuity
+# Landometer DS 0.9.6: brand and visual continuity
 
-DS 0.9.5 incorporates the owner-approved R2.1 color direction. It preserves the good brand voice and visual foundations carried from 0.9.1 through 0.9.4. Use the packaged normative source for the full rules; this guide identifies the decisions that must not be lost during rollout.
+DS 0.9.6 incorporates the owner-approved R2.1 color direction. It preserves the good brand voice and visual foundations carried from 0.9.1 through 0.9.4. Use the packaged normative source for the full rules; this guide identifies the decisions that must not be lost during rollout.
 
 ## Voice
 
@@ -31,10 +31,10 @@ The approved color changes are scoped: dark categorical soft/vivid palettes; ana
 | Household | Scarlet | State household denominator and source |
 | Built area | Gold | State built-area definition and unit |
 
-Use exact machine lookup tables, with the intended light or dark theme. Do not redraw a gradient from a screenshot or sample only endpoints. Prefer 5–7 classes on compact marks; inspect nine-class gold at final size. Preserve labels and other cues; hue differences alone do not certify color-vision accessibility.
+Every sequential gradient has three approved anchors with a distinctly different middle hue, for example cream → green → blue. Lightness stays one-way in each theme; the middle colour is not a diverging pivot. Use exact machine lookup tables, with the intended light or dark theme. Do not redraw a gradient from a screenshot or sample only endpoints. Prefer 5–7 classes on compact marks; inspect nine-class gold at final size. Preserve labels and other cues; hue differences alone do not certify color-vision accessibility.
 
 ## Truth and accessibility
 
 Keep zero, missing, withheld, not applicable and incompatible values distinct. Put sources and material limitations near their claims. Preserve the original accessibility and evidence boundaries, readable typography and focus states, keyboard operation, reduced-motion support, and meaningful fallback output. Human voice/composition review and rendered-format review remain necessary even when automated checks pass.
 
-Historical artifacts retain their original release identities and matching trust. DS 0.9.5 is a new owner-approved release; never claim the unchanged 0.9.4 signature signs the new color values.
+Historical artifacts retain their original release identities and matching trust. DS 0.9.6 is a new owner-approved release; never claim the unchanged 0.9.4 signature signs the new color values.

@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.6/standalone-0.9.6-r1/schemas/crawler-purpose-policy.schema.json",
+  "title": "Landometer crawler-purpose policy v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "policyId",
+    "routeClass",
+    "decisions",
+    "approvedBy",
+    "approvedAt",
+    "authorityEvidenceRef"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "releaseRef": {
+      "const": "v0.9.6-owner.1"
+    },
+    "policyId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "routeClass": {
+      "enum": [
+        "public",
+        "authenticated",
+        "internal",
+        "sensitive"
+      ]
+    },
+    "decisions": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "purpose",
+          "decision",
+          "rationale"
+        ],
+        "properties": {
+          "purpose": {
+            "enum": [
+              "search_indexing",
+              "ai_search_retrieval",
+              "model_training",
+              "archival",
+              "monitoring",
+              "agent_action"
+            ]
+          },
+          "decision": {
+            "enum": [
+              "allow",
+              "disallow",
+              "conditional"
+            ]
+          },
+          "rationale": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "conditionRef": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "decision": {
+                  "const": "conditional"
+                }
+              },
+              "required": [
+                "decision"
+              ]
+            },
+            "then": {
+              "required": [
+                "conditionRef"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "approvedBy": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "authorityEvidenceRef": {
+      "$ref": "#/$defs/nonEmpty"
+    }
+  },
+  "allOf": [
+    {
+      "properties": {
+        "decisions": {
+          "contains": {
+            "properties": {
+              "purpose": {
+                "const": "search_indexing"
+              }
+            },
+            "required": [
+              "purpose"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "decisions": {
+          "contains": {
+            "properties": {
+              "purpose": {
+                "const": "ai_search_retrieval"
+              }
+            },
+            "required": [
+              "purpose"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "decisions": {
+          "contains": {
+            "properties": {
+              "purpose": {
+                "const": "model_training"
+              }
+            },
+            "required": [
+              "purpose"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "decisions": {
+          "contains": {
+            "properties": {
+              "purpose": {
+                "const": "archival"
+              }
+            },
+            "required": [
+              "purpose"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "decisions": {
+          "contains": {
+            "properties": {
+              "purpose": {
+                "const": "monitoring"
+              }
+            },
+            "required": [
+              "purpose"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "decisions": {
+          "contains": {
+            "properties": {
+              "purpose": {
+                "const": "agent_action"
+              },
+              "decision": {
+                "enum": [
+                  "disallow",
+                  "conditional"
+                ]
+              }
+            },
+            "required": [
+              "purpose",
+              "decision"
+            ]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.6 contract, revision standalone-0.9.6-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

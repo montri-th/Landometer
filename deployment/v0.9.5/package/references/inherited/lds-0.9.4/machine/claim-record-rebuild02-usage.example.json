@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.4",
+  "claimId": "claim.observation.rebuild02.cultural-activation.2026-08-31",
+  "textByLocale": {
+    "th-TH": "หน้า Rebuild02 ที่สังเกตเมื่อ 31 สิงหาคม 2026 แสดงข้อความ ‘Let us cultivate our city with data.’",
+    "en": "The Rebuild02 page observed on 31 August 2026 displays ‘Let us cultivate our city with data.’"
+  },
+  "claimType": "fact",
+  "entity": {
+    "entityId": "rebuild02-home-th-story-rally-observation",
+    "entityType": "implementation_observation",
+    "name": "Observed Rebuild02 cultural-activation usage"
+  },
+  "proposition": {
+    "assertion": "The named Rebuild02 page visibly used the protected cultural-activation wording at the recorded observation time.",
+    "valueState": "not_applicable",
+    "value": null,
+    "unit": null
+  },
+  "scope": {
+    "productScope": "named_product",
+    "portfolioDomain": "shared",
+    "product": "rebuild02_web_reference",
+    "geography": null,
+    "audience": "public",
+    "timeWindow": "observed 2026-08-31"
+  },
+  "authority": {
+    "class": "implementation_observation",
+    "authorityRef": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html#story-rally",
+    "authorizes": "observed_usage_only",
+    "observedSubjectId": "rebuild02-home-th-story-rally"
+  },
+  "status": "reviewed",
+  "evidenceRefs": [
+    "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html#story-rally"
+  ],
+  "methodologyRef": null,
+  "dataGrain": {
+    "entity": "named_page_usage",
+    "geography": null,
+    "time": "observed 2026-08-31",
+    "unitOfObservation": "one public page section",
+    "denominator": null,
+    "aggregation": null
+  },
+  "schemaRelease": "Landometer Design System v0.9.1",
+  "contentRelease": "rebuild02-observation-2026-08-31",
+  "provenance": {
+    "source": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+    "transformation": "Exact visible-text observation. This record authorizes only the observed implementation usage and cannot establish portfolio wording, product capability, or portfolio conformance.",
+    "owner": "portfolio-owner",
+    "reviewedAt": "2026-08-31T00:00:00+07:00",
+    "integrityRef": "sha256:4e15a809bee6a42ede8f44abcb1a8d97be5713027a81fdc531833d33bfcac45a"
+  },
+  "rights": {
+    "status": "public",
+    "publicationPermission": true,
+    "conditions": null
+  },
+  "confidence": {
+    "kind": "not_applicable",
+    "value": null,
+    "explanation": null
+  },
+  "limitations": [
+    {
+      "id": "limitation.observation-authority-boundary.01",
+      "textByLocale": {
+        "th-TH": "ข้อมูลนี้บอกเพียงว่าพบข้อความดังกล่าวในหน้าและเวลาที่ระบุ ไม่ได้บอกว่าเว็บไซต์ทั้งหมดหรือผลิตภัณฑ์อื่นใช้ข้อความนี้ด้วย",
+        "en": "This only records the wording seen on the named page at that time. It does not describe the whole website or any other product."
+      }
+    }
+  ],
+  "lastReviewed": "2026-08-31T00:00:00+07:00",
+  "validityBasis": "until_superseded",
+  "validFrom": "2026-08-31T00:00:00+07:00",
+  "validUntil": null,
+  "supersedes": [],
+  "publicProjectionEligible": false
+}

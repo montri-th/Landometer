@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "lds-owner-distribution-1",
+  "release": {
+    "dsVersion": "0.9.6",
+    "releaseRef": "v0.9.6-owner.1",
+    "machinePackage": "v0.9.6-owner.1",
+    "authoringRevision": "0.9.6-owner.1",
+    "colorSetId": "color-srgb-09",
+    "status": "owner-approved",
+    "effectiveFor": "work explicitly adopting this owner distribution",
+    "signatureStatus": "unsigned",
+    "signedRelease": false,
+    "ownerApproval": {
+      "date": "2026-10-01",
+      "authority": "Montri",
+      "reference": "owner-message:2026-10-01:approve-r2-and-release-0.9.6-all-channels"
+    }
+  },
+  "inherits": {
+    "dsVersion": "0.9.4",
+    "machinePackage": "v0.9.4-mp1",
+    "path": "../../../references/inherited/lds-0.9.4",
+    "releaseSha256": "6231ccfa6c67dea65abd9bb9597f14448ddc9f285be949e4efa026978e1d4419",
+    "sumSha256": "9a261eb4df7bf3be5cf1e23f7fb2bd7079c67ca481fc55dccc7049ac52d325cc",
+    "trustPath": "../../../references/owner-trust/v0.9.4",
+    "signedBaseDoesNotSignThisDistribution": true
+  },
+  "approvalSource": {
+    "path": "../../../references/approved-0.9.6.json",
+    "sha256": "a63d367ff982a1603a597ed9d9a6466cc2678a84c671e8d37e255c05e9b00797",
+    "visualBuildId": "lds095-sequential-three-anchor-20260930-r2",
+    "sequentialPath": "../../../references/approved-sequential-r2.json",
+    "sequentialSha256": "0ae97bf20fe51521ddb71aed3f5ae99f5206cd934492eff4934e97a29765e4fa"
+  },
+  "entrypoints": {
+    "human": "../normative/Landometer-Design-System-v0.9.6.md",
+    "brand": "../brand/BRAND.md",
+    "policy": "policy.json",
+    "tokens": "tokens.v0.9.6.json",
+    "colorRegistry": "color-srgb-09.tokens.json",
+    "scales": "color-srgb-09.scales.json",
+    "css": "color-srgb-09.production.css",
+    "webBuildKit": "../build-kit/lds-0.9.6.css",
+    "designTokens": "lds-0.9.6.tokens.dtcg.json"
+  },
+  "counts": {
+    "families": 20,
+    "themes": 2,
+    "lutColors": 1640,
+    "categoricalSlots": 10,
+    "atmosphereRecipes": 7
+  },
+  "verification": {
+    "command": "node scripts/verify.mjs",
+    "scope": "immutable base, approved snapshot parity, typed policy, complete assets, analytical math and CSS projection; not artifact conformance"
+  },
+  "limitations": [
+    "Package parity and analytical math are automated.",
+    "Rendering, actual surface contrast, native Thai copy, source truth, threshold semantics, CVD/grayscale usability and each output format require artifact review.",
+    "No claim of signed0.9.6 release, complete conformance, universal platform enforcement or team installation.",
+    "Inherited open governance/product-icon/motif/signing follow-ups remain open unless specifically resolved here."
+  ],
+  "predecessor": {
+    "dsVersion": "0.9.5",
+    "releaseRef": "v0.9.5-owner.1",
+    "releaseSha256": "9a2725d21927a19b0d78d04455ad95ad0e7571ce2d45d74da21a17786cc9e829",
+    "changedScope": "28 sequential records; all12 diverging records and categorical/atmosphere/foundation/assets unchanged"
+  }
+}

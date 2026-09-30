@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/asset-approval-receipt.schema.1.0.json",
+  "title": "Landometer role-scoped asset approval receipt v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "releaseRef", "receiptId", "status", "approvedBy", "approvedAt", "authorityEvidenceRef", "assets"],
+  "properties": {
+    "schemaVersion": { "const": "1.0" },
+    "releaseRef": { "const": "v0.9.4-mp1" },
+    "receiptId": { "$ref": "#/$defs/nonEmpty" },
+    "status": { "const": "approved" },
+    "approvedBy": { "$ref": "#/$defs/nonEmpty" },
+    "approvedAt": { "type": "string", "format": "date-time" },
+    "authorityEvidenceRef": { "$ref": "#/$defs/nonEmpty" },
+    "assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/assetApproval" }
+    }
+  },
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "uniqueStrings": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/nonEmpty" }, "uniqueItems": true },
+    "assetApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assetId", "role", "sha256", "allowedFormatProfiles", "allowedSurfaceRoles", "allowedAudiences", "publicationPermission", "licenseOrPermission", "fallback"],
+      "properties": {
+        "assetId": { "$ref": "#/$defs/nonEmpty" },
+        "role": { "enum": ["identity", "text_font", "interface_icon", "editorial", "evidence", "data_visualization", "map", "social_preview", "atmosphere", "ui_capture", "provider_content", "generated_vector"] },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "allowedFormatProfiles": {
+          "type": "array", "minItems": 1, "uniqueItems": true,
+          "items": { "enum": ["web_public", "app_interactive", "document_flow", "pdf_fixed", "deck_presentation", "social_static"] }
+        },
+        "allowedSurfaceRoles": { "$ref": "#/$defs/uniqueStrings" },
+        "allowedAudiences": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["internal_preview", "internal_operational", "client", "public"] }
+        },
+        "publicationPermission": { "type": "boolean" },
+        "licenseOrPermission": { "$ref": "#/$defs/nonEmpty" },
+        "fallback": { "$ref": "#/$defs/nonEmpty" },
+        "altOrTextEquivalent": { "$ref": "#/$defs/nonEmpty" },
+        "glyphs": { "$ref": "#/$defs/uniqueStrings" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "role": { "const": "identity" } }, "required": ["role"] },
+          "then": { "required": ["altOrTextEquivalent"] }
+        },
+        {
+          "if": { "properties": { "role": { "const": "interface_icon" } }, "required": ["role"] },
+          "then": { "required": ["glyphs"] }
+        },
+        {
+          "if": { "properties": { "role": { "enum": ["editorial", "evidence", "data_visualization", "map", "social_preview", "atmosphere", "ui_capture", "provider_content", "generated_vector"] } }, "required": ["role"] },
+          "then": { "required": ["altOrTextEquivalent"] }
+        }
+      ]
+    }
+  }
+}

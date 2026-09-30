@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "attestationId": "attestation.conformance-receipt.example.v0.9.4-mp1",
+  "purpose": "automated_conformance",
+  "subject": {
+    "ref": "conformance-receipt.example.json",
+    "sha256": "aec71ae6a5c03042fedd56e38e439cfee538a75cc280236a6f0c59f5ed6cbd89",
+    "mediaType": "application/json"
+  },
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "expiresAt": null,
+  "signatureAlgorithm": "Ed25519",
+  "signatureEncoding": "base64",
+  "signature": "C1wTz49cvDKV/mwAk9buMBi2ghcawbfgxqyT/Fj4KQT3Tny6s6GR8OW0MsNQEjTza0g3k9sjKOehO3lRF8VIBw=="
+}

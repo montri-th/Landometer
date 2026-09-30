@@ -1,6 +1,6 @@
 interface:
-  display_name: "Landometer DS 0.9.5"
+  display_name: "Landometer DS 0.9.6"
   short_description: "Apply verified Landometer assets and design rules"
-  default_prompt: "Use $apply-landometer-design-system to build this artifact with LDS 0.9.5 and report validation accurately."
+  default_prompt: "Use $apply-landometer-design-system to build this artifact with LDS 0.9.6 and report validation accurately."
 policy:
   allow_implicit_invocation: true

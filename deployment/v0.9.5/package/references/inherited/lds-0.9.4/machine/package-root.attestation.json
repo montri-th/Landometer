@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "attestationId": "attestation.package-root.v0.9.4-mp1",
+  "purpose": "package_root",
+  "subject": {
+    "ref": "SHA256SUMS.txt",
+    "sha256": "9a261eb4df7bf3be5cf1e23f7fb2bd7079c67ca481fc55dccc7049ac52d325cc",
+    "mediaType": "text/plain"
+  },
+  "issuerId": "landometer-release-operator",
+  "keyId": "landometer.release.2026-09-23.01",
+  "issuedAt": "2026-09-23T15:46:08+07:00",
+  "expiresAt": null,
+  "signatureAlgorithm": "Ed25519",
+  "signatureEncoding": "base64",
+  "signature": "9932kRFmGe/2JMi8F326sSYnFjsUS7cQlb/19ZXOv4gxJf20H48wrDVc0jL8k3hJ1m4RAiBoK0rbocJCv/gLDA=="
+}

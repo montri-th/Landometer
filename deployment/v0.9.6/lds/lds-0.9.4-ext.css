@@ -1,0 +1,292 @@
+/* Landometer Design System 0.9.4 candidate — build-kit custom properties (generated from tokens.v0.9.4.json; do not hand-edit hex)
+   Rules: DATAVIZ-02 blended mids + hue zones · DATAVIZ-03 dark anchors derived from the shipped light hex (warm lane by its own formula; asserted at
+   build; age dark mid is the declared exception) · DATAVIZ-04 no analytical value inside the retired earth/violet hue windows (asserted at build) ·
+   DATAVIZ-05 luminous series v7 with edge separation (default dial-soft, [data-series="vivid"] opt-in; the sky slot counts as an energy accent; slot 10
+   green; slot 2/3 light inks fall back to --text-primary) · EVID-05 value states (the no-data label is never set on the hatch fill). Pair with
+   color-srgb-07.production.css for the full governed colour projection. Dark theme resolves through the data-theme attribute (value dark) on the root
+   element; the un-stamped document follows prefers-color-scheme. Candidate 0.9.4-r1 — owner-approved 17 September 2026; effective from v0.9.4-mp1. */
+:root {
+  --text-primary: #182327; --text-secondary: #5F635A; --text-metadata: #5C6A61; --text-muted: #7B877D; --border-default: #C9D0CB; --border-emphasis: #7D877F; --border-hairline: #DCE1DD;
+  --surface-canvas: #F6F7F3; --surface-card: #FCFCFA; --surface-alt: #EEF1EE; --surface-soft: #E5E9E6; --surface-raised: #FFFFFF;
+  --dataviz-zero-outline: #7D877F; --data-no-data-fill: #D5DAD6;
+  --semantic-pending-fill: #F3EEDB; --semantic-pending-ink: #5C6A61;
+  --state-measured-zero-outline: var(--dataviz-zero-outline); --state-no-data-fill: var(--data-no-data-fill); --state-out-of-scope-fill: transparent; --state-suppressed-fill: var(--surface-soft); --state-not-yet-fill: var(--semantic-pending-fill); --state-label-ink: var(--text-metadata);
+  --brand-blue: #1D4497; --brand-beige: #F2F1DF; --energy-sky: #59D2FE; --energy-mint: #0AD69C; --energy-coral: #FF5A5F; --energy-yellow: #FFBC1F;
+  --scale-activity-low: #F2F1DF;
+  --scale-activity-mid: #F49383;
+  --scale-activity-high: #C52C00;
+  --scale-density-area-low: #F2F1DF;
+  --scale-density-area-mid: #EE9A69;
+  --scale-density-area-high: #A1182D;
+  --scale-heat-low: #FBF1C6;
+  --scale-heat-mid: #E3A257;
+  --scale-heat-high: #850E2E;
+  --scale-risk-low: #F2F1DF;
+  --scale-risk-mid: #CEA856;
+  --scale-risk-high: #B74436;
+  --scale-price-low: #F2F1DF;
+  --scale-price-mid: #CAAF59;
+  --scale-price-high: #135B42;
+  --scale-age-low: #F2F1DF;
+  --scale-age-mid: #B1B58A;
+  --scale-age-high: #364D48;
+  --scale-density-household-low: #F2F1DF;
+  --scale-density-household-mid: #93C089;
+  --scale-density-household-high: #0B5D2A;
+  --scale-growth-low: #F2F1DF;
+  --scale-growth-mid: #5BC19D;
+  --scale-growth-high: #126F68;
+  --scale-confidence-low: #F2F1DF;
+  --scale-confidence-mid: #85A5A2;
+  --scale-confidence-high: #08756F;
+  --scale-count-low: #F2F1DF;
+  --scale-count-mid: #55B8C2;
+  --scale-count-high: #236DAA;
+  --scale-water-low: #E6F1F2;
+  --scale-water-mid: #8FD3E0;
+  --scale-water-high: #0F6E8C;
+  --scale-density-capita-low: #F2F1DF;
+  --scale-density-capita-mid: #6DB3E4;
+  --scale-density-capita-high: #1E3E86;
+  --scale-built-low: #F2F1DF;
+  --scale-built-mid: #6797AF;
+  --scale-built-high: #225F78;
+  --scale-duration-low: #F2F1DF;
+  --scale-duration-mid: #A7B9BF;
+  --scale-duration-high: #275C76;
+  --scale-balance-neg: #C52C00;
+  --scale-balance-zero: #F2F1DF;
+  --scale-balance-pos: #186A9E;
+  --scale-delta-neg: #B74436;
+  --scale-delta-zero: #F2F1DF;
+  --scale-delta-pos: #007C78;
+  --scale-tradeoff-neg: #AB2E47;
+  --scale-tradeoff-zero: #F2F1DF;
+  --scale-tradeoff-pos: #007E91;
+  --scale-flow-neg: #D09B00;
+  --scale-flow-zero: #F2F1DF;
+  --scale-flow-pos: #1A8A51;
+  --scale-sentiment-neg: #CB4453;
+  --scale-sentiment-zero: #F2F1DF;
+  --scale-sentiment-pos: #429C5A;
+  --scale-anomaly-neg: #3578B8;
+  --scale-anomaly-zero: #F2F1DF;
+  --scale-anomaly-pos: #DC631E;
+  --scale-density-low: var(--scale-built-low); --scale-density-mid: var(--scale-built-mid); --scale-density-high: var(--scale-built-high); /* deprecated alias → built */
+  --series-1-fill: #D88381; --series-1-ink: #963538; --series-soft-1-fill: #D88381; --series-vivid-1-fill: #F66C6D; /* coral · cue circle */
+  --series-2-fill: #E39B6E; --series-2-ink: #182327; --series-soft-2-fill: #E39B6E; --series-vivid-2-fill: #FF8A36; /* apricot · cue square */
+  --series-3-fill: #EAC578; --series-3-ink: #182327; --series-soft-3-fill: #EAC578; --series-vivid-3-fill: #FDC010; /* yellow · cue triangle */
+  --series-4-fill: #BECE7E; --series-4-ink: #606E00; --series-soft-4-fill: #BECE7E; --series-vivid-4-fill: #BBD23C; /* lime · cue diamond */
+  --series-5-fill: #7BD0A3; --series-5-ink: #007047; --series-soft-5-fill: #7BD0A3; --series-vivid-5-fill: #2ADB94; /* mint · cue cross */
+  --series-6-fill: #6ACCF0; --series-6-ink: #006580; --series-soft-6-fill: #6ACCF0; --series-vivid-6-fill: #36D0FF; /* sky · cue star · energy accent equivalent */
+  --series-7-fill: #49C0BC; --series-7-ink: #006967; --series-soft-7-fill: #49C0BC; --series-vivid-7-fill: #00C4BF; /* teal · cue hexagon */
+  --series-8-fill: #6196D1; --series-8-ink: #0E599D; --series-soft-8-fill: #6196D1; --series-vivid-8-fill: #3295F6; /* blue · cue ring */
+  --series-9-fill: #8AA4AA; --series-9-ink: #355F6A; --series-soft-9-fill: #8AA4AA; --series-vivid-9-fill: #7FA6B0; /* slate · cue dash */
+  --series-10-fill: #82AC79; --series-10-ink: #34622A; --series-soft-10-fill: #82AC79; --series-vivid-10-fill: #71B262; /* green · cue plus */
+}
+:root[data-theme="dark"] {
+  --text-primary: #F1F4EF; --text-secondary: #C4CECA; --text-metadata: #A6B5B1; --text-muted: #8D9D99; --border-default: #46524F; --border-emphasis: #7C8A84; --border-hairline: #33403D;
+  --surface-canvas: #11191D; --surface-card: #20292D; --surface-alt: #172126; --surface-soft: #2B3534; --surface-raised: #293337;
+  --dataviz-zero-outline: #93A398; --data-no-data-fill: #404844;
+  --semantic-pending-fill: #2C2A22; --semantic-pending-ink: #D8CFB2;
+  --state-measured-zero-outline: var(--dataviz-zero-outline); --state-no-data-fill: var(--data-no-data-fill); --state-out-of-scope-fill: transparent; --state-suppressed-fill: var(--surface-soft); --state-not-yet-fill: var(--semantic-pending-fill); --state-label-ink: var(--text-metadata);
+  --brand-blue: #1D4497; --brand-beige: #F2F1DF; --energy-sky: #59D2FE; --energy-mint: #0AD69C; --energy-coral: #FF5A5F; --energy-yellow: #FFBC1F;
+  --scale-activity-low: #3C302D;
+  --scale-activity-mid: #D17465;
+  --scale-activity-high: #FF977F;
+  --scale-density-area-low: #3B302B;
+  --scale-density-area-mid: #CC7B4A;
+  --scale-density-area-high: #FFB4B3;
+  --scale-heat-low: #393129;
+  --scale-heat-mid: #C28336;
+  --scale-heat-high: #FFD1D3;
+  --scale-risk-low: #373229;
+  --scale-risk-mid: #B18C39;
+  --scale-risk-high: #FF9686;
+  --scale-price-low: #363329;
+  --scale-price-mid: #AA9038;
+  --scale-price-high: #A5E9CA;
+  --scale-age-low: #333515;
+  --scale-age-mid: #717D55;
+  --scale-age-high: #B3ECDF;
+  --scale-density-household-low: #253920;
+  --scale-density-household-mid: #5A8450;
+  --scale-density-household-high: #A2ECB1;
+  --scale-growth-low: #153B2E;
+  --scale-growth-mid: #229270;
+  --scale-growth-high: #81D2C9;
+  --scale-confidence-low: #0A3B38;
+  --scale-confidence-mid: #669490;
+  --scale-confidence-high: #75CDC6;
+  --scale-count-low: #083A3F;
+  --scale-count-mid: #26919B;
+  --scale-count-high: #77BEFF;
+  --scale-water-low: #0A3A41;
+  --scale-water-mid: #2A6F7B;
+  --scale-water-high: #78CAEA;
+  --scale-density-capita-low: #19364A;
+  --scale-density-capita-mid: #3E85B3;
+  --scale-density-capita-high: #CEDFFF;
+  --scale-built-low: #133748;
+  --scale-built-mid: #6A9AB2;
+  --scale-built-high: #99D5F2;
+  --scale-duration-low: #0E3944;
+  --scale-duration-mid: #517B88;
+  --scale-duration-high: #A0D6F4;
+  --scale-balance-neg: #FE8F75;
+  --scale-balance-zero: #2D3438;
+  --scale-balance-pos: #7AC5FE;
+  --scale-delta-neg: #FD8C7B;
+  --scale-delta-zero: #2D3438;
+  --scale-delta-pos: #68C7C2;
+  --scale-tradeoff-neg: #FF9EA7;
+  --scale-tradeoff-zero: #2D3438;
+  --scale-tradeoff-pos: #60C1D5;
+  --scale-flow-neg: #DBA833;
+  --scale-flow-zero: #2D3438;
+  --scale-flow-pos: #65C98C;
+  --scale-sentiment-neg: #FD8A8F;
+  --scale-sentiment-zero: #2D3438;
+  --scale-sentiment-pos: #6FC883;
+  --scale-anomaly-neg: #73B6FB;
+  --scale-anomaly-zero: #2D3438;
+  --scale-anomaly-pos: #F99262;
+  --series-1-fill: #F8A4A1; --series-1-ink: #FFC8C5; --series-soft-1-fill: #F8A4A1; --series-vivid-1-fill: #FF9F9C;
+  --series-2-fill: #F8B287; --series-2-ink: #FFCBAC; --series-soft-2-fill: #F8B287; --series-vivid-2-fill: #FFAF7D;
+  --series-3-fill: #F3D086; --series-3-ink: #F6D389; --series-soft-3-fill: #F3D086; --series-vivid-3-fill: #FBCD68;
+  --series-4-fill: #CBDA8E; --series-4-ink: #D1E195; --series-soft-4-fill: #CBDA8E; --series-vivid-4-fill: #C9DD76;
+  --series-5-fill: #8FDFB4; --series-5-ink: #9BECC1; --series-soft-5-fill: #8FDFB4; --series-vivid-5-fill: #76E5AD;
+  --series-6-fill: #7DD9FB; --series-6-ink: #9CE4FF; --series-soft-6-fill: #7DD9FB; --series-vivid-6-fill: #73DAFF;
+  --series-7-fill: #6DD9D5; --series-7-ink: #81EDE8; --series-soft-7-fill: #6DD9D5; --series-vivid-7-fill: #38DEDA;
+  --series-8-fill: #88BCF6; --series-8-ink: #BBDBFF; --series-soft-8-fill: #88BCF6; --series-vivid-8-fill: #7FBCFF;
+  --series-9-fill: #A1C5CE; --series-9-ink: #BBDFE8; --series-soft-9-fill: #A1C5CE; --series-vivid-9-fill: #A1C5CE;
+  --series-10-fill: #9AD78C; --series-10-ink: #B8E7AE; --series-soft-10-fill: #9AD78C; --series-vivid-10-fill: #9AD78C;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text-primary: #F1F4EF; --text-secondary: #C4CECA; --text-metadata: #A6B5B1; --text-muted: #8D9D99; --border-default: #46524F; --border-emphasis: #7C8A84; --border-hairline: #33403D;
+    --surface-canvas: #11191D; --surface-card: #20292D; --surface-alt: #172126; --surface-soft: #2B3534; --surface-raised: #293337;
+    --dataviz-zero-outline: #93A398; --data-no-data-fill: #404844;
+    --semantic-pending-fill: #2C2A22; --semantic-pending-ink: #D8CFB2;
+    --state-measured-zero-outline: var(--dataviz-zero-outline); --state-no-data-fill: var(--data-no-data-fill); --state-out-of-scope-fill: transparent; --state-suppressed-fill: var(--surface-soft); --state-not-yet-fill: var(--semantic-pending-fill); --state-label-ink: var(--text-metadata);
+    --brand-blue: #1D4497; --brand-beige: #F2F1DF; --energy-sky: #59D2FE; --energy-mint: #0AD69C; --energy-coral: #FF5A5F; --energy-yellow: #FFBC1F;
+    --scale-activity-low: #3C302D;
+    --scale-activity-mid: #D17465;
+    --scale-activity-high: #FF977F;
+    --scale-density-area-low: #3B302B;
+    --scale-density-area-mid: #CC7B4A;
+    --scale-density-area-high: #FFB4B3;
+    --scale-heat-low: #393129;
+    --scale-heat-mid: #C28336;
+    --scale-heat-high: #FFD1D3;
+    --scale-risk-low: #373229;
+    --scale-risk-mid: #B18C39;
+    --scale-risk-high: #FF9686;
+    --scale-price-low: #363329;
+    --scale-price-mid: #AA9038;
+    --scale-price-high: #A5E9CA;
+    --scale-age-low: #333515;
+    --scale-age-mid: #717D55;
+    --scale-age-high: #B3ECDF;
+    --scale-density-household-low: #253920;
+    --scale-density-household-mid: #5A8450;
+    --scale-density-household-high: #A2ECB1;
+    --scale-growth-low: #153B2E;
+    --scale-growth-mid: #229270;
+    --scale-growth-high: #81D2C9;
+    --scale-confidence-low: #0A3B38;
+    --scale-confidence-mid: #669490;
+    --scale-confidence-high: #75CDC6;
+    --scale-count-low: #083A3F;
+    --scale-count-mid: #26919B;
+    --scale-count-high: #77BEFF;
+    --scale-water-low: #0A3A41;
+    --scale-water-mid: #2A6F7B;
+    --scale-water-high: #78CAEA;
+    --scale-density-capita-low: #19364A;
+    --scale-density-capita-mid: #3E85B3;
+    --scale-density-capita-high: #CEDFFF;
+    --scale-built-low: #133748;
+    --scale-built-mid: #6A9AB2;
+    --scale-built-high: #99D5F2;
+    --scale-duration-low: #0E3944;
+    --scale-duration-mid: #517B88;
+    --scale-duration-high: #A0D6F4;
+    --scale-balance-neg: #FE8F75;
+    --scale-balance-zero: #2D3438;
+    --scale-balance-pos: #7AC5FE;
+    --scale-delta-neg: #FD8C7B;
+    --scale-delta-zero: #2D3438;
+    --scale-delta-pos: #68C7C2;
+    --scale-tradeoff-neg: #FF9EA7;
+    --scale-tradeoff-zero: #2D3438;
+    --scale-tradeoff-pos: #60C1D5;
+    --scale-flow-neg: #DBA833;
+    --scale-flow-zero: #2D3438;
+    --scale-flow-pos: #65C98C;
+    --scale-sentiment-neg: #FD8A8F;
+    --scale-sentiment-zero: #2D3438;
+    --scale-sentiment-pos: #6FC883;
+    --scale-anomaly-neg: #73B6FB;
+    --scale-anomaly-zero: #2D3438;
+    --scale-anomaly-pos: #F99262;
+    --series-1-fill: #F8A4A1; --series-1-ink: #FFC8C5; --series-soft-1-fill: #F8A4A1; --series-vivid-1-fill: #FF9F9C;
+    --series-2-fill: #F8B287; --series-2-ink: #FFCBAC; --series-soft-2-fill: #F8B287; --series-vivid-2-fill: #FFAF7D;
+    --series-3-fill: #F3D086; --series-3-ink: #F6D389; --series-soft-3-fill: #F3D086; --series-vivid-3-fill: #FBCD68;
+    --series-4-fill: #CBDA8E; --series-4-ink: #D1E195; --series-soft-4-fill: #CBDA8E; --series-vivid-4-fill: #C9DD76;
+    --series-5-fill: #8FDFB4; --series-5-ink: #9BECC1; --series-soft-5-fill: #8FDFB4; --series-vivid-5-fill: #76E5AD;
+    --series-6-fill: #7DD9FB; --series-6-ink: #9CE4FF; --series-soft-6-fill: #7DD9FB; --series-vivid-6-fill: #73DAFF;
+    --series-7-fill: #6DD9D5; --series-7-ink: #81EDE8; --series-soft-7-fill: #6DD9D5; --series-vivid-7-fill: #38DEDA;
+    --series-8-fill: #88BCF6; --series-8-ink: #BBDBFF; --series-soft-8-fill: #88BCF6; --series-vivid-8-fill: #7FBCFF;
+    --series-9-fill: #A1C5CE; --series-9-ink: #BBDFE8; --series-soft-9-fill: #A1C5CE; --series-vivid-9-fill: #A1C5CE;
+    --series-10-fill: #9AD78C; --series-10-ink: #B8E7AE; --series-soft-10-fill: #9AD78C; --series-vivid-10-fill: #9AD78C;
+  }
+}
+[data-series="vivid"] {
+  --series-1-fill: #F66C6D;
+  --series-2-fill: #FF8A36;
+  --series-3-fill: #FDC010;
+  --series-4-fill: #BBD23C;
+  --series-5-fill: #2ADB94;
+  --series-6-fill: #36D0FF;
+  --series-7-fill: #00C4BF;
+  --series-8-fill: #3295F6;
+  --series-9-fill: #7FA6B0;
+  --series-10-fill: #71B262;
+}
+:root[data-theme="dark"] [data-series="vivid"], :root[data-theme="dark"][data-series="vivid"] {
+  --series-1-fill: #FF9F9C;
+  --series-2-fill: #FFAF7D;
+  --series-3-fill: #FBCD68;
+  --series-4-fill: #C9DD76;
+  --series-5-fill: #76E5AD;
+  --series-6-fill: #73DAFF;
+  --series-7-fill: #38DEDA;
+  --series-8-fill: #7FBCFF;
+  --series-9-fill: #A1C5CE;
+  --series-10-fill: #9AD78C;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [data-series="vivid"], :root:not([data-theme="light"])[data-series="vivid"] {
+    --series-1-fill: #FF9F9C;
+    --series-2-fill: #FFAF7D;
+    --series-3-fill: #FBCD68;
+    --series-4-fill: #C9DD76;
+    --series-5-fill: #76E5AD;
+    --series-6-fill: #73DAFF;
+    --series-7-fill: #38DEDA;
+    --series-8-fill: #7FBCFF;
+    --series-9-fill: #A1C5CE;
+    --series-10-fill: #9AD78C;
+  }
+}
+/* EVID-05 value-state treatments — the hatch is a fill for the unit (cell glyph box, map unit, swatch); the label sits beside it on plain ground */
+.lds-state--no_data { background-image: repeating-linear-gradient(135deg, var(--state-no-data-fill) 0 4px, transparent 4px 8px); outline: 1px solid var(--border-emphasis); }
+.lds-state--measured_zero { outline: 2px solid var(--state-measured-zero-outline); outline-offset: -2px; }
+.lds-state--out_of_scope { background: transparent; }
+.lds-state--suppressed { background: var(--state-suppressed-fill); outline: 1px dashed var(--border-emphasis); }
+.lds-state--not_yet { background: var(--state-not-yet-fill); outline: 1px dotted var(--semantic-pending-ink); }
+.lds-state-label { color: var(--state-label-ink); font-size: .8125rem; background: none; }
+/* DATAVIZ-05 edge separation */
+.lds-series-area { stroke: var(--border-default); stroke-width: 1px; }
+.lds-legend-swatch { border: 1px solid var(--border-hairline); }

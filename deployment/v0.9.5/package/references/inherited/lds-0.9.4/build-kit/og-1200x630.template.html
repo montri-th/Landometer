@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>OG 1200 × 630 · template</title>
+<!-- SOCIALFMT-01 amendment — target.social.og.1200x630.01. Layout: Brand Blue panel on the left 285px (outside the LINE square); identity (≤ 56px) and the first title line start at x = 325, inside the central 630 square. Render at exactly 1200 × 630 (device scale 1) and export PNG.
+     Three recognisers: 8px four-colour rule on the top edge · Brand Blue panel (or one declared atmosphere) · 3 × 5px measure line.
+     Safe areas: text within 1000 × 560 (centred) · symbol and first title line within the central 630 square (LINE) · 2:1 crop tolerant (X).
+     Toggle the guides with ?guides=1. Colour values come from color-srgb-07.production.css; fonts are the packaged WOFF2 files.
+     MOTIF-01/MOTIF-02: the OG creative is a static final state — no motif, no animated identity, no product overlay (prohibited jobs favicon / official_navigation_identity / co_brand_lockup). -->
+<link rel="stylesheet" href="../machine/color-srgb-07.production.css">
+<style>
+  @font-face { font-family: "Arvo"; src: url("../machine/arvo-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+  @font-face { font-family: "IBM Plex Sans Thai Looped"; src: url("../machine/ibm-plex-sans-thai-looped-thai-700-normal.woff2") format("woff2"); font-weight: 700; unicode-range: U+0E00-0E7F; }
+  @font-face { font-family: "Bai Jamjuree"; src: url("../machine/bai-jamjuree-latin-400-normal.woff2") format("woff2"); font-weight: 400; unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+  @font-face { font-family: "Bai Jamjuree"; src: url("../machine/bai-jamjuree-thai-400-normal.woff2") format("woff2"); font-weight: 400; unicode-range: U+0E00-0E7F; }
+  @font-face { font-family: "Bai Jamjuree"; src: url("../machine/bai-jamjuree-latin-600-normal.woff2") format("woff2"); font-weight: 600; unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+  @font-face { font-family: "Bai Jamjuree"; src: url("../machine/bai-jamjuree-thai-600-normal.woff2") format("woff2"); font-weight: 600; unicode-range: U+0E00-0E7F; }
+  html, body { margin: 0; }
+  .og { position: relative; inline-size: 1200px; block-size: 630px; overflow: hidden; background: var(--ldm-foundation-surface-canvas-light); font-family: "Bai Jamjuree", system-ui, sans-serif; color: var(--ldm-foundation-text-primary-light); }
+  .og__rule { position: absolute; inset: 0 0 auto 0; block-size: 8px; background: linear-gradient(90deg, var(--ldm-energy-coral) 0 25%, var(--ldm-energy-yellow) 25% 50%, var(--ldm-energy-mint) 50% 75%, var(--ldm-energy-sky) 75% 100%); }
+  .og__panel { position: absolute; inset: 8px auto 0 0; inline-size: 285px; background: var(--ldm-brand-blue); color: #FFFFFF; padding: 56px 24px 40px 100px; box-sizing: border-box; display: grid; align-content: end; } /* product label starts at x = 100, inside the 1000 × 560 text-safe area */
+  .og__identity { display: flex; align-items: center; gap: 12px; block-size: 56px; } /* identity ≤ 56px tall */
+  .og__identity img { block-size: 56px; inline-size: auto; }
+  .og__identity span { font-family: "Arvo", serif; font-weight: 700; font-size: 28px; letter-spacing: .01em; color: var(--ldm-brand-blue); } /* governed text identity fallback */
+  .og__product { font-size: 22px; opacity: .92; }
+  .og__body { position: absolute; inset: 8px 0 0 285px; padding: 44px 100px 35px 40px; box-sizing: border-box; display: grid; align-content: space-between; }
+  .og__title { font-family: "Arvo", "IBM Plex Sans Thai Looped", serif; font-weight: 700; font-size: 48px; line-height: 1.18; margin: 12px 0 0; max-inline-size: 580px; }
+  .og__see { font-size: 26px; line-height: 1.35; margin: 12px 0 0; max-inline-size: 700px; color: var(--ldm-foundation-text-secondary-light); } /* what you will see */
+  .og__meta { display: grid; gap: 8px; font-size: 22px; color: var(--ldm-foundation-text-metadata-light); }
+  .og__measure { display: inline-block; inline-size: 3px; block-size: 5px; background: var(--ldm-brand-blue); margin-inline-end: 8px; vertical-align: middle; } /* 3 × 5px measure line */
+  .og__cue { font-size: 24px; color: var(--ldm-foundation-interaction-accent-light); } /* destination cue ≥ 22px, not a button */
+  .guides { position: absolute; inset: 0; pointer-events: none; display: none; }
+  .guides .text { position: absolute; left: 100px; top: 35px; inline-size: 1000px; block-size: 560px; outline: 2px dashed rgba(199,44,0,.6); }
+  .guides .square { position: absolute; left: 285px; top: 0; inline-size: 630px; block-size: 630px; outline: 2px dashed rgba(29,68,151,.6); }
+  .guides .two { position: absolute; left: 0; top: 15px; inline-size: 1200px; block-size: 600px; outline: 2px dotted rgba(0,0,0,.4); }
+  body[data-guides="1"] .guides { display: block; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="og__rule" aria-hidden="true"></div>
+  <div class="og__panel">
+    <div class="og__product">[ผลิตภัณฑ์ · product]</div>
+  </div>
+  <div class="og__body">
+    <div>
+      <div class="og__identity"><span>Landometer</span></div>
+      <h1 class="og__title">[object] [period/scope]</h1>
+      <p class="og__see">[สิ่งที่จะเห็นเมื่อเปิด · what you will see when you open the link]</p>
+    </div>
+    <div class="og__meta">
+      <div><i class="og__measure" aria-hidden="true"></i>[source] · [date] · [limitation]</div>
+      <div class="og__cue">[host]/[route] →</div>
+    </div>
+  </div>
+  <div class="guides" aria-hidden="true"><div class="text"></div><div class="square"></div><div class="two"></div></div>
+</div>
+<script>if (location.search.includes('guides=1')) document.body.dataset.guides = '1';</script>
+</body>
+</html>

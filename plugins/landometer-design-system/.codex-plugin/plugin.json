@@ -1,7 +1,7 @@
 {
   "name": "landometer-design-system",
-  "version": "0.9.5+standalone.3.docs1",
-  "description": "LDS 0.9.5 complete shared normative, separate product Add-ons and exact assets for consistent human and AI work.",
+  "version": "0.9.6",
+  "description": "LDS 0.9.6 complete shared normative, separate product Add-ons and exact assets for consistent human and AI work.",
   "author": {
     "name": "Landometer",
     "url": "https://github.com/montri-th"
@@ -17,16 +17,16 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Landometer DS 0.9.5",
+    "displayName": "Landometer DS 0.9.6",
     "shortDescription": "Verified colors, brand guidance and ready-to-use assets.",
-    "longDescription": "The owner-approved LDS 0.9.5 color release, preserving the Landometer voice and visual foundations. Includes exact analytical lookup tables, CSS, fonts, logos, human guidance and deterministic checks.",
+    "longDescription": "The owner-approved LDS 0.9.6 color release, preserving the Landometer voice and visual foundations. Includes exact analytical lookup tables, CSS, fonts, logos, human guidance and deterministic checks.",
     "developerName": "Landometer",
     "category": "Productivity",
     "capabilities": [],
     "websiteURL": "https://montri-th.github.io/Landometer/",
     "defaultPrompt": [
-      "Build this artifact with Landometer DS 0.9.5.",
-      "Review this design against Landometer DS 0.9.5.",
+      "Build this artifact with Landometer DS 0.9.6.",
+      "Review this design against Landometer DS 0.9.6.",
       "Show the four warm density scales in both themes."
     ]
   }
