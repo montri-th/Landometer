@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.7",
   "colorSetId": "color-srgb-10",
   "packageId": "v0.9.7-owner.1",
-  "artifactBuildId": "ui-20261001-lds097-r2",
+  "artifactBuildId": "ui-20261001-lds097-r3",
   "entrypointBuildId": "root-20261001-lds097-r2",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
@@ -148,6 +148,11 @@
       "sha256": "82fd0f70123ae149bc1dde64952a205628e6071a812066e9c013bb0f83502607"
     },
     {
+      "path": "v0.9.7/atlas-locale.js",
+      "bytes": 21027,
+      "sha256": "b2afcbe6b6b1481b47955bd8c619f03ffb97966354f8ec83a894638c582c2eaa"
+    },
+    {
       "path": "v0.9.7/base-render.js",
       "bytes": 1463,
       "sha256": "4ce4e29aed9baa5d887df735742aaaac133f6c609ae5547fe629bb9e650117c1"
@@ -170,12 +175,12 @@
     {
       "path": "v0.9.7/color-reference.html",
       "bytes": 337387,
-      "sha256": "766a7fdd088203be6efe4a72f654f1d8493ac5f733028f8d7d95c5610fbcea70"
+      "sha256": "be86f7ea97fc12a26582404d71ad05e8e58fd0254981ab92e07f054db511a512"
     },
     {
       "path": "v0.9.7/data.js",
       "bytes": 136289,
-      "sha256": "523ec3b1e349ffab157f559d40a30b5ac4b92083dab210eba0724e9ee1b91c33"
+      "sha256": "8f14014280f6199ea32f27fb7244c3868388637d6e912743c0f99152df2caa80"
     },
     {
       "path": "v0.9.7/embedded-atlas.js",
@@ -239,8 +244,8 @@
     },
     {
       "path": "v0.9.7/index.html",
-      "bytes": 1113904,
-      "sha256": "58f9bbbaa0e5a6a45f539fbc1771791af3c2e2a07392800b2b2716e87e970526"
+      "bytes": 1113946,
+      "sha256": "6cc12bea4b52b84151a2d97c3a6b11728b096a79bfa16c662839d50205d852b0"
     },
     {
       "path": "v0.9.7/lds/color-srgb-07.production.css",
@@ -455,7 +460,7 @@
     {
       "path": "v0.9.7/location/location-audit.json",
       "bytes": 411647,
-      "sha256": "5f4702b2025042572095103bf42fd687634538b2d1caf9888e4277a96c6c1a89"
+      "sha256": "52322e1719e41b24f1c0dcd71f006195bf4572bb3a86e4ee671b4468f0a460cc"
     },
     {
       "path": "v0.9.7/location/location-colors.json",
@@ -465,7 +470,7 @@
     {
       "path": "v0.9.7/location/location-data.js",
       "bytes": 372392,
-      "sha256": "b4a78668814be03758899bf371f07dfdb8929349400635122d5d985b0aabef3f"
+      "sha256": "e1e86d313718ffb96cd2149ec4d044a62813974b51b5256dbfeaec2de06aca24"
     },
     {
       "path": "v0.9.7/location/location-metrics.json",
@@ -2950,7 +2955,7 @@
     {
       "path": "v0.9.7/story-data.js",
       "bytes": 150349,
-      "sha256": "6d97f0036a95d8931147ada4f01951e929b79d184fbeae0c66f40c7dbb3b709c"
+      "sha256": "60b47e564a78edf2ff7097ec00264392e0b522f138e958d3d5008aba9bf63567"
     },
     {
       "path": "v0.9.7/story.css",

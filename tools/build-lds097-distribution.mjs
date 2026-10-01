@@ -95,6 +95,6 @@ while(queue.length){
  }
 }
 const files=[...filesSet].sort();
-const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r2',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
+const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r3',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
 writeFileSync(join(site,'site-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(`DS 0.9.7 web distribution built: ${files.length} assets`);
