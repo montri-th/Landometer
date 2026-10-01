@@ -19,7 +19,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-10.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.7.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20261001-lds097-r2';
+const build = 'ui-20261001-lds097-r3';
 const packagePath = 'package/assets/lds-0.9.7';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -308,7 +308,7 @@ html = html.replaceAll('color-srgb-05 retained · artifact build ui-20260902-08'
 html = html.replace('href="../site-manifest.v0.9.1.json" id="manifest-link">Manifest 2.1 · v0.9.1', 'href="site-manifest.json" id="manifest-link">Site receipt · v0.9.7');
 html = html.replaceAll('owner-approved DS 0.9.7 · conceptual examples bounded', 'owner-approved DS 0.9.7 · unsigned distribution · conceptual examples bounded');
 html = html.replaceAll('Landometer DS v0.9.1 reference · conceptual examples · ', 'Landometer DS v0.9.7 reference · conceptual examples · ');
-html = html.replace('</body>', '  <script src="data.js"></script>\n  <script src="base-render.js"></script>\n  <script src="render.js"></script>\n  <script src="embedded-atlas.js"></script>\n  <script src="full-guide.js"></script>\n</body>');
+html = html.replace('</body>', '  <script src="data.js"></script>\n  <script src="base-render.js"></script>\n  <script src="render.js"></script>\n  <script src="embedded-atlas.js"></script>\n  <script src="atlas-locale.js"></script>\n  <script src="full-guide.js"></script>\n</body>');
 // Opening/closing the fixed menu must not scroll the underlying section.
 html = replaceRequired(html, 'firstControl.focus()', 'firstControl.focus({ preventScroll: true })');
 html = replaceRequired(html, 'navMenuToggle.focus()', 'navMenuToggle.focus({ preventScroll: true })');
