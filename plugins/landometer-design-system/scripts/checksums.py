@@ -4,10 +4,10 @@ from pathlib import Path
 import hashlib
 root=Path(__file__).resolve().parents[1]
 owned=['verify.mjs','select-scale.mjs','check-artifact.mjs','validate-social.mjs','value-state.mjs','schema-helpers.mjs','raster-dimensions.mjs','build-assets.py','checksums.py','read-normative.mjs']
-files=[p for folder in ['assets/lds-0.9.6','references/inherited/lds-0.9.4','references/owner-trust/v0.9.4','assets/lds-0.9.5','references/standalone-master-0.9.6','references/standalone-product-profiles-0.9.6'] for p in (root/folder).rglob('*') if p.is_file()]
-files += [root/'references'/n for n in ['approved-r2.1.json','approved-0.9.6.json','approved-sequential-r2.json','social-sidecar.repair.schema.json','evidence-value.repair.schema.json']]
+files=[p for folder in ['assets/lds-0.9.7','references/inherited/lds-0.9.4','references/owner-trust/v0.9.4','assets/lds-0.9.5','assets/lds-0.9.6','references/standalone-master-0.9.7','references/standalone-product-profiles-0.9.7'] for p in (root/folder).rglob('*') if p.is_file()]
+files += [root/'references'/n for n in ['approved-r2.1.json','approved-0.9.6.json','approved-0.9.7.json','approved-story-r4.json','approved-location-r2.json','approved-location-metrics.json','approved-sequential-r2.json','social-sidecar.repair.schema.json','evidence-value.repair.schema.json']]
 files += [root/'scripts'/n for n in owned]
-target=root/'assets/lds-0.9.6/SHA256SUMS.txt'
+target=root/'assets/lds-0.9.7/SHA256SUMS.txt'
 files=sorted(set(files)-{target})
 target.write_text(''.join(hashlib.sha256(p.read_bytes()).hexdigest()+'  '+str(p.relative_to(root))+'\n' for p in files))
 print(len(files),'files pinned')

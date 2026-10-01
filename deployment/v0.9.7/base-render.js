@@ -1,0 +1,5 @@
+(function(){
+ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function gradient(D,id){const g=D.gradients.find(g=>g.id===id),deep=g.name==='measure.deep'||g.name==='ground.current';return `<div class="atmosphere-art visual-color" style="background:${g.css};color:${deep?'var(--ldm-foundation-surface-raised-light)':'var(--ldm-foundation-text-primary-light)'}"><div class="art-label">LANDOMETER / ${esc(g.name)}</div><div><h3>มองเห็นบริบท<br>ก่อนลงมือเปลี่ยนแปลง</h3><p>ใช้บรรยากาศช่วยเปิดเรื่องและจัดจังหวะ<br>ให้ข้อมูลเป็นสิ่งที่ผู้อ่านเห็นชัดเสมอ</p></div><div class="art-bottom"><span>ตัวอย่างพื้นผิว · ไม่ใช้เข้ารหัสข้อมูล</span><div class="art-lines" aria-hidden="true">${[13,26,19,42,32].map(v=>`<i style="height:${v}px"></i>`).join('')}</div></div></div><div class="gradient-spec">${g.stops.map(s=>`<span class="stop"><i class="visual-color" style="background:${s.hex}"></i><code>${s.hex}</code> · ${s.at}%</span>`).join('')}</div><p class="disclosure-note">ทิศทาง 135° · คงสูตรเดิมจาก 0.9.1 · ${esc(g.purpose)}</p>`;}
+ globalThis.PreviewRender={gradient};
+})();

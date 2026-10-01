@@ -1,0 +1,3060 @@
+{
+  "meta": {
+    "tokenSchemaVersion": 10,
+    "carriedVersion": "0.9.4",
+    "colorSetId": "color-srgb-07",
+    "status": "0.9.4-r1 — light values from the RECONSTRUCTED proposal r7 (r2 bytes + the delta of 17 September 2026 approved by the owner on sight); dark values derived under DATAVIZ-03 as amended (warm lane) with one declared derivation exception; owner decisions of 15, 16 and 17 September 2026 applied; lifecycle status lives in release.json",
+    "supersedes": {
+      "colorSetId": "color-srgb-06",
+      "machinePackage": "v0.9.3-mp1-candidate",
+      "registrySha256": "3f7bfd1888e3a29296ee3e59c303672c7f22c9330db3a52ee7d94d8066f06886",
+      "disposition": "superseded_candidate_registry",
+      "note": "26 analytical values change (10 warm-lane dark low/mid anchors, density.area light mid and high with its dark high, age dark mid, tradeoff and flow negative poles in both themes, series slot 10 in both variants and themes, series ink slots 2 and 3 in light); every other governed value is byte-identical with color-srgb-06 and, through it, with color-srgb-05 (brand, energy, foundation, semantic, signature, product, map, type, spacing, radius, container, breakpoint, motion)",
+      "retainedRawRegistry": {
+        "colorSetId": "color-srgb-05",
+        "sha256": "5afa9a93bafa8f2e5edb7e929d4924bc548a415098377ad53e18097c56980287"
+      }
+    },
+    "withdrawnCandidate": {
+      "machinePackage": "v0.9.2-mp0-candidate",
+      "colorSetId": "color-srgb-06",
+      "registrySha256": "453e7faf465c38f1a15568b86e484a90d9664edbd88152e2f6cbb1f13589afd4",
+      "note": "The withdrawn 0.9.2 candidate registry (proposal r1, hand-picked darks) and the superseded 0.9.3 candidate registry shared the id color-srgb-06 with different bytes; color-srgb-07 is a fresh id with a single byte identity (ship-color-set-with-release-parity: an id is never redefined)."
+    },
+    "provenance": {
+      "newValueSource": "work/in-0.9.4/handoff-0.9.4/tokens/dataviz-0.9.4.proposal.json (proposal r7, RECONSTRUCTED)",
+      "newValueSourceSha256": "3494a89e099155aed78b7f0051433005e1814bb311bf1da681a70cbb5422d22f",
+      "reconstruction": {
+        "method": "table-driven: every changed value is read from the delta table, mapped to the r2 proposal field, and the r2 value at that field is checked against the delta's 'from' column",
+        "r2ProposalSha256": "a71b34c221d37cefdbe5a14d1f409d2445dbb02e32c1e05e241968b9e7a94815",
+        "deltaTextSha256": "e727192666d5547b9519b21e8d4dc2132652414d8caafc859c864ba98520306f",
+        "deltaTitle": "Delta — 0.9.2-r2 → 0.9.4-r1",
+        "rowsApplied": 26,
+        "filesNotDelivered": [
+          "tokens/ext-registry-0.9.4.proposal.css",
+          "tokens/dataviz-0.9.4.proposal.json",
+          "tokens/contrast-evidence-0.9.4.proposal.json",
+          "tools/validate-candidate-0.9.4.mjs",
+          "rules/rule-drafts-0.9.4.md"
+        ],
+        "ownerDecision": "owner-message:2026-09-17:0.9.4-approval"
+      },
+      "authority": "Every LIGHT hex value in this registry is present in the proposal JSON r7 (r2 bytes or a delta 'to' value); every DARK scale anchor is computed by the DATAVIZ-03 derivation of machine/validate-dataviz-gates-0.9.4.mjs (warm lane where the light mid hue is 30–100°) from the shipped light hex, except the declared derivation exceptions listed under values.scales[id].derivationExceptions, which ship the board value verbatim. Changing a light value without re-running the builder is a preflight blocker.",
+      "darkDerivation": {
+        "rule": "DATAVIZ-03 (amended 0.9.4)",
+        "pivots": {
+          "lowL": 0.32,
+          "lowC": 0.05,
+          "mid": 1.33,
+          "midClamp": [
+            0.5,
+            0.66
+          ],
+          "high": 1.3,
+          "highClamp": [
+            0.78,
+            0.9
+          ]
+        },
+        "warmLane": {
+          "hue": [
+            30,
+            100
+          ],
+          "lowL": 0.32,
+          "lowC": 0.018,
+          "midL": 0.66,
+          "midCMax": 0.12,
+          "lowCMax": 0.03,
+          "step": [
+            0.5,
+            3
+          ],
+          "classStepMin": 2.2,
+          "classCount": 5
+        },
+        "diverging": {
+          "zeroL": 0.32,
+          "zeroC": 0.012,
+          "poleFactor": 1.3,
+          "poleClamp": [
+            0.76,
+            0.86
+          ],
+          "poleChroma": [
+            0.08,
+            0.14
+          ],
+          "midChroma": [
+            0.05,
+            0.12
+          ],
+          "highChroma": [
+            0.06,
+            0.14
+          ]
+        },
+        "input": "shipped light hex (registry), never pre-quantised OKLCH",
+        "exactMatchesWithProposal": 17,
+        "oneStepDeltas": [
+          {
+            "family": "density.area",
+            "deltas": [
+              {
+                "anchor": "mid",
+                "derived": "#CC7B4A",
+                "proposal": "#CC7B4B",
+                "channelDelta": [
+                  0,
+                  0,
+                  -1
+                ],
+                "shipped": "#CC7B4A"
+              }
+            ]
+          },
+          {
+            "family": "heat",
+            "deltas": [
+              {
+                "anchor": "high",
+                "derived": "#FFD1D3",
+                "proposal": "#FFD0D3",
+                "channelDelta": [
+                  0,
+                  1,
+                  0
+                ],
+                "shipped": "#FFD1D3"
+              }
+            ]
+          },
+          {
+            "family": "age",
+            "deltas": [
+              {
+                "anchor": "mid",
+                "derived": "#787C53",
+                "proposal": "#717D55",
+                "channelDelta": [
+                  7,
+                  -1,
+                  -2
+                ],
+                "shipped": "#717D55"
+              }
+            ]
+          }
+        ],
+        "declaredExceptions": [
+          {
+            "family": "age",
+            "theme": "dark",
+            "anchor": "mid",
+            "derived": "#787C53",
+            "shipped": "#717D55",
+            "derivedOklch": {
+              "L": 0.572,
+              "C": 0.059,
+              "H": 112.8
+            },
+            "shippedOklch": {
+              "L": 0.569,
+              "C": 0.06,
+              "H": 121.9
+            },
+            "reason": "B-HUE-02 escape: the derived value #787C53 sits ΔE 3.51 from purged #827C68 within its 20° hue lane (hue difference 19.5°); the board rotated the hue away from the lane keeping L and C (delta row: \"hue 113° → 122°\"); no deterministic rule reproduces the exact hex, so the board value ships as a declared exception",
+            "decidedOn": "2026-09-17",
+            "evidenceRef": "owner-message:2026-09-17:0.9.4-approval"
+          }
+        ]
+      },
+      "ownerAnswers": {
+        "2026-09-15": {
+          "decidedOn": "2026-09-15",
+          "evidenceRef": "owner-message:2026-09-15:0.9.3-answers",
+          "series_variant": "dial-soft",
+          "accept_household_high_rehue_and_heat_mid_trim": true,
+          "accept_dataviz_03_dark_derivation": true,
+          "dark_derivation_input": "shipped light hex (registry), never pre-quantised OKLCH",
+          "accept_identity_deltas": true,
+          "owner_motion_01_scope": "web_and_browser_documents",
+          "v_pole_01_tolerance_l": 0.02,
+          "superseded_by": "OWNER_0_9_4.v_pole_01_tolerance_l (±.005, the delta's gate fix) — both tolerances pass every pole"
+        },
+        "2026-09-17": {
+          "decidedOn": "2026-09-17",
+          "evidenceRef": "owner-message:2026-09-17:0.9.4-approval",
+          "delta": "Delta — 0.9.2-r2 → 0.9.4-r1 (owner-delivered text, 17 September 2026)",
+          "rebuild_from_delta_table": true,
+          "banned_hue_rule_id": "DATAVIZ-04 (series rule renumbered to DATAVIZ-05)",
+          "v_pole_01_tolerance_l": 0.005,
+          "d_mid_01_chroma_tolerance": 0.001,
+          "density_area_dark_mid": "ship the derived #CC7B4A; the board value #CC7B4B (one 8-bit step) is recorded",
+          "age_dark_mid": "ship the board value #717D55 as a declared D-DERIVE-01 exception (B-HUE-02 escape; the derivation gives #787C53, ΔE 3.51 from purged #827C68 inside its 20° lane)",
+          "lut_windows": "B-HUE gates read anchors as the delta specifies; LUT-step findings are reported evidence and go back to the board as an open item",
+          "series_slot_10": "green (pink stays legal under the ruling of 17 September 2026 and is recorded as an alternate)"
+        }
+      }
+    }
+  },
+  "values": {
+    "meta": {
+      "designSystem": "Landometer",
+      "version": "0.9.4",
+      "tokenSchemaVersion": 10,
+      "machineValidation": "see release.json",
+      "status": "authoring subset of 0.9.4-r1; lifecycle status (candidate → active) is release.json's",
+      "sourceRule": "COLOR-01 / DATAVIZ-02 / DATAVIZ-03 / DATAVIZ-04 / GATE-01 / EVID-05"
+    },
+    "brand": {
+      "blue": "#1D4497",
+      "beige": "#F2F1DF",
+      "darkBeige": "#D8CFB2"
+    },
+    "energy": {
+      "sky": "#59D2FE",
+      "mint": "#0AD69C",
+      "coral": "#FF5A5F",
+      "yellow": "#FFBC1F"
+    },
+    "foundation": {
+      "surface.canvas": [
+        "#F6F7F3",
+        "#11191D"
+      ],
+      "surface.alt": [
+        "#EEF1EE",
+        "#172126"
+      ],
+      "surface.card": [
+        "#FCFCFA",
+        "#20292D"
+      ],
+      "surface.raised": [
+        "#FFFFFF",
+        "#293337"
+      ],
+      "surface.soft": [
+        "#E5E9E6",
+        "#2B3534"
+      ],
+      "surface.blueTint": [
+        "#E2E9ED",
+        "#18333E"
+      ],
+      "surface.beigeTint": [
+        "#F2F1DF",
+        "#2C2A22"
+      ],
+      "text.primary": [
+        "#182327",
+        "#F1F4EF"
+      ],
+      "text.secondary": [
+        "#5F635A",
+        "#C4CECA"
+      ],
+      "text.metadata": [
+        "#5C6A61",
+        "#A6B5B1"
+      ],
+      "text.muted": [
+        "#7B877D",
+        "#8D9D99"
+      ],
+      "text.disabled": [
+        "#A7B3A9",
+        "#71817D"
+      ],
+      "border.hairline": [
+        "#DCE1DD",
+        "#33403D"
+      ],
+      "border.default": [
+        "#C9D0CB",
+        "#46524F"
+      ],
+      "border.emphasis": [
+        "#7D877F",
+        "#7C8A84"
+      ],
+      "interaction.accent": [
+        "#176B82",
+        "#68C4E2"
+      ],
+      "interaction.focus.ring": [
+        "#176B82",
+        "#68C4E2"
+      ]
+    },
+    "semantic": {
+      "success": {
+        "light": [
+          "#E2F4E5",
+          "#126B49"
+        ],
+        "dark": [
+          "#17362D",
+          "#72E8C4"
+        ]
+      },
+      "warning": {
+        "light": [
+          "#FFF1D1",
+          "#A64A00"
+        ],
+        "dark": [
+          "#3B2E16",
+          "#F5C15C"
+        ]
+      },
+      "danger": {
+        "light": [
+          "#FCE5DF",
+          "#B43A3A"
+        ],
+        "dark": [
+          "#3A1F21",
+          "#FF7C72"
+        ]
+      },
+      "info": {
+        "light": [
+          "#E8EEF0",
+          "#176B82"
+        ],
+        "dark": [
+          "#18333E",
+          "#68C4E2"
+        ]
+      },
+      "neutral": {
+        "light": [
+          "#ECE4D2",
+          "#5F635A"
+        ],
+        "dark": [
+          "#2B3534",
+          "#C4CECA"
+        ]
+      },
+      "pending": {
+        "light": [
+          "#F3EEDB",
+          "#5C6A61"
+        ],
+        "dark": [
+          "#2C2A22",
+          "#D8CFB2"
+        ]
+      },
+      "assisted": {
+        "light": [
+          "#DFF3F1",
+          "#176C67"
+        ],
+        "dark": [
+          "#163331",
+          "#79D9D1"
+        ]
+      }
+    },
+    "signature": {
+      "closingLight": "linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%)",
+      "closingDark": "linear-gradient(135deg, #68C4E2 0%, #15919A 52%, #08756F 100%)"
+    },
+    "product": {
+      "citymeter": {
+        "light": [
+          "#12669B",
+          "#36BCE4"
+        ],
+        "dark": [
+          "#4C99D5",
+          "#59C7E8"
+        ]
+      },
+      "citywiki": {
+        "light": [
+          "#176B82",
+          "#007E79"
+        ],
+        "dark": [
+          "#59C7E8",
+          "#3BD3CB"
+        ]
+      },
+      "citychat": {
+        "light": [
+          "#007A58",
+          "#007E79"
+        ],
+        "dark": [
+          "#3BD19B",
+          "#3BD3CB"
+        ]
+      },
+      "ijji": {
+        "light": [
+          "#C52C00",
+          "#B23F74"
+        ],
+        "dark": [
+          "#FF8A4C",
+          "#F06FA6"
+        ]
+      }
+    },
+    "series": {
+      "registryId": "landometer-series-10-v7",
+      "previousRegistryId": "landometer-series-10-v6",
+      "slot10": {
+        "name": "green",
+        "previous": "rose",
+        "decidedOn": "2026-09-17",
+        "alternates": {
+          "rose": {
+            "status": "legal under the pink ruling (owner, 17 September 2026: \"pink is fine, just no purple\"); not selected",
+            "vivid": {
+              "light": "#F571A4",
+              "dark": "#FFA5C4"
+            },
+            "soft": {
+              "light": "#DA88A4",
+              "dark": "#FAA9C4"
+            },
+            "ink": {
+              "light": "#91355A",
+              "dark": "#FFC5D7"
+            },
+            "selectingLaterNeeds": "no rule change"
+          }
+        }
+      },
+      "inkFallback": {
+        "rule": "A5.2 amended (0.9.4): the ink tier carries legibility, not identity; where a slot hue has no legible dark form the slot ink falls back to --text-primary #182327 and identification stays with fill + shape cue",
+        "slots": [
+          "series.02",
+          "series.03"
+        ],
+        "value": "#182327"
+      },
+      "name": "Dial 10",
+      "defaultVariant": "dial-soft",
+      "optInVariant": "dial-vivid",
+      "derivation": "hues of the dial (coral 22°, yellow 82°, mint 165°, sky 225°) + pin (263°) with blended hues between them; two chroma variants share one ink tier",
+      "rule": "A5.2 — categorical fills are luminous (L .66–.84, the lightness contour of the dial itself) and are separated by ≥1px --border-default edges or an ink outline; fills need not reach 3:1 against canvas. Text, lines and marks thinner than 3px use the ink tier (≥4.5:1). Legend swatches always carry a hairline border. Colour-only identification stops at slot 6; slots 7–10 carry shape cues. Bind by category ID, never by position.",
+      "defaultBindings": {
+        "landuse": {
+          "commercial": "coral",
+          "residential": "apricot",
+          "agriculture": "yellow",
+          "park": "lime",
+          "forest": "mint",
+          "water": "sky",
+          "industry": "teal",
+          "institution": "blue",
+          "transport": "slate",
+          "tourism": "green"
+        }
+      },
+      "energyAccentSlots": [
+        "sky"
+      ],
+      "values": [
+        {
+          "id": "series.01",
+          "name": "coral",
+          "cue": "circle",
+          "light": {
+            "fill": "#D88381",
+            "ink": "#963538"
+          },
+          "dark": {
+            "fill": "#F8A4A1",
+            "ink": "#FFC8C5"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#F66C6D",
+            "dark": "#FF9F9C"
+          },
+          "colourOnlyIdentification": true,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.02",
+          "name": "apricot",
+          "cue": "square",
+          "light": {
+            "fill": "#E39B6E",
+            "ink": "#182327"
+          },
+          "dark": {
+            "fill": "#F8B287",
+            "ink": "#FFCBAC"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#FF8A36",
+            "dark": "#FFAF7D"
+          },
+          "colourOnlyIdentification": true,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": true,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.03",
+          "name": "yellow",
+          "cue": "triangle",
+          "light": {
+            "fill": "#EAC578",
+            "ink": "#182327"
+          },
+          "dark": {
+            "fill": "#F3D086",
+            "ink": "#F6D389"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#FDC010",
+            "dark": "#FBCD68"
+          },
+          "colourOnlyIdentification": true,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": true,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.04",
+          "name": "lime",
+          "cue": "diamond",
+          "light": {
+            "fill": "#BECE7E",
+            "ink": "#606E00"
+          },
+          "dark": {
+            "fill": "#CBDA8E",
+            "ink": "#D1E195"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#BBD23C",
+            "dark": "#C9DD76"
+          },
+          "colourOnlyIdentification": true,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.05",
+          "name": "mint",
+          "cue": "cross",
+          "light": {
+            "fill": "#7BD0A3",
+            "ink": "#007047"
+          },
+          "dark": {
+            "fill": "#8FDFB4",
+            "ink": "#9BECC1"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#2ADB94",
+            "dark": "#76E5AD"
+          },
+          "colourOnlyIdentification": true,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.06",
+          "name": "sky",
+          "cue": "star",
+          "light": {
+            "fill": "#6ACCF0",
+            "ink": "#006580"
+          },
+          "dark": {
+            "fill": "#7DD9FB",
+            "ink": "#9CE4FF"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#36D0FF",
+            "dark": "#73DAFF"
+          },
+          "colourOnlyIdentification": true,
+          "energyAccentEquivalent": true,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.07",
+          "name": "teal",
+          "cue": "hexagon",
+          "light": {
+            "fill": "#49C0BC",
+            "ink": "#006967"
+          },
+          "dark": {
+            "fill": "#6DD9D5",
+            "ink": "#81EDE8"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#00C4BF",
+            "dark": "#38DEDA"
+          },
+          "colourOnlyIdentification": false,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.08",
+          "name": "blue",
+          "cue": "ring",
+          "light": {
+            "fill": "#6196D1",
+            "ink": "#0E599D"
+          },
+          "dark": {
+            "fill": "#88BCF6",
+            "ink": "#BBDBFF"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#3295F6",
+            "dark": "#7FBCFF"
+          },
+          "colourOnlyIdentification": false,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.09",
+          "name": "slate",
+          "cue": "dash",
+          "light": {
+            "fill": "#8AA4AA",
+            "ink": "#355F6A"
+          },
+          "dark": {
+            "fill": "#A1C5CE",
+            "ink": "#BBDFE8"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#7FA6B0",
+            "dark": "#A1C5CE"
+          },
+          "colourOnlyIdentification": false,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        },
+        {
+          "id": "series.10",
+          "name": "green",
+          "cue": "plus",
+          "light": {
+            "fill": "#82AC79",
+            "ink": "#34622A"
+          },
+          "dark": {
+            "fill": "#9AD78C",
+            "ink": "#B8E7AE"
+          },
+          "altFill": {
+            "variant": "dial-vivid",
+            "light": "#71B262",
+            "dark": "#9AD78C"
+          },
+          "colourOnlyIdentification": false,
+          "energyAccentEquivalent": false,
+          "inkFallback": {
+            "light": false,
+            "dark": false
+          }
+        }
+      ]
+    },
+    "seriesDeprecated": {
+      "registryId": "landometer-series-10-v5",
+      "disposition": "deprecated_alias",
+      "aliasTarget": "none — values retained intact under the old names; new work binds series.NN fill and ink tiers",
+      "note": "v5 names keep their 0.9.1 values so existing artifacts do not change colour silently. New categorical work MUST bind the v6 fill tier with edge separation and the v6 ink tier for text, lines and marks under 3px (DATAVIZ-04); preflight warns on v5 names.",
+      "values": [
+        {
+          "id": "series.01",
+          "name": "Coral",
+          "light": "#C33F55",
+          "dark": "#FF6B7F",
+          "cue": "circle / solid"
+        },
+        {
+          "id": "series.02",
+          "name": "Signal Orange",
+          "light": "#C52C00",
+          "dark": "#FF8A4C",
+          "cue": "square / solid"
+        },
+        {
+          "id": "series.03",
+          "name": "Marigold",
+          "light": "#A87B00",
+          "dark": "#F4C44E",
+          "cue": "triangle / solid"
+        },
+        {
+          "id": "series.04",
+          "name": "Lime",
+          "light": "#5D7400",
+          "dark": "#B5E34E",
+          "cue": "diamond / solid"
+        },
+        {
+          "id": "series.05",
+          "name": "Green",
+          "light": "#007A58",
+          "dark": "#3BD19B",
+          "cue": "cross / solid"
+        },
+        {
+          "id": "series.06",
+          "name": "Aqua",
+          "light": "#007E79",
+          "dark": "#3BD3CB",
+          "cue": "star / solid"
+        },
+        {
+          "id": "series.07",
+          "name": "Sky",
+          "light": "#147A9F",
+          "dark": "#59C7E8",
+          "cue": "hexagon / diagonal45"
+        },
+        {
+          "id": "series.08",
+          "name": "Ocean",
+          "light": "#1F629B",
+          "dark": "#4C99D5",
+          "cue": "ring / diagonal135"
+        },
+        {
+          "id": "series.09",
+          "name": "Civic Slate",
+          "light": "#536B70",
+          "dark": "#A9C4C7",
+          "cue": "dash / dot"
+        },
+        {
+          "id": "series.10",
+          "name": "Warm Pink",
+          "light": "#B23F74",
+          "dark": "#F06FA6",
+          "cue": "plus / crosshatch"
+        }
+      ]
+    },
+    "scales": {
+      "activity": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#F49383",
+          "#C52C00"
+        ],
+        "dark": [
+          "#3C302D",
+          "#D17465",
+          "#FF977F"
+        ],
+        "warmLane": true,
+        "derivationExceptions": []
+      },
+      "density.area": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#EE9A69",
+          "#A1182D"
+        ],
+        "dark": [
+          "#3B302B",
+          "#CC7B4A",
+          "#FFB4B3"
+        ],
+        "warmLane": true,
+        "derivationExceptions": []
+      },
+      "heat": {
+        "kind": "sequential",
+        "light": [
+          "#FBF1C6",
+          "#E3A257",
+          "#850E2E"
+        ],
+        "dark": [
+          "#393129",
+          "#C28336",
+          "#FFD1D3"
+        ],
+        "warmLane": true,
+        "derivationExceptions": []
+      },
+      "risk": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#CEA856",
+          "#B74436"
+        ],
+        "dark": [
+          "#373229",
+          "#B18C39",
+          "#FF9686"
+        ],
+        "warmLane": true,
+        "derivationExceptions": []
+      },
+      "price": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#CAAF59",
+          "#135B42"
+        ],
+        "dark": [
+          "#363329",
+          "#AA9038",
+          "#A5E9CA"
+        ],
+        "warmLane": true,
+        "derivationExceptions": []
+      },
+      "age": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#B1B58A",
+          "#364D48"
+        ],
+        "dark": [
+          "#333515",
+          "#717D55",
+          "#B3ECDF"
+        ],
+        "warmLane": false,
+        "derivationExceptions": [
+          {
+            "anchor": "mid",
+            "derived": "#787C53",
+            "shipped": "#717D55",
+            "reason": "B-HUE-02 escape: the derived value #787C53 sits ΔE 3.51 from purged #827C68 within its 20° hue lane (hue difference 19.5°); the board rotated the hue away from the lane keeping L and C (delta row: \"hue 113° → 122°\"); no deterministic rule reproduces the exact hex, so the board value ships as a declared exception",
+            "decidedOn": "2026-09-17"
+          }
+        ]
+      },
+      "density.household": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#93C089",
+          "#0B5D2A"
+        ],
+        "dark": [
+          "#253920",
+          "#5A8450",
+          "#A2ECB1"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "growth": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#5BC19D",
+          "#126F68"
+        ],
+        "dark": [
+          "#153B2E",
+          "#229270",
+          "#81D2C9"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "confidence": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#85A5A2",
+          "#08756F"
+        ],
+        "dark": [
+          "#0A3B38",
+          "#669490",
+          "#75CDC6"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "count": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#55B8C2",
+          "#236DAA"
+        ],
+        "dark": [
+          "#083A3F",
+          "#26919B",
+          "#77BEFF"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "water": {
+        "kind": "sequential",
+        "light": [
+          "#E6F1F2",
+          "#8FD3E0",
+          "#0F6E8C"
+        ],
+        "dark": [
+          "#0A3A41",
+          "#2A6F7B",
+          "#78CAEA"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "density.capita": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#6DB3E4",
+          "#1E3E86"
+        ],
+        "dark": [
+          "#19364A",
+          "#3E85B3",
+          "#CEDFFF"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "built": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#6797AF",
+          "#225F78"
+        ],
+        "dark": [
+          "#133748",
+          "#6A9AB2",
+          "#99D5F2"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "duration": {
+        "kind": "sequential",
+        "light": [
+          "#F2F1DF",
+          "#A7B9BF",
+          "#275C76"
+        ],
+        "dark": [
+          "#0E3944",
+          "#517B88",
+          "#A0D6F4"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "balance": {
+        "kind": "diverging",
+        "light": [
+          "#C52C00",
+          "#F2F1DF",
+          "#186A9E"
+        ],
+        "dark": [
+          "#FE8F75",
+          "#2D3438",
+          "#7AC5FE"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "delta": {
+        "kind": "diverging",
+        "light": [
+          "#B74436",
+          "#F2F1DF",
+          "#007C78"
+        ],
+        "dark": [
+          "#FD8C7B",
+          "#2D3438",
+          "#68C7C2"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "tradeoff": {
+        "kind": "diverging",
+        "light": [
+          "#AB2E47",
+          "#F2F1DF",
+          "#007E91"
+        ],
+        "dark": [
+          "#FF9EA7",
+          "#2D3438",
+          "#60C1D5"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "flow": {
+        "kind": "diverging",
+        "light": [
+          "#D09B00",
+          "#F2F1DF",
+          "#1A8A51"
+        ],
+        "dark": [
+          "#DBA833",
+          "#2D3438",
+          "#65C98C"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "sentiment": {
+        "kind": "diverging",
+        "light": [
+          "#CB4453",
+          "#F2F1DF",
+          "#429C5A"
+        ],
+        "dark": [
+          "#FD8A8F",
+          "#2D3438",
+          "#6FC883"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      },
+      "anomaly": {
+        "kind": "diverging",
+        "light": [
+          "#3578B8",
+          "#F2F1DF",
+          "#DC631E"
+        ],
+        "dark": [
+          "#73B6FB",
+          "#2D3438",
+          "#F99262"
+        ],
+        "warmLane": false,
+        "derivationExceptions": []
+      }
+    },
+    "scalesDeprecated": {
+      "density": {
+        "disposition": "deprecated_alias",
+        "aliasTarget": "built",
+        "note": "renamed; light anchors identical, dark anchors derived under DATAVIZ-03 like every family"
+      }
+    },
+    "scaleMeta": {
+      "activity": {
+        "zone": "warm",
+        "use": "activity, transactions, usage",
+        "nearest": {
+          "family": "risk",
+          "deltaE": 15.1
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#E86A8C",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#492923",
+            "to": "#3C302D",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#B3594B",
+            "to": "#D17465",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          }
+        ],
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#8B7470",
+          "#F69C8D",
+          "#FFC9BC"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#3C302D",
+          "#D17465",
+          "#FF977F"
+        ]
+      },
+      "density.area": {
+        "zone": "warm",
+        "use": "per km², per rai (denominator = area)",
+        "nearest": {
+          "family": "heat",
+          "deltaE": 15.8
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#EE8C3C",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#472B1B",
+            "to": "#3B302B",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#B56635",
+            "to": "#CC7B4B",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          },
+          {
+            "theme": "light",
+            "anchor": "mid",
+            "from": "#E79363",
+            "to": "#EE9A69",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "clay band — light mid lifted to L .76"
+          },
+          {
+            "theme": "light",
+            "anchor": "high",
+            "from": "#A92963",
+            "to": "#A1182D",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "plum lane (ΔE 5.2 from purged #9E476F); owner chose crimson on sight"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#FF9ABD",
+            "to": "#FFB4B3",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "re-derived from the new light high under D-HIGH-01"
+          }
+        ],
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#8A766B",
+          "#F0A276",
+          "#FFC5D7"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#3B302B",
+          "#CC7B4B",
+          "#FFB4B3"
+        ]
+      },
+      "heat": {
+        "zone": "warm",
+        "use": "surface temperature, hotspots, fire",
+        "nearest": {
+          "family": "density.area",
+          "deltaE": 15.8
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#EE6A4C",
+        "previousMidR1": "#E7A04C",
+        "previousLightHigh": null,
+        "previousAnchors": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#442E15",
+            "to": "#393129",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#A56811",
+            "to": "#C28336",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          }
+        ],
+        "previousLow": "#F2F1DF",
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#877768",
+          "#E6AA67",
+          "#FFC7CB"
+        ],
+        "note": "mid chroma trimmed to .12 (r2) to pass L-MID-02; hue and lightness unchanged",
+        "proposalDark": [
+          "#393129",
+          "#C28336",
+          "#FFD0D3"
+        ]
+      },
+      "risk": {
+        "zone": "warm",
+        "use": "risk level, hazard probability",
+        "nearest": {
+          "family": "activity",
+          "deltaE": 15.1
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#E0B443",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#3F3112",
+            "to": "#373229",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#99741A",
+            "to": "#B18C39",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          }
+        ],
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#837966",
+          "#D8B260",
+          "#FFC8BF"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#373229",
+          "#B18C39",
+          "#FF9686"
+        ]
+      },
+      "price": {
+        "zone": "green",
+        "use": "appraisal, rent, revenue, registered capital",
+        "nearest": {
+          "family": "age",
+          "deltaE": 11.6
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#D2B145",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#3C3212",
+            "to": "#363329",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#8F7514",
+            "to": "#AA9038",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "earth window (brown by construction: warm hue at L .32–.60 with chroma)"
+          }
+        ],
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#807A66",
+          "#D0B560",
+          "#9EEBC9"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#363329",
+          "#AA9038",
+          "#A5E9CA"
+        ]
+      },
+      "age": {
+        "zone": "green",
+        "use": "building age, business age",
+        "nearest": {
+          "family": "density.household",
+          "deltaE": 9.7
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": [
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#787C53",
+            "to": "#717D55",
+            "stage": "0.9.2-r2 → 0.9.4-r1",
+            "why": "ΔE 3.5 from purged #827C68 inside a 20° hue lane — hue 113° → 122°"
+          }
+        ],
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#7A7C68",
+          "#B8BD82",
+          "#92EBD9"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#333515",
+          "#717D55",
+          "#B3ECDF"
+        ]
+      },
+      "density.household": {
+        "zone": "green",
+        "use": "per 100 households (denominator = household · Living)",
+        "nearest": {
+          "family": "age",
+          "deltaE": 9.7
+        },
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": "#0B5B57",
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#717F6E",
+          "#91C985",
+          "#8DEBE4"
+        ],
+        "note": "high re-hued 185°→150° (r2) so the age pair separates in both themes; previous high recorded",
+        "proposalDark": [
+          "#253920",
+          "#5A8450",
+          "#A2ECB1"
+        ]
+      },
+      "growth": {
+        "zone": "green",
+        "use": "cumulative index, growth rate",
+        "nearest": {
+          "family": "confidence",
+          "deltaE": 10.8
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#55B8C2",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#6A8077",
+          "#69CEA9",
+          "#8EEBE1"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#153B2E",
+          "#229270",
+          "#81D2C9"
+        ]
+      },
+      "confidence": {
+        "zone": "green",
+        "use": "estimate confidence, data quality",
+        "nearest": {
+          "family": "growth",
+          "deltaE": 10.8
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#66807E",
+          "#8EC3BF",
+          "#8EEBE3"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#0A3B38",
+          "#669490",
+          "#75CDC6"
+        ]
+      },
+      "count": {
+        "zone": "blue",
+        "use": "population, number of firms, vehicles (totals)",
+        "nearest": {
+          "family": "water",
+          "deltaE": 15.3
+        },
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": "#5EBC7B",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#668083",
+          "#4FCCD8",
+          "#B8DCFF"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#083A3F",
+          "#26919B",
+          "#77BEFF"
+        ]
+      },
+      "water": {
+        "zone": "blue",
+        "use": "water level, depth, flood frequency",
+        "nearest": {
+          "family": "duration",
+          "deltaE": 12.9
+        },
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": "#55B8C2",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": "#F2F1DF",
+        "previousHigh": "#206C9A",
+        "previousDarkR1": [
+          "#667F84",
+          "#6BC7D8",
+          "#9FE3FF"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#0A3A41",
+          "#2A6F7B",
+          "#78CAEA"
+        ]
+      },
+      "density.capita": {
+        "zone": "blue",
+        "use": "per 1,000 people (denominator = people)",
+        "nearest": {
+          "family": "duration",
+          "deltaE": 18.8
+        },
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#6B7D8B",
+          "#72C0F7",
+          "#C4D8FF"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#19364A",
+          "#3E85B3",
+          "#CEDFFF"
+        ]
+      },
+      "built": {
+        "zone": "blue",
+        "use": "building footprint, height, coverage",
+        "nearest": {
+          "family": "confidence",
+          "deltaE": 13.8
+        },
+        "new": false,
+        "renamedFrom": "density",
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#697E89",
+          "#7EC2E3",
+          "#A3E2FF"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#133748",
+          "#6A9AB2",
+          "#99D5F2"
+        ]
+      },
+      "duration": {
+        "zone": "blue",
+        "use": "travel time, waiting time, inundation duration",
+        "nearest": {
+          "family": "water",
+          "deltaE": 12.9
+        },
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": "#E3C566",
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousAnchors": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#677F87",
+          "#9BBECA",
+          "#A8E0FF"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#0E3944",
+          "#517B88",
+          "#A0D6F4"
+        ]
+      },
+      "balance": {
+        "zone": null,
+        "use": "deficit ↔ surplus",
+        "nearest": null,
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#FF8A4C",
+          "#7C8A84",
+          "#4FAFE0"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#FE8F75",
+          "#2D3438",
+          "#7AC5FE"
+        ]
+      },
+      "delta": {
+        "zone": null,
+        "use": "decrease ↔ increase vs previous period",
+        "nearest": null,
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#F28575",
+          "#7C8A84",
+          "#55C8BC"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#FD8C7B",
+          "#2D3438",
+          "#68C7C2"
+        ]
+      },
+      "tradeoff": {
+        "zone": null,
+        "use": "cost ↔ benefit",
+        "nearest": null,
+        "new": false,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#F06FA6",
+          "#7C8A84",
+          "#61C2D3"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#FF9EA7",
+          "#2D3438",
+          "#60C1D5"
+        ]
+      },
+      "flow": {
+        "zone": null,
+        "use": "out-migration ↔ in-migration · closures ↔ openings",
+        "nearest": null,
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#F3C351",
+          "#7C8A84",
+          "#6AD895"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#DBA833",
+          "#2D3438",
+          "#65C98C"
+        ]
+      },
+      "sentiment": {
+        "zone": null,
+        "use": "negative ↔ positive",
+        "nearest": null,
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#FF888E",
+          "#7C8A84",
+          "#7CDD93"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#FD8A8F",
+          "#2D3438",
+          "#6FC883"
+        ]
+      },
+      "anomaly": {
+        "zone": null,
+        "use": "below normal (cool/dry) ↔ above normal (hot/wet)",
+        "nearest": null,
+        "new": true,
+        "renamedFrom": null,
+        "previousMid": null,
+        "previousMidR1": null,
+        "previousLightHigh": null,
+        "previousLow": null,
+        "previousHigh": null,
+        "previousDarkR1": [
+          "#80BDFB",
+          "#7C8A84",
+          "#FE9B61"
+        ],
+        "note": null,
+        "proposalDark": [
+          "#73B6FB",
+          "#2D3438",
+          "#F99262"
+        ]
+      }
+    },
+    "darkDerivation": {
+      "rule": "DATAVIZ-03",
+      "pivots": {
+        "lowL": 0.32,
+        "lowC": 0.05,
+        "mid": 1.33,
+        "midClamp": [
+          0.5,
+          0.66
+        ],
+        "high": 1.3,
+        "highClamp": [
+          0.78,
+          0.9
+        ]
+      },
+      "diverging": {
+        "zeroL": 0.32,
+        "zeroC": 0.012,
+        "poleFactor": 1.3,
+        "poleClamp": [
+          0.76,
+          0.86
+        ],
+        "poleChroma": [
+          0.08,
+          0.14
+        ],
+        "midChroma": [
+          0.05,
+          0.12
+        ],
+        "highChroma": [
+          0.06,
+          0.14
+        ]
+      },
+      "gates": {
+        "L-LOW-01": {
+          "scope": "light",
+          "check": "low anchor is brand.beige #F2F1DF unless declared in lowExceptions"
+        },
+        "L-MID-01": {
+          "scope": "light",
+          "check": "mid L within .66–.82 (target .73–.77 is a warning band; inherited 0.9.1 mids admitted)"
+        },
+        "L-MID-02": {
+          "scope": "light",
+          "check": "mid is a blend: C ≤ .125 and ΔE ≥ 5 from every energy token and brand.blue (never the token itself)"
+        },
+        "D-LOW-01": {
+          "scope": "dark",
+          "check": "low L .29–.35 — sits near the dark canvas so \"little\" reads faint (mirror of beige-on-canvas)"
+        },
+        "D-LOW-02": {
+          "scope": "dark",
+          "check": "low C .04–.07 with hue within 12° of the mid — the family hue is visible at the first class, not gray"
+        },
+        "D-MID-01": {
+          "scope": "dark",
+          "check": "mid L = 1.33 − L(light mid) clamped .50–.66 (±.02) · C .05–.12 · hue within 12° of light mid"
+        },
+        "D-HIGH-01": {
+          "scope": "dark",
+          "check": "high L = 1.30 − L(light high) clamped .78–.90 (±.02) · C ≥ .045 · hue within 15° of light high"
+        },
+        "D-STEP-01": {
+          "scope": "dark",
+          "check": "ΔE(mid→high) dark ≥ 0.72 × light — light/dark compression ≤ 1.4× (r1 was 2.4×)"
+        },
+        "D-STEP-02": {
+          "scope": "dark",
+          "check": "step balance ΔE(low→mid) / ΔE(mid→high) within 0.5–2.0"
+        },
+        "D-CR-01": {
+          "scope": "dark",
+          "check": "contrast vs #11191D: low ≤ 2.0:1 (faint) · mid vs low ≥ 2.0:1 · high ≥ 7:1"
+        },
+        "SEP-01": {
+          "scope": "both",
+          "check": "nearest family ΔE(mid)+ΔE(high) ≥ 8 in light AND in dark"
+        }
+      },
+      "previousDarkFlaw": "r1 dark lows were hand-picked at L .58 C .03 (mid-gray) and mid→high ΔE was compressed 2.4× vs light; kept as previousDark for the ledger"
+    },
+    "gateExceptions": [
+      {
+        "family": "water",
+        "gate": "L-MID-01",
+        "value": "#8FD3E0 L .82",
+        "reason": "water low is #E6F1F2 not beige; mid lifted so the aqua reads as water — inside the widened window, warning only"
+      },
+      {
+        "family": "duration",
+        "gate": "D-MID-01",
+        "value": "light mid C .03 → dark mid C .05",
+        "reason": "deliberately low-chroma (mist); dark chroma floor .05 applied"
+      },
+      {
+        "family": "built",
+        "gate": "L-MID-01",
+        "value": "#6797AF L .65",
+        "reason": "inherited 0.9.1 mid (scale.density → built); kept byte-identical for migration, 0.01 below the widened window"
+      },
+      {
+        "family": "age",
+        "gate": "D-DERIVE-01",
+        "value": "#717D55 (derived #787C53)",
+        "reason": "B-HUE-02 escape: the derived value #787C53 sits ΔE 3.51 from purged #827C68 within its 20° hue lane (hue difference 19.5°); the board rotated the hue away from the lane keeping L and C (delta row: \"hue 113° → 122°\"); no deterministic rule reproduces the exact hex, so the board value ships as a declared exception"
+      }
+    ],
+    "anchorDeltaFromColorSrgb05": {
+      "activity": {
+        "status": "changed",
+        "previousId": "activity",
+        "changed": [
+          {
+            "theme": "light",
+            "anchor": "mid",
+            "from": "#E86A8C",
+            "to": "#F49383"
+          },
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#808A96",
+            "to": "#3C302D"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#F079A1",
+            "to": "#D17465"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#FFB06A",
+            "to": "#FF977F"
+          }
+        ]
+      },
+      "density.area": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "heat": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "risk": {
+        "status": "changed",
+        "previousId": "risk",
+        "changed": [
+          {
+            "theme": "light",
+            "anchor": "mid",
+            "from": "#E0B443",
+            "to": "#CEA856"
+          },
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#8D9D99",
+            "to": "#373229"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#D0A42F",
+            "to": "#B18C39"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#FF8C7D",
+            "to": "#FF9686"
+          }
+        ]
+      },
+      "price": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "age": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "density.household": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "growth": {
+        "status": "changed",
+        "previousId": "growth",
+        "changed": [
+          {
+            "theme": "light",
+            "anchor": "mid",
+            "from": "#55B8C2",
+            "to": "#5BC19D"
+          },
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#6F8984",
+            "to": "#153B2E"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#53BDD0",
+            "to": "#229270"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#86E0B8",
+            "to": "#81D2C9"
+          }
+        ]
+      },
+      "confidence": {
+        "status": "changed",
+        "previousId": "confidence",
+        "changed": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#7C8B8C",
+            "to": "#0A3B38"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#95A9AA",
+            "to": "#669490"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#D8E6E5",
+            "to": "#75CDC6"
+          }
+        ]
+      },
+      "count": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "water": {
+        "status": "changed",
+        "previousId": "water",
+        "changed": [
+          {
+            "theme": "light",
+            "anchor": "low",
+            "from": "#F2F1DF",
+            "to": "#E6F1F2"
+          },
+          {
+            "theme": "light",
+            "anchor": "mid",
+            "from": "#55B8C2",
+            "to": "#8FD3E0"
+          },
+          {
+            "theme": "light",
+            "anchor": "high",
+            "from": "#206C9A",
+            "to": "#0F6E8C"
+          },
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#6C838C",
+            "to": "#0A3A41"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#55B8C2",
+            "to": "#2A6F7B"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#68C4E2",
+            "to": "#78CAEA"
+          }
+        ]
+      },
+      "density.capita": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "built": {
+        "status": "changed",
+        "previousId": "density",
+        "changed": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#728C9A",
+            "to": "#133748"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#47A6C4",
+            "to": "#6A9AB2"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#9BE4F2",
+            "to": "#99D5F2"
+          }
+        ]
+      },
+      "duration": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "balance": {
+        "status": "changed",
+        "previousId": "balance",
+        "changed": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#FF8A4C",
+            "to": "#FE8F75"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#7C8A84",
+            "to": "#2D3438"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#4FAFE0",
+            "to": "#7AC5FE"
+          }
+        ]
+      },
+      "delta": {
+        "status": "changed",
+        "previousId": "delta",
+        "changed": [
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#F28575",
+            "to": "#FD8C7B"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#7C8A84",
+            "to": "#2D3438"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#55C8BC",
+            "to": "#68C7C2"
+          }
+        ]
+      },
+      "tradeoff": {
+        "status": "changed",
+        "previousId": "tradeoff",
+        "changed": [
+          {
+            "theme": "light",
+            "anchor": "low",
+            "from": "#B23F74",
+            "to": "#AB2E47"
+          },
+          {
+            "theme": "dark",
+            "anchor": "low",
+            "from": "#F06FA6",
+            "to": "#FF9EA7"
+          },
+          {
+            "theme": "dark",
+            "anchor": "mid",
+            "from": "#7C8A84",
+            "to": "#2D3438"
+          },
+          {
+            "theme": "dark",
+            "anchor": "high",
+            "from": "#61C2D3",
+            "to": "#60C1D5"
+          }
+        ]
+      },
+      "flow": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "sentiment": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      },
+      "anomaly": {
+        "status": "new_in_0.9.3_(carried_into_0.9.4)"
+      }
+    },
+    "anchorDeltaFromColorSrgb06": {
+      "machinePackage": "v0.9.3-mp1-candidate",
+      "registrySha256": "3f7bfd1888e3a29296ee3e59c303672c7f22c9330db3a52ee7d94d8066f06886",
+      "changedAnchors": 18,
+      "families": {
+        "activity": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "dark",
+              "anchor": "low",
+              "from": "#492923",
+              "to": "#3C302D"
+            },
+            {
+              "theme": "dark",
+              "anchor": "mid",
+              "from": "#B3594B",
+              "to": "#D17465"
+            }
+          ]
+        },
+        "density.area": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "light",
+              "anchor": "mid",
+              "from": "#E79363",
+              "to": "#EE9A69"
+            },
+            {
+              "theme": "light",
+              "anchor": "high",
+              "from": "#A92963",
+              "to": "#A1182D"
+            },
+            {
+              "theme": "dark",
+              "anchor": "low",
+              "from": "#472B1B",
+              "to": "#3B302B"
+            },
+            {
+              "theme": "dark",
+              "anchor": "mid",
+              "from": "#B56635",
+              "to": "#CC7B4A"
+            },
+            {
+              "theme": "dark",
+              "anchor": "high",
+              "from": "#FF9ABD",
+              "to": "#FFB4B3"
+            }
+          ]
+        },
+        "heat": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "dark",
+              "anchor": "low",
+              "from": "#442E15",
+              "to": "#393129"
+            },
+            {
+              "theme": "dark",
+              "anchor": "mid",
+              "from": "#A56810",
+              "to": "#C28336"
+            }
+          ]
+        },
+        "risk": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "dark",
+              "anchor": "low",
+              "from": "#3F3112",
+              "to": "#373229"
+            },
+            {
+              "theme": "dark",
+              "anchor": "mid",
+              "from": "#99741A",
+              "to": "#B18C39"
+            }
+          ]
+        },
+        "price": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "dark",
+              "anchor": "low",
+              "from": "#3C3212",
+              "to": "#363329"
+            },
+            {
+              "theme": "dark",
+              "anchor": "mid",
+              "from": "#8F7514",
+              "to": "#AA9038"
+            }
+          ]
+        },
+        "age": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "dark",
+              "anchor": "mid",
+              "from": "#787C53",
+              "to": "#717D55"
+            }
+          ]
+        },
+        "density.household": {
+          "status": "identical",
+          "changed": []
+        },
+        "growth": {
+          "status": "identical",
+          "changed": []
+        },
+        "confidence": {
+          "status": "identical",
+          "changed": []
+        },
+        "count": {
+          "status": "identical",
+          "changed": []
+        },
+        "water": {
+          "status": "identical",
+          "changed": []
+        },
+        "density.capita": {
+          "status": "identical",
+          "changed": []
+        },
+        "built": {
+          "status": "identical",
+          "changed": []
+        },
+        "duration": {
+          "status": "identical",
+          "changed": []
+        },
+        "balance": {
+          "status": "identical",
+          "changed": []
+        },
+        "delta": {
+          "status": "identical",
+          "changed": []
+        },
+        "tradeoff": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "light",
+              "anchor": "neg",
+              "from": "#B23F74",
+              "to": "#AB2E47"
+            },
+            {
+              "theme": "dark",
+              "anchor": "neg",
+              "from": "#F689B5",
+              "to": "#FF9EA7"
+            }
+          ]
+        },
+        "flow": {
+          "status": "changed",
+          "changed": [
+            {
+              "theme": "light",
+              "anchor": "neg",
+              "from": "#AA7E00",
+              "to": "#D09B00"
+            },
+            {
+              "theme": "dark",
+              "anchor": "neg",
+              "from": "#D7AA46",
+              "to": "#DBA833"
+            }
+          ]
+        },
+        "sentiment": {
+          "status": "identical",
+          "changed": []
+        },
+        "anomaly": {
+          "status": "identical",
+          "changed": []
+        }
+      },
+      "series": [
+        {
+          "id": "series.02",
+          "theme": "light",
+          "tier": "ink",
+          "from": "#9B4900",
+          "to": "#182327"
+        },
+        {
+          "id": "series.03",
+          "theme": "light",
+          "tier": "ink",
+          "from": "#896500",
+          "to": "#182327"
+        },
+        {
+          "id": "series.10",
+          "theme": "light",
+          "tier": "fill (default variant)",
+          "from": "#DA88A4",
+          "to": "#82AC79"
+        },
+        {
+          "id": "series.10",
+          "theme": "light",
+          "tier": "ink",
+          "from": "#91355A",
+          "to": "#34622A"
+        },
+        {
+          "id": "series.10",
+          "theme": "light",
+          "tier": "fill (dial-vivid)",
+          "from": "#F571A4",
+          "to": "#71B262"
+        },
+        {
+          "id": "series.10",
+          "theme": "dark",
+          "tier": "fill (default variant)",
+          "from": "#FAA9C4",
+          "to": "#9AD78C"
+        },
+        {
+          "id": "series.10",
+          "theme": "dark",
+          "tier": "ink",
+          "from": "#FFC5D7",
+          "to": "#B8E7AE"
+        },
+        {
+          "id": "series.10",
+          "theme": "dark",
+          "tier": "fill (dial-vivid)",
+          "from": "#FFA5C4",
+          "to": "#9AD78C"
+        },
+        {
+          "id": "series.10",
+          "theme": "both",
+          "tier": "name",
+          "from": "rose",
+          "to": "green"
+        }
+      ]
+    },
+    "bannedHue": {
+      "ruleId": "DATAVIZ-04",
+      "status": "release-blocking",
+      "origin": "the two OKLCh windows retired by the v0.9.0 purple-brown purge (machine/v0.9.0/preflight.yml colorPurge) become a gate over every analytical value in both themes",
+      "windows": {
+        "earth": {
+          "hueDeg": [
+            30,
+            100
+          ],
+          "chroma": [
+            0.035,
+            0.145
+          ],
+          "lightnessMax": 0.62,
+          "verdict": "fail"
+        },
+        "violet": {
+          "hueDeg": [
+            285,
+            345
+          ],
+          "chromaMin": 0.04,
+          "verdict": "fail"
+        },
+        "clay": {
+          "hueDeg": [
+            22,
+            100
+          ],
+          "chroma": [
+            0.09,
+            0.145
+          ],
+          "lightness": [
+            0.62,
+            0.74
+          ],
+          "themes": [
+            "light"
+          ],
+          "verdict": "warning"
+        }
+      },
+      "proximity": {
+        "gate": "B-HUE-02",
+        "deltaEMax": 6,
+        "hueLaneDeg": 20,
+        "purgedEarthTaupe": [
+          "#795300",
+          "#846100",
+          "#686354",
+          "#8B877A",
+          "#B6AD98",
+          "#A59A80",
+          "#827C68",
+          "#85837A"
+        ],
+        "purgedPink": [
+          "#9E476F",
+          "#E982AE"
+        ],
+        "note": "the eight earth/taupe values of the v0.9.0 SC-17 list; the two purged pinks are covered by the exact-value ban (SC-17) — the pink ruling keeps warm pink legal"
+      },
+      "pinkRuling": {
+        "decidedOn": "2026-09-17",
+        "decider": "owner",
+        "text": "pink is fine, just no purple",
+        "legalWindow": {
+          "hueDeg": [
+            350,
+            20
+          ]
+        }
+      },
+      "saturatedNote": "C > .145 at L ≤ .62 is a saturated red/vermilion/gold, not an earth tone",
+      "noNewTokenToEscape": true,
+      "gates": [
+        "B-HUE-01",
+        "B-HUE-02",
+        "SC-17"
+      ],
+      "tool": "validate-dataviz-gates-0.9.4.mjs hueVerdict()",
+      "lutAudit": "reported per LUT step and per class colour in contrast-evidence.json (not a gate — owner decision 2026-09-17: the LUT path of the warm lane goes back to the board)"
+    },
+    "warmLane": {
+      "ruleId": "DATAVIZ-03 (amended 0.9.4)",
+      "membership": [
+        "activity",
+        "density.area",
+        "heat",
+        "risk",
+        "price"
+      ],
+      "rule": {
+        "ruleId": "DATAVIZ-03 (amended 0.9.4)",
+        "membership": "sequential families whose light mid hue is 30–100° (OKLCh)",
+        "derivation": {
+          "low": "OKLCH(.32, .018, hue of light mid)",
+          "mid": "OKLCH(.66, min(C light mid, .12), hue of light mid)",
+          "high": "unchanged (1.30 − L(light high) clamp .78–.90; chroma clamp .06–.14; hue of light high)"
+        },
+        "gates": {
+          "D-LOW-02": "C ≤ .03",
+          "D-MID-01": "L target .66",
+          "D-STEP-02": "0.5–3.0",
+          "D-STEP-03": "per-class step ≥ 2.2 ΔE at the declared class count (5), replacing D-STEP-01 in the lane (measured 6.0–12.9)"
+        }
+      }
+    },
+    "hueZones": {
+      "warm": [
+        "activity",
+        "density.area",
+        "heat",
+        "risk"
+      ],
+      "green": [
+        "price",
+        "age",
+        "density.household",
+        "growth",
+        "confidence"
+      ],
+      "blue": [
+        "count",
+        "water",
+        "density.capita",
+        "built",
+        "duration"
+      ]
+    },
+    "lowAnchor": {
+      "default": "#F2F1DF",
+      "exceptions": {
+        "water": "#E6F1F2",
+        "heat": "#FBF1C6"
+      }
+    },
+    "mergeThreshold": {
+      "deltaESum": 8,
+      "note": "pairs whose mid+high OKLab ΔE×100 sum is below 8 must merge; computed minimum 10.2 (light) / 9.7 (dark) — no merge required"
+    },
+    "separation": {
+      "threshold": 8,
+      "light": [
+        {
+          "id": "activity",
+          "nearest": "density.area",
+          "deltaE": 13.5
+        },
+        {
+          "id": "density.area",
+          "nearest": "heat",
+          "deltaE": 10.2
+        },
+        {
+          "id": "heat",
+          "nearest": "density.area",
+          "deltaE": 10.2
+        },
+        {
+          "id": "risk",
+          "nearest": "activity",
+          "deltaE": 15.1
+        },
+        {
+          "id": "price",
+          "nearest": "age",
+          "deltaE": 11.6
+        },
+        {
+          "id": "age",
+          "nearest": "price",
+          "deltaE": 11.6
+        },
+        {
+          "id": "density.household",
+          "nearest": "price",
+          "deltaE": 12.2
+        },
+        {
+          "id": "growth",
+          "nearest": "confidence",
+          "deltaE": 10.8
+        },
+        {
+          "id": "confidence",
+          "nearest": "growth",
+          "deltaE": 10.8
+        },
+        {
+          "id": "count",
+          "nearest": "water",
+          "deltaE": 15.3
+        },
+        {
+          "id": "water",
+          "nearest": "duration",
+          "deltaE": 12.9
+        },
+        {
+          "id": "density.capita",
+          "nearest": "duration",
+          "deltaE": 18.8
+        },
+        {
+          "id": "built",
+          "nearest": "confidence",
+          "deltaE": 13.8
+        },
+        {
+          "id": "duration",
+          "nearest": "water",
+          "deltaE": 12.9
+        }
+      ],
+      "dark": [
+        {
+          "id": "activity",
+          "nearest": "risk",
+          "deltaE": 11.5
+        },
+        {
+          "id": "density.area",
+          "nearest": "heat",
+          "deltaE": 10.7
+        },
+        {
+          "id": "heat",
+          "nearest": "density.area",
+          "deltaE": 10.7
+        },
+        {
+          "id": "risk",
+          "nearest": "activity",
+          "deltaE": 11.5
+        },
+        {
+          "id": "price",
+          "nearest": "age",
+          "deltaE": 14.6
+        },
+        {
+          "id": "age",
+          "nearest": "density.household",
+          "deltaE": 10.5
+        },
+        {
+          "id": "density.household",
+          "nearest": "age",
+          "deltaE": 10.5
+        },
+        {
+          "id": "growth",
+          "nearest": "confidence",
+          "deltaE": 9.7
+        },
+        {
+          "id": "confidence",
+          "nearest": "growth",
+          "deltaE": 9.7
+        },
+        {
+          "id": "count",
+          "nearest": "duration",
+          "deltaE": 15.2
+        },
+        {
+          "id": "water",
+          "nearest": "duration",
+          "deltaE": 11.4
+        },
+        {
+          "id": "density.capita",
+          "nearest": "duration",
+          "deltaE": 12.9
+        },
+        {
+          "id": "built",
+          "nearest": "duration",
+          "deltaE": 11.4
+        },
+        {
+          "id": "duration",
+          "nearest": "built",
+          "deltaE": 11.4
+        }
+      ],
+      "minimum": {
+        "light": 10.2,
+        "dark": 9.7
+      }
+    },
+    "boardSeparation": {
+      "note": "the r2 board table, superseded by the computed table above",
+      "threshold": 8,
+      "light": [
+        {
+          "id": "activity",
+          "nearest": "risk",
+          "deltaE": 15.1
+        },
+        {
+          "id": "density.area",
+          "nearest": "heat",
+          "deltaE": 15.8
+        },
+        {
+          "id": "heat",
+          "nearest": "density.area",
+          "deltaE": 15.8
+        },
+        {
+          "id": "risk",
+          "nearest": "activity",
+          "deltaE": 15.1
+        },
+        {
+          "id": "price",
+          "nearest": "age",
+          "deltaE": 11.6
+        },
+        {
+          "id": "age",
+          "nearest": "price",
+          "deltaE": 11.6
+        },
+        {
+          "id": "density.household",
+          "nearest": "price",
+          "deltaE": 12.2
+        },
+        {
+          "id": "growth",
+          "nearest": "confidence",
+          "deltaE": 10.8
+        },
+        {
+          "id": "confidence",
+          "nearest": "growth",
+          "deltaE": 10.8
+        },
+        {
+          "id": "count",
+          "nearest": "water",
+          "deltaE": 15.3
+        },
+        {
+          "id": "water",
+          "nearest": "duration",
+          "deltaE": 12.9
+        },
+        {
+          "id": "density.capita",
+          "nearest": "duration",
+          "deltaE": 18.8
+        },
+        {
+          "id": "built",
+          "nearest": "confidence",
+          "deltaE": 13.8
+        },
+        {
+          "id": "duration",
+          "nearest": "water",
+          "deltaE": 12.9
+        }
+      ],
+      "dark": [
+        {
+          "id": "activity",
+          "nearest": "risk",
+          "deltaE": 11.5
+        },
+        {
+          "id": "density.area",
+          "nearest": "activity",
+          "deltaE": 12.8
+        },
+        {
+          "id": "heat",
+          "nearest": "density.area",
+          "deltaE": 16.8
+        },
+        {
+          "id": "risk",
+          "nearest": "activity",
+          "deltaE": 11.5
+        },
+        {
+          "id": "price",
+          "nearest": "age",
+          "deltaE": 9.3
+        },
+        {
+          "id": "age",
+          "nearest": "price",
+          "deltaE": 9.3
+        },
+        {
+          "id": "density.household",
+          "nearest": "age",
+          "deltaE": 11.4
+        },
+        {
+          "id": "growth",
+          "nearest": "confidence",
+          "deltaE": 9.7
+        },
+        {
+          "id": "confidence",
+          "nearest": "growth",
+          "deltaE": 9.7
+        },
+        {
+          "id": "count",
+          "nearest": "duration",
+          "deltaE": 15.2
+        },
+        {
+          "id": "water",
+          "nearest": "duration",
+          "deltaE": 11.4
+        },
+        {
+          "id": "density.capita",
+          "nearest": "duration",
+          "deltaE": 12.9
+        },
+        {
+          "id": "built",
+          "nearest": "duration",
+          "deltaE": 11.4
+        },
+        {
+          "id": "duration",
+          "nearest": "built",
+          "deltaE": 11.4
+        }
+      ],
+      "minimum": {
+        "light": 10.8,
+        "dark": 9.3
+      }
+    },
+    "dataState": {
+      "noData": {
+        "light": "#D5DAD6",
+        "dark": "#404844",
+        "cue": "diagonal pattern + label"
+      },
+      "zero": {
+        "light": "#7D877F",
+        "dark": "#93A398",
+        "cue": "distinct outline only when zero is a fact"
+      }
+    },
+    "valueStates": {
+      "rule": "EVID-05 / A6 extension — five states, never collapsed into N/A; 0 is a fact, missing is a question",
+      "labelInk": "text.metadata",
+      "labelPlacement": "legend or table cell, never on the no-data hatch fill (owner decision 15 September 2026)",
+      "states": [
+        {
+          "id": "measured_zero",
+          "th": "ศูนย์ (สำรวจแล้ว)",
+          "en": "Zero (measured)",
+          "glyph": "0",
+          "map": "lowest class fill + --dataviz-zero-outline 2px",
+          "table": "numeric 0 with unit",
+          "requires": [
+            "unit",
+            "survey completeness"
+          ]
+        },
+        {
+          "id": "no_data",
+          "th": "ไม่มีข้อมูล",
+          "en": "No data",
+          "glyph": "—",
+          "map": "--data-no-data-pattern 135° hatch + --border-emphasis",
+          "table": "— + short reason, sorted last",
+          "requires": [
+            "reason",
+            "latest available value"
+          ]
+        },
+        {
+          "id": "out_of_scope",
+          "th": "นอกขอบเขตข้อมูล",
+          "en": "Out of scope",
+          "glyph": "นอกขอบเขต",
+          "map": "bare basemap (no fill, no hatch)",
+          "table": "text label",
+          "requires": [
+            "scope statement"
+          ]
+        },
+        {
+          "id": "suppressed",
+          "th": "ปิดค่า (n<5)",
+          "en": "Suppressed (n<5)",
+          "glyph": "‹5",
+          "map": "--surface-soft + dashed --border-emphasis",
+          "table": "‹5 + rule",
+          "requires": [
+            "threshold",
+            "aggregation level that unlocks"
+          ]
+        },
+        {
+          "id": "not_yet",
+          "th": "ยังไม่ถึงรอบข้อมูล",
+          "en": "Not yet available",
+          "glyph": "…",
+          "map": "--semantic-pending-fill + dotted --semantic-pending-ink",
+          "table": "… + expected date",
+          "requires": [
+            "expected date",
+            "source cadence"
+          ]
+        }
+      ],
+      "treatments": {
+        "measured_zero": {
+          "map": {
+            "fill": "scale lowest class",
+            "outline": "dataState.zero",
+            "outlineWidthPx": 2
+          },
+          "table": "numeric 0 with unit"
+        },
+        "no_data": {
+          "map": {
+            "fill": "dataState.noData",
+            "pattern": "135deg hatch",
+            "stroke": "border.emphasis"
+          },
+          "table": "— plus short reason; sorted last"
+        },
+        "out_of_scope": {
+          "map": {
+            "fill": "none (bare basemap)"
+          },
+          "table": "text label"
+        },
+        "suppressed": {
+          "map": {
+            "fill": "surface.soft",
+            "stroke": "border.emphasis",
+            "strokeStyle": "dashed"
+          },
+          "table": "‹n plus threshold"
+        },
+        "not_yet": {
+          "map": {
+            "fill": "semantic.pending.surface",
+            "stroke": "semantic.pending.content",
+            "strokeStyle": "dotted"
+          },
+          "table": "… plus expected date"
+        }
+      }
+    },
+    "map": {
+      "activeLayer": [
+        "#347DA8",
+        "#65B6DB"
+      ],
+      "hoverStroke": [
+        "#347DA8",
+        "#65B6DB"
+      ],
+      "selectedStroke": [
+        "#176B82",
+        "#68C4E2"
+      ],
+      "focusStroke": [
+        "#176B82",
+        "#68C4E2"
+      ],
+      "markerHalo": [
+        "#FFFFFF",
+        "#101318"
+      ],
+      "markerStroke": [
+        "#182327",
+        "#F1F4EF"
+      ]
+    },
+    "type": {
+      "caption": ".75rem",
+      "label": ".8125rem",
+      "bodySm": ".875rem",
+      "body": "1rem",
+      "bodyLg": "1.125rem",
+      "h3": "clamp(1.35rem, 2vw, 1.75rem)",
+      "h2": "clamp(2rem, 4vw, 3.25rem)",
+      "h1En": "clamp(3.25rem, 7vw, 6.5rem)",
+      "h1Th": "clamp(2.5rem, 6vw, 5rem)"
+    },
+    "spacing": [
+      0,
+      4,
+      8,
+      12,
+      16,
+      24,
+      32,
+      48,
+      64,
+      96,
+      128
+    ],
+    "radius": {
+      "xs": 6,
+      "sm": 10,
+      "md": 16,
+      "lg": 24,
+      "xl": 32,
+      "pill": 999
+    },
+    "container": {
+      "reading": 760,
+      "default": 1120,
+      "wide": 1280
+    },
+    "breakpoint": {
+      "xs": 360,
+      "sm": 600,
+      "md": 900,
+      "lg": 1200,
+      "xl": 1600
+    },
+    "motion": {
+      "durationFeedback": 120,
+      "durationState": 200,
+      "durationMap": 280,
+      "durationChart": 360,
+      "durationReveal": 640,
+      "durationEmphasis": 560,
+      "delayStagger": 120,
+      "delayStaggerCap": 600,
+      "distanceFeedback": 2,
+      "distanceReveal": 20,
+      "easeState": "cubic-bezier(.2,0,0,1)",
+      "easeEnter": "cubic-bezier(.16,1,.3,1)"
+    }
+  }
+}

@@ -1,0 +1,1385 @@
+{
+  "schemaVersion": "1.9",
+  "releaseRef": "v0.9.4-mp1",
+  "status": "active",
+  "protectedBrandLines": {
+    "north_star": "Visualize City, Shape Tomorrow.",
+    "promise": "Measure What Matters. Make It Actionable.",
+    "cultural_activation": "Let us cultivate our city with data."
+  },
+  "normativeVocabulary": {
+    "MUST": "Required. A failure blocks conformance and release.",
+    "MUST_NOT": "Prohibited. A failure blocks conformance and release.",
+    "SHOULD": "Recommended when contextually appropriate. An unmet SHOULD does not fail conformance unless a separate MUST requires a decision record.",
+    "MAY": "Optional; it cannot be used to claim a capability that is absent."
+  },
+  "requiredCoreRuleIds": [
+    "GOV-01",
+    "AUTHORITY-01",
+    "LAYER-01",
+    "COMPARE-01",
+    "EVIDENCE-01",
+    "OUTPUT-CLARITY-01",
+    "AHA-01",
+    "BRAND-01",
+    "LOGO-01",
+    "COLOR-01",
+    "SURFACE-01",
+    "TYPE-01",
+    "ICON-01",
+    "LAYOUT-01",
+    "THEME-01",
+    "ASSET-DELIVERY-01",
+    "PROFILE-01",
+    "CAPABILITY-01",
+    "PARITY-01",
+    "CTA-01",
+    "CTA-02",
+    "A11Y-01",
+    "CLAIM-MACHINE-01",
+    "SECURITY-01",
+    "FORMAT-PARITY-01",
+    "MEDIA-01",
+    "COMPONENT-01",
+    "QA-01",
+    "RELEASE-01"
+  ],
+  "resolvedAcceptancePolicy": "every_resolved_acceptance_must_pass",
+  "rules": [
+    {
+      "id": "GOV-01",
+      "title": "Release state is truthful and audience-bounded",
+      "section": "governance",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Artifact manifests, receipts, and machine sidecars MUST bind an exact releaseRef and canonical tuple hash that resolve to the actual Design System release. That package's release.json MUST record active, effective, and approved state plus approver and approval time; approval workflow and machine identifiers MUST remain off audience-facing surfaces unless the artifact's declared job is to explain the Design System or provenance.",
+      "acceptance": [
+        {
+          "checkId": "GOV-01-A",
+          "method": "automated",
+          "criterion": "release.json records active, approved, effective true, approver, and approval time; the manifest binds the releaseRef and canonical tuple hash that resolve to the same package."
+        },
+        {
+          "checkId": "GOV-01-B",
+          "method": "manual",
+          "criterion": "Audience-facing surfaces do not expose approval workflow or machine identifiers that do not help the user's job."
+        }
+      ]
+    },
+    {
+      "id": "AUTHORITY-01",
+      "title": "Resolve authority before design",
+      "section": "governance",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "A Build Card MUST identify content sources, claim owner, evidence boundary, and applicable release before composition begins; examples and proposals MUST NOT silently override approved truth.",
+      "acceptance": [
+        {
+          "checkId": "AUTHORITY-01-A",
+          "method": "automated",
+          "criterion": "Required authority fields are present and non-empty in the Build Card."
+        },
+        {
+          "checkId": "AUTHORITY-01-B",
+          "method": "manual",
+          "criterion": "Conflicts are resolved according to the release authority order and recorded."
+        },
+        {
+          "checkId": "AUTHORITY-01-C",
+          "method": "automated",
+          "criterion": "Before generation, the resolver records authority, product scope, one job, dominant object, first AHA, actions, format, capabilities, claims, assets, assumptions, blockers, and required QA without inventing missing approval or evidence."
+        }
+      ]
+    },
+    {
+      "id": "LAYER-01",
+      "title": "Keep shared and product-specific layers separate",
+      "section": "architecture",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Shared Landometer language MUST remain product-neutral across Land, Location, and Living; named-product facts, audiences, sectors, data, and permissions MUST remain in their product-specific layer.",
+      "acceptance": [
+        {
+          "checkId": "LAYER-01-A",
+          "method": "manual",
+          "criterion": "Each capability and claim is labelled shared or assigned to a named product."
+        },
+        {
+          "checkId": "LAYER-01-B",
+          "method": "manual",
+          "criterion": "No sector, municipality, retail, food-and-beverage, or CityWiki example is generalized to the whole portfolio without approved evidence."
+        }
+      ]
+    },
+    {
+      "id": "COMPARE-01",
+      "title": "Comparisons disclose compatibility",
+      "section": "evidence",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Cross-product and cross-city comparisons MUST use the same schema and release, or MUST disclose incompatibility before the comparison is interpreted.",
+      "acceptance": [
+        {
+          "checkId": "COMPARE-01-A",
+          "method": "automated",
+          "criterion": "Comparison records expose schemaRelease for every compared series."
+        },
+        {
+          "checkId": "COMPARE-01-B",
+          "method": "manual",
+          "criterion": "Any mismatch is visible beside the comparison and in its machine record."
+        }
+      ]
+    },
+    {
+      "id": "EVIDENCE-01",
+      "title": "Claims retain evidence boundaries",
+      "section": "evidence",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every material factual claim MUST resolve to a stable claim record containing scope, source, method, time basis, status, and owner. A limitation or uncertainty that changes interpretation MUST appear near the claim in audience language; missing evidence that makes the claim unsafe MUST block the claim or output instead of becoming apology text. Every value cell, map unit and machine field carries one of the five EVID-05 value states; missing data is never rendered as zero.",
+      "acceptance": [
+        {
+          "checkId": "EVIDENCE-01-A",
+          "method": "automated",
+          "criterion": "Every displayed material claimId resolves to exactly one claim record with the required fields."
+        },
+        {
+          "checkId": "EVIDENCE-01-B",
+          "method": "manual",
+          "criterion": "The displayed wording does not exceed the scope or certainty of its evidence."
+        }
+      ]
+    },
+    {
+      "id": "EVID-05",
+      "title": "Zero is a fact; missing is a question",
+      "section": "evidence",
+      "normativeLevel": "MUST",
+      "scope": "data_table,data_visualization,map,agent_readable",
+      "requirement": "Every value cell, map unit, and machine field MUST carry exactly one of five states: measured_zero, no_data, out_of_scope, suppressed, not_yet. Zero renders as the numeral 0 with its unit (map: lowest-class fill plus the dataState.zero outline); no data renders as an em dash with a short reason and the latest available value (map: 135° hatch on dataState.noData with border.emphasis), sorted last; out of scope renders as the bare basemap with a scope statement; suppressed renders ‹n with the threshold and the aggregation level that unlocks it; not yet renders an ellipsis with the expected date. Labels use text.metadata and sit on a legend, table, or caption surface, never directly on the no-data hatch (owner decision 15 September 2026); text.muted is disabled-hint only. Sentences follow the claim recipe in the user's language. N/A, a bare dash, and rendering missing as 0 are prohibited, and agents MUST NOT emit a 0 or null without its state.",
+      "acceptance": [
+        {
+          "checkId": "EVID-05-A",
+          "method": "automated",
+          "criterion": "Every value cell, map unit, and machine field carries one state from the five-value enum; no N/A, bare dash, or 0 outside measured_zero is present; no agent payload contains a 0 or null without a state; DataTable cellStates and MapLegend state rows resolve component-contracts.v0.9.4.json."
+        },
+        {
+          "checkId": "EVID-05-B",
+          "method": "visual",
+          "criterion": "The five states remain distinguishable without color alone (glyph, pattern, edge, and label) in light, dark, print, and static export; labels use text.metadata and pass 4.5:1 on the surface where they are placed."
+        },
+        {
+          "checkId": "EVID-05-C",
+          "method": "manual",
+          "criterion": "User-facing sentences follow the claim recipe and state the status, the reason, and the latest available value or expected date in the user's language, not a broad disclaimer."
+        }
+      ]
+    },
+    {
+      "id": "OUTPUT-CLARITY-01",
+      "title": "Ship resolved audience meaning, not workflow residue",
+      "section": "evidence",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Public, client-facing, and production output MUST expose only the content, audience-domain state, limitation, and action the audience needs. Internal approval or release workflow mechanics and state, schema/rule/package IDs, local or source paths, debug or validator details, TODO/TBD/FIXME, placeholders, and unresolved-dependency wording MUST remain internal. Truthful audience-domain states such as a draft user document or pending transaction remain visible when the user's job requires them. A dependency that can change truth, identity, rights, accessibility, locale completeness, the primary action, or evidence interpretation MUST block delivery or keep the artifact as an internal preview. Material limitations MUST remain specific, proximal, and plain-language rather than becoming a generic disclaimer stack; delivery audience and purpose are declared in the Build Card and Artifact Manifest, not exposed merely to satisfy governance.",
+      "acceptance": [
+        {
+          "checkId": "OUTPUT-CLARITY-01-A",
+          "method": "automated",
+          "criterion": "The Build Card declares resolved_only output and a delivery audience. Client, public, internal-operational, or artifact_qa_passed-and-higher output has zero blocking dependency refs; uses only role-, rights-, receipt-, and hash-bound approved assets plus current, locale-complete, manifest-record-bound eligible claims; exposes no placeholder or internal-governance marker in audience projections; binds exactly one format-appropriate, hash-bound content inspection for every delivery.files entry without silently skipping opaque formats; for DOCX, PPTX, and PDF, binds the exact page or slide count and every rendered unit, with deterministic channel-labelled text extraction plus OCR plus visual review, explicit image-only or outlined-text review, and hash-bound raster renders; and binds an OUTPUT-CLARITY-01-A receipt whose subject-file paths and hashes equal delivery.files exactly and whose evidence files include every content-inspection record."
+        },
+        {
+          "checkId": "OUTPUT-CLARITY-01-B",
+          "method": "production",
+          "criterion": "Final visible bytes, metadata, previews, exports, and machine projections pass a format-aware workflow-residue scan with a dated receipt before production_verified; the receipt subject set equals delivery.files exactly and cites every hash-bound direct-text, extracted-text, combined rendered-unit extraction/OCR/visual, transcript, or binary-content inspection required for those files, including every DOCX/PPTX/PDF page or slide and image-only or outlined text."
+        },
+        {
+          "checkId": "OUTPUT-CLARITY-01-C",
+          "method": "manual",
+          "criterion": "Every visible limitation is material, specific, proximal, and understandable; no generic disclaimer or workflow caveat remains."
+        }
+      ]
+    },
+    {
+      "id": "AHA-01",
+      "title": "First useful value precedes nonessential gates",
+      "section": "experience-architecture",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "The first useful proof, understanding, or task value MUST appear before nonessential registration, personal-data collection, permission requests, sharing prompts, or promotional interruption. When a prerequisite is genuinely necessary, the artifact MUST explain why, request only the minimum, and provide a denial-safe or read-only alternative where feasible.",
+      "acceptance": [
+        {
+          "checkId": "AHA-01-A",
+          "method": "automated",
+          "criterion": "The Build Card identifies the first AHA, its evidence cue, and every prerequisite that occurs before it."
+        },
+        {
+          "checkId": "AHA-01-B",
+          "method": "interaction",
+          "criterion": "Representative first-run, denied-permission, unauthenticated, and no-sharing fixtures still expose the earliest feasible useful value and next safe path."
+        }
+      ]
+    },
+    {
+      "id": "BRAND-01",
+      "title": "Protected brand lines retain roles",
+      "section": "brand",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Use of a protected line is optional unless the Build Card selects it. When used, each protected line MUST remain verbatim, retain canonical punctuation, and remain role-bound: North Star — Visualize City, Shape Tomorrow.; Promise — Measure What Matters. Make It Actionable.; Cultural activation — Let us cultivate our city with data. Only one protected line may act as the headline in a scene. A localized adaptation MUST NOT be treated as protected wording unless it has a separate owner-approved locale record.",
+      "acceptance": [
+        {
+          "checkId": "BRAND-01-A",
+          "method": "automated",
+          "criterion": "Protected text and punctuation match the canonical registry or an explicit owner-approved locale-specific record exactly."
+        },
+        {
+          "checkId": "BRAND-01-B",
+          "method": "manual",
+          "criterion": "Protected lines are not stacked as peer slogans in one scene."
+        }
+      ]
+    },
+    {
+      "id": "LOGO-01",
+      "title": "Use an approved identity implementation",
+      "section": "identity",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every brand-required output MUST bind one approved identity implementation. Logos, wordmarks, symbols, favicons, and social marks MUST use owner-approved assets for the declared role. When no role-approved logo asset exists, the approved canonical portfolio name MAY be rendered as governed live text, but MUST select one exact surface/runtime typography binding that fixes font source or native mapping, family, weight, size, minimum size, tracking, line height, clear space, substitution, final-output behavior, and fixtures; it MUST bind no logo asset and MUST NOT reconstruct a wordmark or invent a compact mark. Web icon sets resolve through FAVICON-01.",
+      "acceptance": [
+        {
+          "checkId": "LOGO-01-A",
+          "method": "automated",
+          "criterion": "Every brand-required output resolves exactly one Build Card identity implementation: either an approved role/surface identity asset with exact hash, minimum-size, and clear-space contracts, or an approved governed text identity with canonical locale text and one exact registry typographyBindingId whose asset IDs or nativeMappingId, family, weight, metrics, substitution policy, output policy, and fixture IDs match; logoAssetId is null and reconstruction is disabled; the format preset binds the same implementation ID."
+        },
+        {
+          "checkId": "LOGO-01-B",
+          "method": "visual",
+          "criterion": "Asset identity clear space, minimum size, contrast, and direct-surface usage match the approved variant; governed text identity remains live text, preserves the canonical name, and is not styled to impersonate an unapproved wordmark."
+        }
+      ]
+    },
+    {
+      "id": "FAVICON-01",
+      "title": "Every web build binds one approved icon set",
+      "section": "identity",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "A web build MUST ship one icon set chosen by property — portfolio: the symbol on transparent; product: the product's identity-gradient tile with the symbol in that gradient's foreground contract (symbol-white on onDeep, symbol-color on onLight) — in six sizes: 16, 32, 48, 180 (apple-touch), 192, and 512 (maskable, 80% safe zone), with 25% corners at 16 and 32 and full-square maskable sizes. The icon never changes per page and never signals status. The document title is [page] · [product], 60 characters or fewer, page first. A missing icon set is a WEBFMT-01 blocker. Icon sets live in the asset registry with exact hashes and approval receipts; the portfolio set iconset.landometer.portfolio.symbol.01 is owner-approved (15 September 2026) and product tiles remain open until each product's gradient is approved; motifs and animated variants are never icons.",
+      "acceptance": [
+        {
+          "checkId": "FAVICON-01-A",
+          "method": "automated",
+          "criterion": "The initial HTML of every route binds all six icon sizes from the asset registry with matching hashes, a web manifest declaring 192 and 512 (maskable), theme-color for light and dark, and a title matching [page] · [product] within 60 characters; any missing item is a WEBFMT-01 blocker."
+        },
+        {
+          "checkId": "FAVICON-01-B",
+          "method": "visual",
+          "criterion": "The 16 and 32 icons remain legible at actual size on light and dark tab strips, the 180 icon on an iOS home screen, and the 192/512 maskable icons are not clipped within the 80% safe zone; the icon does not change per page or per status."
+        }
+      ]
+    },
+    {
+      "id": "COLOR-01",
+      "title": "Use semantic color tokens",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Authored UI, text, surface, state, and data color MUST come from color-srgb-07 governed roles; state, category, and magnitude MUST NOT depend on color alone, and contrast MUST be validated in the actual output context. Approved identity artwork and governed evidence or editorial media retain their approved source pixels and MUST NOT be sampled or reconstructed as interface tokens. The raw registry files (color-srgb-07.tokens.json and color-srgb-07.scales.json in this package; the two color-srgb-06 files of the superseded 0.9.3 candidate and the four color-srgb-05 files retained by hash in v0.9.1-mp7) are provenance-only and MUST NOT enter audience bytes; delivery uses the verified atomic production CSS or a separately sanitized machine projection.",
+      "acceptance": [
+        {
+          "checkId": "COLOR-01-A",
+          "method": "automated",
+          "criterion": "All authored colors resolve to approved tokens; audience bytes use the atomic production CSS or a separately sanitized governed projection and never any of the raw color-srgb-07 registry files (color-srgb-07.tokens.json, color-srgb-07.scales.json), the two raw color-srgb-06 files of the superseded 0.9.3 candidate and the four raw color-srgb-05 files retained in v0.9.1-mp7."
+        },
+        {
+          "checkId": "COLOR-01-B",
+          "method": "visual",
+          "criterion": "Text, controls, focus, graphics, and data marks pass their declared contrast gates in light, dark, and print-relevant states."
+        }
+      ]
+    },
+    {
+      "id": "SURFACE-01",
+      "title": "Atmosphere surfaces have a declared job",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "A brand-atmosphere surface MUST use an exact landometer-atmosphere-gradient-v2 recipe or another approved flat or photographic treatment for a declared entry, orientation, transition, momentum, or closure job. It MUST record focal target, reading direction, foreground contract, contrast evidence, cadence, and deletion test; gradients MUST NOT decorate every card or encode data, product capability, status, or magnitude.",
+      "acceptance": [
+        {
+          "checkId": "SURFACE-01-A",
+          "method": "automated",
+          "criterion": "Every atmosphere surface resolves an exact recipe ID, scene role, foreground contract, focal target, reading direction, and approved color-set record."
+        },
+        {
+          "checkId": "SURFACE-01-B",
+          "method": "visual",
+          "criterion": "Rendered foreground contrast passes across glyph bounds, cadence avoids gradient quota or repetition, and removing the surface would materially weaken its declared job."
+        }
+      ]
+    },
+    {
+      "id": "TYPE-01",
+      "title": "Typography is script-aware and output-aware",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Type roles MUST use the approved Latin and Thai families, preserve readable hierarchy, and pass script-specific collision, clipping, fallback, and export checks at every used size; the former global Thai display line-height 1.16 MUST NOT be treated as universally safe. Non-web output MUST select an exact governed platform mapping, prohibit substitution, and satisfy the declared editable-source and fixed-export policies.",
+      "acceptance": [
+        {
+          "checkId": "TYPE-01-A",
+          "method": "automated",
+          "criterion": "Web font roles resolve to type-script-aware-02; every non-web font role resolves one platform/format-compatible native mapping with substitution forbidden and availability, no-substitution, and fixed-export fixture IDs."
+        },
+        {
+          "checkId": "TYPE-01-B",
+          "method": "visual",
+          "criterion": "Thai and Latin stress fixtures pass without clipping, collisions, tofu, or unintended substitution in each exported format."
+        }
+      ]
+    },
+    {
+      "id": "ICON-01",
+      "title": "Interface icons are simplified rounded outlines",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Interface icons MUST be simplified, outline, and rounded, using the approved subset with fill 0 and weight 300 in every state; selected state MUST be conveyed by semantic surface, color, visible label, or an outline-container treatment rather than changing glyph fill or weight. Identity marks and data symbols MUST remain separate systems. Non-web output uses a complete visible text label by default; an optional icon visual MUST be a registered generated-vector asset with exact hash and text equivalent, never silent native-symbol substitution.",
+      "acceptance": [
+        {
+          "checkId": "ICON-01-A",
+          "method": "automated",
+          "criterion": "UI icon names belong to the approved subset and variable settings retain FILL 0."
+        },
+        {
+          "checkId": "ICON-01-B",
+          "method": "visual",
+          "criterion": "Icons remain legible and stylistically consistent at every rendered and exported size."
+        }
+      ]
+    },
+    {
+      "id": "LAYOUT-01",
+      "title": "Layout preserves hierarchy across formats",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Composition MUST preserve one primary reading path, responsive or page-safe gutters, deliberate density, and a perceivable relationship between question, evidence, interpretation, and next action. Every intended reading-order item MUST be a typed section, action, or component reference that resolves exactly once and projects in the same order to accessibility output.",
+      "acceptance": [
+        {
+          "checkId": "LAYOUT-01-A",
+          "method": "visual",
+          "criterion": "Every intended reading-order reference resolves exactly once; the projected accessibility order is identical; the rendered order is clear at minimum, nominal, and maximum target sizes."
+        },
+        {
+          "checkId": "LAYOUT-01-B",
+          "method": "manual",
+          "criterion": "No essential content is clipped, orphaned, hidden behind navigation, or split without a continuation cue."
+        }
+      ]
+    },
+    {
+      "id": "CTRL-01",
+      "title": "Control geometry stays direct and recognizable",
+      "section": "components",
+      "normativeLevel": "MUST",
+      "scope": "interactive",
+      "requirement": "Every discrete action control MUST retain a direct semantic target of at least 44 by 44 in the selected target profile's unit in every state: browser runtimes use CSS pixels and browser semantic elements; native app runtimes use platform dp and native semantic views exposed in platform accessibility order. Text and icon-plus-label buttons use the approved capsule geometry; icon-only buttons use the approved circle geometry. Padding, gap, border, focus, loading, and disabled treatments MUST resolve component tokens without truncating the label or forwarding activation through a proxy surface. Inline links in running text use the applicable accessibility text-link exception and spacing branch rather than being forced into button geometry.",
+      "acceptance": [
+        {
+          "checkId": "CTRL-01-A",
+          "method": "automated",
+          "criterion": "Rendered controls meet the selected target profile's exact direct-target value and unit, runtime-native semantic element or view, token, accessible-name, and browser DOM or native accessibility-order requirements in every declared state."
+        },
+        {
+          "checkId": "CTRL-01-B",
+          "method": "visual",
+          "criterion": "Capsule, circle, label, icon, spacing, focus, loading, and disabled fixtures remain recognizable and unclipped at supported widths, locales, and zoom states."
+        }
+      ]
+    },
+    {
+      "id": "THEME-01",
+      "title": "Theme changes presentation without changing meaning",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Light, dark, auto, forced-color, and fixed-export theme states MUST preserve content, identity, evidence, control meaning, and state parity. Interactive HTML with both light and dark themes MUST offer Auto; Auto follows the declared platform preference unless a reversible explicit user choice exists. A static export MUST declare and verify one fixed theme.",
+      "acceptance": [
+        {
+          "checkId": "THEME-01-A",
+          "method": "automated",
+          "criterion": "Theme state, explicit preference, metadata, and token resolution are deterministic and no content or action is added or removed by theme."
+        },
+        {
+          "checkId": "THEME-01-B",
+          "method": "visual",
+          "criterion": "Representative light, dark, auto, forced-color, and fixed-export fixtures preserve identity and pass text, control, focus, graphics, and data contrast gates."
+        }
+      ]
+    },
+    {
+      "id": "ASSET-DELIVERY-01",
+      "title": "Font and icon delivery is deterministic",
+      "section": "visual-foundations",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every delivered font, interface-icon subset, identity asset, and generated vector MUST resolve an approved role, source, license or permission, exact byte hash, and fallback. Web font and icon subsets MUST record their glyph map and remain usable when an asset is delayed or unavailable. Non-web output MUST select one exact governed platform mapping with substitution forbidden; editable sources retain exact live text, and fixed exports embed the exact font or use only an approved generated-vector projection or verified raster pixels. Non-web interface icons default to complete visible labels and never silently substitute symbol glyphs.",
+      "acceptance": [
+        {
+          "checkId": "ASSET-DELIVERY-01-A",
+          "method": "automated",
+          "criterion": "The asset manifest resolves file, role, source, approval, rights, hash, glyph or Unicode coverage, and fallback for every delivered asset; non-web output additionally resolves an exact mapping ID, platform, format, substitution rule, editable/fixed export policy, vector policy, and required fixture IDs."
+        },
+        {
+          "checkId": "ASSET-DELIVERY-01-B",
+          "method": "visual",
+          "criterion": "Delayed, blocked, offline, print, and export fixtures retain readable Thai and Latin text, recognizable controls, and approved identity without tofu or substitution drift."
+        }
+      ]
+    },
+    {
+      "id": "PROFILE-01",
+      "title": "Experience profile is distinct from output format",
+      "section": "resolution",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every Build Card MUST resolve exactly one primary experience profile and exactly one primary output-format profile. The experience profile describes audience and job; the output-format profile describes delivery representation. A secondary experience profile MAY add requirements but MUST NOT introduce a competing primary job.",
+      "acceptance": [
+        {
+          "checkId": "PROFILE-01-A",
+          "method": "automated",
+          "criterion": "The Build Card and resolved manifest contain one allowed experience profile and one allowed output profile, and both resolve known rule sets."
+        },
+        {
+          "checkId": "PROFILE-01-B",
+          "method": "manual",
+          "criterion": "The selected experience profile, audience, one job, first AHA, and completion remain coherent in the chosen format."
+        }
+      ]
+    },
+    {
+      "id": "CAPABILITY-01",
+      "title": "Capabilities resolve explicit rule packs",
+      "section": "resolution",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every declared capability MUST resolve a known rule set, required fields, fallback, and test matrix. Unknown capabilities or unsupported profile combinations MUST block resolution. Capabilities with side effects, authorization, autoplay, public indexing, or nonessential motion default to off until approved truth explicitly enables them.",
+      "acceptance": [
+        {
+          "checkId": "CAPABILITY-01-A",
+          "method": "automated",
+          "criterion": "Every Build Card capability maps exactly once to an overlay in format-packs.json; the overlay declares a nonempty compatible-format set, required rule IDs, required config fields, fallback, and test matrix; the selected format is compatible; every rule ID exists; and the hash-bound capability config contains every required field."
+        },
+        {
+          "checkId": "CAPABILITY-01-B",
+          "method": "manual",
+          "criterion": "The capability is supported by approved product truth and does not broaden evidence, permission, or product scope."
+        }
+      ]
+    },
+    {
+      "id": "PARITY-01",
+      "title": "Human and machine rules remain one contract",
+      "section": "machine-authoring",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every normative clause MUST live inside the scope of a stable rule block; the human master and machine catalog MUST preserve one-to-one rule and acceptance coverage, and a meaning change MUST advance the normative release rather than drift in one projection.",
+      "acceptance": [
+        {
+          "checkId": "PARITY-01-A",
+          "method": "automated",
+          "criterion": "Every catalog ID has exactly one master rule block and every catalog acceptance ID occurs inside that block."
+        },
+        {
+          "checkId": "PARITY-01-B",
+          "method": "manual",
+          "criterion": "The English machine requirement and Thai/English human rule express the same obligation and scope."
+        }
+      ]
+    },
+    {
+      "id": "NAV-01",
+      "title": "Navigation exposes a small set of direct destinations",
+      "section": "experience-architecture",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "The unified navigation MUST preserve ecosystem, property, and page levels without conflation. navigation.brandDestinationRef MUST resolve exactly one role-brand destination bound to the approved identity control; the brand counts as one visible header control. Desktop exposes no more than four total visible header controls and mobile no more than two. Every visible control MUST be a direct semantic target at least 44 by 44 in the selected target profile's exact unit: CSS pixels for browser runtimes and platform dp for native app runtimes.",
+      "acceptance": [
+        {
+          "checkId": "NAV-01-A",
+          "method": "automated",
+          "criterion": "Exactly one brand destination resolves and binds the identity; it and every other visible header control are counted against desktop/mobile budgets and meet the selected target profile's exact direct-target value and unit in all states; navigation targets and labels contain no internal workflow, fixture, debug, placeholder, or local-path residue."
+        },
+        {
+          "checkId": "NAV-01-B",
+          "method": "interaction",
+          "criterion": "Current, hover, focus, pressed, open, scroll-calm, and restored-history states preserve labels, destinations, and keyboard operation."
+        },
+        {
+          "checkId": "NAV-01-C",
+          "method": "manual",
+          "criterion": "No coordinate-based click-forwarding overlay or wake-first target substitution is present."
+        }
+      ]
+    },
+    {
+      "id": "NAV-02",
+      "title": "Navigation uses disclosure semantics",
+      "section": "experience-architecture",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "A browser navigation disclosure MUST use a button in coherent DOM order with an accessible name and synchronized expanded state, support keyboard operation, restore focus predictably, and MUST NOT use menu roles unless the full application-menu keyboard model is implemented. A native app disclosure MUST use the platform-native disclosure control/view with the same name, expanded/collapsed meaning, operation, and predictable focus restoration in native view order and platform accessibility traversal order; browser DOM, ARIA, and IntersectionObserver requirements do not apply to that native branch.",
+      "acceptance": [
+        {
+          "checkId": "NAV-02-A",
+          "method": "automated",
+          "criterion": "Browser disclosure exposes button semantics, accessible name, coherent DOM order, and synchronized aria-expanded; native disclosure exposes the equivalent native control role, name, state, view order, and platform accessibility order."
+        },
+        {
+          "checkId": "NAV-02-B",
+          "method": "interaction",
+          "criterion": "Browser Enter, Space, Escape, Tab, outside activation, and route change, or the selected native platform's equivalent inputs and lifecycle events, produce predictable open, close, view/accessibility order, and focus behavior."
+        }
+      ]
+    },
+    {
+      "id": "BOOKMARK-01",
+      "title": "Side bookmark is a secondary page index",
+      "section": "experience-architecture",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
+      "requirement": "The Build Card MUST declare navigation.sideBookmark as selected or omitted and MUST always declare its sibling navigation.sideBookmarkUserBenefit. Selection and reusable-component inventory are one exact contract: selected MUST include component.bookmark.side.01 exactly once in composition.componentIds, while omitted MUST exclude it. When navigation.sideBookmark is selected, navigation.sideBookmarkUserBenefit MUST be a nonempty string describing orientation value and the page MUST contain at least two useful stable sections. When navigation.sideBookmark is omitted, navigation.sideBookmarkUserBenefit MUST be null. A selected bookmark MUST mirror real heading anchors, expose current location without color alone, avoid obscuring content, and resolve the exact format/runtime component contract before degrading to the mobile disclosure, table of contents, PDF bookmarks, or deck section markers for the target format.",
+      "acceptance": [
+        {
+          "checkId": "BOOKMARK-01-A",
+          "method": "automated",
+          "criterion": "The navigation.sideBookmark/navigation.sideBookmarkUserBenefit branch is valid; selected is true if and only if composition.componentIds contains component.bookmark.side.01 exactly once; omitted excludes that ID; the artifact-resolved record contains the matching exact format/runtime contract; and for selected bookmarks every target exists once, has an accessible label, and current state is programmatically exposed when interactive."
+        },
+        {
+          "checkId": "BOOKMARK-01-B",
+          "method": "visual",
+          "criterion": "The rail is absent when empty and does not cover content, controls, browser UI, or safe areas."
+        }
+      ]
+    },
+    {
+      "id": "CTA-01",
+      "title": "Every CTA has one truthful outcome",
+      "section": "actions",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every call to action MUST use a specific verb-led label, expose one truthful outcome, bind exactly one typed destination kind (anchor, route, external, download, form, contact, or command), use the presentation required by the selected format, match actual availability and permissions, and remain distinguishable from navigation, evidence links, and decorative emphasis.",
+      "acceptance": [
+        {
+          "checkId": "CTA-01-A",
+          "method": "automated",
+          "criterion": "Every CTA record has label, outcome, availability, and one locale-complete destinationBinding whose kind, target syntax, resolved anchor, presentation mode, and technique are valid for the selected format."
+        },
+        {
+          "checkId": "CTA-01-B",
+          "method": "interaction",
+          "criterion": "Activation produces the stated outcome once, preserves input and state on failure, and provides a perceivable result."
+        },
+        {
+          "checkId": "CTA-01-C",
+          "method": "automated",
+          "criterion": "Action intent, priority, availability, orthogonal consequence, permission and confirmation policy, immutable progress/result/recovery/receipt contracts, and locale-specific label, outcome, and destination fields satisfy the Build Card action contract."
+        }
+      ]
+    },
+    {
+      "id": "CTA-02",
+      "title": "CTA labels remain intact",
+      "section": "actions",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "CTA labels MUST remain on one line when the format allows and MUST NOT be truncated, ellipsized, or made illegible. Resolve pressure in this order: approved compact locale label, reduced padding within target rules, full-width or stacked layout, move a lower-priority action, then recompose.",
+      "acceptance": [
+        {
+          "checkId": "CTA-02-A",
+          "method": "visual",
+          "criterion": "All CTA labels are complete and legible in supported locales, widths, zoom states, and exports."
+        },
+        {
+          "checkId": "CTA-02-B",
+          "method": "manual",
+          "criterion": "Any compact label is an approved locale-specific equivalent, not an ambiguous abbreviation."
+        }
+      ]
+    },
+    {
+      "id": "MOTION-01",
+      "title": "Motion must serve the user",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "screen",
+      "requirement": "Motion MUST clarify state, sequence, progress, spatial relationship, or cause and effect. Decorative motion MUST be a finite play that is subordinate and free of perpetual flicker; replay while visible under MOTION-04 and MOTIF-03 uses repeated finite plays with cycles of at least 2,000 ms, never animation-iteration-count: infinite; no essential content or action may depend on animation. The observer-based animated CTA discovery cue MAY be declared only for a primary navigational CTA in an interactive browser-runtime web or app output with the motion capability, motionDecision assigned, and a declared discoverability benefit; it MUST bind the exact first-entry, once-per-load, duration-ceiling, easing, geometry, reduced-motion, observer-failure, and static-equivalent recipe. Native app, document, PDF, deck, and social outputs MUST NOT carry ctaDiscoveryCueAssignments; native emphasis uses an ordinary finite native-state treatment governed by its selected motion config, while static formats use ordinary non-motion CTA hierarchy and the selected format's static action treatment.",
+      "acceptance": [
+        {
+          "checkId": "MOTION-01-A",
+          "method": "manual",
+          "criterion": "Every motion role names its user benefit and has a static final-state equivalent."
+        },
+        {
+          "checkId": "MOTION-01-B",
+          "method": "automated",
+          "criterion": "No animation-iteration-count: infinite, infinite attention animation, or unbounded CTA sweep is present; any replay is a viewport-bound finite play under MOTION-04 or MOTIF-03; any CTA cue resolves motion.cta.discovery-cue.01, matches its complete deterministic recipe, plays once per page load, and appears only with the motion capability in an interactive browser-runtime web or app output; native and static outputs contain no CTA cue assignment."
+        }
+      ]
+    },
+    {
+      "id": "MOTION-02",
+      "title": "Approach motion is role-gated and fail-open",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "Browser approach reveals MAY use explicit semantic roles from motion-riddim-approach-02, but source HTML MUST render in the final visible state and enhancement MUST fail open for no JavaScript, reduced motion, observer failure, initialization timeout, hidden tabs, focus, deep links, history restoration, back-forward cache, and print. The browser branch uses one observer per document root, once-only unobserve, and delay min(zeroBasedSiblingIndex,3)*150ms in semantic reading order. Native app motion MUST instead resolve the native_state configuration and native state-transition lifecycle: platform reduced motion, backgrounding, interruption, cancellation, restoration, view disposal, native view order, platform accessibility traversal order, and complete final state. The native branch MUST NOT require HTML, JavaScript, IntersectionObserver, browser history/BFCache, or print behavior. From v0.9.4 the browser approach reveal replays when its subject re-enters the viewport (OWNER-MOTION-01) instead of unobserving after one play; it does not cycle while the subject stays still in view (owner confirmation 15 September 2026).",
+      "acceptance": [
+        {
+          "checkId": "MOTION-02-A",
+          "method": "automated",
+          "criterion": "Browser source and reduced-motion states expose all content, while native reduced-motion and complete-final-state transitions expose the equivalent native content; hero, LCP media, page title, first answer, primary proof, primary action, task-critical state, status, focus target, and deep-link target are never reveal-hidden in either branch."
+        },
+        {
+          "checkId": "MOTION-02-B",
+          "method": "interaction",
+          "criterion": "Browser observer failure and browser lifecycle interruption settle to the visible, usable final state; native backgrounding, interruption, cancellation, restoration, and view-disposal fixtures settle to the complete usable final state with stable native view and platform accessibility order."
+        }
+      ]
+    },
+    {
+      "id": "MOTION-03",
+      "title": "Motion does not disturb layout or reading",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "screen",
+      "requirement": "MOTION-03 is runtime-branched. Browser-observer entry motion MUST use only opacity and transform, introduce zero layout shift, avoid nested unsynchronized reveals, and follow the exact motion-riddim-approach-02 timing, distance, logical direction, four-beat stagger, and reduced-motion recipe. Native-state motion MUST use only the selected native_state configuration and native state-transition lifecycle, keep layout geometry, native view order, and platform accessibility traversal order stable, and MUST NOT require browser observer fields, opacity-transform approach recipes, Riddim distance tokens, or stagger formulas. Presenter-sequence motion MUST use only the selected presenter_sequence configuration, preserve slide object order and the complete governed final frame, and MUST NOT require browser observers, browser approach properties, or Riddim stagger tokens.",
+      "acceptance": [
+        {
+          "checkId": "MOTION-03-A",
+          "method": "automated",
+          "criterion": "The selected runtime class resolves exactly its own contract: browser_observer uses opacity and transform plus the exact motion-riddim-approach-02 four-beat formula; native_state uses only native configuration and lifecycle fields; presenter_sequence uses only presenter configuration and final-frame fields. Every branch keeps layout geometry stable and rejects fields, recipes, and tests from the other branches."
+        },
+        {
+          "checkId": "MOTION-03-B",
+          "method": "visual",
+          "criterion": "Browser reading order, focus position, and scroll position; native view and platform accessibility traversal order; or presenter slide-object order and final frame remain stable during and after the applicable motion branch."
+        }
+      ]
+    },
+    {
+      "id": "MOTION-04",
+      "title": "Identity motion uses the approved runtime and replays while visible",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
+      "requirement": "The official artwork files never animate. The mark's parts MAY assemble only through the landometer.motif.v3 runtime, kind logo (montri-th/motif release 1.2.1; JavaScript SHA-256 3a5caef7918a85885b61dd53e049ea8bf2b0a3cea508f587bb14970bfe6deaf2, CSS SHA-256 7cc2deb475a8d6e4af331407b2b4b741716c458a8ce885e2fb2859374b93912e) with logo-full.svg or logo-quiet.svg as the final-state fallback; runtime bytes are never edited and the wedge stays token-derived (color-mix(in lch, energy.sky 48%, brand.blue)), never a sampled hex. Under OWNER-MOTION-01 (11 September 2026, which outranks every Design System version) decorative and identity motion plays as soon as at least 14% of it is in the viewport, replays for as long as it stays visible, and stops when it leaves the viewport; cycles are repeated finite plays of at least 2,000 ms (the logo cycle is 6,000 ms), never animation-iteration-count: infinite; one page-level pause/resume control exists; prefers-reduced-motion, no-JavaScript, and print routes render the final state and start no cycle; state-bound motifs still appear only while the real state runs. The rule applies to web, browser app, and document, PDF, or deck output rendered in a browser; exported static files use the final state only. The CTA discovery cue keeps its once-per-page-load recipe because motion over the primary action remains prohibited (owner confirmation 15 September 2026). Hue cycling, shape distortion, motion carrying evidence or meaning, motion over the first answer or the primary action, and motifs in navigation, favicon, or OG images remain prohibited.",
+      "acceptance": [
+        {
+          "checkId": "MOTION-04-A",
+          "method": "automated",
+          "criterion": "Delivered runtime JavaScript and CSS bytes match the governed SHA-256 values; fallback SVGs match motif 1.2.1 governance hashes (90e9543f… and 5b6798cd…); delivered CSS contains no animation-iteration-count: infinite; observer threshold 0.14, rootMargin 0px 0px -8% 0px, and the 6,000 ms logo cycle match tokens.v0.9.4.json#/motion/identity; a page-level pause control exists; no identity PNG is animated, recolored, or redrawn."
+        },
+        {
+          "checkId": "MOTION-04-B",
+          "method": "interaction",
+          "criterion": "Entering the viewport at 14% or more plays immediately and replays every cycle while visible; leaving the viewport stops the cycle and holds the final state; pause shows the complete final state; reduced motion, no-JavaScript, and print show the final state without starting a cycle."
+        },
+        {
+          "checkId": "MOTION-04-C",
+          "method": "manual",
+          "criterion": "No identity motion overlaps the first answer, the primary action, navigation, favicon, or OG image, and no motion carries meaning, evidence, or status."
+        }
+      ]
+    },
+    {
+      "id": "MOTIF-01",
+      "title": "Motion shows the method",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
+      "requirement": "Landometer motion enacts the method: parts arrive in the order the work happens — the pin lands (place), the plates set (measure), the wedge points (act). Every motif MUST declare one job from the registry (orientation, opening, spatial_transition, section_orientation, layering, quiet_divider, action_closure, cultural_closure, handoff, animated_brand_opening) that is listed in allowedJobs for its kind in assets/motif-library.json (dial: orientation, opening; rings: spatial_transition, section_orientation; layers: layering, quiet_divider; slice: action_closure; cultivate: cultural_closure, handoff; logo: animated_brand_opening). Motion that enacts no registered job is not used; the manifest's prohibitedJobs apply verbatim.",
+      "acceptance": [
+        {
+          "checkId": "MOTIF-01-A",
+          "method": "automated",
+          "criterion": "Every delivered <lm-motif> sits inside a MotifFrame declaring a job listed in allowedJobs for its kind in motif-register.v0.9.4.json; the Build Card motionMoments[] names kind, job, and beat for every moment."
+        },
+        {
+          "checkId": "MOTIF-01-B",
+          "method": "manual",
+          "criterion": "The declared job matches what the reader is doing at that point (orient, move, layer, close, hand off), not decoration."
+        }
+      ]
+    },
+    {
+      "id": "MOTIF-02",
+      "title": "Exact bytes, exact landing",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation,social_static",
+      "requirement": "Motifs and the animated mark exist only as registered runtime bytes (landometer.motif.v3, montri-th/motif ≥ 1.2.1) with a final-state SVG whose geometry equals the last frame. No redraw, recolor, crop, distortion, or tracing from screenshots is permitted. prefers-reduced-motion, no-JavaScript, print, PDF, deck, email, and social routes render the final state. Motion never carries evidence, data, measured state, completion, or product capability (prohibitedJobs in the manifest apply verbatim).",
+      "acceptance": [
+        {
+          "checkId": "MOTIF-02-A",
+          "method": "automated",
+          "criterion": "Delivered runtime JavaScript and CSS and all twelve final-state SVGs match the SHA-256 values in motif-register.v0.9.4.json (manifest 1.2.1 values verified against the repository files); every MotifFrame carries a noscript final-state SVG of the same kind and variant."
+        },
+        {
+          "checkId": "MOTIF-02-B",
+          "method": "visual",
+          "criterion": "The runtime's last frame overlays the final-state SVG exactly; no recolor or crop is present."
+        }
+      ]
+    },
+    {
+      "id": "MOTIF-03",
+      "title": "Joyful physics, bounded",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
+      "requirement": "The motion vocabulary is physical and finite: drop with squash and stretch, pop-overshoot placement, four-beat stagger (0/150/300/450 ms), step-out-and-return finale, hop (product stings). Hue cycling, identity morphing, geometry distortion, parallax, unbounded ambient loops, and scale overshoot beyond 1.16 are not permitted. A motif runs 1.2–3.4 s; a cycle is at least 2,000 ms (logo 6,000 ms) under OWNER-MOTION-01; one page-level pause/resume control exists.",
+      "acceptance": [
+        {
+          "checkId": "MOTIF-03-A",
+          "method": "automated",
+          "criterion": "No animation-iteration-count: infinite is present; every MotifFrame data-cycle-ms is at least 2000 (6000 for logo); exactly one MotionController exists per page; no delivered CSS outside the runtime bytes scales a motif beyond 1.16."
+        },
+        {
+          "checkId": "MOTIF-03-B",
+          "method": "interaction",
+          "criterion": "Entering the viewport at 14% or more plays immediately and replays per cycle; leaving the viewport stops the cycle and holds the final state; pause holds the final state; reduced motion, no-JavaScript, and print start no cycle."
+        }
+      ]
+    },
+    {
+      "id": "MOTIF-04",
+      "title": "Three beats, three moments — the joy budget",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
+      "requirement": "Motifs are placed at the story beats INTENT → AHA → NEXT ACTION, aligned with the BRAND rhythm's Opening / Transition / Closing: Opening = logo (animated brand opening) or dial (orientation); Transition = rings (spatial transition) or layers (layering / quiet divider); Closing = slice (action closure) or cultivate (cultural closure / handoff). A long route MUST carry at most three motion moments; a task surface carries one. Motifs never sit on the first answer, the primary proof, or the primary action. Where a motif may sit is governed by MOTIF-06.",
+      "acceptance": [
+        {
+          "checkId": "MOTIF-04-A",
+          "method": "automated",
+          "criterion": "The Build Card motionMoments[] holds at most three moments per route (one per task surface) and every moment's beat matches its kind; no MotifFrame is placed inside a region marked data-region first_answer, primary_proof, or primary_action."
+        },
+        {
+          "checkId": "MOTIF-04-B",
+          "method": "manual",
+          "criterion": "The moments fall on the story beats INTENT → AHA → NEXT ACTION; where each motif sits is checked under MOTIF-06."
+        }
+      ]
+    },
+    {
+      "id": "MOTIF-05",
+      "title": "Shared layer versus product overlay",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation",
+      "requirement": "landometer.motif.v3 is the product-neutral shared layer. Product animated identities are separately registered overlays with their own final fallback, duration, minimum size, and host surface (ijji.logo-sting.r3: Hop → Bodies → Tagline → Hello → Hold, 9.0 s full / 6.4 s mark-only, at least 320 / 160 px; ijji.four-beat.selected-3.r3 is state-bound and runs only while a real pending operation exists). CityMETER, CityWiki, and CityChat stings are produced in the Motif Studio under the same contract and enter the register with SHA-256 and owner approval before the Design System references them; the CityChat conversation set is registered at the repository bytes of commit a99f3c1e under the owner approval of 15 September 2026, and CityMETER and CityWiki stings are pre-approved without bytes. Families are never mixed in one lockup; navigation, favicon, and OG images use official identity files, never motifs; overlays create no product fact.",
+      "acceptance": [
+        {
+          "checkId": "MOTIF-05-A",
+          "method": "automated",
+          "criterion": "Every delivered overlay resolves motif-register.v0.9.4.json#/productOverlays with matching hashes and approval.status owner_approved; the overlay's productScope equals the Build Card product layer; no overlay and shared motif share one lockup."
+        },
+        {
+          "checkId": "MOTIF-05-B",
+          "method": "manual",
+          "criterion": "No overlay replaces official identity in navigation, favicon, or OG image, and no overlay conveys evidence or product capability."
+        }
+      ]
+    },
+    {
+      "id": "MOTIF-06",
+      "title": "Every motif sits on a measured carrier",
+      "section": "motion",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive,document_flow,pdf_fixed,deck_presentation,social_static",
+      "requirement": "A motif's colours are fixed by its governed file, so its legibility is decided by the ground it sits on. Every placement — a MotifFrame or a static final-state image — MUST declare that ground as a carrier id from motif-register.v0.9.4.json#/carrierPolicy/carriers, and a placement is allowed only when carrierPolicy.allowed lists its kind × variant × carrier for every theme the output renders: every visible authored paint composites at 1.30:1 or more on the carrier as an 8-bit pixel (a gradient at its worst stop). full variants (Brand Blue ink) sit only on plain light carriers; quiet variants (one sky ink) sit only on deep carriers, Brand Blue included. A full variant MUST NOT sit on Brand Blue, on a dark surface, or on any atmosphere gradient. A themed carrier is checked per theme; data-variant-dark=\"quiet\" switches a full frame to quiet in the dark theme. Runtime renditions keep the governed inks (ink=\"blue\" for full, the default sky for quiet). A failing pair is fixed by changing the carrier, then the variant, then the size or spacing, then by removing the motif — never on the asset: no recolour, plate, scrim, new tint, or opacity carrying meaning. Source: motif-quiet-fallback.json (landometer-quiet-fallback/1.0), owner-approved on 11 September 2026, brought into the Design System by the owner decision of 16 September 2026.",
+      "acceptance": [
+        {
+          "checkId": "MOTIF-06-A",
+          "method": "automated",
+          "criterion": "Every .lds-motif-frame and [data-motif-static] declares data-host-surface resolving motif-register.v0.9.4.json#/carrierPolicy/carriers; every kind × variant × carrier pair for every rendered theme is listed in carrierPolicy.allowed; full frames carry ink=\"blue\" and quiet frames carry no ink other than sky; theme-swapping frames carry both final-state SVGs in noscript, in .lds-motif-noscript wrappers per theme; measure-motif-carriers-0.9.4.mjs --register re-measures the twelve SVGs against the twenty carriers and equals the register; preflight PF-MOTIF-06-CARRIER passes."
+        },
+        {
+          "checkId": "MOTIF-06-B",
+          "method": "interaction",
+          "criterion": "In a browser, in the light and the dark theme, the rendered ground behind every frame and static motif equals its declared carrier and every paint of its final-state SVG composites at 1.30:1 or more on that ground; switching the theme switches the variant where data-variant-dark is declared; a refused frame is not rendered."
+        },
+        {
+          "checkId": "MOTIF-06-C",
+          "method": "manual",
+          "criterion": "A failing pair is fixed through ladder rungs L1–L5 and the rung is recorded as quietFallbackRung in the Build Card; no recolour, plate, scrim, new tint, or opacity carrying meaning is present."
+        }
+      ]
+    },
+    {
+      "id": "A11Y-01",
+      "title": "Semantics and direct operation survive every state",
+      "section": "accessibility",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Every applicable artifact MUST meet WCAG 2.2 Level AA as a floor. Information structure, names, roles, values, focus order, text alternatives, status announcements, and direct operation MUST remain equivalent across initial, hydrated, loading, success, empty, error, reduced-motion, high-zoom, keyboard, touch, print, and export states that apply.",
+      "acceptance": [
+        {
+          "checkId": "A11Y-01-A",
+          "method": "automated",
+          "criterion": "Automated accessibility checks report zero critical or serious release-blocking errors in each applicable state; text contrast meets 4.5:1 for normal text and 3:1 for large text, and required non-text graphics and focus indicators meet 3:1."
+        },
+        {
+          "checkId": "A11Y-01-B",
+          "method": "manual",
+          "criterion": "Keyboard, screen-reader, zoom, reflow, reduced-motion, and touch checks complete with receipts."
+        }
+      ]
+    },
+    {
+      "id": "CLAIM-MACHINE-01",
+      "title": "Claims have stable machine-readable records",
+      "section": "discovery",
+      "normativeLevel": "MUST",
+      "scope": "public,agent_readable",
+      "requirement": "Each material public claim MUST have a stable claimId and a machine-readable record whose wording, entity, locale, scope, explicit authority class and boundary, value or assertion, unit, geography, time basis, source, method, status, confidence or limitation, owner, and last-reviewed date agree with the visible claim. Protected portfolio wording requires portfolio-owner authority; implementation observations authorize observed usage only and MUST NOT establish portfolio truth, product capability, or conformance.",
+      "acceptance": [
+        {
+          "checkId": "CLAIM-MACHINE-01-A",
+          "method": "automated",
+          "criterion": "Claim IDs are unique and every required field is present or explicitly not applicable; authority class/authorizes/scope combinations are valid; protected-brand-line records resolve portfolio-owner authority, while implementation observations bind a named subject and time window; public-eligible evidence and provenance references are stable public HTTPS URLs or URNs, never local paths."
+        },
+        {
+          "checkId": "CLAIM-MACHINE-01-B",
+          "method": "manual",
+          "criterion": "A sampled visible-to-machine comparison finds no authority, scope, value, date, status, or evidence drift."
+        }
+      ]
+    },
+    {
+      "id": "DISCOVERY-01",
+      "title": "Initial and hydrated meaning are equivalent",
+      "section": "discovery",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "Public pages MUST expose their title, primary answer, headings, material claims, evidence links, destinations, and language relationship in initial semantic HTML; hydration MUST NOT replace, contradict, or hide that meaning.",
+      "acceptance": [
+        {
+          "checkId": "DISCOVERY-01-A",
+          "method": "automated",
+          "criterion": "The exact hash-bound delivered primary initial HTML parses to the governed lang, unique title, unique description and robots directives, canonical, hreflang, social metadata, strict JSON-LD graph, exactly one visible governed H1, exactly one visible data-primary-answer, exact visible claim text plus limitations, evidence destinations, and action labels/destinations; hidden, inert, aria-hidden, non-rendered, transparent, clipped, or visually-hidden content cannot satisfy visible truth. Hash-bound no-script, hydrated-DOM, and accessibility-tree snapshots preserve that exact primary meaning and those destinations, and the DISCOVERY-01-A receipt cites all three evidence objects."
+        },
+        {
+          "checkId": "DISCOVERY-01-B",
+          "method": "production",
+          "criterion": "The deployed canonical URL returns a crawlable success response whose observed content hash equals the bound delivered primary initial HTML and whose primary content remains equivalent."
+        }
+      ]
+    },
+    {
+      "id": "DISCOVERY-02",
+      "title": "Canonical, locale, index, and sitemap signals agree",
+      "section": "discovery",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "Every indexable page MUST have one stable self-canonical URL, explicit language alternates where equivalents exist, consistent robots and sitemap treatment, working language links, and no automatic language redirect that prevents discovery or user choice.",
+      "acceptance": [
+        {
+          "checkId": "DISCOVERY-02-A",
+          "method": "automated",
+          "criterion": "Canonical, hreflang, HTML lang, robots, social metadata, JSON-LD identity, the hash-bound delivered sitemap, visible internal locale links, and a hash-bound internal-locale-link snapshot form one exact governed graph; the sitemap loc set equals the governed locale route URLs, and the DISCOVERY-02-A receipt cites no-script, hydrated-DOM, accessibility-tree, sitemap, and internal-locale evidence."
+        },
+        {
+          "checkId": "DISCOVERY-02-B",
+          "method": "production",
+          "criterion": "Canonical and alternate URLs resolve without loops, soft errors, or locale-forcing redirects."
+        }
+      ]
+    },
+    {
+      "id": "DISCOVERY-03",
+      "title": "Machine discovery never overstates permission or quality",
+      "section": "discovery",
+      "normativeLevel": "MUST",
+      "scope": "web_public,agent_readable",
+      "requirement": "Structured data MUST describe visible approved truth and match page kind. Sitemap, robots, crawler access, and optional llms navigation MUST be treated as discovery controls only, never as evidence, permission, licensing, readiness, ranking, or quality guarantees.",
+      "acceptance": [
+        {
+          "checkId": "DISCOVERY-03-A",
+          "method": "automated",
+          "criterion": "Initial HTML contains exactly one JSON-LD document with only @context and @graph at the root; @context is https://schema.org; the graph entity set exactly matches governed structured-data projections; and each entity contains only the governed @id, @type, name, and url values. Extra properties, entities, types, claims, permissions, readiness, rankings, or quality assertions are blocking overclaims."
+        },
+        {
+          "checkId": "DISCOVERY-03-B",
+          "method": "manual",
+          "criterion": "No discovery file or crawler directive is presented as authorization, evidence, or a ranking promise."
+        },
+        {
+          "checkId": "DISCOVERY-03-C",
+          "method": "manual",
+          "criterion": "Every indexable route passes the distinct-question, distinct-answer-or-task, material-content, evidence, and maintained-owner useful-page test."
+        },
+        {
+          "checkId": "DISCOVERY-03-D",
+          "method": "automated",
+          "criterion": "Crawler decisions are purpose-separated; optional AI navigation derives only approved canonical public routes and carries no permission or readiness meaning."
+        }
+      ]
+    },
+    {
+      "id": "AGENT-01",
+      "title": "Agent-readable does not mean agent-authorized",
+      "section": "agents",
+      "normativeLevel": "MUST",
+      "scope": "agent_readable,agent_action",
+      "requirement": "Agent interfaces MUST separate readable information, available capability, required permission, confirmation, execution, and receipt. No agent may infer authorization from discoverability, UI affordance, credentials, or the absence of a denial.",
+      "acceptance": [
+        {
+          "checkId": "AGENT-01-A",
+          "method": "automated",
+          "criterion": "Every machine action hash-binds an immutable definition, typed input schema and value, actor-scoped authority, side-effect and confirmation policy, and the exact bytes of both result and receipt schemas; definition, runtime, and Build Card agree on product scope and named product; every successful result validates against the bound result schema; mutable execution state cannot redefine that authority."
+        },
+        {
+          "checkId": "AGENT-01-B",
+          "method": "interaction",
+          "criterion": "Mutation fixtures block execution without matching actor scope, unexpired authority, allowed input classification, declared permission, required confirmation, and distinct external/costly authority classes. Every attempted execution has a signed nonce/build/artifact/action/actor-bound pre-start revocation decision no older than five minutes whose attestation is issued no later than execution start; every succeeded, failed, or cancelled execution additionally binds a distinct signed terminal-boundary decision checked at or within five minutes after the applicable effect-or-terminal boundary. The terminal receipt exactly matches that revocation binding plus runtime operation, status, timestamps, side effect, result, and recovery, and its detached agent_execution attestation transitively protects all of those bytes."
+        }
+      ]
+    },
+    {
+      "id": "SECURITY-01",
+      "title": "Public presentation cannot reveal restricted evidence",
+      "section": "privacy-security",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Outputs, metadata, previews, source maps, machine projections, logs, and agent receipts MUST respect the declared data classification and MUST NOT expose restricted evidence, personal data, credentials, or internal-only source details.",
+      "acceptance": [
+        {
+          "checkId": "SECURITY-01-A",
+          "method": "automated",
+          "criterion": "Secret, personal-data, private-URL, and restricted-field scans pass for output and metadata."
+        },
+        {
+          "checkId": "SECURITY-01-B",
+          "method": "manual",
+          "criterion": "Evidence disclosures preserve usefulness without crossing the declared boundary."
+        }
+      ]
+    },
+    {
+      "id": "DATAVIZ-01",
+      "title": "Data visualization preserves analytical meaning",
+      "section": "capability-packs",
+      "normativeLevel": "MUST",
+      "scope": "data_visualization",
+      "requirement": "Every chart, score, comparison, or quantitative diagram MUST declare its question, measure, unit, denominator, time, geography, data grain, transform, uncertainty, schema release, claims, evidence, scale, and accessible alternative. Color MUST NOT be the sole carrier; observation and interpretation MUST remain distinct; incompatible series MUST NOT be normalized for visual convenience.",
+      "acceptance": [
+        {
+          "checkId": "DATAVIZ-01-A",
+          "method": "automated",
+          "criterion": "The data-visualization overlay resolves all required fields, governed scale IDs from tokens.v0.9.4.json#/analyticalScales or series IDs from #/categoricalSeries, the Build Card scaleFamilies[] and seriesVariant, EVID-05 value states, claim and evidence IDs, labels or non-color cues, and an accessible data alternative."
+        },
+        {
+          "checkId": "DATAVIZ-01-B",
+          "method": "manual",
+          "criterion": "The chosen form, scale, baseline, ordering, annotation, uncertainty, and conclusion preserve the approved analytical meaning in the target format."
+        }
+      ]
+    },
+    {
+      "id": "DATAVIZ-02",
+      "title": "Sequential scales use blended mids and hue zones",
+      "section": "capability-packs",
+      "normativeLevel": "MUST",
+      "scope": "data_visualization,map",
+      "requirement": "A three-anchor sequential scale MUST have a low anchor (default brand.beige #F2F1DF; water #E6F1F2 and heat #FBF1C6 are the two permitted exceptions), a mid anchor whose hue lies between low and high on the OKLCH wheel and is a blended tertiary hue — never a primary hue and never a brand or energy token — and a saturated high anchor; mids are derived toward OKLab L .73–.77 with OKLCH chroma ≤ .12, and GATE-01 admits mids within L .66–.82 (outside .73–.77 recorded as a warning) with chroma ≤ .125 and OKLab ΔE ≥ 5 from every energy token and brand.blue. The fourteen sequential families belong to one of three hue zones (warm: activity, density.area, heat, risk; green: price, age, density.household, growth, confidence; blue: count, water, density.capita, built, duration) and one surface MUST use at most one family per zone. Two families whose mid+high OKLab ΔE×100 sum is below 8 in either theme MUST be merged. The family is chosen by the unit's denominator (totals → count, per area → density.area, per person → density.capita, per household → density.household) and legends always print the denominator as the unit. Light anchors resolve tokens.v0.9.4.json#/analyticalScales from proposal r2 and the 0.9.4 delta, dark anchors follow DATAVIZ-03, LUTs resolve color-srgb-07.scales.json; density is a deprecated alias of built. Every anchor also passes the DATAVIZ-04 hue-window gates.",
+      "acceptance": [
+        {
+          "checkId": "DATAVIZ-02-A",
+          "method": "automated",
+          "criterion": "Every used family resolves analyticalScales by exact id; its mid anchor equals no brand or energy token, keeps an OKLab ΔE of at least 5 from each of them, and has OKLCH chroma of at most .125 (L-MID-02); its L lies within .66–.82 (L-MID-01; .73–.77 warns); Build Card scaleFamilies[] contains no two families of one zone on one surface; every family pair keeps a mid+high ΔE sum of at least 8 in light and dark (SEP-01); legends print the denominator as the unit."
+        },
+        {
+          "checkId": "DATAVIZ-02-B",
+          "method": "visual",
+          "criterion": "The 41-step LUT of each used family reads as a continuous ramp without banding or hue flips; classes 5, 7, and 9 remain distinguishable in light, dark, and print; families from different zones on one surface read apart without the legend."
+        }
+      ]
+    },
+    {
+      "id": "DATAVIZ-03",
+      "title": "Dark scale anchors are derived from light anchors — same status as DATAVIZ-02 (A6.2)",
+      "section": "capability-packs",
+      "normativeLevel": "MUST",
+      "scope": "data_visualization,map",
+      "requirement": "No dark-theme scale anchor is hand-picked. Every dark anchor MUST be computed from its light twin in OKLCH from the shipped light hex and re-computed whenever the light anchor changes: low = OKLCH(L .32, C .05, hue of the light mid); mid L = 1.33 − L(light mid) clamped .50–.66 with C = light-mid C clamped .05–.12 and the same hue; high L = 1.30 − L(light high) clamped .78–.90 with C = light-high C clamped .06–.14 (gamut-limited) and the same hue; diverging zero = OKLCH(.32, .012, canvas hue) = #2D3438 and poles L = 1.30 − L(light pole) clamped .76–.86 with C = light C clamped .08–.14. Numeric targets tested by GATE-01: low C .04–.07 with hue within 12° of the mid; low L .29–.35 with contrast against the dark canvas ≤ 2.0:1, mid against low ≥ 2.0:1, high against canvas ≥ 7:1; ΔE(mid→high) dark ≥ 0.72 × light; ΔE(low→mid)/ΔE(mid→high) within 0.5–2.0; mirror tolerance ±.02 L on mid, high, and poles (V-POLE-01 additionally carries a ±.005 L quantisation tolerance: poles derived to exactly L .76 round to .759 in hex); nearest-family separation ≥ 8 in both themes. A dark value that fails the derivation is a preflight blocker, not a caveat. Amendment (0.9.4, verbatim from the delta of 17 September 2026): Warm lane (light-mid hue 30–100°) gets its own dark derivation: low OKLCH(.32, .018, hue of light mid) · mid OKLCH(.66, min(C light mid,.12), same hue) · high unchanged. D-LOW-02 requires C ≤ .03 there; D-MID-01 targets L .66; D-STEP-02 widens to 0.5–3.0. D-STEP-03 (new gate, verbatim): Warm lane only: per-class step ≥ 2.2 ΔE at the declared class count (5), replacing D-STEP-01. No in-gamut dark warm ramp holds .72× parity once the mid clears the earth window; measured 6.0–12.9. The warm lane of this release is activity, density.area, heat, risk and price. A dark anchor that no deterministic derivation reproduces MAY ship only as a declared exception in gateExceptions with the derived value and the reason (0.9.4: age dark mid #717D55, the board's B-HUE-02 escape from the derived #787C53).",
+      "acceptance": [
+        {
+          "checkId": "DATAVIZ-03-A",
+          "method": "automated",
+          "criterion": "Every dark anchor in analyticalScales equals the derivation of its family's light anchors hex-exactly — the base formula outside the warm lane, the warm-lane formula inside it — under the OKLab and gamut implementation of color-srgb-07.scales.json (D-DERIVE-01), or is a declared exception in gateExceptions carrying the derived value and the reason (0.9.4: age dark mid); any dark --scale-* override on a page equals the derivation of that page's light value."
+        },
+        {
+          "checkId": "DATAVIZ-03-B",
+          "method": "automated",
+          "criterion": "GATE-01 dark gates D-LOW-01, D-LOW-02, D-MID-01, D-HIGH-01, D-STEP-01 (outside the warm lane), D-STEP-02, D-STEP-03 (warm lane), D-CR-01, V-ZERO-01, and V-POLE-01 pass for every family or carry a declared exception."
+        },
+        {
+          "checkId": "DATAVIZ-03-C",
+          "method": "visual",
+          "criterion": "The 41-step dark LUT shows no banding or hue flip; the lowest class reads as little on the dark canvas while still showing the family hue; verified on real screens (OLED and low brightness) before freeze."
+        }
+      ]
+    },
+    {
+      "id": "GATE-01",
+      "title": "Data-colour gates run for both themes on every release",
+      "section": "quality",
+      "normativeLevel": "MUST",
+      "scope": "release",
+      "requirement": "validate-dataviz-gates-0.9.4.mjs (successor of tools/validate-candidate-0.9.2.mjs) MUST run against the colour registry and the shipped ext CSS before any candidate is published, and its output MUST be stored as contrast-evidence.json with the release. Eleven sequential gates (L-LOW-01, L-MID-01, L-MID-02, D-LOW-01, D-LOW-02, D-MID-01, D-HIGH-01, D-STEP-01, D-STEP-02, D-CR-01, SEP-01) plus D-DERIVE-01 and D-STEP-03 (warm lane only, replacing D-STEP-01 there; D-LOW-02, D-MID-01 and D-STEP-02 apply their warm-lane bounds inside the lane), two diverging gates (V-ZERO-01, V-POLE-01 with the ±.005 L quantisation tolerance), two series gates (S-INK-01 ≥ 4.5:1 both themes; S-FILL-01 dark fill ≥ 3:1), the state-label gate (ST-INK-01 --text-metadata ≥ 4.5:1 on canvas, card, alt, and soft in both themes), and the DATAVIZ-04 hue-window gates (B-HUE-01 windows, B-HUE-02 proximity, SC-17 exact retired values) over every analytical anchor and series value have the same status in light and dark. One undeclared failure blocks the release. Exceptions are declared only in the registry gateExceptions (the proposal's sequential.exceptions[]) with family, gate, value, and reason and appear in evidence as excepted, never as pass; warnings (light mid outside .73–.77; the light clay band) are recorded, not gating; the hue audit of LUT steps, class colours and the production CSS outside the analytical scope is reported, not gating.",
+      "acceptance": [
+        {
+          "checkId": "GATE-01-A",
+          "method": "automated",
+          "criterion": "contrast-evidence.json is newer than color-srgb-07.tokens.json and the shipped ext CSS, its result is PASS with zero undeclared failures including B-HUE-01, B-HUE-02 and SC-17 clean, and every excepted entry exists in gateExceptions with family, gate, value, and reason."
+        },
+        {
+          "checkId": "GATE-01-B",
+          "method": "manual",
+          "criterion": "Any new exception carries the owner's signature in release.json before freeze."
+        }
+      ]
+    },
+    {
+      "id": "DATAVIZ-04",
+      "title": "Analytical values stay out of the retired hue windows",
+      "section": "capability-packs",
+      "normativeLevel": "MUST",
+      "scope": "data_visualization,map,release",
+      "requirement": "The two OKLCh windows retired by the v0.9.0 purple-brown purge become a gate over every analytical value in both themes: earth H 30–100° · C .035–.145 · L ≤ .62 · violet H 285–345° · C ≥ .04 · clay band (light only, warning) H 22–100° · C .09–.145 · L .62–.74 · B-HUE-02 proximity ΔE < 6 from the eight earth/taupe purged values inside a 20° hue lane. Pink ruling (owner, 17 Sep 2026): warm pink H 350–20° is legal; the violet window stays closed. No new token may be minted to escape the gate. C > .145 at L ≤ .62 is a saturated red/vermilion/gold, not an earth tone. Analytical values are every anchor of the fourteen sequential and six diverging families in both themes and every fill and ink of every series slot in every variant; the ten values retired by exact hex in v0.9.0 (SC-17, including the two purged pinks #9E476F and #E982AE) MUST NOT be used verbatim. The hue audit of interpolated LUT steps, class colours and the production CSS outside this scope is reported in contrast-evidence.json and is not a gate of this release (owner decision 17 September 2026: the LUT path of the warm lane goes back to the board).",
+      "acceptance": [
+        {
+          "checkId": "DATAVIZ-04-A",
+          "method": "automated",
+          "criterion": "Every anchor in analyticalScales and every fill and ink in categoricalSeries, in both themes, lies outside the earth and violet windows (B-HUE-01), is not within ΔE 6 of any of the eight purged earth/taupe values inside a 20° hue lane (B-HUE-02), and equals none of the ten retired exact values (SC-17); the light clay band is recorded as a warning; every --scale-* and --series-* override on a page passes the same gates (preflight PF-DATAVIZ-04-HUE); no token exists whose only purpose is to escape the gate."
+        },
+        {
+          "checkId": "DATAVIZ-04-B",
+          "method": "visual",
+          "criterion": "No scale or series value reads as brown, terracotta, or purple on a real screen in either theme; a warm pink (H 350–20°), where used, reads as pink rather than purple."
+        }
+      ]
+    },
+    {
+      "id": "DATAVIZ-05",
+      "title": "Categorical series are luminous and edge-separated",
+      "section": "capability-packs",
+      "normativeLevel": "MUST",
+      "scope": "data_visualization,map",
+      "requirement": "Categorical color MUST resolve the series registry landometer-series-10-v7 (Dial 10), whose ten hues derive from the dial of the mark (coral 22°, yellow 82°, mint 165°, sky 225°) and the pin (263°) with blended hues between them. Each slot has a fill tier at the hue's natural lightness (OKLab L .66–.84) and an ink tier of at least 4.5:1 against canvas. Fills need not reach 3:1 against the canvas; instead every categorical area is separated by a border.default edge of at least 1px or an ink outline, legend swatches carry a hairline border, and text, lines, and marks thinner than 3px use the ink tier. Colour-only identification stops at slot 6; slots 7–10 always carry their shape cue. Assignments persist by category ID. Two chroma variants (soft — the release default — and vivid, opt-in through [data-series=\"vivid\"]) share one ink tier, and the Build Card names which variant a surface uses; energy accents and a vivid categorical chart MUST NOT share one surface, and the sky slot of either variant counts as an energy accent (owner decision 15 September 2026). The ink tier carries legibility, not identity. Where a slot hue has no legible dark form, the slot ink falls back to --text-primary #182327 and identification stays with fill + shape cue (A5.2 amendment of 17 September 2026; slots 2 and 3 in the light theme). Slot 10 is green (owner choice on sight, 17 September 2026); the rose set is recorded in categoricalSeries.slot10Alternates as legal under the pink ruling and not selected. landometer-series-10-v5 is a deprecated alias whose CSS names keep their values; new work binds the v7 fill and ink names (the fill and ink CSS names introduced with v6 are unchanged).",
+      "acceptance": [
+        {
+          "checkId": "DATAVIZ-05-A",
+          "method": "automated",
+          "criterion": "Categorical colour resolves categoricalSeries v7 by category ID; every used ink is at least 4.5:1 on canvas and card (slots declaring inkFallback use --text-primary); text, lines, and marks under 3px use the ink tier; adjacent areas carry a border.default edge of at least 1px or an ink outline; legend swatches carry a hairline border; slots 7–10 carry shape cues; the Build Card seriesVariant equals the delivered [data-series] state; a surface declaring vivid contains no energy accent; v5 names appear only in migrated artifacts and raise a preflight warning."
+        },
+        {
+          "checkId": "DATAVIZ-05-B",
+          "method": "visual",
+          "criterion": "Categories remain distinguishable at feed size, in print, and in the dark theme (slots 7–10 through their shape cues), and slot assignment by category ID does not change under filtering or sorting."
+        }
+      ]
+    },
+    {
+      "id": "MAP-01",
+      "title": "Maps preserve geography and coverage truth",
+      "section": "capability-packs",
+      "normativeLevel": "MUST",
+      "scope": "map",
+      "requirement": "Every spatial display MUST declare geography identity, boundary source, purpose, covered area, grain, time, unit, schema release, rights and attribution, relevant projection, the five EVID-05 value states (measured_zero, no_data, out_of_scope, suppressed, not_yet) together with low-confidence, selected, and focus states, and a non-spatial alternative. It MUST NOT imply coverage outside evidence, treat missing data as zero, or present a product-specific classification as shared portfolio truth.",
+      "acceptance": [
+        {
+          "checkId": "MAP-01-A",
+          "method": "automated",
+          "criterion": "The map overlay resolves all required fields, dataStates covering every EVID-05 state that occurs in the data, MapLegend state rows for each present state, attribution, accessible alternative, and an export receipt containing viewport, zoom, and filters."
+        },
+        {
+          "checkId": "MAP-01-B",
+          "method": "manual",
+          "criterion": "Boundary, place context, legend, orientation, uncertainty, and coverage remain truthful and readable in every delivered format."
+        }
+      ]
+    },
+    {
+      "id": "WEBFMT-01",
+      "title": "Public web output remains semantic and resilient",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "web_public",
+      "requirement": "Public web output MUST provide semantic initial HTML, responsive layout, keyboard and touch operation, no-script access to primary meaning, stable URLs, discoverability signals, share preview for both the square feed creative and the 1200 × 630 link preview (SOCIALFMT-01), one approved icon set (FAVICON-01), a title following the pattern [page] · [product], and production verification.",
+      "acceptance": [
+        {
+          "checkId": "WEBFMT-01-A",
+          "method": "automated",
+          "criterion": "Web format pack required rules pass at supported viewport, locale, theme, no-script, and reduced-motion fixtures; the six-size icon set, web manifest, theme-color, and title pattern resolve (FAVICON-01-A); the OG image resolves target.social.og.1200x630.01 and og:title and og:description follow the SOCIALFMT-01 templates."
+        },
+        {
+          "checkId": "WEBFMT-01-B",
+          "method": "production",
+          "criterion": "Deployed routes, assets, metadata, forms or actions, and monitoring receipts pass."
+        }
+      ]
+    },
+    {
+      "id": "APPFMT-01",
+      "title": "Interactive product output exposes system state",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "app_interactive",
+      "requirement": "Interactive product output MUST preserve task state, loading, success, empty, partial, stale, permission, and error meaning; navigation and actions MUST remain direct, undoable where appropriate, and receipted when consequential.",
+      "acceptance": [
+        {
+          "checkId": "APPFMT-01-A",
+          "method": "interaction",
+          "criterion": "All declared state fixtures remain understandable and operable by keyboard, touch, and assistive technology."
+        },
+        {
+          "checkId": "APPFMT-01-B",
+          "method": "manual",
+          "criterion": "Consequential actions expose confirmation, progress, result, recovery, and receipt proportional to risk."
+        }
+      ]
+    },
+    {
+      "id": "DOCFMT-01",
+      "title": "Flowing documents preserve structure and working references",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "document_flow",
+      "requirement": "Flowing document output MUST use real heading hierarchy, readable pagination behavior, working links, labelled figures and tables, source notes, accessible reading order, document properties, and version identity.",
+      "acceptance": [
+        {
+          "checkId": "DOCFMT-01-A",
+          "method": "automated",
+          "criterion": "Heading, list, table, figure, link, language, title, and reading-order checks pass in the document structure."
+        },
+        {
+          "checkId": "DOCFMT-01-B",
+          "method": "visual",
+          "criterion": "Rendered pages have no clipped content, accidental blank pages, stranded headings, or unreadable notes."
+        }
+      ]
+    },
+    {
+      "id": "PDFFMT-01",
+      "title": "Fixed PDF preserves visual and semantic access",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "pdf_fixed",
+      "requirement": "PDF output MUST preserve tagged reading order when required, bookmarks for long documents, selectable text where possible, exact embedded or governed native-mapped fonts without substitution, working links, alt text, page identity, evidence references, and print-safe contrast and margins. A QR code MAY supplement but MUST NOT replace either a working link or its human-readable destination.",
+      "acceptance": [
+        {
+          "checkId": "PDFFMT-01-A",
+          "method": "automated",
+          "criterion": "PDF metadata, page count, fonts, links, tags, bookmarks, text extraction, and file-integrity checks pass as applicable."
+        },
+        {
+          "checkId": "PDFFMT-01-B",
+          "method": "visual",
+          "criterion": "Every page is rendered and inspected at screen and print-relevant size without clipping, substitution, low contrast, or broken hierarchy."
+        }
+      ]
+    },
+    {
+      "id": "DECKFMT-01",
+      "title": "Presentation decks express one idea per scene",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "deck_presentation",
+      "requirement": "Presentation output MUST preserve one primary idea and reading path per slide, legible distance sizing, section progress, source cues, speaker-independent key meaning, editable structure where required, and a clear equivalent for actions and motion.",
+      "acceptance": [
+        {
+          "checkId": "DECKFMT-01-A",
+          "method": "visual",
+          "criterion": "Every slide passes montage, distance-legibility, overflow, contrast, and narrative-continuity review."
+        },
+        {
+          "checkId": "DECKFMT-01-B",
+          "method": "automated",
+          "criterion": "Slide titles, source notes, links or QR destinations, alt text, fonts, and hidden-slide state validate as applicable."
+        }
+      ]
+    },
+    {
+      "id": "SOCIALFMT-01",
+      "title": "Social outputs are self-contained and destination-aware",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "social_static",
+      "requirement": "Static social output in v0.9.4 MUST use exactly one of two governed targets: target.social.square.1080.01 (1080 × 1080) for feed posts, or target.social.og.1200x630.01 (1200 × 630) for link previews bound to the page's publication.discovery.social. It MUST communicate one approved message without relying on animation, preserve its safe areas, identify the source or destination, use an approved identity implementation, and remain legible at feed size. The 1200 × 630 creative carries three recognisers (8px four-colour rule on the top edge, a Brand Blue panel or one declared atmosphere, the 3 × 5px measure line), keeps the symbol or lockup at 56px tall or less, states what the reader will see on opening plus a destination cue at 22px or larger, and keeps text within 1000 × 560 with the symbol and first title line inside the central 630 square; og:title is [object] [period/scope] · [product] within 60 characters and og:description is [what you will see] · [source · date] · [limitation] within 155 characters, with no exclamation marks, no click-now wording, no emoji, and no unitless numbers. No other social ratio is supported because this release ships no extension registry; an unknown ratio MUST block.",
+      "acceptance": [
+        {
+          "checkId": "SOCIALFMT-01-A",
+          "method": "automated",
+          "criterion": "The output resolves exactly one governed social target — square 1080 × 1080 (1:1) or og 1200 × 630 (40:21) — and its dimensions, file format, file size, color profile, safe-area, and metadata rules pass; an OG creative carries all three recognisers and og:title ≤ 60 / og:description ≤ 155 per template; no undeclared social target or extension is present."
+        },
+        {
+          "checkId": "SOCIALFMT-01-B",
+          "method": "visual",
+          "criterion": "Rendered square feed-size, center-crop, and safe-area fixtures (1080) and text-safe 1000 × 560, central-630 crop, and 2:1 crop fixtures (1200 × 630) preserve message, identity, evidence cue, and a destination cue of at least 22px; OCR and visual review cover the OG image."
+        }
+      ]
+    },
+    {
+      "id": "FORMAT-PARITY-01",
+      "title": "Meaning and action survive format translation",
+      "section": "format-packs",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "A format translation MUST preserve content truth, hierarchy, evidence boundary, action outcome, locale status, and release identity while replacing unsupported interaction with the defined static or structural equivalent; visual sameness is not required.",
+      "acceptance": [
+        {
+          "checkId": "FORMAT-PARITY-01-A",
+          "method": "automated",
+          "criterion": "The format-pack equivalence map resolves every used identity, navigation, bookmark, CTA, motion, evidence, and receipt role, and every CTA destination binding uses the governed direct or static-equivalent presentation for its format."
+        },
+        {
+          "checkId": "FORMAT-PARITY-01-B",
+          "method": "manual",
+          "criterion": "Side-by-side review finds no change in claim scope, decision meaning, primary path, or action promise."
+        },
+        {
+          "checkId": "FORMAT-PARITY-01-C",
+          "method": "automated",
+          "criterion": "Every triggered data-visualization or map overlay resolves its required analytical, geographic, evidence, accessibility, fallback, and export fields in the host format."
+        }
+      ]
+    },
+    {
+      "id": "COMPONENT-01",
+      "title": "Reusable components declare a complete semantic contract",
+      "section": "components",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "The Build Card composition.componentIds inventory, artifact-resolved implementation requirements.componentIds, and component contract IDs MUST be exact equal sets with one contract per reusable component actually used by implementation source. Every contract declares componentClass, purpose and non-purpose, semantic roles, content and locale stress, every governed state with explicit required or not-applicable behavior, behavior for the selected formatProfile, accessibility, resolvable tokens, evidence and permission boundary, fixtures, and anti-patterns. Cross-format parity is governed separately by FORMAT-PARITY-01 and format-packs.json; a single resolved component contract MUST NOT invent six simultaneous formatBehavior objects. Navigational CTAs mark loading, empty, error, and success not applicable; stateful CTAs require disabled, loading, error, success, and recovery/result behavior. Disclosure and side bookmark have separate contracts.",
+      "acceptance": [
+        {
+          "checkId": "COMPONENT-01-A",
+          "method": "automated",
+          "criterion": "Build Card inventory, preset componentIds, and contract IDs are identical with no duplicates, missing, or extra IDs; governing rules are resolved; conditional state matrices are valid; token and fixture references resolve to the active package and artifact test set."
+        },
+        {
+          "checkId": "COMPONENT-01-B",
+          "method": "manual",
+          "criterion": "Rendered component fixtures preserve the declared semantic intent, locale content, states, evidence and permission boundary, accessibility behavior, and static-format equivalent without relying on visual resemblance alone."
+        }
+      ]
+    },
+    {
+      "id": "MEDIA-01",
+      "title": "Media treatment follows semantic role",
+      "section": "components",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Cropping, animation, and decorative treatment MUST be gated by an asset's semantic role. Identity, evidence, maps, charts, UI captures, and provider content MUST remain fixed unless an explicit approved role permits transformation; alternatives and attribution MUST survive export. Official identity files never animate; the only animated variant of the mark is the motif.v3 logo assembly governed by MOTION-04, which is a generated vector and not an identity file; product animated identities exist only as overlays registered under MOTIF-05.",
+      "acceptance": [
+        {
+          "checkId": "MEDIA-01-A",
+          "method": "automated",
+          "criterion": "Every media asset declares role, source, approval status, and text equivalent where required."
+        },
+        {
+          "checkId": "MEDIA-01-B",
+          "method": "visual",
+          "criterion": "Responsive and exported crops preserve the evidence-bearing subject, identity geometry, and required attribution."
+        }
+      ]
+    },
+    {
+      "id": "CAROUSEL-01",
+      "title": "Looping carousels keep one semantic cycle",
+      "section": "components",
+      "normativeLevel": "MUST",
+      "scope": "screen",
+      "requirement": "A looping carousel MUST keep one semantic source cycle; visual clones MUST be hidden from accessibility, inert, free of IDs and ID references, non-focusable, and excluded from meaningful alternative text. User controls MUST remain visible and autoplay MUST be off by default.",
+      "acceptance": [
+        {
+          "checkId": "CAROUSEL-01-A",
+          "method": "automated",
+          "criterion": "Clone audit finds aria-hidden or equivalent, inert behavior, no duplicate IDs, no focusable descendants, and no repeated meaningful alternatives."
+        },
+        {
+          "checkId": "CAROUSEL-01-B",
+          "method": "interaction",
+          "criterion": "Previous, next, focus, resize, touch, reduced-motion, and end-to-start transitions preserve context without forced autoplay."
+        }
+      ]
+    },
+    {
+      "id": "SOCIAL-FEED-01",
+      "title": "External feeds expose truthful states",
+      "section": "components",
+      "normativeLevel": "MUST",
+      "scope": "web_public,app_interactive",
+      "requirement": "An external social feed MUST declare idle, loading, loaded, empty, failed, and stale states as applicable, preserve the provider boundary, load after primary content, provide a direct fallback destination, and use recency language only when freshness is verified.",
+      "acceptance": [
+        {
+          "checkId": "SOCIAL-FEED-01-A",
+          "method": "interaction",
+          "criterion": "Success, timeout, blocked provider, empty response, stale response, and no-script fixtures provide truthful visible state and fallback."
+        },
+        {
+          "checkId": "SOCIAL-FEED-01-B",
+          "method": "visual",
+          "criterion": "Provider content is not inverted or recolored in a way that changes its meaning or identity."
+        }
+      ]
+    },
+    {
+      "id": "QA-01",
+      "title": "Conformance is receipt-based",
+      "section": "quality",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Conformance MUST be computed from applicable automated, manual, visual, interaction, accessibility, and production checks with dated receipts. v0.9.4 artifact conformance accepts no exception references: Build Card exceptionIds and Artifact Manifest exceptionRefs MUST both be empty.",
+      "acceptance": [
+        {
+          "checkId": "QA-01-A",
+          "method": "automated",
+          "criterion": "Every applicable required check has a passing current receipt and no blocking failure."
+        },
+        {
+          "checkId": "QA-01-B",
+          "method": "manual",
+          "criterion": "Build Card and Artifact Manifest contain zero exception references; no MUST or MUST NOT deviation is presented as conforming. SHOULD recommendations are reported separately when useful and do not change conformance."
+        }
+      ]
+    },
+    {
+      "id": "RELEASE-01",
+      "title": "Release identifiers have one source",
+      "section": "release",
+      "normativeLevel": "MUST",
+      "scope": "all",
+      "requirement": "Release, schema, set, kit, and package identifiers MUST be sourced from release.json, remain immutable after publication, and change only under their declared version policy. A canonical schema $id MUST include the schema version and MUST NOT be reused for an incompatible contract; generated artifacts MUST NOT contain contradictory current identifiers.",
+      "acceptance": [
+        {
+          "checkId": "RELEASE-01-A",
+          "method": "automated",
+          "criterion": "Human master, schemas, catalogs, format packs, assets, and receipts resolve to one release tuple with no conflicting current ID."
+        },
+        {
+          "checkId": "RELEASE-01-B",
+          "method": "manual",
+          "criterion": "A release change log explains every changed normative rule, set, schema, and migration effect."
+        }
+      ]
+    }
+  ]
+}

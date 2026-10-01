@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.1",
+  "permission": {
+    "schemaVersion": "1.1",
+    "kind": "permission",
+    "contractId": "action-permission.example.01",
+    "artifactId": "example.external-effect.artifact",
+    "actionId": "commit-external-effect",
+    "resource": "governed external resource",
+    "actorClasses": [
+      "human_user",
+      "authorized_agent"
+    ],
+    "allowedOperations": [
+      "submit"
+    ],
+    "allowedClassifications": [
+      "public",
+      "internal"
+    ],
+    "decisionStates": [
+      "allowed",
+      "denied",
+      "expired",
+      "revoked",
+      "unknown"
+    ],
+    "denialRecoveryByLocale": {
+      "th-TH": "หยุดการทำงานและขอสิทธิ์ที่ถูกต้องก่อนดำเนินการอีกครั้ง",
+      "en": "Stop and obtain the correct authority before trying again."
+    }
+  },
+  "progress": {
+    "schemaVersion": "1.1",
+    "kind": "progress",
+    "contractId": "action-progress.example.01",
+    "states": [
+      "idle",
+      "queued",
+      "running",
+      "succeeded",
+      "failed",
+      "cancelled"
+    ],
+    "accessibleStatusByLocale": {
+      "th-TH": "กำลังดำเนินการ ยังไม่เสร็จสมบูรณ์",
+      "en": "The action is running and is not yet complete."
+    },
+    "completionNotImpliedBeforeTerminal": true,
+    "cancellationPolicy": "Permit cancellation before the external effect is committed."
+  },
+  "result": {
+    "schemaVersion": "1.1",
+    "kind": "result",
+    "contractId": "action-result.example.01",
+    "states": [
+      "succeeded",
+      "failed",
+      "cancelled"
+    ],
+    "messageByLocale": {
+      "th-TH": "แสดงผลลัพธ์ที่เกิดขึ้นจริงและลิงก์ใบรับรอง",
+      "en": "Show the actual result and its receipt link."
+    },
+    "accessibleAnnouncement": "polite",
+    "receiptLinkPolicy": "Show only a receipt bound to the same artifact, action, execution, and terminal state."
+  },
+  "recovery": {
+    "schemaVersion": "1.1",
+    "kind": "recovery",
+    "contractId": "action-recovery.example.01",
+    "failureStates": [
+      "failed",
+      "cancelled"
+    ],
+    "preservesInput": true,
+    "retryPolicy": "Retry only after a fresh authority and consequence check.",
+    "fallbackByLocale": {
+      "th-TH": "เก็บข้อมูลเดิมและส่งต่อให้ผู้มีสิทธิ์ดำเนินการ",
+      "en": "Preserve the input and hand off to an authorized owner."
+    },
+    "escalationPolicy": "Escalate after one governed retry."
+  }
+}

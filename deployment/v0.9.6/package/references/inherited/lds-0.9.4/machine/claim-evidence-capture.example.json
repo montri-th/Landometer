@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "releaseRef": "v0.9.4-mp1",
+  "captureId": "capture.owner-approval.protected-line.v0.9.4-mp1",
+  "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+  "sourceRef": "owner-message:2026-09-17:0.9.4-approval",
+  "finalRef": "release.json#/release/ownerApproval",
+  "capturedAt": "2026-09-23T15:46:08+07:00",
+  "httpStatus": null,
+  "mediaType": "application/json",
+  "contentRef": "release.json",
+  "contentSha256": "6231ccfa6c67dea65abd9bb9597f14448ddc9f285be949e4efa026978e1d4419",
+  "contentByteCount": 61269,
+  "captureMethod": "bundle_exact_bytes"
+}

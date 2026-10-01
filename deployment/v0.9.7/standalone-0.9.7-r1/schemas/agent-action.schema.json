@@ -1,0 +1,1299 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/agent-action.schema.json",
+  "title": "Landometer agent action contract v1.5",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "definitionRef",
+    "definitionSha256",
+    "definitionSchemaRef",
+    "actionId",
+    "scope",
+    "inputs",
+    "permission",
+    "sideEffect",
+    "confirmation",
+    "execution"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.5"
+    },
+    "releaseRef": {
+      "const": "v0.9.7-owner.1"
+    },
+    "definitionRef": {
+      "$ref": "#/$defs/safeRef"
+    },
+    "definitionSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "definitionSchemaRef": {
+      "const": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/agent-action-definition.schema.json"
+    },
+    "actionId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifactId",
+        "actor",
+        "actorClass",
+        "productScope",
+        "allowedOperation"
+      ],
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "actor": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "actorClass": {
+          "enum": [
+            "human_user",
+            "authorized_agent"
+          ]
+        },
+        "productScope": {
+          "enum": [
+            "shared_landometer",
+            "named_product"
+          ]
+        },
+        "namedProduct": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "allowedOperation": {
+          "enum": [
+            "read",
+            "inspect",
+            "draft",
+            "submit",
+            "create",
+            "save",
+            "share",
+            "download",
+            "external_handoff",
+            "confirm",
+            "destructive"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "productScope": {
+                "const": "named_product"
+              }
+            },
+            "required": [
+              "productScope"
+            ]
+          },
+          "then": {
+            "required": [
+              "namedProduct"
+            ]
+          }
+        }
+      ]
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaRef",
+        "schemaSha256",
+        "schemaId",
+        "valueRef",
+        "valueSha256",
+        "classification"
+      ],
+      "properties": {
+        "schemaRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "schemaSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "schemaId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "valueRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "valueSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "classification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        }
+      }
+    },
+    "permission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "status",
+        "authorityRef",
+        "authoritySha256",
+        "authoritySchemaRef",
+        "authorityAttestationRef",
+        "authorityAttestationSha256"
+      ],
+      "properties": {
+        "policy": {
+          "enum": [
+            "read_only",
+            "confirm_before_commit",
+            "owner_authorized"
+          ]
+        },
+        "status": {
+          "enum": [
+            "not_required",
+            "pending",
+            "granted",
+            "denied",
+            "expired"
+          ]
+        },
+        "authorityRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "authoritySha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "authoritySchemaRef": {
+          "const": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/agent-action-authority.schema.json"
+        },
+        "authorityAttestationRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "authorityAttestationSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "sideEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "external",
+        "cost",
+        "summary",
+        "reversible"
+      ],
+      "properties": {
+        "class": {
+          "enum": [
+            "none",
+            "reversible",
+            "irreversible",
+            "destructive"
+          ]
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "cost": {
+          "enum": [
+            "none",
+            "possible",
+            "known"
+          ]
+        },
+        "summary": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "reversible": {
+          "type": "boolean"
+        }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "state",
+        "confirmedBy",
+        "confirmedAt",
+        "receiptRef",
+        "receiptSha256",
+        "attestationRef",
+        "attestationSha256"
+      ],
+      "properties": {
+        "required": {
+          "type": "boolean"
+        },
+        "state": {
+          "enum": [
+            "not_required",
+            "pending",
+            "confirmed",
+            "declined",
+            "expired"
+          ]
+        },
+        "confirmedBy": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "confirmedAt": {
+          "$ref": "#/$defs/dateTimeOrNull"
+        },
+        "receiptRef": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "receiptSha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "attestationRef": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "attestationSha256": {
+          "$ref": "#/$defs/nullableSha256"
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executionId",
+        "executionNonce",
+        "buildCardRef",
+        "buildCardSha256",
+        "terminalRevocationRef",
+        "terminalRevocationSha256",
+        "terminalRevocationSchemaRef",
+        "terminalRevocationAttestationRef",
+        "terminalRevocationAttestationSha256",
+        "status",
+        "startedAt",
+        "effectAt",
+        "completedAt",
+        "resultSchemaRef",
+        "resultSchemaSha256",
+        "receiptSchemaRef",
+        "receiptSchemaSha256",
+        "resultRef",
+        "errorBehavior",
+        "recoveryRef",
+        "receiptRef",
+        "receiptAttestationRef",
+        "receiptAttestationSha256"
+      ],
+      "properties": {
+        "executionId": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "executionNonce": {
+          "$ref": "#/$defs/nullableNonce"
+        },
+        "buildCardRef": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "buildCardSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "terminalRevocationRef": {
+          "$ref": "#/$defs/nullableSafeRef"
+        },
+        "terminalRevocationSha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "terminalRevocationSchemaRef": {
+          "anyOf": [
+            {
+              "const": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/agent-action-revocation.schema.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "terminalRevocationAttestationRef": {
+          "$ref": "#/$defs/nullableSafeRef"
+        },
+        "terminalRevocationAttestationSha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "status": {
+          "enum": [
+            "not_started",
+            "blocked",
+            "running",
+            "succeeded",
+            "failed",
+            "cancelled"
+          ]
+        },
+        "startedAt": {
+          "$ref": "#/$defs/dateTimeOrNull"
+        },
+        "effectAt": {
+          "$ref": "#/$defs/dateTimeOrNull"
+        },
+        "completedAt": {
+          "$ref": "#/$defs/dateTimeOrNull"
+        },
+        "resultSchemaRef": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "resultSchemaSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receiptSchemaRef": {
+          "const": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/agent-action-receipt.schema.json"
+        },
+        "receiptSchemaSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "resultRef": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "errorBehavior": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "recoveryRef": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "receiptRef": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "receiptAttestationRef": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "receiptAttestationSha256": {
+          "$ref": "#/$defs/nullableSha256"
+        },
+        "resultSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "recoverySha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receiptSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "scope": {
+            "properties": {
+              "productScope": {
+                "const": "shared_landometer"
+              }
+            },
+            "required": [
+              "productScope"
+            ]
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "scope": {
+            "not": {
+              "required": [
+                "namedProduct"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "permission": {
+            "properties": {
+              "policy": {
+                "const": "read_only"
+              }
+            },
+            "required": [
+              "policy"
+            ]
+          }
+        },
+        "required": [
+          "permission"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sideEffect": {
+            "properties": {
+              "class": {
+                "const": "none"
+              },
+              "external": {
+                "const": false
+              },
+              "cost": {
+                "const": "none"
+              },
+              "reversible": {
+                "const": true
+              }
+            },
+            "required": [
+              "class",
+              "external",
+              "cost",
+              "reversible"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "properties": {
+              "class": {
+                "enum": [
+                  "none",
+                  "reversible"
+                ]
+              }
+            },
+            "required": [
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "sideEffect"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sideEffect": {
+            "properties": {
+              "reversible": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "properties": {
+              "class": {
+                "enum": [
+                  "irreversible",
+                  "destructive"
+                ]
+              }
+            },
+            "required": [
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "sideEffect"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sideEffect": {
+            "properties": {
+              "reversible": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "anyOf": [
+              {
+                "properties": {
+                  "class": {
+                    "not": {
+                      "const": "none"
+                    }
+                  }
+                },
+                "required": [
+                  "class"
+                ]
+              },
+              {
+                "properties": {
+                  "external": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "external"
+                ]
+              },
+              {
+                "properties": {
+                  "cost": {
+                    "enum": [
+                      "possible",
+                      "known"
+                    ]
+                  }
+                },
+                "required": [
+                  "cost"
+                ]
+              }
+            ]
+          },
+          "execution": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "running",
+                  "succeeded",
+                  "failed"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "sideEffect",
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "required": {
+                "const": true
+              },
+              "state": {
+                "const": "confirmed"
+              },
+              "confirmedBy": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "confirmedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "permission": {
+            "properties": {
+              "status": {
+                "const": "granted"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "running",
+                  "succeeded",
+                  "failed",
+                  "cancelled"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "permission": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "not_required",
+                  "granted"
+                ]
+              }
+            }
+          },
+          "execution": {
+            "properties": {
+              "executionId": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "executionNonce": {
+                "$ref": "#/$defs/nonce"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "permission": {
+            "properties": {
+              "status": {
+                "const": "not_required"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "permission"
+        ]
+      },
+      "then": {
+        "properties": {
+          "permission": {
+            "properties": {
+              "policy": {
+                "const": "read_only"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "required": {
+                "const": false
+              }
+            },
+            "required": [
+              "required"
+            ]
+          }
+        },
+        "required": [
+          "confirmation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "state": {
+                "const": "not_required"
+              },
+              "confirmedBy": {
+                "type": "null"
+              },
+              "confirmedAt": {
+                "type": "null"
+              },
+              "receiptRef": {
+                "type": "null"
+              },
+              "receiptSha256": {
+                "type": "null"
+              },
+              "attestationRef": {
+                "type": "null"
+              },
+              "attestationSha256": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "required": {
+                "const": true
+              }
+            },
+            "required": [
+              "required"
+            ]
+          }
+        },
+        "required": [
+          "confirmation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "pending",
+                  "confirmed",
+                  "declined",
+                  "expired"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "state": {
+                "const": "confirmed"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "confirmation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "required": {
+                "const": true
+              },
+              "confirmedBy": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "confirmedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "receiptRef": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "receiptSha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "attestationRef": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "attestationSha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "not_required",
+                  "pending",
+                  "declined",
+                  "expired"
+                ]
+              }
+            },
+            "required": [
+              "state"
+            ]
+          }
+        },
+        "required": [
+          "confirmation"
+        ]
+      },
+      "then": {
+        "properties": {
+          "confirmation": {
+            "properties": {
+              "confirmedBy": {
+                "type": "null"
+              },
+              "confirmedAt": {
+                "type": "null"
+              },
+              "receiptRef": {
+                "type": "null"
+              },
+              "receiptSha256": {
+                "type": "null"
+              },
+              "attestationRef": {
+                "type": "null"
+              },
+              "attestationSha256": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "status": {
+                "const": "running"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "startedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "completedAt": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "not_started",
+                  "blocked"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "effectAt": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "not_started",
+                  "blocked",
+                  "running"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "terminalRevocationRef": {
+                "type": "null"
+              },
+              "terminalRevocationSha256": {
+                "type": "null"
+              },
+              "terminalRevocationSchemaRef": {
+                "type": "null"
+              },
+              "terminalRevocationAttestationRef": {
+                "type": "null"
+              },
+              "terminalRevocationAttestationSha256": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "succeeded",
+                  "failed",
+                  "cancelled"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "startedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "completedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "terminalRevocationRef": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "terminalRevocationSha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "terminalRevocationSchemaRef": {
+                "const": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/agent-action-revocation.schema.json"
+              },
+              "terminalRevocationAttestationRef": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "terminalRevocationAttestationSha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "receiptRef": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "receiptAttestationRef": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "receiptAttestationSha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            },
+            "required": [
+              "receiptSha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "status": {
+                "const": "succeeded"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "resultRef": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "receiptRef": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "required": [
+              "resultSha256",
+              "receiptSha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "anyOf": [
+              {
+                "properties": {
+                  "class": {
+                    "not": {
+                      "const": "none"
+                    }
+                  }
+                },
+                "required": [
+                  "class"
+                ]
+              },
+              {
+                "properties": {
+                  "external": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "external"
+                ]
+              },
+              {
+                "properties": {
+                  "cost": {
+                    "enum": [
+                      "possible",
+                      "known"
+                    ]
+                  }
+                },
+                "required": [
+                  "cost"
+                ]
+              }
+            ]
+          },
+          "execution": {
+            "properties": {
+              "status": {
+                "const": "succeeded"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "sideEffect",
+          "execution"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "effectAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "recoveryRef": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "required": [
+              "recoverySha256"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "properties": {
+              "class": {
+                "const": "none"
+              },
+              "external": {
+                "const": false
+              },
+              "cost": {
+                "const": "none"
+              }
+            },
+            "required": [
+              "class",
+              "external",
+              "cost"
+            ]
+          }
+        },
+        "required": [
+          "sideEffect"
+        ]
+      },
+      "then": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "effectAt": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "nonce": {
+      "type": "string",
+      "minLength": 16,
+      "maxLength": 160,
+      "pattern": "^[A-Za-z0-9._:-]+$"
+    },
+    "nullableNonce": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonce"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullableSafeRef": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/safeRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullableString": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "nullableSha256": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/sha256"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "dateTimeOrNull": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.7 contract, revision standalone-0.9.7-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

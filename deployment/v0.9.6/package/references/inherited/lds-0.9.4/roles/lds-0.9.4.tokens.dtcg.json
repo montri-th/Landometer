@@ -1,0 +1,1275 @@
+{
+  "$description": "Landometer Design System 0.9.4 (v0.9.4-mp1, effective) — colour tokens for design tools (generated from tokens.v0.9.4.json; owner-approved 17 September 2026, signed 23 September 2026; colour set color-srgb-07; no analytical value inside the retired earth/violet hue windows, DATAVIZ-04). Light and dark are separate groups; import the one that matches the theme you design. Dark scale anchors are the DATAVIZ-03 derivation of the light anchors (never hand-picked); series default is dial-soft (DATAVIZ-05).",
+  "brand": {
+    "blue": {
+      "$type": "color",
+      "$value": "#1D4497",
+      "$description": "portfolio identity; never a filled button"
+    },
+    "beige": {
+      "$type": "color",
+      "$value": "#F2F1DF"
+    },
+    "darkBeige": {
+      "$type": "color",
+      "$value": "#D8CFB2"
+    }
+  },
+  "energy": {
+    "sky": {
+      "$type": "color",
+      "$value": "#59D2FE",
+      "$description": "restrained accent only; never a scale mid; never beside a vivid categorical chart"
+    },
+    "mint": {
+      "$type": "color",
+      "$value": "#0AD69C",
+      "$description": "restrained accent only; never a scale mid; never beside a vivid categorical chart"
+    },
+    "coral": {
+      "$type": "color",
+      "$value": "#FF5A5F",
+      "$description": "restrained accent only; never a scale mid; never beside a vivid categorical chart"
+    },
+    "yellow": {
+      "$type": "color",
+      "$value": "#FFBC1F",
+      "$description": "restrained accent only; never a scale mid; never beside a vivid categorical chart"
+    }
+  },
+  "foundation": {
+    "light": {
+      "surface.canvas": {
+        "$type": "color",
+        "$value": "#F6F7F3"
+      },
+      "surface.alt": {
+        "$type": "color",
+        "$value": "#EEF1EE"
+      },
+      "surface.card": {
+        "$type": "color",
+        "$value": "#FCFCFA"
+      },
+      "surface.raised": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "surface.soft": {
+        "$type": "color",
+        "$value": "#E5E9E6"
+      },
+      "surface.blueTint": {
+        "$type": "color",
+        "$value": "#E2E9ED"
+      },
+      "surface.beigeTint": {
+        "$type": "color",
+        "$value": "#F2F1DF"
+      },
+      "text.primary": {
+        "$type": "color",
+        "$value": "#182327"
+      },
+      "text.secondary": {
+        "$type": "color",
+        "$value": "#5F635A"
+      },
+      "text.metadata": {
+        "$type": "color",
+        "$value": "#5C6A61"
+      },
+      "text.muted": {
+        "$type": "color",
+        "$value": "#7B877D"
+      },
+      "text.disabled": {
+        "$type": "color",
+        "$value": "#A7B3A9"
+      },
+      "border.hairline": {
+        "$type": "color",
+        "$value": "#DCE1DD"
+      },
+      "border.default": {
+        "$type": "color",
+        "$value": "#C9D0CB"
+      },
+      "border.emphasis": {
+        "$type": "color",
+        "$value": "#7D877F"
+      },
+      "interaction.accent": {
+        "$type": "color",
+        "$value": "#176B82"
+      },
+      "interaction.focus.ring": {
+        "$type": "color",
+        "$value": "#176B82"
+      }
+    },
+    "dark": {
+      "surface.canvas": {
+        "$type": "color",
+        "$value": "#11191D"
+      },
+      "surface.alt": {
+        "$type": "color",
+        "$value": "#172126"
+      },
+      "surface.card": {
+        "$type": "color",
+        "$value": "#20292D"
+      },
+      "surface.raised": {
+        "$type": "color",
+        "$value": "#293337"
+      },
+      "surface.soft": {
+        "$type": "color",
+        "$value": "#2B3534"
+      },
+      "surface.blueTint": {
+        "$type": "color",
+        "$value": "#18333E"
+      },
+      "surface.beigeTint": {
+        "$type": "color",
+        "$value": "#2C2A22"
+      },
+      "text.primary": {
+        "$type": "color",
+        "$value": "#F1F4EF"
+      },
+      "text.secondary": {
+        "$type": "color",
+        "$value": "#C4CECA"
+      },
+      "text.metadata": {
+        "$type": "color",
+        "$value": "#A6B5B1"
+      },
+      "text.muted": {
+        "$type": "color",
+        "$value": "#8D9D99"
+      },
+      "text.disabled": {
+        "$type": "color",
+        "$value": "#71817D"
+      },
+      "border.hairline": {
+        "$type": "color",
+        "$value": "#33403D"
+      },
+      "border.default": {
+        "$type": "color",
+        "$value": "#46524F"
+      },
+      "border.emphasis": {
+        "$type": "color",
+        "$value": "#7C8A84"
+      },
+      "interaction.accent": {
+        "$type": "color",
+        "$value": "#68C4E2"
+      },
+      "interaction.focus.ring": {
+        "$type": "color",
+        "$value": "#68C4E2"
+      }
+    }
+  },
+  "semantic": {
+    "light": {
+      "success.surface": {
+        "$type": "color",
+        "$value": "#E2F4E5"
+      },
+      "success.content": {
+        "$type": "color",
+        "$value": "#126B49"
+      },
+      "warning.surface": {
+        "$type": "color",
+        "$value": "#FFF1D1"
+      },
+      "warning.content": {
+        "$type": "color",
+        "$value": "#A64A00"
+      },
+      "danger.surface": {
+        "$type": "color",
+        "$value": "#FCE5DF"
+      },
+      "danger.content": {
+        "$type": "color",
+        "$value": "#B43A3A"
+      },
+      "info.surface": {
+        "$type": "color",
+        "$value": "#E8EEF0"
+      },
+      "info.content": {
+        "$type": "color",
+        "$value": "#176B82"
+      },
+      "neutral.surface": {
+        "$type": "color",
+        "$value": "#ECE4D2"
+      },
+      "neutral.content": {
+        "$type": "color",
+        "$value": "#5F635A"
+      },
+      "pending.surface": {
+        "$type": "color",
+        "$value": "#F3EEDB"
+      },
+      "pending.content": {
+        "$type": "color",
+        "$value": "#5C6A61"
+      },
+      "assisted.surface": {
+        "$type": "color",
+        "$value": "#DFF3F1"
+      },
+      "assisted.content": {
+        "$type": "color",
+        "$value": "#176C67"
+      }
+    },
+    "dark": {
+      "success.surface": {
+        "$type": "color",
+        "$value": "#17362D"
+      },
+      "success.content": {
+        "$type": "color",
+        "$value": "#72E8C4"
+      },
+      "warning.surface": {
+        "$type": "color",
+        "$value": "#3B2E16"
+      },
+      "warning.content": {
+        "$type": "color",
+        "$value": "#F5C15C"
+      },
+      "danger.surface": {
+        "$type": "color",
+        "$value": "#3A1F21"
+      },
+      "danger.content": {
+        "$type": "color",
+        "$value": "#FF7C72"
+      },
+      "info.surface": {
+        "$type": "color",
+        "$value": "#18333E"
+      },
+      "info.content": {
+        "$type": "color",
+        "$value": "#68C4E2"
+      },
+      "neutral.surface": {
+        "$type": "color",
+        "$value": "#2B3534"
+      },
+      "neutral.content": {
+        "$type": "color",
+        "$value": "#C4CECA"
+      },
+      "pending.surface": {
+        "$type": "color",
+        "$value": "#2C2A22"
+      },
+      "pending.content": {
+        "$type": "color",
+        "$value": "#D8CFB2"
+      },
+      "assisted.surface": {
+        "$type": "color",
+        "$value": "#163331"
+      },
+      "assisted.content": {
+        "$type": "color",
+        "$value": "#79D9D1"
+      }
+    }
+  },
+  "scale": {
+    "light": {
+      "activity.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · warm zone · activity, transactions, usage"
+      },
+      "activity.mid": {
+        "$type": "color",
+        "$value": "#F49383",
+        "$description": "sequential · warm zone · activity, transactions, usage"
+      },
+      "activity.high": {
+        "$type": "color",
+        "$value": "#C52C00",
+        "$description": "sequential · warm zone · activity, transactions, usage"
+      },
+      "density.area.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · warm zone · per km², per rai (denominator = area)"
+      },
+      "density.area.mid": {
+        "$type": "color",
+        "$value": "#EE9A69",
+        "$description": "sequential · warm zone · per km², per rai (denominator = area)"
+      },
+      "density.area.high": {
+        "$type": "color",
+        "$value": "#A1182D",
+        "$description": "sequential · warm zone · per km², per rai (denominator = area)"
+      },
+      "heat.low": {
+        "$type": "color",
+        "$value": "#FBF1C6",
+        "$description": "sequential · warm zone · surface temperature, hotspots, fire"
+      },
+      "heat.mid": {
+        "$type": "color",
+        "$value": "#E3A257",
+        "$description": "sequential · warm zone · surface temperature, hotspots, fire"
+      },
+      "heat.high": {
+        "$type": "color",
+        "$value": "#850E2E",
+        "$description": "sequential · warm zone · surface temperature, hotspots, fire"
+      },
+      "risk.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · warm zone · risk level, hazard probability"
+      },
+      "risk.mid": {
+        "$type": "color",
+        "$value": "#CEA856",
+        "$description": "sequential · warm zone · risk level, hazard probability"
+      },
+      "risk.high": {
+        "$type": "color",
+        "$value": "#B74436",
+        "$description": "sequential · warm zone · risk level, hazard probability"
+      },
+      "price.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · green zone · appraisal, rent, revenue, registered capital"
+      },
+      "price.mid": {
+        "$type": "color",
+        "$value": "#CAAF59",
+        "$description": "sequential · green zone · appraisal, rent, revenue, registered capital"
+      },
+      "price.high": {
+        "$type": "color",
+        "$value": "#135B42",
+        "$description": "sequential · green zone · appraisal, rent, revenue, registered capital"
+      },
+      "age.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · green zone · building age, business age"
+      },
+      "age.mid": {
+        "$type": "color",
+        "$value": "#B1B58A",
+        "$description": "sequential · green zone · building age, business age"
+      },
+      "age.high": {
+        "$type": "color",
+        "$value": "#364D48",
+        "$description": "sequential · green zone · building age, business age"
+      },
+      "density.household.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · green zone · per 100 households (denominator = household · Living)"
+      },
+      "density.household.mid": {
+        "$type": "color",
+        "$value": "#93C089",
+        "$description": "sequential · green zone · per 100 households (denominator = household · Living)"
+      },
+      "density.household.high": {
+        "$type": "color",
+        "$value": "#0B5D2A",
+        "$description": "sequential · green zone · per 100 households (denominator = household · Living)"
+      },
+      "growth.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · green zone · cumulative index, growth rate"
+      },
+      "growth.mid": {
+        "$type": "color",
+        "$value": "#5BC19D",
+        "$description": "sequential · green zone · cumulative index, growth rate"
+      },
+      "growth.high": {
+        "$type": "color",
+        "$value": "#126F68",
+        "$description": "sequential · green zone · cumulative index, growth rate"
+      },
+      "confidence.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · green zone · estimate confidence, data quality"
+      },
+      "confidence.mid": {
+        "$type": "color",
+        "$value": "#85A5A2",
+        "$description": "sequential · green zone · estimate confidence, data quality"
+      },
+      "confidence.high": {
+        "$type": "color",
+        "$value": "#08756F",
+        "$description": "sequential · green zone · estimate confidence, data quality"
+      },
+      "count.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · blue zone · population, number of firms, vehicles (totals)"
+      },
+      "count.mid": {
+        "$type": "color",
+        "$value": "#55B8C2",
+        "$description": "sequential · blue zone · population, number of firms, vehicles (totals)"
+      },
+      "count.high": {
+        "$type": "color",
+        "$value": "#236DAA",
+        "$description": "sequential · blue zone · population, number of firms, vehicles (totals)"
+      },
+      "water.low": {
+        "$type": "color",
+        "$value": "#E6F1F2",
+        "$description": "sequential · blue zone · water level, depth, flood frequency"
+      },
+      "water.mid": {
+        "$type": "color",
+        "$value": "#8FD3E0",
+        "$description": "sequential · blue zone · water level, depth, flood frequency"
+      },
+      "water.high": {
+        "$type": "color",
+        "$value": "#0F6E8C",
+        "$description": "sequential · blue zone · water level, depth, flood frequency"
+      },
+      "density.capita.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · blue zone · per 1,000 people (denominator = people)"
+      },
+      "density.capita.mid": {
+        "$type": "color",
+        "$value": "#6DB3E4",
+        "$description": "sequential · blue zone · per 1,000 people (denominator = people)"
+      },
+      "density.capita.high": {
+        "$type": "color",
+        "$value": "#1E3E86",
+        "$description": "sequential · blue zone · per 1,000 people (denominator = people)"
+      },
+      "built.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · blue zone · building footprint, height, coverage"
+      },
+      "built.mid": {
+        "$type": "color",
+        "$value": "#6797AF",
+        "$description": "sequential · blue zone · building footprint, height, coverage"
+      },
+      "built.high": {
+        "$type": "color",
+        "$value": "#225F78",
+        "$description": "sequential · blue zone · building footprint, height, coverage"
+      },
+      "duration.low": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "sequential · blue zone · travel time, waiting time, inundation duration"
+      },
+      "duration.mid": {
+        "$type": "color",
+        "$value": "#A7B9BF",
+        "$description": "sequential · blue zone · travel time, waiting time, inundation duration"
+      },
+      "duration.high": {
+        "$type": "color",
+        "$value": "#275C76",
+        "$description": "sequential · blue zone · travel time, waiting time, inundation duration"
+      },
+      "balance.neg": {
+        "$type": "color",
+        "$value": "#C52C00",
+        "$description": "diverging · deficit ↔ surplus"
+      },
+      "balance.zero": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "diverging · deficit ↔ surplus"
+      },
+      "balance.pos": {
+        "$type": "color",
+        "$value": "#186A9E",
+        "$description": "diverging · deficit ↔ surplus"
+      },
+      "delta.neg": {
+        "$type": "color",
+        "$value": "#B74436",
+        "$description": "diverging · decrease ↔ increase vs previous period"
+      },
+      "delta.zero": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "diverging · decrease ↔ increase vs previous period"
+      },
+      "delta.pos": {
+        "$type": "color",
+        "$value": "#007C78",
+        "$description": "diverging · decrease ↔ increase vs previous period"
+      },
+      "tradeoff.neg": {
+        "$type": "color",
+        "$value": "#AB2E47",
+        "$description": "diverging · cost ↔ benefit"
+      },
+      "tradeoff.zero": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "diverging · cost ↔ benefit"
+      },
+      "tradeoff.pos": {
+        "$type": "color",
+        "$value": "#007E91",
+        "$description": "diverging · cost ↔ benefit"
+      },
+      "flow.neg": {
+        "$type": "color",
+        "$value": "#D09B00",
+        "$description": "diverging · out-migration ↔ in-migration · closures ↔ openings"
+      },
+      "flow.zero": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "diverging · out-migration ↔ in-migration · closures ↔ openings"
+      },
+      "flow.pos": {
+        "$type": "color",
+        "$value": "#1A8A51",
+        "$description": "diverging · out-migration ↔ in-migration · closures ↔ openings"
+      },
+      "sentiment.neg": {
+        "$type": "color",
+        "$value": "#CB4453",
+        "$description": "diverging · negative ↔ positive"
+      },
+      "sentiment.zero": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "diverging · negative ↔ positive"
+      },
+      "sentiment.pos": {
+        "$type": "color",
+        "$value": "#429C5A",
+        "$description": "diverging · negative ↔ positive"
+      },
+      "anomaly.neg": {
+        "$type": "color",
+        "$value": "#3578B8",
+        "$description": "diverging · below normal (cool/dry) ↔ above normal (hot/wet)"
+      },
+      "anomaly.zero": {
+        "$type": "color",
+        "$value": "#F2F1DF",
+        "$description": "diverging · below normal (cool/dry) ↔ above normal (hot/wet)"
+      },
+      "anomaly.pos": {
+        "$type": "color",
+        "$value": "#DC631E",
+        "$description": "diverging · below normal (cool/dry) ↔ above normal (hot/wet)"
+      }
+    },
+    "dark": {
+      "activity.low": {
+        "$type": "color",
+        "$value": "#3C302D",
+        "$description": "sequential · warm zone · activity, transactions, usage · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "activity.mid": {
+        "$type": "color",
+        "$value": "#D17465",
+        "$description": "sequential · warm zone · activity, transactions, usage · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "activity.high": {
+        "$type": "color",
+        "$value": "#FF977F",
+        "$description": "sequential · warm zone · activity, transactions, usage · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "density.area.low": {
+        "$type": "color",
+        "$value": "#3B302B",
+        "$description": "sequential · warm zone · per km², per rai (denominator = area) · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "density.area.mid": {
+        "$type": "color",
+        "$value": "#CC7B4A",
+        "$description": "sequential · warm zone · per km², per rai (denominator = area) · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "density.area.high": {
+        "$type": "color",
+        "$value": "#FFB4B3",
+        "$description": "sequential · warm zone · per km², per rai (denominator = area) · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "heat.low": {
+        "$type": "color",
+        "$value": "#393129",
+        "$description": "sequential · warm zone · surface temperature, hotspots, fire · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "heat.mid": {
+        "$type": "color",
+        "$value": "#C28336",
+        "$description": "sequential · warm zone · surface temperature, hotspots, fire · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "heat.high": {
+        "$type": "color",
+        "$value": "#FFD1D3",
+        "$description": "sequential · warm zone · surface temperature, hotspots, fire · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "risk.low": {
+        "$type": "color",
+        "$value": "#373229",
+        "$description": "sequential · warm zone · risk level, hazard probability · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "risk.mid": {
+        "$type": "color",
+        "$value": "#B18C39",
+        "$description": "sequential · warm zone · risk level, hazard probability · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "risk.high": {
+        "$type": "color",
+        "$value": "#FF9686",
+        "$description": "sequential · warm zone · risk level, hazard probability · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "price.low": {
+        "$type": "color",
+        "$value": "#363329",
+        "$description": "sequential · green zone · appraisal, rent, revenue, registered capital · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "price.mid": {
+        "$type": "color",
+        "$value": "#AA9038",
+        "$description": "sequential · green zone · appraisal, rent, revenue, registered capital · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "price.high": {
+        "$type": "color",
+        "$value": "#A5E9CA",
+        "$description": "sequential · green zone · appraisal, rent, revenue, registered capital · derived (DATAVIZ-03 amended 0.9.4: warm lane)"
+      },
+      "age.low": {
+        "$type": "color",
+        "$value": "#333515",
+        "$description": "sequential · green zone · building age, business age · derived (DATAVIZ-03, warm lane where applicable) except the declared derivation exception"
+      },
+      "age.mid": {
+        "$type": "color",
+        "$value": "#717D55",
+        "$description": "sequential · green zone · building age, business age · derived (DATAVIZ-03, warm lane where applicable) except the declared derivation exception"
+      },
+      "age.high": {
+        "$type": "color",
+        "$value": "#B3ECDF",
+        "$description": "sequential · green zone · building age, business age · derived (DATAVIZ-03, warm lane where applicable) except the declared derivation exception"
+      },
+      "density.household.low": {
+        "$type": "color",
+        "$value": "#253920",
+        "$description": "sequential · green zone · per 100 households (denominator = household · Living) · derived (DATAVIZ-03)"
+      },
+      "density.household.mid": {
+        "$type": "color",
+        "$value": "#5A8450",
+        "$description": "sequential · green zone · per 100 households (denominator = household · Living) · derived (DATAVIZ-03)"
+      },
+      "density.household.high": {
+        "$type": "color",
+        "$value": "#A2ECB1",
+        "$description": "sequential · green zone · per 100 households (denominator = household · Living) · derived (DATAVIZ-03)"
+      },
+      "growth.low": {
+        "$type": "color",
+        "$value": "#153B2E",
+        "$description": "sequential · green zone · cumulative index, growth rate · derived (DATAVIZ-03)"
+      },
+      "growth.mid": {
+        "$type": "color",
+        "$value": "#229270",
+        "$description": "sequential · green zone · cumulative index, growth rate · derived (DATAVIZ-03)"
+      },
+      "growth.high": {
+        "$type": "color",
+        "$value": "#81D2C9",
+        "$description": "sequential · green zone · cumulative index, growth rate · derived (DATAVIZ-03)"
+      },
+      "confidence.low": {
+        "$type": "color",
+        "$value": "#0A3B38",
+        "$description": "sequential · green zone · estimate confidence, data quality · derived (DATAVIZ-03)"
+      },
+      "confidence.mid": {
+        "$type": "color",
+        "$value": "#669490",
+        "$description": "sequential · green zone · estimate confidence, data quality · derived (DATAVIZ-03)"
+      },
+      "confidence.high": {
+        "$type": "color",
+        "$value": "#75CDC6",
+        "$description": "sequential · green zone · estimate confidence, data quality · derived (DATAVIZ-03)"
+      },
+      "count.low": {
+        "$type": "color",
+        "$value": "#083A3F",
+        "$description": "sequential · blue zone · population, number of firms, vehicles (totals) · derived (DATAVIZ-03)"
+      },
+      "count.mid": {
+        "$type": "color",
+        "$value": "#26919B",
+        "$description": "sequential · blue zone · population, number of firms, vehicles (totals) · derived (DATAVIZ-03)"
+      },
+      "count.high": {
+        "$type": "color",
+        "$value": "#77BEFF",
+        "$description": "sequential · blue zone · population, number of firms, vehicles (totals) · derived (DATAVIZ-03)"
+      },
+      "water.low": {
+        "$type": "color",
+        "$value": "#0A3A41",
+        "$description": "sequential · blue zone · water level, depth, flood frequency · derived (DATAVIZ-03)"
+      },
+      "water.mid": {
+        "$type": "color",
+        "$value": "#2A6F7B",
+        "$description": "sequential · blue zone · water level, depth, flood frequency · derived (DATAVIZ-03)"
+      },
+      "water.high": {
+        "$type": "color",
+        "$value": "#78CAEA",
+        "$description": "sequential · blue zone · water level, depth, flood frequency · derived (DATAVIZ-03)"
+      },
+      "density.capita.low": {
+        "$type": "color",
+        "$value": "#19364A",
+        "$description": "sequential · blue zone · per 1,000 people (denominator = people) · derived (DATAVIZ-03)"
+      },
+      "density.capita.mid": {
+        "$type": "color",
+        "$value": "#3E85B3",
+        "$description": "sequential · blue zone · per 1,000 people (denominator = people) · derived (DATAVIZ-03)"
+      },
+      "density.capita.high": {
+        "$type": "color",
+        "$value": "#CEDFFF",
+        "$description": "sequential · blue zone · per 1,000 people (denominator = people) · derived (DATAVIZ-03)"
+      },
+      "built.low": {
+        "$type": "color",
+        "$value": "#133748",
+        "$description": "sequential · blue zone · building footprint, height, coverage · derived (DATAVIZ-03)"
+      },
+      "built.mid": {
+        "$type": "color",
+        "$value": "#6A9AB2",
+        "$description": "sequential · blue zone · building footprint, height, coverage · derived (DATAVIZ-03)"
+      },
+      "built.high": {
+        "$type": "color",
+        "$value": "#99D5F2",
+        "$description": "sequential · blue zone · building footprint, height, coverage · derived (DATAVIZ-03)"
+      },
+      "duration.low": {
+        "$type": "color",
+        "$value": "#0E3944",
+        "$description": "sequential · blue zone · travel time, waiting time, inundation duration · derived (DATAVIZ-03)"
+      },
+      "duration.mid": {
+        "$type": "color",
+        "$value": "#517B88",
+        "$description": "sequential · blue zone · travel time, waiting time, inundation duration · derived (DATAVIZ-03)"
+      },
+      "duration.high": {
+        "$type": "color",
+        "$value": "#A0D6F4",
+        "$description": "sequential · blue zone · travel time, waiting time, inundation duration · derived (DATAVIZ-03)"
+      },
+      "balance.neg": {
+        "$type": "color",
+        "$value": "#FE8F75",
+        "$description": "diverging · deficit ↔ surplus · derived (DATAVIZ-03)"
+      },
+      "balance.zero": {
+        "$type": "color",
+        "$value": "#2D3438",
+        "$description": "diverging · deficit ↔ surplus · derived (DATAVIZ-03)"
+      },
+      "balance.pos": {
+        "$type": "color",
+        "$value": "#7AC5FE",
+        "$description": "diverging · deficit ↔ surplus · derived (DATAVIZ-03)"
+      },
+      "delta.neg": {
+        "$type": "color",
+        "$value": "#FD8C7B",
+        "$description": "diverging · decrease ↔ increase vs previous period · derived (DATAVIZ-03)"
+      },
+      "delta.zero": {
+        "$type": "color",
+        "$value": "#2D3438",
+        "$description": "diverging · decrease ↔ increase vs previous period · derived (DATAVIZ-03)"
+      },
+      "delta.pos": {
+        "$type": "color",
+        "$value": "#68C7C2",
+        "$description": "diverging · decrease ↔ increase vs previous period · derived (DATAVIZ-03)"
+      },
+      "tradeoff.neg": {
+        "$type": "color",
+        "$value": "#FF9EA7",
+        "$description": "diverging · cost ↔ benefit · derived (DATAVIZ-03)"
+      },
+      "tradeoff.zero": {
+        "$type": "color",
+        "$value": "#2D3438",
+        "$description": "diverging · cost ↔ benefit · derived (DATAVIZ-03)"
+      },
+      "tradeoff.pos": {
+        "$type": "color",
+        "$value": "#60C1D5",
+        "$description": "diverging · cost ↔ benefit · derived (DATAVIZ-03)"
+      },
+      "flow.neg": {
+        "$type": "color",
+        "$value": "#DBA833",
+        "$description": "diverging · out-migration ↔ in-migration · closures ↔ openings · derived (DATAVIZ-03)"
+      },
+      "flow.zero": {
+        "$type": "color",
+        "$value": "#2D3438",
+        "$description": "diverging · out-migration ↔ in-migration · closures ↔ openings · derived (DATAVIZ-03)"
+      },
+      "flow.pos": {
+        "$type": "color",
+        "$value": "#65C98C",
+        "$description": "diverging · out-migration ↔ in-migration · closures ↔ openings · derived (DATAVIZ-03)"
+      },
+      "sentiment.neg": {
+        "$type": "color",
+        "$value": "#FD8A8F",
+        "$description": "diverging · negative ↔ positive · derived (DATAVIZ-03)"
+      },
+      "sentiment.zero": {
+        "$type": "color",
+        "$value": "#2D3438",
+        "$description": "diverging · negative ↔ positive · derived (DATAVIZ-03)"
+      },
+      "sentiment.pos": {
+        "$type": "color",
+        "$value": "#6FC883",
+        "$description": "diverging · negative ↔ positive · derived (DATAVIZ-03)"
+      },
+      "anomaly.neg": {
+        "$type": "color",
+        "$value": "#73B6FB",
+        "$description": "diverging · below normal (cool/dry) ↔ above normal (hot/wet) · derived (DATAVIZ-03)"
+      },
+      "anomaly.zero": {
+        "$type": "color",
+        "$value": "#2D3438",
+        "$description": "diverging · below normal (cool/dry) ↔ above normal (hot/wet) · derived (DATAVIZ-03)"
+      },
+      "anomaly.pos": {
+        "$type": "color",
+        "$value": "#F99262",
+        "$description": "diverging · below normal (cool/dry) ↔ above normal (hot/wet) · derived (DATAVIZ-03)"
+      }
+    }
+  },
+  "series": {
+    "soft": {
+      "light": {
+        "series.01": {
+          "$type": "color",
+          "$value": "#D88381",
+          "$description": "coral · cue circle"
+        },
+        "series.02": {
+          "$type": "color",
+          "$value": "#E39B6E",
+          "$description": "apricot · cue square"
+        },
+        "series.03": {
+          "$type": "color",
+          "$value": "#EAC578",
+          "$description": "yellow · cue triangle"
+        },
+        "series.04": {
+          "$type": "color",
+          "$value": "#BECE7E",
+          "$description": "lime · cue diamond"
+        },
+        "series.05": {
+          "$type": "color",
+          "$value": "#7BD0A3",
+          "$description": "mint · cue cross"
+        },
+        "series.06": {
+          "$type": "color",
+          "$value": "#6ACCF0",
+          "$description": "sky · cue star"
+        },
+        "series.07": {
+          "$type": "color",
+          "$value": "#49C0BC",
+          "$description": "teal · cue hexagon (shape cue required)"
+        },
+        "series.08": {
+          "$type": "color",
+          "$value": "#6196D1",
+          "$description": "blue · cue ring (shape cue required)"
+        },
+        "series.09": {
+          "$type": "color",
+          "$value": "#8AA4AA",
+          "$description": "slate · cue dash (shape cue required)"
+        },
+        "series.10": {
+          "$type": "color",
+          "$value": "#82AC79",
+          "$description": "green · cue plus (shape cue required)"
+        }
+      },
+      "dark": {
+        "series.01": {
+          "$type": "color",
+          "$value": "#F8A4A1",
+          "$description": "coral · cue circle"
+        },
+        "series.02": {
+          "$type": "color",
+          "$value": "#F8B287",
+          "$description": "apricot · cue square"
+        },
+        "series.03": {
+          "$type": "color",
+          "$value": "#F3D086",
+          "$description": "yellow · cue triangle"
+        },
+        "series.04": {
+          "$type": "color",
+          "$value": "#CBDA8E",
+          "$description": "lime · cue diamond"
+        },
+        "series.05": {
+          "$type": "color",
+          "$value": "#8FDFB4",
+          "$description": "mint · cue cross"
+        },
+        "series.06": {
+          "$type": "color",
+          "$value": "#7DD9FB",
+          "$description": "sky · cue star"
+        },
+        "series.07": {
+          "$type": "color",
+          "$value": "#6DD9D5",
+          "$description": "teal · cue hexagon (shape cue required)"
+        },
+        "series.08": {
+          "$type": "color",
+          "$value": "#88BCF6",
+          "$description": "blue · cue ring (shape cue required)"
+        },
+        "series.09": {
+          "$type": "color",
+          "$value": "#A1C5CE",
+          "$description": "slate · cue dash (shape cue required)"
+        },
+        "series.10": {
+          "$type": "color",
+          "$value": "#9AD78C",
+          "$description": "green · cue plus (shape cue required)"
+        }
+      }
+    },
+    "vivid": {
+      "light": {
+        "series.01": {
+          "$type": "color",
+          "$value": "#F66C6D",
+          "$description": "coral · cue circle · no energy accent on the same surface"
+        },
+        "series.02": {
+          "$type": "color",
+          "$value": "#FF8A36",
+          "$description": "apricot · cue square · no energy accent on the same surface"
+        },
+        "series.03": {
+          "$type": "color",
+          "$value": "#FDC010",
+          "$description": "yellow · cue triangle · no energy accent on the same surface"
+        },
+        "series.04": {
+          "$type": "color",
+          "$value": "#BBD23C",
+          "$description": "lime · cue diamond · no energy accent on the same surface"
+        },
+        "series.05": {
+          "$type": "color",
+          "$value": "#2ADB94",
+          "$description": "mint · cue cross · no energy accent on the same surface"
+        },
+        "series.06": {
+          "$type": "color",
+          "$value": "#36D0FF",
+          "$description": "sky · cue star · no energy accent on the same surface"
+        },
+        "series.07": {
+          "$type": "color",
+          "$value": "#00C4BF",
+          "$description": "teal · cue hexagon (shape cue required) · no energy accent on the same surface"
+        },
+        "series.08": {
+          "$type": "color",
+          "$value": "#3295F6",
+          "$description": "blue · cue ring (shape cue required) · no energy accent on the same surface"
+        },
+        "series.09": {
+          "$type": "color",
+          "$value": "#7FA6B0",
+          "$description": "slate · cue dash (shape cue required) · no energy accent on the same surface"
+        },
+        "series.10": {
+          "$type": "color",
+          "$value": "#71B262",
+          "$description": "green · cue plus (shape cue required) · no energy accent on the same surface"
+        }
+      },
+      "dark": {
+        "series.01": {
+          "$type": "color",
+          "$value": "#FF9F9C",
+          "$description": "coral · cue circle"
+        },
+        "series.02": {
+          "$type": "color",
+          "$value": "#FFAF7D",
+          "$description": "apricot · cue square"
+        },
+        "series.03": {
+          "$type": "color",
+          "$value": "#FBCD68",
+          "$description": "yellow · cue triangle"
+        },
+        "series.04": {
+          "$type": "color",
+          "$value": "#C9DD76",
+          "$description": "lime · cue diamond"
+        },
+        "series.05": {
+          "$type": "color",
+          "$value": "#76E5AD",
+          "$description": "mint · cue cross"
+        },
+        "series.06": {
+          "$type": "color",
+          "$value": "#73DAFF",
+          "$description": "sky · cue star"
+        },
+        "series.07": {
+          "$type": "color",
+          "$value": "#38DEDA",
+          "$description": "teal · cue hexagon (shape cue required)"
+        },
+        "series.08": {
+          "$type": "color",
+          "$value": "#7FBCFF",
+          "$description": "blue · cue ring (shape cue required)"
+        },
+        "series.09": {
+          "$type": "color",
+          "$value": "#A1C5CE",
+          "$description": "slate · cue dash (shape cue required)"
+        },
+        "series.10": {
+          "$type": "color",
+          "$value": "#9AD78C",
+          "$description": "green · cue plus (shape cue required)"
+        }
+      }
+    },
+    "ink": {
+      "light": {
+        "series.01": {
+          "$type": "color",
+          "$value": "#963538",
+          "$description": "coral ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.02": {
+          "$type": "color",
+          "$value": "#182327",
+          "$description": "apricot ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.03": {
+          "$type": "color",
+          "$value": "#182327",
+          "$description": "yellow ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.04": {
+          "$type": "color",
+          "$value": "#606E00",
+          "$description": "lime ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.05": {
+          "$type": "color",
+          "$value": "#007047",
+          "$description": "mint ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.06": {
+          "$type": "color",
+          "$value": "#006580",
+          "$description": "sky ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.07": {
+          "$type": "color",
+          "$value": "#006967",
+          "$description": "teal ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.08": {
+          "$type": "color",
+          "$value": "#0E599D",
+          "$description": "blue ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.09": {
+          "$type": "color",
+          "$value": "#355F6A",
+          "$description": "slate ink · text, lines and marks < 3px · ≥ 4.5:1"
+        },
+        "series.10": {
+          "$type": "color",
+          "$value": "#34622A",
+          "$description": "green ink · text, lines and marks < 3px · ≥ 4.5:1"
+        }
+      },
+      "dark": {
+        "series.01": {
+          "$type": "color",
+          "$value": "#FFC8C5",
+          "$description": "coral ink"
+        },
+        "series.02": {
+          "$type": "color",
+          "$value": "#FFCBAC",
+          "$description": "apricot ink"
+        },
+        "series.03": {
+          "$type": "color",
+          "$value": "#F6D389",
+          "$description": "yellow ink"
+        },
+        "series.04": {
+          "$type": "color",
+          "$value": "#D1E195",
+          "$description": "lime ink"
+        },
+        "series.05": {
+          "$type": "color",
+          "$value": "#9BECC1",
+          "$description": "mint ink"
+        },
+        "series.06": {
+          "$type": "color",
+          "$value": "#9CE4FF",
+          "$description": "sky ink"
+        },
+        "series.07": {
+          "$type": "color",
+          "$value": "#81EDE8",
+          "$description": "teal ink"
+        },
+        "series.08": {
+          "$type": "color",
+          "$value": "#BBDBFF",
+          "$description": "blue ink"
+        },
+        "series.09": {
+          "$type": "color",
+          "$value": "#BBDFE8",
+          "$description": "slate ink"
+        },
+        "series.10": {
+          "$type": "color",
+          "$value": "#B8E7AE",
+          "$description": "green ink"
+        }
+      }
+    }
+  },
+  "state": {
+    "light": {
+      "noData.fill": {
+        "$type": "color",
+        "$value": "#D5DAD6",
+        "$description": "135° hatch base"
+      },
+      "zero.outline": {
+        "$type": "color",
+        "$value": "#7D877F",
+        "$description": "measured_zero outline 2px"
+      },
+      "label.ink": {
+        "$type": "color",
+        "$value": "#5C6A61",
+        "$description": "state labels (text.metadata)"
+      },
+      "notYet.fill": {
+        "$type": "color",
+        "$value": "#F3EEDB"
+      },
+      "suppressed.fill": {
+        "$type": "color",
+        "$value": "#E5E9E6"
+      }
+    },
+    "dark": {
+      "noData.fill": {
+        "$type": "color",
+        "$value": "#404844"
+      },
+      "zero.outline": {
+        "$type": "color",
+        "$value": "#93A398"
+      },
+      "label.ink": {
+        "$type": "color",
+        "$value": "#A6B5B1"
+      },
+      "notYet.fill": {
+        "$type": "color",
+        "$value": "#2C2A22"
+      },
+      "suppressed.fill": {
+        "$type": "color",
+        "$value": "#2B3534"
+      }
+    }
+  }
+}

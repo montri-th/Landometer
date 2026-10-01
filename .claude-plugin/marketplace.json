@@ -10,8 +10,8 @@
     {
       "name": "landometer-design-system",
       "source": "./plugins/landometer-design-system",
-      "version": "0.9.6",
-      "description": "Apply the complete LDS 0.9.6 base with separate product Add-ons, three-hue sequential scales, retained brand and exact assets."
+      "version": "0.9.7",
+      "description": "Apply the complete LDS 0.9.7 base with separate product Add-ons, Story analytical colours, optional Location Intelligence profile, retained brand and exact assets."
     }
   ]
 }

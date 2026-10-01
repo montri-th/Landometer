@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.3",
+  "releaseRef": "v0.9.4-mp1",
+  "authorityId": "agent-authority.example.inspect-claim.01",
+  "artifactId": "example.design-system.portfolio-brand-line.th",
+  "actionId": "inspect-claim",
+  "authorizedActorId": "example-reader",
+  "authorizedActorClass": "human_user",
+  "inputSchemaRef": "agent-action-input.example.schema.json",
+  "inputSchemaSha256": "13813cbf91cce77ff19776f22a64875dc57bbcaddf5a4194e6ff83ddf570ab0f",
+  "inputSchemaId": "urn:landometer:agent-action-input:inspect-claim:1.0",
+  "allowedInputClassifications": [
+    "public"
+  ],
+  "status": "active",
+  "policy": "read_only",
+  "authorizedOperations": [
+    "inspect"
+  ],
+  "authorizedSideEffectClasses": [
+    "none"
+  ],
+  "validity": {
+    "notBefore": "2026-09-01T00:33:36+07:00",
+    "expiresAt": null,
+    "revocationRef": "agent-action-revocation.example.json",
+    "revocationSha256": "ef6c6f271d9dbd85930b46c53590801f72ad84e8858cf0377d22fbbd60fb7824",
+    "revocationSchemaRef": "https://landometer.org/design-system/0.9.4/agent-action-revocation.schema.1.2.json",
+    "revocationAttestationRef": "agent-action-revocation.example.attestation.json",
+    "revocationAttestationSha256": "31ab36acba66fd1098c88f540f3b4ea431d9fe1fde13ebb2d50c335ea8719e9d"
+  },
+  "authorizedBy": "Landometer owner",
+  "authorizedAt": "2026-09-01T00:33:36+07:00",
+  "authorityEvidenceRef": "owner-message:2026-09-01:approve-v0.9.1"
+}

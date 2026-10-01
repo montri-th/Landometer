@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:landometer:local-repair:20260929:evidence-value:1",
+  "title": "Numeric evidence value — unsigned local repair",
+  "description": "Numeric value/state pair only. Other record metadata is allowed and remains governed by the original claim/provenance contracts. This schema does not approve a claim.",
+  "type": "object",
+  "required": ["value", "state"],
+  "properties": {
+    "state": {"enum": ["measured", "measured_zero", "no_data", "out_of_scope", "suppressed", "not_yet"]},
+    "value": {"type": ["number", "null"]}
+  },
+  "oneOf": [
+    {"properties": {"state": {"const": "measured"}, "value": {"type": "number", "not": {"const": 0}}}},
+    {"properties": {"state": {"const": "measured_zero"}, "value": {"const": 0}}},
+    {"properties": {"state": {"enum": ["no_data", "out_of_scope", "suppressed", "not_yet"]}, "value": {"type": "null"}}}
+  ]
+}

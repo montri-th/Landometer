@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.1",
+  "releaseRef": "v0.9.4-mp1",
+  "manifestId": "claims.example.portfolio-brand-line.th",
+  "contentRelease": "portfolio-brand-authority-2026-09-01",
+  "owner": "portfolio-owner",
+  "records": [
+    {
+      "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+      "recordRef": "claim-record.example.json",
+      "sha256": "035d97614bb666ecafca54607bfd65aa769ee94d92ada6cdf46db6bce87fd393",
+      "status": "approved",
+      "publicProjectionEligible": true,
+      "approvalAttestationRef": "claim-record.example.approval.attestation.json",
+      "approvalAttestationSha256": "74696365a80bdd7bc542a5a6437d9d6fabce18fe0f4ca8bcece653e45480f258",
+      "evidenceCaptureRef": "claim-evidence-capture.example.json",
+      "evidenceCaptureSha256": "3fc60926aceb47300eb151fea9cba51513186015bf5bbf49e4955f1b586132f1",
+      "evidenceAttestationRef": "claim-evidence-capture.example.attestation.json",
+      "evidenceAttestationSha256": "746e882f6a556ed81df450827fa94cefb7b36980bc71c9ee45ad66d76387c47f"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://landometer.org/design-system/0.9.4/agent-action-receipt.schema.1.3.json",
+  "title": "Landometer signed internal agent action execution receipt v1.3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "releaseRef", "executionId", "executionNonce", "buildCardRef", "buildCardSha256", "terminalRevocationRef", "terminalRevocationSha256", "terminalRevocationSchemaRef", "terminalRevocationAttestationRef", "terminalRevocationAttestationSha256", "artifactId", "actionId", "actor", "operation", "status", "startedAt", "effectAt", "completedAt", "classification", "allowedAudience", "redactionState", "authorityRef", "authoritySha256", "inputRef", "inputSha256", "resultRef", "resultSha256", "sideEffect", "recoveryRef", "recoverySha256", "errorCode", "audienceMessage", "diagnosticsRef", "diagnosticsSha256"],
+  "properties": {
+    "schemaVersion": { "const": "1.3" },
+    "releaseRef": { "const": "v0.9.4-mp1" },
+    "executionId": { "$ref": "#/$defs/nonEmpty" },
+    "executionNonce": { "$ref": "#/$defs/nonce" },
+    "buildCardRef": { "$ref": "#/$defs/safeRef" },
+    "buildCardSha256": { "$ref": "#/$defs/sha256" },
+    "terminalRevocationRef": { "$ref": "#/$defs/safeRef" },
+    "terminalRevocationSha256": { "$ref": "#/$defs/sha256" },
+    "terminalRevocationSchemaRef": { "const": "https://landometer.org/design-system/0.9.4/agent-action-revocation.schema.1.2.json" },
+    "terminalRevocationAttestationRef": { "$ref": "#/$defs/safeRef" },
+    "terminalRevocationAttestationSha256": { "$ref": "#/$defs/sha256" },
+    "artifactId": { "$ref": "#/$defs/nonEmpty" },
+    "actionId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "actor": { "$ref": "#/$defs/nonEmpty" },
+    "operation": { "enum": ["read", "inspect", "draft", "submit", "create", "save", "share", "download", "external_handoff", "confirm", "destructive"] },
+    "status": { "enum": ["succeeded", "failed", "cancelled"] },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "effectAt": { "$ref": "#/$defs/dateTimeOrNull" },
+    "completedAt": { "type": "string", "format": "date-time" },
+    "classification": { "enum": ["public", "internal", "confidential", "restricted"] },
+    "allowedAudience": { "enum": ["internal_preview", "internal_operational"] },
+    "redactionState": { "enum": ["not_required", "redacted"] },
+    "authorityRef": { "$ref": "#/$defs/safeRef" },
+    "authoritySha256": { "$ref": "#/$defs/sha256" },
+    "inputRef": { "$ref": "#/$defs/safeRef" },
+    "inputSha256": { "$ref": "#/$defs/sha256" },
+    "resultRef": { "$ref": "#/$defs/nullableString" },
+    "resultSha256": { "$ref": "#/$defs/nullableSha256" },
+    "sideEffect": {
+      "type": "object", "additionalProperties": false, "required": ["class", "external", "cost", "summary", "reversible"],
+      "properties": {
+        "class": { "enum": ["none", "reversible", "irreversible", "destructive"] },
+        "external": { "type": "boolean" },
+        "cost": { "enum": ["none", "possible", "known"] },
+        "summary": { "$ref": "#/$defs/nonEmpty" },
+        "reversible": { "type": "boolean" }
+      }
+    },
+    "recoveryRef": { "$ref": "#/$defs/nullableString" },
+    "recoverySha256": { "$ref": "#/$defs/nullableSha256" },
+    "errorCode": { "$ref": "#/$defs/nullableString" },
+    "audienceMessage": { "$ref": "#/$defs/nullableString" },
+    "diagnosticsRef": { "$ref": "#/$defs/nullableString" },
+    "diagnosticsSha256": { "$ref": "#/$defs/nullableSha256" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "succeeded" } }, "required": ["status"] },
+      "then": { "properties": { "resultRef": { "$ref": "#/$defs/nonEmpty" }, "resultSha256": { "$ref": "#/$defs/sha256" }, "errorCode": { "type": "null" } } }
+    },
+    {
+      "if": { "properties": { "status": { "enum": ["failed", "cancelled"] } }, "required": ["status"] },
+      "then": { "properties": { "audienceMessage": { "$ref": "#/$defs/nonEmpty" } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "failed" } }, "required": ["status"] },
+      "then": { "properties": { "errorCode": { "$ref": "#/$defs/nonEmpty" } } }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "properties": { "class": { "const": "none" }, "external": { "const": false }, "cost": { "const": "none" } },
+            "required": ["class", "external", "cost"]
+          }
+        },
+        "required": ["sideEffect"]
+      },
+      "then": { "properties": { "effectAt": { "type": "null" } } }
+    },
+    {
+      "if": {
+        "properties": {
+          "sideEffect": {
+            "anyOf": [
+              { "properties": { "class": { "not": { "const": "none" } } }, "required": ["class"] },
+              { "properties": { "external": { "const": true } }, "required": ["external"] },
+              { "properties": { "cost": { "enum": ["possible", "known"] } }, "required": ["cost"] }
+            ]
+          },
+          "status": { "const": "succeeded" }
+        },
+        "required": ["sideEffect", "status"]
+      },
+      "then": { "properties": { "effectAt": { "type": "string", "format": "date-time" } } }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": { "enum": ["failed", "cancelled"] },
+          "effectAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["status", "effectAt"]
+      },
+      "then": { "properties": { "recoveryRef": { "$ref": "#/$defs/nonEmpty" }, "recoverySha256": { "$ref": "#/$defs/sha256" } } }
+    },
+    {
+      "if": { "properties": { "diagnosticsRef": { "$ref": "#/$defs/nonEmpty" } }, "required": ["diagnosticsRef"] },
+      "then": { "properties": { "allowedAudience": { "enum": ["internal_preview", "internal_operational"] }, "diagnosticsSha256": { "$ref": "#/$defs/sha256" } } }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "nonce": { "type": "string", "minLength": 16, "maxLength": 160, "pattern": "^[A-Za-z0-9._:-]+$" },
+    "safeRef": { "type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$" },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "nullableString": { "anyOf": [{ "$ref": "#/$defs/nonEmpty" }, { "type": "null" }] },
+    "nullableSha256": { "anyOf": [{ "$ref": "#/$defs/sha256" }, { "type": "null" }] },
+    "dateTimeOrNull": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] }
+  }
+}

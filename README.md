@@ -1,50 +1,33 @@
-# Landometer Design System 0.9.6
+# Landometer Design System 0.9.7
 
-[Open the design system](https://montri-th.github.io/Landometer/v0.9.6/) · [Download 0.9.6](https://github.com/montri-th/Landometer/releases/tag/v0.9.6) · [Team setup](docs/lds-0.9.6-team-activation.md)
+[Full handbook](https://montri-th.github.io/Landometer/v0.9.7/) · [Story Color Atlas](https://montri-th.github.io/Landometer/v0.9.7/color-atlas.html) · [Location Intelligence](https://montri-th.github.io/Landometer/v0.9.7/location/) · [Release downloads](https://github.com/montri-th/Landometer/releases/tag/v0.9.7)
 
-LDS 0.9.6 introduces three distinct hue anchors for all fourteen sequential analytical families in light and dark themes. For example, count on light surfaces moves from cream through green to blue. All light sequential scales start at brand beige; all high endpoints and dark low endpoints retain their 0.9.5 values. The midpoint is a designed hue transition, not a neutral or meaningful numeric pivot. Lightness remains sequential.
+LDS 0.9.7 introduces the approved Story supporting vocabulary: the original ten colours plus seven purposeful extensions, for seventeen generic colour values. Its twenty analytical families use three explicit anchors and exact 41-sample LUTs. **Both light and dark backgrounds use identical original analytical HEX values and the same value direction.** There are no automatic dark lightness/chroma adjustments. Use readable labels, boundaries and backing surfaces where data fills approach the background.
 
-Six diverging families, categorical colors, atmosphere gradients, brand voice, typography, identity, motion and motif contracts retain their approved 0.9.5 values. Density remains warm and denominator-specific: area orange, population rose, household scarlet, built area gold. Preserve units, thresholds, direction, zero and exceptional value states.
+The separate **Location Intelligence Profile** defines sixteen named colour roles, twelve measured metrics and four qualitative SWOT evidence lenses. It is used alongside the complete LDS base; it does not turn every business concept into a gradient. Four visual routes intentionally reuse Story scales. Names, units, denominators, signs and evidence remain mandatory; the system does not promise colour-only distinction across every metric or viewer.
 
-The website retains the complete handbook inherited from 0.9.1 and developed in 0.9.5: Brand DNA, Voice and Visual, foundations, components, analytical color, motion/motifs, work examples, handoff and product adaptations. Only sequential analytical colors are revised in this release. The owner's wordmark color permission, readable light/dark logo use and rejection of decorative bracket/left-rail highlights remain in force.
+Brand Energy, brand voice, typography, identity, wordmark colour permission, shared motifs/animation, categorical colours and atmosphere recipes preserve their current contracts. The complete handbook retains the useful 0.9.1-origin teaching content and subsequent corrections, including the rejection of decorative bracket or left-rail highlights.
 
 ## Use it
 
-- [Complete standalone normative — people and machines](plugins/landometer-design-system/assets/lds-0.9.6/normative/Landometer-Design-System-v0.9.6.md)
-- [Separate Product Add-ons and Project Sources](deployment/v0.9.6/project-source-0.9.6.md)
-- [Current release and exact entrypoints](plugins/landometer-design-system/assets/lds-0.9.6/machine/release.json)
-- [Portable AI skill](plugins/landometer-design-system/skills/apply-landometer-design-system/SKILL.md)
-- [ChatGPT, Codex, Claude Chat/Cowork/Code and Design activation](docs/lds-0.9.6-team-activation.md)
-- [Discord announcements](docs/lds-0.9.6-discord.md)
+- [Complete standalone LDS normative](plugins/landometer-design-system/assets/lds-0.9.7/normative/Landometer-Design-System-v0.9.7.md)
+- [Separate Location Intelligence Profile](plugins/landometer-design-system/assets/lds-0.9.7/normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md)
+- [Project Sources and product Add-ons](deployment/v0.9.7/project-source-0.9.7.md)
+- [Platform and team setup](docs/lds-0.9.7-team-activation.md)
+- [Discord announcement text](docs/lds-0.9.7-discord.md)
 
-Use the full LDS base alone for general work. For ijji, CityChat or CityWiki, add its separate Product Add-on alongside the full base. Each Markdown file contains human guidance and exact machine JSON; its JSON projection is an alternative, not another required upload. No previous normative master is needed.
+Use one complete base file for general work. Add only the separate Product Add-on and/or Location Profile needed for the task. Markdown is both human- and machine-readable; JSON is an alternative, not another mandatory upload. No previous master or overlay is required.
 
 ```sh
 node plugins/landometer-design-system/scripts/verify.mjs --json
-node plugins/landometer-design-system/scripts/select-scale.mjs --family count --theme light --count 7
-python3 tools/install-lds096.py                 # review local install plan
-python3 tools/install-lds096.py --apply         # Codex + Claude Code, with backups
+node plugins/landometer-design-system/scripts/select-scale.mjs --family water --theme dark --count 7
+python3 tools/install-lds097.py            # review local plan
+python3 tools/install-lds097.py --apply    # local clients, with backups
 node tools/validate-release.mjs
 ```
 
-Use exact supplied 41-stop LUTs or 3/5/7/9-class selections. Do not regenerate colors from endpoints or runtime interpolation. Binary fonts, logos and runtime assets are in the complete package. Package verification does not certify every artifact or activate every team account.
+Release identity: `0.9.7` · `color-srgb-10` · `v0.9.7-owner.1` · `standalone-0.9.7-r1` · website `ui-20261001-lds097-r1`.
 
-## Release identity and history
+This is an owner-approved unsigned distribution. Package integrity is separate from artifact conformance, accessibility, account activation and team adoption. Historical [0.9.6](https://montri-th.github.io/Landometer/v0.9.6/) and [0.9.5](https://montri-th.github.io/Landometer/v0.9.5/) pages and downloads remain byte-preserved for explicit historical pins. New work uses the current release; migration of existing work must be authorized.
 
-- Design System: **0.9.6**
-- Color Set: **color-srgb-09**
-- Owner distribution: **v0.9.6-owner.1**
-- Normative: **standalone-0.9.6-r1**
-- Plugin: **0.9.6**
-- Website build: **ui-20261001-lds096-r1**
-- Owner approval: Montri selected preview R2 and authorized publication as 0.9.6 on 1 October 2026.
-
-This is an owner-approved unsigned distribution. The inherited signature authenticates its original historical package only. No signature, universal accessibility certification, team-wide installation or complete artifact conformance is inferred from this release.
-
-[0.9.5](https://montri-th.github.io/Landometer/v0.9.5/) remains available for explicitly pinned historical work. Its versioned pages, normative files and portable package bytes remain preserved; immutable 0.9.4 and 0.9.1 records are retained. New work uses 0.9.6; adoption of existing artifacts must be explicit.
-
-## Source and publishing
-
-`plugins/landometer-design-system/` is the current portable source. The build copies it into the generated `deployment/v0.9.6/package/` tree and hashes served assets. Historical `deployment/v0.9.5/package/` is a frozen source snapshot so previous download URLs remain stable. ZIP files are GitHub release downloads, not source archives committed to Git.
-
-Required CI retains its stable `validate-lds095` check identifier for branch protection while running the current 0.9.6 validation matrix. Pages verifies the exact deployed bytes. Public handbook pages remain noindex and examples use synthetic data.
+`plugins/landometer-design-system/` is the portable source. The current web build copies it into generated `deployment/v0.9.7/package/` and hashes served assets. Historical versioned packages are frozen. ZIPs are release assets, not generated archives committed into source. CI retains its stable `validate-lds095` check name for branch protection while running current release checks. Handbook pages remain noindex; examples are synthetic.

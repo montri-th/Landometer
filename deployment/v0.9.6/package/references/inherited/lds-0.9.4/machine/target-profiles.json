@@ -1,0 +1,355 @@
+{
+  "schemaVersion": "1.3",
+  "releaseRef": "v0.9.4-mp1",
+  "status": "active",
+  "unknownTargetBehavior": "block",
+  "extensionRegistry": null,
+  "socialStaticScope": "square_1080_and_og_1200x630",
+  "profiles": [
+    {
+      "id": "target.web.responsive.360-1600.01",
+      "formatProfile": "web_public",
+      "runtime": "browser",
+      "unit": "css_px",
+      "canvas": {
+        "minimumInline": 360,
+        "nominalInline": 1440,
+        "maximumTestedInline": 1600,
+        "block": "content_driven"
+      },
+      "safeArea": "browser viewport plus env safe-area insets",
+      "grid": {
+        "gutterByRange": [
+          16,
+          24,
+          32
+        ],
+        "readingMax": 760,
+        "defaultMax": 1120,
+        "wideMax": 1280
+      },
+      "typeAdapter": "css-rem-clamp-v0.9.4",
+      "minimumDiscreteTarget": 44,
+      "requiredFixtures": [
+        "360",
+        "600",
+        "900",
+        "1200",
+        "1440",
+        "1600",
+        "intermediate-stress"
+      ],
+      "fixtureCriteria": {
+        "360": "Render at exactly 360 × 800 CSS pixels at 100% zoom; no horizontal page overflow, clipped meaning, hidden primary action, or target below 44 × 44 CSS pixels is permitted.",
+        "600": "Render at exactly 600 × 900 CSS pixels at 100% zoom; navigation disclosure, reading order, Thai and Latin copy, and the primary action remain complete and operable.",
+        "900": "Render at exactly 900 × 900 CSS pixels at 100% zoom; the intermediate layout preserves hierarchy without an ungoverned breakpoint jump or overlap.",
+        "1200": "Render at exactly 1200 × 900 CSS pixels at 100% zoom; the desktop grid, navigation budget, evidence relationship, and action hierarchy remain intact.",
+        "1440": "Render at exactly 1440 × 900 CSS pixels at 100% zoom; content respects the 760/1120/1280 CSS-pixel container limits and does not create accidental empty bands.",
+        "1600": "Render at exactly 1600 × 1000 CSS pixels at 100% zoom; wide composition preserves the same reading path and does not stretch text beyond the governed reading measure.",
+        "intermediate-stress": "Render at exactly 713 × 823 CSS pixels with the governed longest Thai and English navigation, heading, and CTA strings; no wrap, truncation, overlap, orphan, or hidden destination changes meaning."
+      }
+    },
+    {
+      "id": "target.app.browser-responsive.360-1600.01",
+      "formatProfile": "app_interactive",
+      "runtime": "browser",
+      "unit": "css_px",
+      "canvas": {
+        "minimumInline": 360,
+        "nominalInline": 1440,
+        "maximumTestedInline": 1600,
+        "block": "viewport_and_content"
+      },
+      "safeArea": "browser viewport plus env safe-area insets",
+      "grid": {
+        "gutterByRange": [
+          16,
+          24,
+          32
+        ],
+        "readingMax": 760,
+        "defaultMax": 1120,
+        "wideMax": 1280
+      },
+      "typeAdapter": "css-rem-clamp-v0.9.4",
+      "minimumDiscreteTarget": 44,
+      "requiredFixtures": [
+        "360",
+        "600",
+        "900",
+        "1200",
+        "1440",
+        "1600",
+        "intermediate-stress"
+      ],
+      "fixtureCriteria": {
+        "360": "Render the browser application at exactly 360 × 800 CSS pixels; navigation, task state, permission state, and the primary action remain operable with targets at least 44 × 44 CSS pixels.",
+        "600": "Render the browser application at exactly 600 × 900 CSS pixels; panels and disclosures preserve focus order, labels, results, and recovery without clipping.",
+        "900": "Render the browser application at exactly 900 × 900 CSS pixels; the intermediate state layout preserves task causality without overlap or an ungoverned breakpoint jump.",
+        "1200": "Render the browser application at exactly 1200 × 900 CSS pixels; product navigation, task workspace, evidence, and result regions remain distinct and operable.",
+        "1440": "Render the browser application at exactly 1440 × 900 CSS pixels; the governed grid and reading measures hold through loading, success, empty, partial, stale, permission, and error states.",
+        "1600": "Render the browser application at exactly 1600 × 1000 CSS pixels; wide layout preserves task focus and does not separate controls from their status or result.",
+        "intermediate-stress": "Render at exactly 713 × 823 CSS pixels with the governed longest Thai and English task, navigation, error, and recovery strings; no control label or state meaning truncates."
+      }
+    },
+    {
+      "id": "target.app.native-responsive.360-1280.01",
+      "formatProfile": "app_interactive",
+      "runtime": "native",
+      "unit": "platform_dp",
+      "canvas": {
+        "minimumInline": 360,
+        "nominalInline": 768,
+        "maximumTestedInline": 1280,
+        "block": "platform_window_and_content"
+      },
+      "safeArea": "platform window plus declared system-bar, cutout, and gesture safe-area insets",
+      "grid": {
+        "gutterByRange": [
+          16,
+          24,
+          32
+        ],
+        "readingMax": 760,
+        "defaultMax": 1120,
+        "wideMax": 1280
+      },
+      "typeAdapter": "platform-scaled-type-v0.9.4",
+      "minimumDiscreteTarget": 44,
+      "requiredFixtures": [
+        "compact-360",
+        "regular-768",
+        "expanded-1280",
+        "dynamic-type-200",
+        "safe-area-interruption"
+      ],
+      "fixtureCriteria": {
+        "compact-360": "Render in a native window exactly 360 × 800 platform dp with declared system insets; task navigation, state, and primary action remain visible and directly operable.",
+        "regular-768": "Render in a native window exactly 768 × 1024 platform dp; reading order, pane relationship, focus traversal, and state recovery remain coherent.",
+        "expanded-1280": "Render in a native window exactly 1280 × 900 platform dp; expanded panes do not detach controls from evidence, status, result, or recovery.",
+        "dynamic-type-200": "Render with platform text scaling set to exactly 200%; all content and controls recompose without clipped Thai or Latin text, overlap, or loss of the primary task.",
+        "safe-area-interruption": "Render with maximum declared system-bar/cutout insets, then background and restore the task once; focus, input, permission, progress, and recovery state remain truthful."
+      }
+    },
+    {
+      "id": "target.document.a4-portrait.01",
+      "formatProfile": "document_flow",
+      "runtime": "static",
+      "unit": "mm_pt",
+      "canvas": {
+        "widthMm": 210,
+        "heightMm": 297
+      },
+      "safeArea": {
+        "topMm": 20,
+        "rightMm": 18,
+        "bottomMm": 20,
+        "leftMm": 18
+      },
+      "grid": {
+        "columns": 1,
+        "baselinePt": 6
+      },
+      "typeAdapter": {
+        "captionPt": 8.5,
+        "labelPt": 9,
+        "bodyPt": 10.5,
+        "bodyLeadingPt": 15,
+        "h3Pt": 15,
+        "h2Pt": 21,
+        "h1LatinPt": 32,
+        "h1ThaiPt": 28
+      },
+      "requiredFixtures": [
+        "native-structure",
+        "thai-latin-stress",
+        "short",
+        "long",
+        "pdf-export"
+      ],
+      "fixtureCriteria": {
+        "native-structure": "Inspect the editable document and confirm every used title, heading, paragraph, list, table, caption, note, language, and link role is native rather than simulated by spacing or appearance.",
+        "thai-latin-stress": "Lay out the governed longest Thai and English title, three heading levels, body paragraph, table cell, caption, note, and link strings at every used style; no collision, clipping, tofu, or unintended substitution is permitted.",
+        "short": "Produce an exact two-page A4 portrait document containing title, two heading levels, one table, one figure/caption, one note, and one CTA link; no stranded heading, accidental blank page, or broken reference is permitted.",
+        "long": "Produce an exact twenty-four-page A4 portrait document containing at least six top-level sections, a generated TOC, two tables, two figures, notes, cross-references, and a source appendix; pagination and every generated reference remain correct.",
+        "pdf-export": "Export the exact long fixture to PDF with identical section order, wording, links, alternatives, evidence cues, page identity, and material limitations."
+      }
+    },
+    {
+      "id": "target.pdf.a4-portrait.01",
+      "formatProfile": "pdf_fixed",
+      "runtime": "static",
+      "unit": "mm_pt",
+      "canvas": {
+        "widthMm": 210,
+        "heightMm": 297
+      },
+      "safeArea": {
+        "topMm": 20,
+        "rightMm": 18,
+        "bottomMm": 20,
+        "leftMm": 18
+      },
+      "grid": {
+        "columns": 1,
+        "baselinePt": 6
+      },
+      "typeAdapter": "target.document.a4-portrait.01",
+      "export": {
+        "colorIntent": "screen_and_print_srgb",
+        "fonts": "embed_or_approved_fallback",
+        "links": "preserve"
+      },
+      "requiredFixtures": [
+        "all-pages-render",
+        "tags-order",
+        "thai-latin-stress",
+        "links-bookmarks",
+        "print"
+      ],
+      "fixtureCriteria": {
+        "all-pages-render": "Render every delivered PDF page at 100% and 200% scale and inspect the complete montage; no page may be blank, clipped, substituted, duplicated, or missing.",
+        "tags-order": "Inspect the final PDF tag tree and reading order for every page; title, headings, paragraphs, lists, tables, figures, notes, and links follow the visible sequence without orphaned or duplicate meaningful content.",
+        "thai-latin-stress": "Extract and render the governed Thai and English stress corpus from final PDF bytes; glyphs remain selectable, correctly ordered, and free of tofu or unintended font substitution.",
+        "links-bookmarks": "Resolve every link and bookmark in the final PDF; labels are descriptive, bookmark order equals the heading hierarchy, and no destination is missing or redirected unexpectedly.",
+        "print": "Print-render every page on A4 at 100% scale in color and grayscale simulation; margins, text, graphics, evidence cues, and destinations remain legible and unclipped."
+      }
+    },
+    {
+      "id": "target.deck.16x9.01",
+      "formatProfile": "deck_presentation",
+      "runtime": "static",
+      "unit": "px_pt",
+      "canvas": {
+        "widthPx": 1920,
+        "heightPx": 1080,
+        "aspectRatio": "16:9"
+      },
+      "safeArea": {
+        "topPx": 60,
+        "rightPx": 80,
+        "bottomPx": 60,
+        "leftPx": 80
+      },
+      "grid": {
+        "columns": 12,
+        "gutterPx": 24
+      },
+      "typeAdapter": {
+        "sourceMinimumPt": 12,
+        "bodyMinimumPt": 20,
+        "sectionMinimumPt": 28,
+        "titleMinimumPt": 32
+      },
+      "requiredFixtures": [
+        "montage",
+        "room-distance",
+        "thai-latin-stress",
+        "overflow",
+        "pdf-export"
+      ],
+      "fixtureCriteria": {
+        "montage": "Render every slide in order as a complete 5-column montage with each thumbnail exactly 320 × 180 pixels; section transitions, repetition, density, and one-primary-idea sequencing remain legible.",
+        "room-distance": "Review the 1920 × 1080 deck on a 65-inch 16:9 display from exactly 5 metres; every primary idea, label, evidence cue, and action remains readable without presenter explanation.",
+        "thai-latin-stress": "Apply the governed longest Thai and English title, section, body, source, and action strings to every used layout; no overflow, collision, tofu, or unintended substitution is permitted.",
+        "overflow": "Populate every used layout to its declared maximum text, media, chart, map, source, and action capacity; all content remains inside the 60/80-pixel safe area with no auto-shrink below the governed minima.",
+        "pdf-export": "Export the complete deck to static PDF and verify identical slide order, primary meaning, source cues, alternatives, working links, and material limitations without relying on animation or speaker notes."
+      }
+    },
+    {
+      "id": "target.social.square.1080.01",
+      "formatProfile": "social_static",
+      "runtime": "static",
+      "unit": "px",
+      "canvas": {
+        "widthPx": 1080,
+        "heightPx": 1080,
+        "aspectRatio": "1:1"
+      },
+      "safeArea": {
+        "topPx": 80,
+        "rightPx": 80,
+        "bottomPx": 80,
+        "leftPx": 80
+      },
+      "grid": {
+        "columns": 6,
+        "gutterPx": 24
+      },
+      "typeAdapter": {
+        "sourceMinimumPx": 24,
+        "bodyMinimumPx": 32,
+        "headlineMinimumPx": 56
+      },
+      "requiredFixtures": [
+        "feed-size",
+        "center-crop",
+        "safe-area",
+        "thai-latin-stress",
+        "destination-cue"
+      ],
+      "fixtureCriteria": {
+        "feed-size": "Downsample the exact 1080 × 1080 final creative to 270 × 270 CSS pixels and review at 100% display scale; message, identity, evidence cue, and destination cue remain readable.",
+        "center-crop": "Crop the exact final creative to the centered 864 × 864 pixel region; the complete approved message, identity, evidence cue, and destination cue remain present and unambiguous.",
+        "safe-area": "Overlay an 80-pixel exclusion band on all four edges of the 1080 × 1080 final creative; no essential message, identity, evidence cue, or destination cue intersects the band.",
+        "thai-latin-stress": "Render the governed longest Thai and English headline, source, limitation, and destination strings within the final square; no clipping, collision, tofu, or unintended substitution is permitted.",
+        "destination-cue": "At both 1080 × 1080 and 270 × 270, exactly one truthful destination cue is readable and visually non-interactive; it matches the bound primary CTA destination and does not imitate a button."
+      }
+    },
+    {
+      "id": "target.social.og.1200x630.01",
+      "formatProfile": "social_static",
+      "runtime": "static",
+      "unit": "px",
+      "canvas": {
+        "widthPx": 1200,
+        "heightPx": 630,
+        "aspectRatio": "40:21"
+      },
+      "safeArea": {
+        "topPx": 35,
+        "rightPx": 100,
+        "bottomPx": 35,
+        "leftPx": 100,
+        "note": "text within 1000 × 560; symbol and first title line within the central 630 × 630 square; 2:1 crop tolerant"
+      },
+      "grid": {
+        "columns": 12,
+        "gutterPx": 24
+      },
+      "typeAdapter": {
+        "sourceMinimumPx": 22,
+        "bodyMinimumPx": 28,
+        "headlineMinimumPx": 48,
+        "derivationNote": "candidate — the 22px floor is the destination-cue minimum from the SOCIALFMT-01 amendment; body and headline minimums are proposed between the square target values and that floor and await owner confirmation"
+      },
+      "recognisers": {
+        "fourColourRuleTopEdgePx": 8,
+        "panel": "brand.blue or one declared atmosphere recipe",
+        "measureLinePx": [
+          3,
+          5
+        ],
+        "identityMaxHeightPx": 56
+      },
+      "requiredFixtures": [
+        "feed-size",
+        "text-safe-area",
+        "central-square-crop",
+        "two-to-one-crop",
+        "thai-latin-stress",
+        "destination-cue",
+        "recognisers"
+      ],
+      "fixtureCriteria": {
+        "feed-size": "Downsample the exact 1200 × 630 final creative to 600 × 315 CSS pixels and review at 100% display scale; the statement of what the reader will see, identity, evidence cue, and destination cue remain readable.",
+        "text-safe-area": "Overlay the 1000 × 560 text-safe region centered on the creative; every text element lies inside it.",
+        "central-square-crop": "Crop the exact final creative to the centered 630 × 630 square; the symbol or lockup and the first title line remain complete and unambiguous.",
+        "two-to-one-crop": "Crop the exact final creative to a centered 1200 × 600 region; message, identity, evidence cue, and destination cue remain present.",
+        "thai-latin-stress": "Render the governed longest Thai and English title, description, source, limitation, and destination strings within the final creative; no clipping, collision, tofu, or unintended substitution is permitted.",
+        "destination-cue": "At both 1200 × 630 and 600 × 315, exactly one truthful destination cue of at least 22px is readable and visually non-interactive; it matches the bound primary CTA destination and does not imitate a button.",
+        "recognisers": "The 8px four-colour rule spans the top edge, a Brand Blue panel or one declared atmosphere recipe is present, the 3 × 5px measure line is present, and the identity is at most 56px tall; no motif or animated variant is used."
+      }
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+# Landometer Design System 0.9.4 candidate — preflight rules for web builds (runnable copy: preflight-0.9.4.mjs)
+# Severity: fail blocks delivery (internal preview only); warn must be resolved or recorded in the Build Card.
+# These checks extend the 0.9.1 gates; they do not replace format-pack, accessibility or production receipts.
+release: v0.9.4-mp0-candidate
+ruleset: lds-rules-0.9.4
+supersedes: preflight-0.9.3.yml (superseded 0.9.3 candidates) — the series checks PF-DATAVIZ-04-VIVID-ENERGY / PF-DATAVIZ-04-V5 are renamed PF-DATAVIZ-05-* (the series rule is DATAVIZ-05 in 0.9.4); PF-DATAVIZ-04-HUE is new (DATAVIZ-04 retired hue windows); lineage: preflight-0.9.2.yml (withdrawn candidate) → 0.9.3 (PF-MOTION-04-RUNTIME replaced by PF-MOTIF-02-BYTES; PF-DATAVIZ-03-DARK, PF-GATE-01-EVIDENCE, PF-MOTIF-01-JOB, PF-MOTIF-03-REPLAY, PF-MOTIF-04-BUDGET, PF-MOTIF-05-OVERLAY, PF-EVID-05-LABEL new; PF-MOTIF-06-CARRIER new in 0.9.3-r2)
+checks:
+  - id: PF-DATAVIZ-02-MID
+    rule: DATAVIZ-02
+    severity: fail
+    what: a sequential mid anchor equals any brand.* or energy.* token, sits within OKLab ΔE 5 of one, or has OKLCH chroma above .125 (GATE-01 L-MID-02 values)
+    scope: tokens.v0.9.4.json#/analyticalScales plus any --scale-*-mid override declared in the page
+  - id: PF-DATAVIZ-02-ZONE
+    rule: DATAVIZ-02
+    severity: fail
+    what: two sequential families of one hue zone on one surface
+    how: each [data-surface] element lists its families in data-scale-family (comma separated); at most one family per zone (warm, green, blue)
+  - id: PF-DATAVIZ-03-DARK
+    rule: DATAVIZ-03
+    severity: fail
+    what: a dark scale anchor declared by the page (--scale-<family>-{low|mid|high|neg|zero|pos} inside [data-theme="dark"] or a prefers-color-scheme dark block) differs from the DATAVIZ-03 derivation of the shipped light anchors; a locally resolvable lds-0.9.4-ext.css whose bytes differ from the kit file
+    how: derivation = deriveSequentialDark / deriveDivergingDark of validate-dataviz-gates-0.9.4.mjs (same OKLab code as the LUT generator); the registry values are the reference
+  - id: PF-GATE-01-EVIDENCE
+    rule: GATE-01
+    severity: fail
+    what: contrast-evidence.json is missing, its result is not PASS, it records an undeclared failure, or its subject hashes differ from the colour registry and the shipped ext CSS (evidence older than the bytes it certifies)
+    scope: ../machine/contrast-evidence.json (or --evidence) against color-srgb-07.tokens.json and lds-0.9.4-ext.css
+  - id: PF-DATAVIZ-04-HUE
+    rule: DATAVIZ-04
+    severity: fail
+    what: a --scale-* or --series-* hex value declared by the page or a locally resolvable stylesheet (light blocks and [data-theme="dark"] / prefers-color-scheme dark blocks checked with their theme) lies inside the retired earth window (H 30–100°, C .035–.145, L ≤ .62) or violet window (H 285–345°, C ≥ .04), within OKLab ΔE 6 of one of the eight purged earth/taupe values inside a 20° hue lane (B-HUE-02), or equals one of the ten retired exact values (SC-17); the light clay band (H 22–100°, C .09–.145, L .62–.74) is reported as a warning
+    how: hueVerdict() of validate-dataviz-gates-0.9.4.mjs (or --gates); the kit ext CSS is asserted clean at build; warm pink H 350–20° is legal (owner ruling 17 September 2026)
+  - id: PF-DATAVIZ-05-VIVID-ENERGY
+    rule: DATAVIZ-05
+    severity: warn
+    what: a [data-series="vivid"] chart shares a surface with an energy accent (--energy-* or .energy-* usage, or an energy hex literal); the sky slot counts as an energy accent in either variant
+  - id: PF-DATAVIZ-05-V5
+    rule: DATAVIZ-05
+    severity: warn
+    what: deprecated landometer-series-10-v5 names (--ldm-series-NN-light/dark) used in new work
+  - id: PF-FAVICON-01-SET
+    rule: FAVICON-01
+    severity: fail
+    what: icon set incomplete — needs rel=icon 16, 32 and 48, apple-touch-icon 180, rel=manifest, and theme-color for light and dark; a motif SVG used as an icon
+  - id: PF-FAVICON-01-TITLE
+    rule: FAVICON-01
+    severity: fail
+    what: <title> is not "[page] · [product]" (middle dot separator, page first) or exceeds 60 characters
+  - id: PF-SOCIALFMT-01-OG
+    rule: SOCIALFMT-01
+    severity: fail
+    what: og:title (≤ 60), og:description (≤ 155), og:url, og:image with og:image:width 1200 / og:image:height 630 and og:image:alt are missing or off-template; exclamation marks, "click now" or emoji present; og:image points at a motif SVG
+  - id: PF-MOTION-01-INFINITE
+    rule: MOTION-01 / MOTIF-03
+    severity: fail
+    what: animation-iteration-count: infinite (or "infinite" inside an animation shorthand) in inline styles, <style> blocks or locally resolvable stylesheets
+  - id: PF-MOTIF-01-JOB
+    rule: MOTIF-01
+    severity: fail
+    what: a .lds-motif-frame whose data-kind is not one of the six registered kinds, whose data-job is not in that kind's allowedJobs (or is a prohibited job), whose data-beat differs from the kind's beat, or whose data-variant is not full|quiet; an <lm-motif kind> that differs from its frame
+    scope: motif-register.v0.9.4.json#/sharedFamily/kinds (or --register)
+  - id: PF-MOTIF-02-BYTES
+    rule: MOTIF-02 / MOTION-04
+    severity: fail
+    what: an <lm-motif> outside a .lds-motif-frame; a frame without autoplay="false", without a <noscript> final-state SVG of the same kind and variant (both final states when data-variant-dark is set, in .lds-motif-noscript wrappers data-theme-variant="light|dark" holding exactly the light and the dark variant — a <picture>/<source media> fallback follows only the OS preference and fails), without motion-controller.js + motif-frame.js, or without exactly one .lds-motion-pause control; locally resolvable runtime files (landometer-motifs.js/.css) and final-state SVGs whose SHA-256 differs from the register; a motif SVG that is not served from the kit path with its governed bytes
+  - id: PF-MOTIF-03-REPLAY
+    rule: MOTIF-03
+    severity: fail
+    what: an <lm-motif> with loop, replay="enter" or replay="hover" (the frame owns replay); data-cycle-ms below 2000
+  - id: PF-MOTIF-04-BUDGET
+    rule: MOTIF-04
+    severity: fail
+    what: more than three .lds-motif-frame elements on the page; two frames inside one [data-task-surface]; a frame inside [data-region="first_answer"], [data-region="primary_proof"] or [data-region="primary_action"]; a page with motion but no data-region markers for the first answer, the primary proof and the primary action (the regions must be declared so the check is real)
+  - id: PF-MOTIF-05-OVERLAY
+    rule: MOTIF-05
+    severity: fail
+    what: a [data-product-overlay] whose id is not a registered overlay with owner_approved status and registered bytes (pre-approved families without bytes block), or that contains a shared .lds-motif-frame (mixed lockup); a shared motif frame nested in an overlay
+    scope: motif-register.v0.9.4.json#/productOverlays
+  - id: PF-MOTIF-06-CARRIER
+    rule: MOTIF-06
+    severity: fail
+    what: a .lds-motif-frame or [data-motif-static] without data-host-surface; a carrier id that motif-register.v0.9.4.json#/carrierPolicy/carriers does not know; a kind × variant × carrier pair missing from carrierPolicy.allowed in any theme the page renders (<meta name="color-scheme">, both when absent) — e.g. a full variant on brand.blue, on a dark surface or on an atmosphere, a quiet variant on a light surface; data-variant-dark other than "quiet" on a full frame, or on a page that renders one theme only; a full frame whose <lm-motif> lacks ink="blue", or a quiet frame with an ink other than sky; an inline background that contradicts the declared carrier; governed motif SVG bytes or motif <img> placed without data-motif-static and data-host-surface
+    how: carrier resolution and allowed pairs come from measure-motif-carriers-0.9.4.mjs (or --carriers) and the register; grounds painted by classes are checked in the browser (MOTIF-06-B)
+    scope: motif-register.v0.9.4.json#/carrierPolicy (or --register)
+  - id: PF-EVID-05-STATE
+    rule: EVID-05
+    severity: fail
+    what: an EvidenceCard without data-state; a table cell rendering 0, —, -, blank or N/A without data-state; the literal N/A anywhere in a value cell
+  - id: PF-EVID-05-LABEL
+    rule: EVID-05
+    severity: fail
+    what: a no_data label set on the hatch fill — a page style that puts the hatch background on an element that also contains .lds-state-label (the hatch belongs to the glyph box, map unit or swatch; the label sits beside it on plain ground)
+  - id: PF-EVID-05-PAYLOAD
+    rule: EVID-05
+    severity: fail
+    what: (with --json) an object whose value is 0 or null has no state from the five-value enum
+  - id: PF-COLOR-01-HEX
+    rule: COLOR-01
+    severity: fail
+    what: a hex colour literal in inline styles or <style> that is not in color-srgb-07.production.css or the 41-step LUTs (authored colour must resolve a governed token); gradient-only atmosphere values pass only inside their exact recipe from tokens.v0.9.4.json#/atmosphere/recipes

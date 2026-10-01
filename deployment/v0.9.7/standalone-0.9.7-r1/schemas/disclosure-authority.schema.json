@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/disclosure-authority.schema.json",
+  "title": "Landometer non-ordinary disclosure authority v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "authorityId",
+    "artifactId",
+    "purpose",
+    "status",
+    "authorizedBy",
+    "authorizedAt",
+    "authorityEvidenceRef",
+    "allowedFieldClasses"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "releaseRef": {
+      "const": "v0.9.7-owner.1"
+    },
+    "authorityId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "artifactId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "purpose": {
+      "enum": [
+        "design_system_reference",
+        "provenance_record"
+      ]
+    },
+    "status": {
+      "const": "approved"
+    },
+    "authorizedBy": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "authorizedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "authorityEvidenceRef": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "allowedFieldClasses": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "release_identifiers",
+          "schema_examples",
+          "provenance_facts",
+          "approval_facts"
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "purpose": {
+            "const": "design_system_reference"
+          }
+        },
+        "required": [
+          "purpose"
+        ]
+      },
+      "then": {
+        "properties": {
+          "allowedFieldClasses": {
+            "items": {
+              "enum": [
+                "release_identifiers",
+                "schema_examples"
+              ]
+            },
+            "contains": {
+              "const": "release_identifiers"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "purpose": {
+            "const": "provenance_record"
+          }
+        },
+        "required": [
+          "purpose"
+        ]
+      },
+      "then": {
+        "properties": {
+          "allowedFieldClasses": {
+            "items": {
+              "enum": [
+                "provenance_facts",
+                "approval_facts"
+              ]
+            },
+            "contains": {
+              "const": "provenance_facts"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.7 contract, revision standalone-0.9.7-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

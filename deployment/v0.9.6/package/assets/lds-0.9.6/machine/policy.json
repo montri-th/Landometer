@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "lds-0.9.6-policy-1",
+  "releaseRef": "v0.9.6-owner.1",
+  "colorSetId": "color-srgb-09",
+  "approval": {
+    "authority": "Montri, owner instruction in this conversation",
+    "date": "2026-10-01",
+    "approvedVisualBuild": "lds095-sequential-three-anchor-20260930-r2",
+    "approvedVisualSha256": "0ae97bf20fe51521ddb71aed3f5ae99f5206cd934492eff4934e97a29765e4fa",
+    "signatureStatus": "unsigned-owner-approved",
+    "cryptographicReleaseAttestation": false
+  },
+  "precedence": [
+    "Complete standalone LDS0.9.6 normative and exact assets for adopted0.9.6 work",
+    "Separate applicable product Add-on binds the exact current base",
+    "Historical packages apply only to explicitly pinned historical work"
+  ],
+  "sourceRules": {
+    "COLOR-01": "Exact production CSS or exact class/LUT records in color-srgb-09 only. New literals are not allowed by visual approximation.",
+    "DATAVIZ-02": "Every sequential family has three explicit anchors at indices0/20/40, with a visibly distinct middle hue. Use exact approved41-sample theme LUTs; classes3/5/7/9 at round(i*40/(n-1)); never interpolate at runtime.",
+    "DATAVIZ-03": "Theme-specific approved LUTs replace the historical dark-anchor formula and temporary mid-to-high restriction. Preserve full ranges in both themes.",
+    "DATAVIZ-04": "Every delivered analytical sample must avoid the applicable earth and violet windows; pink is allowed. Domain, unit and redundant cues remain mandatory.",
+    "DATAVIZ-05": "Stable 10 IDs and cues; exact unchanged light values plus approved dark soft/vivid/ink. Deprecated v5 aliases prohibited.",
+    "EVID-05": "Six value states: measured, measured_zero, no_data, out_of_scope, suppressed, not_yet; finite nonzero, zero, or null respectively.",
+    "SOCIALFMT-01": "Full inherited sidecar contract admits square1080x1080 and OG1200x630 using the new schema; creative hash and dimensions required.",
+    "GOV-01/RELEASE-01": "This owner-approved distribution is unsigned. An artifact may pin this exact channel and report scoped checks, but MUST NOT fabricate or inherit a signed 0.9.5 receipt or call itself fully conformant from package verification."
+  },
+  "analytical": {
+    "families": 20,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "samplesPerTheme": 41,
+    "classCounts": [
+      3,
+      5,
+      7,
+      9
+    ],
+    "recommendedClassCounts": [
+      5,
+      7
+    ],
+    "selection": "round(i * 40 / (n - 1))",
+    "minAdjacentClassDeltaEOK": 2.2,
+    "fixedLutRequired": true,
+    "runtimeInterpolation": "forbidden",
+    "noDataSeparateFromZero": true,
+    "domainAndThresholds": "consumer supplied; never silently normalized or clamped",
+    "outlierPolicy": "consumer must declare reject, extend with approved scale, or explicit end-bin; never silently clamp",
+    "divergingMidpoint": "must be meaningful and named; no equal-brightness arm claim",
+    "warmDensity": {
+      "density.area": "orange",
+      "density.capita": "rose",
+      "density.household": "scarlet",
+      "built": "gold"
+    },
+    "semanticCuesRequired": [
+      "metric label",
+      "unit",
+      "denominator when density",
+      "legend",
+      "accessible values/table"
+    ],
+    "dataRolesCannotUseAtmosphere": true,
+    "sequentialAnchors": {
+      "count": 3,
+      "indices": [
+        0,
+        20,
+        40
+      ],
+      "lightStart": "#F2F1DF",
+      "middleHue": "distinct from the end hue, never merely its lighter tint",
+      "singleDirection": true,
+      "lightness": "strictly decreasing in light; strictly increasing in dark",
+      "relativeLuminance": "same strict direction as lightness",
+      "approvalSourceSha256": "0ae97bf20fe51521ddb71aed3f5ae99f5206cd934492eff4934e97a29765e4fa",
+      "constructionOnly": "two OKLab segments through the three approved anchors; consumers use exact LUT samples",
+      "notDiverging": "The middle colour is a perceptual turn, not zero, a balance point or a second data direction."
+    }
+  },
+  "categorical": {
+    "stableIds": true,
+    "bindBy": "category ID",
+    "nonColorCuesRequired": true,
+    "darkInkMinContrastOnCanvas": 4.5,
+    "fillSeparation": ">=1px border.default or ink outline; do not imply all light fills meet3:1",
+    "vividAndEnergyAccentShareSurface": false
+  },
+  "forbiddenAliases": [
+    "--ldm-series-NN-light",
+    "--ldm-series-NN-dark",
+    "--ldm-product-ijji-*",
+    "--scale-density-*"
+  ],
+  "brand": {
+    "voice": [
+      "calm",
+      "clear",
+      "evidence-aware",
+      "civic-minded",
+      "action-capable"
+    ],
+    "preserve": [
+      "protected lines and roles",
+      "brand core",
+      "foundation",
+      "semantic states",
+      "typography",
+      "logo assets",
+      "7 atmosphere recipes",
+      "layout and motion contracts"
+    ],
+    "ijjiIdentity": "ground.mist for light; #59C7E8 to #3BD3CB for dark. Retired warm product aliases must not be used as identity."
+  },
+  "verificationBounds": [
+    "Package parity and analytical math are automated.",
+    "Rendering, actual surface contrast, native Thai copy, source truth, threshold semantics, CVD/grayscale usability and each output format require artifact review.",
+    "No claim of signed0.9.6 release, complete conformance, universal platform enforcement or team installation.",
+    "Inherited open governance/product-icon/motif/signing follow-ups remain open unless specifically resolved here."
+  ]
+}

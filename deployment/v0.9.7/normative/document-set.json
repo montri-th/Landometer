@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "lds-standalone-document-set-1",
+  "revision": "standalone-0.9.7-r1",
+  "distributionRevision": "standalone-0.9.7-r1",
+  "dsVersion": "0.9.7",
+  "releaseRef": "v0.9.7-owner.1",
+  "colorSetId": "color-srgb-10",
+  "installationModel": "one complete LDS base + the separate applicable product Add-on",
+  "documents": [
+    {
+      "kind": "base",
+      "requiredNormativeFiles": 1,
+      "product": "landometer",
+      "title": "Landometer Design System v0.9.7",
+      "documentId": "lds-0.9.7-landometer-standalone-r1",
+      "files": [
+        {
+          "path": "Landometer-Design-System-v0.9.7.md",
+          "bytes": 1142051,
+          "sha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+          "use": "One file for people, AI and Project Sources; includes complete machine JSON."
+        },
+        {
+          "path": "Landometer-Design-System-v0.9.7.json",
+          "bytes": 1872952,
+          "sha256": "540529b6540ceea62a6cd1cddaa0f68e0a940f9c35ae8a7c81adcfb5e8526865",
+          "use": "Lossless machine projection, an alternative to Markdown; do not upload both."
+        }
+      ]
+    },
+    {
+      "kind": "addon",
+      "requiredNormativeFiles": 2,
+      "product": "ijji",
+      "title": "ijji Add-on v0.5.5 for LDS v0.9.7",
+      "documentId": "ijji-addon-0.5.5-lds-0.9.7-r1",
+      "baseDocument": {
+        "documentId": "lds-0.9.7-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.7.md",
+        "sha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+        "dsVersion": "0.9.7",
+        "releaseRef": "v0.9.7-owner.1",
+        "colorSetId": "color-srgb-10"
+      },
+      "files": [
+        {
+          "path": "ijji-Add-on-v0.5.5-for-LDS-v0.9.7.md",
+          "bytes": 227830,
+          "sha256": "3c244db0b554f64b038e4660f649b31a2c16dd538a13c360080d03ef05f02453",
+          "use": "Product Add-on for people, AI and Project Sources; upload alongside the complete LDS 0.9.7 base."
+        },
+        {
+          "path": "ijji-Add-on-v0.5.5-for-LDS-v0.9.7.json",
+          "bytes": 253631,
+          "sha256": "c21aac488a77fbacd5bb885399fb0abfd06318debea6658d99aa94bd58d9761d",
+          "use": "Lossless machine alternative to this Add-on Markdown; do not upload both."
+        }
+      ]
+    },
+    {
+      "kind": "addon",
+      "requiredNormativeFiles": 2,
+      "product": "citychat",
+      "title": "CityChat Add-on v0.9.2 for LDS v0.9.7",
+      "documentId": "citychat-addon-0.9.2-lds-0.9.7-r1",
+      "baseDocument": {
+        "documentId": "lds-0.9.7-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.7.md",
+        "sha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+        "dsVersion": "0.9.7",
+        "releaseRef": "v0.9.7-owner.1",
+        "colorSetId": "color-srgb-10"
+      },
+      "files": [
+        {
+          "path": "CityChat-Add-on-v0.9.2-for-LDS-v0.9.7.md",
+          "bytes": 24010,
+          "sha256": "345ef4054d7a646a73a8b369549c58c8b11d3190e39de5aa0f59704d6a3223ad",
+          "use": "Product Add-on for people, AI and Project Sources; upload alongside the complete LDS 0.9.7 base."
+        },
+        {
+          "path": "CityChat-Add-on-v0.9.2-for-LDS-v0.9.7.json",
+          "bytes": 26313,
+          "sha256": "ba76edca1816ecd3f9bef04b76d2d6c15ecc3561680b5af67250cd879005980a",
+          "use": "Lossless machine alternative to this Add-on Markdown; do not upload both."
+        }
+      ]
+    },
+    {
+      "kind": "addon",
+      "requiredNormativeFiles": 2,
+      "product": "citywiki",
+      "title": "CityWiki Add-on v1.0.0 for LDS v0.9.7",
+      "documentId": "citywiki-addon-1.0.0-lds-0.9.7-r1",
+      "baseDocument": {
+        "documentId": "lds-0.9.7-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.7.md",
+        "sha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+        "dsVersion": "0.9.7",
+        "releaseRef": "v0.9.7-owner.1",
+        "colorSetId": "color-srgb-10"
+      },
+      "files": [
+        {
+          "path": "CityWiki-Add-on-v1.0.0-for-LDS-v0.9.7.md",
+          "bytes": 64342,
+          "sha256": "2d91851241bb3a345751f62c801431ce01f67a958a848612fee66dc99f520a7f",
+          "use": "Product Add-on for people, AI and Project Sources; upload alongside the complete LDS 0.9.7 base."
+        },
+        {
+          "path": "CityWiki-Add-on-v1.0.0-for-LDS-v0.9.7.json",
+          "bytes": 67911,
+          "sha256": "71aed7fbf07c1f519bbbd5c9644ac4915e8c49b8812466196e3449dd26310c30",
+          "use": "Lossless machine alternative to this Add-on Markdown; do not upload both."
+        }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "kind": "profile",
+      "product": "location-intelligence",
+      "documentId": "location-intelligence-profile-lds-0.9.7-r1",
+      "requiredNormativeFiles": 2,
+      "baseDocument": {
+        "documentId": "lds-0.9.7-landometer-standalone-r1",
+        "path": "Landometer-Design-System-v0.9.7.md",
+        "sha256": "d3085cbc0a50195f1cbf0c77b1d77c0d19b84364daf2948eb367348d65432d96",
+        "dsVersion": "0.9.7",
+        "releaseRef": "v0.9.7-owner.1",
+        "colorSetId": "color-srgb-10"
+      },
+      "files": [
+        {
+          "path": "Location-Intelligence-Profile-for-LDS-v0.9.7.md",
+          "bytes": 123685,
+          "sha256": "5d4856041709735d3a04d4a510a88b551df86c211fdcab8a0707e8fe7c9efc3b",
+          "use": "Optional Location profile alongside the complete LDS base; not an additional generic LDS rulebook."
+        },
+        {
+          "path": "Location-Intelligence-Profile-for-LDS-v0.9.7.json",
+          "bytes": 178573,
+          "sha256": "a592bfd8d1934b4c118573b0faabbb54e0c4023cdfce342916ce9b8b752346e2",
+          "use": "Lossless machine alternative; do not upload both forms."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,746 @@
+{
+  "schema": "location-colour-study-metric-semantics-1",
+  "status": "draft-candidate-only",
+  "baseStudy": "lds-story-study-20261001-r4",
+  "nameTh": "กรอบความหมายสีสำหรับ Location Intelligence",
+  "scope": "Business/site/branch decision evidence. No release, installed normative, original Story candidate or account changes. No colors are specified in this file.",
+  "metricCount": 16,
+  "sharedRules": {
+    "requiredContext": [
+      "business_profile",
+      "metric_definition",
+      "geographic_unit_id_and_geometry",
+      "catchment_definition",
+      "comparison_cohort",
+      "source_vintage",
+      "coverage",
+      "numerator_unit",
+      "denominator_unit_when_applicable",
+      "period",
+      "classification_thresholds",
+      "direction",
+      "evidence_state",
+      "uncertainty",
+      "next_validation"
+    ],
+    "evidenceStates": [
+      "observed",
+      "derived-from-observed",
+      "modelled",
+      "proxy",
+      "hypothesis",
+      "user-judgment",
+      "missing",
+      "unverified",
+      "suppressed",
+      "not-applicable"
+    ],
+    "localeInsight": "Contextual prior for planning, field validation, engagement and prioritization only. Require locale_id-to-municipality/community/service-boundary crosswalk before aggregation. Not official population, eligibility, statutory boundary, risk determination or proof of actual behaviour.",
+    "comparison": "Compute ratios from aggregated raw values with compatible boundaries; do not average local ratios or percentiles into a new geography. Preserve source counts, overlapping catchments, unknown cases and zero-denominator handling.",
+    "swot": "The four SWOT categories are lenses, not four natural scalar measures. Use text/evidence first. Scores require explicit criteria, weights, coverage and a named comparison. Strength/weakness are internal; opportunity/threat external. None is automatically a probability. In this preview the four lenses are categorical and useScale=none; optionalFutureRubric is future guidance, not an active numeric measure.",
+    "scoring": "Eligibility filters and ranking weights are different. Weight-only edits must not silently change eligible membership. Missing is not zero and is not a negative fact.",
+    "palette": "Supporting-palette size counts useful color roles, not uniquely named metrics. Exact duplicate and near-duplicate whole routes must be tested globally, while adjacent/overlaid metrics need a separate selected-screen test. Reuse is allowed across separately labeled contexts when semantics agree; no unlimited globally distinguishable rainbow claim.",
+    "darkTheme": "Preserve metric meaning, hue role and anchor roles across themes. Use theme-specific perceptual lightness/chroma targets with exact authored LUTs. Neither hex inversion, global opacity nor one hue rotation is an adequate universal dark-mode formula. Dark risk/pressure salience needs separate actual-size review.",
+    "bannedHues": "No purple or brown at anchors or intermediate LUT values. Numeric gates and visual appearance are separate; clay-band warnings remain visible.",
+    "nonColorCues": "Always show the full metric label, unit, numerator/denominator and legend. Two-letter+shape pair is supplementary; repeated shapes are intentional and their short labels distinguish them.",
+    "fixture": "All examples in this file are synthetic illustrations. No figures describe a real site or customer group."
+  },
+  "metrics": [
+    {
+      "id": "li.demand",
+      "labelTh": "ความต้องการซื้อ",
+      "labelEn": "Demand",
+      "role": "modelled-or-observed-quantity",
+      "group": "market-fundamentals",
+      "unit": "ครั้งซื้อ/เดือน ในหมวดธุรกิจที่กำหนด",
+      "numerator": "จำนวนโอกาสซื้อในหมวดที่เกี่ยวข้อง โดยประกาศส่วนที่สังเกตจริงและส่วนที่ประมาณ",
+      "denominator": "ช่วงเวลา 1 เดือน; ไม่ใช่ density และไม่หารประชากรโดยปริยาย",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "แบบจำลองได้ 1,200 ครั้งซื้อ/เดือน โดยระบุหมวด พื้นที่ และสมมติฐานความถี่"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "มีโอกาสซื้อรวมมากกว่า ไม่ได้ยืนยันยอดขายของสาขาใหม่",
+      "evidenceBoundary": "POI ประชากร การเดินทางและ Locale Insight เป็นบริบท/proxy ได้ตามขอบเขต ไม่ใช่จำนวนลูกค้าจริง ต้องกำหนดธุรกิจ กลุ่มเป้าหมาย ช่วงเวลา และฐานข้อมูล",
+      "nonColorCue": {
+        "shortLabel": "DM",
+        "shape": "circle",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "activity",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "market-fundamentals",
+        "demand-trend",
+        "market-structure"
+      ],
+      "recommendedMarker": {
+        "text": "D",
+        "shape": "circle",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "DM"
+      }
+    },
+    {
+      "id": "li.supply",
+      "labelTh": "กำลังให้บริการที่มีอยู่",
+      "labelEn": "Supply",
+      "role": "observed-or-modelled-capacity",
+      "group": "market-fundamentals",
+      "unit": "ครั้งให้บริการ/เดือน หรือหน่วยกำลังบริการที่เทียบ demand ได้",
+      "numerator": "กำลังให้บริการที่เปิดดำเนินงานจริง แยก own/competitor/unknown และระบุการประมาณกำลัง",
+      "denominator": "ช่วงเวลาเดียวกับ demand; ไม่ใช่จำนวนร้านอย่างเดียว",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ตรวจร้านและประมาณกำลังรวม 900 ครั้งให้บริการ/เดือน; ถ้ามีเพียง 9 POIs ให้เรียกว่า 9 จุดบริการ"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "มีทางเลือกหรือกำลังบริการมากกว่า ไม่ได้แปลว่าแข่งรุนแรงกว่าเสมอ",
+      "evidenceBoundary": "จำนวน POI ไม่ยืนยัน capacity, utilization หรือ market share; ต้องจัดการร้านปิด ร้านซ้ำ หลายผู้เช่าและแบรนด์ที่ไม่ทราบ",
+      "nonColorCue": {
+        "shortLabel": "SP",
+        "shape": "square",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "market-fundamentals",
+        "market-structure"
+      ],
+      "recommendedMarker": {
+        "text": "S",
+        "shape": "square",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "SP"
+      }
+    },
+    {
+      "id": "li.market_size",
+      "labelTh": "ขนาดตลาด",
+      "labelEn": "Market size",
+      "role": "modelled-or-observed-monetary-quantity",
+      "group": "market-fundamentals",
+      "unit": "บาท/เดือน หรือสกุลเงิน/ช่วงเวลาที่ระบุ",
+      "numerator": "ยอดใช้จ่ายรวมในหมวดและขอบเขตที่กำหนด; หากประมาณใช้จำนวนโอกาสซื้อ × ค่าใช้จ่ายต่อครั้งที่มีหลักฐาน",
+      "denominator": "ช่วงเวลาเดียวกัน และ market definition เดียวกัน",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "1,200 ครั้งซื้อ/เดือน × 300 บาท/ครั้ง = ตลาดประมาณ 360,000 บาท/เดือน"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "มูลค่าตลาดรวมสูงกว่า ไม่ใช่รายได้ที่สาขาใหม่จะได้",
+      "evidenceBoundary": "แยก total/serviceable/obtainable market; รายได้ทั่วไปหรือประชากรไม่ได้เป็น market size โดยตรง และ catchment ซ้อนทับต้องไม่บวกซ้ำ",
+      "nonColorCue": {
+        "shortLabel": "MS",
+        "shape": "hexagon",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "price",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "market-fundamentals",
+        "site-economics"
+      ],
+      "recommendedMarker": {
+        "text": "M",
+        "shape": "hexagon",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "MS"
+      }
+    },
+    {
+      "id": "li.strength",
+      "labelTh": "จุดแข็ง",
+      "labelEn": "Strength",
+      "role": "internal-evidence-lens",
+      "group": "swot-lenses",
+      "unit": "รายการหลักฐาน/สมมติฐานที่จัดประเภท; ไม่มี scalar โดยธรรมชาติ",
+      "numerator": null,
+      "denominator": null,
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ตัวอย่างสมมติ: พื้นที่หน้าร้านของกิจการเอื้อต่อรูปแบบบริการที่กำหนด มีหลักฐานตรวจพื้นที่"
+      },
+      "useScale": "none",
+      "scaleCondition": "Categorical evidence-lens role only in this preview. A future explicit numeric rubric requires a separate contract and review.",
+      "pivot": null,
+      "highMeaning": "ไม่ใช้สูง/ต่ำกับ lens นี้โดยตรง; แสดงหลักฐาน ความเกี่ยวข้องและสถานะ ไม่อนุมานเป็นคะแนนหรือ probability",
+      "evidenceBoundary": "SWOT เป็น lens ไม่ใช่ตัวแปรที่มีหน่วยโดยธรรมชาติ ต้องมี business strategy/cohort และหลักฐาน; ถ้าไม่มี rubric ให้ใช้รายการข้อความ ไม่สร้าง gradient",
+      "nonColorCue": {
+        "shortLabel": "ST",
+        "shape": "cross",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "swot-internal",
+        "swot-positive-evidence"
+      ],
+      "recommendedMarker": {
+        "text": "+",
+        "shape": "cross",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "ST"
+      },
+      "optionalFutureRubric": {
+        "unit": "หลักฐานจุดแข็ง; คะแนน rubric 0–100 เฉพาะเมื่อมีเกณฑ์",
+        "numerator": "ผลรวมค่าน้ำหนัก × ระดับข้อได้เปรียบภายในตาม rubric ที่ประกาศ",
+        "denominator": "ผลรวมน้ำหนักที่มีหลักฐานครบตามเกณฑ์ coverage; ไม่เปลี่ยนน้ำหนักเงียบเมื่อ missing",
+        "scaleCondition": "Render a scale only for an explicitly defined scalar rubric; otherwise use non-quantitative evidence cards."
+      }
+    },
+    {
+      "id": "li.weakness",
+      "labelTh": "จุดอ่อน",
+      "labelEn": "Weakness",
+      "role": "internal-evidence-lens",
+      "group": "swot-lenses",
+      "unit": "รายการหลักฐาน/สมมติฐานที่จัดประเภท; ไม่มี scalar โดยธรรมชาติ",
+      "numerator": null,
+      "denominator": null,
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ตัวอย่างสมมติ: เวลาให้บริการปัจจุบันไม่ครอบคลุมช่วงที่ตั้งเป้า ยังต้องตรวจ staffing constraint"
+      },
+      "useScale": "none",
+      "scaleCondition": "Categorical evidence-lens role only in this preview. A future explicit numeric rubric requires a separate contract and review.",
+      "pivot": null,
+      "highMeaning": "ไม่ใช้สูง/ต่ำกับ lens นี้โดยตรง; แสดงหลักฐาน ความเกี่ยวข้องและสถานะ ไม่อนุมานเป็นคะแนนหรือ probability",
+      "evidenceBoundary": "ไม่ถือว่า weakness = 100 − strength; ใช้คนละชุดหลักฐานได้ และต้องไม่ยกระดับ missing ให้เป็นจุดอ่อนจริง",
+      "nonColorCue": {
+        "shortLabel": "WK",
+        "shape": "triangle",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "swot-internal",
+        "swot-negative-evidence"
+      ],
+      "recommendedMarker": {
+        "text": "−",
+        "shape": "triangle",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "WK"
+      },
+      "optionalFutureRubric": {
+        "unit": "หลักฐานจุดอ่อน; คะแนน rubric 0–100 เฉพาะเมื่อมีเกณฑ์",
+        "numerator": "ผลรวมค่าน้ำหนัก × ระดับข้อจำกัดภายในหรือช่องว่างจาก requirement",
+        "denominator": "ผลรวมน้ำหนักที่ประเมินได้ตามเกณฑ์ coverage เดียวกัน",
+        "scaleCondition": "Render a scale only for an explicitly defined scalar rubric; otherwise use non-quantitative evidence cards."
+      }
+    },
+    {
+      "id": "li.opportunity",
+      "labelTh": "โอกาสภายนอก",
+      "labelEn": "Opportunity",
+      "role": "external-evidence-and-hypothesis-lens",
+      "group": "swot-lenses",
+      "unit": "รายการหลักฐาน/สมมติฐานที่จัดประเภท; ไม่มี scalar โดยธรรมชาติ",
+      "numerator": null,
+      "denominator": null,
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ตัวอย่างสมมติ: พบความต้องการบริการบางช่วงที่ยังรองรับไม่พอ เป็น hypothesis รอ field validation"
+      },
+      "useScale": "none",
+      "scaleCondition": "Categorical evidence-lens role only in this preview. A future explicit numeric rubric requires a separate contract and review.",
+      "pivot": null,
+      "highMeaning": "ไม่ใช้สูง/ต่ำกับ lens นี้โดยตรง; แสดงหลักฐาน ความเกี่ยวข้องและสถานะ ไม่อนุมานเป็นคะแนนหรือ probability",
+      "evidenceBoundary": "บริการน้อยไม่ยืนยัน unmet demand; แผนโครงการในอนาคตไม่เท่ากับเปิดจริง ต้องแยก observed/proxy/hypothesis และ next validation",
+      "nonColorCue": {
+        "shortLabel": "OP",
+        "shape": "diamond",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "growth",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "swot-external",
+        "swot-positive-evidence"
+      ],
+      "recommendedMarker": {
+        "text": "O",
+        "shape": "diamond",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "OP"
+      },
+      "optionalFutureRubric": {
+        "unit": "หลักฐาน/สมมติฐานโอกาส; คะแนน rubric 0–100 เฉพาะเมื่อมีเกณฑ์",
+        "numerator": "ผลรวมค่าน้ำหนัก × ขนาดหรือความเกี่ยวข้องของโอกาสภายนอกตาม rubric",
+        "denominator": "ผลรวมน้ำหนักตาม coverage ที่ประกาศ; แสดง confidence ต่างหาก",
+        "scaleCondition": "Render a scale only for an explicitly defined scalar rubric; do not interpret the score as probability or projected revenue."
+      }
+    },
+    {
+      "id": "li.threat",
+      "labelTh": "ภัยคุกคามต่อธุรกิจ",
+      "labelEn": "Threat",
+      "role": "external-evidence-and-hypothesis-lens",
+      "group": "swot-lenses",
+      "unit": "รายการหลักฐาน/สมมติฐานที่จัดประเภท; ไม่มี scalar โดยธรรมชาติ",
+      "numerator": null,
+      "denominator": null,
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ตัวอย่างสมมติ: มีประกาศเปิดคู่แข่งในบริเวณที่เกี่ยวข้อง ต้องตรวจสถานะและผลต่อธุรกิจ"
+      },
+      "useScale": "none",
+      "scaleCondition": "Categorical evidence-lens role only in this preview. A future explicit numeric rubric requires a separate contract and review.",
+      "pivot": null,
+      "highMeaning": "ไม่ใช้สูง/ต่ำกับ lens นี้โดยตรง; แสดงหลักฐาน ความเกี่ยวข้องและสถานะ ไม่อนุมานเป็นคะแนนหรือ probability",
+      "evidenceBoundary": "แยกความไม่แน่นอนทางธุรกิจออกจาก hazard/risk assessment ทางการ; ห้ามใช้ Locale Insight ตัดสิน risk หรือเติมข้อมูลที่ขาด",
+      "nonColorCue": {
+        "shortLabel": "TH",
+        "shape": "triangle",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "risk",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "swot-external",
+        "swot-negative-evidence"
+      ],
+      "recommendedMarker": {
+        "text": "T",
+        "shape": "triangle",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "TH"
+      },
+      "optionalFutureRubric": {
+        "unit": "หลักฐาน/สมมติฐานภัยคุกคาม; คะแนน rubric 0–100 เฉพาะเมื่อมีเกณฑ์",
+        "numerator": "ผลรวมค่าน้ำหนัก × ระดับ exposure/impact ตาม rubric ที่ประกาศ",
+        "denominator": "ผลรวมน้ำหนักตาม coverage ที่ประกาศ; probability ต้องมี model แยกถ้าจะรายงาน",
+        "scaleCondition": "A risk-family visual analogy is permitted only for a defined evidence-backed threat rubric; otherwise use non-quantitative evidence cards."
+      }
+    },
+    {
+      "id": "li.market_share",
+      "labelTh": "ส่วนแบ่งตลาด",
+      "labelEn": "Market share",
+      "role": "observed-or-modelled-ratio",
+      "group": "commercial-position",
+      "unit": "% ของยอดขาย/ปริมาณซื้อในตลาดเดียวกัน",
+      "numerator": "ยอดขายหรือปริมาณซื้อของแบรนด์/เครือข่ายในตลาดที่กำหนด",
+      "denominator": "ยอดขายหรือปริมาณซื้อของทั้งตลาด รวมผู้เล่นที่เกี่ยวข้อง ในหมวด พื้นที่ เวลาและหน่วยเดียวกัน",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ยอดขายแบรนด์ 120,000 จากตลาดรวม 1,000,000 บาท = 12%"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "ได้ส่วนแบ่งของตลาดที่นิยามมากกว่า ไม่ได้บอกว่าตลาดใหญ่หรือกำไรดี",
+      "evidenceBoundary": "จำนวนสาขา/จำนวน POI ไม่ใช่ sales market share; ถ้าใช้ share of outlets ให้เปลี่ยนชื่อ metric และระบุว่าเป็น proxy อีกชนิดหนึ่ง",
+      "nonColorCue": {
+        "shortLabel": "SH",
+        "shape": "circle",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "commercial-readiness"
+      ],
+      "recommendedMarker": {
+        "text": "%",
+        "shape": "circle",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "SH"
+      }
+    },
+    {
+      "id": "li.spending_readiness",
+      "labelTh": "ความพร้อมใช้จ่าย",
+      "labelEn": "Spending readiness",
+      "role": "observed-or-modelled-behavioural-ratio",
+      "group": "customer-readiness",
+      "unit": "% ของกลุ่มตัวอย่างเป้าหมายที่ผ่านนิยามความพร้อม",
+      "numerator": "น้ำหนักผู้ตอบที่มีทั้งงบสำหรับหมวดสินค้าและเจตนาซื้อในช่วงเวลาที่ประกาศ",
+      "denominator": "น้ำหนักผู้ตอบกลุ่มเป้าหมายที่ให้คำตอบใช้ได้ทั้งหมด พร้อม sample/coverage",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ผู้ตอบเข้าเงื่อนไข 70 จาก 200 คน = 35% ของกลุ่มตัวอย่างนี้; ไม่อนุมานเป็นทุกคนในพื้นที่"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "มีผู้ตอบที่ผ่านนิยามความพร้อมมากกว่าในตัวอย่าง/แบบจำลองนี้ ไม่ใช่ยอดซื้อที่รับประกัน",
+      "evidenceBoundary": "รายได้ ราคาทรัพย์สินหรือ Locale Insight เพียงอย่างเดียวไม่ใช่ความพร้อมซื้อจริง; แยก affordability, intention และ observed spend และแสดง sampling/model uncertainty",
+      "nonColorCue": {
+        "shortLabel": "SR",
+        "shape": "pentagon",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "activity",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "commercial-readiness"
+      ],
+      "recommendedMarker": {
+        "text": "R",
+        "shape": "pentagon",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "SR"
+      }
+    },
+    {
+      "id": "li.demand_growth",
+      "labelTh": "การเปลี่ยนแปลงอุปสงค์",
+      "labelEn": "Demand growth",
+      "role": "signed-change",
+      "group": "market-dynamics",
+      "unit": "% เปลี่ยนแปลงเทียบช่วงฐานที่ระบุ",
+      "numerator": "Demand ช่วงปัจจุบัน − Demand ช่วงฐานที่เปรียบเทียบกันได้",
+      "denominator": "Demand ช่วงฐาน; หากเป็นศูนย์ให้รายงานผลต่างจริงหรือ not-defined ห้ามหารศูนย์",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "1,100 เทียบ 1,000 ครั้งซื้อ/เดือน = +10%"
+      },
+      "useScale": "diverging",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": {
+        "value": 0,
+        "meaningTh": "ไม่เปลี่ยนจากช่วงฐานที่ระบุ",
+        "neutralInterval": "Must be declared; do not infer statistical significance from the central class."
+      },
+      "highMeaning": "ค่าบวกสูงคือ demand เพิ่มมากกว่า ไม่ได้ยืนยันกำไรหรือความยั่งยืน",
+      "evidenceBoundary": "คงหมวด พื้นที่ ฤดูกาลและวิธีวัดให้เทียบได้; ประชากรเติบโตไม่ใช่ demand growth ของทุกหมวด",
+      "nonColorCue": {
+        "shortLabel": "GR",
+        "shape": "diamond",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "delta",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "demand-trend"
+      ],
+      "recommendedMarker": {
+        "text": "Δ",
+        "shape": "diamond",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "GR"
+      }
+    },
+    {
+      "id": "li.accessibility",
+      "labelTh": "การเข้าถึงกลุ่มเป้าหมาย",
+      "labelEn": "Accessibility",
+      "role": "network-based-ratio",
+      "group": "site-and-network",
+      "unit": "% ของ demand เป้าหมายที่เดินทางถึงภายในเงื่อนไข",
+      "numerator": "Demand weight ในพื้นที่ที่ถึง site ภายในเวลา/ระยะทาง/โหมดตามเครือข่ายที่กำหนด",
+      "denominator": "Demand weight ทั้งหมดในขอบเขตอ้างอิงเดียวกัน",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "Demand weight 650 จาก 1,000 อยู่ใน 15 นาทีตามโหมดที่ระบุ = 65%"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "ครอบคลุม demand เป้าหมายภายในเงื่อนไขได้มากกว่า",
+      "evidenceBoundary": "วงกลมรัศมีไม่ใช่ travel-time catchment; ระบุ network/time/mode, barriers และความไม่แน่นอน ไม่ยืนยันว่าคนจะเดินทางมาจริง",
+      "nonColorCue": {
+        "shortLabel": "AC",
+        "shape": "cross",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "site-network"
+      ],
+      "recommendedMarker": {
+        "text": "A",
+        "shape": "cross",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "AC"
+      }
+    },
+    {
+      "id": "li.competitive_pressure",
+      "labelTh": "แรงกดดันจากคู่แข่ง",
+      "labelEn": "Competitive pressure",
+      "role": "capacity-to-demand-ratio",
+      "group": "commercial-position",
+      "unit": "% กำลังบริการคู่แข่งเทียบ demand; อาจเกิน 100%",
+      "numerator": "กำลังบริการของคู่แข่งที่เกี่ยวข้องในหน่วยเดียวกับ demand",
+      "denominator": "Demand ที่นิยามในช่วงเวลาและ catchment เดียวกัน",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "กำลังคู่แข่ง 900 ต่อ demand 1,200 ครั้ง/เดือน = 75%"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "คู่แข่งมี capacity ต่อ demand มากกว่า ไม่ใช่ความรุนแรงหรือโอกาสแพ้ที่วัดได้โดยตรง",
+      "evidenceBoundary": "ห้ามใช้จำนวนร้านแทน capacity โดยไม่เปลี่ยนชื่อเป็น proxy; ต้องดูชนิดสินค้า ราคา positioning และunknown capacity; demand 0 ทำให้ ratio ไม่กำหนด",
+      "nonColorCue": {
+        "shortLabel": "CP",
+        "shape": "square",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "market-structure"
+      ],
+      "recommendedMarker": {
+        "text": "C",
+        "shape": "square",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "CP"
+      }
+    },
+    {
+      "id": "li.service_gap",
+      "labelTh": "ช่องว่างกำลังบริการ",
+      "labelEn": "Service gap",
+      "role": "signed-demand-supply-gap",
+      "group": "market-dynamics",
+      "unit": "% demand ที่ยังไม่มี capacity รองรับ; อาจติดลบ",
+      "numerator": "Demand − Supply ที่เทียบหน่วย ช่วงเวลาและพื้นที่ตรงกัน",
+      "denominator": "Demand ในขอบเขตเดียวกัน; ต้องมากกว่าศูนย์",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "Demand 1,200 − Supply 900 = +300 ครั้ง/เดือน หรือ gap +25%; ค่าลบคือ capacity เกิน demand ตามแบบจำลอง"
+      },
+      "useScale": "diverging",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": {
+        "value": 0,
+        "meaningTh": "Demand และ Supply เท่ากันในหน่วยที่เปรียบเทียบได้",
+        "neutralInterval": "Declare tolerance; positive gap is not automatically a business opportunity."
+      },
+      "highMeaning": "ค่าบวกสูงคือช่องว่าง demand มากกว่า; ค่าลบคือกำลังเกินตามนิยาม ไม่ใช่ดี/เสียสากล",
+      "evidenceBoundary": "ไม่หักคะแนน percentile หรือคะแนนคนละหน่วยเข้าด้วยกัน; gap ไม่ยืนยันยอดขายที่คว้าได้ ต้องสำรวจบริการทดแทน การเดินทางและprice fit",
+      "nonColorCue": {
+        "shortLabel": "GP",
+        "shape": "hexagon",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "balance",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "market-structure"
+      ],
+      "recommendedMarker": {
+        "text": "G",
+        "shape": "hexagon",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "GP"
+      }
+    },
+    {
+      "id": "li.cannibalization",
+      "labelTh": "การดึงยอดจากเครือข่ายเดิม",
+      "labelEn": "Own-network cannibalization",
+      "role": "counterfactual-modelled-ratio",
+      "group": "site-and-network",
+      "unit": "% ยอด/ครั้งซื้อสาขาใหม่ที่คาดว่าย้ายจากสาขาตนเอง",
+      "numerator": "ยอดซื้อหรือครั้งซื้อที่ model คาดว่าจะย้ายจากสาขาเดิมของตนเองมายังสาขาใหม่",
+      "denominator": "ยอดซื้อหรือครั้งซื้อทั้งหมดที่ model คาดสำหรับสาขาใหม่",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "คาดการณ์ 300 จาก 1,000 ครั้งซื้อสาขาใหม่ย้ายจากเครือข่ายเดิม = 30% ภายใต้ scenario นี้"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "สัดส่วนย้ายจากเครือข่ายเดิมมากกว่า; ไม่ใช่จำนวนลูกค้าใหม่หรือความเสียหายจริงที่เกิดแล้ว",
+      "evidenceBoundary": "Catchment overlap อย่างเดียวเป็น overlap proxy ไม่ใช่ cannibalization; ต้องมีตัวเลือกทางเลือก baseline และ counterfactual model พร้อมผลระดับเครือข่าย",
+      "nonColorCue": {
+        "shortLabel": "CN",
+        "shape": "circle",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "count",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "site-network"
+      ],
+      "recommendedMarker": {
+        "text": "N",
+        "shape": "circle",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "CN"
+      }
+    },
+    {
+      "id": "li.occupancy_cost",
+      "labelTh": "ภาระค่าใช้พื้นที่",
+      "labelEn": "Occupancy cost",
+      "role": "modelled-or-observed-cost-ratio",
+      "group": "site-economics",
+      "unit": "% ค่าใช้พื้นที่ต่อรายได้ในช่วงเดียวกัน",
+      "numerator": "ค่าเช่า ค่าส่วนกลาง และรายการ occupancy ที่ประกาศ",
+      "denominator": "รายได้ site ในช่วงเดียวกัน; แสดงว่าจริงหรือคาดการณ์ และ denominator ต้องมากกว่าศูนย์",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "ค่าใช้พื้นที่ 12,000 ต่อรายได้ 100,000 บาท/เดือน = 12%"
+      },
+      "useScale": "sequential",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": null,
+      "highMeaning": "รายได้ส่วนที่ต้องใช้จ่ายกับพื้นที่มากกว่า; ไม่มีกำแพงผ่าน/ไม่ผ่านสากล",
+      "evidenceBoundary": "ราคาเช่าต่อตร.ม.เป็นคนละ metric กับภาระต่อรายได้; ห้ามใช้รายได้คาดการณ์เหมือนรายได้จริง และอย่าสรุปว่าค่าเช่าถูกคือ site ดี",
+      "nonColorCue": {
+        "shortLabel": "OC",
+        "shape": "square",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "price",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "site-economics"
+      ],
+      "recommendedMarker": {
+        "text": "$",
+        "shape": "square",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "OC"
+      }
+    },
+    {
+      "id": "li.unit_economics",
+      "labelTh": "ส่วนต่างจากการดำเนินงาน",
+      "labelEn": "Site operating margin",
+      "role": "signed-modelled-or-observed-margin",
+      "group": "site-economics",
+      "unit": "% ส่วนต่างรายได้หลังต้นทุนดำเนินงานที่ระบุ",
+      "numerator": "รายได้ − ต้นทุนดำเนินงาน site ตาม cost scope ที่ประกาศ",
+      "denominator": "รายได้ในช่วงเดียวกัน; denominator ต้องมากกว่าศูนย์",
+      "example": {
+        "status": "synthetic-illustration-not-a-real-location",
+        "textTh": "รายได้ 100,000 − ต้นทุน 85,000 บาท/เดือน = +15% operating margin ใน scenario นี้"
+      },
+      "useScale": "diverging",
+      "scaleCondition": "Use only with the stated metric, evidence, unit and comparable geographic/time scope.",
+      "pivot": {
+        "value": 0,
+        "meaningTh": "รายได้เท่ากับต้นทุนที่รวมในนิยามนี้",
+        "neutralInterval": "Declare tolerance; break-even is scoped, not company-level profitability."
+      },
+      "highMeaning": "ค่าบวกสูงคือเหลือส่วนต่างดำเนินงานมากกว่า; ค่าลบคือรายได้ต่ำกว่าต้นทุนใน scope",
+      "evidenceBoundary": "ไม่เรียกว่า net profit หากยังไม่รวม capex, depreciation, financing, tax หรือ HQ allocation; ใช้ sensitivity/uncertainty และอย่ารวมรายรับต่างช่วง",
+      "nonColorCue": {
+        "shortLabel": "UE",
+        "shape": "diamond",
+        "alwaysShowTextLabel": true
+      },
+      "relatedExistingFamily": {
+        "id": "balance",
+        "relationship": "Semantic starting point only; not approval to copy colors or rename the released family."
+      },
+      "coDisplayGroups": [
+        "site-economics"
+      ],
+      "recommendedMarker": {
+        "text": "E",
+        "shape": "diamond",
+        "alwaysShowFullLabel": true,
+        "shortLabel": "UE"
+      }
+    }
+  ],
+  "sourceContracts": [
+    "/Users/montri/.codex/skills/develop-location-expansion/SKILL.md",
+    "/Users/montri/.codex/skills/develop-location-expansion/references/model.md",
+    "Project AGENTS.md: Locale Insight contextual-prior rule"
+  ],
+  "counts": {
+    "userRequested": 9,
+    "additional": 7,
+    "sequential": 9,
+    "diverging": 3,
+    "categoricalEvidenceLenses": 4,
+    "quantitativeMetrics": 12,
+    "themeScaleRecordsExpected": 24
+  },
+  "coDisplayGroups": {
+    "market-fundamentals": [
+      "li.demand",
+      "li.supply",
+      "li.market_size"
+    ],
+    "swot-internal": [
+      "li.strength",
+      "li.weakness"
+    ],
+    "swot-external": [
+      "li.opportunity",
+      "li.threat"
+    ],
+    "swot-positive-evidence": [
+      "li.strength",
+      "li.opportunity"
+    ],
+    "swot-negative-evidence": [
+      "li.weakness",
+      "li.threat"
+    ],
+    "commercial-readiness": [
+      "li.market_share",
+      "li.spending_readiness"
+    ],
+    "demand-trend": [
+      "li.demand",
+      "li.demand_growth"
+    ],
+    "market-structure": [
+      "li.demand",
+      "li.supply",
+      "li.competitive_pressure",
+      "li.service_gap"
+    ],
+    "site-network": [
+      "li.accessibility",
+      "li.cannibalization"
+    ],
+    "site-economics": [
+      "li.market_size",
+      "li.occupancy_cost",
+      "li.unit_economics"
+    ]
+  }
+}
