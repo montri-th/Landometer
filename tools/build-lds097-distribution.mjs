@@ -69,6 +69,8 @@ Download actual fonts, logos, CSS, LUT and plugin/skill archives through the [te
 `);
 const walk=p=>readdirSync(p,{withFileTypes:true}).sort((a,b)=>a.name<b.name?-1:a.name>b.name?1:0).flatMap(e=>e.isDirectory()?walk(join(p,e.name)):[join(p,e.name)]);
 const deployment=join(root,'deployment');
+const entrypointBuildId=readFileSync(join(deployment,'index.html'),'utf8').match(/data-artifact-build="([^"]+)"/)?.[1];
+if(!entrypointBuildId)throw Error('Root entry point is missing its distinct build identity');
 const filesSet=new Set([join(deployment,'index.html'),join(deployment,'llms.txt'),...walk(site)].filter(p=>!p.endsWith('/site-manifest.json')));
 // The restored handbook reuses exact original fonts, logos and reference downloads.
 // Include their bytes in live verification even when they live outside v0.9.7/.
@@ -92,6 +94,6 @@ while(queue.length){
  }
 }
 const files=[...filesSet].sort();
-const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r1',approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
+const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r1',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
 writeFileSync(join(site,'site-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(`DS 0.9.7 web distribution built: ${files.length} assets`);

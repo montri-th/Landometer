@@ -16,6 +16,21 @@ const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.7' && manifest.colorSetId === 'color-srgb-10', 'release identity');
 check(manifest.packageId === 'v0.9.7-owner.1', 'current approved package identity');
 check(manifest.artifactBuildId === 'ui-20261001-lds097-r1', 'full-guide website build identity');
+const rootEntry = readFileSync(join(root, 'deployment/index.html'), 'utf8');
+check(manifest.entrypointBuildId === 'root-20261001-lds097-r2' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
+const rootRedirect = rootEntry.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+for (const [search, hash] of [
+  ['', ''], ['', '#library-resources'], ['?lang=en&theme=dark', ''],
+  ['?lang=th&theme=dark&work=screen&view=assisted&lens=visual&surface=cultivate&stage=frame', '#library-resources'],
+  ['?lang=en&theme=light&family=water&n=7', '#complete-color-atlas'],
+  ['?note=%E0%B8%AA%E0%B8%B5%20%26%20scope', '#top']
+]) {
+  let destination;
+  if (rootRedirect) vm.runInNewContext(rootRedirect, {location: {search, hash, replace: value => { destination = value; }}}, {timeout: 1000});
+  check(destination === `v0.9.7/${search}${hash}`, `root retains complete query and section ${search}${hash}`);
+}
+check(/<noscript>\s*<meta\b[^>]*http-equiv="refresh"[^>]*content="0;url=v0.9.7\/"[^>]*>\s*<\/noscript>/.test(rootEntry), 'default no-JavaScript route remains available');
+check(!/<meta\b[^>]*http-equiv="refresh"/.test(rootEntry.replace(/<noscript>[\s\S]*?<\/noscript>/g, '')), 'default meta refresh cannot race the state-preserving script');
 check(manifest.cryptographicSignature === 'not-claimed', 'truthful signature boundary');
 check(manifest.artifactConformance === 'bounded-checks-only', 'bounded conformance claim');
 const manifestPaths = manifest.assets.map(asset => asset.path);
