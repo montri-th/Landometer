@@ -1,0 +1,11 @@
+{
+  "kind": "social_destination_verification",
+  "result": "pass",
+  "method": "http_head_or_get",
+  "requestedDestination": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+  "observedDestination": "https://montri-th.github.io/rebuild02/Landometer-Home-TH.dc.html",
+  "observedAt": "2026-09-01T00:45:00+07:00",
+  "httpStatus": 200,
+  "redirectChain": [],
+  "summary": "The declared public destination resolved successfully at the recorded time."
+}

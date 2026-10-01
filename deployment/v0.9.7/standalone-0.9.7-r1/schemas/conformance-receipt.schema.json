@@ -1,0 +1,510 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/conformance-receipt.schema.json",
+  "title": "Landometer criterion-bound conformance receipt v1.2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "receiptId",
+    "artifactId",
+    "artifactBuildId",
+    "checkId",
+    "method",
+    "result",
+    "assertion",
+    "criterionSha256",
+    "protocolId",
+    "owner",
+    "checkedAt",
+    "subjectFiles",
+    "evidenceFiles",
+    "evidenceRefs",
+    "testCases",
+    "verification",
+    "attestationRef"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.2"
+    },
+    "releaseRef": {
+      "const": "v0.9.7-owner.1"
+    },
+    "receiptId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,159}$"
+    },
+    "artifactId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$"
+    },
+    "artifactBuildId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "checkId": {
+      "type": "string",
+      "pattern": "^[A-Z0-9][A-Z0-9-]{2,79}$"
+    },
+    "method": {
+      "enum": [
+        "automated",
+        "visual",
+        "interaction",
+        "accessibility",
+        "manual",
+        "production"
+      ]
+    },
+    "result": {
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "assertion": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "criterionSha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "protocolId": {
+      "type": "string",
+      "pattern": "^lds-v0\\.9\\.6/[A-Z0-9][A-Z0-9-]{2,79}$"
+    },
+    "owner": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "checkedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "subjectFiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "mediaType": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    "evidenceFiles": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "mediaType",
+          "kind"
+        ],
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "mediaType": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "kind": {
+            "enum": [
+              "runner_report",
+              "screenshot",
+              "interaction_log",
+              "accessibility_report",
+              "review_record",
+              "production_observation",
+              "extracted_text",
+              "network_trace",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/safeRef"
+      }
+    },
+    "testCases": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "fixture",
+          "expected",
+          "actual",
+          "result",
+          "evidenceRefs"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "fixture": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "expected": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "actual": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "result": {
+            "enum": [
+              "pass",
+              "fail"
+            ]
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "$ref": "#/$defs/safeRef"
+            }
+          }
+        }
+      }
+    },
+    "attestationRef": {
+      "$ref": "#/$defs/safeRef"
+    },
+    "verification": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/automatedVerification"
+        },
+        {
+          "$ref": "#/$defs/humanVerification"
+        },
+        {
+          "$ref": "#/$defs/productionVerification"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "automated"
+          }
+        },
+        "required": [
+          "method"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "$ref": "#/$defs/automatedVerification"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "enum": [
+              "visual",
+              "interaction",
+              "accessibility",
+              "manual"
+            ]
+          }
+        },
+        "required": [
+          "method"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "$ref": "#/$defs/humanVerification"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "production"
+          }
+        },
+        "required": [
+          "method"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "$ref": "#/$defs/productionVerification"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "httpsUrl": {
+      "type": "string",
+      "pattern": "^https://[^\\s]+$"
+    },
+    "automatedVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "tool",
+        "toolVersion",
+        "invocationId",
+        "startedAt",
+        "completedAt",
+        "exitCode"
+      ],
+      "properties": {
+        "kind": {
+          "const": "automated_runner"
+        },
+        "tool": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "toolVersion": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "invocationId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exitCode": {
+          "type": "integer"
+        }
+      }
+    },
+    "humanVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "reviewer",
+        "reviewProtocolId",
+        "fixtureIds",
+        "blockingFindingCount",
+        "reviewedAt"
+      ],
+      "properties": {
+        "kind": {
+          "const": "human_review"
+        },
+        "reviewer": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "reviewProtocolId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "fixtureIds": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        },
+        "blockingFindingCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reviewedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "productionVerification": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/webProductionVerification"
+        },
+        {
+          "$ref": "#/$defs/fileProductionVerification"
+        }
+      ]
+    },
+    "webProductionVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "probeId",
+        "environment",
+        "observedUrl",
+        "expectedCanonicalUrl",
+        "httpStatus",
+        "redirectChain",
+        "observedAt",
+        "returnedContentSha256",
+        "expectedContentSha256",
+        "contentEquivalent"
+      ],
+      "properties": {
+        "kind": {
+          "const": "production_probe"
+        },
+        "probeId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "environment": {
+          "const": "production"
+        },
+        "observedUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "expectedCanonicalUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "httpStatus": {
+          "type": "integer",
+          "minimum": 200,
+          "maximum": 299
+        },
+        "redirectChain": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/httpsUrl"
+          }
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "returnedContentSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "expectedContentSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "contentEquivalent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "fileProductionVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "probeId",
+        "environment",
+        "channel",
+        "observedAt",
+        "observedFiles",
+        "contentEquivalent"
+      ],
+      "properties": {
+        "kind": {
+          "const": "delivery_probe"
+        },
+        "probeId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "environment": {
+          "enum": [
+            "final_export",
+            "distribution"
+          ]
+        },
+        "channel": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "observedFiles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "mediaType"
+            ],
+            "properties": {
+              "path": {
+                "$ref": "#/$defs/safeRef"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "mediaType": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        },
+        "contentEquivalent": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.7 contract, revision standalone-0.9.7-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately.",
+  "description": "Artifact criterion receipts retain operator attestation requirements. Unsigned standalone document checks use scoped-check-receipt.schema.json and cannot be promoted into this schema by inventing an attestation."
+}

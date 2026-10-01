@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0",
+  "releaseRef": "v0.9.4-mp1",
+  "policyId": "crawler-policy.public-portfolio.01",
+  "routeClass": "public",
+  "decisions": [
+    {
+      "purpose": "search_indexing",
+      "decision": "allow",
+      "rationale": "The route is a canonical public portfolio page."
+    },
+    {
+      "purpose": "ai_search_retrieval",
+      "decision": "allow",
+      "rationale": "Approved public text and claim projections may be retrieved with source attribution."
+    },
+    {
+      "purpose": "model_training",
+      "decision": "disallow",
+      "rationale": "Crawler access does not grant model-training permission."
+    },
+    {
+      "purpose": "archival",
+      "decision": "allow",
+      "rationale": "Public snapshots may be archived with canonical attribution."
+    },
+    {
+      "purpose": "monitoring",
+      "decision": "allow",
+      "rationale": "Availability and integrity monitoring may read the public route."
+    },
+    {
+      "purpose": "agent_action",
+      "decision": "conditional",
+      "rationale": "Readability does not authorize action execution.",
+      "conditionRef": "agent-action-authority.example.json"
+    }
+  ],
+  "approvedBy": "Landometer owner",
+  "approvedAt": "2026-09-01T00:33:36+07:00",
+  "authorityEvidenceRef": "owner-message:2026-09-01:approve-v0.9.1"
+}

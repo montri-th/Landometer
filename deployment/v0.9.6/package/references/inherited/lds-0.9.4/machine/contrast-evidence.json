@@ -1,0 +1,5546 @@
+{
+  "schemaVersion": "1.2",
+  "releaseRef": "v0.9.4-mp1",
+  "status": "active",
+  "ruleId": "GATE-01",
+  "measuredAt": "2026-09-17T04:42:49.144Z",
+  "method": "validate-dataviz-gates-0.9.4.mjs runGates(registry, extCss) — WCAG 2.x relative-luminance contrast on sRGB hex; OKLab/OKLCH and the DATAVIZ-03 derivation from the same implementation as color-srgb-07.scales.json; nothing adjusted",
+  "tool": {
+    "ref": "validate-dataviz-gates-0.9.4.mjs",
+    "sha256": "db66cfec71132491d2ab445c11057045b26b190a6bdd3efe9e2e78affbc0d962",
+    "deltasFromHandoffTool": [
+      "V-POLE-01 tolerance ±.005 L (the 0.9.4 delta's gate fix; the ±.02 of 0.9.3 is withdrawn for poles)",
+      "warm-lane derivation and lane-aware D-LOW-02 / D-MID-01 / D-STEP-02 / D-STEP-03 (delta 0.9.4)",
+      "B-HUE-01 / B-HUE-02 / SC-17 banned-hue audit over anchors and series (DATAVIZ-04) plus the reported LUT-step and production-CSS audits",
+      "D-MID-01 chroma quantisation tolerance ±.001 (owner confirmed 2026-09-17)",
+      "D-DERIVE-01 (registry input): dark anchors equal the derivation hex-exact unless a derivation exception is declared in gateExceptions with the derived value (0.9.4: age dark mid)"
+    ]
+  },
+  "subjects": [
+    {
+      "ref": "color-srgb-07.tokens.json",
+      "sha256": "34bceb74787e9c3402b3e7e2386aa1ec741b04c4451a3607cd1005c660beb535",
+      "location": "machine package"
+    },
+    {
+      "ref": "lds-0.9.4-ext.css",
+      "sha256": "6918b1a481223b8a8b444831e59ed2dedb4e7404bb0a05dcc48d0492716bc02f",
+      "location": "build-kit (shipped ext CSS)"
+    }
+  ],
+  "proposalSource": {
+    "ref": "work/in-0.9.4/handoff-0.9.4/tokens/dataviz-0.9.4.proposal.json (proposal r7, RECONSTRUCTED from the r2 bytes and the delta of 17 September 2026)",
+    "sha256": "3494a89e099155aed78b7f0051433005e1814bb311bf1da681a70cbb5422d22f",
+    "status": "proposal r7 (0.9.4-r1) — RECONSTRUCTED from the delta text of 17 September 2026 on top of the r2 proposal bytes; light values and board dark values verbatim from the delta table; 26 values changed; owner renumbered the candidate to v0.9.4 on 17 September 2026",
+    "reconstruction": {
+      "method": "table-driven: every changed value is read from the delta table, mapped to the r2 proposal field, and the r2 value at that field is checked against the delta's 'from' column",
+      "r2ProposalSha256": "a71b34c221d37cefdbe5a14d1f409d2445dbb02e32c1e05e241968b9e7a94815",
+      "deltaTextSha256": "e727192666d5547b9519b21e8d4dc2132652414d8caafc859c864ba98520306f",
+      "rowsApplied": 26,
+      "fromMismatches": [],
+      "filesNotDelivered": [
+        "tokens/ext-registry-0.9.4.proposal.css",
+        "tokens/dataviz-0.9.4.proposal.json",
+        "tokens/contrast-evidence-0.9.4.proposal.json",
+        "tools/validate-candidate-0.9.4.mjs",
+        "rules/rule-drafts-0.9.4.md"
+      ]
+    }
+  },
+  "productionCss": {
+    "ref": "color-srgb-07.production.css",
+    "sha256": "60fbdbf1df810980e3f233d4861c6e9f39790c4d63bdb29bf09c0d4c016d288b"
+  },
+  "canvases": {
+    "light": "#F6F7F3",
+    "dark": "#11191D"
+  },
+  "result": "PASS",
+  "summary": {
+    "sequentialFamilies": 14,
+    "divergingFamilies": 6,
+    "gateIds": [
+      "L-LOW-01",
+      "L-MID-01",
+      "L-MID-02",
+      "D-LOW-01",
+      "D-LOW-02",
+      "D-MID-01",
+      "D-HIGH-01",
+      "D-STEP-01",
+      "D-STEP-02",
+      "D-STEP-03",
+      "D-CR-01",
+      "SEP-01",
+      "D-DERIVE-01",
+      "V-ZERO-01",
+      "V-POLE-01",
+      "S-INK-01",
+      "S-FILL-01",
+      "ST-INK-01",
+      "B-HUE-01",
+      "B-HUE-02",
+      "SC-17"
+    ],
+    "gatesRun": 21,
+    "undeclaredFailures": 0,
+    "declaredExceptions": 3,
+    "unusedDeclaredExceptions": [
+      "duration|D-MID-01"
+    ],
+    "warnings": 5,
+    "separationMinimum": {
+      "light": 10.2,
+      "dark": 9.7,
+      "threshold": 8
+    },
+    "compressionLightOverDark": 1.29,
+    "stateLabelChecked": true,
+    "seriesInkMinimum": 5.24,
+    "darkFillMinimum": 8.93,
+    "darkDerivationHexExact": 18,
+    "darkDerivationWithinOneStep": 20,
+    "darkDerivationDeclaredExceptions": [
+      "age"
+    ],
+    "bannedHue": {
+      "audited": 180,
+      "fails": 0,
+      "clayWarnings": 0,
+      "lutStepsInWindow": 110,
+      "lutStepsAudited": 1640,
+      "classColoursInWindow": 37,
+      "productionCssFindingsGated": 0,
+      "productionCssFindingsOutOfScope": 3
+    }
+  },
+  "gates": [
+    {
+      "gate": "L-LOW-01",
+      "scope": "light",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "low is brand.beige unless declared in lowExceptions"
+    },
+    {
+      "gate": "L-MID-01",
+      "scope": "light",
+      "pass": 12,
+      "fail": [],
+      "excepted": [
+        "water",
+        "built"
+      ],
+      "check": "mid L .66–.82 (target .73–.77 warns)"
+    },
+    {
+      "gate": "L-MID-02",
+      "scope": "light",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "mid is a blend: C ≤ .125 and ΔE ≥ 5 from every energy token + brand.blue"
+    },
+    {
+      "gate": "D-LOW-01",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "low L 0.29–0.35 (near dark canvas)"
+    },
+    {
+      "gate": "D-LOW-02",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "low C 0.04–0.07 (warm lane: C ≤ 0.03), hue within 12° of mid (hue visible, not gray)"
+    },
+    {
+      "gate": "D-MID-01",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "mid L = 1.33 − L(light mid) clamp .50–.66 ±.02 (warm lane: L .66 ±.02) · C .05–.12 (±.001 quantisation; warm lane: ≤ .12) · hue within 12° of light mid"
+    },
+    {
+      "gate": "D-HIGH-01",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "high L = 1.30 − L(light high) clamp .78–.90 ±.02 · C ≥ .045 · hue within 15° of light high"
+    },
+    {
+      "gate": "D-STEP-01",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "ΔE(mid→high) dark ≥ 0.72 × light (compression ≤ 1.4×) — outside the warm lane (D-STEP-03 replaces it there)"
+    },
+    {
+      "gate": "D-STEP-02",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "ΔE(low→mid)/ΔE(mid→high) within 0.5–2.0 (warm lane: 0.5–3.0)"
+    },
+    {
+      "gate": "D-STEP-03",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "warm lane only: every class step ≥ 2.2 ΔE at 5 classes"
+    },
+    {
+      "gate": "D-CR-01",
+      "scope": "dark",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "vs #11191D: low ≤ 2.0:1 · mid vs low ≥ 2.0:1 · high ≥ 7:1"
+    },
+    {
+      "gate": "SEP-01",
+      "scope": "both",
+      "pass": 14,
+      "fail": [],
+      "excepted": [],
+      "check": "nearest family ΔE(mid)+ΔE(high) ≥ 8 in light AND dark"
+    },
+    {
+      "gate": "D-DERIVE-01",
+      "scope": "dark",
+      "pass": 13,
+      "fail": [],
+      "excepted": [
+        "age"
+      ],
+      "check": "dark anchors equal the DATAVIZ-03 derivation of the light anchors (hex-exact)"
+    }
+  ],
+  "warnings": [
+    {
+      "gate": "WARN-MID",
+      "scope": "light",
+      "family": "confidence",
+      "midL": 0.697,
+      "note": "outside target .73–.77 (recorded, not gating)"
+    },
+    {
+      "gate": "WARN-MID",
+      "scope": "light",
+      "family": "count",
+      "midL": 0.728,
+      "note": "outside target .73–.77 (recorded, not gating)"
+    },
+    {
+      "gate": "WARN-MID",
+      "scope": "light",
+      "family": "water",
+      "midL": 0.826,
+      "note": "outside target .73–.77 (recorded, not gating)"
+    },
+    {
+      "gate": "WARN-MID",
+      "scope": "light",
+      "family": "built",
+      "midL": 0.651,
+      "note": "outside target .73–.77 (recorded, not gating)"
+    },
+    {
+      "gate": "WARN-MID",
+      "scope": "light",
+      "family": "duration",
+      "midL": 0.774,
+      "note": "outside target .73–.77 (recorded, not gating)"
+    }
+  ],
+  "divergingGates": [
+    {
+      "family": "balance",
+      "V-ZERO-01": "pass",
+      "V-POLE-01": "pass",
+      "D-DERIVE-01": "pass",
+      "poles": [
+        {
+          "anchor": "neg",
+          "L": 0.764,
+          "target": 0.763,
+          "C": 0.14,
+          "hueDiff": 0.3,
+          "ok": true
+        },
+        {
+          "anchor": "pos",
+          "L": 0.796,
+          "target": 0.796,
+          "C": 0.111,
+          "hueDiff": 0.1,
+          "ok": true
+        }
+      ],
+      "poleDeltaE": {
+        "light": 29.8,
+        "dark": 24.5
+      }
+    },
+    {
+      "family": "delta",
+      "V-ZERO-01": "pass",
+      "V-POLE-01": "pass",
+      "D-DERIVE-01": "pass",
+      "poles": [
+        {
+          "anchor": "neg",
+          "L": 0.759,
+          "target": 0.76,
+          "C": 0.14,
+          "hueDiff": 0.1,
+          "ok": true
+        },
+        {
+          "anchor": "pos",
+          "L": 0.77,
+          "target": 0.771,
+          "C": 0.091,
+          "hueDiff": 0.1,
+          "ok": true
+        }
+      ],
+      "poleDeltaE": {
+        "light": 24,
+        "dark": 22.8
+      }
+    },
+    {
+      "family": "tradeoff",
+      "V-ZERO-01": "pass",
+      "V-POLE-01": "pass",
+      "D-DERIVE-01": "pass",
+      "poles": [
+        {
+          "anchor": "neg",
+          "L": 0.8,
+          "target": 0.8,
+          "C": 0.116,
+          "hueDiff": 0.2,
+          "ok": true
+        },
+        {
+          "anchor": "pos",
+          "L": 0.76,
+          "target": 0.76,
+          "C": 0.095,
+          "hueDiff": 0,
+          "ok": true
+        }
+      ],
+      "poleDeltaE": {
+        "light": 25.7,
+        "dark": 21.2
+      }
+    },
+    {
+      "family": "flow",
+      "V-ZERO-01": "pass",
+      "V-POLE-01": "pass",
+      "D-DERIVE-01": "pass",
+      "poles": [
+        {
+          "anchor": "neg",
+          "L": 0.76,
+          "target": 0.76,
+          "C": 0.14,
+          "hueDiff": 0.3,
+          "ok": true
+        },
+        {
+          "anchor": "pos",
+          "L": 0.759,
+          "target": 0.76,
+          "C": 0.13,
+          "hueDiff": 0,
+          "ok": true
+        }
+      ],
+      "poleDeltaE": {
+        "light": 22.8,
+        "dark": 15.7
+      }
+    },
+    {
+      "family": "sentiment",
+      "V-ZERO-01": "pass",
+      "V-POLE-01": "pass",
+      "D-DERIVE-01": "pass",
+      "poles": [
+        {
+          "anchor": "neg",
+          "L": 0.76,
+          "target": 0.76,
+          "C": 0.139,
+          "hueDiff": 0.3,
+          "ok": true
+        },
+        {
+          "anchor": "pos",
+          "L": 0.759,
+          "target": 0.76,
+          "C": 0.131,
+          "hueDiff": 0.1,
+          "ok": true
+        }
+      ],
+      "poleDeltaE": {
+        "light": 27.9,
+        "dark": 24.7
+      }
+    },
+    {
+      "family": "anomaly",
+      "V-ZERO-01": "pass",
+      "V-POLE-01": "pass",
+      "D-DERIVE-01": "pass",
+      "poles": [
+        {
+          "anchor": "neg",
+          "L": 0.759,
+          "target": 0.76,
+          "C": 0.121,
+          "hueDiff": 0.4,
+          "ok": true
+        },
+        {
+          "anchor": "pos",
+          "L": 0.759,
+          "target": 0.76,
+          "C": 0.14,
+          "hueDiff": 0.2,
+          "ok": true
+        }
+      ],
+      "poleDeltaE": {
+        "light": 29.4,
+        "dark": 25.5
+      }
+    }
+  ],
+  "seriesGates": [
+    {
+      "variant": "dial-soft",
+      "theme": "light",
+      "S-INK-01": {
+        "min": 5.24,
+        "result": "pass"
+      },
+      "S-FILL-01": {
+        "min": 1.53,
+        "result": "recorded (edge-separated, DATAVIZ-04)"
+      }
+    },
+    {
+      "variant": "dial-soft",
+      "theme": "dark",
+      "S-INK-01": {
+        "min": 12.13,
+        "result": "pass"
+      },
+      "S-FILL-01": {
+        "min": 8.95,
+        "result": "pass"
+      }
+    },
+    {
+      "variant": "dial-vivid",
+      "theme": "light",
+      "S-INK-01": {
+        "min": 5.24,
+        "result": "pass"
+      },
+      "S-FILL-01": {
+        "min": 1.53,
+        "result": "recorded (edge-separated, DATAVIZ-04)"
+      }
+    },
+    {
+      "variant": "dial-vivid",
+      "theme": "dark",
+      "S-INK-01": {
+        "min": 12.13,
+        "result": "pass"
+      },
+      "S-FILL-01": {
+        "min": 8.93,
+        "result": "pass"
+      }
+    }
+  ],
+  "stateLabelGates": [
+    {
+      "theme": "light",
+      "surface": "surface-canvas",
+      "ink": "#5C6A61",
+      "bg": "#F6F7F3",
+      "contrast": 5.29,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "light",
+      "surface": "surface-card",
+      "ink": "#5C6A61",
+      "bg": "#FCFCFA",
+      "contrast": 5.54,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "light",
+      "surface": "surface-alt",
+      "ink": "#5C6A61",
+      "bg": "#EEF1EE",
+      "contrast": 5,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "light",
+      "surface": "surface-soft",
+      "ink": "#5C6A61",
+      "bg": "#E5E9E6",
+      "contrast": 4.64,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "dark",
+      "surface": "surface-canvas",
+      "ink": "#A6B5B1",
+      "bg": "#11191D",
+      "contrast": 8.36,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "dark",
+      "surface": "surface-card",
+      "ink": "#A6B5B1",
+      "bg": "#20292D",
+      "contrast": 6.97,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "dark",
+      "surface": "surface-alt",
+      "ink": "#A6B5B1",
+      "bg": "#172126",
+      "contrast": 7.7,
+      "ST-INK-01": "pass"
+    },
+    {
+      "theme": "dark",
+      "surface": "surface-soft",
+      "ink": "#A6B5B1",
+      "bg": "#2B3534",
+      "contrast": 5.94,
+      "ST-INK-01": "pass"
+    }
+  ],
+  "exceptions": [
+    {
+      "family": "water",
+      "gate": "L-MID-01",
+      "value": "#8FD3E0 L .82",
+      "reason": "water low is #E6F1F2 not beige; mid lifted so the aqua reads as water — inside the widened window, warning only",
+      "used": true,
+      "appearsAs": "excepted"
+    },
+    {
+      "family": "duration",
+      "gate": "D-MID-01",
+      "value": "light mid C .03 → dark mid C .05",
+      "reason": "deliberately low-chroma (mist); dark chroma floor .05 applied",
+      "used": false,
+      "appearsAs": "declared but unused (owner review; master §21)"
+    },
+    {
+      "family": "built",
+      "gate": "L-MID-01",
+      "value": "#6797AF L .65",
+      "reason": "inherited 0.9.1 mid (scale.density → built); kept byte-identical for migration, 0.01 below the widened window",
+      "used": true,
+      "appearsAs": "excepted"
+    },
+    {
+      "family": "age",
+      "gate": "D-DERIVE-01",
+      "value": "#717D55 (derived #787C53)",
+      "reason": "B-HUE-02 escape: the derived value #787C53 sits ΔE 3.51 from purged #827C68 within its 20° hue lane (hue difference 19.5°); the board rotated the hue away from the lane keeping L and C (delta row: \"hue 113° → 122°\"); no deterministic rule reproduces the exact hex, so the board value ships as a declared exception",
+      "used": true,
+      "appearsAs": "excepted"
+    }
+  ],
+  "bannedHue": {
+    "ruleId": "DATAVIZ-04",
+    "windows": {
+      "earth": {
+        "hue": [
+          30,
+          100
+        ],
+        "C": [
+          0.035,
+          0.145
+        ],
+        "Lmax": 0.62
+      },
+      "violet": {
+        "hue": [
+          285,
+          345
+        ],
+        "Cmin": 0.04
+      },
+      "clay": {
+        "hue": [
+          22,
+          100
+        ],
+        "C": [
+          0.09,
+          0.145
+        ],
+        "L": [
+          0.62,
+          0.74
+        ]
+      },
+      "purgedEarthTaupe": [
+        "#795300",
+        "#846100",
+        "#686354",
+        "#8B877A",
+        "#B6AD98",
+        "#A59A80",
+        "#827C68",
+        "#85837A"
+      ],
+      "retiredExact": [
+        "#795300",
+        "#846100",
+        "#686354",
+        "#8B877A",
+        "#B6AD98",
+        "#A59A80",
+        "#9E476F",
+        "#E982AE",
+        "#827C68",
+        "#85837A"
+      ],
+      "proximity": {
+        "dE": 6,
+        "hueLane": 20
+      },
+      "pinkRuling": {
+        "hue": [
+          350,
+          20
+        ],
+        "legal": true,
+        "decidedOn": "2026-09-17"
+      }
+    },
+    "anchorAndSeriesFails": [],
+    "clayWarnings": [],
+    "lutSteps": {
+      "audited": 1640,
+      "findings": [
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 4,
+          "hex": "#583D38",
+          "L": 0.389,
+          "C": 0.039,
+          "H": 30.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 5,
+          "hex": "#5F413B",
+          "L": 0.407,
+          "C": 0.043,
+          "H": 31.6,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 6,
+          "hex": "#66443D",
+          "L": 0.423,
+          "C": 0.049,
+          "H": 32.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#6D4740",
+          "L": 0.439,
+          "C": 0.054,
+          "H": 30.9,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#744B43",
+          "L": 0.457,
+          "C": 0.058,
+          "H": 31.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#7C4E46",
+          "L": 0.474,
+          "C": 0.064,
+          "H": 30.4,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#835148",
+          "L": 0.489,
+          "C": 0.069,
+          "H": 30.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#8B554B",
+          "L": 0.508,
+          "C": 0.074,
+          "H": 31.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#92584E",
+          "L": 0.523,
+          "C": 0.079,
+          "H": 30.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#9A5C51",
+          "L": 0.542,
+          "C": 0.084,
+          "H": 30.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 14,
+          "hex": "#A25F54",
+          "L": 0.558,
+          "C": 0.09,
+          "H": 30.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 15,
+          "hex": "#A96357",
+          "L": 0.575,
+          "C": 0.093,
+          "H": 30.6,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 16,
+          "hex": "#B16659",
+          "L": 0.591,
+          "C": 0.099,
+          "H": 30.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "step": 17,
+          "hex": "#B96A5C",
+          "L": 0.609,
+          "C": 0.104,
+          "H": 31,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "light",
+          "step": 30,
+          "hex": "#C95F4A",
+          "L": 0.611,
+          "C": 0.14,
+          "H": 32.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "light",
+          "step": 31,
+          "hex": "#C55947",
+          "L": 0.596,
+          "C": 0.142,
+          "H": 31.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 4,
+          "hex": "#563E32",
+          "L": 0.387,
+          "C": 0.039,
+          "H": 47.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 5,
+          "hex": "#5D4234",
+          "L": 0.405,
+          "C": 0.044,
+          "H": 48.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 6,
+          "hex": "#644636",
+          "L": 0.423,
+          "C": 0.049,
+          "H": 49.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#6B4937",
+          "L": 0.438,
+          "C": 0.055,
+          "H": 48.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#724D39",
+          "L": 0.456,
+          "C": 0.059,
+          "H": 49.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#79513A",
+          "L": 0.473,
+          "C": 0.064,
+          "H": 50.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#80553C",
+          "L": 0.491,
+          "C": 0.069,
+          "H": 50.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#87583E",
+          "L": 0.506,
+          "C": 0.073,
+          "H": 49.4,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#8F5C3F",
+          "L": 0.524,
+          "C": 0.079,
+          "H": 50,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#966040",
+          "L": 0.541,
+          "C": 0.084,
+          "H": 50.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 14,
+          "hex": "#9E6442",
+          "L": 0.559,
+          "C": 0.089,
+          "H": 50.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 15,
+          "hex": "#A56843",
+          "L": 0.576,
+          "C": 0.094,
+          "H": 51.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 16,
+          "hex": "#AD6B45",
+          "L": 0.592,
+          "C": 0.1,
+          "H": 49.9,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "step": 17,
+          "hex": "#B56F46",
+          "L": 0.609,
+          "C": 0.105,
+          "H": 50.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "step": 28,
+          "hex": "#BF6C47",
+          "L": 0.617,
+          "C": 0.118,
+          "H": 44.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "step": 29,
+          "hex": "#BA6545",
+          "L": 0.598,
+          "C": 0.119,
+          "H": 41,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "step": 30,
+          "hex": "#B55E43",
+          "L": 0.579,
+          "C": 0.12,
+          "H": 38,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "step": 31,
+          "hex": "#B15741",
+          "L": 0.562,
+          "C": 0.123,
+          "H": 34.9,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "step": 32,
+          "hex": "#AC503F",
+          "L": 0.544,
+          "C": 0.125,
+          "H": 32.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 4,
+          "hex": "#52412E",
+          "L": 0.388,
+          "C": 0.038,
+          "H": 69.4,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 5,
+          "hex": "#59452F",
+          "L": 0.406,
+          "C": 0.044,
+          "H": 68.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 6,
+          "hex": "#5F4930",
+          "L": 0.422,
+          "C": 0.048,
+          "H": 69.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#664D31",
+          "L": 0.44,
+          "C": 0.054,
+          "H": 68.8,
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#6D5132",
+          "L": 0.457,
+          "C": 0.059,
+          "H": 68.3,
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#735533",
+          "L": 0.473,
+          "C": 0.063,
+          "H": 68.8,
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#7A5933",
+          "L": 0.49,
+          "C": 0.069,
+          "H": 68.9,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#815D34",
+          "L": 0.507,
+          "C": 0.074,
+          "H": 68.4,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#886135",
+          "L": 0.524,
+          "C": 0.079,
+          "H": 68,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#8F6535",
+          "L": 0.54,
+          "C": 0.084,
+          "H": 68,
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 14,
+          "hex": "#966936",
+          "L": 0.557,
+          "C": 0.089,
+          "H": 67.6,
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 15,
+          "hex": "#9D6E36",
+          "L": 0.575,
+          "C": 0.094,
+          "H": 68.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 16,
+          "hex": "#A57236",
+          "L": 0.593,
+          "C": 0.1,
+          "H": 68.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "step": 17,
+          "hex": "#AC7636",
+          "L": 0.609,
+          "C": 0.105,
+          "H": 68,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "step": 33,
+          "hex": "#C16941",
+          "L": 0.614,
+          "C": 0.125,
+          "H": 44.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "step": 34,
+          "hex": "#C0643F",
+          "L": 0.604,
+          "C": 0.129,
+          "H": 41.9,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "step": 35,
+          "hex": "#BF5F3E",
+          "L": 0.595,
+          "C": 0.132,
+          "H": 39.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "step": 36,
+          "hex": "#BD5A3C",
+          "L": 0.584,
+          "C": 0.135,
+          "H": 37.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "step": 37,
+          "hex": "#BC553B",
+          "L": 0.574,
+          "C": 0.139,
+          "H": 35.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "step": 38,
+          "hex": "#BA4F39",
+          "L": 0.562,
+          "C": 0.143,
+          "H": 33.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 4,
+          "hex": "#4D432E",
+          "L": 0.387,
+          "C": 0.036,
+          "H": 85.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 5,
+          "hex": "#534730",
+          "L": 0.404,
+          "C": 0.039,
+          "H": 83.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 6,
+          "hex": "#594C31",
+          "L": 0.422,
+          "C": 0.045,
+          "H": 84.9,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#5F5032",
+          "L": 0.439,
+          "C": 0.049,
+          "H": 84,
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#655433",
+          "L": 0.455,
+          "C": 0.053,
+          "H": 83.2,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#6B5934",
+          "L": 0.473,
+          "C": 0.058,
+          "H": 84.3,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#715D34",
+          "L": 0.488,
+          "C": 0.064,
+          "H": 84.1,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#776235",
+          "L": 0.506,
+          "C": 0.068,
+          "H": 84.9,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#7D6636",
+          "L": 0.522,
+          "C": 0.072,
+          "H": 84.3,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#846B37",
+          "L": 0.541,
+          "C": 0.077,
+          "H": 84,
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 14,
+          "hex": "#8A7037",
+          "L": 0.558,
+          "C": 0.082,
+          "H": 85,
+          "windows": [
+            "earth",
+            "proximity to purged #846100",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 15,
+          "hex": "#907438",
+          "L": 0.573,
+          "C": 0.086,
+          "H": 84.4,
+          "windows": [
+            "earth",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 16,
+          "hex": "#977938",
+          "L": 0.592,
+          "C": 0.091,
+          "H": 84.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "step": 17,
+          "hex": "#9D7E38",
+          "L": 0.609,
+          "C": 0.096,
+          "H": 85.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "light",
+          "step": 24,
+          "hex": "#A89E56",
+          "L": 0.692,
+          "C": 0.094,
+          "H": 101.5,
+          "windows": [
+            "proximity to purged #A59A80"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "light",
+          "step": 25,
+          "hex": "#A09A55",
+          "L": 0.676,
+          "C": 0.091,
+          "H": 104.2,
+          "windows": [
+            "proximity to purged #A59A80"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 4,
+          "hex": "#4B442E",
+          "L": 0.387,
+          "C": 0.036,
+          "H": 92.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 5,
+          "hex": "#51492F",
+          "L": 0.406,
+          "C": 0.042,
+          "H": 93,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 6,
+          "hex": "#564D30",
+          "L": 0.421,
+          "C": 0.046,
+          "H": 92.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#5C5231",
+          "L": 0.44,
+          "C": 0.051,
+          "H": 93.1,
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#625632",
+          "L": 0.456,
+          "C": 0.055,
+          "H": 91.6,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#675B33",
+          "L": 0.473,
+          "C": 0.06,
+          "H": 93.2,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#6D6034",
+          "L": 0.491,
+          "C": 0.064,
+          "H": 93.4,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#736435",
+          "L": 0.507,
+          "C": 0.068,
+          "H": 92.1,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#796935",
+          "L": 0.524,
+          "C": 0.074,
+          "H": 92.6,
+          "windows": [
+            "earth",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#7F6E36",
+          "L": 0.542,
+          "C": 0.078,
+          "H": 92.8,
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 14,
+          "hex": "#857337",
+          "L": 0.559,
+          "C": 0.083,
+          "H": 92.9,
+          "windows": [
+            "earth",
+            "proximity to purged #846100",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 15,
+          "hex": "#8B7737",
+          "L": 0.574,
+          "C": 0.087,
+          "H": 92.1,
+          "windows": [
+            "earth",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 16,
+          "hex": "#917C37",
+          "L": 0.592,
+          "C": 0.092,
+          "H": 92.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "step": 17,
+          "hex": "#978138",
+          "L": 0.609,
+          "C": 0.096,
+          "H": 92.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#B16F60",
+          "L": 0.609,
+          "C": 0.088,
+          "H": 33.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#A66A5D",
+          "L": 0.585,
+          "C": 0.08,
+          "H": 32.9,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#9B665A",
+          "L": 0.564,
+          "C": 0.072,
+          "H": 33.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#916157",
+          "L": 0.541,
+          "C": 0.065,
+          "H": 32.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#865D54",
+          "L": 0.519,
+          "C": 0.056,
+          "H": 32.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#7C5851",
+          "L": 0.497,
+          "C": 0.049,
+          "H": 31.2,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "balance",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#72544E",
+          "L": 0.476,
+          "C": 0.042,
+          "H": 31.5,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "delta",
+          "theme": "light",
+          "step": 1,
+          "hex": "#BB4E3E",
+          "L": 0.563,
+          "C": 0.144,
+          "H": 30.6,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "delta",
+          "theme": "light",
+          "step": 2,
+          "hex": "#BF5747",
+          "L": 0.584,
+          "C": 0.137,
+          "H": 30.6,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "delta",
+          "theme": "light",
+          "step": 3,
+          "hex": "#C3604F",
+          "L": 0.604,
+          "C": 0.13,
+          "H": 31.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 7,
+          "hex": "#9A7E40",
+          "L": 0.606,
+          "C": 0.088,
+          "H": 85.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 8,
+          "hex": "#917841",
+          "L": 0.584,
+          "C": 0.08,
+          "H": 85.5,
+          "windows": [
+            "earth",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 9,
+          "hex": "#887241",
+          "L": 0.562,
+          "C": 0.072,
+          "H": 85.9,
+          "windows": [
+            "earth",
+            "proximity to purged #846100",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 10,
+          "hex": "#7F6C41",
+          "L": 0.539,
+          "C": 0.065,
+          "H": 86.4,
+          "windows": [
+            "earth",
+            "proximity to purged #846100",
+            "proximity to purged #686354",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 11,
+          "hex": "#776641",
+          "L": 0.517,
+          "C": 0.057,
+          "H": 85.8,
+          "windows": [
+            "earth",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 12,
+          "hex": "#6E6141",
+          "L": 0.497,
+          "C": 0.05,
+          "H": 88.4,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 13,
+          "hex": "#655B40",
+          "L": 0.473,
+          "C": 0.043,
+          "H": 90.1,
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "flow",
+          "theme": "dark",
+          "step": 14,
+          "hex": "#5D553F",
+          "L": 0.451,
+          "C": 0.035,
+          "H": 90.4,
+          "windows": [
+            "earth",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 27,
+          "hex": "#705549",
+          "L": 0.474,
+          "C": 0.041,
+          "H": 45.1,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 28,
+          "hex": "#7A594B",
+          "L": 0.495,
+          "C": 0.049,
+          "H": 44,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 29,
+          "hex": "#845E4E",
+          "L": 0.518,
+          "C": 0.056,
+          "H": 43.8,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 30,
+          "hex": "#8E6350",
+          "L": 0.54,
+          "C": 0.063,
+          "H": 44.7,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 31,
+          "hex": "#996752",
+          "L": 0.561,
+          "C": 0.072,
+          "H": 43.6,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 32,
+          "hex": "#A36C54",
+          "L": 0.584,
+          "C": 0.079,
+          "H": 44.3,
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "anomaly",
+          "theme": "dark",
+          "step": 33,
+          "hex": "#AD7156",
+          "L": 0.606,
+          "C": 0.086,
+          "H": 44.9,
+          "windows": [
+            "earth"
+          ]
+        }
+      ]
+    },
+    "lutClasses": {
+      "classCounts": [
+        5,
+        7,
+        9
+      ],
+      "findings": [
+        {
+          "family": "activity",
+          "theme": "dark",
+          "classCount": 5,
+          "classIndex": 2,
+          "hex": "#835148",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 2,
+          "hex": "#6D4740",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 3,
+          "hex": "#9A5C51",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 2,
+          "hex": "#5F413B",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 3,
+          "hex": "#835148",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "activity",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 4,
+          "hex": "#A96357",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "light",
+          "classCount": 5,
+          "classIndex": 4,
+          "hex": "#C95F4A",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "light",
+          "classCount": 9,
+          "classIndex": 7,
+          "hex": "#C95F4A",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "classCount": 5,
+          "classIndex": 2,
+          "hex": "#80553C",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 2,
+          "hex": "#6B4937",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 3,
+          "hex": "#966040",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 2,
+          "hex": "#5D4234",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 3,
+          "hex": "#80553C",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "density.area",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 4,
+          "hex": "#A56843",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "classCount": 5,
+          "classIndex": 4,
+          "hex": "#B55E43",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "light",
+          "classCount": 9,
+          "classIndex": 7,
+          "hex": "#B55E43",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "classCount": 5,
+          "classIndex": 2,
+          "hex": "#7A5933",
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 2,
+          "hex": "#664D31",
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 3,
+          "hex": "#8F6535",
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 2,
+          "hex": "#59452F",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 3,
+          "hex": "#7A5933",
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "heat",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 4,
+          "hex": "#9D6E36",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "classCount": 7,
+          "classIndex": 6,
+          "hex": "#C16941",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "light",
+          "classCount": 9,
+          "classIndex": 8,
+          "hex": "#BF5F3E",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "classCount": 5,
+          "classIndex": 2,
+          "hex": "#715D34",
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 2,
+          "hex": "#5F5032",
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 3,
+          "hex": "#846B37",
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 2,
+          "hex": "#534730",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 3,
+          "hex": "#715D34",
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "risk",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 4,
+          "hex": "#907438",
+          "windows": [
+            "earth",
+            "proximity to purged #827C68"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "light",
+          "classCount": 9,
+          "classIndex": 6,
+          "hex": "#A09A55",
+          "windows": [
+            "proximity to purged #A59A80"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "classCount": 5,
+          "classIndex": 2,
+          "hex": "#6D6034",
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 2,
+          "hex": "#5C5231",
+          "windows": [
+            "earth",
+            "proximity to purged #795300"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "classCount": 7,
+          "classIndex": 3,
+          "hex": "#7F6E36",
+          "windows": [
+            "earth",
+            "proximity to purged #846100"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 2,
+          "hex": "#51492F",
+          "windows": [
+            "earth"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 3,
+          "hex": "#6D6034",
+          "windows": [
+            "earth",
+            "proximity to purged #795300",
+            "proximity to purged #846100",
+            "proximity to purged #686354"
+          ]
+        },
+        {
+          "family": "price",
+          "theme": "dark",
+          "classCount": 9,
+          "classIndex": 4,
+          "hex": "#8B7737",
+          "windows": [
+            "earth",
+            "proximity to purged #827C68"
+          ]
+        }
+      ]
+    },
+    "productionCss": [
+      {
+        "token": "--ldm-semantic-warning-dark-background",
+        "hex": "#3B2E16",
+        "theme": "dark",
+        "L": 0.31,
+        "C": 0.042,
+        "H": 81.5,
+        "windows": [
+          "B-HUE-01 earth"
+        ],
+        "scope": "outside the DATAVIZ-04 scope (carried byte-identical from color-srgb-05; reported for the owner)"
+      },
+      {
+        "token": "--ldm-semantic-warning-light-foreground",
+        "hex": "#A64A00",
+        "theme": "light",
+        "L": 0.52,
+        "C": 0.14,
+        "H": 48.8,
+        "windows": [
+          "B-HUE-01 earth"
+        ],
+        "scope": "outside the DATAVIZ-04 scope (carried byte-identical from color-srgb-05; reported for the owner)"
+      },
+      {
+        "token": "--ldm-series-03-light",
+        "hex": "#A87B00",
+        "theme": "light",
+        "L": 0.611,
+        "C": 0.126,
+        "H": 82.8,
+        "windows": [
+          "B-HUE-01 earth"
+        ],
+        "scope": "deprecated v5 series alias (retained byte-identical for migration; not a 0.9.4 analytical value)"
+      }
+    ],
+    "scopeNote": "The gate reads the analytical values (anchors of every family in both themes; series fills and inks). LUT-step, class-colour and production-CSS findings are evidence, not gate failures: the owner decided on 2026-09-17 to declare 0.9.4 and send the warm-lane LUT path back to the board (open item)."
+  },
+  "measured": {
+    "scales": [
+      {
+        "id": "activity",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#3C302D",
+              "oklch": {
+                "L": 0.3214,
+                "C": 0.0184,
+                "h": 34.4
+              },
+              "onCanvas": 1.4,
+              "onCard": 1.17
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#F49383",
+              "oklch": {
+                "L": 0.7606,
+                "C": 0.1204,
+                "h": 30.1
+              },
+              "onCanvas": 2.09,
+              "onCard": 2.19
+            },
+            "dark": {
+              "hex": "#D17465",
+              "oklch": {
+                "L": 0.6595,
+                "C": 0.1197,
+                "h": 30.2
+              },
+              "onCanvas": 5.42,
+              "onCard": 4.52
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#C52C00",
+              "oklch": {
+                "L": 0.5375,
+                "C": 0.1939,
+                "h": 33.9
+              },
+              "onCanvas": 5.23,
+              "onCard": 5.47
+            },
+            "dark": {
+              "hex": "#FF977F",
+              "oklch": {
+                "L": 0.7797,
+                "C": 0.1304,
+                "h": 33.9
+              },
+              "onCanvas": 8.46,
+              "onCard": 7.05
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            22.57,
+            23.51
+          ],
+          "dark": [
+            35.29,
+            12.1
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 45.68,
+          "dark": 47.18
+        }
+      },
+      {
+        "id": "density.area",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#3B302B",
+              "oklch": {
+                "L": 0.3196,
+                "C": 0.0183,
+                "h": 45.8
+              },
+              "onCanvas": 1.39,
+              "onCard": 1.16
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#EE9A69",
+              "oklch": {
+                "L": 0.7606,
+                "C": 0.1198,
+                "h": 50.4
+              },
+              "onCanvas": 2.06,
+              "onCard": 2.16
+            },
+            "dark": {
+              "hex": "#CC7B4A",
+              "oklch": {
+                "L": 0.6604,
+                "C": 0.1198,
+                "h": 50.6
+              },
+              "onCanvas": 5.51,
+              "onCard": 4.59
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#A1182D",
+              "oklch": {
+                "L": 0.4594,
+                "C": 0.1694,
+                "h": 20.2
+              },
+              "onCanvas": 7.27,
+              "onCard": 7.62
+            },
+            "dark": {
+              "hex": "#FFB4B3",
+              "oklch": {
+                "L": 0.8402,
+                "C": 0.0879,
+                "h": 19.9
+              },
+              "onCanvas": 10.53,
+              "onCard": 8.78
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            22.13,
+            31.42
+          ],
+          "dark": [
+            35.56,
+            19.06
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 52.26,
+          "dark": 52.56
+        }
+      },
+      {
+        "id": "heat",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#FBF1C6",
+              "oklch": {
+                "L": 0.9553,
+                "C": 0.0567,
+                "h": 96.4
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#393129",
+              "oklch": {
+                "L": 0.3191,
+                "C": 0.018,
+                "h": 67.1
+              },
+              "onCanvas": 1.39,
+              "onCard": 1.16
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#E3A257",
+              "oklch": {
+                "L": 0.7601,
+                "C": 0.1198,
+                "h": 68.2
+              },
+              "onCanvas": 2.04,
+              "onCard": 2.14
+            },
+            "dark": {
+              "hex": "#C28336",
+              "oklch": {
+                "L": 0.6604,
+                "C": 0.1198,
+                "h": 68.1
+              },
+              "onCanvas": 5.58,
+              "onCard": 4.65
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#850E2E",
+              "oklch": {
+                "L": 0.3994,
+                "C": 0.1499,
+                "h": 14
+              },
+              "onCanvas": 9.3,
+              "onCard": 9.74
+            },
+            "dark": {
+              "hex": "#FFD1D3",
+              "oklch": {
+                "L": 0.9007,
+                "C": 0.0519,
+                "h": 15.2
+              },
+              "onCanvas": 12.97,
+              "onCard": 10.81
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            20.91,
+            38.2
+          ],
+          "dark": [
+            35.61,
+            25.95
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 57.66,
+          "dark": 58.32
+        }
+      },
+      {
+        "id": "risk",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#373229",
+              "oklch": {
+                "L": 0.3194,
+                "C": 0.017,
+                "h": 82.3
+              },
+              "onCanvas": 1.4,
+              "onCard": 1.17
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#CEA856",
+              "oklch": {
+                "L": 0.7494,
+                "C": 0.1101,
+                "h": 84.7
+              },
+              "onCanvas": 2.09,
+              "onCard": 2.18
+            },
+            "dark": {
+              "hex": "#B18C39",
+              "oklch": {
+                "L": 0.6592,
+                "C": 0.1096,
+                "h": 84.6
+              },
+              "onCanvas": 5.66,
+              "onCard": 4.72
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#B74436",
+              "oklch": {
+                "L": 0.5425,
+                "C": 0.1519,
+                "h": 29.8
+              },
+              "onCanvas": 5.01,
+              "onCard": 5.25
+            },
+            "dark": {
+              "hex": "#FF9686",
+              "oklch": {
+                "L": 0.7795,
+                "C": 0.1293,
+                "h": 29.5
+              },
+              "onCanvas": 8.44,
+              "onCard": 7.03
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            22.29,
+            24.24
+          ],
+          "dark": [
+            35.22,
+            16.42
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 43.72,
+          "dark": 47.54
+        }
+      },
+      {
+        "id": "price",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#363329",
+              "oklch": {
+                "L": 0.3209,
+                "C": 0.0176,
+                "h": 93.3
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#CAAF59",
+              "oklch": {
+                "L": 0.76,
+                "C": 0.1105,
+                "h": 92.2
+              },
+              "onCanvas": 1.99,
+              "onCard": 2.09
+            },
+            "dark": {
+              "hex": "#AA9038",
+              "oklch": {
+                "L": 0.6602,
+                "C": 0.1106,
+                "h": 92.5
+              },
+              "onCanvas": 5.72,
+              "onCard": 4.77
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#135B42",
+              "oklch": {
+                "L": 0.4212,
+                "C": 0.0807,
+                "h": 164.8
+              },
+              "onCanvas": 7.5,
+              "onCard": 7.85
+            },
+            "dark": {
+              "hex": "#A5E9CA",
+              "oklch": {
+                "L": 0.8801,
+                "C": 0.0808,
+                "h": 164.6
+              },
+              "onCanvas": 12.8,
+              "onCard": 10.67
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            21.28,
+            35.8
+          ],
+          "dark": [
+            35.18,
+            24.83
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 53.77,
+          "dark": 56.45
+        }
+      },
+      {
+        "id": "age",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#333515",
+              "oklch": {
+                "L": 0.3186,
+                "C": 0.05,
+                "h": 112.1
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#B1B58A",
+              "oklch": {
+                "L": 0.7588,
+                "C": 0.0588,
+                "h": 112.1
+              },
+              "onCanvas": 1.98,
+              "onCard": 2.08
+            },
+            "dark": {
+              "hex": "#717D55",
+              "oklch": {
+                "L": 0.569,
+                "C": 0.06,
+                "h": 121.9
+              },
+              "onCanvas": 4.04,
+              "onCard": 3.37
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#364D48",
+              "oklch": {
+                "L": 0.3996,
+                "C": 0.0296,
+                "h": 179.8
+              },
+              "onCanvas": 8.44,
+              "onCard": 8.84
+            },
+            "dark": {
+              "hex": "#B3ECDF",
+              "oklch": {
+                "L": 0.9005,
+                "C": 0.0606,
+                "h": 179.3
+              },
+              "onCanvas": 13.54,
+              "onCard": 11.28
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            19.84,
+            36.34
+          ],
+          "dark": [
+            25.08,
+            33.65
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 55.55,
+          "dark": 58.51
+        }
+      },
+      {
+        "id": "density.household",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#253920",
+              "oklch": {
+                "L": 0.3199,
+                "C": 0.05,
+                "h": 139.5
+              },
+              "onCanvas": 1.43,
+              "onCard": 1.19
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#93C089",
+              "oklch": {
+                "L": 0.7613,
+                "C": 0.0904,
+                "h": 140
+              },
+              "onCanvas": 1.92,
+              "onCard": 2.02
+            },
+            "dark": {
+              "hex": "#5A8450",
+              "oklch": {
+                "L": 0.5687,
+                "C": 0.0902,
+                "h": 139.7
+              },
+              "onCanvas": 4.11,
+              "onCard": 3.42
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#0B5D2A",
+              "oklch": {
+                "L": 0.4202,
+                "C": 0.1102,
+                "h": 150
+              },
+              "onCanvas": 7.47,
+              "onCard": 7.82
+            },
+            "dark": {
+              "hex": "#A2ECB1",
+              "oklch": {
+                "L": 0.8792,
+                "C": 0.1096,
+                "h": 150
+              },
+              "onCanvas": 12.85,
+              "onCard": 10.71
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            20.6,
+            34.21
+          ],
+          "dark": [
+            25.2,
+            31.16
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 54.23,
+          "dark": 56.26
+        }
+      },
+      {
+        "id": "growth",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#153B2E",
+              "oklch": {
+                "L": 0.3204,
+                "C": 0.0495,
+                "h": 167.9
+              },
+              "onCanvas": 1.44,
+              "onCard": 1.2
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#5BC19D",
+              "oklch": {
+                "L": 0.7399,
+                "C": 0.11,
+                "h": 167.7
+              },
+              "onCanvas": 2.04,
+              "onCard": 2.14
+            },
+            "dark": {
+              "hex": "#229270",
+              "oklch": {
+                "L": 0.5906,
+                "C": 0.1105,
+                "h": 167.5
+              },
+              "onCanvas": 4.59,
+              "onCard": 3.82
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#126F68",
+              "oklch": {
+                "L": 0.49,
+                "C": 0.0809,
+                "h": 186.9
+              },
+              "onCanvas": 5.58,
+              "onCard": 5.84
+            },
+            "dark": {
+              "hex": "#81D2C9",
+              "oklch": {
+                "L": 0.8092,
+                "C": 0.0808,
+                "h": 186.7
+              },
+              "onCanvas": 10.16,
+              "onCard": 8.47
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            23.71,
+            25.35
+          ],
+          "dark": [
+            27.69,
+            22.29
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 47.11,
+          "dark": 49.02
+        }
+      },
+      {
+        "id": "confidence",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#0A3B38",
+              "oklch": {
+                "L": 0.3203,
+                "C": 0.0501,
+                "h": 188.9
+              },
+              "onCanvas": 1.44,
+              "onCard": 1.2
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#85A5A2",
+              "oklch": {
+                "L": 0.697,
+                "C": 0.0355,
+                "h": 189.3
+              },
+              "onCanvas": 2.47,
+              "onCard": 2.59
+            },
+            "dark": {
+              "hex": "#669490",
+              "oklch": {
+                "L": 0.6322,
+                "C": 0.0502,
+                "h": 189.2
+              },
+              "onCanvas": 5.25,
+              "onCard": 4.38
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#08756F",
+              "oklch": {
+                "L": 0.5078,
+                "C": 0.0864,
+                "h": 188.5
+              },
+              "onCanvas": 5.16,
+              "onCard": 5.4
+            },
+            "dark": {
+              "hex": "#75CDC6",
+              "oklch": {
+                "L": 0.7912,
+                "C": 0.0859,
+                "h": 189
+              },
+              "onCanvas": 9.57,
+              "onCard": 7.98
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            26.03,
+            19.6
+          ],
+          "dark": [
+            31.19,
+            16.29
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 45.48,
+          "dark": 47.22
+        }
+      },
+      {
+        "id": "count",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#083A3F",
+              "oklch": {
+                "L": 0.3199,
+                "C": 0.0503,
+                "h": 205.2
+              },
+              "onCanvas": 1.43,
+              "onCard": 1.19
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#55B8C2",
+              "oklch": {
+                "L": 0.7275,
+                "C": 0.0931,
+                "h": 204.3
+              },
+              "onCanvas": 2.16,
+              "onCard": 2.27
+            },
+            "dark": {
+              "hex": "#26919B",
+              "oklch": {
+                "L": 0.6031,
+                "C": 0.0932,
+                "h": 204.4
+              },
+              "onCanvas": 4.75,
+              "onCard": 3.96
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#236DAA",
+              "oklch": {
+                "L": 0.5205,
+                "C": 0.1198,
+                "h": 247.8
+              },
+              "onCanvas": 5.08,
+              "onCard": 5.32
+            },
+            "dark": {
+              "hex": "#77BEFF",
+              "oklch": {
+                "L": 0.7804,
+                "C": 0.1178,
+                "h": 247.5
+              },
+              "onCanvas": 8.97,
+              "onCard": 7.48
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            24.77,
+            22.3
+          ],
+          "dark": [
+            28.65,
+            19.48
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 45.56,
+          "dark": 46.88
+        }
+      },
+      {
+        "id": "water",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#E6F1F2",
+              "oklch": {
+                "L": 0.9502,
+                "C": 0.0118,
+                "h": 203.5
+              },
+              "onCanvas": 1.07,
+              "onCard": 1.12
+            },
+            "dark": {
+              "hex": "#0A3A41",
+              "oklch": {
+                "L": 0.3213,
+                "C": 0.05,
+                "h": 209.4
+              },
+              "onCanvas": 1.44,
+              "onCard": 1.2
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#8FD3E0",
+              "oklch": {
+                "L": 0.826,
+                "C": 0.0706,
+                "h": 210.8
+              },
+              "onCanvas": 1.55,
+              "onCard": 1.63
+            },
+            "dark": {
+              "hex": "#2A6F7B",
+              "oklch": {
+                "L": 0.5035,
+                "C": 0.0704,
+                "h": 210.9
+              },
+              "onCanvas": 3.1,
+              "onCard": 2.58
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#0F6E8C",
+              "oklch": {
+                "L": 0.5024,
+                "C": 0.0922,
+                "h": 226.1
+              },
+              "onCanvas": 5.38,
+              "onCard": 5.63
+            },
+            "dark": {
+              "hex": "#78CAEA",
+              "oklch": {
+                "L": 0.7984,
+                "C": 0.092,
+                "h": 225.2
+              },
+              "onCanvas": 9.69,
+              "onCard": 8.07
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            13.74,
+            32.51
+          ],
+          "dark": [
+            18.33,
+            29.63
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 45.51,
+          "dark": 47.92
+        }
+      },
+      {
+        "id": "density.capita",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#19364A",
+              "oklch": {
+                "L": 0.3203,
+                "C": 0.05,
+                "h": 240.9
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.18
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#6DB3E4",
+              "oklch": {
+                "L": 0.7396,
+                "C": 0.1004,
+                "h": 240.5
+              },
+              "onCanvas": 2.12,
+              "onCard": 2.22
+            },
+            "dark": {
+              "hex": "#3E85B3",
+              "oklch": {
+                "L": 0.5913,
+                "C": 0.1001,
+                "h": 239.9
+              },
+              "onCanvas": 4.41,
+              "onCard": 3.68
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#1E3E86",
+              "oklch": {
+                "L": 0.3844,
+                "C": 0.1268,
+                "h": 263.5
+              },
+              "onCanvas": 9.35,
+              "onCard": 9.79
+            },
+            "dark": {
+              "hex": "#CEDFFF",
+              "oklch": {
+                "L": 0.9011,
+                "C": 0.0477,
+                "h": 263.1
+              },
+              "onCanvas": 13.23,
+              "onCard": 11.03
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            24.51,
+            35.9
+          ],
+          "dark": [
+            27.56,
+            31.54
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 58.89,
+          "dark": 58.11
+        }
+      },
+      {
+        "id": "built",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#133748",
+              "oklch": {
+                "L": 0.3192,
+                "C": 0.0508,
+                "h": 232
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.18
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#6797AF",
+              "oklch": {
+                "L": 0.6511,
+                "C": 0.0628,
+                "h": 230.6
+              },
+              "onCanvas": 2.95,
+              "onCard": 3.09
+            },
+            "dark": {
+              "hex": "#6A9AB2",
+              "oklch": {
+                "L": 0.6609,
+                "C": 0.0627,
+                "h": 230.6
+              },
+              "onCanvas": 5.83,
+              "onCard": 4.86
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#225F78",
+              "oklch": {
+                "L": 0.4578,
+                "C": 0.0736,
+                "h": 228.8
+              },
+              "onCanvas": 6.56,
+              "onCard": 6.87
+            },
+            "dark": {
+              "hex": "#99D5F2",
+              "oklch": {
+                "L": 0.8422,
+                "C": 0.0734,
+                "h": 229.5
+              },
+              "onCanvas": 11.14,
+              "onCard": 9.29
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            31.32,
+            19.37
+          ],
+          "dark": [
+            34.19,
+            18.16
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 50.43,
+          "dark": 52.35
+        }
+      },
+      {
+        "id": "duration",
+        "kind": "sequential",
+        "zone": null,
+        "anchors": {
+          "low": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#0E3944",
+              "oklch": {
+                "L": 0.321,
+                "C": 0.0495,
+                "h": 218.4
+              },
+              "onCanvas": 1.43,
+              "onCard": 1.19
+            }
+          },
+          "mid": {
+            "light": {
+              "hex": "#A7B9BF",
+              "oklch": {
+                "L": 0.7738,
+                "C": 0.0217,
+                "h": 219.8
+              },
+              "onCanvas": 1.89,
+              "onCard": 1.98
+            },
+            "dark": {
+              "hex": "#517B88",
+              "oklch": {
+                "L": 0.5571,
+                "C": 0.0506,
+                "h": 219.3
+              },
+              "onCanvas": 3.84,
+              "onCard": 3.2
+            }
+          },
+          "high": {
+            "light": {
+              "hex": "#275C76",
+              "oklch": {
+                "L": 0.4508,
+                "C": 0.0702,
+                "h": 232.6
+              },
+              "onCanvas": 6.78,
+              "onCard": 7.1
+            },
+            "dark": {
+              "hex": "#A0D6F4",
+              "oklch": {
+                "L": 0.849,
+                "C": 0.0697,
+                "h": 233
+              },
+              "onCanvas": 11.37,
+              "onCard": 9.47
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            18.43,
+            32.67
+          ],
+          "dark": [
+            23.61,
+            29.29
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 51.08,
+          "dark": 52.86
+        }
+      },
+      {
+        "id": "balance",
+        "kind": "diverging",
+        "zone": null,
+        "anchors": {
+          "neg": {
+            "light": {
+              "hex": "#C52C00",
+              "oklch": {
+                "L": 0.5375,
+                "C": 0.1939,
+                "h": 33.9
+              },
+              "onCanvas": 5.23,
+              "onCard": 5.47
+            },
+            "dark": {
+              "hex": "#FE8F75",
+              "oklch": {
+                "L": 0.7638,
+                "C": 0.1401,
+                "h": 34.2
+              },
+              "onCanvas": 7.96,
+              "onCard": 6.64
+            }
+          },
+          "zero": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#2D3438",
+              "oklch": {
+                "L": 0.32,
+                "C": 0.012,
+                "h": 232.8
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "pos": {
+            "light": {
+              "hex": "#186A9E",
+              "oklch": {
+                "L": 0.5035,
+                "C": 0.1111,
+                "h": 242.7
+              },
+              "onCanvas": 5.43,
+              "onCard": 5.69
+            },
+            "dark": {
+              "hex": "#7AC5FE",
+              "oklch": {
+                "L": 0.7965,
+                "C": 0.1106,
+                "h": 242.7
+              },
+              "onCanvas": 9.52,
+              "onCard": 7.94
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            45.68,
+            46.89
+          ],
+          "dark": [
+            46.9,
+            48.66
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 29.8,
+          "dark": 24.52
+        }
+      },
+      {
+        "id": "delta",
+        "kind": "diverging",
+        "zone": null,
+        "anchors": {
+          "neg": {
+            "light": {
+              "hex": "#B74436",
+              "oklch": {
+                "L": 0.5425,
+                "C": 0.1519,
+                "h": 29.8
+              },
+              "onCanvas": 5.01,
+              "onCard": 5.25
+            },
+            "dark": {
+              "hex": "#FD8C7B",
+              "oklch": {
+                "L": 0.7589,
+                "C": 0.1402,
+                "h": 29.7
+              },
+              "onCanvas": 7.8,
+              "onCard": 6.5
+            }
+          },
+          "zero": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#2D3438",
+              "oklch": {
+                "L": 0.32,
+                "C": 0.012,
+                "h": 232.8
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "pos": {
+            "light": {
+              "hex": "#007C78",
+              "oklch": {
+                "L": 0.5293,
+                "C": 0.0912,
+                "h": 190.8
+              },
+              "onCanvas": 4.7,
+              "onCard": 4.92
+            },
+            "dark": {
+              "hex": "#68C7C2",
+              "oklch": {
+                "L": 0.7703,
+                "C": 0.0907,
+                "h": 190.9
+              },
+              "onCanvas": 8.92,
+              "onCard": 7.44
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            43.72,
+            43.48
+          ],
+          "dark": [
+            46.43,
+            45.78
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 24.03,
+          "dark": 22.82
+        }
+      },
+      {
+        "id": "tradeoff",
+        "kind": "diverging",
+        "zone": null,
+        "anchors": {
+          "neg": {
+            "light": {
+              "hex": "#AB2E47",
+              "oklch": {
+                "L": 0.5005,
+                "C": 0.1607,
+                "h": 13.9
+              },
+              "onCanvas": 6.07,
+              "onCard": 6.36
+            },
+            "dark": {
+              "hex": "#FF9EA7",
+              "oklch": {
+                "L": 0.8,
+                "C": 0.116,
+                "h": 14
+              },
+              "onCanvas": 9.06,
+              "onCard": 7.55
+            }
+          },
+          "zero": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#2D3438",
+              "oklch": {
+                "L": 0.32,
+                "C": 0.012,
+                "h": 232.8
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "pos": {
+            "light": {
+              "hex": "#007E91",
+              "oklch": {
+                "L": 0.5448,
+                "C": 0.0953,
+                "h": 213
+              },
+              "onCanvas": 4.44,
+              "onCard": 4.65
+            },
+            "dark": {
+              "hex": "#60C1D5",
+              "oklch": {
+                "L": 0.7598,
+                "C": 0.0953,
+                "h": 212.9
+              },
+              "onCanvas": 8.54,
+              "onCard": 7.12
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            48.19,
+            42.26
+          ],
+          "dark": [
+            49.61,
+            44.78
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 25.65,
+          "dark": 21.22
+        }
+      },
+      {
+        "id": "flow",
+        "kind": "diverging",
+        "zone": null,
+        "anchors": {
+          "neg": {
+            "light": {
+              "hex": "#D09B00",
+              "oklch": {
+                "L": 0.7203,
+                "C": 0.1478,
+                "h": 84
+              },
+              "onCanvas": 2.33,
+              "onCard": 2.44
+            },
+            "dark": {
+              "hex": "#DBA833",
+              "oklch": {
+                "L": 0.7595,
+                "C": 0.1399,
+                "h": 83.6
+              },
+              "onCanvas": 8.18,
+              "onCard": 6.82
+            }
+          },
+          "zero": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#2D3438",
+              "oklch": {
+                "L": 0.32,
+                "C": 0.012,
+                "h": 232.8
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "pos": {
+            "light": {
+              "hex": "#1A8A51",
+              "oklch": {
+                "L": 0.5599,
+                "C": 0.1301,
+                "h": 154.9
+              },
+              "onCanvas": 4.07,
+              "onCard": 4.26
+            },
+            "dark": {
+              "hex": "#65C98C",
+              "oklch": {
+                "L": 0.7593,
+                "C": 0.1298,
+                "h": 154.9
+              },
+              "onCanvas": 8.71,
+              "onCard": 7.26
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            26.55,
+            41.1
+          ],
+          "dark": [
+            46.45,
+            45.75
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 22.79,
+          "dark": 15.74
+        }
+      },
+      {
+        "id": "sentiment",
+        "kind": "diverging",
+        "zone": null,
+        "anchors": {
+          "neg": {
+            "light": {
+              "hex": "#CB4453",
+              "oklch": {
+                "L": 0.58,
+                "C": 0.1703,
+                "h": 17.9
+              },
+              "onCanvas": 4.35,
+              "onCard": 4.55
+            },
+            "dark": {
+              "hex": "#FD8A8F",
+              "oklch": {
+                "L": 0.7601,
+                "C": 0.1395,
+                "h": 18.2
+              },
+              "onCanvas": 7.8,
+              "onCard": 6.5
+            }
+          },
+          "zero": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#2D3438",
+              "oklch": {
+                "L": 0.32,
+                "C": 0.012,
+                "h": 232.8
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "pos": {
+            "light": {
+              "hex": "#429C5A",
+              "oklch": {
+                "L": 0.6212,
+                "C": 0.131,
+                "h": 149.8
+              },
+              "onCanvas": 3.18,
+              "onCard": 3.33
+            },
+            "dark": {
+              "hex": "#6FC883",
+              "oklch": {
+                "L": 0.7593,
+                "C": 0.1312,
+                "h": 149.6
+              },
+              "onCanvas": 8.69,
+              "onCard": 7.25
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            41.11,
+            35.24
+          ],
+          "dark": [
+            46.48,
+            45.82
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 27.87,
+          "dark": 24.68
+        }
+      },
+      {
+        "id": "anomaly",
+        "kind": "diverging",
+        "zone": null,
+        "anchors": {
+          "neg": {
+            "light": {
+              "hex": "#3578B8",
+              "oklch": {
+                "L": 0.5601,
+                "C": 0.1205,
+                "h": 250
+              },
+              "onCanvas": 4.31,
+              "onCard": 4.51
+            },
+            "dark": {
+              "hex": "#73B6FB",
+              "oklch": {
+                "L": 0.7594,
+                "C": 0.1211,
+                "h": 250.4
+              },
+              "onCanvas": 8.31,
+              "onCard": 6.93
+            }
+          },
+          "zero": {
+            "light": {
+              "hex": "#F2F1DF",
+              "oklch": {
+                "L": 0.9541,
+                "C": 0.0238,
+                "h": 104.3
+              },
+              "onCanvas": 1.06,
+              "onCard": 1.11
+            },
+            "dark": {
+              "hex": "#2D3438",
+              "oklch": {
+                "L": 0.32,
+                "C": 0.012,
+                "h": 232.8
+              },
+              "onCanvas": 1.41,
+              "onCard": 1.17
+            }
+          },
+          "pos": {
+            "light": {
+              "hex": "#DC631E",
+              "oklch": {
+                "L": 0.6399,
+                "C": 0.1692,
+                "h": 45.3
+              },
+              "onCanvas": 3.34,
+              "onCard": 3.5
+            },
+            "dark": {
+              "hex": "#F99262",
+              "oklch": {
+                "L": 0.7593,
+                "C": 0.1397,
+                "h": 45.1
+              },
+              "onCanvas": 7.89,
+              "onCard": 6.58
+            }
+          }
+        },
+        "stepDeltaE": {
+          "light": [
+            41.84,
+            35.18
+          ],
+          "dark": [
+            45.3,
+            46.48
+          ]
+        },
+        "rangeDeltaE": {
+          "light": 29.43,
+          "dark": 25.46
+        }
+      }
+    ],
+    "series": [
+      {
+        "id": "series.01",
+        "name": "coral",
+        "cue": "circle",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#D88381",
+          "ink": "#963538",
+          "inkOnCanvas": 6.82,
+          "inkOnCard": 7.14,
+          "fillOnCanvas": 2.61,
+          "inkOnFill": 2.61,
+          "fillL": 0.6994
+        },
+        "vivid": {
+          "fill": "#F66C6D",
+          "fillOnCanvas": 2.68,
+          "inkOnFill": 2.54,
+          "fillL": 0.7003
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 2.61
+        }
+      },
+      {
+        "id": "series.01",
+        "name": "coral",
+        "cue": "circle",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#F8A4A1",
+          "ink": "#FFC8C5",
+          "inkOnCanvas": 12.13,
+          "inkOnCard": 10.11,
+          "fillOnCanvas": 9.16,
+          "inkOnFill": 1.32,
+          "fillL": 0.8005
+        },
+        "vivid": {
+          "fill": "#FF9F9C",
+          "fillOnCanvas": 9.06,
+          "inkOnFill": 1.34,
+          "fillL": 0.7989
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.02",
+        "name": "apricot",
+        "cue": "square",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#E39B6E",
+          "ink": "#182327",
+          "inkOnCanvas": 14.92,
+          "inkOnCard": 15.62,
+          "fillOnCanvas": 2.13,
+          "inkOnFill": 7.02,
+          "fillL": 0.7505
+        },
+        "vivid": {
+          "fill": "#FF8A36",
+          "fillOnCanvas": 2.18,
+          "inkOnFill": 6.83,
+          "fillL": 0.7494
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 2.13
+        }
+      },
+      {
+        "id": "series.02",
+        "name": "apricot",
+        "cue": "square",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#F8B287",
+          "ink": "#FFCBAC",
+          "inkOnCanvas": 12.19,
+          "inkOnCard": 10.16,
+          "fillOnCanvas": 9.92,
+          "inkOnFill": 1.23,
+          "fillL": 0.8197
+        },
+        "vivid": {
+          "fill": "#FFAF7D",
+          "fillOnCanvas": 9.89,
+          "inkOnFill": 1.23,
+          "fillL": 0.8202
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.03",
+        "name": "yellow",
+        "cue": "triangle",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#EAC578",
+          "ink": "#182327",
+          "inkOnCanvas": 14.92,
+          "inkOnCard": 15.62,
+          "fillOnCanvas": 1.53,
+          "inkOnFill": 9.75,
+          "fillL": 0.8391
+        },
+        "vivid": {
+          "fill": "#FDC010",
+          "fillOnCanvas": 1.53,
+          "inkOnFill": 9.72,
+          "fillL": 0.8403
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 1.53
+        }
+      },
+      {
+        "id": "series.03",
+        "name": "yellow",
+        "cue": "triangle",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#F3D086",
+          "ink": "#F6D389",
+          "inkOnCanvas": 12.36,
+          "inkOnCard": 10.31,
+          "fillOnCanvas": 12.01,
+          "inkOnFill": 1.03,
+          "fillL": 0.8713
+        },
+        "vivid": {
+          "fill": "#FBCD68",
+          "fillOnCanvas": 11.89,
+          "inkOnFill": 1.04,
+          "fillL": 0.8689
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.04",
+        "name": "lime",
+        "cue": "diamond",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#BECE7E",
+          "ink": "#606E00",
+          "inkOnCanvas": 5.24,
+          "inkOnCard": 5.48,
+          "fillOnCanvas": 1.58,
+          "inkOnFill": 3.3,
+          "fillL": 0.8209
+        },
+        "vivid": {
+          "fill": "#BBD23C",
+          "fillOnCanvas": 1.57,
+          "inkOnFill": 3.33,
+          "fillL": 0.8199
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 1.58
+        }
+      },
+      {
+        "id": "series.04",
+        "name": "lime",
+        "cue": "diamond",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#CBDA8E",
+          "ink": "#D1E195",
+          "inkOnCanvas": 12.63,
+          "inkOnCard": 10.53,
+          "fillOnCanvas": 11.82,
+          "inkOnFill": 1.07,
+          "fillL": 0.8593
+        },
+        "vivid": {
+          "fill": "#C9DD76",
+          "fillOnCanvas": 11.93,
+          "inkOnFill": 1.06,
+          "fillL": 0.8605
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.05",
+        "name": "mint",
+        "cue": "cross",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#7BD0A3",
+          "ink": "#007047",
+          "inkOnCanvas": 5.73,
+          "inkOnCard": 6,
+          "fillOnCanvas": 1.71,
+          "inkOnFill": 3.34,
+          "fillL": 0.7912
+        },
+        "vivid": {
+          "fill": "#2ADB94",
+          "fillOnCanvas": 1.67,
+          "inkOnFill": 3.42,
+          "fillL": 0.7904
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 1.71
+        }
+      },
+      {
+        "id": "series.05",
+        "name": "mint",
+        "cue": "cross",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#8FDFB4",
+          "ink": "#9BECC1",
+          "inkOnCanvas": 12.84,
+          "inkOnCard": 10.7,
+          "fillOnCanvas": 11.33,
+          "inkOnFill": 1.13,
+          "fillL": 0.8402
+        },
+        "vivid": {
+          "fill": "#76E5AD",
+          "fillOnCanvas": 11.5,
+          "inkOnFill": 1.12,
+          "fillL": 0.8411
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.06",
+        "name": "sky",
+        "cue": "star",
+        "theme": "light",
+        "energyAccentEquivalent": true,
+        "soft": {
+          "fill": "#6ACCF0",
+          "ink": "#006580",
+          "inkOnCanvas": 6.15,
+          "inkOnCard": 6.44,
+          "fillOnCanvas": 1.7,
+          "inkOnFill": 3.63,
+          "fillL": 0.7993
+        },
+        "vivid": {
+          "fill": "#36D0FF",
+          "fillOnCanvas": 1.68,
+          "inkOnFill": 3.66,
+          "fillL": 0.8
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 1.7
+        }
+      },
+      {
+        "id": "series.06",
+        "name": "sky",
+        "cue": "star",
+        "theme": "dark",
+        "energyAccentEquivalent": true,
+        "soft": {
+          "fill": "#7DD9FB",
+          "ink": "#9CE4FF",
+          "inkOnCanvas": 12.67,
+          "inkOnCard": 10.56,
+          "fillOnCanvas": 11.17,
+          "inkOnFill": 1.13,
+          "fillL": 0.8404
+        },
+        "vivid": {
+          "fill": "#73DAFF",
+          "fillOnCanvas": 11.18,
+          "inkOnFill": 1.13,
+          "fillL": 0.8401
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.07",
+        "name": "teal",
+        "cue": "hexagon",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#49C0BC",
+          "ink": "#006967",
+          "inkOnCanvas": 6.07,
+          "inkOnCard": 6.36,
+          "fillOnCanvas": 2.04,
+          "inkOnFill": 2.97,
+          "fillL": 0.7407
+        },
+        "vivid": {
+          "fill": "#00C4BF",
+          "fillOnCanvas": 2.02,
+          "inkOnFill": 3,
+          "fillL": 0.741
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 2.04
+        }
+      },
+      {
+        "id": "series.07",
+        "name": "teal",
+        "cue": "hexagon",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#6DD9D5",
+          "ink": "#81EDE8",
+          "inkOnCanvas": 12.88,
+          "inkOnCard": 10.74,
+          "fillOnCanvas": 10.62,
+          "inkOnFill": 1.21,
+          "fillL": 0.8205
+        },
+        "vivid": {
+          "fill": "#38DEDA",
+          "fillOnCanvas": 10.7,
+          "inkOnFill": 1.2,
+          "fillL": 0.8192
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.08",
+        "name": "blue",
+        "cue": "ring",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#6196D1",
+          "ink": "#0E599D",
+          "inkOnCanvas": 6.65,
+          "inkOnCard": 6.97,
+          "fillOnCanvas": 2.87,
+          "inkOnFill": 2.31,
+          "fillL": 0.6607
+        },
+        "vivid": {
+          "fill": "#3295F6",
+          "fillOnCanvas": 2.88,
+          "inkOnFill": 2.31,
+          "fillL": 0.6611
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 2.87
+        }
+      },
+      {
+        "id": "series.08",
+        "name": "blue",
+        "cue": "ring",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#88BCF6",
+          "ink": "#BBDBFF",
+          "inkOnCanvas": 12.44,
+          "inkOnCard": 10.37,
+          "fillOnCanvas": 8.95,
+          "inkOnFill": 1.39,
+          "fillL": 0.7809
+        },
+        "vivid": {
+          "fill": "#7FBCFF",
+          "fillOnCanvas": 8.93,
+          "inkOnFill": 1.39,
+          "fillL": 0.7801
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.09",
+        "name": "slate",
+        "cue": "dash",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#8AA4AA",
+          "ink": "#355F6A",
+          "inkOnCanvas": 6.51,
+          "inkOnCard": 6.82,
+          "fillOnCanvas": 2.45,
+          "inkOnFill": 2.66,
+          "fillL": 0.7008
+        },
+        "vivid": {
+          "fill": "#7FA6B0",
+          "fillOnCanvas": 2.44,
+          "inkOnFill": 2.66,
+          "fillL": 0.7
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 2.45
+        }
+      },
+      {
+        "id": "series.09",
+        "name": "slate",
+        "cue": "dash",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#A1C5CE",
+          "ink": "#BBDFE8",
+          "inkOnCanvas": 12.56,
+          "inkOnCard": 10.47,
+          "fillOnCanvas": 9.65,
+          "inkOnFill": 1.3,
+          "fillL": 0.8001
+        },
+        "vivid": {
+          "fill": "#A1C5CE",
+          "fillOnCanvas": 9.65,
+          "inkOnFill": 1.3,
+          "fillL": 0.8001
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      },
+      {
+        "id": "series.10",
+        "name": "green",
+        "cue": "plus",
+        "theme": "light",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#82AC79",
+          "ink": "#34622A",
+          "inkOnCanvas": 6.67,
+          "inkOnCard": 6.99,
+          "fillOnCanvas": 2.4,
+          "inkOnFill": 2.78,
+          "fillL": 0.7004
+        },
+        "vivid": {
+          "fill": "#71B262",
+          "fillOnCanvas": 2.37,
+          "inkOnFill": 2.82,
+          "fillL": 0.7004
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "light fill on canvas (recorded; edge-separated by DATAVIZ-05, not gated)": 2.4
+        }
+      },
+      {
+        "id": "series.10",
+        "name": "green",
+        "cue": "plus",
+        "theme": "dark",
+        "energyAccentEquivalent": false,
+        "soft": {
+          "fill": "#9AD78C",
+          "ink": "#B8E7AE",
+          "inkOnCanvas": 12.77,
+          "inkOnCard": 10.65,
+          "fillOnCanvas": 10.56,
+          "inkOnFill": 1.21,
+          "fillL": 0.8191
+        },
+        "vivid": {
+          "fill": "#9AD78C",
+          "fillOnCanvas": 10.56,
+          "inkOnFill": 1.21,
+          "fillL": 0.8191
+        },
+        "gates": {
+          "S-INK-01 ink ≥ 4.50 on canvas": "pass",
+          "S-INK-01 ink ≥ 4.50 on card": "pass",
+          "S-FILL-01 dark fill ≥ 3.00 on canvas (soft and vivid)": "pass"
+        }
+      }
+    ],
+    "energyProximity": [
+      {
+        "id": "series.01",
+        "name": "coral",
+        "vividLight": "#F66C6D",
+        "nearestEnergy": {
+          "token": "coral",
+          "deltaE": 3.23
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.02",
+        "name": "apricot",
+        "vividLight": "#FF8A36",
+        "nearestEnergy": {
+          "token": "coral",
+          "deltaE": 11.59
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.03",
+        "name": "yellow",
+        "vividLight": "#FDC010",
+        "nearestEnergy": {
+          "token": "yellow",
+          "deltaE": 1.19
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.04",
+        "name": "lime",
+        "vividLight": "#BBD23C",
+        "nearestEnergy": {
+          "token": "yellow",
+          "deltaE": 10.63
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.05",
+        "name": "mint",
+        "vividLight": "#2ADB94",
+        "nearestEnergy": {
+          "token": "mint",
+          "deltaE": 2.14
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.06",
+        "name": "sky",
+        "vividLight": "#36D0FF",
+        "nearestEnergy": {
+          "token": "sky",
+          "deltaE": 1.98
+        },
+        "energyAccentEquivalent": true
+      },
+      {
+        "id": "series.07",
+        "name": "teal",
+        "vividLight": "#00C4BF",
+        "nearestEnergy": {
+          "token": "mint",
+          "deltaE": 8.28
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.08",
+        "name": "blue",
+        "vividLight": "#3295F6",
+        "nearestEnergy": {
+          "token": "sky",
+          "deltaE": 17.16
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.09",
+        "name": "slate",
+        "vividLight": "#7FA6B0",
+        "nearestEnergy": {
+          "token": "sky",
+          "deltaE": 13.8
+        },
+        "energyAccentEquivalent": false
+      },
+      {
+        "id": "series.10",
+        "name": "green",
+        "vividLight": "#71B262",
+        "nearestEnergy": {
+          "token": "mint",
+          "deltaE": 10.42
+        },
+        "energyAccentEquivalent": false
+      }
+    ],
+    "valueStateLabels": [
+      {
+        "theme": "light",
+        "surface": "canvas",
+        "bg": "#F6F7F3",
+        "ink": "#5C6A61",
+        "contrast": 5.29,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "light",
+        "surface": "card",
+        "bg": "#FCFCFA",
+        "ink": "#5C6A61",
+        "contrast": 5.54,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "light",
+        "surface": "alt",
+        "bg": "#EEF1EE",
+        "ink": "#5C6A61",
+        "contrast": 5,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "light",
+        "surface": "soft",
+        "bg": "#E5E9E6",
+        "ink": "#5C6A61",
+        "contrast": 4.64,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "light",
+        "surface": "suppressedFill",
+        "bg": "#E5E9E6",
+        "ink": "#5C6A61",
+        "contrast": 4.64,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "light",
+        "surface": "notYetFill",
+        "bg": "#F3EEDB",
+        "ink": "#5C6A61",
+        "contrast": 4.9,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "light",
+        "surface": "noDataHatchFill",
+        "bg": "#D5DAD6",
+        "ink": "#5C6A61",
+        "contrast": 4.02,
+        "gate": "not gated — the label is never placed on the hatch fill (owner decision 15 September 2026)",
+        "result": "recorded"
+      },
+      {
+        "theme": "light",
+        "surface": "canvas (disabled hint, text.muted)",
+        "bg": "#F6F7F3",
+        "ink": "#7B877D",
+        "contrast": 3.48,
+        "gate": "hint only; not a label",
+        "result": "recorded"
+      },
+      {
+        "theme": "dark",
+        "surface": "canvas",
+        "bg": "#11191D",
+        "ink": "#A6B5B1",
+        "contrast": 8.36,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "dark",
+        "surface": "card",
+        "bg": "#20292D",
+        "ink": "#A6B5B1",
+        "contrast": 6.97,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "dark",
+        "surface": "alt",
+        "bg": "#172126",
+        "ink": "#A6B5B1",
+        "contrast": 7.7,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "dark",
+        "surface": "soft",
+        "bg": "#2B3534",
+        "ink": "#A6B5B1",
+        "contrast": 5.94,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "dark",
+        "surface": "suppressedFill",
+        "bg": "#2B3534",
+        "ink": "#A6B5B1",
+        "contrast": 5.94,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "dark",
+        "surface": "notYetFill",
+        "bg": "#2C2A22",
+        "ink": "#A6B5B1",
+        "contrast": 6.75,
+        "gate": "ST-INK-01 ≥ 4.50",
+        "result": "pass"
+      },
+      {
+        "theme": "dark",
+        "surface": "noDataHatchFill",
+        "bg": "#404844",
+        "ink": "#A6B5B1",
+        "contrast": 4.43,
+        "gate": "not gated — the label is never placed on the hatch fill (owner decision 15 September 2026)",
+        "result": "recorded"
+      },
+      {
+        "theme": "dark",
+        "surface": "canvas (disabled hint, text.muted)",
+        "bg": "#11191D",
+        "ink": "#8D9D99",
+        "contrast": 6.28,
+        "gate": "hint only; not a label",
+        "result": "recorded"
+      }
+    ],
+    "darkDerivation": [
+      {
+        "family": "activity",
+        "kind": "sequential",
+        "warmLane": true,
+        "derived": [
+          "#3C302D",
+          "#D17465",
+          "#FF977F"
+        ],
+        "shipped": [
+          "#3C302D",
+          "#D17465",
+          "#FF977F"
+        ],
+        "proposalDark": [
+          "#3C302D",
+          "#D17465",
+          "#FF977F"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "density.area",
+        "kind": "sequential",
+        "warmLane": true,
+        "derived": [
+          "#3B302B",
+          "#CC7B4A",
+          "#FFB4B3"
+        ],
+        "shipped": [
+          "#3B302B",
+          "#CC7B4A",
+          "#FFB4B3"
+        ],
+        "proposalDark": [
+          "#3B302B",
+          "#CC7B4B",
+          "#FFB4B3"
+        ],
+        "hexExact": false,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": [
+          {
+            "anchor": "mid",
+            "derived": "#CC7B4A",
+            "proposal": "#CC7B4B",
+            "channelDelta": [
+              0,
+              0,
+              -1
+            ],
+            "shipped": "#CC7B4A"
+          }
+        ]
+      },
+      {
+        "family": "heat",
+        "kind": "sequential",
+        "warmLane": true,
+        "derived": [
+          "#393129",
+          "#C28336",
+          "#FFD1D3"
+        ],
+        "shipped": [
+          "#393129",
+          "#C28336",
+          "#FFD1D3"
+        ],
+        "proposalDark": [
+          "#393129",
+          "#C28336",
+          "#FFD0D3"
+        ],
+        "hexExact": false,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": [
+          {
+            "anchor": "high",
+            "derived": "#FFD1D3",
+            "proposal": "#FFD0D3",
+            "channelDelta": [
+              0,
+              1,
+              0
+            ],
+            "shipped": "#FFD1D3"
+          }
+        ]
+      },
+      {
+        "family": "risk",
+        "kind": "sequential",
+        "warmLane": true,
+        "derived": [
+          "#373229",
+          "#B18C39",
+          "#FF9686"
+        ],
+        "shipped": [
+          "#373229",
+          "#B18C39",
+          "#FF9686"
+        ],
+        "proposalDark": [
+          "#373229",
+          "#B18C39",
+          "#FF9686"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "price",
+        "kind": "sequential",
+        "warmLane": true,
+        "derived": [
+          "#363329",
+          "#AA9038",
+          "#A5E9CA"
+        ],
+        "shipped": [
+          "#363329",
+          "#AA9038",
+          "#A5E9CA"
+        ],
+        "proposalDark": [
+          "#363329",
+          "#AA9038",
+          "#A5E9CA"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "age",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#333515",
+          "#717D55",
+          "#B3ECDF"
+        ],
+        "shipped": [
+          "#333515",
+          "#717D55",
+          "#B3ECDF"
+        ],
+        "proposalDark": [
+          "#333515",
+          "#717D55",
+          "#B3ECDF"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [
+          {
+            "anchor": "mid",
+            "derived": "#787C53",
+            "shipped": "#717D55",
+            "reason": "B-HUE-02 escape: the derived value #787C53 sits ΔE 3.51 from purged #827C68 within its 20° hue lane (hue difference 19.5°); the board rotated the hue away from the lane keeping L and C (delta row: \"hue 113° → 122°\"); no deterministic rule reproduces the exact hex, so the board value ships as a declared exception",
+            "decidedOn": "2026-09-17"
+          }
+        ],
+        "channelStepDelta": [
+          {
+            "anchor": "mid",
+            "derived": "#787C53",
+            "proposal": "#717D55",
+            "channelDelta": [
+              7,
+              -1,
+              -2
+            ],
+            "shipped": "#717D55"
+          }
+        ]
+      },
+      {
+        "family": "density.household",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#253920",
+          "#5A8450",
+          "#A2ECB1"
+        ],
+        "shipped": [
+          "#253920",
+          "#5A8450",
+          "#A2ECB1"
+        ],
+        "proposalDark": [
+          "#253920",
+          "#5A8450",
+          "#A2ECB1"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "growth",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#153B2E",
+          "#229270",
+          "#81D2C9"
+        ],
+        "shipped": [
+          "#153B2E",
+          "#229270",
+          "#81D2C9"
+        ],
+        "proposalDark": [
+          "#153B2E",
+          "#229270",
+          "#81D2C9"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "confidence",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#0A3B38",
+          "#669490",
+          "#75CDC6"
+        ],
+        "shipped": [
+          "#0A3B38",
+          "#669490",
+          "#75CDC6"
+        ],
+        "proposalDark": [
+          "#0A3B38",
+          "#669490",
+          "#75CDC6"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "count",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#083A3F",
+          "#26919B",
+          "#77BEFF"
+        ],
+        "shipped": [
+          "#083A3F",
+          "#26919B",
+          "#77BEFF"
+        ],
+        "proposalDark": [
+          "#083A3F",
+          "#26919B",
+          "#77BEFF"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "water",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#0A3A41",
+          "#2A6F7B",
+          "#78CAEA"
+        ],
+        "shipped": [
+          "#0A3A41",
+          "#2A6F7B",
+          "#78CAEA"
+        ],
+        "proposalDark": [
+          "#0A3A41",
+          "#2A6F7B",
+          "#78CAEA"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "density.capita",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#19364A",
+          "#3E85B3",
+          "#CEDFFF"
+        ],
+        "shipped": [
+          "#19364A",
+          "#3E85B3",
+          "#CEDFFF"
+        ],
+        "proposalDark": [
+          "#19364A",
+          "#3E85B3",
+          "#CEDFFF"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "built",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#133748",
+          "#6A9AB2",
+          "#99D5F2"
+        ],
+        "shipped": [
+          "#133748",
+          "#6A9AB2",
+          "#99D5F2"
+        ],
+        "proposalDark": [
+          "#133748",
+          "#6A9AB2",
+          "#99D5F2"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "duration",
+        "kind": "sequential",
+        "warmLane": false,
+        "derived": [
+          "#0E3944",
+          "#517B88",
+          "#A0D6F4"
+        ],
+        "shipped": [
+          "#0E3944",
+          "#517B88",
+          "#A0D6F4"
+        ],
+        "proposalDark": [
+          "#0E3944",
+          "#517B88",
+          "#A0D6F4"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "balance",
+        "kind": "diverging",
+        "warmLane": false,
+        "derived": [
+          "#FE8F75",
+          "#2D3438",
+          "#7AC5FE"
+        ],
+        "shipped": [
+          "#FE8F75",
+          "#2D3438",
+          "#7AC5FE"
+        ],
+        "proposalDark": [
+          "#FE8F75",
+          "#2D3438",
+          "#7AC5FE"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "delta",
+        "kind": "diverging",
+        "warmLane": false,
+        "derived": [
+          "#FD8C7B",
+          "#2D3438",
+          "#68C7C2"
+        ],
+        "shipped": [
+          "#FD8C7B",
+          "#2D3438",
+          "#68C7C2"
+        ],
+        "proposalDark": [
+          "#FD8C7B",
+          "#2D3438",
+          "#68C7C2"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "tradeoff",
+        "kind": "diverging",
+        "warmLane": false,
+        "derived": [
+          "#FF9EA7",
+          "#2D3438",
+          "#60C1D5"
+        ],
+        "shipped": [
+          "#FF9EA7",
+          "#2D3438",
+          "#60C1D5"
+        ],
+        "proposalDark": [
+          "#FF9EA7",
+          "#2D3438",
+          "#60C1D5"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "flow",
+        "kind": "diverging",
+        "warmLane": false,
+        "derived": [
+          "#DBA833",
+          "#2D3438",
+          "#65C98C"
+        ],
+        "shipped": [
+          "#DBA833",
+          "#2D3438",
+          "#65C98C"
+        ],
+        "proposalDark": [
+          "#DBA833",
+          "#2D3438",
+          "#65C98C"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "sentiment",
+        "kind": "diverging",
+        "warmLane": false,
+        "derived": [
+          "#FD8A8F",
+          "#2D3438",
+          "#6FC883"
+        ],
+        "shipped": [
+          "#FD8A8F",
+          "#2D3438",
+          "#6FC883"
+        ],
+        "proposalDark": [
+          "#FD8A8F",
+          "#2D3438",
+          "#6FC883"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      },
+      {
+        "family": "anomaly",
+        "kind": "diverging",
+        "warmLane": false,
+        "derived": [
+          "#73B6FB",
+          "#2D3438",
+          "#F99262"
+        ],
+        "shipped": [
+          "#73B6FB",
+          "#2D3438",
+          "#F99262"
+        ],
+        "proposalDark": [
+          "#73B6FB",
+          "#2D3438",
+          "#F99262"
+        ],
+        "hexExact": true,
+        "shippedEqualsDerived": true,
+        "declaredExceptions": [],
+        "channelStepDelta": []
+      }
+    ]
+  },
+  "boundary": "Measurements describe the registry and the kit CSS in isolation; rendered contrast on gradients, images or pseudo-elements and every visual review on real screens remain open (master §21)."
+}

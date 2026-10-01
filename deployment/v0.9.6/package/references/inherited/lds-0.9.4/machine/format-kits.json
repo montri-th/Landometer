@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "1.4",
+  "releaseRef": "v0.9.4-mp1",
+  "status": "active",
+  "note": "Canonical semantic production controls for candidate v0.9.4. This registry does not claim to contain reusable native templates. Each downstream artifact binds its selected kit, target, preset, exact final delivery bytes, required test evidence, and every editable or native source file actually used; unresolved implementations remain internal under OUTPUT-CLARITY-01.",
+  "kits": [
+    {
+      "id": "kit.web.base.01",
+      "formatProfile": "web_public",
+      "targetProfileRefs": [
+        "target.web.responsive.360-1600.01"
+      ],
+      "roleMap": {
+        "identity": "role-approved identity asset, or governed live-text identity when no approved logo role exists",
+        "heading": "native h1-h6 plus typography roles",
+        "body": "native paragraphs and lists",
+        "navigation": "nav links plus disclosure button",
+        "bookmark": "anchor index conditional on BOOKMARK-01",
+        "cta": "capsule link or button; circle only when icon-only",
+        "evidence": "proximate disclosure plus stable record link",
+        "motion": "static source plus optional motion-riddim-approach-03 adapter; identity motion and motifs only through the MotifFrame component with the shared MotionController (MOTION-04, MOTIF-01…06)",
+        "icon": "one approved six-size icon set per property (FAVICON-01)",
+        "linkPreview": "1200 × 630 OG creative with three recognisers (SOCIALFMT-01)"
+      },
+      "requiredImplementationControls": [
+        "base tokens CSS",
+        "base component CSS",
+        "font manifest",
+        "icon subset manifest",
+        "no-script styles",
+        "print styles",
+        "icon set in six sizes with web manifest and theme-color",
+        "title pattern [page] · [product]",
+        "OG 1200 × 630 link-preview template",
+        "MotifFrame wrapper with exact runtime bytes, twelve final-state SVGs, manifest job validation and one page-level MotionController",
+        "dark scale custom properties equal to the DATAVIZ-03 derivation (warm lane by its own formula)",
+        "no --scale-* or --series-* override inside the DATAVIZ-04 hue windows"
+      ],
+      "artifactProductionRequirement": "bind exact final web bytes, every editable or source file actually used, browser-fixture evidence, and a deployed-origin receipt"
+    },
+    {
+      "id": "kit.app.base.01",
+      "formatProfile": "app_interactive",
+      "targetProfileRefs": [
+        "target.app.browser-responsive.360-1600.01",
+        "target.app.native-responsive.360-1280.01"
+      ],
+      "roleMap": {
+        "identity": "role-approved identity asset, or governed live-text identity when no approved logo role exists",
+        "heading": "semantic task and panel headings",
+        "navigation": "product and task navigation",
+        "cta": "direct stateful control with recovery and receipt",
+        "evidence": "in-context evidence and data receipt",
+        "motion": "runtime-specific browser observer or native state feedback plus a stable final state"
+      },
+      "requiredImplementationControls": [
+        "base tokens",
+        "state recipes",
+        "permission recipes",
+        "action receipt recipes",
+        "font manifest",
+        "icon subset manifest"
+      ],
+      "artifactProductionRequirement": "bind exact final application bytes, the selected browser or native runtime target, every editable or source file actually used, runtime-specific state and accessibility evidence, and a production receipt"
+    },
+    {
+      "id": "kit.document.flow.01",
+      "formatProfile": "document_flow",
+      "targetProfileRefs": [
+        "target.document.a4-portrait.01"
+      ],
+      "roleMap": {
+        "identity": "role-approved identity asset, or governed text identity in native document text",
+        "title": "native document title style",
+        "heading": "native heading levels and updateable TOC",
+        "body": "native paragraph/list/table/caption/note styles",
+        "bookmark": "heading hierarchy and TOC",
+        "cta": "working labelled link block",
+        "evidence": "footnote, endnote, source block, or appendix",
+        "motion": "final state or numbered sequence"
+      },
+      "requiredImplementationControls": [
+        "style map",
+        "document properties map",
+        "table and figure styles",
+        "source-note styles",
+        "export preset"
+      ],
+      "artifactProductionRequirement": "bind the exact editable source document or template actually used, the final delivery bytes, and representative document and PDF-export receipts"
+    },
+    {
+      "id": "kit.pdf.fixed.01",
+      "formatProfile": "pdf_fixed",
+      "targetProfileRefs": [
+        "target.pdf.a4-portrait.01"
+      ],
+      "roleMap": {
+        "identity": "role-approved identity asset, or governed text identity preserved as tagged or extractable text",
+        "heading": "tagged heading and bookmark",
+        "body": "tagged text with reading order",
+        "cta": "working annotation plus readable destination",
+        "evidence": "tagged note and durable source trail",
+        "motion": "final state or sequence frames"
+      },
+      "requiredImplementationControls": [
+        "export preset",
+        "tag map",
+        "metadata map",
+        "font embedding policy",
+        "link and bookmark verifier"
+      ],
+      "artifactProductionRequirement": "bind the exact export preset actually used, final PDF bytes, and all-pages render, tags, text, font, link, and print receipts"
+    },
+    {
+      "id": "kit.deck.presentation.01",
+      "formatProfile": "deck_presentation",
+      "targetProfileRefs": [
+        "target.deck.16x9.01"
+      ],
+      "roleMap": {
+        "identity": "role-approved identity asset, or governed text identity preserved on the title and closing slides",
+        "title": "title master",
+        "section": "section master with progress",
+        "content": "one-idea content layouts",
+        "bookmark": "agenda and section marker",
+        "cta": "action slide with working link or verified QR",
+        "evidence": "visible source cue plus appendix",
+        "motion": "static equivalent; presenter sequence only when meaningful"
+      },
+      "requiredImplementationControls": [
+        "slide master",
+        "layout set",
+        "source-note style",
+        "chart and map layouts",
+        "PDF export preset"
+      ],
+      "artifactProductionRequirement": "bind the exact editable deck or template actually used, final delivery bytes, and montage, distance, source, link, and PDF-export receipts"
+    },
+    {
+      "id": "kit.social.static.01",
+      "formatProfile": "social_static",
+      "targetProfileRefs": [
+        "target.social.square.1080.01",
+        "target.social.og.1200x630.01"
+      ],
+      "roleMap": {
+        "headline": "one approved message",
+        "identity": "role-approved channel-safe identity asset, or governed text identity; never reconstruct a logo",
+        "cta": "one destination cue, not a fake control",
+        "evidence": "compact source cue plus sidecar",
+        "motion": "not applicable"
+      },
+      "requiredImplementationControls": [
+        "1080 × 1080 safe-area template",
+        "square center-crop fixture",
+        "sidecar schema",
+        "feed-size fixture",
+        "1200 × 630 OG template with the 8px four-colour rule, panel and measure line",
+        "text-safe 1000 × 560 and central-630 fixtures"
+      ],
+      "artifactProductionRequirement": "bind the exact editable source or template actually used, final channel bytes, and crop, feed-size, identity, and destination receipts"
+    }
+  ]
+}

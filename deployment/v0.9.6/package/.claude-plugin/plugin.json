@@ -1,0 +1,18 @@
+{
+  "name": "landometer-design-system",
+  "version": "0.9.6",
+  "description": "LDS 0.9.6 complete shared normative, separate product Add-ons and exact assets for consistent human and AI work.",
+  "author": {
+    "name": "Landometer",
+    "url": "https://github.com/montri-th"
+  },
+  "homepage": "https://montri-th.github.io/Landometer/",
+  "repository": "https://github.com/montri-th/Landometer",
+  "keywords": [
+    "landometer",
+    "design-system",
+    "brand",
+    "data-visualization",
+    "thai"
+  ]
+}

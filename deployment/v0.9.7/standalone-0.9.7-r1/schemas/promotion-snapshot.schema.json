@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/promotion-snapshot.schema.json",
+  "title": "Landometer non-circular promotion snapshot v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "releaseRef",
+    "snapshotId",
+    "conformanceLevel",
+    "artifactId",
+    "artifactBuildId",
+    "buildCard",
+    "artifactManifest",
+    "preset",
+    "socialSidecar",
+    "implementationSources",
+    "outputs",
+    "receipts",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "releaseRef": {
+      "const": "v0.9.7-owner.1"
+    },
+    "snapshotId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,159}$"
+    },
+    "conformanceLevel": {
+      "enum": [
+        "artifact_qa_passed",
+        "production_verified"
+      ]
+    },
+    "artifactId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "artifactBuildId": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "buildCard": {
+      "$ref": "#/$defs/fileBinding"
+    },
+    "artifactManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "canonicalPromotionProjectionSha256"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "canonicalPromotionProjectionSha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "preset": {
+      "$ref": "#/$defs/fileBinding"
+    },
+    "socialSidecar": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/fileBinding"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "implementationSources": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "sha256",
+          "lineageReceiptRef",
+          "lineageReceiptSha256",
+          "lineageAttestationRef",
+          "lineageAttestationSha256"
+        ],
+        "properties": {
+          "ref": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "lineageReceiptRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "lineageReceiptSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "lineageAttestationRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "lineageAttestationSha256": {
+            "$ref": "#/$defs/sha256"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "sha256",
+          "mediaType"
+        ],
+        "properties": {
+          "path": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "mediaType": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    "receipts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "checkId",
+          "receiptRef",
+          "receiptSha256",
+          "attestationRef",
+          "attestationSha256"
+        ],
+        "properties": {
+          "checkId": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "receiptRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "receiptSha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "attestationRef": {
+            "$ref": "#/$defs/safeRef"
+          },
+          "attestationSha256": {
+            "$ref": "#/$defs/sha256"
+          }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "safeRef": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "fileBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "sha256"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/safeRef"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.7 contract, revision standalone-0.9.7-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

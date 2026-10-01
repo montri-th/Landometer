@@ -1,0 +1,3866 @@
+{
+  "schemaVersion": "lds-story-location-study-1",
+  "buildId": "lds-story-location-study-20261001-r2",
+  "status": "DRAFT — owner visual approval pending; not a release",
+  "baseStudy": {
+    "buildId": "lds-story-study-20261001-r4",
+    "sha256": "be696bc8f41520f85167678634407838ac5ed5c9bb9a802585146b0b2f36415f",
+    "supportingPalette": [
+      {
+        "id": "paper",
+        "name": "Paper / กระดาษ",
+        "hex": "#F4F0E7",
+        "role": "Quiet editorial ground"
+      },
+      {
+        "id": "navy",
+        "name": "Editorial navy / น้ำเงินหมึก",
+        "hex": "#213E70",
+        "role": "Deep typographic weight"
+      },
+      {
+        "id": "blue",
+        "name": "Active blue / ฟ้ากิจกรรม",
+        "hex": "#25659A",
+        "role": "Focused cool accent"
+      },
+      {
+        "id": "cyan",
+        "name": "Water cyan / ฟ้าน้ำ",
+        "hex": "#3DBBCD",
+        "role": "Clear aquatic accent"
+      },
+      {
+        "id": "mint",
+        "name": "Exchange mint / มิ้นต์",
+        "hex": "#60C9AD",
+        "role": "Energetic exchange"
+      },
+      {
+        "id": "leaf",
+        "name": "Leaf / ใบไม้",
+        "hex": "#2B702F",
+        "role": "Organic depth"
+      },
+      {
+        "id": "gold",
+        "name": "Built gold / ทอง",
+        "hex": "#BFA000",
+        "role": "Warm structural accent"
+      },
+      {
+        "id": "coral",
+        "name": "Signal coral / คอรัล",
+        "hex": "#F27642",
+        "role": "Focused warm signal"
+      },
+      {
+        "id": "rose",
+        "name": "People rose / กุหลาบ",
+        "hex": "#B72B63",
+        "role": "Warm human-scale accent"
+      },
+      {
+        "id": "red",
+        "name": "Risk red / แดงความเสี่ยง",
+        "hex": "#A40822",
+        "role": "Urgent evidence-bound emphasis"
+      }
+    ],
+    "original40ScalesPreserved": true,
+    "brandEnergy": {
+      "status": "unchanged",
+      "values": {
+        "coral": "#FF5A5F",
+        "yellow": "#FFBC1F",
+        "mint": "#0AD69C",
+        "sky": "#59D2FE",
+        "brandBlue": "#1D4497"
+      }
+    }
+  },
+  "semantics": {
+    "file": "location-metrics.json",
+    "sha256": "44ad44d254262932812b61a5ca9e7a4b27c6ec89c7bfdc7da9eb0bb081a387e7"
+  },
+  "canvases": {
+    "light": "#F6F7F3",
+    "dark": "#11191D"
+  },
+  "policy": {
+    "vocabulary": "Keep all original10 Story vocabulary colors. The16 location role accents are a product-layer assignment/extension, not16 simultaneous chart series. Paper is a background, not a quantity.",
+    "mapping": "Role accent identifies a named subject; a measured numerical ramp encodes values. They are separate contracts.",
+    "swot": "Four categorical evidence lenses have no generated gradient. A future scored rubric needs an explicit metric contract.",
+    "noPurpleBrown": "Check every authored role color, anchor and LUT sample against inherited exclusion windows; visual review remains necessary.",
+    "chromaHierarchy": "Use quiet structural weight, supporting context and focused accents. Urgent red is reserved for a named threat lens; area proportion, text and evidence remain part of hierarchy.",
+    "classCounts": [
+      3,
+      5,
+      7,
+      9
+    ],
+    "labels": "Always label metric, unit, denominator and sign. Pick the declared black/white label color for filled role chips; never reuse a fill color as body text."
+  },
+  "formula": {
+    "role-dark-v1": {
+      "steps": [
+        "Convert exact light role HEX to OKLCH.",
+        "Set L=clamp(Llight+0.10,0.48,0.84); retain Hlight. Multiply chroma by role: quiet0.65, supporting0.82, focused0.95, urgent1.00.",
+        "Two declared hierarchy slots: urgent threat L≥.63; secondary readiness gold L=.73. They separate important co-displays without changing light colors or hue.",
+        "At fixed C/H, raise L in0.001 increments only if rounded contrast<3.05 or banned-hue gate fails.",
+        "Map to sRGB using original helper:24-step chroma binary search at fixed L/H, then round to8-bit HEX.",
+        "Choose black or white label by maximum contrast."
+      ],
+      "targetRoleContrast": 3.05,
+      "targetLabelContrast": 4.5,
+      "note": "Draft rendition heuristic, not an invariant normative formula. Hue is stable within quantization; gamut mapping can reduce chroma."
+    },
+    "seq-dark-v1": {
+      "steps": [
+        "Keep the semantic end hue for low/high and the distinct semantic midpoint hue.",
+        "Low L=.57; if end hue is30–100°, start at.69 to avoid prohibited brown. Low C=min(Cend,.13).",
+        "Raise low L in.001 increments only to clear banned hues and3.05contrast.",
+        "Mid L=max(.755,lowL+.105), C=min(Cmid,.14), H=Hmid; high L=.93,C=min(Cend,.09),H=Hend.",
+        "Construct41 exact OKLab-interpolated samples with anchors at0/20/40; sample3/5/7/9classes."
+      ],
+      "note": "Higher values become lighter on dark canvas; do not reverse the data meaning. Warm gold/orange have shorter usable lightness range."
+    },
+    "div-dark-v1": {
+      "steps": [
+        "Both poles target L=.82,C=min(ClightPole,.13), retaining each semantic pole hue.",
+        "Zero is exact#3A4145; both arms have monotonic lightness toward/away from zero.",
+        "Only when a direct warm arm crosses a forbidden earth region, fade to existing pivot C/H at L=.79,index7 or33 before neutral descent; no authored fourth hue."
+      ],
+      "note": "Neutral pivot can be below3contrast; mark zero with text/boundary. Pole meaning is defined by metric, not palette preference."
+    }
+  },
+  "roles": [
+    {
+      "id": "li.demand",
+      "nameTh": "ความต้องการซื้อ",
+      "nameEn": "Demand",
+      "colorNameTh": "ฟ้ากิจกรรม",
+      "colorNameEn": "Active blue",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#25659A",
+        "oklch": {
+          "L": 0.4923013561434468,
+          "C": 0.10664971144799684,
+          "H": 247.30502563343
+        },
+        "labelHex": "#FFFFFF",
+        "labelContrast": 6.1642,
+        "canvasContrast": 5.7289
+      },
+      "dark": {
+        "hex": "#4883B7",
+        "oklch": {
+          "L": 0.5927296879952625,
+          "C": 0.1011760952950285,
+          "H": 247.06412490480784
+        },
+        "target": {
+          "L": 0.5923013561434468,
+          "C": 0.101317225875597,
+          "H": 247.30502563343
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 5.2058,
+        "canvasContrast": 4.4094,
+        "hueShiftDegrees": 0.2409,
+        "chromaRatio": 0.9487
+      },
+      "rawLightOnDark": {
+        "hex": "#25659A",
+        "contrast": 2.8855,
+        "pass": false
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "blue"
+      },
+      "semanticRef": "location-metrics.json#li.demand",
+      "nonColorCue": {
+        "shortLabel": "DM",
+        "shape": "circle",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Cool activity colour for purchase occasions; quantity is not realized sales."
+    },
+    {
+      "id": "li.supply",
+      "nameTh": "กำลังให้บริการที่มีอยู่",
+      "nameEn": "Supply",
+      "colorNameTh": "ทีลบริการ",
+      "colorNameEn": "Service teal",
+      "lens": "metric",
+      "chromaRole": "supporting",
+      "light": {
+        "hex": "#278E94",
+        "oklch": {
+          "L": 0.5929266367421221,
+          "C": 0.09035588239253886,
+          "H": 200.81817646794738
+        },
+        "labelHex": "#000000",
+        "labelContrast": 5.3831,
+        "canvasContrast": 3.6256
+      },
+      "dark": {
+        "hex": "#60AAAF",
+        "oklch": {
+          "L": 0.6919680743392563,
+          "C": 0.07421390410010616,
+          "H": 201.23953037739335
+        },
+        "target": {
+          "L": 0.6929266367421221,
+          "C": 0.07409182356188186,
+          "H": 200.81817646794738
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.82,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 7.8663,
+        "canvasContrast": 6.6628,
+        "hueShiftDegrees": 0.4214,
+        "chromaRatio": 0.8214
+      },
+      "rawLightOnDark": {
+        "hex": "#278E94",
+        "contrast": 4.5595,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.supply",
+      "nonColorCue": {
+        "shortLabel": "SP",
+        "shape": "square",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "A steady teal for verified service capacity, distinct from demand blue."
+    },
+    {
+      "id": "li.market_size",
+      "nameTh": "ขนาดตลาด",
+      "nameEn": "Market size",
+      "colorNameTh": "น้ำเงินหมึก",
+      "colorNameEn": "Editorial navy",
+      "lens": "metric",
+      "chromaRole": "quiet",
+      "light": {
+        "hex": "#213E70",
+        "oklch": {
+          "L": 0.3691274920038391,
+          "C": 0.09308689579121017,
+          "H": 260.53917810926976
+        },
+        "labelHex": "#FFFFFF",
+        "labelContrast": 10.565,
+        "canvasContrast": 9.819
+      },
+      "dark": {
+        "hex": "#516688",
+        "oklch": {
+          "L": 0.5072358366893795,
+          "C": 0.06011379601352688,
+          "H": 259.8673990591198
+        },
+        "target": {
+          "L": 0.507,
+          "C": 0.060506482264286614,
+          "H": 260.53917810926976
+        },
+        "extraLightness": 0.027,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.65,
+        "lightnessSlot": null,
+        "labelHex": "#FFFFFF",
+        "labelContrast": 5.8237,
+        "canvasContrast": 3.0542,
+        "hueShiftDegrees": 0.6718,
+        "chromaRatio": 0.6458
+      },
+      "rawLightOnDark": {
+        "hex": "#213E70",
+        "contrast": 1.6836,
+        "pass": false
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "navy"
+      },
+      "semanticRef": "location-metrics.json#li.market_size",
+      "nonColorCue": {
+        "shortLabel": "MS",
+        "shape": "hexagon",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Deep editorial weight for aggregate market quantity; not obtainable revenue."
+    },
+    {
+      "id": "li.strength",
+      "nameTh": "จุดแข็ง",
+      "nameEn": "Strength",
+      "colorNameTh": "เขียวใบไม้",
+      "colorNameEn": "Leaf",
+      "lens": "evidence",
+      "chromaRole": "supporting",
+      "light": {
+        "hex": "#2B702F",
+        "oklch": {
+          "L": 0.485261851389689,
+          "C": 0.12050120546764558,
+          "H": 144.4212661626164
+        },
+        "labelHex": "#FFFFFF",
+        "labelContrast": 6.0669,
+        "canvasContrast": 5.6384
+      },
+      "dark": {
+        "hex": "#558B56",
+        "oklch": {
+          "L": 0.5848087753352028,
+          "C": 0.09821880638545921,
+          "H": 144.59557385809347
+        },
+        "target": {
+          "L": 0.585261851389689,
+          "C": 0.09881098848346936,
+          "H": 144.4212661626164
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.82,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 5.2137,
+        "canvasContrast": 4.416,
+        "hueShiftDegrees": 0.1743,
+        "chromaRatio": 0.8151
+      },
+      "rawLightOnDark": {
+        "hex": "#2B702F",
+        "contrast": 2.9319,
+        "pass": false
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "leaf"
+      },
+      "semanticRef": "location-metrics.json#li.strength",
+      "nonColorCue": {
+        "shortLabel": "ST",
+        "shape": "cross",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Internal strength evidence lens; green is a category cue, never a probability."
+    },
+    {
+      "id": "li.weakness",
+      "nameTh": "จุดอ่อน",
+      "nameEn": "Weakness",
+      "colorNameTh": "อำพันทบทวน",
+      "colorNameEn": "Review amber",
+      "lens": "evidence",
+      "chromaRole": "supporting",
+      "light": {
+        "hex": "#DDA527",
+        "oklch": {
+          "L": 0.7551302354159086,
+          "C": 0.1453975517614426,
+          "H": 82.04736405277207
+        },
+        "labelHex": "#000000",
+        "labelContrast": 9.4858,
+        "canvasContrast": 2.0575
+      },
+      "dark": {
+        "hex": "#F1C36A",
+        "oklch": {
+          "L": 0.83999388419041,
+          "C": 0.11953426508462206,
+          "H": 82.37748335009758
+        },
+        "target": {
+          "L": 0.84,
+          "C": 0.11922599244438292,
+          "H": 82.04736405277207
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.82,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 12.7543,
+        "canvasContrast": 10.803,
+        "hueShiftDegrees": 0.3301,
+        "chromaRatio": 0.8221
+      },
+      "rawLightOnDark": {
+        "hex": "#DDA527",
+        "contrast": 8.0345,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.weakness",
+      "nonColorCue": {
+        "shortLabel": "WK",
+        "shape": "triangle",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Internal constraint evidence; attention without borrowing urgent threat red."
+    },
+    {
+      "id": "li.opportunity",
+      "nameTh": "โอกาสภายนอก",
+      "nameEn": "Opportunity",
+      "colorNameTh": "มิ้นต์",
+      "colorNameEn": "Exchange mint",
+      "lens": "evidence",
+      "chromaRole": "supporting",
+      "light": {
+        "hex": "#60C9AD",
+        "oklch": {
+          "L": 0.7655690880260398,
+          "C": 0.10655533312541268,
+          "H": 173.52036530176034
+        },
+        "labelHex": "#000000",
+        "labelContrast": 10.4554,
+        "canvasContrast": 1.8667
+      },
+      "dark": {
+        "hex": "#8CDEC6",
+        "oklch": {
+          "L": 0.8411195453790283,
+          "C": 0.08765943810561569,
+          "H": 173.55221781623715
+        },
+        "target": {
+          "L": 0.84,
+          "C": 0.08737537316283839,
+          "H": 173.52036530176034
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.82,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 13.379,
+        "canvasContrast": 11.3321,
+        "hueShiftDegrees": 0.0319,
+        "chromaRatio": 0.8227
+      },
+      "rawLightOnDark": {
+        "hex": "#60C9AD",
+        "contrast": 8.8558,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "mint"
+      },
+      "semanticRef": "location-metrics.json#li.opportunity",
+      "nonColorCue": {
+        "shortLabel": "OP",
+        "shape": "diamond",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "External opportunity evidence and hypotheses remain visibly qualified."
+    },
+    {
+      "id": "li.threat",
+      "nameTh": "ภัยคุกคามต่อธุรกิจ",
+      "nameEn": "Threat",
+      "colorNameTh": "แดงความเสี่ยง",
+      "colorNameEn": "Risk red",
+      "lens": "evidence",
+      "chromaRole": "urgent",
+      "light": {
+        "hex": "#A40822",
+        "oklch": {
+          "L": 0.45649327741968,
+          "C": 0.18011138103897367,
+          "H": 22.714110012876166
+        },
+        "labelHex": "#FFFFFF",
+        "labelContrast": 7.9656,
+        "canvasContrast": 7.4031
+      },
+      "dark": {
+        "hex": "#E15154",
+        "oklch": {
+          "L": 0.6301950814591867,
+          "C": 0.1794840421527867,
+          "H": 22.68364781851552
+        },
+        "target": {
+          "L": 0.63,
+          "C": 0.18011138103897367,
+          "H": 22.714110012876166
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 1,
+        "lightnessSlot": "urgent-floor-0.63",
+        "labelHex": "#000000",
+        "labelContrast": 5.5065,
+        "canvasContrast": 4.664,
+        "hueShiftDegrees": 0.0305,
+        "chromaRatio": 0.9965
+      },
+      "rawLightOnDark": {
+        "hex": "#A40822",
+        "contrast": 2.233,
+        "pass": false
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "red"
+      },
+      "semanticRef": "location-metrics.json#li.threat",
+      "nonColorCue": {
+        "shortLabel": "TH",
+        "shape": "triangle",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "A focused clean red for evidence-backed external threat; not official hazard classification."
+    },
+    {
+      "id": "li.market_share",
+      "nameTh": "ส่วนแบ่งตลาด",
+      "nameEn": "Market share",
+      "colorNameTh": "ฟ้าส่วนแบ่ง",
+      "colorNameEn": "Share azure",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#4B8FD8",
+        "oklch": {
+          "L": 0.6386327072385507,
+          "C": 0.13022682146794456,
+          "H": 251.98472671329102
+        },
+        "labelHex": "#000000",
+        "labelContrast": 6.2197,
+        "canvasContrast": 3.1379
+      },
+      "dark": {
+        "hex": "#6EAFF6",
+        "oklch": {
+          "L": 0.7396064889682827,
+          "C": 0.12326067594410958,
+          "H": 251.76015855073751
+        },
+        "target": {
+          "L": 0.7386327072385507,
+          "C": 0.12371548039454733,
+          "H": 251.98472671329102
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 9.1258,
+        "canvasContrast": 7.7296,
+        "hueShiftDegrees": 0.2246,
+        "chromaRatio": 0.9465
+      },
+      "rawLightOnDark": {
+        "hex": "#4B8FD8",
+        "contrast": 5.2682,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.market_share",
+      "nonColorCue": {
+        "shortLabel": "SH",
+        "shape": "circle",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Share of the explicitly defined market; never substitute outlet counts."
+    },
+    {
+      "id": "li.spending_readiness",
+      "nameTh": "ความพร้อมใช้จ่าย",
+      "nameEn": "Spending readiness",
+      "colorNameTh": "ทองความพร้อม",
+      "colorNameEn": "Readiness gold",
+      "lens": "metric",
+      "chromaRole": "supporting",
+      "light": {
+        "hex": "#BFA000",
+        "oklch": {
+          "L": 0.7124706948176123,
+          "C": 0.14630034362733504,
+          "H": 95.03755878569575
+        },
+        "labelHex": "#000000",
+        "labelContrast": 8.2436,
+        "canvasContrast": 2.3675
+      },
+      "dark": {
+        "hex": "#BFA745",
+        "oklch": {
+          "L": 0.7306352774642858,
+          "C": 0.1200993386403533,
+          "H": 95.47245737730418
+        },
+        "target": {
+          "L": 0.73,
+          "C": 0.11996628177441473,
+          "H": 95.03755878569575
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.82,
+        "lightnessSlot": "secondary-gold-0.73",
+        "labelHex": "#000000",
+        "labelContrast": 8.8287,
+        "canvasContrast": 7.478,
+        "hueShiftDegrees": 0.4349,
+        "chromaRatio": 0.8209
+      },
+      "rawLightOnDark": {
+        "hex": "#BFA000",
+        "contrast": 6.9824,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "gold"
+      },
+      "semanticRef": "location-metrics.json#li.spending_readiness",
+      "nonColorCue": {
+        "shortLabel": "SR",
+        "shape": "pentagon",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Declared readiness evidence; gold must not imply wealthy people or guaranteed purchasing."
+    },
+    {
+      "id": "li.demand_growth",
+      "nameTh": "การเปลี่ยนแปลงอุปสงค์",
+      "nameEn": "Demand growth",
+      "colorNameTh": "เขียวอ่อนการเปลี่ยนแปลง",
+      "colorNameEn": "Change lime leaf",
+      "lens": "metric",
+      "chromaRole": "supporting",
+      "light": {
+        "hex": "#92B847",
+        "oklch": {
+          "L": 0.7316731240081499,
+          "C": 0.14704150702088775,
+          "H": 125.59420342250957
+        },
+        "labelHex": "#000000",
+        "labelContrast": 9.1694,
+        "canvasContrast": 2.1285
+      },
+      "dark": {
+        "hex": "#B5D67D",
+        "oklch": {
+          "L": 0.831701643498971,
+          "C": 0.12083152759973369,
+          "H": 125.54148735485596
+        },
+        "target": {
+          "L": 0.8316731240081499,
+          "C": 0.12057403575712795,
+          "H": 125.59420342250957
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.82,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 12.8795,
+        "canvasContrast": 10.909,
+        "hueShiftDegrees": 0.0527,
+        "chromaRatio": 0.8218
+      },
+      "rawLightOnDark": {
+        "hex": "#92B847",
+        "contrast": 7.7665,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.demand_growth",
+      "nonColorCue": {
+        "shortLabel": "GR",
+        "shape": "diamond",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "A category accent only; its signed numerical scale retains separate decrease and increase poles."
+    },
+    {
+      "id": "li.accessibility",
+      "nameTh": "การเข้าถึงกลุ่มเป้าหมาย",
+      "nameEn": "Accessibility",
+      "colorNameTh": "ไซแอนการเข้าถึง",
+      "colorNameEn": "Access cyan",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#3DBBCD",
+        "oklch": {
+          "L": 0.7315808368201825,
+          "C": 0.10994604623201802,
+          "H": 208.8021216626632
+        },
+        "labelHex": "#000000",
+        "labelContrast": 9.1881,
+        "canvasContrast": 2.1242
+      },
+      "dark": {
+        "hex": "#6BDBEC",
+        "oklch": {
+          "L": 0.8321526561612176,
+          "C": 0.10454728737419491,
+          "H": 208.54956735368546
+        },
+        "target": {
+          "L": 0.8315808368201825,
+          "C": 0.10444874392041711,
+          "H": 208.8021216626632
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 12.969,
+        "canvasContrast": 10.9848,
+        "hueShiftDegrees": 0.2526,
+        "chromaRatio": 0.9509
+      },
+      "rawLightOnDark": {
+        "hex": "#3DBBCD",
+        "contrast": 7.7824,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "cyan"
+      },
+      "semanticRef": "location-metrics.json#li.accessibility",
+      "nonColorCue": {
+        "shortLabel": "AC",
+        "shape": "cross",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Network and mode-specific access; not actual travel behaviour."
+    },
+    {
+      "id": "li.competitive_pressure",
+      "nameTh": "แรงกดดันจากคู่แข่ง",
+      "nameEn": "Competitive pressure",
+      "colorNameTh": "คอรัล",
+      "colorNameEn": "Signal coral",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#F27642",
+        "oklch": {
+          "L": 0.7022422516632849,
+          "C": 0.1664540278633422,
+          "H": 42.08414409501679
+        },
+        "labelHex": "#000000",
+        "labelContrast": 7.4455,
+        "canvasContrast": 2.6213
+      },
+      "dark": {
+        "hex": "#FFA481",
+        "oklch": {
+          "L": 0.8017822349842842,
+          "C": 0.11861601368014983,
+          "H": 41.74395747312682
+        },
+        "target": {
+          "L": 0.8022422516632849,
+          "C": 0.15813132647017508,
+          "H": 42.08414409501679
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 10.8792,
+        "canvasContrast": 9.2147,
+        "hueShiftDegrees": 0.3402,
+        "chromaRatio": 0.7126
+      },
+      "rawLightOnDark": {
+        "hex": "#F27642",
+        "contrast": 6.3064,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "coral"
+      },
+      "semanticRef": "location-metrics.json#li.competitive_pressure",
+      "nonColorCue": {
+        "shortLabel": "CP",
+        "shape": "square",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Capacity-to-demand pressure is a measured ratio, not a threat probability."
+    },
+    {
+      "id": "li.service_gap",
+      "nameTh": "ช่องว่างกำลังบริการ",
+      "nameEn": "Service gap",
+      "colorNameTh": "แดงช่องว่าง",
+      "colorNameEn": "Gap scarlet",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#E45244",
+        "oklch": {
+          "L": 0.6336231374835729,
+          "C": 0.18394659966891994,
+          "H": 28.764055363453043
+        },
+        "labelHex": "#000000",
+        "labelContrast": 5.5892,
+        "canvasContrast": 3.4919
+      },
+      "dark": {
+        "hex": "#FF7B6B",
+        "oklch": {
+          "L": 0.7332436941958933,
+          "C": 0.1639580104635313,
+          "H": 28.725494808974204
+        },
+        "target": {
+          "L": 0.7336231374835729,
+          "C": 0.17474926968547394,
+          "H": 28.764055363453043
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 8.2975,
+        "canvasContrast": 7.028,
+        "hueShiftDegrees": 0.0386,
+        "chromaRatio": 0.8913
+      },
+      "rawLightOnDark": {
+        "hex": "#E45244",
+        "contrast": 4.7341,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.service_gap",
+      "nonColorCue": {
+        "shortLabel": "GP",
+        "shape": "hexagon",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "The warm accent identifies a signed gap; the actual scale shows surplus and unmet capacity separately."
+    },
+    {
+      "id": "li.cannibalization",
+      "nameTh": "การดึงยอดจากเครือข่ายเดิม",
+      "nameEn": "Own-network cannibalization",
+      "colorNameTh": "กุหลาบ",
+      "colorNameEn": "People rose",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#B72B63",
+        "oklch": {
+          "L": 0.5261698354257294,
+          "C": 0.18002764603195984,
+          "H": 1.7550720842876497
+        },
+        "labelHex": "#FFFFFF",
+        "labelContrast": 5.9336,
+        "canvasContrast": 5.5146
+      },
+      "dark": {
+        "hex": "#D75280",
+        "oklch": {
+          "L": 0.626340269001032,
+          "C": 0.17151141537498618,
+          "H": 1.9500145221638567
+        },
+        "target": {
+          "L": 0.6261698354257293,
+          "C": 0.17102626373036184,
+          "H": 1.7550720842876497
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 5.408,
+        "canvasContrast": 4.5806,
+        "hueShiftDegrees": 0.1949,
+        "chromaRatio": 0.9527
+      },
+      "rawLightOnDark": {
+        "hex": "#B72B63",
+        "contrast": 2.9977,
+        "pass": false
+      },
+      "baseVocabulary": {
+        "kind": "exact-reuse",
+        "sourceId": "rose"
+      },
+      "semanticRef": "location-metrics.json#li.cannibalization",
+      "nonColorCue": {
+        "shortLabel": "CN",
+        "shape": "circle",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Own-network transfer scenario; not a claim of observed customer loss."
+    },
+    {
+      "id": "li.occupancy_cost",
+      "nameTh": "ภาระค่าใช้พื้นที่",
+      "nameEn": "Occupancy cost",
+      "colorNameTh": "ส้มค่าใช้พื้นที่",
+      "colorNameEn": "Occupancy orange",
+      "lens": "metric",
+      "chromaRole": "focused",
+      "light": {
+        "hex": "#D6600C",
+        "oklch": {
+          "L": 0.625955738427297,
+          "C": 0.16863167650941488,
+          "H": 47.27644390821022
+        },
+        "labelHex": "#000000",
+        "labelContrast": 5.5377,
+        "canvasContrast": 3.5244
+      },
+      "dark": {
+        "hex": "#F58243",
+        "oklch": {
+          "L": 0.7247000658677852,
+          "C": 0.160066545612951,
+          "H": 47.131632342477424
+        },
+        "target": {
+          "L": 0.725955738427297,
+          "C": 0.16020009268394414,
+          "H": 47.27644390821022
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.95,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 8.1566,
+        "canvasContrast": 6.9087,
+        "hueShiftDegrees": 0.1448,
+        "chromaRatio": 0.9492
+      },
+      "rawLightOnDark": {
+        "hex": "#D6600C",
+        "contrast": 4.6905,
+        "pass": true
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.occupancy_cost",
+      "nonColorCue": {
+        "shortLabel": "OC",
+        "shape": "square",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Cost burden uses warm orange without making a universal accept/reject judgement."
+    },
+    {
+      "id": "li.unit_economics",
+      "nameTh": "ส่วนต่างจากการดำเนินงาน",
+      "nameEn": "Site operating margin",
+      "colorNameTh": "เขียวสน",
+      "colorNameEn": "Operating pine",
+      "lens": "metric",
+      "chromaRole": "quiet",
+      "light": {
+        "hex": "#216D58",
+        "oklch": {
+          "L": 0.48256760086965717,
+          "C": 0.0812076788698979,
+          "H": 170.8794683732328
+        },
+        "labelHex": "#FFFFFF",
+        "labelContrast": 6.1891,
+        "canvasContrast": 5.7521
+      },
+      "dark": {
+        "hex": "#5B8677",
+        "oklch": {
+          "L": 0.5839608741141774,
+          "C": 0.05293338946048309,
+          "H": 170.6384925285973
+        },
+        "target": {
+          "L": 0.5825676008696572,
+          "C": 0.05278499126543364,
+          "H": 170.8794683732328
+        },
+        "extraLightness": 0,
+        "formula": "role-dark-v1",
+        "chromaFactor": 0.65,
+        "lightnessSlot": null,
+        "labelHex": "#000000",
+        "labelContrast": 5.1213,
+        "canvasContrast": 4.3377,
+        "hueShiftDegrees": 0.241,
+        "chromaRatio": 0.6518
+      },
+      "rawLightOnDark": {
+        "hex": "#216D58",
+        "contrast": 2.8739,
+        "pass": false
+      },
+      "baseVocabulary": {
+        "kind": "location-extension",
+        "sourceId": null
+      },
+      "semanticRef": "location-metrics.json#li.unit_economics",
+      "nonColorCue": {
+        "shortLabel": "UE",
+        "shape": "diamond",
+        "alwaysShowTextLabel": true
+      },
+      "notes": "Operating-margin category accent; break-even, loss and positive margin remain explicitly signed."
+    }
+  ],
+  "scales": [
+    {
+      "scaleId": "li.demand",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#F1F5E5",
+        "#60C9AD",
+        "#25659A"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#F1F5E5",
+        "#EAF3E2",
+        "#E4F1DF",
+        "#DDEFDC",
+        "#D7ECDA",
+        "#D0EAD7",
+        "#C9E8D4",
+        "#C3E6D1",
+        "#BCE4CE",
+        "#B5E2CB",
+        "#AEDFC9",
+        "#A7DDC6",
+        "#A0DBC3",
+        "#99D9C0",
+        "#91D7BD",
+        "#8AD4BB",
+        "#82D2B8",
+        "#7AD0B5",
+        "#72CEB2",
+        "#69CBB0",
+        "#60C9AD",
+        "#5DC4AC",
+        "#59BFAC",
+        "#56BAAB",
+        "#53B5AB",
+        "#4FB0AA",
+        "#4CABA9",
+        "#49A6A8",
+        "#46A1A7",
+        "#439CA7",
+        "#4097A6",
+        "#3D92A5",
+        "#3A8DA4",
+        "#3788A3",
+        "#3483A1",
+        "#317EA0",
+        "#2F799F",
+        "#2C749E",
+        "#2A6F9D",
+        "#276A9B",
+        "#25659A"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.demand",
+      "designNote": "Paper-mint to active blue: demand stays outside the warm hazard lane.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#F1F5E5",
+          "#60C9AD",
+          "#25659A"
+        ],
+        "5": [
+          "#F1F5E5",
+          "#AEDFC9",
+          "#60C9AD",
+          "#4097A6",
+          "#25659A"
+        ],
+        "7": [
+          "#F1F5E5",
+          "#C3E6D1",
+          "#99D9C0",
+          "#60C9AD",
+          "#49A6A8",
+          "#3788A3",
+          "#25659A"
+        ],
+        "9": [
+          "#F1F5E5",
+          "#D0EAD7",
+          "#AEDFC9",
+          "#8AD4BB",
+          "#60C9AD",
+          "#4FB0AA",
+          "#4097A6",
+          "#317EA0",
+          "#25659A"
+        ]
+      },
+      "scaleVersion": "c58773acb4cf5d6996d6f18d568bf96768ce8db9b1e072a21ef439cb2ac11027",
+      "intentionalVisualAliases": [
+        {
+          "study": "lds-story-study-20261001-r4",
+          "scaleId": "activity",
+          "theme": "light",
+          "scope": "Exact visual41-sample route only; independently labelled metric, units, denominator and evidence remain distinct."
+        }
+      ],
+      "visualAliasPolicy": "Intentional reuse of accepted Story vocabulary; do not claim globally unique metric colours."
+    },
+    {
+      "scaleId": "li.demand",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#3E7CB3",
+        "#5CC6AA",
+        "#D6EBFF"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#3E7CB3",
+        "#3F80B3",
+        "#4084B3",
+        "#4187B3",
+        "#438BB2",
+        "#448FB2",
+        "#4593B2",
+        "#4796B2",
+        "#489AB1",
+        "#4A9EB1",
+        "#4BA1B0",
+        "#4DA5B0",
+        "#4EA9AF",
+        "#50ACAF",
+        "#51B0AE",
+        "#53B4AE",
+        "#55B7AD",
+        "#57BBAC",
+        "#58BFAC",
+        "#5AC2AB",
+        "#5CC6AA",
+        "#64C8AE",
+        "#6BCAB2",
+        "#72CCB7",
+        "#78CEBB",
+        "#7FD0BF",
+        "#85D1C3",
+        "#8BD3C7",
+        "#92D5CC",
+        "#98D7D0",
+        "#9ED9D4",
+        "#A3DBD8",
+        "#A9DDDD",
+        "#AFDEE1",
+        "#B5E0E5",
+        "#BAE2E9",
+        "#C0E4EE",
+        "#C5E6F2",
+        "#CBE7F6",
+        "#D1E9FB",
+        "#D6EBFF"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.demand",
+      "designNote": "Paper-mint to active blue: demand stays outside the warm hazard lane.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#3E7CB3",
+          "#5CC6AA",
+          "#D6EBFF"
+        ],
+        "5": [
+          "#3E7CB3",
+          "#4BA1B0",
+          "#5CC6AA",
+          "#9ED9D4",
+          "#D6EBFF"
+        ],
+        "7": [
+          "#3E7CB3",
+          "#4796B2",
+          "#50ACAF",
+          "#5CC6AA",
+          "#8BD3C7",
+          "#AFDEE1",
+          "#D6EBFF"
+        ],
+        "9": [
+          "#3E7CB3",
+          "#448FB2",
+          "#4BA1B0",
+          "#53B4AE",
+          "#5CC6AA",
+          "#7FD0BF",
+          "#9ED9D4",
+          "#BAE2E9",
+          "#D6EBFF"
+        ]
+      },
+      "scaleVersion": "4d80516003e5f0750b55186ba73ddc8d61ce60d9e215cb7cc07812ffa9b39f3f",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.supply",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#EEF6F5",
+        "#87B5D4",
+        "#278E94"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#EEF6F5",
+        "#E9F3F3",
+        "#E4EFF2",
+        "#DEECF0",
+        "#D9E9EF",
+        "#D4E6ED",
+        "#CFE2EB",
+        "#CADFEA",
+        "#C5DCE8",
+        "#BFD9E7",
+        "#BAD5E5",
+        "#B5D2E3",
+        "#B0CFE2",
+        "#ABCCE0",
+        "#A6C8DE",
+        "#A1C5DD",
+        "#9CC2DB",
+        "#96BFD9",
+        "#91BBD7",
+        "#8CB8D6",
+        "#87B5D4",
+        "#83B3D1",
+        "#7FB1CD",
+        "#7BAFCA",
+        "#77ADC7",
+        "#72ABC4",
+        "#6EA9C0",
+        "#6AA7BD",
+        "#66A5BA",
+        "#61A3B7",
+        "#5DA2B3",
+        "#58A0B0",
+        "#549EAD",
+        "#4F9CAA",
+        "#4A9AA7",
+        "#4598A4",
+        "#4096A0",
+        "#3A949D",
+        "#34929A",
+        "#2E9097",
+        "#278E94"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.supply",
+      "designNote": "Cool blue midpoint turns to steady service teal; show capacity units.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#EEF6F5",
+          "#87B5D4",
+          "#278E94"
+        ],
+        "5": [
+          "#EEF6F5",
+          "#BAD5E5",
+          "#87B5D4",
+          "#5DA2B3",
+          "#278E94"
+        ],
+        "7": [
+          "#EEF6F5",
+          "#CADFEA",
+          "#ABCCE0",
+          "#87B5D4",
+          "#6AA7BD",
+          "#4F9CAA",
+          "#278E94"
+        ],
+        "9": [
+          "#EEF6F5",
+          "#D4E6ED",
+          "#BAD5E5",
+          "#A1C5DD",
+          "#87B5D4",
+          "#72ABC4",
+          "#5DA2B3",
+          "#4598A4",
+          "#278E94"
+        ]
+      },
+      "scaleVersion": "671112f34b878219faf90fb3fd07cc05a919c134d798ff40fbc8ab278273c497",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.supply",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#1C878D",
+        "#88B6D5",
+        "#A1FAFF"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#1C878D",
+        "#258990",
+        "#2D8C94",
+        "#338E97",
+        "#3A909B",
+        "#40939E",
+        "#4595A2",
+        "#4A97A6",
+        "#509AA9",
+        "#559CAD",
+        "#5A9EB0",
+        "#5FA1B4",
+        "#63A3B8",
+        "#68A5BB",
+        "#6DA8BF",
+        "#71AAC3",
+        "#76ADC6",
+        "#7BAFCA",
+        "#7FB1CE",
+        "#84B4D1",
+        "#88B6D5",
+        "#89B9D7",
+        "#8BBDD9",
+        "#8CC0DB",
+        "#8DC3DD",
+        "#8EC7DF",
+        "#90CAE2",
+        "#91CDE4",
+        "#92D1E6",
+        "#93D4E8",
+        "#95D8EA",
+        "#96DBEC",
+        "#97DEEE",
+        "#98E2F0",
+        "#9AE5F2",
+        "#9BE9F4",
+        "#9CECF7",
+        "#9DF0F9",
+        "#9FF3FB",
+        "#A0F7FD",
+        "#A1FAFF"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.supply",
+      "designNote": "Cool blue midpoint turns to steady service teal; show capacity units.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#1C878D",
+          "#88B6D5",
+          "#A1FAFF"
+        ],
+        "5": [
+          "#1C878D",
+          "#5A9EB0",
+          "#88B6D5",
+          "#95D8EA",
+          "#A1FAFF"
+        ],
+        "7": [
+          "#1C878D",
+          "#4A97A6",
+          "#68A5BB",
+          "#88B6D5",
+          "#91CDE4",
+          "#98E2F0",
+          "#A1FAFF"
+        ],
+        "9": [
+          "#1C878D",
+          "#40939E",
+          "#5A9EB0",
+          "#71AAC3",
+          "#88B6D5",
+          "#8EC7DF",
+          "#95D8EA",
+          "#9BE9F4",
+          "#A1FAFF"
+        ]
+      },
+      "scaleVersion": "af62229ad08c204e69c951f3aad8afd1d8fb0fba570141b029c9055b4df9f997",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.market_size",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#F4F0E7",
+        "#7DBAC0",
+        "#213E70"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#F4F0E7",
+        "#EEEDE5",
+        "#E8EBE3",
+        "#E3E8E1",
+        "#DDE5DF",
+        "#D7E3DD",
+        "#D1E0DB",
+        "#CBDDD9",
+        "#C5DAD7",
+        "#C0D8D6",
+        "#BAD5D4",
+        "#B4D2D2",
+        "#AED0D0",
+        "#A8CDCE",
+        "#A2CACC",
+        "#9CC8CA",
+        "#96C5C8",
+        "#90C2C6",
+        "#8ABFC4",
+        "#83BDC2",
+        "#7DBAC0",
+        "#78B3BC",
+        "#73ADB8",
+        "#6EA7B4",
+        "#69A0B0",
+        "#649AAC",
+        "#5F93A8",
+        "#5A8DA4",
+        "#5587A0",
+        "#50809C",
+        "#4C7A98",
+        "#477494",
+        "#436E90",
+        "#3E688C",
+        "#3A6288",
+        "#355C84",
+        "#315680",
+        "#2D507C",
+        "#294A78",
+        "#254474",
+        "#213E70"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.market_size",
+      "designNote": "Intentional reuse of the accepted count route for a separately labelled aggregate quantity; not a unique hue identity.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#F4F0E7",
+          "#7DBAC0",
+          "#213E70"
+        ],
+        "5": [
+          "#F4F0E7",
+          "#BAD5D4",
+          "#7DBAC0",
+          "#4C7A98",
+          "#213E70"
+        ],
+        "7": [
+          "#F4F0E7",
+          "#CBDDD9",
+          "#A8CDCE",
+          "#7DBAC0",
+          "#5A8DA4",
+          "#3E688C",
+          "#213E70"
+        ],
+        "9": [
+          "#F4F0E7",
+          "#D7E3DD",
+          "#BAD5D4",
+          "#9CC8CA",
+          "#7DBAC0",
+          "#649AAC",
+          "#4C7A98",
+          "#355C84",
+          "#213E70"
+        ]
+      },
+      "scaleVersion": "c780e8dd920590325697d06bb8a87f568556f9f92356599f4b229f4bde519cd2",
+      "intentionalVisualAliases": [
+        {
+          "study": "lds-story-study-20261001-r4",
+          "scaleId": "count",
+          "theme": "light",
+          "scope": "Exact visual41-sample route only; independently labelled metric, units, denominator and evidence remain distinct."
+        }
+      ],
+      "visualAliasPolicy": "Intentional reuse of accepted Story vocabulary; do not claim globally unique metric colours."
+    },
+    {
+      "scaleId": "li.market_size",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#5777AE",
+        "#7FBCC2",
+        "#DBE9FF"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#5777AE",
+        "#597AAF",
+        "#5B7EB0",
+        "#5D81B1",
+        "#5E85B2",
+        "#6088B4",
+        "#628CB5",
+        "#648FB6",
+        "#6692B7",
+        "#6896B8",
+        "#6A99B9",
+        "#6C9DBA",
+        "#6EA0BB",
+        "#70A4BC",
+        "#72A7BD",
+        "#74ABBE",
+        "#76AEBE",
+        "#79B2BF",
+        "#7BB5C0",
+        "#7DB9C1",
+        "#7FBCC2",
+        "#84BEC5",
+        "#89C0C8",
+        "#8DC3CB",
+        "#92C5CE",
+        "#97C7D1",
+        "#9BC9D4",
+        "#A0CCD7",
+        "#A5CEDA",
+        "#A9D0DD",
+        "#AED2E0",
+        "#B2D5E3",
+        "#B7D7E6",
+        "#BBD9E9",
+        "#C0DBEC",
+        "#C4DEEF",
+        "#C9E0F3",
+        "#CDE2F6",
+        "#D2E4F9",
+        "#D6E7FC",
+        "#DBE9FF"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.market_size",
+      "designNote": "Intentional reuse of the accepted count route for a separately labelled aggregate quantity; not a unique hue identity.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#5777AE",
+          "#7FBCC2",
+          "#DBE9FF"
+        ],
+        "5": [
+          "#5777AE",
+          "#6A99B9",
+          "#7FBCC2",
+          "#AED2E0",
+          "#DBE9FF"
+        ],
+        "7": [
+          "#5777AE",
+          "#648FB6",
+          "#70A4BC",
+          "#7FBCC2",
+          "#A0CCD7",
+          "#BBD9E9",
+          "#DBE9FF"
+        ],
+        "9": [
+          "#5777AE",
+          "#6088B4",
+          "#6A99B9",
+          "#74ABBE",
+          "#7FBCC2",
+          "#97C7D1",
+          "#AED2E0",
+          "#C4DEEF",
+          "#DBE9FF"
+        ]
+      },
+      "scaleVersion": "3550f75a4f955ae4c0e5fadc337803653531068d1201b1e05c8b69535de4be0d",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.market_share",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#F0F4F9",
+        "#9BBBA6",
+        "#4B8FD8"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#F0F4F9",
+        "#ECF1F5",
+        "#E7EEF0",
+        "#E3EBEC",
+        "#DFE8E8",
+        "#DAE6E4",
+        "#D6E3E0",
+        "#D2E0DB",
+        "#CEDDD7",
+        "#C9DAD3",
+        "#C5D7CF",
+        "#C1D4CB",
+        "#BDD2C7",
+        "#B8CFC2",
+        "#B4CCBE",
+        "#B0C9BA",
+        "#ACC6B6",
+        "#A8C3B2",
+        "#A3C1AE",
+        "#9FBEAA",
+        "#9BBBA6",
+        "#97B9A9",
+        "#93B7AC",
+        "#8FB5AF",
+        "#8BB3B2",
+        "#87B1B4",
+        "#83AFB7",
+        "#7FADBA",
+        "#7BABBC",
+        "#78A9BF",
+        "#74A6C1",
+        "#70A4C4",
+        "#6CA2C6",
+        "#68A0C9",
+        "#649DCB",
+        "#609BCD",
+        "#5B99CF",
+        "#5796D2",
+        "#5394D4",
+        "#4F92D6",
+        "#4B8FD8"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.market_share",
+      "designNote": "Sage midpoint turns to azure, while the percentage denominator defines meaning.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#F0F4F9",
+          "#9BBBA6",
+          "#4B8FD8"
+        ],
+        "5": [
+          "#F0F4F9",
+          "#C5D7CF",
+          "#9BBBA6",
+          "#74A6C1",
+          "#4B8FD8"
+        ],
+        "7": [
+          "#F0F4F9",
+          "#D2E0DB",
+          "#B8CFC2",
+          "#9BBBA6",
+          "#7FADBA",
+          "#68A0C9",
+          "#4B8FD8"
+        ],
+        "9": [
+          "#F0F4F9",
+          "#DAE6E4",
+          "#C5D7CF",
+          "#B0C9BA",
+          "#9BBBA6",
+          "#87B1B4",
+          "#74A6C1",
+          "#609BCD",
+          "#4B8FD8"
+        ]
+      },
+      "scaleVersion": "e18af290eee81d42e63269c261628f0fa108fcd48e5cbff02b407af95a712e51",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.market_share",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#367AC1",
+        "#99B9A4",
+        "#D8EAFF"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#367AC1",
+        "#3B7DC0",
+        "#4181BF",
+        "#4684BE",
+        "#4B88BD",
+        "#508BBC",
+        "#558EBA",
+        "#5A91B9",
+        "#5F95B8",
+        "#6398B7",
+        "#689BB5",
+        "#6D9EB4",
+        "#72A1B2",
+        "#77A4B1",
+        "#7CA7AF",
+        "#81AAAD",
+        "#86ADAC",
+        "#8AB0AA",
+        "#8FB3A8",
+        "#94B6A6",
+        "#99B9A4",
+        "#9CBBA8",
+        "#9FBEAD",
+        "#A2C0B1",
+        "#A5C3B6",
+        "#A8C5BA",
+        "#ACC8BF",
+        "#AFCAC3",
+        "#B2CDC8",
+        "#B5CFCC",
+        "#B8D1D1",
+        "#BBD4D6",
+        "#BED6DA",
+        "#C2D9DF",
+        "#C5DBE3",
+        "#C8DEE8",
+        "#CBE0EC",
+        "#CEE3F1",
+        "#D2E5F6",
+        "#D5E8FA",
+        "#D8EAFF"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.market_share",
+      "designNote": "Sage midpoint turns to azure, while the percentage denominator defines meaning.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#367AC1",
+          "#99B9A4",
+          "#D8EAFF"
+        ],
+        "5": [
+          "#367AC1",
+          "#689BB5",
+          "#99B9A4",
+          "#B8D1D1",
+          "#D8EAFF"
+        ],
+        "7": [
+          "#367AC1",
+          "#5A91B9",
+          "#77A4B1",
+          "#99B9A4",
+          "#AFCAC3",
+          "#C2D9DF",
+          "#D8EAFF"
+        ],
+        "9": [
+          "#367AC1",
+          "#508BBC",
+          "#689BB5",
+          "#81AAAD",
+          "#99B9A4",
+          "#A8C5BA",
+          "#B8D1D1",
+          "#C8DEE8",
+          "#D8EAFF"
+        ]
+      },
+      "scaleVersion": "af062b3dc601eb6a3248403f2a55915edb2d838225f1175aac1b92287dc01624",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.spending_readiness",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#FFF5D8",
+        "#F3BC93",
+        "#BFA000"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#FFF5D8",
+        "#FFF2D5",
+        "#FEEFD1",
+        "#FEECCE",
+        "#FDEACA",
+        "#FDE7C7",
+        "#FCE4C3",
+        "#FBE1C0",
+        "#FBDEBC",
+        "#FADBB9",
+        "#FAD8B5",
+        "#F9D6B2",
+        "#F9D3AF",
+        "#F8D0AB",
+        "#F7CDA8",
+        "#F7CAA4",
+        "#F6C7A1",
+        "#F5C59D",
+        "#F4C29A",
+        "#F4BF96",
+        "#F3BC93",
+        "#F0BB8E",
+        "#EEB989",
+        "#EBB884",
+        "#E8B77F",
+        "#E6B57A",
+        "#E3B475",
+        "#E0B370",
+        "#DEB16A",
+        "#DBB065",
+        "#D9AE5F",
+        "#D6AD59",
+        "#D3AC53",
+        "#D1AA4D",
+        "#CEA946",
+        "#CCA73F",
+        "#C9A638",
+        "#C7A42F",
+        "#C4A325",
+        "#C2A118",
+        "#BFA000"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.spending_readiness",
+      "designNote": "Intentional reuse of accepted peach-to-gold vocabulary; readiness needs behavioural evidence and cannot be inferred from gold.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#FFF5D8",
+          "#F3BC93",
+          "#BFA000"
+        ],
+        "5": [
+          "#FFF5D8",
+          "#FAD8B5",
+          "#F3BC93",
+          "#D9AE5F",
+          "#BFA000"
+        ],
+        "7": [
+          "#FFF5D8",
+          "#FBE1C0",
+          "#F8D0AB",
+          "#F3BC93",
+          "#E0B370",
+          "#D1AA4D",
+          "#BFA000"
+        ],
+        "9": [
+          "#FFF5D8",
+          "#FDE7C7",
+          "#FAD8B5",
+          "#F7CAA4",
+          "#F3BC93",
+          "#E6B57A",
+          "#D9AE5F",
+          "#CCA73F",
+          "#BFA000"
+        ]
+      },
+      "scaleVersion": "4783a9b26dfb967223f8a88093330a8807db8c673e445b09397780a428029e47",
+      "intentionalVisualAliases": [
+        {
+          "study": "lds-story-study-20261001-r4",
+          "scaleId": "built",
+          "theme": "light",
+          "scope": "Exact visual41-sample route only; independently labelled metric, units, denominator and evidence remain distinct."
+        }
+      ],
+      "visualAliasPolicy": "Intentional reuse of accepted Story vocabulary; do not claim globally unique metric colours."
+    },
+    {
+      "scaleId": "li.spending_readiness",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#B59A26",
+        "#E5AF87",
+        "#FAE8A2"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#B59A26",
+        "#B79B2E",
+        "#BA9C34",
+        "#BC9D3A",
+        "#BE9E40",
+        "#C19F46",
+        "#C3A14B",
+        "#C6A250",
+        "#C8A354",
+        "#CAA459",
+        "#CDA55D",
+        "#CFA662",
+        "#D2A766",
+        "#D4A86B",
+        "#D6A96F",
+        "#D9AA73",
+        "#DBAB77",
+        "#DEAC7B",
+        "#E0AD7F",
+        "#E3AE83",
+        "#E5AF87",
+        "#E6B288",
+        "#E7B58A",
+        "#E8B78B",
+        "#EABA8C",
+        "#EBBD8E",
+        "#ECC08F",
+        "#EDC390",
+        "#EEC692",
+        "#EFC993",
+        "#F0CB94",
+        "#F1CE96",
+        "#F2D197",
+        "#F3D498",
+        "#F4D79A",
+        "#F5DA9B",
+        "#F6DD9D",
+        "#F7DF9E",
+        "#F8E29F",
+        "#F9E5A1",
+        "#FAE8A2"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.spending_readiness",
+      "designNote": "Intentional reuse of accepted peach-to-gold vocabulary; readiness needs behavioural evidence and cannot be inferred from gold.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#B59A26",
+          "#E5AF87",
+          "#FAE8A2"
+        ],
+        "5": [
+          "#B59A26",
+          "#CDA55D",
+          "#E5AF87",
+          "#F0CB94",
+          "#FAE8A2"
+        ],
+        "7": [
+          "#B59A26",
+          "#C6A250",
+          "#D4A86B",
+          "#E5AF87",
+          "#EDC390",
+          "#F3D498",
+          "#FAE8A2"
+        ],
+        "9": [
+          "#B59A26",
+          "#C19F46",
+          "#CDA55D",
+          "#D9AA73",
+          "#E5AF87",
+          "#EBBD8E",
+          "#F0CB94",
+          "#F5DA9B",
+          "#FAE8A2"
+        ]
+      },
+      "scaleVersion": "7ce15bd7967023fc40ec98cd433c70e9757c53e11d326cf74c4b5ade4965bdfa",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.accessibility",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#EEF7FC",
+        "#92B4E6",
+        "#00858C"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#EEF7FC",
+        "#E9F4FB",
+        "#E5F0FA",
+        "#E0EDF9",
+        "#DBEAF8",
+        "#D7E6F7",
+        "#D2E3F6",
+        "#CDDFF5",
+        "#C9DCF4",
+        "#C4D9F3",
+        "#BFD5F2",
+        "#BBD2F1",
+        "#B6CFEF",
+        "#B2CBEE",
+        "#ADC8ED",
+        "#A9C5EC",
+        "#A4C1EB",
+        "#9FBEEA",
+        "#9BBBE8",
+        "#96B7E7",
+        "#92B4E6",
+        "#8DB2E1",
+        "#88AFDD",
+        "#82ADD8",
+        "#7DABD3",
+        "#78A8CF",
+        "#72A6CA",
+        "#6DA4C6",
+        "#67A1C1",
+        "#629FBD",
+        "#5C9DB8",
+        "#569AB4",
+        "#5098AF",
+        "#4996AB",
+        "#4393A6",
+        "#3C91A2",
+        "#348F9D",
+        "#2C8C99",
+        "#228A95",
+        "#168790",
+        "#00858C"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.accessibility",
+      "designNote": "Blue midpoint turns to cyan-teal for coverage under a stated network/mode/time condition.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#EEF7FC",
+          "#92B4E6",
+          "#00858C"
+        ],
+        "5": [
+          "#EEF7FC",
+          "#BFD5F2",
+          "#92B4E6",
+          "#5C9DB8",
+          "#00858C"
+        ],
+        "7": [
+          "#EEF7FC",
+          "#CDDFF5",
+          "#B2CBEE",
+          "#92B4E6",
+          "#6DA4C6",
+          "#4996AB",
+          "#00858C"
+        ],
+        "9": [
+          "#EEF7FC",
+          "#D7E6F7",
+          "#BFD5F2",
+          "#A9C5EC",
+          "#92B4E6",
+          "#78A8CF",
+          "#5C9DB8",
+          "#3C91A2",
+          "#00858C"
+        ]
+      },
+      "scaleVersion": "b849cb61e15a8a4e333941a1e4b5e38cb1278ba55d4d723bb622e55269eff73c",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.accessibility",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#09888F",
+        "#90B1E3",
+        "#A3F9FF"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#09888F",
+        "#1B8A93",
+        "#268C97",
+        "#2F8E9B",
+        "#37909F",
+        "#3E92A3",
+        "#4495A8",
+        "#4B97AC",
+        "#5199B0",
+        "#579BB4",
+        "#5C9DB8",
+        "#629FBC",
+        "#67A1C1",
+        "#6DA3C5",
+        "#72A5C9",
+        "#77A7CD",
+        "#7CA9D2",
+        "#81ABD6",
+        "#86ADDA",
+        "#8BAFDF",
+        "#90B1E3",
+        "#91B5E4",
+        "#92B8E6",
+        "#93BCE7",
+        "#94BFE9",
+        "#95C3EA",
+        "#96C6EC",
+        "#97CAED",
+        "#98CEEF",
+        "#99D1F0",
+        "#9AD5F1",
+        "#9BD8F3",
+        "#9CDCF4",
+        "#9DE0F5",
+        "#9EE3F7",
+        "#9FE7F8",
+        "#9FEAFA",
+        "#A0EEFB",
+        "#A1F2FC",
+        "#A2F5FE",
+        "#A3F9FF"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.accessibility",
+      "designNote": "Blue midpoint turns to cyan-teal for coverage under a stated network/mode/time condition.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#09888F",
+          "#90B1E3",
+          "#A3F9FF"
+        ],
+        "5": [
+          "#09888F",
+          "#5C9DB8",
+          "#90B1E3",
+          "#9AD5F1",
+          "#A3F9FF"
+        ],
+        "7": [
+          "#09888F",
+          "#4B97AC",
+          "#6DA3C5",
+          "#90B1E3",
+          "#97CAED",
+          "#9DE0F5",
+          "#A3F9FF"
+        ],
+        "9": [
+          "#09888F",
+          "#3E92A3",
+          "#5C9DB8",
+          "#77A7CD",
+          "#90B1E3",
+          "#95C3EA",
+          "#9AD5F1",
+          "#9FE7F8",
+          "#A3F9FF"
+        ]
+      },
+      "scaleVersion": "4f91ef301ce760f73e093f81bec70812f6bf56a310d6f2659bf833cc0d7216dd",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.competitive_pressure",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#FFF3DB",
+        "#E7B72C",
+        "#D85131"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#FFF3DB",
+        "#FEF0D4",
+        "#FDEDCD",
+        "#FBEAC5",
+        "#FAE7BE",
+        "#F9E4B7",
+        "#F8E1AF",
+        "#F7DFA8",
+        "#F6DCA0",
+        "#F4D998",
+        "#F3D690",
+        "#F2D389",
+        "#F1D080",
+        "#F0CD78",
+        "#EECA6F",
+        "#EDC666",
+        "#ECC35D",
+        "#EBC053",
+        "#E9BD48",
+        "#E8BA3B",
+        "#E7B72C",
+        "#E7B22D",
+        "#E6AE2D",
+        "#E6A92E",
+        "#E6A42F",
+        "#E59F2F",
+        "#E59A2F",
+        "#E49530",
+        "#E39130",
+        "#E38C30",
+        "#E28731",
+        "#E18231",
+        "#E07D31",
+        "#E07831",
+        "#DF7231",
+        "#DE6D31",
+        "#DD6831",
+        "#DC6231",
+        "#DA5D31",
+        "#D95731",
+        "#D85131"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.competitive_pressure",
+      "designNote": "Gold midpoint turns to clean coral; higher capacity ratio is not automatically danger.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#FFF3DB",
+          "#E7B72C",
+          "#D85131"
+        ],
+        "5": [
+          "#FFF3DB",
+          "#F3D690",
+          "#E7B72C",
+          "#E28731",
+          "#D85131"
+        ],
+        "7": [
+          "#FFF3DB",
+          "#F7DFA8",
+          "#F0CD78",
+          "#E7B72C",
+          "#E49530",
+          "#E07831",
+          "#D85131"
+        ],
+        "9": [
+          "#FFF3DB",
+          "#F9E4B7",
+          "#F3D690",
+          "#EDC666",
+          "#E7B72C",
+          "#E59F2F",
+          "#E28731",
+          "#DE6D31",
+          "#D85131"
+        ]
+      },
+      "scaleVersion": "34889b9d391b2a69910896c6d31fa920e3e7439da6004d2d81be80970b862207",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.competitive_pressure",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#E07B63",
+        "#E2B640",
+        "#FFE0D8"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#E07B63",
+        "#E07E62",
+        "#E18161",
+        "#E18460",
+        "#E1875E",
+        "#E18A5D",
+        "#E18D5C",
+        "#E2905A",
+        "#E29359",
+        "#E29657",
+        "#E29956",
+        "#E29C54",
+        "#E29F52",
+        "#E2A250",
+        "#E2A54E",
+        "#E2A84C",
+        "#E2AB4A",
+        "#E2AD48",
+        "#E2B045",
+        "#E2B343",
+        "#E2B640",
+        "#E3B84B",
+        "#E5BA55",
+        "#E6BD5E",
+        "#E8BF67",
+        "#E9C16F",
+        "#EAC377",
+        "#ECC57E",
+        "#EDC786",
+        "#EFCA8D",
+        "#F0CC94",
+        "#F2CE9B",
+        "#F3D0A2",
+        "#F5D2A9",
+        "#F6D4B0",
+        "#F8D6B7",
+        "#F9D8BE",
+        "#FADAC4",
+        "#FCDCCB",
+        "#FDDED1",
+        "#FFE0D8"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.competitive_pressure",
+      "designNote": "Gold midpoint turns to clean coral; higher capacity ratio is not automatically danger.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#E07B63",
+          "#E2B640",
+          "#FFE0D8"
+        ],
+        "5": [
+          "#E07B63",
+          "#E29956",
+          "#E2B640",
+          "#F0CC94",
+          "#FFE0D8"
+        ],
+        "7": [
+          "#E07B63",
+          "#E2905A",
+          "#E2A250",
+          "#E2B640",
+          "#ECC57E",
+          "#F5D2A9",
+          "#FFE0D8"
+        ],
+        "9": [
+          "#E07B63",
+          "#E18A5D",
+          "#E29956",
+          "#E2A84C",
+          "#E2B640",
+          "#E9C16F",
+          "#F0CC94",
+          "#F8D6B7",
+          "#FFE0D8"
+        ]
+      },
+      "scaleVersion": "1f3b90b649c545d2604ddcadadb40aee10bb79eef0e4cf89cdff5ea290f511a2",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.cannibalization",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#FFF0F0",
+        "#F0A07A",
+        "#B72B63"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#FFF0F0",
+        "#FFECEA",
+        "#FEE8E4",
+        "#FEE4DE",
+        "#FDE0D8",
+        "#FCDCD3",
+        "#FCD8CD",
+        "#FBD4C7",
+        "#FBD0C1",
+        "#FACCBB",
+        "#F9C8B5",
+        "#F8C4AF",
+        "#F8C0AA",
+        "#F7BCA4",
+        "#F6B89E",
+        "#F5B498",
+        "#F4B092",
+        "#F3AC8C",
+        "#F2A886",
+        "#F1A480",
+        "#F0A07A",
+        "#ED9B79",
+        "#EB9578",
+        "#E89077",
+        "#E58B76",
+        "#E38575",
+        "#E08074",
+        "#DD7A73",
+        "#DA7572",
+        "#D87071",
+        "#D56A70",
+        "#D2646F",
+        "#CF5F6D",
+        "#CC596C",
+        "#C9536B",
+        "#C64D6A",
+        "#C34768",
+        "#C04167",
+        "#BD3A66",
+        "#BA3364",
+        "#B72B63"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.cannibalization",
+      "designNote": "Salmon midpoint turns to rose for a modelled own-network share; show scenario and counterfactual.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#FFF0F0",
+          "#F0A07A",
+          "#B72B63"
+        ],
+        "5": [
+          "#FFF0F0",
+          "#F9C8B5",
+          "#F0A07A",
+          "#D56A70",
+          "#B72B63"
+        ],
+        "7": [
+          "#FFF0F0",
+          "#FBD4C7",
+          "#F7BCA4",
+          "#F0A07A",
+          "#DD7A73",
+          "#CC596C",
+          "#B72B63"
+        ],
+        "9": [
+          "#FFF0F0",
+          "#FCDCD3",
+          "#F9C8B5",
+          "#F5B498",
+          "#F0A07A",
+          "#E38575",
+          "#D56A70",
+          "#C64D6A",
+          "#B72B63"
+        ]
+      },
+      "scaleVersion": "3f8e26fd576468d162b318cd114301b8829f17c8b85a96bf74788ae7411f592a",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.cannibalization",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#B35272",
+        "#E99973",
+        "#FFDEE6"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#B35272",
+        "#B65672",
+        "#B85973",
+        "#BB5D73",
+        "#BE6173",
+        "#C06473",
+        "#C36874",
+        "#C66B74",
+        "#C96F74",
+        "#CB7274",
+        "#CE7674",
+        "#D17974",
+        "#D37D74",
+        "#D68074",
+        "#D98474",
+        "#DB8774",
+        "#DE8B74",
+        "#E18E74",
+        "#E49274",
+        "#E69573",
+        "#E99973",
+        "#EA9D79",
+        "#ECA07F",
+        "#EDA485",
+        "#EEA78B",
+        "#EFAB90",
+        "#F0AE96",
+        "#F2B19C",
+        "#F3B5A2",
+        "#F4B8A7",
+        "#F5BCAD",
+        "#F6BFB3",
+        "#F7C3B8",
+        "#F8C6BE",
+        "#F9CAC4",
+        "#FACDC9",
+        "#FBD0CF",
+        "#FCD4D5",
+        "#FDD7DB",
+        "#FEDBE0",
+        "#FFDEE6"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.cannibalization",
+      "designNote": "Salmon midpoint turns to rose for a modelled own-network share; show scenario and counterfactual.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#B35272",
+          "#E99973",
+          "#FFDEE6"
+        ],
+        "5": [
+          "#B35272",
+          "#CE7674",
+          "#E99973",
+          "#F5BCAD",
+          "#FFDEE6"
+        ],
+        "7": [
+          "#B35272",
+          "#C66B74",
+          "#D68074",
+          "#E99973",
+          "#F2B19C",
+          "#F8C6BE",
+          "#FFDEE6"
+        ],
+        "9": [
+          "#B35272",
+          "#C06473",
+          "#CE7674",
+          "#DB8774",
+          "#E99973",
+          "#EFAB90",
+          "#F5BCAD",
+          "#FACDC9",
+          "#FFDEE6"
+        ]
+      },
+      "scaleVersion": "91dbea0e1e29c0d85e226c9b9c803b19efdd90855e2b32ce1f2a1f1d0723da00",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.occupancy_cost",
+      "kind": "sequential",
+      "theme": "light",
+      "anchors": [
+        "#FFF6DA",
+        "#EF9DAE",
+        "#D6600C"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#FFF6DA",
+        "#FFF2D8",
+        "#FEEDD6",
+        "#FEE9D3",
+        "#FDE4D1",
+        "#FCE0CF",
+        "#FCDBCD",
+        "#FBD7CA",
+        "#FAD3C8",
+        "#FACEC6",
+        "#F9CAC4",
+        "#F8C5C2",
+        "#F7C1BF",
+        "#F6BCBD",
+        "#F5B8BB",
+        "#F4B3B9",
+        "#F3AFB7",
+        "#F2AAB5",
+        "#F1A6B2",
+        "#F0A2B0",
+        "#EF9DAE",
+        "#EE9AA8",
+        "#ED97A1",
+        "#EB959B",
+        "#EA9294",
+        "#E98F8E",
+        "#E88C87",
+        "#E78981",
+        "#E5867A",
+        "#E48373",
+        "#E3806D",
+        "#E27D66",
+        "#E07A5F",
+        "#DF7757",
+        "#DE7450",
+        "#DD7148",
+        "#DB6D3F",
+        "#DA6A36",
+        "#D9672C",
+        "#D7631F",
+        "#D6600C"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.occupancy_cost",
+      "designNote": "Rose midpoint turns to orange, distinct from raw rent price; denominator is scoped revenue.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#FFF6DA",
+          "#EF9DAE",
+          "#D6600C"
+        ],
+        "5": [
+          "#FFF6DA",
+          "#F9CAC4",
+          "#EF9DAE",
+          "#E3806D",
+          "#D6600C"
+        ],
+        "7": [
+          "#FFF6DA",
+          "#FBD7CA",
+          "#F6BCBD",
+          "#EF9DAE",
+          "#E78981",
+          "#DF7757",
+          "#D6600C"
+        ],
+        "9": [
+          "#FFF6DA",
+          "#FCE0CF",
+          "#F9CAC4",
+          "#F4B3B9",
+          "#EF9DAE",
+          "#E98F8E",
+          "#E3806D",
+          "#DD7148",
+          "#D6600C"
+        ]
+      },
+      "scaleVersion": "e0647143fb39c5058fbed9cc66f2bc9e426f22b008bc95195f18aaa8a15522b3",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.occupancy_cost",
+      "kind": "sequential",
+      "theme": "dark",
+      "anchors": [
+        "#DC8050",
+        "#F3A1B2",
+        "#FFE1D2"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#DC8050",
+        "#DD8256",
+        "#DE835B",
+        "#DF8560",
+        "#E18766",
+        "#E2896B",
+        "#E38A70",
+        "#E48C75",
+        "#E58E7A",
+        "#E68F7F",
+        "#E79183",
+        "#E99388",
+        "#EA948D",
+        "#EB9692",
+        "#EC9896",
+        "#ED999B",
+        "#EE9BA0",
+        "#F09CA4",
+        "#F19EA9",
+        "#F29FAD",
+        "#F3A1B2",
+        "#F4A4B4",
+        "#F5A7B5",
+        "#F5ABB7",
+        "#F6AEB8",
+        "#F7B1BA",
+        "#F7B4BC",
+        "#F8B8BD",
+        "#F9BBBF",
+        "#F9BEC0",
+        "#FAC1C2",
+        "#FBC4C4",
+        "#FBC8C5",
+        "#FCCBC7",
+        "#FCCEC8",
+        "#FDD1CA",
+        "#FDD4CC",
+        "#FED7CD",
+        "#FEDBCF",
+        "#FFDED0",
+        "#FFE1D2"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "less of stated metric",
+        "middle magnitude",
+        "more of stated metric"
+      ],
+      "pivotMeaning": null,
+      "semanticRef": "location-metrics.json#li.occupancy_cost",
+      "designNote": "Rose midpoint turns to orange, distinct from raw rent price; denominator is scoped revenue.",
+      "darkConstruction": "seq-dark-v1",
+      "classes": {
+        "3": [
+          "#DC8050",
+          "#F3A1B2",
+          "#FFE1D2"
+        ],
+        "5": [
+          "#DC8050",
+          "#E79183",
+          "#F3A1B2",
+          "#FAC1C2",
+          "#FFE1D2"
+        ],
+        "7": [
+          "#DC8050",
+          "#E48C75",
+          "#EB9692",
+          "#F3A1B2",
+          "#F8B8BD",
+          "#FCCBC7",
+          "#FFE1D2"
+        ],
+        "9": [
+          "#DC8050",
+          "#E2896B",
+          "#E79183",
+          "#ED999B",
+          "#F3A1B2",
+          "#F7B1BA",
+          "#FAC1C2",
+          "#FDD1CA",
+          "#FFE1D2"
+        ]
+      },
+      "scaleVersion": "42bc4e4f5f0451aa3d7b8dc70ba19d128f224330dce1669616dde3189865e7d4",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.demand_growth",
+      "kind": "diverging",
+      "theme": "light",
+      "anchors": [
+        "#CF5420",
+        "#F1F3EC",
+        "#3C9278"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#CF5420",
+        "#D25D2E",
+        "#D5663A",
+        "#D76E46",
+        "#DA7750",
+        "#DC7F5A",
+        "#DE8764",
+        "#E18F6E",
+        "#E39778",
+        "#E49E82",
+        "#E6A68B",
+        "#E8AE95",
+        "#E9B69E",
+        "#EBBDA8",
+        "#ECC5B2",
+        "#EDCDBB",
+        "#EED4C5",
+        "#EFDCCF",
+        "#F0E4D8",
+        "#F1EBE2",
+        "#F1F3EC",
+        "#E8EEE6",
+        "#E0E9E0",
+        "#D7E4DA",
+        "#CEDFD4",
+        "#C6DACE",
+        "#BDD6C8",
+        "#B4D1C2",
+        "#ACCCBC",
+        "#A3C7B6",
+        "#9AC2B0",
+        "#92BDAA",
+        "#89B8A5",
+        "#80B49F",
+        "#77AF99",
+        "#6EAA94",
+        "#65A58E",
+        "#5BA088",
+        "#519C83",
+        "#47977D",
+        "#3C9278"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "decrease",
+        "unchanged from stated baseline",
+        "increase"
+      ],
+      "pivotMeaning": {
+        "value": 0,
+        "meaningTh": "ไม่เปลี่ยนจากช่วงฐานที่ระบุ",
+        "neutralInterval": "Must be declared; do not infer statistical significance from the central class."
+      },
+      "semanticRef": "location-metrics.json#li.demand_growth",
+      "designNote": "Orange decrease versus green increase; sign does not imply universal benefit or harm.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#CF5420",
+          "#F1F3EC",
+          "#3C9278"
+        ],
+        "5": [
+          "#CF5420",
+          "#E6A68B",
+          "#F1F3EC",
+          "#9AC2B0",
+          "#3C9278"
+        ],
+        "7": [
+          "#CF5420",
+          "#E18F6E",
+          "#EBBDA8",
+          "#F1F3EC",
+          "#B4D1C2",
+          "#80B49F",
+          "#3C9278"
+        ],
+        "9": [
+          "#CF5420",
+          "#DC7F5A",
+          "#E6A68B",
+          "#EDCDBB",
+          "#F1F3EC",
+          "#C6DACE",
+          "#9AC2B0",
+          "#6EAA94",
+          "#3C9278"
+        ]
+      },
+      "scaleVersion": "e55ea18444907386aeced81c129cefb81f2f4dcf881edb10b22ee4d856086102",
+      "intentionalVisualAliases": [
+        {
+          "study": "lds-story-study-20261001-r4",
+          "scaleId": "delta",
+          "theme": "light",
+          "scope": "Exact visual41-sample route only; independently labelled metric, units, denominator and evidence remain distinct."
+        }
+      ],
+      "visualAliasPolicy": "Intentional reuse of accepted Story vocabulary; do not claim globally unique metric colours."
+    },
+    {
+      "scaleId": "li.demand_growth",
+      "kind": "diverging",
+      "theme": "dark",
+      "anchors": [
+        "#FFAD8F",
+        "#3A4145",
+        "#83D8BB"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": [
+        {
+          "index": 0,
+          "hex": "#FFAD8F"
+        },
+        {
+          "index": 7,
+          "hex": "#B4BCC1",
+          "role": "derived early neutral-chroma support; not a fourth visible anchor"
+        },
+        {
+          "index": 20,
+          "hex": "#3A4145"
+        },
+        {
+          "index": 40,
+          "hex": "#83D8BB"
+        }
+      ],
+      "lut41": [
+        "#FFAD8F",
+        "#F5B097",
+        "#EBB29E",
+        "#E1B5A6",
+        "#D6B7AD",
+        "#CBB9B4",
+        "#C0BABA",
+        "#B4BCC1",
+        "#AAB2B7",
+        "#A0A8AD",
+        "#969EA3",
+        "#8C9499",
+        "#828A8F",
+        "#798085",
+        "#6F777B",
+        "#666E72",
+        "#5D6469",
+        "#545B60",
+        "#4B5257",
+        "#424A4E",
+        "#3A4145",
+        "#3E484A",
+        "#414F50",
+        "#455655",
+        "#495D5B",
+        "#4D6461",
+        "#506B66",
+        "#54726C",
+        "#587A72",
+        "#5B8178",
+        "#5F897E",
+        "#629084",
+        "#66988A",
+        "#6AA090",
+        "#6DA896",
+        "#71B09C",
+        "#75B8A2",
+        "#78C0A8",
+        "#7CC8AE",
+        "#7FD0B5",
+        "#83D8BB"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "decrease",
+        "unchanged from stated baseline",
+        "increase"
+      ],
+      "pivotMeaning": {
+        "value": 0,
+        "meaningTh": "ไม่เปลี่ยนจากช่วงฐานที่ระบุ",
+        "neutralInterval": "Must be declared; do not infer statistical significance from the central class."
+      },
+      "semanticRef": "location-metrics.json#li.demand_growth",
+      "designNote": "Orange decrease versus green increase; sign does not imply universal benefit or harm.",
+      "darkConstruction": "div-dark-v1",
+      "classes": {
+        "3": [
+          "#FFAD8F",
+          "#3A4145",
+          "#83D8BB"
+        ],
+        "5": [
+          "#FFAD8F",
+          "#969EA3",
+          "#3A4145",
+          "#5F897E",
+          "#83D8BB"
+        ],
+        "7": [
+          "#FFAD8F",
+          "#B4BCC1",
+          "#798085",
+          "#3A4145",
+          "#54726C",
+          "#6AA090",
+          "#83D8BB"
+        ],
+        "9": [
+          "#FFAD8F",
+          "#CBB9B4",
+          "#969EA3",
+          "#666E72",
+          "#3A4145",
+          "#4D6461",
+          "#5F897E",
+          "#71B09C",
+          "#83D8BB"
+        ]
+      },
+      "scaleVersion": "674942cf64722530892407f6f12aec3259511c7f9dea817e2e9775e03c69fba7",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.service_gap",
+      "kind": "diverging",
+      "theme": "light",
+      "anchors": [
+        "#4885BC",
+        "#F1F3EC",
+        "#D44B3F"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#4885BC",
+        "#518BBF",
+        "#5A90C1",
+        "#6295C4",
+        "#6B9BC7",
+        "#73A0C9",
+        "#7BA6CC",
+        "#84ABCE",
+        "#8CB1D1",
+        "#94B6D3",
+        "#9DBCD6",
+        "#A5C1D8",
+        "#ADC7DA",
+        "#B6CCDD",
+        "#BED2DF",
+        "#C7D7E1",
+        "#CFDDE3",
+        "#D7E2E6",
+        "#E0E8E8",
+        "#E8EDEA",
+        "#F1F3EC",
+        "#F1EBE3",
+        "#F1E3DA",
+        "#F1DBD1",
+        "#F0D3C9",
+        "#EFCBC0",
+        "#EFC3B7",
+        "#EEBBAF",
+        "#EDB3A6",
+        "#EBAB9D",
+        "#EAA395",
+        "#E89B8C",
+        "#E79284",
+        "#E58A7B",
+        "#E38273",
+        "#E1796A",
+        "#DE7162",
+        "#DC6859",
+        "#D95F51",
+        "#D75548",
+        "#D44B3F"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "excess capacity",
+        "demand equals comparable supply",
+        "unmet capacity"
+      ],
+      "pivotMeaning": {
+        "value": 0,
+        "meaningTh": "Demand และ Supply เท่ากันในหน่วยที่เปรียบเทียบได้",
+        "neutralInterval": "Declare tolerance; positive gap is not automatically a business opportunity."
+      },
+      "semanticRef": "location-metrics.json#li.service_gap",
+      "designNote": "Blue excess capacity versus warm unmet capacity; a positive gap is not automatically obtainable sales.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#4885BC",
+          "#F1F3EC",
+          "#D44B3F"
+        ],
+        "5": [
+          "#4885BC",
+          "#9DBCD6",
+          "#F1F3EC",
+          "#EAA395",
+          "#D44B3F"
+        ],
+        "7": [
+          "#4885BC",
+          "#84ABCE",
+          "#B6CCDD",
+          "#F1F3EC",
+          "#EEBBAF",
+          "#E58A7B",
+          "#D44B3F"
+        ],
+        "9": [
+          "#4885BC",
+          "#73A0C9",
+          "#9DBCD6",
+          "#C7D7E1",
+          "#F1F3EC",
+          "#EFCBC0",
+          "#EAA395",
+          "#E1796A",
+          "#D44B3F"
+        ]
+      },
+      "scaleVersion": "3722b7f60c687b12d6111497d2ca671afcf924e4eebe22439704ff7ef502e288",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.service_gap",
+      "kind": "diverging",
+      "theme": "dark",
+      "anchors": [
+        "#92CAFF",
+        "#3A4145",
+        "#FFAB9F"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#92CAFF",
+        "#8DC3F5",
+        "#89BBEB",
+        "#84B4E1",
+        "#80ADD7",
+        "#7BA5CD",
+        "#779EC3",
+        "#7297BA",
+        "#6E90B0",
+        "#6989A6",
+        "#65829D",
+        "#607C94",
+        "#5C758B",
+        "#586E81",
+        "#536778",
+        "#4F6170",
+        "#4B5A67",
+        "#47545E",
+        "#424D56",
+        "#3E474D",
+        "#3A4145",
+        "#434649",
+        "#4C4B4E",
+        "#555052",
+        "#5F5556",
+        "#685B5B",
+        "#72605F",
+        "#7B6564",
+        "#856A68",
+        "#8E6F6C",
+        "#987571",
+        "#A27A75",
+        "#AC7F7A",
+        "#B6857F",
+        "#C08A83",
+        "#CB9088",
+        "#D5958C",
+        "#DF9A91",
+        "#EAA096",
+        "#F4A59A",
+        "#FFAB9F"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "excess capacity",
+        "demand equals comparable supply",
+        "unmet capacity"
+      ],
+      "pivotMeaning": {
+        "value": 0,
+        "meaningTh": "Demand และ Supply เท่ากันในหน่วยที่เปรียบเทียบได้",
+        "neutralInterval": "Declare tolerance; positive gap is not automatically a business opportunity."
+      },
+      "semanticRef": "location-metrics.json#li.service_gap",
+      "designNote": "Blue excess capacity versus warm unmet capacity; a positive gap is not automatically obtainable sales.",
+      "darkConstruction": "div-dark-v1",
+      "classes": {
+        "3": [
+          "#92CAFF",
+          "#3A4145",
+          "#FFAB9F"
+        ],
+        "5": [
+          "#92CAFF",
+          "#65829D",
+          "#3A4145",
+          "#987571",
+          "#FFAB9F"
+        ],
+        "7": [
+          "#92CAFF",
+          "#7297BA",
+          "#586E81",
+          "#3A4145",
+          "#7B6564",
+          "#B6857F",
+          "#FFAB9F"
+        ],
+        "9": [
+          "#92CAFF",
+          "#7BA5CD",
+          "#65829D",
+          "#4F6170",
+          "#3A4145",
+          "#685B5B",
+          "#987571",
+          "#CB9088",
+          "#FFAB9F"
+        ]
+      },
+      "scaleVersion": "d0ad000707accf59a01246cec05c47a3b7168569fc4f3740a3621b8637d386a2",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.unit_economics",
+      "kind": "diverging",
+      "theme": "light",
+      "anchors": [
+        "#CD4D71",
+        "#F1F3EC",
+        "#48926C"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#CD4D71",
+        "#D05777",
+        "#D3607D",
+        "#D66882",
+        "#D87188",
+        "#DB7A8E",
+        "#DD8294",
+        "#DF8A9A",
+        "#E292A0",
+        "#E49AA6",
+        "#E6A3AC",
+        "#E7ABB3",
+        "#E9B3B9",
+        "#EABBBF",
+        "#ECC3C5",
+        "#EDCBCC",
+        "#EED3D2",
+        "#EFDBD9",
+        "#F0E3DF",
+        "#F1EBE5",
+        "#F1F3EC",
+        "#E9EEE5",
+        "#E0E9DF",
+        "#D8E4D8",
+        "#D0DFD1",
+        "#C7DACB",
+        "#BFD5C4",
+        "#B7D1BD",
+        "#AFCCB7",
+        "#A6C7B1",
+        "#9EC2AA",
+        "#96BDA4",
+        "#8EB89D",
+        "#85B497",
+        "#7DAF91",
+        "#74AA8B",
+        "#6CA584",
+        "#63A07E",
+        "#5A9C78",
+        "#519772",
+        "#48926C"
+      ],
+      "canvas": "#F6F7F3",
+      "direction": [
+        "scoped operating shortfall",
+        "scoped operating break-even",
+        "positive scoped operating margin"
+      ],
+      "pivotMeaning": {
+        "value": 0,
+        "meaningTh": "รายได้เท่ากับต้นทุนที่รวมในนิยามนี้",
+        "neutralInterval": "Declare tolerance; break-even is scoped, not company-level profitability."
+      },
+      "semanticRef": "location-metrics.json#li.unit_economics",
+      "designNote": "Rose shortfall versus pine positive margin; zero includes only the stated cost scope.",
+      "darkConstruction": null,
+      "classes": {
+        "3": [
+          "#CD4D71",
+          "#F1F3EC",
+          "#48926C"
+        ],
+        "5": [
+          "#CD4D71",
+          "#E6A3AC",
+          "#F1F3EC",
+          "#9EC2AA",
+          "#48926C"
+        ],
+        "7": [
+          "#CD4D71",
+          "#DF8A9A",
+          "#EABBBF",
+          "#F1F3EC",
+          "#B7D1BD",
+          "#85B497",
+          "#48926C"
+        ],
+        "9": [
+          "#CD4D71",
+          "#DB7A8E",
+          "#E6A3AC",
+          "#EDCBCC",
+          "#F1F3EC",
+          "#C7DACB",
+          "#9EC2AA",
+          "#74AA8B",
+          "#48926C"
+        ]
+      },
+      "scaleVersion": "c48c60b3cf47c25906a8b7a23bd3ed037072b5be0007eb979ebc336ce8d00fe9",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    },
+    {
+      "scaleId": "li.unit_economics",
+      "kind": "diverging",
+      "theme": "dark",
+      "anchors": [
+        "#FFA7BA",
+        "#3A4145",
+        "#8DD7AE"
+      ],
+      "positions": [
+        0,
+        20,
+        40
+      ],
+      "knots": null,
+      "lut41": [
+        "#FFA7BA",
+        "#F4A2B4",
+        "#EA9CAD",
+        "#DF97A7",
+        "#D592A1",
+        "#CB8D9B",
+        "#C08795",
+        "#B6828F",
+        "#AC7D89",
+        "#A27883",
+        "#98737D",
+        "#8F6E77",
+        "#856971",
+        "#7B646C",
+        "#725F66",
+        "#685A60",
+        "#5F555B",
+        "#565055",
+        "#4C4B50",
+        "#43464A",
+        "#3A4145",
+        "#3E484A",
+        "#424F4F",
+        "#465654",
+        "#4A5D59",
+        "#4E645E",
+        "#526B63",
+        "#567268",
+        "#5B796D",
+        "#5F8172",
+        "#638878",
+        "#67907D",
+        "#6B9882",
+        "#6F9F88",
+        "#74A78D",
+        "#78AF92",
+        "#7CB798",
+        "#80BF9D",
+        "#84C7A3",
+        "#89CFA8",
+        "#8DD7AE"
+      ],
+      "canvas": "#11191D",
+      "direction": [
+        "scoped operating shortfall",
+        "scoped operating break-even",
+        "positive scoped operating margin"
+      ],
+      "pivotMeaning": {
+        "value": 0,
+        "meaningTh": "รายได้เท่ากับต้นทุนที่รวมในนิยามนี้",
+        "neutralInterval": "Declare tolerance; break-even is scoped, not company-level profitability."
+      },
+      "semanticRef": "location-metrics.json#li.unit_economics",
+      "designNote": "Rose shortfall versus pine positive margin; zero includes only the stated cost scope.",
+      "darkConstruction": "div-dark-v1",
+      "classes": {
+        "3": [
+          "#FFA7BA",
+          "#3A4145",
+          "#8DD7AE"
+        ],
+        "5": [
+          "#FFA7BA",
+          "#98737D",
+          "#3A4145",
+          "#638878",
+          "#8DD7AE"
+        ],
+        "7": [
+          "#FFA7BA",
+          "#B6828F",
+          "#7B646C",
+          "#3A4145",
+          "#567268",
+          "#6F9F88",
+          "#8DD7AE"
+        ],
+        "9": [
+          "#FFA7BA",
+          "#CB8D9B",
+          "#98737D",
+          "#685A60",
+          "#3A4145",
+          "#4E645E",
+          "#638878",
+          "#78AF92",
+          "#8DD7AE"
+        ]
+      },
+      "scaleVersion": "c0c3eb670fc35aa0a8f26357fbeb1f8e9a02ddff394f41e09e7f9da489787983",
+      "intentionalVisualAliases": [],
+      "visualAliasPolicy": "No exact Story41-sample route alias; near similarities are reported separately."
+    }
+  ],
+  "screenGroups": [
+    {
+      "id": "market-foundation",
+      "label": "Demand / supply / market size",
+      "roleIds": [
+        "li.demand",
+        "li.supply",
+        "li.market_size"
+      ],
+      "why": "Related fundamentals are shown in separate labelled panels; the units differ."
+    },
+    {
+      "id": "swot",
+      "label": "Four evidence lenses",
+      "roleIds": [
+        "li.strength",
+        "li.weakness",
+        "li.opportunity",
+        "li.threat"
+      ],
+      "why": "Four text-led evidence categories; no numerical ramps and no automatic score."
+    },
+    {
+      "id": "commercial-position",
+      "label": "Market share / readiness / competitive pressure",
+      "roleIds": [
+        "li.market_share",
+        "li.spending_readiness",
+        "li.competitive_pressure"
+      ],
+      "why": "An explicitly labelled commercial view; do not overlay three independent scales."
+    },
+    {
+      "id": "site-network",
+      "label": "Access / own-network transfer / occupancy cost",
+      "roleIds": [
+        "li.accessibility",
+        "li.cannibalization",
+        "li.occupancy_cost"
+      ],
+      "why": "A compact site review with distinct short labels, icons and units."
+    },
+    {
+      "id": "signed-results",
+      "label": "Demand change / service gap / operating margin",
+      "roleIds": [
+        "li.demand_growth",
+        "li.service_gap",
+        "li.unit_economics"
+      ],
+      "why": "Three independently labelled signed panels, never one combined unlabelled legend."
+    },
+    {
+      "id": "market-fundamentals",
+      "label": "market fundamentals",
+      "roleIds": [
+        "li.demand",
+        "li.supply",
+        "li.market_size"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "swot-internal",
+      "label": "swot internal",
+      "roleIds": [
+        "li.strength",
+        "li.weakness"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "swot-external",
+      "label": "swot external",
+      "roleIds": [
+        "li.opportunity",
+        "li.threat"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "swot-positive-evidence",
+      "label": "swot positive evidence",
+      "roleIds": [
+        "li.strength",
+        "li.opportunity"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "swot-negative-evidence",
+      "label": "swot negative evidence",
+      "roleIds": [
+        "li.weakness",
+        "li.threat"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "commercial-readiness",
+      "label": "commercial readiness",
+      "roleIds": [
+        "li.market_share",
+        "li.spending_readiness"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "demand-trend",
+      "label": "demand trend",
+      "roleIds": [
+        "li.demand",
+        "li.demand_growth"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "market-structure",
+      "label": "market structure",
+      "roleIds": [
+        "li.demand",
+        "li.supply",
+        "li.competitive_pressure",
+        "li.service_gap"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    },
+    {
+      "id": "site-economics",
+      "label": "site economics",
+      "roleIds": [
+        "li.market_size",
+        "li.occupancy_cost",
+        "li.unit_economics"
+      ],
+      "why": "Semantics-authored co-display group: retain the full metric labels, non-colour cues and independent units."
+    }
+  ],
+  "cvd": {
+    "method": "Machado et al. 2009 full-severity matrices (100), linear sRGB, display-gamut channel clipping, sRGB transfer and 8-bit quantization before OKLab distance",
+    "verified": "2026-10-01 primary Colorspacious cvd.py matrices and conversion.py forward linear-RGB transform read directly",
+    "urls": [
+      "https://raw.githubusercontent.com/njsmith/colorspacious/master/colorspacious/cvd.py",
+      "https://raw.githubusercontent.com/njsmith/colorspacious/master/colorspacious/conversion.py"
+    ],
+    "matrices": {
+      "deuteranopia": [
+        [
+          0.367322,
+          0.860646,
+          -0.227968
+        ],
+        [
+          0.280085,
+          0.672501,
+          0.047413
+        ],
+        [
+          -0.01182,
+          0.04294,
+          0.968881
+        ]
+      ],
+      "protanopia": [
+        [
+          0.152286,
+          1.052583,
+          -0.204868
+        ],
+        [
+          0.114503,
+          0.786281,
+          0.099216
+        ],
+        [
+          -0.003882,
+          -0.048116,
+          1.051998
+        ]
+      ]
+    },
+    "limits": "Screen simulation and pairwise distance screening; no universal accessibility certification or real-user result. Simulated colors can appear brown; the banned-hue rule governs authored normal-view palette values, not the visual effects of a deficiency simulation."
+  }
+}

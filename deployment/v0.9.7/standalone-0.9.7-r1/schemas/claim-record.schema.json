@@ -1,0 +1,1085 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://montri-th.github.io/Landometer/v0.9.7/standalone-0.9.7-r1/schemas/claim-record.schema.json",
+  "title": "Landometer stable claim record with explicit authority boundary v1.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "claimId",
+    "textByLocale",
+    "claimType",
+    "entity",
+    "proposition",
+    "scope",
+    "authority",
+    "status",
+    "evidenceRefs",
+    "methodologyRef",
+    "dataGrain",
+    "schemaRelease",
+    "contentRelease",
+    "provenance",
+    "rights",
+    "confidence",
+    "limitations",
+    "lastReviewed",
+    "validityBasis",
+    "validFrom",
+    "validUntil",
+    "publicProjectionEligible"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.4"
+    },
+    "claimId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$"
+    },
+    "textByLocale": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^[a-z]{2}(-[A-Z]{2})?$": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      },
+      "additionalProperties": false
+    },
+    "claimType": {
+      "enum": [
+        "fact",
+        "measurement",
+        "estimate",
+        "comparison",
+        "interpretation",
+        "commitment",
+        "capability",
+        "status"
+      ]
+    },
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entityId",
+        "entityType",
+        "name"
+      ],
+      "properties": {
+        "entityId": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "entityType": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "name": {
+          "$ref": "#/$defs/nonEmpty"
+        }
+      }
+    },
+    "proposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assertion",
+        "valueState",
+        "value",
+        "unit"
+      ],
+      "properties": {
+        "assertion": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "valueState": {
+          "enum": [
+            "not_applicable",
+            "stated",
+            "measured",
+            "estimated"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "$ref": "#/$defs/nullableString"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "valueState": {
+                "const": "not_applicable"
+              }
+            },
+            "required": [
+              "valueState"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "unit": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "valueState": {
+                "enum": [
+                  "measured",
+                  "estimated"
+                ]
+              }
+            },
+            "required": [
+              "valueState"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productScope",
+        "portfolioDomain",
+        "product",
+        "geography",
+        "audience",
+        "timeWindow"
+      ],
+      "properties": {
+        "productScope": {
+          "enum": [
+            "shared_landometer",
+            "named_product"
+          ]
+        },
+        "portfolioDomain": {
+          "enum": [
+            "shared",
+            "land",
+            "location",
+            "living"
+          ]
+        },
+        "product": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "geography": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "audience": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "timeWindow": {
+          "$ref": "#/$defs/nullableString"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "productScope": {
+                "const": "named_product"
+              }
+            },
+            "required": [
+              "productScope"
+            ]
+          },
+          "then": {
+            "properties": {
+              "product": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "productScope": {
+                "const": "shared_landometer"
+              }
+            },
+            "required": [
+              "productScope"
+            ]
+          },
+          "then": {
+            "properties": {
+              "product": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "authorityRef",
+        "authorizes",
+        "observedSubjectId"
+      ],
+      "properties": {
+        "class": {
+          "enum": [
+            "portfolio_owner_approval",
+            "product_owner_approval",
+            "implementation_observation"
+          ]
+        },
+        "authorityRef": {
+          "$ref": "#/$defs/publicRef"
+        },
+        "authorizes": {
+          "enum": [
+            "portfolio_truth",
+            "named_product_truth",
+            "observed_usage_only"
+          ]
+        },
+        "observedSubjectId": {
+          "$ref": "#/$defs/nullableString"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "class": {
+                "const": "portfolio_owner_approval"
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authorizes": {
+                "const": "portfolio_truth"
+              },
+              "observedSubjectId": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "class": {
+                "const": "product_owner_approval"
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authorizes": {
+                "const": "named_product_truth"
+              },
+              "observedSubjectId": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "class": {
+                "const": "implementation_observation"
+              }
+            },
+            "required": [
+              "class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authorizes": {
+                "const": "observed_usage_only"
+              },
+              "observedSubjectId": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved",
+        "superseded",
+        "withdrawn",
+        "expired"
+      ]
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonEmpty"
+      },
+      "uniqueItems": true
+    },
+    "noPublicEvidenceReason": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "methodologyRef": {
+      "$ref": "#/$defs/nullableString"
+    },
+    "dataGrain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity",
+        "geography",
+        "time",
+        "unitOfObservation",
+        "denominator",
+        "aggregation"
+      ],
+      "properties": {
+        "entity": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "geography": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "time": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "unitOfObservation": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "denominator": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "aggregation": {
+          "$ref": "#/$defs/nullableString"
+        }
+      }
+    },
+    "schemaRelease": {
+      "$ref": "#/$defs/nullableString"
+    },
+    "contentRelease": {
+      "$ref": "#/$defs/nonEmpty"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "transformation",
+        "owner",
+        "reviewedAt",
+        "integrityRef"
+      ],
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "transformation": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "owner": {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        "reviewedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "integrityRef": {
+          "$ref": "#/$defs/sha256Ref"
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "publicationPermission",
+        "conditions"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "public",
+            "internal",
+            "restricted",
+            "licensed",
+            "unknown"
+          ]
+        },
+        "publicationPermission": {
+          "type": "boolean"
+        },
+        "conditions": {
+          "$ref": "#/$defs/nullableString"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "const": "licensed"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "conditions": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "value",
+        "explanation"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "not_applicable",
+            "qualitative",
+            "quantitative"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "$ref": "#/$defs/nonEmpty"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "explanation": {
+          "$ref": "#/$defs/nullableString"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "not_applicable"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "explanation": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "qualitative"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "explanation": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "quantitative"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "explanation": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "textByLocale"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$"
+          },
+          "textByLocale": {
+            "type": "object",
+            "minProperties": 1,
+            "patternProperties": {
+              "^[a-z]{2}(-[A-Z]{2})?$": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "lastReviewed": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "validityBasis": {
+      "enum": [
+        "timeless",
+        "bounded_interval",
+        "until_superseded"
+      ]
+    },
+    "validFrom": {
+      "$ref": "#/$defs/dateTimeOrNull"
+    },
+    "validUntil": {
+      "$ref": "#/$defs/dateTimeOrNull"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9._-]{2,119}$"
+      },
+      "uniqueItems": true
+    },
+    "publicProjectionEligible": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "validityBasis": {
+            "const": "timeless"
+          }
+        },
+        "required": [
+          "validityBasis"
+        ]
+      },
+      "then": {
+        "properties": {
+          "validFrom": {
+            "type": "null"
+          },
+          "validUntil": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "validityBasis": {
+            "const": "bounded_interval"
+          }
+        },
+        "required": [
+          "validityBasis"
+        ]
+      },
+      "then": {
+        "properties": {
+          "validFrom": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "validUntil": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "validityBasis": {
+            "const": "until_superseded"
+          }
+        },
+        "required": [
+          "validityBasis"
+        ]
+      },
+      "then": {
+        "properties": {
+          "validUntil": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "evidenceRefs": {
+            "type": "array",
+            "maxItems": 0
+          }
+        },
+        "required": [
+          "evidenceRefs"
+        ]
+      },
+      "then": {
+        "required": [
+          "noPublicEvidenceReason"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "publicProjectionEligible": {
+            "const": true
+          }
+        },
+        "required": [
+          "publicProjectionEligible"
+        ]
+      },
+      "then": {
+        "properties": {
+          "status": {
+            "const": "approved"
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/publicRef"
+            }
+          },
+          "rights": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "enum": [
+                  "public",
+                  "licensed"
+                ]
+              },
+              "publicationPermission": {
+                "const": true
+              }
+            },
+            "required": [
+              "status",
+              "publicationPermission"
+            ]
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "$ref": "#/$defs/publicRef"
+              },
+              "integrityRef": {
+                "$ref": "#/$defs/sha256Ref"
+              }
+            },
+            "required": [
+              "source",
+              "integrityRef"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "claimType": {
+            "const": "measurement"
+          }
+        },
+        "required": [
+          "claimType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "proposition": {
+            "type": "object",
+            "properties": {
+              "valueState": {
+                "const": "measured"
+              }
+            },
+            "required": [
+              "valueState",
+              "value",
+              "unit"
+            ]
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1
+          },
+          "methodologyRef": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "schemaRelease": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "claimType": {
+            "const": "estimate"
+          }
+        },
+        "required": [
+          "claimType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "proposition": {
+            "type": "object",
+            "properties": {
+              "valueState": {
+                "const": "estimated"
+              }
+            },
+            "required": [
+              "valueState",
+              "value",
+              "unit"
+            ]
+          },
+          "confidence": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "qualitative",
+                  "quantitative"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "value",
+              "explanation"
+            ]
+          },
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1
+          },
+          "methodologyRef": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "schemaRelease": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "claimType": {
+            "const": "comparison"
+          }
+        },
+        "required": [
+          "claimType"
+        ]
+      },
+      "then": {
+        "properties": {
+          "evidenceRefs": {
+            "type": "array",
+            "minItems": 1
+          },
+          "methodologyRef": {
+            "$ref": "#/$defs/nonEmpty"
+          },
+          "schemaRelease": {
+            "$ref": "#/$defs/nonEmpty"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "entity": {
+            "type": "object",
+            "properties": {
+              "entityType": {
+                "const": "protected_brand_line"
+              }
+            },
+            "required": [
+              "entityType"
+            ]
+          }
+        },
+        "required": [
+          "entity"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authority": {
+            "type": "object",
+            "properties": {
+              "class": {
+                "const": "portfolio_owner_approval"
+              },
+              "authorizes": {
+                "const": "portfolio_truth"
+              }
+            },
+            "required": [
+              "class",
+              "authorizes"
+            ]
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "productScope": {
+                "const": "shared_landometer"
+              },
+              "portfolioDomain": {
+                "const": "shared"
+              },
+              "product": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "productScope",
+              "portfolioDomain",
+              "product"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "authority": {
+            "type": "object",
+            "properties": {
+              "class": {
+                "const": "implementation_observation"
+              }
+            },
+            "required": [
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "authority"
+        ]
+      },
+      "then": {
+        "properties": {
+          "entity": {
+            "type": "object",
+            "properties": {
+              "entityType": {
+                "const": "implementation_observation"
+              }
+            },
+            "required": [
+              "entityType"
+            ]
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "productScope": {
+                "const": "named_product"
+              },
+              "product": {
+                "$ref": "#/$defs/nonEmpty"
+              },
+              "timeWindow": {
+                "$ref": "#/$defs/nonEmpty"
+              }
+            },
+            "required": [
+              "productScope",
+              "product",
+              "timeWindow"
+            ]
+          },
+          "validityBasis": {
+            "enum": [
+              "bounded_interval",
+              "until_superseded"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nonEmpty": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "nullableString": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/nonEmpty"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "dateTimeOrNull": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sha256Ref": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "publicRef": {
+      "type": "string",
+      "pattern": "^(?:https://|urn:[a-z0-9][a-z0-9-]*:)\\S+$"
+    }
+  },
+  "$comment": "Resolved standalone LDS 0.9.7 contract, revision standalone-0.9.7-r1. The distribution is owner-approved and unsigned; this schema is not a release attestation. Historical source identities and hashes are recorded separately."
+}

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "lds-product-addon-profile-1",
+  "profileId": "citychat",
+  "product": "CityChat",
+  "productVersions": {
+    "addon": "0.9.2"
+  },
+  "consolidationRevision": "standalone-0.9.5-r2",
+  "effectiveDate": "2026-09-30",
+  "parentDesignSystem": {
+    "name": "Landometer Design System",
+    "dsVersion": "0.9.5",
+    "releaseRef": "v0.9.5-owner.1",
+    "colorSetId": "color-srgb-08",
+    "signatureStatus": "unsigned-owner-approved",
+    "integration": "Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.",
+    "markdownUrl": "https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md",
+    "documentRevision": "standalone-0.9.5-r2",
+    "publicationTag": "v0.9.5-standalone-r2"
+  },
+  "document": {
+    "path": "citychat.md",
+    "sha256": "e9481cb43f3a5ef7e274da64d4ba5a2ccc42936e92d09df9a269d0ca9fafdc60"
+  },
+  "sourceProvenance": [
+    {
+      "name": "citychat-ds-addon-v0.9.2-project-source.md",
+      "repository": "montri-th/CityChat",
+      "sha256": "31801f57a1e82c47c5e1b584278ca8d66ff1104880df45f31fdfd156675ec3d5",
+      "bytes": 16663,
+      "role": "complete current CityChat product rules"
+    },
+    {
+      "name": "citychat-ds-addon-v0.9.2-binding.json",
+      "repository": "montri-th/CityChat",
+      "sha256": "92351871191a19a8fe9427f1412907b58170e6b44df938a0ed7e111df2a33cf8",
+      "bytes": 2181,
+      "role": "original owner-directed migration binding"
+    }
+  ],
+  "externalDesignRuleDocumentsRequired": [
+    {
+      "role": "shared_foundation",
+      "dsVersion": "0.9.5",
+      "markdownUrl": "https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md"
+    }
+  ],
+  "separateProductTruthStillRequired": [
+    "authoritative case, source and receipt records",
+    "current signed municipal LOI and permission records",
+    "exact asset rights and approval receipts"
+  ],
+  "identityGradient": {
+    "purpose": "product identity only",
+    "light": [
+      "#007A58",
+      "#007E79"
+    ],
+    "dark": [
+      "#3BD19B",
+      "#3BD3CB"
+    ],
+    "analyticalUseAllowed": false
+  },
+  "cityScanIntents": [
+    {
+      "topicId": "daily_life",
+      "labelTh": "แถวนี้น่าอยู่ยังไง"
+    },
+    {
+      "topicId": "visitor_identity",
+      "labelTh": "น่าเที่ยวตรงไหน"
+    },
+    {
+      "topicId": "local_activity",
+      "labelTh": "น่าค้าขายอะไรดี"
+    }
+  ],
+  "cityCell": {
+    "presentationKind": [
+      "observation",
+      "proxy",
+      "question",
+      "unavailable"
+    ],
+    "valueState": [
+      "observed",
+      "observed_zero",
+      "unknown",
+      "out_of_coverage",
+      "stale",
+      "not_applicable",
+      "suppressed_privacy"
+    ],
+    "notSpatialCell": true
+  },
+  "storyCell": {
+    "maxMainSignals": 1,
+    "maxVerifiableFacts": 3,
+    "maxMeaningfulQuestions": 1,
+    "maxAllowedActions": 1
+  },
+  "carryContext": [
+    "caseId",
+    "contextRef",
+    "snapshotRef_when_data_shown",
+    "topicId",
+    "responseVersion",
+    "place_and_time_context"
+  ],
+  "retiredException": "CC-EX-01-looping-CTA",
+  "supersededActiveInstructionSets": [
+    "CityChat eight-LDS-files plus separate Add-on installation",
+    "CityChat0.9/0.9.1 historical base binding",
+    "color-srgb-05 and legacy TapBlue controls"
+  ],
+  "machineContractNote": "Field maps describe normative product constraints, not a claimed executable JSON Schema or available service.",
+  "requiredProjectSourceDesignFiles": 2,
+  "embedsSharedFoundation": false
+}

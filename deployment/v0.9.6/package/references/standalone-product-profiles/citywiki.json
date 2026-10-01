@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "lds-product-addon-profile-1",
+  "profileId": "citywiki",
+  "product": "CityWiki",
+  "productVersions": {
+    "designSystem": "1.0.0",
+    "contentSpecification": "2.4",
+    "manifest": "1.1"
+  },
+  "consolidationRevision": "standalone-0.9.5-r2",
+  "effectiveDate": "2026-09-30",
+  "parentDesignSystem": {
+    "name": "Landometer Design System",
+    "dsVersion": "0.9.5",
+    "releaseRef": "v0.9.5-owner.1",
+    "colorSetId": "color-srgb-08",
+    "signatureStatus": "unsigned-owner-approved",
+    "integration": "Separate product Add-on; requires the complete LDS 0.9.5 base normative. This file contains product-specific rules and values only, not a duplicated shared foundation. No older LDS master is required.",
+    "markdownUrl": "https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md",
+    "documentRevision": "standalone-0.9.5-r2",
+    "publicationTag": "v0.9.5-standalone-r2"
+  },
+  "document": {
+    "path": "citywiki.md",
+    "sha256": "c5173cee84218b8c600c38fec4c5e733c576091b7b0a9827e1871698637ec3f6"
+  },
+  "sourceProvenance": [
+    {
+      "name": "landometer_citywiki_design_system_v1_0_charming_voice_integrated(1).md",
+      "repository": null,
+      "sha256": "19288fb8b68c57d69eefc85984ade84f8bdd350fa544504bad067e314483889a",
+      "bytes": 54232,
+      "role": "complete CityWiki1.0.0 voice/editorial/component/QA profile"
+    }
+  ],
+  "externalDesignRuleDocumentsRequired": [
+    {
+      "role": "shared_foundation",
+      "dsVersion": "0.9.5",
+      "markdownUrl": "https://montri-th.github.io/Landometer/v0.9.5/normative/Landometer-Design-System-v0.9.5.md"
+    }
+  ],
+  "separateProductTruthStillRequired": [
+    "CityWiki Prompt Attachment2.4 for actual research modes, evidence thresholds and output decisions",
+    "source and claim ledgers, boundary/route evidence, media permissions",
+    "publication review and field verification where required"
+  ],
+  "voiceProfile": "citywiki.charming",
+  "profile": "citywiki.public",
+  "voiceOverrideDomains": [
+    "public voice",
+    "editorial composition",
+    "CityWiki components",
+    "charm QA"
+  ],
+  "voiceOverrideDoesNotChange": [
+    "identity assets",
+    "shared tokens",
+    "accessibility",
+    "evidence",
+    "privacy",
+    "rights",
+    "publication safety"
+  ],
+  "publicationStates": {
+    "verified": "index,follow when deployable",
+    "provisional": "noindex,follow",
+    "source_limited": "noindex,follow",
+    "internal": "noindex,nofollow",
+    "private": "noindex,nofollow"
+  },
+  "portableArtifactIndexPolicy": "noindex,nofollow",
+  "supersededActiveInstructionSets": [
+    "CityWiki LDS0.8 visual binding",
+    "blue-as-universal-action/trust rule",
+    "external historical-LDS design-master requirement"
+  ],
+  "machineContractNote": "The embedded field maps and enum-choice examples are human/machine authoring contracts, not newly executed JSON Schemas. Product profile1.0.0 and content spec2.4 are retained without a version bump.",
+  "requiredProjectSourceDesignFiles": 2,
+  "embedsSharedFoundation": false
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "1.4",
+  "claimId": "claim.protected-line.cultural-activation.portfolio.v1",
+  "textByLocale": {
+    "th-TH": "Let us cultivate our city with data.",
+    "en": "Let us cultivate our city with data."
+  },
+  "claimType": "fact",
+  "entity": {
+    "entityId": "urn:landometer:claim-subject:protected-line:cultural-activation",
+    "entityType": "protected_brand_line",
+    "name": "Landometer cultural activation"
+  },
+  "proposition": {
+    "assertion": "The owner-approved protected cultural-activation line is exactly ‘Let us cultivate our city with data.’",
+    "valueState": "not_applicable",
+    "value": null,
+    "unit": null
+  },
+  "scope": {
+    "productScope": "shared_landometer",
+    "portfolioDomain": "shared",
+    "product": null,
+    "geography": null,
+    "audience": "public",
+    "timeWindow": null
+  },
+  "authority": {
+    "class": "portfolio_owner_approval",
+    "authorityRef": "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines",
+    "authorizes": "portfolio_truth",
+    "observedSubjectId": null
+  },
+  "status": "approved",
+  "evidenceRefs": [
+    "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines"
+  ],
+  "methodologyRef": null,
+  "dataGrain": {
+    "entity": "protected_brand_line",
+    "geography": null,
+    "time": null,
+    "unitOfObservation": null,
+    "denominator": null,
+    "aggregation": null
+  },
+  "schemaRelease": "Landometer Design System v0.9.1",
+  "contentRelease": "landometer-brand-authority-2026-09-01",
+  "provenance": {
+    "source": "urn:landometer:owner-approval:2026-09-01:v0.9.1-protected-lines",
+    "transformation": "Exact transcription of the owner-approved protected line; no implementation observation is used as portfolio authority.",
+    "owner": "Landometer owner",
+    "reviewedAt": "2026-09-01T00:33:36+07:00",
+    "integrityRef": "sha256:382bd3968c3b2dca493e7773c8878dec50d4d06ef651033528b175493c22bcf7"
+  },
+  "rights": {
+    "status": "public",
+    "publicationPermission": true,
+    "conditions": null
+  },
+  "confidence": {
+    "kind": "not_applicable",
+    "value": null,
+    "explanation": null
+  },
+  "limitations": [
+    {
+      "id": "limitation.protected-line-boundary.01",
+      "textByLocale": {
+        "th-TH": "ข้อความนี้เป็นข้อความแบรนด์ของ Landometer ไม่ได้บอกข้อเท็จจริงเกี่ยวกับผลิตภัณฑ์ เมือง การจัดอันดับ หรือความสามารถ",
+        "en": "This is a Landometer brand line. It does not describe a product, city, ranking, or capability."
+      }
+    }
+  ],
+  "lastReviewed": "2026-09-01T00:33:36+07:00",
+  "validityBasis": "timeless",
+  "validFrom": null,
+  "validUntil": null,
+  "supersedes": [],
+  "publicProjectionEligible": true
+}

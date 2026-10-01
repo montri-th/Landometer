@@ -1,14 +1,22 @@
-# Landometer Design System 0.9.6
-Current version: 0.9.6. Color Set: color-srgb-09. Package: v0.9.6-owner.1 (owner-approved, unsigned).
-- [Human and machine reference](https://montri-th.github.io/Landometer/v0.9.6/)
-- [Brand DNA, Voice and Visual playground](https://montri-th.github.io/Landometer/v0.9.6/#play)
-- [Full Implementation Library](https://montri-th.github.io/Landometer/v0.9.6/#implementation-library)
-- [Current complete Color Atlas](https://montri-th.github.io/Landometer/v0.9.6/#complete-color-atlas)
-- [Standalone approved color-scale explorer](https://montri-th.github.io/Landometer/v0.9.6/color-atlas.html)
+# Landometer Design System 0.9.7
+Current version: 0.9.7. Color Set: color-srgb-10. Package: v0.9.7-owner.1 (owner-approved, unsigned).
+- [Complete human handbook](https://montri-th.github.io/Landometer/v0.9.7/)
+- [Brand DNA, Voice and Visual](https://montri-th.github.io/Landometer/v0.9.7/#play)
+- [Full Implementation Library](https://montri-th.github.io/Landometer/v0.9.7/#implementation-library)
+- [Story Color Atlas](https://montri-th.github.io/Landometer/v0.9.7/color-atlas.html)
+- [Exact static color reference](https://montri-th.github.io/Landometer/v0.9.7/color-reference.html)
+- [Location Intelligence profile](https://montri-th.github.io/Landometer/v0.9.7/location/)
+- [Complete standalone normative](https://montri-th.github.io/Landometer/v0.9.7/normative/Landometer-Design-System-v0.9.7.md)
+- [Separate Location normative](https://montri-th.github.io/Landometer/v0.9.7/normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md)
+- [Project Source setup and separate product Add-ons](https://montri-th.github.io/Landometer/v0.9.7/project-source-0.9.7.md)
+- [Installation by tool](https://montri-th.github.io/Landometer/v0.9.7/team-setup.md)
 - [Canonical source](https://github.com/montri-th/Landometer/tree/main/plugins/landometer-design-system)
-- [Release](https://github.com/montri-th/Landometer/releases/tag/v0.9.6)
-Use exact bundled assets. Retain brand voice/visual from 0.9.1. Do not use historical color-srgb-05 or inherited color-srgb-07 for a new unpinned artifact. Explicitly pinned older projects retain their release until migration. Package verification is not universal output conformance. Team account activation is separate from local installation.
-Website build ui-20261001-lds096-r1 retains the full 0.9.5 handbook with fourteen owner-approved three-color sequential families. Light sequential ramps begin with cream #F2F1DF; each midpoint is a distinct hue. Density remains warm for all denominators. Diverging scales, categorical colors, brand voice, identity, motif/animation and shared atmospheres are unchanged.
-- [Complete standalone normative](https://montri-th.github.io/Landometer/v0.9.6/normative/Landometer-Design-System-v0.9.6.md)
-- [Project Source setup and separate product Add-ons](https://montri-th.github.io/Landometer/v0.9.6/project-source-0.9.6.md)
-- [Archived 0.9.5 guide and assets](https://montri-th.github.io/Landometer/v0.9.5/)
+- [Release downloads](https://github.com/montri-th/Landometer/releases/tag/v0.9.7)
+
+Use exact bundled assets and current standalone rules. The complete handbook retains brand voice/visual foundations and identity/motif/motion scope. Story has 17 supporting values and 20 analytical families. Original LIGHT analytical HEX, anchors, LUT and classes are identical on both themes; preserve value direction. Do not derive, invert or recolor dark scales. Density remains warm. Existing categorical, identity and shared atmosphere assets retain their own theme rules.
+
+The separate Location Intelligence Profile defines 16 roles, 12 quantitative recipes and 4 evidence-only SWOT lenses. Use it with the full LDS base, plus the product Add-on when applicable. Never treat a role accent as proof, eligibility or a measured score. Colours alone do not identify every metric uniquely; preserve labels, units, denominators, signs and meaningful zero.
+
+For contrast use meaningful borders, readable labels or neutral backing surfaces without recolouring numerical data. Package validation is not universal accessibility/CVD certification. Local installation does not activate all accounts or the team. Explicit historical pins remain valid until migration.
+- [Archived 0.9.6](https://montri-th.github.io/Landometer/v0.9.6/)
+- [Archived 0.9.5](https://montri-th.github.io/Landometer/v0.9.5/)
