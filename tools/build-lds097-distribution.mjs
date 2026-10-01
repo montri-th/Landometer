@@ -3,6 +3,7 @@ import {cpSync,rmSync,readFileSync,writeFileSync,readdirSync,statSync,existsSync
 import {resolve,relative,join,dirname,extname} from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
+import {publicHead} from './lds097-public-head.mjs';
 const root=resolve(import.meta.dirname,'..');
 const site=join(root,'deployment/v0.9.7');
 const plugin=join(root,'plugins/landometer-design-system');
@@ -14,6 +15,8 @@ const atlasBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-atlas
 if(atlasBuild.status!==0)process.exit(atlasBuild.status??1);
 const studyBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-study-pages.mjs')],{cwd:root,stdio:'inherit'});
 if(studyBuild.status!==0)process.exit(studyBuild.status??1);
+writeFileSync(join(site,'color-reference.html'),publicHead(readFileSync(join(site,'color-reference.html'),'utf8'),'reference'));
+writeFileSync(join(root,'deployment/index.html'),publicHead(readFileSync(join(root,'deployment/index.html'),'utf8').replaceAll('root-20261001-lds097-r2','root-20261001-lds097-r4'),'guide','v0.9.7/'));
 const guideBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-full-guide.mjs')],{cwd:root,stdio:'inherit'});
 if(guideBuild.status!==0)process.exit(guideBuild.status??1);
 writeFileSync(join(site,'team-setup.md'),readFileSync(join(root,'docs/lds-0.9.7-team-activation.md'),'utf8').replaceAll('../plugins/landometer-design-system/','./package/').replaceAll('../deployment/v0.9.7/project-source-0.9.7.md','./project-source-0.9.7.md').replaceAll('../tools/install-lds097.py','https://github.com/montri-th/Landometer/blob/main/tools/install-lds097.py'));
@@ -95,6 +98,6 @@ while(queue.length){
  }
 }
 const files=[...filesSet].sort();
-const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r3',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
+const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r4',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
 writeFileSync(join(site,'site-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(`DS 0.9.7 web distribution built: ${files.length} assets`);

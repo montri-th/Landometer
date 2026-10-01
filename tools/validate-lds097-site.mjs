@@ -15,9 +15,9 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.7' && manifest.colorSetId === 'color-srgb-10', 'release identity');
 check(manifest.packageId === 'v0.9.7-owner.1', 'current approved package identity');
-check(manifest.artifactBuildId === 'ui-20261001-lds097-r3', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20261001-lds097-r4', 'full-guide website build identity');
 const rootEntry = readFileSync(join(root, 'deployment/index.html'), 'utf8');
-check(manifest.entrypointBuildId === 'root-20261001-lds097-r2' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
+check(manifest.entrypointBuildId === 'root-20261001-lds097-r4' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
 const rootRedirect = rootEntry.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 for (const [search, hash] of [
   ['', ''], ['', '#library-resources'], ['?lang=en&theme=dark', ''],

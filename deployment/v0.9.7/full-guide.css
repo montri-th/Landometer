@@ -33,3 +33,10 @@
 /* The fixed page bookmark needs a real outside gutter. The complete hamburger
    index remains available at widths where the bookmark would cover content. */
 @media(max-width:1439px){.side-bookmark{display:none}}
+
+/* Current-release comparison belongs to the existing Story section. */
+.lds097-release-overview { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px; margin-top:32px; }
+.lds097-release-overview article { min-width:0; }
+.lds097-release-overview h3 { font-size:1.2rem; line-height:1.6; margin:0 0 12px; }
+.lds097-release-overview p { line-height:1.8; margin:0; }
+@media(max-width:900px) { .lds097-release-overview { grid-template-columns:1fr; gap:28px; } }

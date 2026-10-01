@@ -67,7 +67,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|7(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|10)/g, '<current-color-set>')
     .replace(/2026-(?:09-02|10-01)/g, '<release-date>')
-    .replace(/(?:ui-20260902-08|ui-20261001-lds097-r3)/g, '<current-site-build>');
+    .replace(/(?:ui-20260902-08|ui-20261001-lds097-r4)/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -131,7 +131,7 @@ for (const state of ['measured', 'measured_zero', 'no_data', 'out_of_scope', 'su
 const guideOverrides = read('deployment/v0.9.7/full-guide.css').replace(/\/\*[\s\S]*?\*\//g, '');
 const identityClarification=element(html,'v097-identity-clarification');
 check(text(identityClarification).includes('Wordmark เปลี่ยนสีได้ รวมถึงตัวอักษรละสี')&&text(identityClarification).includes('Official logos may appear on readable light or dark backgrounds.'),'current owner identity clarification is visible in Thai and English');
-check(html.includes('href="full-guide.css?build=ui-20261001-lds097-r3"'), 'current guide loads navigation and integration overrides');
+check(html.includes('href="full-guide.css?build=ui-20261001-lds097-r4"'), 'current guide loads navigation and integration overrides');
 for (const state of ['page', 'location']) {
   const rules = [...guideOverrides.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(rule => rule[1].split(',').some(selector => selector.trim() === `.nav-panel a[aria-current="${state}"]`));
   const shadows = rules.flatMap(rule => [...rule[2].matchAll(/(?:^|;)\s*box-shadow\s*:\s*([^;]+)/g)].map(match => match[1].trim()));
@@ -161,7 +161,7 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.7'], ['data-machine-package-identity', 'v0.9.7-owner.1'],
-  ['data-color-registry', 'color-srgb-10'], ['data-artifact-build', 'ui-20261001-lds097-r3']
+  ['data-color-registry', 'color-srgb-10'], ['data-artifact-build', 'ui-20261001-lds097-r4']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.7\/"/.test(html), 'current guide canonical URL');

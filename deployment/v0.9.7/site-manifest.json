@@ -3,8 +3,8 @@
   "designSystemVersion": "0.9.7",
   "colorSetId": "color-srgb-10",
   "packageId": "v0.9.7-owner.1",
-  "artifactBuildId": "ui-20261001-lds097-r3",
-  "entrypointBuildId": "root-20261001-lds097-r2",
+  "artifactBuildId": "ui-20261001-lds097-r4",
+  "entrypointBuildId": "root-20261001-lds097-r4",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -104,8 +104,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 702,
-      "sha256": "98171ca5dca46020e3b99b06478fd363dd90bbe9aaba09df48df13aa7523cbda"
+      "bytes": 3451,
+      "sha256": "f1cfbe66e3ecb00f97262758e2e8163bbfb34447e2af0f08d5d735f8d2e7f010"
     },
     {
       "path": "index.v0.9.1.html",
@@ -169,18 +169,18 @@
     },
     {
       "path": "v0.9.7/color-atlas.html",
-      "bytes": 15658,
-      "sha256": "9ace89a8054fc715b888f2bc743438839b5343055d8e1e1c5be9aa63121049b0"
+      "bytes": 18418,
+      "sha256": "ee5784e7a11c18b012c4e3f09818aca1636e7f466ab389548316029def812371"
     },
     {
       "path": "v0.9.7/color-reference.html",
-      "bytes": 337387,
-      "sha256": "be86f7ea97fc12a26582404d71ad05e8e58fd0254981ab92e07f054db511a512"
+      "bytes": 338911,
+      "sha256": "cfee9d2564ea2f006f2451ecc19b446079803a1f1d917a50ef1635c4eb6a0e25"
     },
     {
       "path": "v0.9.7/data.js",
       "bytes": 136289,
-      "sha256": "8f14014280f6199ea32f27fb7244c3868388637d6e912743c0f99152df2caa80"
+      "sha256": "9760aaf12951a11cbacd0101f4a649b325fb0952b351ba8c63639f62d9069d7f"
     },
     {
       "path": "v0.9.7/embedded-atlas.js",
@@ -189,8 +189,8 @@
     },
     {
       "path": "v0.9.7/full-guide.css",
-      "bytes": 2277,
-      "sha256": "86ad4c75ba17ced4691efbcdce98fcafbddc5b71affd2fb114940accb067c600"
+      "bytes": 2753,
+      "sha256": "c335d3ca589c3b0a9c6cfff713c9d88c6cd87f47a2821c6e65cc267cb42bd786"
     },
     {
       "path": "v0.9.7/full-guide.js",
@@ -244,8 +244,8 @@
     },
     {
       "path": "v0.9.7/index.html",
-      "bytes": 1113946,
-      "sha256": "6cc12bea4b52b84151a2d97c3a6b11728b096a79bfa16c662839d50205d852b0"
+      "bytes": 1117977,
+      "sha256": "cef77981f7d82016439ae3a9d259e1174baa67cd927c74c28d0992daf29f189d"
     },
     {
       "path": "v0.9.7/lds/color-srgb-07.production.css",
@@ -449,8 +449,8 @@
     },
     {
       "path": "v0.9.7/location/index.html",
-      "bytes": 10875,
-      "sha256": "f3306fe0dcb5e98647f5301acd3d6e884554e3a80e3c054ea0ec8a9e699199f7"
+      "bytes": 13579,
+      "sha256": "4558e52a9f807145e3fb6e7152ec84e3180f3728ad07d480fddb2277f2659eae"
     },
     {
       "path": "v0.9.7/location/location-app.js",
@@ -460,7 +460,7 @@
     {
       "path": "v0.9.7/location/location-audit.json",
       "bytes": 411647,
-      "sha256": "52322e1719e41b24f1c0dcd71f006195bf4572bb3a86e4ee671b4468f0a460cc"
+      "sha256": "15817cda99af35b06afd302cf1820fffac438bcc8599e85f63e9c337ae506d39"
     },
     {
       "path": "v0.9.7/location/location-colors.json",
@@ -470,7 +470,7 @@
     {
       "path": "v0.9.7/location/location-data.js",
       "bytes": 372392,
-      "sha256": "e1e86d313718ffb96cd2149ec4d044a62813974b51b5256dbfeaec2de06aca24"
+      "sha256": "3f466c99a0f24e8307b885174f0f861f844397b5823a0c1336bcbf7de186e916"
     },
     {
       "path": "v0.9.7/location/location-metrics.json",
@@ -2784,8 +2784,43 @@
     },
     {
       "path": "v0.9.7/site.webmanifest",
-      "bytes": 361,
-      "sha256": "5fc080a922b48182f8dc9d1ae53680de93c7488ed7b705ed41da3f19726f134c"
+      "bytes": 468,
+      "sha256": "9da8906405a56f7c50e2f4f52a063065e5311a090326f3e909767ef63bd23ff4"
+    },
+    {
+      "path": "v0.9.7/social/atlas-097.html",
+      "bytes": 1869,
+      "sha256": "7edcc8da57d81ce08023ab0b93504b0de950270767c87f90ea154f6aace72c91"
+    },
+    {
+      "path": "v0.9.7/social/atlas-097.png",
+      "bytes": 146220,
+      "sha256": "81835a071463545e04d73876e24a61ee3f7f3c51cb80746f5044567b55d1f8c6"
+    },
+    {
+      "path": "v0.9.7/social/guide-097.html",
+      "bytes": 1827,
+      "sha256": "be0b61ffcb917a0f25c4cb113a2d257180a981617f75bbf1f06dff723f53cc55"
+    },
+    {
+      "path": "v0.9.7/social/guide-097.png",
+      "bytes": 135576,
+      "sha256": "cbad2c5a07f88ec7369e33fc3190d54b1f40913ed4fc854acd7eab0c0176bc96"
+    },
+    {
+      "path": "v0.9.7/social/identity-receipt.json",
+      "bytes": 2344,
+      "sha256": "777f8f89511430bf49829fc372d28b00bf15c5de7fb2bece1fa29138369af703"
+    },
+    {
+      "path": "v0.9.7/social/location-097.html",
+      "bytes": 1812,
+      "sha256": "8d05561935e76b535e9a86e5573993d49608197a2bde257d11fa31b13680e19d"
+    },
+    {
+      "path": "v0.9.7/social/location-097.png",
+      "bytes": 139412,
+      "sha256": "6e71a1df020017cd4e1d937ad991cce324a2d6a9852d29910bf1d0145e0c0adb"
     },
     {
       "path": "v0.9.7/standalone-0.9.7-r1/schemas/action-contracts.schema.json",
@@ -2955,7 +2990,7 @@
     {
       "path": "v0.9.7/story-data.js",
       "bytes": 150349,
-      "sha256": "60b47e564a78edf2ff7097ec00264392e0b522f138e958d3d5008aba9bf63567"
+      "sha256": "34c5e40f2831d7f47f096558bfe67be506fb8923acadd727aff6ffb451cee48f"
     },
     {
       "path": "v0.9.7/story.css",

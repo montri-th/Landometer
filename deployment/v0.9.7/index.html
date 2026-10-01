@@ -28,7 +28,7 @@
   data-type-registry="type-script-aware-02"
   data-layout-registry="layout-cross-format-01"
   data-atmosphere-gradient-registry="landometer-atmosphere-gradient-v2"
-  data-artifact-build="ui-20261001-lds097-r3"
+  data-artifact-build="ui-20261001-lds097-r4"
   data-build-channel="full-guide"
   data-kit="artifact_resolved"
   data-theme="light"
@@ -37,15 +37,12 @@
   data-nav-glyphs="inline-svg"
   data-retained-guide="0.9.1-ui-20260902-08"
 >
-<head>
-  <meta charset="utf-8">
+<head><meta charset="utf-8">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F7F3">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#11191D">
   <meta name="landometer:ds-version" content="0.9.7">
   <meta name="landometer:authoring-revision" content="0.9.7-owner.1">
   <meta name="landometer:ruleset" content="lds-0.9.7-policy-1">
@@ -55,15 +52,10 @@
   <meta name="landometer:icon-set" content="icon-rounded-outline-01">
   <meta name="landometer:type-set" content="type-script-aware-02">
   <meta name="landometer:layout-set" content="layout-cross-format-01">
-  <meta name="landometer:artifact-build" content="ui-20261001-lds097-r3">
+  <meta name="landometer:artifact-build" content="ui-20261001-lds097-r4">
   <meta name="landometer:release-receipt" content="v0.9.7-owner.1 · unsigned owner distribution">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <link rel="icon" type="image/png" href="../assets/images/landometer-symbol-transparent.png?v=35a1496f" sizes="192x192">
-  <title>Landometer Design System v0.9.7 · Implementation Playground</title>
-  <meta name="description" content="Landometer DS 0.9.7: คู่มือแบรนด์ ภาษา ภาพ ตัวอย่างการใช้งาน และ Color Atlas ฉบับเต็ม คงประสบการณ์ 0.9.1 พร้อมชุดสีและ assets ใหม่">
   <link rel="canonical" href="https://montri-th.github.io/Landometer/v0.9.7/">
-
-
   <script>
     (() => {
       const root = document.documentElement;
@@ -357,7 +349,6 @@
       color-scheme: light;
       font-synthesis: none;
     }
-
     html[data-theme="dark"] {
       --canvas: #11191D;
       --surface-alt: #172126;
@@ -429,7 +420,6 @@
       --product-ijji-srgb: linear-gradient(135deg in srgb, #59C7E8 0%, #3BD3CB 100%);
       color-scheme: dark;
     }
-
     /* ATMOSPHERE_GRADIENT_CSS_START */
 :root {
     --atmosphere-measure-deep-legacy: linear-gradient(135deg, #1D4497 0%, #176B82 54%, #08756F 100%);
@@ -457,7 +447,6 @@
     --motif-brand-signature-legacy: var(--atmosphere-measure-deep-legacy);
     --motif-brand-signature-srgb: var(--atmosphere-measure-deep-srgb);
   }
-
   html[data-theme="dark"] {
     --measure-surface-legacy: var(--atmosphere-measure-luminous-legacy);
     --measure-surface-srgb: var(--atmosphere-measure-luminous-srgb);
@@ -467,7 +456,6 @@
     --cultivate-surface-srgb: var(--atmosphere-cultivate-mist-srgb);
   }
     /* ATMOSPHERE_GRADIENT_CSS_END */
-
     @supports (background: linear-gradient(90deg in srgb, #000000, #FFFFFF)) {
       :root {
         --measure-surface: var(--measure-surface-srgb);
@@ -481,7 +469,6 @@
         --product-ijji: var(--product-ijji-srgb);
       }
     }
-
     * { box-sizing: border-box; }
     html {
       background: var(--canvas);
@@ -541,7 +528,6 @@
       background: var(--energy-yellow);
       color: #182327;
     }
-
     .skip-link {
       position: fixed;
       z-index: 100;
@@ -612,7 +598,6 @@
       color: var(--text-secondary);
       font-size: var(--type-body-lg);
     }
-
     .site-header {
       position: sticky;
       z-index: 40;
@@ -1142,7 +1127,6 @@
     .side-bookmark a[aria-current="location"] .side-bookmark__icon {
       transform: scale(1.08);
     }
-
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.04fr) minmax(420px, .96fr);
@@ -1282,7 +1266,6 @@
       font-size: var(--type-caption);
       line-height: 1.45;
     }
-
     .playground {
       padding-block: clamp(80px, 10vw, 140px);
       background: var(--canvas);
@@ -1837,7 +1820,6 @@
       border: 1px solid var(--border-default);
       text-align: center;
     }
-
     .handoff-section {
       padding-block: clamp(80px, 10vw, 140px);
       background: var(--surface-blue-tint);
@@ -1969,7 +1951,6 @@
       color: var(--text-secondary);
       font-size: var(--type-body-sm);
     }
-
     .preflight {
       padding-block: clamp(80px, 10vw, 140px);
       background: var(--surface-beige-tint);
@@ -2145,7 +2126,6 @@
       color: var(--success-ink);
       font-size: var(--type-body-sm);
     }
-
     .library-gateway {
       padding-block: clamp(64px, 8vw, 104px);
       background: var(--canvas);
@@ -2185,7 +2165,6 @@
     }
     .library-gateway-actions .primary-action,
     .library-gateway-actions .secondary-action { margin-top: 0; }
-
     .implementation-library {
       padding-block: clamp(80px, 10vw, 140px);
       background: var(--surface-alt);
@@ -2308,7 +2287,6 @@
       color: var(--text-metadata);
       text-transform: uppercase;
     }
-
     .foundation-grid,
     .component-demo-grid,
     .product-grid,
@@ -2792,7 +2770,6 @@
       background: var(--cultivate-surface);
       color: #182327;
     }
-
     .color-in-action {
       margin-top: var(--space-9);
       padding-top: var(--space-7);
@@ -3022,7 +2999,6 @@
       background: var(--measure-surface);
       color: #FFFFFF;
     }
-
     .color-system-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3688,7 +3664,6 @@
       margin-top: 3px;
       color: var(--text-secondary);
     }
-
     .complete-color-atlas {
       margin-top: var(--space-7);
       border-block: 1px solid var(--border-default);
@@ -4478,7 +4453,6 @@
       margin-top: var(--space-2);
       color: var(--text-metadata);
     }
-
     .matrix-wrap {
       overflow-x: auto;
       margin-top: var(--space-7);
@@ -4656,7 +4630,6 @@
       color: var(--text-secondary);
       font-size: var(--type-body-sm);
     }
-
     .dataviz-intro { max-width: 760px; }
     .dataviz-boundary {
       margin-block: var(--space-6);
@@ -4936,7 +4909,6 @@
       font-size: var(--type-body-sm);
     }
     .citymeter-gallery-boundary p { margin: 0; }
-
     .experience-flow {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -4962,7 +4934,6 @@
       font-size: var(--type-body-sm);
     }
     .state-table { margin-top: var(--space-7); }
-
     .experience-pattern-section {
       margin-top: var(--space-9);
       padding-top: var(--space-6);
@@ -5428,7 +5399,6 @@
       padding-top: var(--space-6);
       border-top: 1px solid var(--border-default);
     }
-
     .product-grid article,
     .resource-grid article {
       min-width: 0;
@@ -5495,7 +5465,6 @@
       white-space: normal;
       text-align: center;
     }
-
     @media (max-width: 980px) {
       .library-gateway-inner,
       .color-route-intro,
@@ -5634,7 +5603,6 @@
       .atlas-depth-step:last-child { border-bottom: 0; }
       .atlas-opacity-row { grid-template-columns: 1fr; gap: 4px; }
     }
-
     .closing {
       position: relative;
       isolation: isolate;
@@ -5683,7 +5651,6 @@
       color: #182327;
     }
     html[data-theme="dark"] .closing p:not(.eyebrow) { color: #293337; }
-
     .site-footer {
       background: #11191D;
       color: #C4CECA;
@@ -5722,7 +5689,6 @@
       color: #F1F4EF;
       text-underline-offset: 3px;
     }
-
     @media (max-width: 980px) {
       .hero {
         grid-template-columns: 1fr;
@@ -5773,7 +5739,6 @@
       }
       .footer-links a { justify-content: flex-start; }
     }
-
     @media (max-width: 680px) {
       html.nav-panel-open { overflow: hidden; }
       .site-header { height: var(--nav-block-prominent-mobile); }
@@ -5849,7 +5814,6 @@
         grid-template-columns: 1fr;
       }
     }
-
     @media (max-width: 390px) {
       .lens-list { grid-template-columns: 1fr; }
       .lens-list button {
@@ -5859,11 +5823,9 @@
       .proof-header { flex-direction: column; }
       .proof-content { padding-inline: 20px; }
     }
-
     @media (max-width: 600px), (max-height: 560px) {
       .side-bookmark { display: none; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *,
@@ -5875,7 +5837,6 @@
         animation-iteration-count: 1 !important;
       }
     }
-
     @media print {
       .site-header,
       .hero-media,
@@ -5904,7 +5865,6 @@
       }
     }
   </style>
-
 <style id="build-local-v090">
 /* v0.9.0 build-local alignment layer — var()-derived only, no !important.
    Lifecycle [DELIVERY-01]: consolidate into the base style before the next release. */
@@ -5972,7 +5932,6 @@
 .v090 .v090-sc-total { margin: 0; }
 .v090 .v090-sc-fold > summary { cursor: pointer; }
 .v090 .v090-sc-scroll { max-height: 320px; overflow-y: auto; overflow-x: auto; margin-top: 8px; }
-
 .v090 { padding-block: var(--space-8, 64px); }
 .v090-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: var(--space-6, 32px); }
 .v090-card { border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: 20px; background: var(--surface-card, var(--canvas)); display: flex; flex-direction: column; gap: 10px; }
@@ -6020,7 +5979,6 @@ html[data-theme="dark"] { --v090-series-03: var(--series-03); --v090-series-05: 
 @media (prefers-reduced-motion: reduce) {
   .v090-stagger.is-playing > li, .v090-settle.is-settling { animation: none; }
 }
-
 /* v0.9.1 implementation layer: critical content is visible in source and at rest. */
 html { scroll-padding-top: 84px; }
 .side-bookmark { background: var(--surface-raised); }
@@ -6647,7 +6605,34 @@ html { scroll-padding-top: 84px; }
 </style>
   <link rel="stylesheet" href="guide-token-aliases.css">
   <link rel="stylesheet" href="scoped-atlas.css">
-  <link rel="stylesheet" href="full-guide.css?build=ui-20261001-lds097-r3">
+  <link rel="stylesheet" href="full-guide.css?build=ui-20261001-lds097-r4">
+  <title>Design System 0.9.7 · Landometer</title>
+  <meta name="description" content="คู่มือแบรนด์ Story Color Atlas และ Location Intelligence · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F7F3">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#11191D">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-portfolio-16.png?v=c100627d5e8f">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-portfolio-32.png?v=5cd19dee724f">
+  <link rel="icon" type="image/png" sizes="48x48" href="icons/icon-portfolio-48.png?v=443857069292">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="icons/icon-portfolio-180.png?v=41ac1e302345">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-portfolio-192.png?v=1d8bbd3d8656">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-portfolio-512.png?v=d8939f6cc789">
+  <link rel="manifest" href="site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Landometer">
+  <meta property="og:url" content="https://montri-th.github.io/Landometer/v0.9.7/">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:title" content="Design System 0.9.7 · Landometer">
+  <meta property="og:description" content="คู่มือแบรนด์ Story Color Atlas และ Location Intelligence · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ">
+  <meta property="og:image" content="https://montri-th.github.io/Landometer/v0.9.7/social/guide-097.png?v=cbad2c5a07f8">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Landometer Design System 0.9.7: Story 17 สี สเกลข้อมูล 20 ตระกูล และ Location Intelligence">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Design System 0.9.7 · Landometer">
+  <meta name="twitter:description" content="คู่มือแบรนด์ Story Color Atlas และ Location Intelligence · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ">
+  <meta name="twitter:image" content="https://montri-th.github.io/Landometer/v0.9.7/social/guide-097.png?v=cbad2c5a07f8">
+  <meta name="twitter:image:alt" content="Landometer Design System 0.9.7: Story 17 สี สเกลข้อมูล 20 ตระกูล และ Location Intelligence">
 </head>
 <body>
   <a class="skip-link" href="#main" id="skip-main">
@@ -6958,7 +6943,7 @@ html { scroll-padding-top: 84px; }
       </div>
     </section>
 
-<section class="lds097-integration" id="story-location-current"><div class="container"><div class="section-heading"><p class="eyebrow">STORY + LOCATION INTELLIGENCE · 0.9.7</p><h2><span data-th>สีเดิมบนทุกพื้น ความหมายตรงกันทุกเครื่องมือ</span><span data-en>The same colours on every background; consistent meaning across tools</span></h2><p><span data-th>17 สีเสริม · 20 ตระกูลข้อมูล · 16 บทบาท Location · 12 metric scales · 4 SWOT evidence lenses ไม่มี gradient อัตโนมัติ</span><span data-en>17 supporting colours · 20 analytical families · 16 Location roles · 12 metric scales · 4 SWOT evidence lenses without automatic gradients</span></p><p><a href="color-atlas.html"><span data-th>เปิด Story Color Atlas</span><span data-en>Open Story Color Atlas</span></a> · <a href="location/"><span data-th>เปิด Location Intelligence</span><span data-en>Open Location Intelligence</span></a></p><p><a href="normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md" download><span data-th>ดาวน์โหลด Location Profile ใช้คู่กับ LDS ฉบับเต็ม</span><span data-en>Download the separate Location Profile to use with the full LDS base</span></a></p></div></div></section><section class="lds097-integration" id="v097-integration" aria-labelledby="v097-integration-title"><div class="container"><div class="section-heading"><p class="eyebrow">Integrated in 0.9.7</p><h2 id="v097-integration-title"><span data-th>สิ่งใหม่ทำงานร่วมกับหลักเดิม</span><span data-en>New assets, the same complete foundations</span></h2><p><span data-th>Story มี 14 สเกลทางเดียวและ 6 สเกลสองทาง สีหัว–กลาง–ท้ายมีหน้าที่ชัดเจน ธีมมืดใช้สีเดิมทั้งหมดและคงทิศทางค่า ใช้ขอบ ป้ายชื่อ และพื้นรองเมื่อค่าสีใกล้พื้น</span><span data-en>Story provides fourteen sequential and six diverging families with explicit anchor roles. Dark mode uses identical colours and value direction. Use boundaries, labels and backing surfaces where fills approach the background.</span></p></div>
+<section class="lds097-integration" id="story-location-current"><div class="container"><div class="section-heading"><p class="eyebrow">STORY + LOCATION INTELLIGENCE · 0.9.7</p><h2><span data-th>สีเดิมบนทุกพื้น ความหมายตรงกันทุกเครื่องมือ</span><span data-en>The same colours on every background; consistent meaning across tools</span></h2><p><span data-th>17 สีเสริม · 20 ตระกูลข้อมูล · 16 บทบาท Location · 12 metric scales · 4 SWOT evidence lenses ไม่มี gradient อัตโนมัติ</span><span data-en>17 supporting colours · 20 analytical families · 16 Location roles · 12 metric scales · 4 SWOT evidence lenses without automatic gradients</span></p><p><a href="color-atlas.html"><span data-th>เปิด Story Color Atlas</span><span data-en>Open Story Color Atlas</span></a> · <a href="location/"><span data-th>เปิด Location Intelligence</span><span data-en>Open Location Intelligence</span></a></p><p><a href="normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md" download><span data-th>ดาวน์โหลด Location Profile ใช้คู่กับ LDS ฉบับเต็ม</span><span data-en>Download the separate Location Profile to use with the full LDS base</span></a></p></div><div class="lds097-release-overview"><article><h3><span data-th>รากฐานจาก 0.9.1</span><span data-en>Foundations from 0.9.1</span></h3><p><span data-th>คงเสียงแบรนด์ ภาพ ตัวอักษร โครงหน้า และตัวอย่างที่ใช้งานได้ดี พร้อมกฎ identity และ motif/animation ฉบับปัจจุบัน</span><span data-en>Retain brand voice, visuals, typography, page structure and useful examples, with the current identity and motif/animation rules.</span></p></article><article><h3><span data-th>เพิ่มความชัดให้สีข้อมูล</span><span data-en>More deliberate data colours</span></h3><p><span data-th>Story 17 สีแยกหน้าที่จาก Brand Energy · 14 sequential + 6 diverging ใช้สามสีหลักและชุด 3/5/7/9 ระดับ สีและทิศทางค่าเดิมทั้งพื้นสว่างและมืด</span><span data-en>17 Story colours have a separate role from Brand Energy. Fourteen sequential and six diverging families use three anchors and 3/5/7/9 classes. Both backgrounds retain the same colours and value direction.</span></p></article><article><h3><span data-th>พร้อมเลือกทำเลและส่งต่องาน</span><span data-en>Ready for location work and handoff</span></h3><p><span data-th>เพิ่ม demand, supply, market size และบทบาท Location อีก 13 แบบ ใช้ normative 0.9.7 ฉบับเต็มคู่กับ Add-on ของผลิตภัณฑ์ และ Location Profile เมื่อเกี่ยวข้อง</span><span data-en>Add demand, supply, market size and 13 more Location roles. Use the complete 0.9.7 normative with the separate product Add-on and the Location Profile when relevant.</span></p></article></div></div></section><section class="lds097-integration" id="v097-integration" aria-labelledby="v097-integration-title"><div class="container"><div class="section-heading"><p class="eyebrow">Integrated in 0.9.7</p><h2 id="v097-integration-title"><span data-th>สิ่งใหม่ทำงานร่วมกับหลักเดิม</span><span data-en>New assets, the same complete foundations</span></h2><p><span data-th>Story มี 14 สเกลทางเดียวและ 6 สเกลสองทาง สีหัว–กลาง–ท้ายมีหน้าที่ชัดเจน ธีมมืดใช้สีเดิมทั้งหมดและคงทิศทางค่า ใช้ขอบ ป้ายชื่อ และพื้นรองเมื่อค่าสีใกล้พื้น</span><span data-en>Story provides fourteen sequential and six diverging families with explicit anchor roles. Dark mode uses identical colours and value direction. Use boundaries, labels and backing surfaces where fills approach the background.</span></p></div>
 <article class="lds097-integration__chapter lds097-integration__chapter--evidence" id="v097-evidence"><div class="lds097-integration__copy"><header><h3><span data-th>ตัวเลขกับสถานะต้องตรงกันทั้งคนและเครื่องมือ</span><span data-en>People and machines read the same value state</span></h3></header><p><span data-th>ค่าตัวอย่างต่อไปนี้เป็น fixture สังเคราะห์ สองสถานะที่วัดได้มีตัวเลข ส่วนสถานะอื่นต้องมีค่า null เสมอ ห้ามซ่อนตัวเลขที่ปกปิดไว้ใน HTML หรือ JSON</span><span data-en>The following synthetic fixtures separate measured numbers from null-valued states. Suppressed numeric values must never be hidden in HTML or JSON.</span></p></div><div class="matrix-wrap"><table class="state-table"><caption><span data-th>สัญญาค่า 6 สถานะของ DS 0.9.7 · ตัวอย่างสังเคราะห์</span><span data-en>DS 0.9.7 six-state value contract · synthetic fixtures</span></caption><thead><tr><th>State</th><th><span data-th>ความหมายที่เห็น</span><span data-en>Visible meaning</span></th><th>Machine value</th></tr></thead><tbody><tr data-evidence-state="measured" data-value="12"><th><code>measured</code></th><td><strong>12</strong> · <span data-th>ค่าที่วัดได้และไม่ใช่ศูนย์</span><span data-en>Measured nonzero value</span></td><td><code>12</code></td></tr><tr data-evidence-state="measured_zero" data-value="0"><th><code>measured_zero</code></th><td><strong>0</strong> · <span data-th>วัดได้เป็นศูนย์</span><span data-en>Measured zero</span></td><td><code>0</code></td></tr><tr data-evidence-state="no_data" data-value="null"><th><code>no_data</code></th><td><strong>—</strong> · <span data-th>ไม่มีข้อมูล</span><span data-en>No data</span></td><td><code>null</code></td></tr><tr data-evidence-state="out_of_scope" data-value="null"><th><code>out_of_scope</code></th><td><strong>N/A</strong> · <span data-th>อยู่นอกขอบเขต</span><span data-en>Out of scope</span></td><td><code>null</code></td></tr><tr data-evidence-state="suppressed" data-value="null"><th><code>suppressed</code></th><td><strong>•••</strong> · <span data-th>ปกปิดค่า</span><span data-en>Suppressed</span></td><td><code>null</code></td></tr><tr data-evidence-state="not_yet" data-value="null"><th><code>not_yet</code></th><td><strong>…</strong> · <span data-th>ยังไม่ถึงรอบข้อมูล</span><span data-en>Not yet available</span></td><td><code>null</code></td></tr></tbody></table><p><a href="package/assets/lds-0.9.7/machine/evidence-value.schema.json"><span data-th>เปิด schema และเงื่อนไขค่า</span><span data-en>Open the value schema and conditions</span></a></p></div></article>
 <article class="lds097-integration__chapter lds097-integration__chapter--motion" id="v097-motion"><div class="lds097-integration__copy"><header><h3><span data-th>คงหลักฐานให้อ่านได้ และใช้ motion ตามหน้าที่</span><span data-en>Keep evidence readable and give motion a job</span></h3></header><p><span data-th>หน้านี้แสดง supporting content แบบคงที่ และให้ทดลอง motion เมื่อกดใน lab เท่านั้น Approach อาจเล่นซ้ำเมื่อกลับเข้าจอ แต่ไม่วนขณะอยู่นิ่ง; reduced motion, no-JavaScript และ failure เห็นผลสุดท้าย</span><span data-en>This guide keeps supporting content static and lets the reader request motion in the lab. Optional approach motion may replay on re-entry, never while stationary; reduced motion, no JavaScript and failure expose final meaning.</span></p></div><div class="lds097-integration__copy"><p><span data-th>Identity และ shared motif ใช้ finite plays ซ้ำเฉพาะขณะเห็นอย่างน้อย 14% ของวัตถุ รอบไม่น้อยกว่า 2,000ms (logo 6,000ms) หยุดเมื่อออกจอ และมีปุ่ม pause/resume ระดับหน้า คงไฟล์โลโก้ต้นฉบับไว้ ส่วน wordmark เปลี่ยนสีได้ตาม LOGO-01; product overlay เช่น ijji.logo-sting คง lifecycle ของตน</span><span data-en>Identity and shared motifs use repeated finite plays while at least 14% visible, with cycles of at least 2,000ms (logo 6,000ms), stop offscreen and provide page-level pause/resume. Original logo files are retained; wordmark colour treatments are permitted by LOGO-01; product overlays such as ijji.logo-sting retain their own lifecycle.</span></p><a href="normative/Landometer-Design-System-v0.9.7.md"><span data-th>อ่านกฎ motion และ motif ในฉบับ 0.9.7</span><span data-en>Read motion and motif rules in the complete 0.9.7 document</span></a></div></article></div></section>
     <section class="playground" id="play" aria-labelledby="play-title">
@@ -8079,7 +8064,7 @@ html { scroll-padding-top: 84px; }
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="download" aria-hidden="true">&#xE171;</span>
-                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>v0.9.7-owner.1 · ui-20261001-lds097-r3</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
+                        <span><strong><span data-th>แชร์ไฟล์ที่ล็อก Color Set และ UI build แล้ว</span><span data-en>Share the pinned Color Set and UI build</span></strong><small><code>v0.9.7-owner.1 · ui-20261001-lds097-r4</code><br><span data-th>ลิงก์นี้ล็อกทั้งชุดสีและหน้าตาที่กำลังตรวจ</span><span data-en>This URL pins both the palette and the interface under review.</span></small></span>
                       </li>
                       <li class="color-stability-rule">
                         <span class="icon-symbol" data-icon="compare_arrows" aria-hidden="true">&#xE915;</span>
@@ -10023,7 +10008,7 @@ html { scroll-padding-top: 84px; }
       <div class="footer-meta">
         design-system reference · public projection · noindex<br>
         conceptual examples · not product evidence<br>
-        color-srgb-10 · artifact build ui-20261001-lds097-r3<br>
+        color-srgb-10 · artifact build ui-20261001-lds097-r4<br>
         no analytics · no save · no share · no remote mutation<br>
         explicit contextual Google Search or AI Mode GET after user activation
       </div>
