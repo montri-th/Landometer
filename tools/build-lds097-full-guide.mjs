@@ -4,6 +4,7 @@
 import {readFileSync, writeFileSync, existsSync, mkdirSync} from 'node:fs';
 import {resolve, join} from 'node:path';
 import {createHash} from 'node:crypto';
+import {publicHead} from './lds097-public-head.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const site = join(root, 'deployment/v0.9.7');
@@ -19,7 +20,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-10.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.7.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20261001-lds097-r3';
+const build = 'ui-20261001-lds097-r4';
 const packagePath = 'package/assets/lds-0.9.7';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -334,7 +335,8 @@ const currentCopy = [
   ['built-area gold', 'built-form gold (declare footprint, height or coverage)']
 ];
 for (const [before, after] of currentCopy) html = html.replaceAll(before, after);
-const storyIntro = `<section class="lds097-integration" id="story-location-current"><div class="container"><div class="section-heading"><p class="eyebrow">STORY + LOCATION INTELLIGENCE · 0.9.7</p><h2>${bi('สีเดิมบนทุกพื้น ความหมายตรงกันทุกเครื่องมือ', 'The same colours on every background; consistent meaning across tools')}</h2><p>${bi('17 สีเสริม · 20 ตระกูลข้อมูล · 16 บทบาท Location · 12 metric scales · 4 SWOT evidence lenses ไม่มี gradient อัตโนมัติ', '17 supporting colours · 20 analytical families · 16 Location roles · 12 metric scales · 4 SWOT evidence lenses without automatic gradients')}</p><p><a href="color-atlas.html">${bi('เปิด Story Color Atlas', 'Open Story Color Atlas')}</a> · <a href="location/">${bi('เปิด Location Intelligence', 'Open Location Intelligence')}</a></p><p><a href="normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md" download>${bi('ดาวน์โหลด Location Profile ใช้คู่กับ LDS ฉบับเต็ม', 'Download the separate Location Profile to use with the full LDS base')}</a></p></div></div></section>`;
+const storyIntro = `<section class="lds097-integration" id="story-location-current"><div class="container"><div class="section-heading"><p class="eyebrow">STORY + LOCATION INTELLIGENCE · 0.9.7</p><h2>${bi('สีเดิมบนทุกพื้น ความหมายตรงกันทุกเครื่องมือ', 'The same colours on every background; consistent meaning across tools')}</h2><p>${bi('17 สีเสริม · 20 ตระกูลข้อมูล · 16 บทบาท Location · 12 metric scales · 4 SWOT evidence lenses ไม่มี gradient อัตโนมัติ', '17 supporting colours · 20 analytical families · 16 Location roles · 12 metric scales · 4 SWOT evidence lenses without automatic gradients')}</p><p><a href="color-atlas.html">${bi('เปิด Story Color Atlas', 'Open Story Color Atlas')}</a> · <a href="location/">${bi('เปิด Location Intelligence', 'Open Location Intelligence')}</a></p><p><a href="normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md" download>${bi('ดาวน์โหลด Location Profile ใช้คู่กับ LDS ฉบับเต็ม', 'Download the separate Location Profile to use with the full LDS base')}</a></p></div><div class="lds097-release-overview"><article><h3>${bi('รากฐานจาก 0.9.1', 'Foundations from 0.9.1')}</h3><p>${bi('คงเสียงแบรนด์ ภาพ ตัวอักษร โครงหน้า และตัวอย่างที่ใช้งานได้ดี พร้อมกฎ identity และ motif/animation ฉบับปัจจุบัน', 'Retain brand voice, visuals, typography, page structure and useful examples, with the current identity and motif/animation rules.')}</p></article><article><h3>${bi('เพิ่มความชัดให้สีข้อมูล', 'More deliberate data colours')}</h3><p>${bi('Story 17 สีแยกหน้าที่จาก Brand Energy · 14 sequential + 6 diverging ใช้สามสีหลักและชุด 3/5/7/9 ระดับ สีและทิศทางค่าเดิมทั้งพื้นสว่างและมืด', '17 Story colours have a separate role from Brand Energy. Fourteen sequential and six diverging families use three anchors and 3/5/7/9 classes. Both backgrounds retain the same colours and value direction.')}</p></article><article><h3>${bi('พร้อมเลือกทำเลและส่งต่องาน', 'Ready for location work and handoff')}</h3><p>${bi('เพิ่ม demand, supply, market size และบทบาท Location อีก 13 แบบ ใช้ normative 0.9.7 ฉบับเต็มคู่กับ Add-on ของผลิตภัณฑ์ และ Location Profile เมื่อเกี่ยวข้อง', 'Add demand, supply, market size and 13 more Location roles. Use the complete 0.9.7 normative with the separate product Add-on and the Location Profile when relevant.')}</p></article></div></div></section>`;
 html = html.replace('<section class="lds097-integration"', storyIntro + '<section class="lds097-integration"');
+html = publicHead(html, 'guide');
 emit(join(site, 'index.html'), html);
 console.log(`Full DS 0.9.7 guide ${checkOnly ? 'matches deterministic build' : 'restored'} from ${sourceHash}; ${Buffer.byteLength(html)} bytes; ${scales.scales.length} current analytical records.`);

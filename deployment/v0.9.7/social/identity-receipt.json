@@ -1,0 +1,55 @@
+{
+  "schema": "lds-public-identity-receipt-1",
+  "build": "ui-20261001-lds097-r4",
+  "permission": "Owner request 2026-10-01: update and publish the three named GitHub Pages sites including sharing hero and favicon; reuse existing artwork",
+  "scope": "New share composition and initialHTML bindings, no normative or logo artwork change",
+  "sourceIdentity": {
+    "path": "../../assets/images/landometer-logo-banner.png",
+    "sha256": "f6ed8748d32d11514c94ce6a639491120489ce8c3ab6fff073d7ca9638a87535",
+    "transformation": "none; proportionally displayed at56px height"
+  },
+  "assets": [
+    {
+      "path": "guide-097.png",
+      "mediaType": "image/png",
+      "width": 1200,
+      "height": 630,
+      "sha256": "cbad2c5a07f88ec7369e33fc3190d54b1f40913ed4fc854acd7eab0c0176bc96",
+      "bytes": 135576,
+      "sourceTemplate": "guide-097.html",
+      "role": "social_preview",
+      "method": "Chromium screenshot via CUA at1200x630, DPR1; original lockup unchanged; screenshot decoded RGB losslessly re-encoded to PNG, identical pixel array verified"
+    },
+    {
+      "path": "location-097.png",
+      "mediaType": "image/png",
+      "width": 1200,
+      "height": 630,
+      "sha256": "6e71a1df020017cd4e1d937ad991cce324a2d6a9852d29910bf1d0145e0c0adb",
+      "bytes": 139412,
+      "sourceTemplate": "location-097.html",
+      "role": "social_preview",
+      "method": "Chromium screenshot via CUA at1200x630, DPR1; original lockup unchanged; screenshot decoded RGB losslessly re-encoded to PNG, identical pixel array verified"
+    },
+    {
+      "path": "atlas-097.png",
+      "mediaType": "image/png",
+      "width": 1200,
+      "height": 630,
+      "sha256": "81835a071463545e04d73876e24a61ee3f7f3c51cb80746f5044567b55d1f8c6",
+      "bytes": 146220,
+      "sourceTemplate": "atlas-097.html",
+      "role": "social_preview",
+      "method": "Chromium screenshot via CUA at1200x630, DPR1; original lockup unchanged; screenshot decoded RGB losslessly re-encoded to PNG, identical pixel array verified"
+    }
+  ],
+  "visualReview": {
+    "actualSize": true,
+    "central630": "Identity, title and destination inspected within central crop",
+    "twoToOne": "All message and destination content stays inside y35–595",
+    "notClaimed": [
+      "Third-party scraper cache refresh",
+      "Universal artifact conformance"
+    ]
+  }
+}
