@@ -4,6 +4,7 @@
   "colorSetId": "color-srgb-10",
   "packageId": "v0.9.7-owner.1",
   "artifactBuildId": "ui-20261001-lds097-r1",
+  "entrypointBuildId": "root-20261001-lds097-r2",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -103,8 +104,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 581,
-      "sha256": "a910c325c97b6264ed905740a3ed2fe573d0e7cdf9cacd47492b043d6615198e"
+      "bytes": 702,
+      "sha256": "98171ca5dca46020e3b99b06478fd363dd90bbe9aaba09df48df13aa7523cbda"
     },
     {
       "path": "index.v0.9.1.html",
