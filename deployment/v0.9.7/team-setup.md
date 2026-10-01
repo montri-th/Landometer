@@ -4,7 +4,7 @@ Use the [full handbook](https://montri-th.github.io/Landometer/v0.9.7/), [Story 
 
 ## What changes
 
-LDS 0.9.7 / `color-srgb-10` adds the approved Story vocabulary (17 generic colours), 20 analytical families and a separate Location Intelligence profile (16 named roles, 12 measured metrics, four qualitative SWOT lenses). Analytical scales and Story/Location role colours use exactly the same original HEX, anchors, LUT and value direction on light and dark backgrounds. No dark lightness/chroma adaptation or reversed data direction applies. Preserve readable boundaries, backing surfaces, labels, symbols, units and exceptional-value states. Exact HEX uniqueness is not universal colour discrimination or an accessibility certificate.
+LDS 0.9.7 / `color-srgb-10` adds the approved Story vocabulary (17 generic colours), refreshes the colours of all 20 retained analytical families (14 sequential + 6 diverging), and adds a separate Location Intelligence profile (16 named roles, 12 measured metrics, four qualitative SWOT lenses). Analytical scales and Story/Location role colours use exactly the same original HEX, anchors, LUT and value direction on light and dark backgrounds. No dark lightness/chroma adaptation or reversed data direction applies. Preserve readable boundaries, backing surfaces, labels, symbols, units and exceptional-value states. Exact HEX uniqueness is not universal colour discrimination or an accessibility certificate.
 
 Brand Energy, brand voice, typography, original identity assets, wordmark permission, motifs/animation, categorical colours and atmosphere recipes retain their existing contracts. Keep historical releases explicitly pinned when a task requires them.
 
@@ -27,6 +27,14 @@ The [Project Source download page](./project-source-0.9.7.md) lists exact files 
 4. Start a new session. Ask the tool to read the document ID and return the exact `water` seven-class values for both themes. They must be identical. For Location work, also retrieve `li.service_gap` and explain its zero and denominator; SWOT must not automatically acquire a numerical gradient.
 
 A link in a message does not prove that every future chat can retrieve its contents. Uploaded Project Sources are versioned copies and do not update when GitHub changes. Do not infer team-wide activation from one account.
+
+## ChatGPT Chat plugin resources
+
+For ChatGPT Chat, use the additional [self-contained resource adapter](https://montri-th.github.io/Landometer/v0.9.7/chatgpt-resource-adapter.md). It retains LDS/plugin version `0.9.7` and the exact released normative, colour and asset bytes; `chatgpt-skill-resources-r1` identifies the packaging distribution. Update the existing `landometer-design-system` entry rather than creating a duplicate. Keep its intended workspace access and installation policy.
+
+A new Chat test read the required release, scale and normative resources; filesystem verifier execution was unavailable. A new Work test after upload still mounted the original full 0.9.7 layout and passed its 9,769 checks. This is evidence for that full runtime, not native Work acceptance of the adapter layout. The adapter separately passed 9,768 local checks. The guide records the remaining boundary and warnings. Keep the original full package available for other supported runtimes.
+
+Test new Chat and Work sessions separately using actual release/scale resources, and distinguish resource retrieval from verifier execution. Seeing SKILL.md alone is not a full package test. Existing matching 0.9.7 Project Sources do not need replacement for this packaging adjustment; they remain the authoring fallback when a runtime cannot read plugin resources. Other tool installations are separate.
 
 ## Claude Chat / Cowork and Claude Code
 

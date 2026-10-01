@@ -158,6 +158,11 @@
       "sha256": "18ff12bb95c348dc1bf0e1838848dc47682b73808698f78b1864c3c7d7871985"
     },
     {
+      "path": "v0.9.7/chatgpt-resource-adapter.md",
+      "bytes": 7942,
+      "sha256": "cd7af255e05531958d6a39005ce306dccdeb7b7b4fb44b1fa26e6e3db6d1251e"
+    },
+    {
       "path": "v0.9.7/color-atlas.html",
       "bytes": 15658,
       "sha256": "9ace89a8054fc715b888f2bc743438839b5343055d8e1e1c5be9aa63121049b0"
@@ -2954,8 +2959,8 @@
     },
     {
       "path": "v0.9.7/team-setup.md",
-      "bytes": 5492,
-      "sha256": "f929285ba0d3bdcfa4c97b5f8fcc489eca98bee3de2d0eb292aa3fccb14169b0"
+      "bytes": 6956,
+      "sha256": "56d5119f92474bb817549e0374cef7b429bde5e42025c17a801126b7393302ad"
     }
   ]
 }
