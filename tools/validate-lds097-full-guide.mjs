@@ -67,7 +67,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|7(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|10)/g, '<current-color-set>')
     .replace(/2026-(?:09-02|10-01)/g, '<release-date>')
-    .replace(/(?:ui-20260902-08|ui-20261001-lds097-r1)/g, '<current-site-build>');
+    .replace(/(?:ui-20260902-08|ui-20261001-lds097-r2)/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -131,7 +131,7 @@ for (const state of ['measured', 'measured_zero', 'no_data', 'out_of_scope', 'su
 const guideOverrides = read('deployment/v0.9.7/full-guide.css').replace(/\/\*[\s\S]*?\*\//g, '');
 const identityClarification=element(html,'v097-identity-clarification');
 check(text(identityClarification).includes('Wordmark เปลี่ยนสีได้ รวมถึงตัวอักษรละสี')&&text(identityClarification).includes('Official logos may appear on readable light or dark backgrounds.'),'current owner identity clarification is visible in Thai and English');
-check(html.includes('href="full-guide.css?build=ui-20261001-lds097-r1"'), 'current guide loads navigation and integration overrides');
+check(html.includes('href="full-guide.css?build=ui-20261001-lds097-r2"'), 'current guide loads navigation and integration overrides');
 for (const state of ['page', 'location']) {
   const rules = [...guideOverrides.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(rule => rule[1].split(',').some(selector => selector.trim() === `.nav-panel a[aria-current="${state}"]`));
   const shadows = rules.flatMap(rule => [...rule[2].matchAll(/(?:^|;)\s*box-shadow\s*:\s*([^;]+)/g)].map(match => match[1].trim()));
@@ -161,7 +161,7 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.7'], ['data-machine-package-identity', 'v0.9.7-owner.1'],
-  ['data-color-registry', 'color-srgb-10'], ['data-artifact-build', 'ui-20261001-lds097-r1']
+  ['data-color-registry', 'color-srgb-10'], ['data-artifact-build', 'ui-20261001-lds097-r2']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.7\/"/.test(html), 'current guide canonical URL');
@@ -221,6 +221,20 @@ const guideStyles = [...html.matchAll(/<style\b[^>]*>([\s\S]*?)<\/style>/gi)].ma
 check(!/\.library-group(?:\[open\])?\s+summary\b/.test(guideStyles), 'outer library summary styles cannot reach nested atlas disclosures');
 check(guideStyles.includes('.library-group > summary') && guideStyles.includes('.library-group[open] > summary'), 'outer library retains direct-child disclosure styling');
 const currentRegistry = JSON.parse(read('plugins/landometer-design-system/assets/lds-0.9.7/machine/color-registry.json'));
+const learningScales = element(html, 'color-data-scales') ?? '';
+check(text(learningScales).includes('fourteen sequential and six diverging families') && !text(learningScales).includes('six sequential and three diverging'), 'retained learning fixture reports current family inventory');
+check(text(learningScales).includes('it is not a fourth denominator') && text(learningScales).includes('ไม่ใช่ตัวหารที่สี่'), 'retained learning fixture separates built form from density denominators in both languages');
+check(text(element(inlineAtlas, 'library')).includes('20 ตระกูล · 14 ทางเดียว + 6 สองทาง'), 'classic library heading names both current scale kinds');
+const currentAliases = read('deployment/v0.9.7/guide-token-aliases.css');
+for (const [family, names] of [['confidence', ['dataviz-seq-confidence-low', 'dataviz-seq-confidence-mid', 'dataviz-seq-confidence-high']], ['delta', ['dataviz-div-delta-side-a', 'dataviz-div-delta-neutral', 'dataviz-div-delta-side-b']]]) {
+  const scale = currentRegistry.scales.find(record => record.id === family);
+  names.forEach((name, i) => {
+    const declaration = new RegExp(`--${name}:\\s*(#[0-9a-f]{6})`, 'gi');
+    const inlineValues = [...guideStyles.matchAll(declaration)].map(match => match[1].toUpperCase());
+    const aliasValues = [...currentAliases.matchAll(declaration)].map(match => match[1].toUpperCase());
+    check(inlineValues.length === 2 && aliasValues.length === 2 && [...inlineValues, ...aliasValues].every(value => value === scale.themes.light.anchors[i] && value === scale.themes.dark.anchors[i]), `retained fixture has exact097 inline and themed values: ${name}`);
+  });
+}
 const paintedBackgrounds = source => [...(source ?? '').matchAll(/style="background:(#[\da-f]{6})"/gi)].map(match => match[1].toUpperCase());
 for (const scale of currentRegistry.scales) {
   const card = element(inlineAtlas, `family-${scale.id.replaceAll('.', '-')}`);
