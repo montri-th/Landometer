@@ -17,6 +17,7 @@ if(studyBuild.status!==0)process.exit(studyBuild.status??1);
 const guideBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-full-guide.mjs')],{cwd:root,stdio:'inherit'});
 if(guideBuild.status!==0)process.exit(guideBuild.status??1);
 writeFileSync(join(site,'team-setup.md'),readFileSync(join(root,'docs/lds-0.9.7-team-activation.md'),'utf8').replaceAll('../plugins/landometer-design-system/','./package/').replaceAll('../deployment/v0.9.7/project-source-0.9.7.md','./project-source-0.9.7.md').replaceAll('../tools/install-lds097.py','https://github.com/montri-th/Landometer/blob/main/tools/install-lds097.py'));
+cpSync(join(root,'docs/lds-0.9.7-chatgpt-resource-adapter.md'),join(site,'chatgpt-resource-adapter.md'));
 // One complete normative file is the current Project Source entry point.
 const normativeSource=join(plugin,'assets/lds-0.9.7/normative');
 rmSync(join(site,'normative'),{recursive:true,force:true});
