@@ -11,7 +11,7 @@ const snapshot=JSON.parse(readFileSync(join(root,'plugins/landometer-design-syst
 const previousContext={window:{}};
 vm.runInNewContext(readFileSync(join(root,'deployment/v0.9.6/data.js'),'utf8'),previousContext);
 const previous=previousContext.window.LDS_CANDIDATE;
-const D={...snapshot,designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',release:'v0.9.7-owner.1',buildId:'ui-20261001-lds097-r1',status:'owner-approved',baseline:{scales:previous.scales,series:previous.series}};
+const D={...snapshot,designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',release:'v0.9.7-owner.1',buildId:'ui-20261001-lds097-r2',status:'owner-approved',baseline:{scales:previous.scales,series:previous.series}};
 delete D.previousDensity;
 emit('data.js','window.LDS_CANDIDATE='+JSON.stringify(D)+';\n');
 const renderer={};
@@ -19,7 +19,7 @@ vm.runInNewContext(readFileSync(join(site,'render.js'),'utf8'),renderer);
 const R=renderer.CandidateRender;
 let atlas=readFileSync(join(root,'deployment/v0.9.5/color-atlas.html'),'utf8')
  .replaceAll('0.9.5','0.9.7').replaceAll('color-srgb-08','color-srgb-10')
- .replaceAll('ui-20260929-lds095-03','ui-20261001-lds097-r1');
+ .replaceAll('ui-20260929-lds095-03','ui-20261001-lds097-r2');
 function replaceContents(source,id,contents){
  const start=new RegExp(`<([a-z][\\w-]*)\\b[^>]*\\bid="${id}"[^>]*>`).exec(source);
  if(!start)throw Error('Missing atlas container '+id);
@@ -70,7 +70,10 @@ atlas=atlas.replaceAll('14 sequential ใหม่ · 6 diverging คงเด�
  .replaceAll('14 สเกลทางเดียว ใช้หัว–กลาง–ท้ายต่างเฉดชัดเจน เช่น ครีม → เขียว → ฟ้า','Story 20 ตระกูลใช้สีตามความหมาย และสามจุดหัว–กลาง–ท้าย')
  .replaceAll('DS 0.9.5</button>','DS 0.9.6</button>')
  .replaceAll('ชุด 0.9.5 ที่สืบทอด','ชุด 0.9.6 ที่สืบทอด')
- .replaceAll('ปรับสเกลทางเดียว 14 ตระกูล × 2 ธีม ให้หัว–กลาง–ท้ายต่างเฉดชัดเจน และไล่ความสว่างทางเดียว','Story มี 20 ตระกูลพร้อมสีเดิมและทิศทางค่าเดิมทั้งสองธีม');
+ .replaceAll('ปรับสเกลทางเดียว 14 ตระกูล × 2 ธีม ให้หัว–กลาง–ท้ายต่างเฉดชัดเจน และไล่ความสว่างทางเดียว','Story มี 20 ตระกูลพร้อมสีเดิมและทิศทางค่าเดิมทั้งสองธีม')
+ .replaceAll('14 ชุดทางเดียว · สีกลางเป็นอีกเฉดชัดเจน','20 ตระกูล · 14 ทางเดียว + 6 สองทาง')
+ .replaceAll('<strong>14 × 2</strong><span>สเกลทางเดียว · พื้นสว่างและมืด</span>','<strong>20 × 2</strong><span>14 ทางเดียว + 6 สองทาง · สองธีม</span>')
+ .replaceAll('Density ทั้งสี่คงโทนร้อน อ่านชื่อ หน่วย และตัวหารร่วมกับสีเสมอ','Density 3 ตัวหารคงโทนร้อน: พื้นที่ ประชากร ครัวเรือน; สิ่งปลูกสร้างใช้พีช–ทองตามนิยาม ไม่ใช่ตัวหารที่สี่ อ่านชื่อ หน่วย และตัวหารร่วมกับสีเสมอ');
 emit('color-reference.html',atlas.replaceAll('color-interpolation-filters="sRGB"','color-interpolation-filters="linearRGB"'));
 
 const scope='.lds097-color-atlas';

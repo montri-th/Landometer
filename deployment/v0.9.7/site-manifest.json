@@ -3,7 +3,7 @@
   "designSystemVersion": "0.9.7",
   "colorSetId": "color-srgb-10",
   "packageId": "v0.9.7-owner.1",
-  "artifactBuildId": "ui-20261001-lds097-r1",
+  "artifactBuildId": "ui-20261001-lds097-r2",
   "entrypointBuildId": "root-20261001-lds097-r2",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
@@ -164,13 +164,13 @@
     },
     {
       "path": "v0.9.7/color-reference.html",
-      "bytes": 337599,
-      "sha256": "dae869cdfc4835410676875f8c693a43c197f837e42215a44f1d6ca6f7762fdc"
+      "bytes": 337387,
+      "sha256": "766a7fdd088203be6efe4a72f654f1d8493ac5f733028f8d7d95c5610fbcea70"
     },
     {
       "path": "v0.9.7/data.js",
       "bytes": 136289,
-      "sha256": "d70bbbcdbfc09eed3d64cbfd0b1d684ca0b33a075a6a6a49de60c38e51ef26ac"
+      "sha256": "523ec3b1e349ffab157f559d40a30b5ac4b92083dab210eba0724e9ee1b91c33"
     },
     {
       "path": "v0.9.7/embedded-atlas.js",
@@ -234,8 +234,8 @@
     },
     {
       "path": "v0.9.7/index.html",
-      "bytes": 1113701,
-      "sha256": "198b955fbed5e3390dfbffc559fe2d51beaff63c91d416d02f6260f793ac4e79"
+      "bytes": 1113904,
+      "sha256": "58f9bbbaa0e5a6a45f539fbc1771791af3c2e2a07392800b2b2716e87e970526"
     },
     {
       "path": "v0.9.7/lds/color-srgb-07.production.css",
@@ -450,7 +450,7 @@
     {
       "path": "v0.9.7/location/location-audit.json",
       "bytes": 411647,
-      "sha256": "d251fca4844a72c2b302feab3194c06a4a1e1dda02bdcdba0f6cf40bd973eed8"
+      "sha256": "5f4702b2025042572095103bf42fd687634538b2d1caf9888e4277a96c6c1a89"
     },
     {
       "path": "v0.9.7/location/location-colors.json",
@@ -460,7 +460,7 @@
     {
       "path": "v0.9.7/location/location-data.js",
       "bytes": 372392,
-      "sha256": "460fbb781be74946aac732e91dabb9fabb0a14e61383609b18c0692a3a27fb67"
+      "sha256": "b4a78668814be03758899bf371f07dfdb8929349400635122d5d985b0aabef3f"
     },
     {
       "path": "v0.9.7/location/location-metrics.json",
@@ -2764,8 +2764,8 @@
     },
     {
       "path": "v0.9.7/render.js",
-      "bytes": 10072,
-      "sha256": "f3483a9b87b8ff0c229233e46ad39d32034c9819907786dce50946707a48e264"
+      "bytes": 10055,
+      "sha256": "b2fe9e6f36270c897e7040a3735d1922d41260087fe18fea7afe5538172b1aa8"
     },
     {
       "path": "v0.9.7/scoped-atlas.css",
@@ -2945,7 +2945,7 @@
     {
       "path": "v0.9.7/story-data.js",
       "bytes": 150349,
-      "sha256": "9b4225d0a41f1a463a8d8fbd65a13acf733148818ff4829491ac2087b9ef645e"
+      "sha256": "6d97f0036a95d8931147ada4f01951e929b79d184fbeae0c66f40c7dbb3b709c"
     },
     {
       "path": "v0.9.7/story.css",

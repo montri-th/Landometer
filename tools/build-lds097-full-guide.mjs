@@ -19,7 +19,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-10.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.7.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20261001-lds097-r1';
+const build = 'ui-20261001-lds097-r2';
 const packagePath = 'package/assets/lds-0.9.7';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -85,6 +85,12 @@ for (const [index, theme] of ['light', 'dark'].entries()) {
 emit(join(site, 'guide-token-aliases.css'), aliasBlocks.join('\n\n') + '\n');
 
 let html = source;
+// Keep the retained learning specimens' inline defaults and later aliases in
+// agreement. Their original anatomy stays intact; both themes use exact097.
+for (const [family, names] of [['confidence', ['dataviz-seq-confidence-low', 'dataviz-seq-confidence-mid', 'dataviz-seq-confidence-high']], ['delta', ['dataviz-div-delta-side-a', 'dataviz-div-delta-neutral', 'dataviz-div-delta-side-b']]]) {
+  const current = scales.scales.find(record => record.scaleId === family && record.theme === 'light');
+  names.forEach((name, i) => { html = html.replace(new RegExp(`(--${name}:\\s*)#[0-9a-f]{6}`, 'gi'), `$1${current.anchors[i]}`); });
+}
 // Library disclosure layout belongs only to each group's own summary. The
 // original descendant selector also restyled nested Atlas disclosures into the
 // outer five-column grid, producing tall clipped content on narrow screens.
@@ -178,6 +184,10 @@ completeAtlas = completeAtlas.replace(/<article class="atlas-product-card"[\s\S]
 html = between(html, '<!-- COLOR_ATLAS_START -->', '<!-- COLOR_ATLAS_END -->', completeAtlas);
 const sampler = optFragment('sampler.html', `<section class="scale-sampler lds097-current-sampler" data-color-registry="color-srgb-10"><h6>${bi('20 ตระกูลข้อมูล · แยกตัวหารก่อนเลือกสี', '20 analytical families · choose the denominator first')}</h6><p>${bi('Density ทุกตัวหารเป็นโทนร้อน: ต่อพื้นที่สีส้ม ต่อประชากรกุหลาบ ต่อครัวเรือนแดง และพื้นที่ก่อสร้างเหลืองทอง ใช้ชุด 3/5/7/9 ระดับหรือ LUT 41 สีที่ให้มาครบ', 'Every density denominator has a distinct warm direction: area orange, per-capita rose, household scarlet and built-area gold. Use exact 3/5/7/9 classes or the complete 41-sample LUT.')}</p><a href="#complete-color-atlas" data-reveal-target="complete-color-atlas">${bi('เลือกดูสีและค่าจริงทุกตระกูล', 'Inspect exact colors and values for every family')}</a></section>`);
 html = between(html, '<!-- COLOR_SCALE_SAMPLER_START -->', '<!-- COLOR_SCALE_SAMPLER_END -->', sampler);
+html = replaceRequired(html, 'ตัวอย่างนี้แสดงครบ 6 sequential และ 3 diverging families ทั้ง 5/7/9 ชั้น โดยอ่านค่าธีมสว่างและมืดจาก LUT/scaleVersion ที่ generate ไว้ล่วงหน้า—ไม่ผสมสีตอน runtime', 'ตัวอย่างด้านบนใช้ confidence และ delta จาก 0.9.7 ส่วน Atlas ด้านล่างแสดงครบ 14 sequential และ 6 diverging families พร้อมสามสีหลัก LUT 41 สี และชุด 3/5/7/9 ชั้น ใช้สีต้นฉบับเดียวกันทั้งสองธีม ไม่ผสมสีใหม่ตอนใช้งาน');
+html = replaceRequired(html, 'This fixture shows all six sequential and three diverging families at 5/7/9 classes, reading exact light/dark values from pre-generated LUTs and scaleVersions—never runtime color mixing.', 'The specimens above use confidence and delta from 0.9.7. The Atlas below retains all fourteen sequential and six diverging families, with three anchors, exact 41-sample LUTs and 3/5/7/9 classes. Both themes use identical original values, without runtime color mixing.');
+html = html.replaceAll('Density ทุกตัวหารเป็นโทนร้อน: ต่อพื้นที่สีส้ม ต่อประชากรกุหลาบ ต่อครัวเรือนแดง และพื้นที่ก่อสร้างเหลืองทอง', 'Density 3 ตัวหารคงโทนร้อน: ต่อพื้นที่สีส้ม ต่อประชากรกุหลาบ และต่อครัวเรือนแดง สิ่งปลูกสร้างใช้พีช–ทองตามนิยาม footprint ความสูง หรือสัดส่วนปกคลุม ไม่ใช่ตัวหารที่สี่');
+html = html.replaceAll('Every density denominator has a distinct warm direction: area orange, per-capita rose, household scarlet and built-area gold.', 'The three density denominators stay warm: area orange, per-capita rose and household scarlet. Built form uses peach–gold for its stated footprint, height or coverage definition; it is not a fourth denominator.');
 html = html.replaceAll('data-color-registry="color-srgb-05"', 'data-color-registry="color-srgb-10"');
 html = html.replaceAll('DS 0.9.1<br>COLOR SRGB-05', 'DS 0.9.7<br>COLOR SRGB-10');
 html = html.replaceAll('Landometer Design System · v0.9.1', 'Landometer Design System · v0.9.7');
