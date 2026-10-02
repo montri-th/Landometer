@@ -3,8 +3,8 @@
   "designSystemVersion": "0.9.7",
   "colorSetId": "color-srgb-10",
   "packageId": "v0.9.7-owner.1",
-  "artifactBuildId": "ui-20261002-lds097-r6",
-  "entrypointBuildId": "root-20261002-lds097-r6",
+  "artifactBuildId": "ui-20261002-lds097-r7",
+  "entrypointBuildId": "root-20261002-lds097-r7",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -105,7 +105,7 @@
     {
       "path": "index.html",
       "bytes": 3451,
-      "sha256": "58a767da4d72a82d1f80c949b0935227afdb3ff5ea351ddd4479d782b754f096"
+      "sha256": "dcc27b371ee54a430e49e68eb08929fe41b3236de8f7bdd3912fc189d331efe7"
     },
     {
       "path": "index.v0.9.1.html",
@@ -119,8 +119,8 @@
     },
     {
       "path": "llms.txt",
-      "bytes": 3685,
-      "sha256": "fd9b49e12401f8f0bb1e7c9f3ec6653f4ef07d04a95b476ce01ce491d1ac10a9"
+      "bytes": 3754,
+      "sha256": "21029c892c69ff4a418b82402b4f7005a7eff4e43a8fde88f10ac75185e1edb8"
     },
     {
       "path": "qa/v0.9.1-manual-gates.md",
@@ -185,12 +185,12 @@
     {
       "path": "v0.9.7/color-reference.html",
       "bytes": 356928,
-      "sha256": "bdbe27a240247fb23c8c18a0c22dadc3b8ba11f7841ebd8bb5a20c45972f2cdf"
+      "sha256": "2b2ace2817673946693aea5e8d2dbe627e88cba22d569b679feb66b5da1bc0f5"
     },
     {
       "path": "v0.9.7/data.js",
       "bytes": 136289,
-      "sha256": "0c9d0d6db1afb09183d1f56f4203b684695e8a507c933b3708d8a0146e3e3645"
+      "sha256": "b2db7d3bd252676ba9f316d66b8832e0bd0e5c01745714ddba28f7b35d737e45"
     },
     {
       "path": "v0.9.7/discovery-links.js",
@@ -264,8 +264,8 @@
     },
     {
       "path": "v0.9.7/index.html",
-      "bytes": 1424514,
-      "sha256": "9d2cb7fc98e5fed7ef0e6377e112e09df442cf491fdfe4716cd178d4695fda6b"
+      "bytes": 1426714,
+      "sha256": "4d36ba170cf67d3e3406348f62f33edc40dc9fcc7ff5eccd91f617ec23a0d1f5"
     },
     {
       "path": "v0.9.7/lds/color-srgb-07.production.css",
@@ -490,7 +490,7 @@
     {
       "path": "v0.9.7/location/location-audit.json",
       "bytes": 411647,
-      "sha256": "cc946777a34eebde4bd689d88aed25f2f0096ecc9515209267b9a49ae02ea402"
+      "sha256": "4db25c4bd1c99e604bab92059937652620599d827dbd5831b9035ae25c804376"
     },
     {
       "path": "v0.9.7/location/location-colors.json",
@@ -500,7 +500,7 @@
     {
       "path": "v0.9.7/location/location-data.js",
       "bytes": 372392,
-      "sha256": "681a8ec67a178be09569df0880287deb7f0fe475e518a5fb3dc358827aa81233"
+      "sha256": "fe4a11e9152bb98a4a54564b997efbea87f8a4635bdbba27a94da7248b57d170"
     },
     {
       "path": "v0.9.7/location/location-entry.js",
@@ -519,13 +519,13 @@
     },
     {
       "path": "v0.9.7/motion-discovery.css",
-      "bytes": 6407,
-      "sha256": "d93c37813d92f317cb37bc17c8c83bca9ab36587c5017c0a3b3afc2da15e8533"
+      "bytes": 7073,
+      "sha256": "06dbc60a23fbc34abc23627d8f5b5c89b3614532025eabaea510ace9a94bfb99"
     },
     {
       "path": "v0.9.7/motion-discovery.js",
-      "bytes": 8380,
-      "sha256": "d9c5f88f3997663f19981c4c4d6c35dd29828f539ac6131da29f8de2482b74b9"
+      "bytes": 9846,
+      "sha256": "4fbbdbf1ce24da4731a519d5b10ebdbd195e486e04b29bffb311cbf8868e7b60"
     },
     {
       "path": "v0.9.7/normative/CityChat-Add-on-v0.9.2-for-LDS-v0.9.7.json",
@@ -2814,8 +2814,8 @@
     },
     {
       "path": "v0.9.7/project-source-0.9.7.md",
-      "bytes": 6478,
-      "sha256": "bb480decad766adcf41d4e56a9362275922521d44e0b3e74f6908e9cb9c7bc48"
+      "bytes": 6535,
+      "sha256": "eb16f26a32d77b77313ef47a4f94faacf79ff353fe7d868a96d68f7c7b334606"
     },
     {
       "path": "v0.9.7/render.js",
@@ -3035,7 +3035,7 @@
     {
       "path": "v0.9.7/story-data.js",
       "bytes": 150349,
-      "sha256": "dc552e03e6be5cc24de5c6f4eb6a9dc0df57df34f6c6f51ec39beff90ea50f28"
+      "sha256": "66a3a7cce3ad253af99e1c328717acfe783062e49c9ccd9927dafe5770fb2236"
     },
     {
       "path": "v0.9.7/story.css",
