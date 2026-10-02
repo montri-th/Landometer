@@ -1,6 +1,6 @@
 (function(){
  const D=window.LDS_CANDIDATE,R=window.CandidateRender,B=window.PreviewRender;
- let family='count',requested=7,lightVariant='soft';
+ let family='count',requested=41,lightVariant='soft';
  const atlas=document.getElementById('lds097-color-atlas');
  function update(){document.getElementById('scale-stage').innerHTML=R.stage(D,family,requested);document.getElementById('exact-colors').innerHTML=R.tables(D,family,requested);document.getElementById('scale-choice').value=family;document.querySelectorAll('[data-count]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.count===requested)));document.getElementById('selection-announcement').textContent=`${D.scales.find(s=>s.id===family).label} ${R.effective(D.scales.find(s=>s.id===family),requested)} ระดับ ทั้งสองธีม`;}
  document.getElementById('scale-choice').addEventListener('change',e=>{family=e.target.value;update();});

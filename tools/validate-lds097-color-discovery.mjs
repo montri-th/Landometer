@@ -49,10 +49,10 @@ export function validateColorDiscovery(html, {root, site = join(root,'deployment
     const anchors=all(body,/<div data-anchor-index="(\d)" data-hex="(#[A-F0-9]{6})">([\s\S]*?)<\/div>/g);
     equal(anchors.map(match=>match[2]),row.anchors,`Anchor visible order/values drift: ${id}`);
     anchors.forEach(([full,index,hex])=>assert(full.includes(`background:${hex}`)&&full.includes(`<code>${hex}</code>`),`Anchor chip/text mismatch: ${id}/${index}`));
-    const lab=body.match(/<a data-lds097-preserve-context href="([^"]+)"/);
+    const lab=body.match(/<a data-lds097-li-family="[^"]+" href="([^"]+)"/);
     assert(Boolean(lab),`Metric lab link missing: ${id}`);
     const url=new URL(lab[1].replaceAll('&amp;','&'),'https://montri-th.github.io/Landometer/v0.9.7/');
-    assert(url.pathname.endsWith('/location/')&&url.searchParams.get('family')===id&&url.searchParams.get('n')==='5'&&url.hash==='#lab',`Metric link points to wrong controls: ${id}`);
+    assert(url.pathname==='/Landometer/v0.9.7/'&&url.searchParams.get('liFamily')===id&&url.searchParams.get('liN')==='41'&&url.hash==='#atlas-location-lab',`Metric link points to wrong controls: ${id}`);
     assert(!whole.includes('linear-gradient('),`The visible numerical strip must use supplied exact samples: ${id}`);
     if(kind==='diverging')assert(body.includes('Zero ='),`Diverging neutral reference is missing: ${id}`);
   }
@@ -67,7 +67,7 @@ export function validateColorDiscovery(html, {root, site = join(root,'deployment
   }
   const previews=all(html,/<span class="lds097-discovery__bar" data-preview-family="([^"]+)"[^>]*>([\s\S]*?)<\/span>/g);
   equal(previews.map(match=>match[1]),['li.demand','li.supply','li.market_share'],'Representative previews must expose meaningful distinct tasks');
-  for(const [,id,body]of previews)equal(colours(body),profile.scales.find(row=>row.scaleId===id&&row.theme==='light').classes['5'],`Preview must use the exact five-class set: ${id}`);
+  for(const [,id,body]of previews)equal(colours(body),profile.scales.find(row=>row.scaleId===id&&row.theme==='light').lut,`Preview must use the exact 41-step set: ${id}`);
   for(const id of ['atlas-current-colours','atlas-story-vocabulary','atlas-location-scales','atlas-location-roles','atlas-location-gallery'])assert(all(html,new RegExp(`\\bid="${id}"`,'g')).length===1,`Discoverable anchor missing or duplicate: ${id}`);
   assert(html.includes('uploading JSON as well is unnecessary'),'Installation guide must distinguish alternative formats');
   assert(html.includes('complete LDS 0.9.7 base plus the Location Profile'),'Installation guide must name required base and separate profile');

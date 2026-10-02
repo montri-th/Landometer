@@ -15,9 +15,9 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.7' && manifest.colorSetId === 'color-srgb-10', 'release identity');
 check(manifest.packageId === 'v0.9.7-owner.1', 'current approved package identity');
-check(manifest.artifactBuildId === 'ui-20261002-lds097-r5', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20261002-lds097-r6', 'full-guide website build identity');
 const rootEntry = readFileSync(join(root, 'deployment/index.html'), 'utf8');
-check(manifest.entrypointBuildId === 'root-20261002-lds097-r5' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
+check(manifest.entrypointBuildId === 'root-20261002-lds097-r6' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
 const rootRedirect = rootEntry.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 for (const [search, hash] of [
   ['', ''], ['', '#library-resources'], ['?lang=en&theme=dark', ''],
@@ -240,10 +240,29 @@ for(const file of ['color-atlas.html','location/index.html']){const source=read(
 check(storyHtml.includes('Original colours')&&locationHtml.includes('Original HEX and LUT'),'original colour policy is visible');
 check(!read('location/location-app.js').includes('Higher values become lighter'),'Location has no reversed dark direction');
 check(!locationHtml.includes('adapt lightness and chroma'),'Location does not teach retired derivation');
-check(html.includes('Location-Intelligence-Profile-for-LDS-v0.9.7.md')&&html.includes('href="location/?lang=th&amp;theme=light#scales"'),'full handbook links separate Location profile');
+check(html.includes('Location-Intelligence-Profile-for-LDS-v0.9.7.md')&&html.includes('id="atlas-location-lab"'),'full handbook embeds Location lab and links separate normative profile');
 check(atlas.includes('color-interpolation-filters="linearRGB"'),'classic CVD simulation uses linearRGB');
-check(storyHtml.includes('color-interpolation-filters="linearRGB"')&&locationHtml.includes('color-interpolation-filters="linearRGB"'),'modern CVD simulations use linearRGB');
+check(storyHtml.includes('color-interpolation-filters="linearRGB"')&&html.includes('color-interpolation-filters="linearRGB"'),'modern CVD simulations use linearRGB');
 for(const path of ['v0.9.7/color-reference.html','v0.9.7/story-data.js','v0.9.7/location/index.html','v0.9.7/location/location-data.js','v0.9.7/normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md'])check(manifestPaths.includes(path),`manifest covers new surface ${path}`);
+// A shared pre-integration URL must resolve to the same controls in the main guide.
+const redirect=read('location/location-entry.js');
+for(const [search,hash,expectedFamily,expectedN,expectedVision,expectedHash] of [
+ ['?lang=th&theme=dark&family=li.demand&n=9&vision=normal','#lab','li.demand','9','normal','#atlas-location-lab'],
+ ['?lang=en&theme=light&family=li.service_gap&n=41&vision=gray&work=screen','#lab','li.service_gap','41','gray','#atlas-location-lab'],
+ ['','#roles','li.demand','41','normal','#atlas-location-roles'],
+ ['?family=unknown&n=100&vision=unknown','#scales','li.demand','41','normal','#atlas-location-scales']
+]) {
+ let destination;vm.runInNewContext(redirect,{URLSearchParams,location:{search,hash,replace:value=>{destination=value;}}},{timeout:1000});
+ const url=new URL(destination,'https://montri-th.github.io/Landometer/v0.9.7/location/');
+ check(url.pathname==='/Landometer/v0.9.7/'&&url.hash===expectedHash,'legacy Location route joins main guide');
+ check(url.searchParams.get('liFamily')===expectedFamily&&url.searchParams.get('liN')===expectedN&&url.searchParams.get('liVision')===expectedVision,'legacy Location retains explicit valid controls or defaults41');
+ for(const key of ['lang','theme','work']){const wanted=new URLSearchParams(search).get(key);if(wanted)check(url.searchParams.get(key)===wanted,'legacy Location retains '+key);}
+ check(!['family','n','vision'].some(key=>url.searchParams.has(key)),'legacy query names do not collide with other labs');
+}
+check(locationHtml.includes('location-entry.js')&&!locationHtml.includes('src="location-app.js"'),'legacy entry forwards rather than displaying a second lab');
+check(!locationHtml.includes('http-equiv="refresh"'),'legacy entry has no racing fixed meta redirect');
+check(locationHtml.includes('href="../?liN=41#atlas-location-lab"'),'legacy no-JavaScript link reaches static primary41');
+
 if (failures.length) {
   console.error(`DS 0.9.7 site FAIL (${failures.length}/${checks} checks)`);
   failures.forEach(failure => console.error(`- ${failure}`));

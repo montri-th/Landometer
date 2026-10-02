@@ -54,7 +54,7 @@ export function adoptionPaths({root, site, bi}) {
     {
       id: 'colour', title: ['เลือกสีตามความหมายของงาน', 'Choose colour by the meaning of the work'],
       note: ['แยกสีแบรนด์ สีหมวดหมู่ สีวิเคราะห์ และสีบรรยากาศ', 'Separate brand, categorical, analytical and atmosphere colours.'],
-      example: [example('#atlas-story-vocabulary', 'Story 17 สี', '17 Story colours'), example('#library', '20 สเกลข้อมูลเดิม', '20 shared analytical scales'), example('#atlas-location-scales', 'สเกล Location', 'Location scales')].join(' · '),
+      example: [example('#atlas-story-vocabulary', 'Story 17 สี', '17 Story colours'), example('#library', '20 สเกลข้อมูลเดิม', '20 shared analytical scales'), example('#atlas-location-lab', 'Location · ทดลอง 41 ช่วงในหน้านี้', 'Location · try 41 steps here')].join(' · '),
       files: [[`${base}/machine/color-srgb-10.tokens.json`, 'สีและบทบาท · JSON', 'Colours and roles · JSON', 'download'], [`${base}/machine/color-srgb-10.scales.json`, 'Anchors, classes และ LUT · JSON', 'Anchors, classes and LUT · JSON', 'download'], ['normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md', 'Location Profile · เพิ่มเมื่อทำงานทำเล', 'Location Profile · add for location work', 'download']],
       scope: ['เลือกสีหมวดหมู่และสีข้อมูลจากไฟล์ตรงหน้าที่ ส่วนสเกล Location ใช้ Profile แยกคู่กับ LDS ฉบับเต็ม', 'Use the corresponding categorical or analytical records. Location scales require the separate Profile alongside the complete LDS base.'],
     },
