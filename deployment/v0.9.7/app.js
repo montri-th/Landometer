@@ -1,6 +1,6 @@
 (function(){
  const D=window.LDS_CANDIDATE,R=window.CandidateRender,B=window.PreviewRender;
- let family='count',requested=7,lightVariant='soft';
+ let family='count',requested=41,lightVariant='soft';
  const theme=document.getElementById('theme-choice');
  try{const saved=localStorage.getItem('lds-preview-theme');if(['light','dark'].includes(saved)){document.documentElement.dataset.theme=saved;theme.value=saved;}}catch{}
  theme.addEventListener('change',()=>{if(theme.value==='auto')delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=theme.value;try{localStorage.setItem('lds-preview-theme',theme.value);}catch{}});

@@ -9,7 +9,7 @@ Current version: 0.9.7. Color Set: color-srgb-10. Package: v0.9.7-owner.1 (owner
 - [Full Implementation Library](https://montri-th.github.io/Landometer/v0.9.7/#implementation-library)
 - [Story Color Atlas](https://montri-th.github.io/Landometer/v0.9.7/color-atlas.html)
 - [Exact static color reference](https://montri-th.github.io/Landometer/v0.9.7/color-reference.html)
-- [Location Intelligence profile](https://montri-th.github.io/Landometer/v0.9.7/location/)
+- [Location Intelligence · integrated 41-step lab](https://montri-th.github.io/Landometer/v0.9.7/#atlas-location-lab)
 - [Complete standalone normative](https://montri-th.github.io/Landometer/v0.9.7/normative/Landometer-Design-System-v0.9.7.md)
 - [Separate Location normative](https://montri-th.github.io/Landometer/v0.9.7/normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md)
 - [Project Source setup and separate product Add-ons](https://montri-th.github.io/Landometer/v0.9.7/project-source-0.9.7.md)
@@ -25,4 +25,4 @@ For contrast use meaningful borders, readable labels or neutral backing surfaces
 - [Archived 0.9.6](https://montri-th.github.io/Landometer/v0.9.6/)
 - [Archived 0.9.5](https://montri-th.github.io/Landometer/v0.9.5/)
 
-Motion rules are included in the full base (§8.5–8.6). The package includes governed runtime and static SVGs; adding rules to Project Sources does not automatically animate output. Use final stills for static formats and reduced motion. ijji four-beat motifs remain static under Add-on 0.5.5; its finite logo sting is separate. Product overlays follow their current Add-on. Website build ui-20261002-lds097-r5 changes discovery only; complete existing 0.9.7 installations do not need replacement.
+Motion rules are included in the full base (§8.5–8.6). The package includes governed runtime and static SVGs; adding rules to Project Sources does not automatically animate output. Use final stills for static formats and reduced motion. ijji four-beat motifs remain static under Add-on 0.5.5; its finite logo sting is separate. Product overlays follow their current Add-on. Website build ui-20261002-lds097-r6 integrates Location in the main Atlas and makes 41 steps primary; complete existing 0.9.7 installations do not need replacement.

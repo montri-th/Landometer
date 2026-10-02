@@ -27,7 +27,7 @@ Start with the [twelve-task index](./index.html#use-lds097) for brand voice, ima
 
 - [Story: 17 supporting colours](./index.html#atlas-story-vocabulary) — the shared vocabulary for charts and supporting graphics, separate from Brand Energy.
 - [Shared analytical scales](./index.html#library) — 14 sequential and 6 diverging families, with exact classes and LUT values.
-- [Location scales and roles](./index.html#atlas-location-scales) — 12 measured scales plus four qualitative SWOT lenses; use the separate Location Intelligence Profile above.
+- [Location scales and roles](./index.html#atlas-location-lab) — integrated 41-step lab, 12 measured scales plus four qualitative SWOT lenses; use the separate Location Intelligence Profile above.
 - [Animated logo and motif examples](./index.html#identity-motion) — six shared motifs, full/quiet static SVGs, an opt-in preview and links to the exact runtime and wrapper.
 
 The full LDS normative already includes MOTION-04 and MOTIF-01…06. You do not need an older DS document for shared motion rules. Uploading a normative file makes the rules available to the AI; it does not automatically add an animation to a website, design or generated output. For implementation, use the packaged SVG, runtime, CSS, controller and wrapper linked beside the preview. Static documents and reduced-motion output use the final SVG.
@@ -41,7 +41,7 @@ Product overlays still follow the matching current Add-on. ijji's four beat moti
 3. After verifying the replacement sources, retire superseded DS/Add-on rulebooks from active sources. Retain briefs, research, business requirements, data and evidence. Preserve explicitly pinned historical work.
 4. Open a fresh session. Ask the tool to read documentId, releaseRef and colorSetId, then return water 7-class HEX for both themes: the arrays must match. If using the profile, check li.service_gap with zero meaning demand equals supply. Verify the file was actually read; an upload badge alone is not a runtime test.
 
-The discovery-only website revision ui-20261002-lds097-r5 does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
+The integrated 41-step website revision ui-20261002-lds097-r6 does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
 
 Current identity: standalone-0.9.7-r1 · v0.9.7-owner.1 · color-srgb-10 · unsigned owner distribution.
 

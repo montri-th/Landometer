@@ -7,7 +7,7 @@ const pages = {
  guide: {path:'', title:'Design System 0.9.7 · Landometer', description:'คู่มือแบรนด์ Story Color Atlas และ Location Intelligence · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ', image:'guide', alt:'Landometer Design System 0.9.7: Story 17 สี สเกลข้อมูล 20 ตระกูล และ Location Intelligence'},
  atlas: {path:'color-atlas.html', title:'Story Color Atlas 0.9.7 · Landometer', description:'17 สีเสริมและ 20 สเกลข้อมูล ใช้ HEX เดิมทั้งสองธีม · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ', image:'atlas', alt:'Story Color Atlas 0.9.7: 17 สีเสริม 14 สเกลทางเดียว 6 สเกลสองทาง'},
  reference: {path:'color-reference.html', title:'Colour Reference 0.9.7 · Landometer', description:'ชุดสี บทบาท และสเกลข้อมูล 20 ตระกูลของ LDS 0.9.7 · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ', image:'atlas', alt:'Story Color Atlas 0.9.7: 17 สีเสริม 14 สเกลทางเดียว 6 สเกลสองทาง'},
- location: {path:'location/', title:'Location Intelligence 0.9.7 · Landometer', description:'16 บทบาทสำหรับการเลือกทำเล พร้อม 12 สเกลและ SWOT · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ', image:'location', alt:'Location Intelligence 0.9.7: 16 บทบาท 12 metric scales และ 4 SWOT evidence lenses'}
+ location: {path:'#atlas-location-lab', title:'Location Intelligence 0.9.7 · Landometer', description:'16 บทบาทสำหรับการเลือกทำเล พร้อม 12 สเกลและ SWOT · Landometer · 1 ต.ค. 2026 · ตัวอย่างข้อมูลสมมติ', image:'location', alt:'Location Intelligence 0.9.7: 16 บทบาท 12 metric scales และ 4 SWOT evidence lenses'}
 };
 const hash = p => createHash('sha256').update(readFileSync(new URL(p, site))).digest('hex').slice(0,12);
 export function publicHead(html, key='guide', prefix='') {

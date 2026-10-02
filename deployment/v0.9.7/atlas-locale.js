@@ -3,6 +3,10 @@
 (function(){
  'use strict';
  const phrases=[
+ ['ดูช่วงและสีครบ 41 ระดับ','Inspect all 41 intervals and colours'],
+ ['ใช้สี LUT ครบ 41 ค่า ตามลำดับเดิม ไม่ลดจำนวนระดับอัตโนมัติ สีอย่างเดียวไม่รับรองการแยกแยะทุกช่วง','Use all 41 LUT values in their original order, without automatically reducing the count. Colour alone does not guarantee that every interval can be distinguished'],
+ ['ดูช่วงสีเดิมเทียบกับชุดปรับ แล้วใช้ 41 ระดับสำหรับ CityMETER หรือเลือก 3 / 5 / 7 / 9 ระดับสำหรับงานขนาดเล็ก ตัวอย่างทั้งหมดเป็นข้อมูลสมมติ','Compare the earlier and current routes using 41 classes for CityMETER, or 3 / 5 / 7 / 9 classes for compact displays. All examples use illustrative data.'],
+ ['ใช้ 41 ระดับใน CityMETER','Use 41 classes in CityMETER'],
  ['พื้นมืดมีน้ำหนัก สีไม่ซีดเท่ากันทั้งชุด','Color with presence on dark surfaces'],
  ['สืบทอดสี Soft, Vivid และ Ink จาก 0.9.5 ทั้งพื้นสว่างและมืด','Soft, Vivid and Ink colors retained from 0.9.5 on light and dark surfaces'],
  ['ป้ายชื่อ หมายเลข และรูปทรงคงเดิม','Labels, numbers and shapes are retained'],
