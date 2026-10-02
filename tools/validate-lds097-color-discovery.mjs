@@ -17,6 +17,34 @@ export function validateColorDiscovery(html, {root, site = join(root,'deployment
   const all = (text, expression) => [...text.matchAll(expression)];
   const colours = text => all(text, /data-hex="(#[A-F0-9]{6})"/g).map(match=>match[1]);
   const equal = (left,right,message) => assert(JSON.stringify(left)===JSON.stringify(right),message);
+  const element = (source,id) => {
+    const start = new RegExp(`<([a-z][\\w:-]*)\\b[^>]*\\bid="${id}"[^>]*>`,'i').exec(source);
+    if(!start)return '';
+    const scanner = new RegExp(`<\\/?${start[1]}\\b[^>]*>`,'gi');scanner.lastIndex=start.index+start[0].length;
+    let depth=1,match;
+    while((match=scanner.exec(source))){depth+=match[0].startsWith('</')?-1:1;if(depth===0)return source.slice(start.index,scanner.lastIndex);}
+    return '';
+  };
+  // Standalone projection checks below remain usable, while the hosted guide
+  // must place both metric collections and vocabulary in one native section.
+  if(html.includes('id="lds097-color-atlas"')) {
+    const library=element(html,'library');
+    assert(Boolean(library),'The hosted analytical collections need one common library section');
+    for(const id of ['atlas-current-colours','atlas-story-vocabulary','atlas-shared-scales','atlas-location-scales','atlas-location-lab','atlas-location-roles']) {
+      assert(Boolean(element(library,id)),`Collection is outside the unified analytical section: ${id}`);
+      assert(all(html,new RegExp(`\\bid="${id}"`,'g')).length===1,`Unified collection appears more than once: ${id}`);
+    }
+    const collection=element(library,'atlas-current-colours');
+    const nav=collection.match(/<nav\b[^>]*class="lds097-discovery__links"[^>]*>([\s\S]*?)<\/nav>/)?.[1]||'';
+    for(const id of ['atlas-story-vocabulary','atlas-shared-scales','atlas-location-scales','atlas-location-roles'])assert(nav.includes(`href="#${id}"`),`Unified collection shortcut missing: ${id}`);
+    const shared=element(library,'atlas-shared-scales');
+    const registryIds=registry.scales.map(row=>row.id);
+    assert(registryIds.length===20,'Expected twenty approved shared analytical families');
+    for(const id of registryIds)assert(Boolean(element(shared,`family-${id.replaceAll('.','-')}`)),`Shared family missing from the unified library: ${id}`);
+    assert(Boolean(element(shared,'scale-lab'))&&Boolean(element(library,'atlas-location-lab')),'Both shared and Location labs remain available in the same library');
+    assert(!element(shared,'atlas-location-lab'),'Location controls remain distinct from the shared scale lab');
+    assert(!element(element(library,'atlas-location-scales'),'scale-lab'),'Shared controls remain distinct from the Location lab');
+  }
   const sourceSwatches = all(html, /<li data-story-colour="([^"]+)">([\s\S]*?)<\/li>/g);
   equal(sourceSwatches.map(match=>match[1]),registry.supportingPalette.map(item=>item.id),'Story vocabulary must include each current source colour once, in source order');
   sourceSwatches.forEach(([whole,id,body])=>{
@@ -82,5 +110,10 @@ if(import.meta.url===pathToFileURL(process.argv[1]||'').href){
   const changed=rendered.replace('data-colour-strip="lut41" data-samples="41"','data-colour-strip="lut41" data-samples="40"');
   let mutationRejected=false;try{validateColorDiscovery(changed,{root,site});}catch{mutationRejected=true;}
   if(!mutationRejected)throw new Error('Validator accepted a truncated LUT strip');
-  console.log(JSON.stringify({...result,mutationRejected},null,2));
+  const hosted=readFileSync(join(site,'index.html'),'utf8');
+  const hostedResult=process.argv.includes('--site')?result:validateColorDiscovery(hosted,{root,site});
+  let hierarchyMutationRejected=false;
+  try{validateColorDiscovery(hosted.replace('id="atlas-shared-scales"','id="detached-shared-scales"'),{root,site});}catch{hierarchyMutationRejected=true;}
+  if(!hierarchyMutationRejected)throw new Error('Validator accepted a missing unified shared-scale section');
+  console.log(JSON.stringify({...result,hostedChecks:hostedResult.checks,mutationRejected,hierarchyMutationRejected},null,2));
 }

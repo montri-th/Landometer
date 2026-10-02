@@ -3,8 +3,8 @@
   "designSystemVersion": "0.9.7",
   "colorSetId": "color-srgb-10",
   "packageId": "v0.9.7-owner.1",
-  "artifactBuildId": "ui-20261002-lds097-r7",
-  "entrypointBuildId": "root-20261002-lds097-r7",
+  "artifactBuildId": "ui-20261002-lds097-r8",
+  "entrypointBuildId": "root-20261002-lds097-r8",
   "approval": "owner-approved",
   "cryptographicSignature": "not-claimed",
   "indexable": false,
@@ -105,7 +105,7 @@
     {
       "path": "index.html",
       "bytes": 3451,
-      "sha256": "dcc27b371ee54a430e49e68eb08929fe41b3236de8f7bdd3912fc189d331efe7"
+      "sha256": "3160c478967045498ed9310a79e590ce9e834d9b746dcefa466b735a4effa6aa"
     },
     {
       "path": "index.v0.9.1.html",
@@ -119,8 +119,8 @@
     },
     {
       "path": "llms.txt",
-      "bytes": 3754,
-      "sha256": "21029c892c69ff4a418b82402b4f7005a7eff4e43a8fde88f10ac75185e1edb8"
+      "bytes": 3820,
+      "sha256": "7e679d3c64b62deb6731337fbe0d64edbf4e679bb4cdb3b1a7302fd746410347"
     },
     {
       "path": "qa/v0.9.1-manual-gates.md",
@@ -154,8 +154,8 @@
     },
     {
       "path": "v0.9.7/atlas-locale.js",
-      "bytes": 22163,
-      "sha256": "e581f78a91ef804d068a27b31aa5de16f4312887c2029e971440f1df07bf0b5d"
+      "bytes": 22338,
+      "sha256": "e1b73bb322e623d9b750dfbf33ac4219fc7d6881a3915531a29420d710c92c8b"
     },
     {
       "path": "v0.9.7/base-render.js",
@@ -179,18 +179,18 @@
     },
     {
       "path": "v0.9.7/color-discovery.css",
-      "bytes": 5802,
-      "sha256": "55d3997888735327633dbfa7afc87aaf9775b5693a9d644ac73cdbc277944e19"
+      "bytes": 6193,
+      "sha256": "2e593ce5ca2cbe397b5e12fdef053f35dbf2e471c20b94fd951ab79ad2fffffb"
     },
     {
       "path": "v0.9.7/color-reference.html",
       "bytes": 356928,
-      "sha256": "2b2ace2817673946693aea5e8d2dbe627e88cba22d569b679feb66b5da1bc0f5"
+      "sha256": "6781ed3b0d78a1fc9ce9f2a92654a0de8eb83e81cbb45675ce9967cf7fd305c9"
     },
     {
       "path": "v0.9.7/data.js",
       "bytes": 136289,
-      "sha256": "b2db7d3bd252676ba9f316d66b8832e0bd0e5c01745714ddba28f7b35d737e45"
+      "sha256": "5355db70b48e457d56205d68fa73d7af040dfafebdf99aed511269a7e6231777"
     },
     {
       "path": "v0.9.7/discovery-links.js",
@@ -199,8 +199,8 @@
     },
     {
       "path": "v0.9.7/embedded-atlas.js",
-      "bytes": 3099,
-      "sha256": "9194f5647e6560481dc439017219cec3705648919764bcda3017c5cd0c10e047"
+      "bytes": 3143,
+      "sha256": "5333a03c49e524018176278c05f759af884f2c7cfde2841a90e8d8bc13d993c7"
     },
     {
       "path": "v0.9.7/examples/lds097-starter.html",
@@ -264,8 +264,8 @@
     },
     {
       "path": "v0.9.7/index.html",
-      "bytes": 1426714,
-      "sha256": "4d36ba170cf67d3e3406348f62f33edc40dc9fcc7ff5eccd91f617ec23a0d1f5"
+      "bytes": 1422372,
+      "sha256": "07e37e9bcd747ac0cc47d5fb6343afde52b2ceffa4a7dde4a18b330685052b08"
     },
     {
       "path": "v0.9.7/lds/color-srgb-07.production.css",
@@ -490,7 +490,7 @@
     {
       "path": "v0.9.7/location/location-audit.json",
       "bytes": 411647,
-      "sha256": "4db25c4bd1c99e604bab92059937652620599d827dbd5831b9035ae25c804376"
+      "sha256": "7a74eab8cad8a9dbbc88e24b128874e9ebf7007a26d4b63787d1db7ee84e10b7"
     },
     {
       "path": "v0.9.7/location/location-colors.json",
@@ -500,7 +500,7 @@
     {
       "path": "v0.9.7/location/location-data.js",
       "bytes": 372392,
-      "sha256": "fe4a11e9152bb98a4a54564b997efbea87f8a4635bdbba27a94da7248b57d170"
+      "sha256": "0d111d6f768ef070bc9e30d444b759eb8ede10c86313c1788e01ce0fc1a1bec1"
     },
     {
       "path": "v0.9.7/location/location-entry.js",
@@ -2814,8 +2814,8 @@
     },
     {
       "path": "v0.9.7/project-source-0.9.7.md",
-      "bytes": 6535,
-      "sha256": "eb16f26a32d77b77313ef47a4f94faacf79ff353fe7d868a96d68f7c7b334606"
+      "bytes": 6594,
+      "sha256": "3c51cdd1008419ee3bd42b9f6f1ed7240aeea7cbe2101926fdcc6054cf8b354d"
     },
     {
       "path": "v0.9.7/render.js",
@@ -3035,7 +3035,7 @@
     {
       "path": "v0.9.7/story-data.js",
       "bytes": 150349,
-      "sha256": "66a3a7cce3ad253af99e1c328717acfe783062e49c9ccd9927dafe5770fb2236"
+      "sha256": "a161ebd3bd87ff5c9af4e0381690b4497e9f310d54b61aadc4c7243c56e1a10f"
     },
     {
       "path": "v0.9.7/story.css",

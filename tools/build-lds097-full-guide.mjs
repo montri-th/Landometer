@@ -24,7 +24,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-10.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.7.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20261002-lds097-r7';
+const build = 'ui-20261002-lds097-r8';
 const packagePath = 'package/assets/lds-0.9.7';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -45,13 +45,12 @@ function between(text, start, end, replacement) {
 }
 const bi = (th, en) => `<span data-th>${th}</span><span data-en>${en}</span>`;
 const locationGuide = locationLab({root, site, bi});
-const colourGuide = colorDiscovery({root, site, bi, labHtml:locationGuide.html});
+let colourGuide;
 emit(join(site, 'location-lab.css'), locationGuide.css);
 emit(join(site, 'location-lab.js'), locationGuide.js);
 const motionGuide = motionDiscovery({root, site, bi});
 const adoptionGuide = adoptionPaths({root, site, bi});
 emit(join(site, 'adoption-paths.css'), adoptionGuide.css);
-emit(join(site, 'color-discovery.css'), colourGuide.css);
 emit(join(site, 'motion-discovery.css'), motionGuide.css);
 emit(join(site, 'motion-discovery.js'), motionGuide.js);
 emit(join(site, 'discovery-links.js'), `// Preserve the reader's language and theme on linked labs.
@@ -173,12 +172,31 @@ const atlasMain = atlasSource.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
 if (!atlasMain) throw new Error('Standalone color atlas is missing its main content');
 const categoriesStart = atlasMain.indexOf('<section id="categories"');
 if (categoriesStart < 0) throw new Error('Standalone color atlas is missing categories');
-const atlasContent = atlasMain.slice(categoriesStart);
+let atlasContent = atlasMain.slice(categoriesStart);
+// Recompose the two source-bound collections under one analytical section.
+// Keep legacy controls, exact cards/tables and deep-link IDs intact.
+function sectionById(markup, id) {
+  const opening = new RegExp('<section\\b[^>]*\\bid="' + id + '"[^>]*>').exec(markup);
+  if (!opening) throw Error('Missing analytical section: ' + id);
+  const tags=/<\/?section\b[^>]*>/g;tags.lastIndex=opening.index+opening[0].length;
+  let depth=1,tag;while((tag=tags.exec(markup))){depth+=tag[0].startsWith('</')?-1:1;if(!depth)return markup.slice(opening.index,tags.lastIndex);}
+  throw Error('Unbalanced analytical section: '+id);
+}
+const sharedLibrary=sectionById(atlasContent,'library');
+const sharedLab=sectionById(atlasContent,'scale-lab');
+const familyStart=sharedLibrary.indexOf('<div id="family-library">');
+const comparison=sharedLibrary.slice(0,familyStart).match(/<div class="segmented"[\s\S]*?<\/div>/)?.[0];
+if(familyStart<0||!comparison)throw Error('Missing shared analytical library controls');
+const sharedBody=sharedLibrary.slice(familyStart,-'</section>'.length);
+const sharedHtml=`<section id="atlas-shared-scales" aria-labelledby="atlas-shared-scales-title"><div class="section-head"><div><h6 id="atlas-shared-scales-title">${bi('ข้อมูลทั่วไป · 20 ตระกูล · 14 ทางเดียว + 6 สองทาง','Shared data · 20 families · 14 sequential + 6 diverging')}</h6><p>${bi('เลือกจากความหมาย หน่วย และตัวหาร ดูตัวอย่าง 41 ช่วง แล้วเปิดคลังเพื่อเทียบทุกตระกูล Density 3 ตัวหารคงโทนร้อน ส่วนสิ่งปลูกสร้างเลือกตามนิยามของตัวแปร','Choose by meaning, unit and denominator. Try the 41-step example, then open the gallery to compare every family. The three density denominators retain warm colours; built form follows its defined measure.')}</p></div></div>${sharedLab}<details class="lds097-discovery__details" id="atlas-shared-gallery"><summary>${bi('เปิดดูครบ 20 ตระกูล พร้อมเทียบรุ่นก่อนและตารางค่าสี','Show all 20 shared families, earlier-version comparison and exact tables')}</summary><div class="lds097-shared-gallery-body"><div class="lds097-shared-comparison"><strong>${bi('ชุดสีข้อมูลทั่วไป','Shared analytical colours')}</strong>${comparison}</div>${sharedBody}</div></details></section>`;
+colourGuide=colorDiscovery({root,site,bi,labHtml:locationGuide.html,sharedHtml});
+emit(join(site,'color-discovery.css'),colourGuide.css);
+atlasContent=atlasContent.replace(sharedLab,'').replace(sharedLibrary,`<section class="section" id="library" aria-labelledby="atlas-current-colours-title">${colourGuide.html}</section>`);
 const colorVisionDefs = atlasSource.match(/<svg\b[^>]*>[\s\S]*?<filter id="deuteranopia"[\s\S]*?<\/svg>/)?.[0];
 if (!colorVisionDefs) throw new Error('Standalone color atlas is missing its color-vision filter');
 const atlas = `<div class="lds097-atlas-embed"><div class="lds097-atlas-intro"><p>${bi('สีชุด 0.9.7 ใช้งานอยู่ในคู่มือฉบับเต็มนี้ เลือกธีม หมวดหมู่ และตัวหารเพื่อดูค่าจริง', 'The approved 0.9.7 colors are part of this complete guide. Choose theme, category and denominator to inspect exact values.')}</p><p><a href="color-atlas.html">${bi('เปิด Color Atlas เต็มหน้าจอ', 'Open the Color Atlas on its own')}</a></p></div><div id="lds097-color-atlas" class="lds097-color-atlas" data-theme="light">${colorVisionDefs}${atlasContent}</div></div>`;
 let completeAtlas = source.split('<!-- COLOR_ATLAS_START -->')[1].split('<!-- COLOR_ATLAS_END -->')[0];
-completeAtlas = completeAtlas.replace('  <section class="atlas-family atlas-family--identity"', colourGuide.html + '\n  <section class="atlas-family atlas-family--identity"');
+
 completeAtlas = completeAtlas.replace(/<section class="atlas-family atlas-family--categorical"[\s\S]*?<\/section>/, `<section class="atlas-family atlas-family--categorical" aria-labelledby="atlas-categorical-title"><header class="atlas-family-head"><p class="atlas-family-index">05 · CATEGORICAL + ANALYTICAL · 0.9.7</p><h5 id="atlas-categorical-title">${bi('สีหมวดหมู่ ชุดข้อมูล และบรรยากาศครบตามรุ่นปัจจุบัน', 'Current categorical colors, analytical families and atmospheres')}</h5></header>${atlas}</section>`);
 completeAtlas = completeAtlas.replace(/<section class="atlas-family atlas-family--dataviz"[\s\S]*?<\/section>/, `<section class="atlas-family atlas-family--dataviz" aria-labelledby="atlas-dataviz-title"><header class="atlas-family-head"><p class="atlas-family-index">06 · EXACT ANALYTICAL LUT</p><h5 id="atlas-dataviz-title">${bi('ครบ 20 ตระกูล × 2 ธีม · LUT 41 สี และชุด 3/5/7/9 ชั้น', '20 families × 2 themes · exact 41-sample LUT and 3/5/7/9 classes')}</h5><p>${bi('ตารางและตัวอย่างด้านบนอ่านจากชุดเดียวกับไฟล์สำหรับเครื่องมือ ระบุ metric หน่วย ตัวหาร เกณฑ์แบ่ง และสถานะไม่มีข้อมูลทุกครั้ง', 'The Atlas above uses the same registry as the machine files. Always declare metric, unit, denominator, thresholds and missing-data states.')}</p><p><a href="#library">${bi('ไปทุกตระกูลข้อมูลใน Atlas', 'Go to every analytical family in the Atlas')}</a> · <a href="${packagePath}/machine/color-srgb-10.scales.json">${bi('เปิดค่าจริงสำหรับเครื่องมือ', 'Open exact machine values')}</a></p></header></section>`);
 completeAtlas = completeAtlas.replaceAll('data-atlas-version="0.9.1"', 'data-atlas-version="0.9.7"').replaceAll('data-atlas-source-version="0.8.6"', 'data-atlas-source-version="0.9.7"').replaceAll('data-atlas-records="18"', 'data-atlas-records="40"');
@@ -212,11 +230,13 @@ completeAtlas = completeAtlas.replace(/<article class="atlas-product-card"[\s\S]
     return `<figure class="atlas-gradient-theme atlas-gradient-theme--pinned" data-theme-surface="${theme}"><span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, ${stops});background:linear-gradient(135deg, ${stops});background:linear-gradient(135deg in srgb, ${stops})" aria-hidden="true"></span><figcaption><strong>${theme === 'light' ? 'Light' : 'Dark'}</strong><code>${colors.join(' → ')}</code><span class="atlas-theme-surface-note">${bi('แสดงบนพื้นของธีมที่ระบุเสมอ', 'Pinned to the named theme surface')}</span></figcaption></figure>`;
   }).replace(/<p class="atlas-gradient-foreground">[\s\S]*?<\/p>/, `<p class="atlas-gradient-foreground">${bi('ใช้ opaque panel หรือ scrim สำหรับข้อความ และตรวจ contrast บนงานจริง', 'Use an opaque panel or scrim for text and check contrast in the actual artifact.')}</p>`);
 });
-// Preserve the asset swatches while applying the owner's explicit wordmark
-// permission; the old blanket recolour prohibition is no longer current.
-completeAtlas = completeAtlas
- .replace('แสดงเพื่ออ้างอิงไฟล์ asset เท่านั้น ห้ามสร้างใหม่ recolor หรือยกไปเป็น UI token แม้รหัสสีจะตรงกับสีอื่น', 'สีในสัญลักษณ์คงตามไฟล์ที่อนุมัติ ไม่ยกไปเป็น UI token ส่วน wordmark เปลี่ยนสีได้ รวมถึงตัวอักษรละสี โดยคงรูปทรงและสัดส่วน และตรวจให้อ่านได้บนพื้นจริง ตาม LOGO-01')
- .replace('Asset reference only. Never rebuild, recolor, or promote these values into UI tokens—even when a hex value matches another role.', 'Keep symbol colours in the approved artwork; do not promote them into UI tokens. LOGO-01 permits wordmark recolouring, including per-letter colour, with letterforms and proportions preserved and readability checked on the actual background.');
+// Asset-only logo paints stay governed in LOGO-01 and the unchanged files.
+// Omit their repeated swatch strip from this current learning page only.
+completeAtlas=completeAtlas.replace(/<div class="atlas-subfamily">[\s\S]*?<div class="atlas-token-grid atlas-token-grid--asset">[\s\S]*?<\/div>\s*<\/div>/, `<p class="atlas-identity-reference">${bi('ใช้ไฟล์โลโก้ต้นฉบับ และอ่านกฎสี wordmark กับพื้นหลังในหัวข้ออัตลักษณ์','Use the original logo files; find wordmark-colour and background guidance in the identity section.')} <a href="#v097-identity-clarification">${bi('กฎและไฟล์โลโก้','Logo guidance and files')}</a></p>`)
+ .replace('สีแบรนด์ สีสร้างพลัง และสีที่อยู่ในไฟล์โลโก้เท่านั้น','สีแบรนด์และ Brand Energy')
+ .replace('Brand, energy, and asset-only logo colors','Brand and Brand Energy colours')
+ .replace('<strong>14</strong><small>identity + logo</small>','<strong>7</strong><small>brand + energy</small>');
+
 html = between(html, '<!-- COLOR_ATLAS_START -->', '<!-- COLOR_ATLAS_END -->', completeAtlas);
 const sampler = optFragment('sampler.html', `<section class="scale-sampler lds097-current-sampler" data-color-registry="color-srgb-10"><h6>${bi('20 ตระกูลข้อมูล · แยกตัวหารก่อนเลือกสี', '20 analytical families · choose the denominator first')}</h6><p>${bi('Density ทุกตัวหารเป็นโทนร้อน: ต่อพื้นที่สีส้ม ต่อประชากรกุหลาบ ต่อครัวเรือนแดง และพื้นที่ก่อสร้างเหลืองทอง ใช้ชุด 3/5/7/9 ระดับหรือ LUT 41 สีที่ให้มาครบ', 'Every density denominator has a distinct warm direction: area orange, per-capita rose, household scarlet and built-area gold. Use exact 3/5/7/9 classes or the complete 41-sample LUT.')}</p><a href="#complete-color-atlas" data-reveal-target="complete-color-atlas">${bi('เลือกดูสีและค่าจริงทุกตระกูล', 'Inspect exact colors and values for every family')}</a></section>`);
 html = between(html, '<!-- COLOR_SCALE_SAMPLER_START -->', '<!-- COLOR_SCALE_SAMPLER_END -->', sampler);

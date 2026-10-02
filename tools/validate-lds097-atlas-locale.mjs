@@ -15,6 +15,24 @@ const D=context.window.LDS_CANDIDATE,R=context.CandidateRender;
 let checks=0;const examined=new Set();
 function check(condition,message){checks++;if(!condition)throw Error(message);}
 function texts(html){return [...html.matchAll(/>([^<>]*)<|(?:aria-label|title|alt)="([^"]*)"/g)].map(m=>m[1]??m[2]);}
+// Read only the retained translation surface. The modern modules render their
+// own complete Thai/English copy and must not be run through the phrase table.
+function legacyDisplayTexts(source){
+ const result=[],stack=[],voidTags=new Set(['area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr']);
+ const ignoredTags=new Set(['script','style','code','pre','kbd','samp','textarea']);
+ for(const [token] of source.matchAll(/<!--[\s\S]*?-->|<\/?[a-z][^>]*>|[^<]+/gi)){
+  if(token.startsWith('<!--'))continue;
+  const closing=token.match(/^<\/([\w:-]+)/);
+  if(closing){const index=stack.map(item=>item.tag).lastIndexOf(closing[1].toLowerCase());if(index>=0)stack.length=index;continue;}
+  const opening=token.match(/^<([\w:-]+)/);
+  if(opening){
+   const tag=opening[1].toLowerCase(),blocked=Boolean(stack.at(-1)?.blocked)||ignoredTags.has(tag)||/\s(?:contenteditable|data-th|data-en)(?:\s|=|\/?[>])/.test(token)||/\sid=["']atlas-location-lab["']/.test(token);
+   if(!blocked)for(const attribute of token.matchAll(/(?:aria-label|title|alt)="([^"]*)"/g))result.push(attribute[1]);
+   if(!voidTags.has(tag)&&!token.endsWith('/>'))stack.push({tag,blocked});
+  }else if(!stack.at(-1)?.blocked&&token.trim())result.push(token);
+ }
+ return result;
+}
 function inspect(text,label){
  if(examined.has(text))return;examined.add(text);
  const rendered=translate(text);
@@ -62,11 +80,64 @@ const scanner=/<\/?div\b[^>]*>/g;scanner.lastIndex=start;
 let match,depth=0,end;
 while((match=scanner.exec(html))){depth+=match[0].startsWith('</')?-1:1;if(depth===0){end=scanner.lastIndex;break;}}
 check(end>start,'Embedded atlas is not balanced');
-for(const text of texts(html.slice(start,end)))inspect(text,'static atlas');
+for(const text of legacyDisplayTexts(html.slice(start,end)))inspect(text,'static retained atlas');
 for(const text of ['สีปกติ · ป้ายและรูปทรงช่วยรักษาความหมายเมื่อมองสีแยกได้ยาก','ขาวดำ: อ่านชื่อ หมายเลข รูปทรง และระดับประกอบ','การจำลอง deuteranopia โดยประมาณ ไม่ใช่การทดสอบกับผู้ใช้จริง'])inspect(text,'perception selector');
 for(const family of D.scales)for(const count of [3,5,7,9,41])inspect(`${family.label} ${R.effective(family,count)} ระดับ ทั้งสองธีม`,'selection announcement');
 check(JSON.stringify(D)===frozenData,'Localization modified canonical data');
 check(translate('20 ตระกูล · 14 ทางเดียว + 6 สองทาง')==='20 families · 14 sequential + 6 diverging','Analytical inventory translation is incorrect');
 check(translate('พื้นที่ก่อสร้าง')==='Built form','Built form must remain separate from density denominators');
 check(translate('ความเชื่อมั่น')==='Confidence','Confidence meaning must be preserved');
-console.log(JSON.stringify({status:'PASS',checks,generatedCases:cases.length,uniqueDisplayStrings:examined.size,families:D.scales.length,scope:'Static and generated display text, accessible labels, exact HEX and numeric text preservation. Actual locale switching and layout require browser review.'},null,2));
+
+// Execute the actual walker and attribute translator against nested fixtures.
+// This catches accidentally excluding the whole discovery section as well as
+// corrupting the new bilingual text or the Location lab's own live strings.
+const elements=[],textNodes=[],observers=[];
+function element(tag,attributes={},parent=null){
+ const node={tagName:tag.toUpperCase(),attributes:new Map(Object.entries(attributes)),parentElement:parent,lang:'',
+  hasAttribute(name){return this.attributes.has(name);},getAttribute(name){return this.attributes.get(name)??null;},setAttribute(name,value){this.attributes.set(name,String(value));},
+  closest(selector){for(let item=this;item;item=item.parentElement)for(const part of selector.split(',')){if(part.startsWith('#')?item.getAttribute('id')===part.slice(1):part.startsWith('[')?item.hasAttribute(part.slice(1,-1)):item.tagName.toLowerCase()===part)return item;}return null;},
+  querySelectorAll(){return elements.filter(item=>item!==this&&['aria-label','title','alt'].some(name=>item.hasAttribute(name))&&item.closest('#lds097-color-atlas')===this);}
+ };elements.push(node);return node;
+}
+function content(parent,data){const node={parentElement:parent,data};textNodes.push(node);return node;}
+const atlasFixture=element('div',{id:'lds097-color-atlas','aria-label':'ตระกูลข้อมูล'});
+const discovery=element('section',{'data-colour-discovery':'0.9.7'},atlasFixture);
+const sharedLab=element('section',{id:'scale-lab'},discovery);
+const legacyLabel=element('label',{'aria-label':'ตระกูลข้อมูล',title:'จำนวนระดับ'},sharedLab);
+const legacyText=content(legacyLabel,'ตระกูลข้อมูล');
+const modernTH=element('span',{'data-th':''},discovery);
+const modernEN=element('span',{'data-en':''},discovery);
+const modernTHChild=element('strong',{'aria-label':'ความเชื่อมั่น'},modernTH);
+const modernENChild=element('strong',{title:'จำนวนระดับ'},modernEN);
+const modernTHText=content(modernTHChild,'สีเสริมสำหรับเล่าเรื่อง · ความเชื่อมั่น');
+const modernENText=content(modernENChild,'Supporting colour · ความเชื่อมั่น');
+const locationLab=element('section',{id:'atlas-location-lab','aria-label':'ตระกูลข้อมูล'},discovery);
+const locationChild=element('label',{title:'จำนวนระดับ',alt:'ความเชื่อมั่น'},locationLab);
+const locationText=content(locationChild,'จำนวนระดับ · ความเชื่อมั่น');
+const code=element('code',{title:'จำนวนระดับ'},sharedLab),codeText=content(code,'ความเชื่อมั่น #213E70 41');
+const protectedTexts=[modernTHText,modernENText,locationText,codeText].map(node=>[node,node.data]);
+const protectedAttributes=[modernTHChild,modernENChild,locationLab,locationChild,code].map(node=>[node,JSON.stringify([...node.attributes])]);
+const documentFixture={documentElement:{dataset:{locale:'en'}},getElementById:id=>id==='lds097-color-atlas'?atlasFixture:null,
+ createTreeWalker(_root,_show,filter){let index=0;return {nextNode(){while(index<textNodes.length){const node=textNodes[index++];if(filter.acceptNode(node)===1)return node;}return null;}};}
+};
+const browserContext={document:documentFixture,NodeFilter:{SHOW_TEXT:4,FILTER_REJECT:2,FILTER_ACCEPT:1},MutationObserver:class{constructor(callback){this.callback=callback;observers.push(this);}observe(target){this.target=target;}}};
+vm.runInNewContext(readFileSync(localePath,'utf8'),browserContext);
+function assertProtected(){
+ for(const [node,original]of protectedTexts)check(node.data===original,'Legacy localization changed modern-owned or code text');
+ for(const [node,original]of protectedAttributes)check(JSON.stringify([...node.attributes])===original,'Legacy localization changed modern-owned or code attributes');
+}
+check(legacyText.data==='Analytical family','Shared analytical lab must still translate inside the modern discovery wrapper');
+check(legacyLabel.getAttribute('aria-label')==='Analytical family'&&legacyLabel.getAttribute('title')==='Number of classes','Legacy shared-lab accessible attributes must translate');
+assertProtected();
+const dynamicLabel=element('label',{'aria-label':'ความเชื่อมั่น'},sharedLab),dynamicText=content(dynamicLabel,'ความเชื่อมั่น');
+observers.find(observer=>observer.target===atlasFixture)?.callback();
+check(dynamicText.data==='Confidence'&&dynamicLabel.getAttribute('aria-label')==='Confidence','Hydrated legacy content must translate through the mutation observer');
+documentFixture.documentElement.dataset.locale='th';
+observers.find(observer=>observer.target===documentFixture.documentElement)?.callback();
+check(legacyText.data==='ตระกูลข้อมูล'&&dynamicText.data==='ความเชื่อมั่น','Language switching must restore legacy Thai exactly');
+check(legacyLabel.getAttribute('aria-label')==='ตระกูลข้อมูล'&&legacyLabel.getAttribute('title')==='จำนวนระดับ','Language switching must restore accessible attributes exactly');
+assertProtected();
+documentFixture.documentElement.dataset.locale='en';browserContext.LDSAtlasLocale.apply();
+check(legacyText.data==='Analytical family'&&atlasFixture.lang==='en','Repeated language switching must stay stable');
+assertProtected();
+console.log(JSON.stringify({status:'PASS',checks,generatedCases:cases.length,uniqueDisplayStrings:examined.size,families:D.scales.length,scope:'Static and generated display text, accessible labels, exact HEX/numeric preservation, bilingual and Location module isolation, and legacy hydration/locale round trips. Actual layout requires browser review.'},null,2));
