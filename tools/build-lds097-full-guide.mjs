@@ -5,6 +5,9 @@ import {readFileSync, writeFileSync, existsSync, mkdirSync} from 'node:fs';
 import {resolve, join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {publicHead} from './lds097-public-head.mjs';
+import {colorDiscovery} from './lds097-color-discovery.mjs';
+import {motionDiscovery} from './lds097-motion-discovery.mjs';
+import {adoptionPaths} from './lds097-adoption-paths.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const site = join(root, 'deployment/v0.9.7');
@@ -20,7 +23,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-10.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.7.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20261001-lds097-r4';
+const build = 'ui-20261002-lds097-r5';
 const packagePath = 'package/assets/lds-0.9.7';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
@@ -40,6 +43,28 @@ function between(text, start, end, replacement) {
   return text.slice(0, a + start.length) + '\n' + replacement + '\n' + text.slice(b);
 }
 const bi = (th, en) => `<span data-th>${th}</span><span data-en>${en}</span>`;
+const colourGuide = colorDiscovery({root, site, bi});
+const motionGuide = motionDiscovery({root, site, bi});
+const adoptionGuide = adoptionPaths({root, site, bi});
+emit(join(site, 'adoption-paths.css'), adoptionGuide.css);
+emit(join(site, 'color-discovery.css'), colourGuide.css);
+emit(join(site, 'motion-discovery.css'), motionGuide.css);
+emit(join(site, 'motion-discovery.js'), motionGuide.js);
+emit(join(site, 'discovery-links.js'), `// Preserve the reader's language and theme on linked labs.
+(() => {
+  function sync() {
+    const root = document.documentElement;
+    for (const link of document.querySelectorAll('[data-lds097-preserve-context]')) {
+      const url = new URL(link.getAttribute('href'), location.href);
+      url.searchParams.set('lang', root.dataset.locale || root.lang || 'th');
+      url.searchParams.set('theme', root.dataset.theme === 'dark' ? 'dark' : 'light');
+      link.href = url.href;
+    }
+  }
+  sync();
+  new MutationObserver(sync).observe(document.documentElement, {attributes:true, attributeFilter:['data-locale','lang','data-theme']});
+})();
+`);
 const optFragment = (name, fallback) => {
   const path = join(site, 'guide-fragments', name);
   return existsSync(path) ? readFileSync(path, 'utf8') : fallback;
@@ -149,6 +174,7 @@ const colorVisionDefs = atlasSource.match(/<svg\b[^>]*>[\s\S]*?<filter id="deute
 if (!colorVisionDefs) throw new Error('Standalone color atlas is missing its color-vision filter');
 const atlas = `<div class="lds097-atlas-embed"><div class="lds097-atlas-intro"><p>${bi('สีชุด 0.9.7 ใช้งานอยู่ในคู่มือฉบับเต็มนี้ เลือกธีม หมวดหมู่ และตัวหารเพื่อดูค่าจริง', 'The approved 0.9.7 colors are part of this complete guide. Choose theme, category and denominator to inspect exact values.')}</p><p><a href="color-atlas.html">${bi('เปิด Color Atlas เต็มหน้าจอ', 'Open the Color Atlas on its own')}</a></p></div><div id="lds097-color-atlas" class="lds097-color-atlas" data-theme="light">${colorVisionDefs}${atlasContent}</div></div>`;
 let completeAtlas = source.split('<!-- COLOR_ATLAS_START -->')[1].split('<!-- COLOR_ATLAS_END -->')[0];
+completeAtlas = completeAtlas.replace('  <section class="atlas-family atlas-family--identity"', colourGuide.html + '\n  <section class="atlas-family atlas-family--identity"');
 completeAtlas = completeAtlas.replace(/<section class="atlas-family atlas-family--categorical"[\s\S]*?<\/section>/, `<section class="atlas-family atlas-family--categorical" aria-labelledby="atlas-categorical-title"><header class="atlas-family-head"><p class="atlas-family-index">05 · CATEGORICAL + ANALYTICAL · 0.9.7</p><h5 id="atlas-categorical-title">${bi('สีหมวดหมู่ ชุดข้อมูล และบรรยากาศครบตามรุ่นปัจจุบัน', 'Current categorical colors, analytical families and atmospheres')}</h5></header>${atlas}</section>`);
 completeAtlas = completeAtlas.replace(/<section class="atlas-family atlas-family--dataviz"[\s\S]*?<\/section>/, `<section class="atlas-family atlas-family--dataviz" aria-labelledby="atlas-dataviz-title"><header class="atlas-family-head"><p class="atlas-family-index">06 · EXACT ANALYTICAL LUT</p><h5 id="atlas-dataviz-title">${bi('ครบ 20 ตระกูล × 2 ธีม · LUT 41 สี และชุด 3/5/7/9 ชั้น', '20 families × 2 themes · exact 41-sample LUT and 3/5/7/9 classes')}</h5><p>${bi('ตารางและตัวอย่างด้านบนอ่านจากชุดเดียวกับไฟล์สำหรับเครื่องมือ ระบุ metric หน่วย ตัวหาร เกณฑ์แบ่ง และสถานะไม่มีข้อมูลทุกครั้ง', 'The Atlas above uses the same registry as the machine files. Always declare metric, unit, denominator, thresholds and missing-data states.')}</p><p><a href="#library">${bi('ไปทุกตระกูลข้อมูลใน Atlas', 'Go to every analytical family in the Atlas')}</a> · <a href="${packagePath}/machine/color-srgb-10.scales.json">${bi('เปิดค่าจริงสำหรับเครื่องมือ', 'Open exact machine values')}</a></p></header></section>`);
 completeAtlas = completeAtlas.replaceAll('data-atlas-version="0.9.1"', 'data-atlas-version="0.9.7"').replaceAll('data-atlas-source-version="0.8.6"', 'data-atlas-source-version="0.9.7"').replaceAll('data-atlas-records="18"', 'data-atlas-records="40"');
@@ -182,6 +208,11 @@ completeAtlas = completeAtlas.replace(/<article class="atlas-product-card"[\s\S]
     return `<figure class="atlas-gradient-theme atlas-gradient-theme--pinned" data-theme-surface="${theme}"><span class="atlas-gradient-sample" style="--atlas-gradient:linear-gradient(135deg, ${stops});background:linear-gradient(135deg, ${stops});background:linear-gradient(135deg in srgb, ${stops})" aria-hidden="true"></span><figcaption><strong>${theme === 'light' ? 'Light' : 'Dark'}</strong><code>${colors.join(' → ')}</code><span class="atlas-theme-surface-note">${bi('แสดงบนพื้นของธีมที่ระบุเสมอ', 'Pinned to the named theme surface')}</span></figcaption></figure>`;
   }).replace(/<p class="atlas-gradient-foreground">[\s\S]*?<\/p>/, `<p class="atlas-gradient-foreground">${bi('ใช้ opaque panel หรือ scrim สำหรับข้อความ และตรวจ contrast บนงานจริง', 'Use an opaque panel or scrim for text and check contrast in the actual artifact.')}</p>`);
 });
+// Preserve the asset swatches while applying the owner's explicit wordmark
+// permission; the old blanket recolour prohibition is no longer current.
+completeAtlas = completeAtlas
+ .replace('แสดงเพื่ออ้างอิงไฟล์ asset เท่านั้น ห้ามสร้างใหม่ recolor หรือยกไปเป็น UI token แม้รหัสสีจะตรงกับสีอื่น', 'สีในสัญลักษณ์คงตามไฟล์ที่อนุมัติ ไม่ยกไปเป็น UI token ส่วน wordmark เปลี่ยนสีได้ รวมถึงตัวอักษรละสี โดยคงรูปทรงและสัดส่วน และตรวจให้อ่านได้บนพื้นจริง ตาม LOGO-01')
+ .replace('Asset reference only. Never rebuild, recolor, or promote these values into UI tokens—even when a hex value matches another role.', 'Keep symbol colours in the approved artwork; do not promote them into UI tokens. LOGO-01 permits wordmark recolouring, including per-letter colour, with letterforms and proportions preserved and readability checked on the actual background.');
 html = between(html, '<!-- COLOR_ATLAS_START -->', '<!-- COLOR_ATLAS_END -->', completeAtlas);
 const sampler = optFragment('sampler.html', `<section class="scale-sampler lds097-current-sampler" data-color-registry="color-srgb-10"><h6>${bi('20 ตระกูลข้อมูล · แยกตัวหารก่อนเลือกสี', '20 analytical families · choose the denominator first')}</h6><p>${bi('Density ทุกตัวหารเป็นโทนร้อน: ต่อพื้นที่สีส้ม ต่อประชากรกุหลาบ ต่อครัวเรือนแดง และพื้นที่ก่อสร้างเหลืองทอง ใช้ชุด 3/5/7/9 ระดับหรือ LUT 41 สีที่ให้มาครบ', 'Every density denominator has a distinct warm direction: area orange, per-capita rose, household scarlet and built-area gold. Use exact 3/5/7/9 classes or the complete 41-sample LUT.')}</p><a href="#complete-color-atlas" data-reveal-target="complete-color-atlas">${bi('เลือกดูสีและค่าจริงทุกตระกูล', 'Inspect exact colors and values for every family')}</a></section>`);
 html = between(html, '<!-- COLOR_SCALE_SAMPLER_START -->', '<!-- COLOR_SCALE_SAMPLER_END -->', sampler);
@@ -337,6 +368,19 @@ const currentCopy = [
 for (const [before, after] of currentCopy) html = html.replaceAll(before, after);
 const storyIntro = `<section class="lds097-integration" id="story-location-current"><div class="container"><div class="section-heading"><p class="eyebrow">STORY + LOCATION INTELLIGENCE · 0.9.7</p><h2>${bi('สีเดิมบนทุกพื้น ความหมายตรงกันทุกเครื่องมือ', 'The same colours on every background; consistent meaning across tools')}</h2><p>${bi('17 สีเสริม · 20 ตระกูลข้อมูล · 16 บทบาท Location · 12 metric scales · 4 SWOT evidence lenses ไม่มี gradient อัตโนมัติ', '17 supporting colours · 20 analytical families · 16 Location roles · 12 metric scales · 4 SWOT evidence lenses without automatic gradients')}</p><p><a href="color-atlas.html">${bi('เปิด Story Color Atlas', 'Open Story Color Atlas')}</a> · <a href="location/">${bi('เปิด Location Intelligence', 'Open Location Intelligence')}</a></p><p><a href="normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md" download>${bi('ดาวน์โหลด Location Profile ใช้คู่กับ LDS ฉบับเต็ม', 'Download the separate Location Profile to use with the full LDS base')}</a></p></div><div class="lds097-release-overview"><article><h3>${bi('รากฐานจาก 0.9.1', 'Foundations from 0.9.1')}</h3><p>${bi('คงเสียงแบรนด์ ภาพ ตัวอักษร โครงหน้า และตัวอย่างที่ใช้งานได้ดี พร้อมกฎ identity และ motif/animation ฉบับปัจจุบัน', 'Retain brand voice, visuals, typography, page structure and useful examples, with the current identity and motif/animation rules.')}</p></article><article><h3>${bi('เพิ่มความชัดให้สีข้อมูล', 'More deliberate data colours')}</h3><p>${bi('Story 17 สีแยกหน้าที่จาก Brand Energy · 14 sequential + 6 diverging ใช้สามสีหลักและชุด 3/5/7/9 ระดับ สีและทิศทางค่าเดิมทั้งพื้นสว่างและมืด', '17 Story colours have a separate role from Brand Energy. Fourteen sequential and six diverging families use three anchors and 3/5/7/9 classes. Both backgrounds retain the same colours and value direction.')}</p></article><article><h3>${bi('พร้อมเลือกทำเลและส่งต่องาน', 'Ready for location work and handoff')}</h3><p>${bi('เพิ่ม demand, supply, market size และบทบาท Location อีก 13 แบบ ใช้ normative 0.9.7 ฉบับเต็มคู่กับ Add-on ของผลิตภัณฑ์ และ Location Profile เมื่อเกี่ยวข้อง', 'Add demand, supply, market size and 13 more Location roles. Use the complete 0.9.7 normative with the separate product Add-on and the Location Profile when relevant.')}</p></article></div></div></section>`;
 html = html.replace('<section class="lds097-integration"', storyIntro + '<section class="lds097-integration"');
+// Current learning routes belong to the retained handbook, including direct
+// links from its menu and the relevant rules section.
+html = html.replace('</head>', `<link rel="stylesheet" href="adoption-paths.css?build=${build}"><link rel="stylesheet" href="color-discovery.css?build=${build}"><link rel="stylesheet" href="motion-discovery.css?build=${build}"></head>`);
+html = html.replace('</body>', `<script src="discovery-links.js?build=${build}"></script><script src="motion-discovery.js?build=${build}"></script></body>`);
+html = html.replace('    <section class="playground" id="play"', motionGuide.html + '\n    <section class="playground" id="play"');
+html = replaceRequired(html, '<a href="#complete-color-atlas" data-page-destination="complete-color-atlas"><span data-th>Color Atlas</span><span data-en>Color Atlas</span></a>', `<a href="#complete-color-atlas" data-page-destination="complete-color-atlas">Color Atlas</a><a href="#atlas-location-scales" data-page-destination="atlas-location-scales">${bi('สีและสเกล Location', 'Location colours & scales')}</a><a href="#identity-motion" data-page-destination="identity-motion">${bi('Animated logo และ motif', 'Animated logo & motifs')}</a>`);
+html = html.replace('<a href="normative/Landometer-Design-System-v0.9.7.md">'+bi('อ่านกฎ motion และ motif ในฉบับ 0.9.7', 'Read motion and motif rules in the complete 0.9.7 document')+'</a>', `<p><a href="#identity-motion">${bi('ดูตัวอย่าง ทดลอง และหยิบไฟล์ motion', 'See examples, try motion and get the files')}</a></p><a href="normative/Landometer-Design-System-v0.9.7.md">${bi('อ่านกฎฉบับเต็ม · §8.5–8.6', 'Read the complete rules · §8.5–8.6')}</a>`);
+html = html.replace('<a href="color-atlas.html">'+bi('เปิด Story Color Atlas', 'Open Story Color Atlas')+'</a> · <a href="location/">'+bi('เปิด Location Intelligence', 'Open Location Intelligence')+'</a>', `<a href="#atlas-story-vocabulary">${bi('ดู Story ทั้ง 17 สี', 'See all 17 Story colours')}</a> · <a href="#atlas-location-scales">${bi('ดู 12 สเกล Location', 'See the 12 Location scales')}</a> · <a href="#identity-motion">${bi('ทดลอง animated logo และ motif', 'Try animated logo and motifs')}</a>`);
+html = replaceRequired(html, '    <section class="implementation-library" id="implementation-library"', adoptionGuide.html + '\n    <section class="implementation-library" id="implementation-library"');
+html = html.replace('<a href="#complete-color-atlas" data-page-destination="complete-color-atlas">Color Atlas</a>', `<a href="#use-lds097" data-page-destination="use-lds097">${bi('ตัวอย่างและไฟล์พร้อมใช้', 'Examples & ready files')}</a><a href="#complete-color-atlas" data-page-destination="complete-color-atlas">Color Atlas</a>`);
+html = replaceRequired(html, '<a class="primary-action" href="#v091-additions" id="start">', '<a class="primary-action" href="#use-lds097" id="start">');
+html = html.replace('<span data-th>ดูตัวอย่างการนำไปใช้</span>', '<span data-th>เลือกตัวอย่างและไฟล์ตามงาน</span>').replace('<span data-en>Explore the examples</span>', '<span data-en>Find examples and files</span>');
+html = replaceRequired(html, '<div class="library-gateway-actions">', `<div class="library-gateway-actions"><a class="secondary-action" href="#use-lds097">${bi('จับคู่ตัวอย่างกับไฟล์ที่ต้องใช้', 'Match an example to its files')}</a>`);
 html = publicHead(html, 'guide');
 emit(join(site, 'index.html'), html);
 console.log(`Full DS 0.9.7 guide ${checkOnly ? 'matches deterministic build' : 'restored'} from ${sourceHash}; ${Buffer.byteLength(html)} bytes; ${scales.scales.length} current analytical records.`);

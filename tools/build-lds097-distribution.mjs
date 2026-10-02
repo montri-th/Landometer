@@ -16,7 +16,7 @@ if(atlasBuild.status!==0)process.exit(atlasBuild.status??1);
 const studyBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-study-pages.mjs')],{cwd:root,stdio:'inherit'});
 if(studyBuild.status!==0)process.exit(studyBuild.status??1);
 writeFileSync(join(site,'color-reference.html'),publicHead(readFileSync(join(site,'color-reference.html'),'utf8'),'reference'));
-writeFileSync(join(root,'deployment/index.html'),publicHead(readFileSync(join(root,'deployment/index.html'),'utf8').replaceAll('root-20261001-lds097-r2','root-20261001-lds097-r4'),'guide','v0.9.7/'));
+writeFileSync(join(root,'deployment/index.html'),publicHead(readFileSync(join(root,'deployment/index.html'),'utf8').replace(/root-2026100[12]-lds097-r[245]/g,'root-20261002-lds097-r5'),'guide','v0.9.7/'));
 const guideBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-full-guide.mjs')],{cwd:root,stdio:'inherit'});
 if(guideBuild.status!==0)process.exit(guideBuild.status??1);
 writeFileSync(join(site,'team-setup.md'),readFileSync(join(root,'docs/lds-0.9.7-team-activation.md'),'utf8').replaceAll('../plugins/landometer-design-system/','./package/').replaceAll('../deployment/v0.9.7/project-source-0.9.7.md','./project-source-0.9.7.md').replaceAll('../tools/install-lds097.py','https://github.com/montri-th/Landometer/blob/main/tools/install-lds097.py'));
@@ -58,12 +58,29 @@ Markdown contains the human rules and lossless machine contract. JSON is an alte
 |---|---|---|---:|---|
 ${documentRows}
 
+## Find examples and files for your task
+
+Start with the [twelve-task index](./index.html#use-lds097) for brand voice, imagery, identity, typography, colour, evidence, components, experience, product Add-ons, static delivery, web and AI setup. Each route pairs an example with its current files. The [current HTML starter](./examples/lds097-starter.html) can be downloaded and opened with an internet connection; offline use requires the packaged assets.
+
+### Colours and motion
+
+- [Story: 17 supporting colours](./index.html#atlas-story-vocabulary) — the shared vocabulary for charts and supporting graphics, separate from Brand Energy.
+- [Shared analytical scales](./index.html#library) — 14 sequential and 6 diverging families, with exact classes and LUT values.
+- [Location scales and roles](./index.html#atlas-location-scales) — 12 measured scales plus four qualitative SWOT lenses; use the separate Location Intelligence Profile above.
+- [Animated logo and motif examples](./index.html#identity-motion) — six shared motifs, full/quiet static SVGs, an opt-in preview and links to the exact runtime and wrapper.
+
+The full LDS normative already includes MOTION-04 and MOTIF-01…06. You do not need an older DS document for shared motion rules. Uploading a normative file makes the rules available to the AI; it does not automatically add an animation to a website, design or generated output. For implementation, use the packaged SVG, runtime, CSS, controller and wrapper linked beside the preview. Static documents and reduced-motion output use the final SVG.
+
+Product overlays still follow the matching current Add-on. ijji's four beat motifs are static in Add-on 0.5.5; its finite logo sting is a separate approved use. CityChat's conversation overlay follows Add-on 0.9.2. The gallery explains these differences before linking out to the Studios.
+
 ## Install in ChatGPT or Claude Projects
 
 1. Upload the complete base and only the applicable separate Add-on/profile to Project Sources / Files / Knowledge.
 2. Set Project Instructions: “Use the attached LDS 0.9.7 full base as current authority, with the matching product Add-on and Location Intelligence Profile when relevant. Read exact HEX/LUT/classes from the supplied sources. Use identical original analytical and role colours on light and dark backgrounds; preserve value direction. Keep evidence labels, units, denominators and meaningful zero.”
 3. After verifying the replacement sources, retire superseded DS/Add-on rulebooks from active sources. Retain briefs, research, business requirements, data and evidence. Preserve explicitly pinned historical work.
 4. Open a fresh session. Ask the tool to read documentId, releaseRef and colorSetId, then return water 7-class HEX for both themes: the arrays must match. If using the profile, check li.service_gap with zero meaning demand equals supply. Verify the file was actually read; an upload badge alone is not a runtime test.
+
+The discovery-only website revision ui-20261002-lds097-r5 does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
 
 Current identity: standalone-0.9.7-r1 · v0.9.7-owner.1 · color-srgb-10 · unsigned owner distribution.
 
@@ -98,6 +115,6 @@ while(queue.length){
  }
 }
 const files=[...filesSet].sort();
-const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261001-lds097-r4',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
+const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261002-lds097-r5',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
 writeFileSync(join(site,'site-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(`DS 0.9.7 web distribution built: ${files.length} assets`);

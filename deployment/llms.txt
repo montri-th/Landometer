@@ -2,6 +2,10 @@
 Current version: 0.9.7. Color Set: color-srgb-10. Package: v0.9.7-owner.1 (owner-approved, unsigned).
 - [Complete human handbook](https://montri-th.github.io/Landometer/v0.9.7/)
 - [Brand DNA, Voice and Visual](https://montri-th.github.io/Landometer/v0.9.7/#play)
+- [Examples and exact files by task](https://montri-th.github.io/Landometer/v0.9.7/#use-lds097)
+- [Shared animated logo and motif examples, SVGs and runtime](https://montri-th.github.io/Landometer/v0.9.7/#identity-motion)
+- [Story 17 colours and Location 12 scales in the main Atlas](https://montri-th.github.io/Landometer/v0.9.7/#atlas-current-colours)
+- [Current HTML starter, online assets required](https://montri-th.github.io/Landometer/v0.9.7/examples/lds097-starter.html)
 - [Full Implementation Library](https://montri-th.github.io/Landometer/v0.9.7/#implementation-library)
 - [Story Color Atlas](https://montri-th.github.io/Landometer/v0.9.7/color-atlas.html)
 - [Exact static color reference](https://montri-th.github.io/Landometer/v0.9.7/color-reference.html)
@@ -20,3 +24,5 @@ The separate Location Intelligence Profile defines 16 roles, 12 quantitative rec
 For contrast use meaningful borders, readable labels or neutral backing surfaces without recolouring numerical data. Package validation is not universal accessibility/CVD certification. Local installation does not activate all accounts or the team. Explicit historical pins remain valid until migration.
 - [Archived 0.9.6](https://montri-th.github.io/Landometer/v0.9.6/)
 - [Archived 0.9.5](https://montri-th.github.io/Landometer/v0.9.5/)
+
+Motion rules are included in the full base (§8.5–8.6). The package includes governed runtime and static SVGs; adding rules to Project Sources does not automatically animate output. Use final stills for static formats and reduced motion. ijji four-beat motifs remain static under Add-on 0.5.5; its finite logo sting is separate. Product overlays follow their current Add-on. Website build ui-20261002-lds097-r5 changes discovery only; complete existing 0.9.7 installations do not need replacement.

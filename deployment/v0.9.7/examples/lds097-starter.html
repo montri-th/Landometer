@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="th" data-theme="light" data-ds-version="0.9.7" data-color-registry="color-srgb-10">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>Starter HTML · LDS 0.9.7 · Requires online assets</title>
+  <meta name="description" content="A bilingual LDS 0.9.7 starter with exact versioned fonts, component CSS and clearly synthetic evidence examples. Requires an internet connection.">
+  <link rel="canonical" href="https://montri-th.github.io/Landometer/v0.9.7/examples/lds097-starter.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://montri-th.github.io/Landometer/v0.9.7/icons/icon-portfolio-32.png">
+  <link rel="stylesheet" href="https://montri-th.github.io/Landometer/v0.9.7/package/assets/lds-0.9.7/build-kit/lds-0.9.7.css">
+  <style>
+    *{box-sizing:border-box}html{scroll-padding-top:24px}body{margin:0;background:var(--surface-canvas);color:var(--text-primary);font:400 17px/1.85 "Bai Jamjuree",system-ui,sans-serif}
+    html[lang="th"] [lang="en"],html[lang="en"] [lang="th"]{display:none}
+    main{width:min(100% - 40px,1000px);margin-inline:auto;padding-block:30px 72px}header,section,footer{min-width:0}h1,h2{font:700 2.25rem/1.5 "Arvo","IBM Plex Sans Thai Looped",serif;margin:0 0 18px;overflow-wrap:anywhere}h2{font-size:1.45rem;line-height:1.7}p{margin:0 0 18px;max-width:74ch}.muted{color:var(--text-secondary)}.eyebrow{font-size:.82rem;font-weight:600;letter-spacing:.03em}
+    .top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:48px}.top p{margin:0}.controls{display:flex;flex-wrap:wrap;gap:16px}.controls label{display:grid;gap:4px;font-size:.82rem}.controls select{font:inherit;font-size:.9rem;min-height:44px;max-width:100%;padding:8px 32px 8px 12px;border:1px solid var(--border-default);border-radius:6px;background:var(--surface-card);color:var(--text-primary)}
+    .lead{font-size:1.15rem}.online-note{padding:20px 24px;border:1px solid var(--border-default);border-radius:10px;background:var(--surface-alt);margin:24px 0 32px}.online-note p{margin:0}.online-note strong{display:block;margin-bottom:6px}
+    section{padding-block:30px;border-bottom:1px solid var(--border-hairline)}.two-column{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-block:20px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:9px 18px;border:1px solid var(--border-default);border-radius:6px;background:var(--surface-card);color:var(--text-primary);font-weight:600;text-decoration:none;text-align:center}.button.primary{border-color:var(--border-emphasis);background:var(--surface-blue-tint)}a{color:var(--interaction-accent);text-underline-offset:.2em;overflow-wrap:anywhere}a:focus-visible,select:focus-visible{outline:3px solid var(--interaction-focus-ring);outline-offset:4px}
+    .lds-evidence-card{max-inline-size:none;min-width:0;padding:24px;font-size:1rem;line-height:1.75}.lds-evidence-card__value{font-weight:400;font-size:2.1rem;margin-block:8px}.lds-evidence-card__head,.lds-evidence-card__foot{line-height:1.75}.lds-evidence-card dl{grid-template-columns:90px minmax(0,1fr);gap:7px 12px}.lds-evidence-card dt,.lds-evidence-card dd,.lds-evidence-card__state{font-size:.85rem}.lds-evidence-card__foot{margin-top:12px;font-size:.82rem}.lds-table{font-size:1rem;line-height:1.85}.lds-table th{font-size:.86rem}.lds-table th,.lds-table td{padding:14px 10px}.lds-table .lds-state-label{line-height:1.75!important}.table-wrap{min-width:0;overflow-x:auto}.lds-table caption{font-size:.85rem;font-weight:400;color:var(--text-secondary);line-height:1.8;padding-bottom:16px}.label-en{display:none}html[lang="en"] .label-en{display:block}html[lang="en"] .label-th{display:none}
+    .steps{padding-inline-start:24px;margin:0}.steps li{padding-left:6px;margin-bottom:14px}code{font:400 .82rem/1.6 "JetBrains Mono","IBM Plex Sans Thai",monospace;overflow-wrap:anywhere}footer{padding-top:28px;font-size:.85rem;color:var(--text-secondary)}footer p{margin-bottom:10px}
+    @media(max-width:700px){main{width:calc(100% - 32px);padding-top:20px}.top{margin-bottom:32px;gap:20px}.two-column{grid-template-columns:1fr;gap:24px}h1{font-size:1.9rem;line-height:1.6}h2{font-size:1.25rem}.online-note{padding:18px}.lds-evidence-card{padding:20px}.actions{flex-direction:column;align-items:stretch}}
+    @media(max-width:600px){.lds-table th[scope="row"]{padding:6px 0;color:var(--text-primary);font-size:1rem}.lds-table td{padding:5px 0}.lds-table td::before{display:none}.lds-table td.num{text-align:start}.lds-table td .mobile-label{display:block;color:var(--text-metadata);font-size:.8rem}.lds-table tr{padding-block:14px}}
+    @media(min-width:601px){.mobile-label{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="top">
+    <p class="eyebrow">Starter HTML · LDS 0.9.7<br><span lang="th">ใช้ assets ออนไลน์ · ต้องเชื่อมต่ออินเทอร์เน็ต</span><span lang="en">Requires online assets · Internet connection needed</span></p>
+    <div class="controls">
+      <label><span lang="th">ภาษา</span><span lang="en">Language</span><select id="language" aria-label="Language / ภาษา"><option value="th">ไทย</option><option value="en">English</option></select></label>
+      <label><span lang="th">พื้นหลัง</span><span lang="en">Theme</span><select id="theme"><option value="light">Light</option><option value="dark">Dark</option></select></label>
+    </div>
+  </div>
+  <header>
+    <h1><span lang="th">เริ่มจากข้อมูลที่ชัด<br>แล้วค่อยต่อยอดงานของคุณ</span><span lang="en">Start with clear evidence.<br>Build from there.</span></h1>
+    <p class="lead"><span lang="th">ไฟล์ตั้งต้นสำหรับหน้าเว็บที่ใช้ตัวอักษร สีพื้นผิว และองค์ประกอบจาก LDS 0.9.7 พร้อมตัวอย่างข้อมูลสมมติที่ระบุที่มาและข้อจำกัด</span><span lang="en">A starting page using LDS 0.9.7 typography, surfaces and components, with clearly labelled synthetic evidence examples.</span></p>
+    <aside class="online-note"><strong><span lang="th">ดาวน์โหลดแล้วเปิดได้ โดยใช้อินเทอร์เน็ต</span><span lang="en">Download and open with an internet connection</span></strong><p><span lang="th">CSS และฟอนต์โหลดจาก URL ของรุ่น 0.9.7 ที่ระบุไว้ในไฟล์ หากต้องการใช้ออฟไลน์ ให้ดาวน์โหลดแพ็กเกจและคงโครงสร้างโฟลเดอร์ของ assets แล้วเปลี่ยนลิงก์ stylesheet ให้ชี้ไปที่ build-kit/lds-0.9.7.css ในเครื่อง</span><span lang="en">CSS and fonts load from the explicit 0.9.7 URLs in this file. For offline use, download the package, preserve its asset folders and point the stylesheet link to your local build-kit/lds-0.9.7.css.</span></p></aside>
+  </header>
+  <section class="two-column" aria-labelledby="actions-title">
+    <div><p class="eyebrow">01 · ACTIONS</p><h2 id="actions-title"><span lang="th">ลิงก์ที่บอกปลายทางชัด</span><span lang="en">Actions with a clear destination</span></h2><p class="muted"><span lang="th">ใช้ข้อความบอกสิ่งที่จะเปิดจริง ปุ่มในตัวอย่างนี้เชื่อมไปยังคู่มือและแพ็กเกจของรุ่นเดียวกัน</span><span lang="en">Name what opens next. These example actions lead to the handbook and assets for the same release.</span></p></div>
+    <div class="actions"><a class="button primary" href="https://montri-th.github.io/Landometer/v0.9.7/"><span lang="th">เปิดคู่มือ LDS 0.9.7</span><span lang="en">Open the LDS 0.9.7 handbook</span></a><a class="button" href="https://github.com/montri-th/Landometer/releases/tag/v0.9.7"><span lang="th">ดาวน์โหลดแพ็กเกจ</span><span lang="en">Download release assets</span></a></div>
+  </section>
+  <section class="two-column" aria-labelledby="evidence-title">
+    <div><p class="eyebrow">02 · EVIDENCE CARD</p><h2 id="evidence-title"><span lang="th">แสดงค่า หน่วย และที่มาคู่กัน</span><span lang="en">Keep value, unit and source together</span></h2><p class="muted"><span lang="th">ตัวเลขทั้งหมดในหน้านี้สร้างขึ้นเพื่อสาธิตหน้าตา ไม่มีข้อมูลจากทำเลจริง และไม่ใช่หลักฐานจำนวนร้านหรือลูกค้า</span><span lang="en">Every number on this page is synthetic and exists only to demonstrate presentation. It does not describe a real location, business count or customer population.</span></p></div>
+    <article class="lds-evidence-card" data-evidence="synthetic" aria-labelledby="card-title">
+      <div class="lds-evidence-card__head"><strong id="card-title"><span lang="th">จุดตัวอย่างในกลุ่ม A</span><span lang="en">Example points in group A</span></strong><span class="lds-trust-badge"><span lang="th">ข้อมูลสมมติ</span><span lang="en">Synthetic</span></span></div>
+      <div class="lds-evidence-card__value">12 <span class="lds-evidence-card__unit"><span lang="th">จุด</span><span lang="en">points</span></span></div>
+      <p class="lds-evidence-card__state"><span lang="th">ใช้ทดสอบการนำเสนอเท่านั้น</span><span lang="en">Presentation fixture only</span></p>
+      <dl><dt><span lang="th">ที่มา</span><span lang="en">Source</span></dt><dd><span lang="th">ตัวเลขที่กำหนดในไฟล์ตัวอย่างนี้</span><span lang="en">Values authored in this example file</span></dd><dt><span lang="th">ช่วงเวลา</span><span lang="en">Period</span></dt><dd><span lang="th">ไม่ใช่รอบสำรวจจริง</span><span lang="en">No real observation period</span></dd><dt><span lang="th">ขอบเขต</span><span lang="en">Scope</span></dt><dd><span lang="th">กลุ่มสมมติ A ไม่มีพิกัดจริง</span><span lang="en">Synthetic group A, no real coordinates</span></dd></dl>
+      <div class="lds-evidence-card__foot"><a href="#example-table"><span lang="th">อ่านตารางประกอบ</span><span lang="en">Read the accompanying table</span></a></div>
+    </article>
+  </section>
+  <section id="example-table" aria-labelledby="table-title">
+    <p class="eyebrow">03 · DATA TABLE</p><h2 id="table-title"><span lang="th">ไม่มีข้อมูล กับศูนย์ เป็นคนละสถานะ</span><span lang="en">Missing and zero are different states</span></h2>
+    <div class="table-wrap"><table class="lds-table" data-evidence="synthetic"><caption><span lang="th">ข้อมูลสมมติ 3 กลุ่ม · หน่วย: จุด · ไม่มีขอบเขตพื้นที่หรือรอบสำรวจจริง</span><span lang="en">Three synthetic groups · Unit: points · No real geography or observation period</span></caption><thead><tr><th scope="col"><span lang="th">กลุ่ม</span><span lang="en">Group</span></th><th scope="col" class="num"><span lang="th">จำนวนจุด</span><span lang="en">Point count</span></th><th scope="col"><span lang="th">คำอธิบาย</span><span lang="en">Explanation</span></th></tr></thead><tbody>
+      <tr><th scope="row">A</th><td class="num"><span class="mobile-label"><span lang="th">จำนวนจุด</span><span lang="en">Point count</span></span>12</td><td><span lang="th">ค่าที่กำหนดไว้ในตัวอย่าง</span><span lang="en">A value specified in this fixture</span></td></tr>
+      <tr><th scope="row">B</th><td class="num" data-state="measured_zero"><span class="mobile-label"><span lang="th">จำนวนจุด</span><span lang="en">Point count</span></span><span class="lds-cell-glyph">0</span><span class="lds-state-label"><span lang="th">ศูนย์ที่ระบุไว้ในตัวอย่าง</span><span lang="en">Explicit zero in the fixture</span></span></td><td><span lang="th">เก็บค่า 0 ไว้ ไม่แทนด้วยช่องว่าง</span><span lang="en">Keep the explicit 0 rather than a blank</span></td></tr>
+      <tr data-state="no_data"><th scope="row">C</th><td class="num" data-state="no_data"><span class="mobile-label"><span lang="th">จำนวนจุด</span><span lang="en">Point count</span></span><span class="lds-cell-glyph" aria-hidden="true">—</span><span class="lds-state-label"><span lang="th">ไม่มีข้อมูล</span><span lang="en">No data</span></span></td><td><span lang="th">ตัวอย่างนี้ไม่ได้กำหนดค่า ห้ามสรุปว่าเป็นศูนย์</span><span lang="en">This fixture has no value; do not infer zero</span></td></tr>
+    </tbody></table></div>
+  </section>
+  <section aria-labelledby="next-title"><h2 id="next-title"><span lang="th">ก่อนนำไปใช้กับงานจริง</span><span lang="en">Before using real evidence</span></h2><ol class="steps"><li><span lang="th">แทนข้อมูลสมมติด้วยข้อมูลที่ตรวจแล้ว ระบุแหล่งข้อมูล หน่วย ช่วงเวลา ขอบเขต และข้อจำกัด</span><span lang="en">Replace the fixture with checked evidence, retaining source, unit, period, scope and limitations.</span></li><li><span lang="th">ถ้าเพิ่มกราฟ ให้เลือก exact scale ตามตัวแปรและตัวหารจาก Color Atlas ไม่สร้างสเกลใหม่ด้วยสีหัวท้าย</span><span lang="en">For charts, choose an exact scale by metric and denominator from the Color Atlas. Do not derive a new ramp from two endpoints.</span></li><li><span lang="th">ถ้าเพิ่มโลโก้หรือ motif ให้ใช้ไฟล์และตัวควบคุมที่กำหนดไว้ในคู่มือ หน้าตั้งต้นนี้ยังไม่ได้เปิดใช้ animation</span><span lang="en">For logos or motifs, use the approved assets and controllers in the handbook. This starter does not activate animation.</span></li></ol><div class="actions"><a href="https://montri-th.github.io/Landometer/v0.9.7/normative/Landometer-Design-System-v0.9.7.md"><span lang="th">อ่าน normative ฉบับเต็ม</span><span lang="en">Read the complete normative</span></a><a href="https://montri-th.github.io/Landometer/v0.9.7/color-atlas.html"><span lang="th">เลือกสเกลข้อมูล</span><span lang="en">Choose an analytical scale</span></a></div></section>
+  <footer><p>LDS 0.9.7 · v0.9.7-owner.1 · color-srgb-10</p><p><span lang="th">ไฟล์ตัวอย่างสำหรับเริ่มงาน ไม่ใช่การรับรองว่างานที่นำไปต่อยอดผ่านการตรวจทุกด้าน</span><span lang="en">A starting example, not a certification of every downstream implementation.</span></p></footer>
+</main>
+<script>
+  // Optional presentation controls only; all content is already in the HTML.
+  const root = document.documentElement;
+  const language = document.getElementById('language');
+  const theme = document.getElementById('theme');
+  const params = new URLSearchParams(location.search);
+  language.value = params.get('lang') === 'en' ? 'en' : 'th';
+  theme.value = params.get('theme') === 'dark' ? 'dark' : 'light';
+  const apply = () => { root.lang = language.value; root.dataset.theme = theme.value; };
+  language.addEventListener('change', apply);
+  theme.addEventListener('change', apply);
+  apply();
+</script>
+</body>
+</html>
