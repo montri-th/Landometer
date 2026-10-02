@@ -24,7 +24,7 @@ const scales = JSON.parse(readFileSync(join(machine, 'color-srgb-10.scales.json'
 const policy = JSON.parse(readFileSync(join(machine, 'policy.json'), 'utf8'));
 const allTokens = JSON.parse(readFileSync(join(machine, 'tokens.v0.9.7.json'), 'utf8'));
 const values = registry.values;
-const build = 'ui-20261002-lds097-r6';
+const build = 'ui-20261002-lds097-r7';
 const packagePath = 'package/assets/lds-0.9.7';
 const checkOnly = process.argv.includes('--check');
 mkdirSync(site, {recursive: true});
