@@ -16,7 +16,7 @@ if(atlasBuild.status!==0)process.exit(atlasBuild.status??1);
 const studyBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-study-pages.mjs')],{cwd:root,stdio:'inherit'});
 if(studyBuild.status!==0)process.exit(studyBuild.status??1);
 writeFileSync(join(site,'color-reference.html'),publicHead(readFileSync(join(site,'color-reference.html'),'utf8'),'reference'));
-writeFileSync(join(root,'deployment/index.html'),publicHead(readFileSync(join(root,'deployment/index.html'),'utf8').replace(/root-2026100[12]-lds097-r[24567]/g,'root-20261002-lds097-r7'),'guide','v0.9.7/'));
+writeFileSync(join(root,'deployment/index.html'),publicHead(readFileSync(join(root,'deployment/index.html'),'utf8').replace(/root-2026100[12]-lds097-r[245678]/g,'root-20261002-lds097-r8'),'guide','v0.9.7/'));
 const guideBuild=spawnSync(process.execPath,[join(root,'tools/build-lds097-full-guide.mjs')],{cwd:root,stdio:'inherit'});
 if(guideBuild.status!==0)process.exit(guideBuild.status??1);
 writeFileSync(join(site,'team-setup.md'),readFileSync(join(root,'docs/lds-0.9.7-team-activation.md'),'utf8').replaceAll('../plugins/landometer-design-system/','./package/').replaceAll('../deployment/v0.9.7/project-source-0.9.7.md','./project-source-0.9.7.md').replaceAll('../tools/install-lds097.py','https://github.com/montri-th/Landometer/blob/main/tools/install-lds097.py'));
@@ -80,7 +80,7 @@ Product overlays still follow the matching current Add-on. ijji's four beat moti
 3. After verifying the replacement sources, retire superseded DS/Add-on rulebooks from active sources. Retain briefs, research, business requirements, data and evidence. Preserve explicitly pinned historical work.
 4. Open a fresh session. Ask the tool to read documentId, releaseRef and colorSetId, then return water 7-class HEX for both themes: the arrays must match. If using the profile, check li.service_gap with zero meaning demand equals supply. Verify the file was actually read; an upload badge alone is not a runtime test.
 
-The website revision ui-20261002-lds097-r7 adds explicit Full/Quiet motif preview selection and matching downloads. It does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
+The website revision ui-20261002-lds097-r8 unifies Story, shared analytical families and Location scales in one section, and removes only the duplicate logo-spectrum display. It does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
 
 Current identity: standalone-0.9.7-r1 · v0.9.7-owner.1 · color-srgb-10 · unsigned owner distribution.
 
@@ -115,6 +115,6 @@ while(queue.length){
  }
 }
 const files=[...filesSet].sort();
-const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261002-lds097-r7',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
+const manifest={schema:'lds-public-site-1',designSystemVersion:'0.9.7',colorSetId:'color-srgb-10',packageId:'v0.9.7-owner.1',artifactBuildId:'ui-20261002-lds097-r8',entrypointBuildId,approval:'owner-approved',cryptographicSignature:'not-claimed',indexable:false,evidenceStatus:'source_limited_with_synthetic_examples',artifactConformance:'bounded-checks-only',contentBaseline:'ui-20260902-08 (0.9.1 full handbook)',assets:files.map(p=>({path:relative(deployment,p),bytes:statSync(p).size,sha256:createHash('sha256').update(readFileSync(p)).digest('hex')}))};
 writeFileSync(join(site,'site-manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 console.log(`DS 0.9.7 web distribution built: ${files.length} assets`);

@@ -41,7 +41,7 @@ Product overlays still follow the matching current Add-on. ijji's four beat moti
 3. After verifying the replacement sources, retire superseded DS/Add-on rulebooks from active sources. Retain briefs, research, business requirements, data and evidence. Preserve explicitly pinned historical work.
 4. Open a fresh session. Ask the tool to read documentId, releaseRef and colorSetId, then return water 7-class HEX for both themes: the arrays must match. If using the profile, check li.service_gap with zero meaning demand equals supply. Verify the file was actually read; an upload badge alone is not a runtime test.
 
-The website revision ui-20261002-lds097-r7 adds explicit Full/Quiet motif preview selection and matching downloads. It does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
+The website revision ui-20261002-lds097-r8 unifies Story, shared analytical families and Location scales in one section, and removes only the duplicate logo-spectrum display. It does not change any normative document or release archive. Existing complete 0.9.7 installations need no reinstall for this website revision.
 
 Current identity: standalone-0.9.7-r1 · v0.9.7-owner.1 · color-srgb-10 · unsigned owner distribution.
 

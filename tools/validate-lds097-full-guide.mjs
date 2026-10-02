@@ -3,6 +3,7 @@
 import {readFileSync} from 'node:fs';
 import {resolve, join} from 'node:path';
 import {createHash} from 'node:crypto';
+import vm from 'node:vm';
 
 const root = resolve(import.meta.dirname, '..');
 const read = path => readFileSync(join(root, path), 'utf8');
@@ -67,7 +68,7 @@ function normalizePermittedIdentity(value) {
   return value.replace(/v?0\.9\.(?:1(?:-r8|-mp7)?|7(?:-owner\.1)?)/g, '<current-release>')
     .replace(/color-srgb-(?:05|10)/g, '<current-color-set>')
     .replace(/2026-(?:09-02|10-01)/g, '<release-date>')
-    .replace(/(?:ui-20260902-08|ui-20261002-lds097-r7)/g, '<current-site-build>');
+    .replace(/(?:ui-20260902-08|ui-20261002-lds097-r8)/g, '<current-site-build>');
 }
 // Reviewed corrections to inherited motion policy and current source receipts.
 // Apply only to the expected historical text. Applying these to both sides
@@ -131,7 +132,7 @@ for (const state of ['measured', 'measured_zero', 'no_data', 'out_of_scope', 'su
 const guideOverrides = read('deployment/v0.9.7/full-guide.css').replace(/\/\*[\s\S]*?\*\//g, '');
 const identityClarification=element(html,'v097-identity-clarification');
 check(text(identityClarification).includes('Wordmark เปลี่ยนสีได้ รวมถึงตัวอักษรละสี')&&text(identityClarification).includes('Official logos may appear on readable light or dark backgrounds.'),'current owner identity clarification is visible in Thai and English');
-check(html.includes('href="full-guide.css?build=ui-20261002-lds097-r7"'), 'current guide loads navigation and integration overrides');
+check(html.includes('href="full-guide.css?build=ui-20261002-lds097-r8"'), 'current guide loads navigation and integration overrides');
 for (const state of ['page', 'location']) {
   const rules = [...guideOverrides.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(rule => rule[1].split(',').some(selector => selector.trim() === `.nav-panel a[aria-current="${state}"]`));
   const shadows = rules.flatMap(rule => [...rule[2].matchAll(/(?:^|;)\s*box-shadow\s*:\s*([^;]+)/g)].map(match => match[1].trim()));
@@ -161,17 +162,27 @@ for (const lens of ['dna', 'voice', 'visual']) {
 const rootTag = html.match(/<html\b[^>]*>/i)?.[0] ?? '';
 for (const [attribute, value] of [
   ['data-ds-version', '0.9.7'], ['data-machine-package-identity', 'v0.9.7-owner.1'],
-  ['data-color-registry', 'color-srgb-10'], ['data-artifact-build', 'ui-20261002-lds097-r7']
+  ['data-color-registry', 'color-srgb-10'], ['data-artifact-build', 'ui-20261002-lds097-r8']
 ]) check(rootTag.includes(`${attribute}="${value}"`), `current guide metadata ${attribute}`);
 check(!/data-(?:ds-version|authoring-revision|ruleset|machine-package-identity|color-registry)="[^"]*(?:0\.9\.1|color-srgb-05)/.test(rootTag), 'historical source identity is not current page authority');
 check(/<link\b[^>]*rel="canonical"[^>]*href="https:\/\/montri-th\.github\.io\/Landometer\/v0\.9\.7\/"/.test(html), 'current guide canonical URL');
 const atlas = element(html, 'complete-color-atlas') ?? '';
-for (const family of ['identity', 'foundation', 'semantic', 'map', 'depth']) {
+for (const family of ['foundation', 'semantic', 'map', 'depth']) {
   const before = atlasFamily(original, family), after = atlasFamily(html, family);
   check(Boolean(after), `complete atlas retains non-analytical role group ${family}`);
   check(Boolean(before) && normalizePermittedIdentity(text(before).replace('แสดงเพื่ออ้างอิงไฟล์ asset เท่านั้น ห้ามสร้างใหม่ recolor หรือยกไปเป็น UI token แม้รหัสสีจะตรงกับสีอื่น', 'สีในสัญลักษณ์คงตามไฟล์ที่อนุมัติ ไม่ยกไปเป็น UI token ส่วน wordmark เปลี่ยนสีได้ รวมถึงตัวอักษรละสี โดยคงรูปทรงและสัดส่วน และตรวจให้อ่านได้บนพื้นจริง ตาม LOGO-01').replace('Asset reference only. Never rebuild, recolor, or promote these values into UI tokens—even when a hex value matches another role.', 'Keep symbol colours in the approved artwork; do not promote them into UI tokens. LOGO-01 permits wordmark recolouring, including per-letter colour, with letterforms and proportions preserved and readability checked on the actual background.')) === normalizePermittedIdentity(text(after)), `complete atlas preserves role guidance ${family}`);
   check(JSON.stringify(inlineHex(before)) === JSON.stringify(inlineHex(after)), `complete atlas preserves explicit non-analytical swatches ${family}`);
 }
+// The owner retired the duplicate frozen-logo display, not its normative
+// identity policy or artwork. Preserve each original Brand/Energy card exactly.
+const previousIdentity = atlasFamily(original, 'identity') ?? '';
+const currentIdentity = atlasFamily(html, 'identity') ?? '';
+const identityCards = source => [...source.matchAll(/<(figure)\b[^>]*class="atlas-token-card"[^>]*>/g)].map(start => balancedElement(source, start));
+const previousBrandCards = identityCards(previousIdentity), currentBrandCards = identityCards(currentIdentity);
+check(previousBrandCards.length === 7 && JSON.stringify(currentBrandCards) === JSON.stringify(previousBrandCards), 'all seven Brand and Energy cards remain byte-preserved');
+check(!currentIdentity.includes('atlas-subfamily') && !/Frozen official-logo spectrum|สเปกตรัมโลโก้แบบแช่แข็ง|class="atlas-token-card atlas-token-card--asset"/.test(currentIdentity), 'duplicate frozen-logo palette is absent from the identity display');
+check(currentIdentity.includes('href="#v097-identity-clarification"'), 'identity display leads to current wordmark and background guidance');
+check(text(currentIdentity).includes('Use only 1–2 energy colors in one scene; never alias them to data, state, map, focus, or logo roles.'), 'Brand Energy role restrictions remain visible');
 const sharedGradients = source => (atlasFamily(source, 'gradients') ?? '').split('<div class="atlas-subfamily">')[0];
 check(text(sharedGradients(original)).length > 100 && text(sharedGradients(original)) === text(sharedGradients(html)), 'complete atlas retains all seven shared gradient jobs and guidance');
 check(JSON.stringify(inlineHex(sharedGradients(original))) === JSON.stringify(inlineHex(sharedGradients(html))), 'complete atlas retains exact shared gradient swatches');
@@ -210,11 +221,55 @@ const inlineAtlas = element(atlas, 'lds097-color-atlas') ?? '';
 check(html.includes('<script src="atlas-locale.js"></script>'), 'embedded atlas follows the handbook language with a scoped display-only locale runtime');
 check(/^<div\b[^>]*class="[^"]*\blds097-color-atlas\b/.test(inlineAtlas), 'approved atlas is integrated inline in the retained complete-atlas location');
 check(!/<iframe\b/i.test(inlineAtlas) && !/<iframe\b[^>]*id="lds097-color-atlas"/.test(atlas), 'atlas uses normal page content without a nested scrolling frame');
-for (const id of ['categories', 'library', 'scale-lab', 'atmospheres', 'review-notes']) {
+for (const id of ['categories', 'atmospheres', 'review-notes', 'family-library', 'analytical-full-tables', 'scale-lab']) {
   const expected = element(standaloneAtlas, id), actual = element(inlineAtlas, id);
   check(Boolean(expected) && actual === expected, `inline atlas preserves complete approved static section ${id}`);
 }
-check(!element(inlineAtlas, 'start') && !/<main\b|<nav\b/.test(inlineAtlas), 'inline atlas does not duplicate page introduction or navigation');
+check(!element(inlineAtlas, 'start') && !/<main\b/.test(inlineAtlas), 'inline atlas does not duplicate page introduction or main landmark');
+const analyticalLibrary = element(inlineAtlas, 'library') ?? '';
+check(/^<section\b/.test(analyticalLibrary), 'all analytical collections share one native library section');
+for (const id of ['atlas-current-colours', 'atlas-story-vocabulary', 'atlas-shared-scales', 'atlas-location-scales', 'atlas-location-lab', 'atlas-location-roles']) {
+  check(Boolean(element(analyticalLibrary, id)), `analytical library contains ${id}`);
+}
+const sharedScaleGroup = element(analyticalLibrary, 'atlas-shared-scales') ?? '';
+const sharedGallery = element(sharedScaleGroup, 'atlas-shared-gallery') ?? '';
+check(Boolean(element(sharedScaleGroup, 'scale-lab')) && /^<details\b/.test(sharedGallery), 'shared scales pair the retained lab with an optional complete gallery');
+for (const id of ['family-library', 'analytical-full-tables']) check(Boolean(element(sharedGallery, id)), `shared gallery contains ${id}`);
+check(sharedScaleGroup.indexOf('id="scale-lab"') < sharedScaleGroup.indexOf('id="atlas-shared-gallery"'), 'shared scale lab precedes its complete gallery');
+for (const mode of ['candidate','baseline']) {
+  const button = new RegExp(`<button\\b[^>]*data-library-mode="${mode}"[^>]*>`);
+  check(button.test(sharedGallery), `shared-only comparison control remains in the shared gallery: ${mode}`);
+  check(!button.test(analyticalLibrary.replace(sharedGallery,'')), `shared-only comparison does not control Location colours: ${mode}`);
+}
+check(analyticalLibrary.includes('Every analytical family') && /32/.test(text(analyticalLibrary.slice(0,analyticalLibrary.indexOf('id="atlas-story-vocabulary"')))), 'one common analytical heading identifies all 32 scales');
+const localNavs = [...inlineAtlas.matchAll(/<(nav)\b[^>]*>/g)].map(start => balancedElement(inlineAtlas,start));
+check(localNavs.length > 0 && localNavs.every(nav => nav.includes('lds097-discovery__links') && analyticalLibrary.includes(nav)), 'embedded navigation is limited to the unified collection shortcuts');
+
+// Execute the actual embedded controls with unrelated Location data-count
+// elements present. A document-wide selector would attach shared click behavior
+// to the Location lab, resetting its neighbour when a map or legend is clicked.
+{
+  const nodes=new Map();
+  const node=(id,dataset={})=>{
+    const value={id,dataset,value:'',innerHTML:'',textContent:'',listeners:{},attrs:{},classList:{add(){},remove(){}},setAttribute(name,value){this.attrs[name]=value;},addEventListener(type,fn){this.listeners[type]=fn;},scrollIntoView(){},focus(){}};
+    nodes.set(id,value);return value;
+  };
+  for(const id of ['lds097-color-atlas','scale-stage','exact-colors','scale-choice','selection-announcement','family-library','categories-stage','old-categories','vision-choice','vision-note','gradient-stage'])node(id);
+  const counts=[41,3,5,7,9].map(n=>node(`shared-count-${n}`,{count:String(n)}));
+  const unrelated=[node('atlas-location-lab',{count:'9'}),node('location-strip',{count:'41'})];
+  const document={getElementById(id){return nodes.get(id);},querySelectorAll(selector){
+    if(selector==='[data-count]')return [...counts,...unrelated];
+    if(selector==='#scale-controls button[data-count]')return counts;
+    if(['[data-library-mode]','[data-light-variant]','[data-gradient]'].includes(selector))return [];
+    throw new Error(`Unmodelled embedded-control selector: ${selector}`);
+  }};
+  const renderer={stage(_data,f,n){return `${f}:${n}`;},tables(_data,f,n){return `${f}:${n}`;},effective(_family,n){return n;}};
+  vm.runInNewContext(read('deployment/v0.9.7/embedded-atlas.js'),{document,window:{LDS_CANDIDATE:{scales:[{id:'count',label:'Count'}]},CandidateRender:renderer,PreviewRender:{}}});
+  counts.find(n=>n.dataset.count==='7').listeners.click();
+  check(nodes.get('scale-stage').innerHTML==='count:7'&&nodes.get('exact-colors').innerHTML==='count:7','actual shared controls update seven-class preview and exact values together');
+  for(const foreign of unrelated){foreign.listeners.click?.();check(!foreign.listeners.click&&Object.keys(foreign.attrs).length===0,`shared control behavior does not attach to ${foreign.id}`);}
+  check(nodes.get('scale-stage').innerHTML==='count:7','clicking Location data elements cannot reset the shared selected count');
+}
 const staticHtml = html.replace(/<!--[\s\S]*?-->/g, '').replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '');
 const domIds = [...staticHtml.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
 check(new Set(domIds).size === domIds.length, 'integrated guide has no duplicate DOM IDs');

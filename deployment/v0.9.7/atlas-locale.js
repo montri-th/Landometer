@@ -62,13 +62,16 @@
  if(typeof document==='undefined')return;
  const atlas=document.getElementById('lds097-color-atlas');if(!atlas)return;
  const textSource=new WeakMap(),attributeSource=new WeakMap();
+ // Bilingual spans and the Location lab own their language state. Only the
+ // retained atlas text is translated here; its shared #scale-lab remains in scope.
+ const excluded='script,style,code,pre,kbd,samp,textarea,[contenteditable],[data-th],[data-en],#atlas-location-lab';
  function rendition(cache,key,current,language){let source=cache.get(key);if(!source||current!==source.th&&current!==source.en){source={th:current,en:translate(current)};cache.set(key,source);}return source[language];}
  function apply(){
   const language=document.documentElement.dataset.locale==='en'?'en':'th';
-  const walker=document.createTreeWalker(atlas,NodeFilter.SHOW_TEXT,{acceptNode:node=>node.parentElement?.closest('script,style,code,pre,kbd,samp,textarea,[contenteditable]')?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  const walker=document.createTreeWalker(atlas,NodeFilter.SHOW_TEXT,{acceptNode:node=>node.parentElement?.closest(excluded)?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
   let node;while((node=walker.nextNode())){const next=rendition(textSource,node,node.data,language);if(node.data!==next)node.data=next;}
   for(const element of [atlas,...atlas.querySelectorAll('[aria-label],[title],[alt]')]){
-   if(element.closest('script,style,code,pre,kbd,samp,textarea,[contenteditable]'))continue;
+   if(element.closest(excluded))continue;
    let cache=attributeSource.get(element);if(!cache){cache=new Map();attributeSource.set(element,cache);}
    for(const name of ['aria-label','title','alt'])if(element.hasAttribute(name)){const current=element.getAttribute(name),next=rendition(cache,name,current,language);if(current!==next)element.setAttribute(name,next);}
   }
