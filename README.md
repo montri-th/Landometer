@@ -10,6 +10,11 @@ Brand Energy, brand voice, typography, identity, wordmark colour permission, sha
 
 ## Use it
 
+- [Examples and files by task](https://montri-th.github.io/Landometer/v0.9.7/#use-lds097) — twelve routes covering voice, imagery, identity, typography, colours, evidence, components, experience, products, export, web and AI setup.
+- [Story and Location inside the complete Atlas](https://montri-th.github.io/Landometer/v0.9.7/#atlas-current-colours)
+- [Animated logo and motifs: preview, SVG and runtime](https://montri-th.github.io/Landometer/v0.9.7/#identity-motion)
+- [Current online HTML starter](https://montri-th.github.io/Landometer/v0.9.7/examples/lds097-starter.html) — downloadable; requires online assets, with offline setup instructions.
+
 - [Complete standalone LDS normative](plugins/landometer-design-system/assets/lds-0.9.7/normative/Landometer-Design-System-v0.9.7.md)
 - [Separate Location Intelligence Profile](plugins/landometer-design-system/assets/lds-0.9.7/normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md)
 - [Project Sources and product Add-ons](deployment/v0.9.7/project-source-0.9.7.md)
@@ -26,8 +31,10 @@ python3 tools/install-lds097.py --apply    # local clients, with backups
 node tools/validate-release.mjs
 ```
 
-Release identity: `0.9.7` · `color-srgb-10` · `v0.9.7-owner.1` · `standalone-0.9.7-r1` · website `ui-20261001-lds097-r1`.
+Release identity: `0.9.7` · `color-srgb-10` · `v0.9.7-owner.1` · `standalone-0.9.7-r1` · website `ui-20261002-lds097-r5`.
 
 This is an owner-approved unsigned distribution. Package integrity is separate from artifact conformance, accessibility, account activation and team adoption. Historical [0.9.6](https://montri-th.github.io/Landometer/v0.9.6/) and [0.9.5](https://montri-th.github.io/Landometer/v0.9.5/) pages and downloads remain byte-preserved for explicit historical pins. New work uses the current release; migration of existing work must be authorized.
 
 `plugins/landometer-design-system/` is the portable source. The current web build copies it into generated `deployment/v0.9.7/package/` and hashes served assets. Historical versioned packages are frozen. ZIPs are release assets, not generated archives committed into source. CI retains its stable `validate-lds095` check name for branch protection while running current release checks. Handbook pages remain noindex; examples are synthetic.
+
+The `ui-20261002-lds097-r5` website revision improves discovery and examples without changing normative, analytical values, approved artwork or release archives. No reinstall is required for an existing complete 0.9.7 installation. Rules do not automatically embed animation; use the linked runtime or static SVG for the output. The website starter supersedes the stale version references in the frozen package's `build-kit/example.html` for current learning; the package itself is not silently rewritten.

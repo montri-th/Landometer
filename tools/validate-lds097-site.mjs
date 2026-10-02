@@ -15,9 +15,9 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 check(manifest.designSystemVersion === '0.9.7' && manifest.colorSetId === 'color-srgb-10', 'release identity');
 check(manifest.packageId === 'v0.9.7-owner.1', 'current approved package identity');
-check(manifest.artifactBuildId === 'ui-20261001-lds097-r4', 'full-guide website build identity');
+check(manifest.artifactBuildId === 'ui-20261002-lds097-r5', 'full-guide website build identity');
 const rootEntry = readFileSync(join(root, 'deployment/index.html'), 'utf8');
-check(manifest.entrypointBuildId === 'root-20261001-lds097-r4' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
+check(manifest.entrypointBuildId === 'root-20261002-lds097-r5' && rootEntry.includes(`data-artifact-build="${manifest.entrypointBuildId}"`), 'separate root navigation build identity');
 const rootRedirect = rootEntry.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 for (const [search, hash] of [
   ['', ''], ['', '#library-resources'], ['?lang=en&theme=dark', ''],
@@ -240,7 +240,7 @@ for(const file of ['color-atlas.html','location/index.html']){const source=read(
 check(storyHtml.includes('Original colours')&&locationHtml.includes('Original HEX and LUT'),'original colour policy is visible');
 check(!read('location/location-app.js').includes('Higher values become lighter'),'Location has no reversed dark direction');
 check(!locationHtml.includes('adapt lightness and chroma'),'Location does not teach retired derivation');
-check(html.includes('Location-Intelligence-Profile-for-LDS-v0.9.7.md')&&html.includes('href="location/"'),'full handbook links separate Location profile');
+check(html.includes('Location-Intelligence-Profile-for-LDS-v0.9.7.md')&&html.includes('href="location/?lang=th&amp;theme=light#scales"'),'full handbook links separate Location profile');
 check(atlas.includes('color-interpolation-filters="linearRGB"'),'classic CVD simulation uses linearRGB');
 check(storyHtml.includes('color-interpolation-filters="linearRGB"')&&locationHtml.includes('color-interpolation-filters="linearRGB"'),'modern CVD simulations use linearRGB');
 for(const path of ['v0.9.7/color-reference.html','v0.9.7/story-data.js','v0.9.7/location/index.html','v0.9.7/location/location-data.js','v0.9.7/normative/Location-Intelligence-Profile-for-LDS-v0.9.7.md'])check(manifestPaths.includes(path),`manifest covers new surface ${path}`);

@@ -1,0 +1,41 @@
+/* Static-first motion discovery; exact governed artwork lives in lds/motif. */
+.lds097-motion-discovery{margin-block:3rem;scroll-margin-top:7rem;min-width:0}
+.lds097-motion-discovery *{box-sizing:border-box}
+.lds097-motion-discovery h3,.lds097-motion-discovery h4,.lds097-motion-discovery p{max-width:none;word-break:normal;overflow-wrap:break-word}
+.lds097-motion-discovery h3{font-size:clamp(1.65rem,3vw,2.45rem);line-height:1.4;margin:0 0 1rem}
+.lds097-motion-discovery h4{font-size:1.15rem;line-height:1.55;margin:.4rem 0 .85rem}
+.lds097-motion-discovery p{line-height:1.8;margin:0 0 1rem}
+.lds097-motion-intro{max-width:76ch}.lds097-motion-beats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;list-style:none;padding:0;margin:2rem 0}
+.lds097-motion-beats strong,.lds097-motion-beats span{display:block}.lds097-motion-beats span{margin:.4rem 0;font-size:.9em}
+.lds097-motion-lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2rem;align-items:center;padding-block:2rem;border-block:1px solid var(--border-default);scroll-margin-top:7rem}
+.lds097-motion-controls{display:grid;gap:.7rem}.lds097-motion-controls[hidden],.lds097-motion-discovery [hidden]{display:none!important}
+.lds097-motion-discovery select,.lds097-motion-discovery button{font:inherit;min-height:44px;border:1px solid var(--border-default);background:var(--surface-card);color:var(--text-primary);border-radius:12px;padding:.65rem 1rem;max-width:100%}
+.lds097-motion-discovery select{width:100%}.lds097-motion-discovery button{cursor:pointer}.lds097-motion-discovery button:disabled{cursor:default;opacity:.6}
+.lds097-motion-discovery :is(button,select,input,a,summary):focus-visible{outline:2px solid var(--focus-ring);outline-offset:4px}
+.lds097-motion-buttons{display:flex;flex-wrap:wrap;gap:.65rem}.lds097-motion-reduced{display:flex;align-items:flex-start;gap:.65rem;font-size:.9em;line-height:1.7}.lds097-motion-reduced input{width:20px;height:20px;flex:none;margin-top:.25rem}
+.lds097-motion-status{font-weight:600;margin-top:1rem!important;min-height:1.8em}.lds097-motion-rule,.lds097-motion-boundary{font-size:.9em;color:var(--text-secondary)}
+.lds097-motion-stage{min-width:0;padding:1.25rem;border-radius:16px;background:#FCFCFA!important;color:#182327;overflow:hidden;align-self:center}
+html[data-theme="dark"] .lds097-motion-stage{background:#20292D!important;color:#F1F4EE}
+.lds097-motion-stage-still{aspect-ratio:2/1;display:grid;place-items:center}.lds097-motion-stage-still img{display:block;width:100%;height:auto}
+.lds097-motion-stage [data-preview-still="dark"]{display:none}html[data-theme="dark"] .lds097-motion-stage [data-preview-still="light"]{display:none}html[data-theme="dark"] .lds097-motion-stage [data-preview-still="dark"]{display:block}
+.lds097-motion-stage[data-active="true"] .lds097-motion-stage-still{display:none}
+.lds097-motion-stage .lds-motif-frame{width:100%;max-width:600px;margin-inline:auto;background:transparent;padding:0}
+.lds097-motion-stage .lds-motif-frame[data-motion="final"] lm-motif *{animation:none!important}
+.lds097-motion-stage-caption{display:grid;gap:.35rem;margin:1rem 0 0!important;font-size:.85rem;line-height:1.6!important}.lds097-motion-stage-caption strong{font-size:1rem}
+.lds097-motion-boundary{margin-block:1.5rem!important}
+.lds097-motion-catalogue{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;margin-block:2rem}
+.lds097-motion-card{min-width:0;padding-block:1.25rem;border-top:1px solid var(--border-default)}
+.lds097-motion-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-block:1rem}.lds097-motion-pair figure{margin:0;min-width:0}
+.lds097-motion-still{aspect-ratio:2/1;display:grid;place-items:center;padding:10px!important;border-radius:12px!important}
+.lds097-motion-still[data-host-surface="surface.card@light"],.lds097-motion-still img[data-host-surface="surface.card@light"]{background:#FCFCFA!important}
+.lds097-motion-still[data-host-surface="surface.card@dark"],.lds097-motion-still img[data-host-surface="surface.card@dark"]{background:#20292D!important}
+.lds097-motion-still img{display:block;width:100%;height:auto;padding:0!important;border-radius:0!important}
+.lds097-motion-pair figcaption{line-height:1.6;font-size:.78em;margin-top:.5rem}.lds097-motion-pair figcaption a{display:block}
+.lds097-motion-preview-link{font-size:.9em!important}.lds097-motion-handoff,.lds097-motion-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+.lds097-motion-handoff{padding-block:1.5rem;border-top:1px solid var(--border-default)}.lds097-motion-handoff ul{padding-left:1.2rem;line-height:1.8}.lds097-motion-handoff li+li{margin-top:.5rem}
+.lds097-motion-products{border-block:1px solid var(--border-default);padding-block:1rem}.lds097-motion-products>summary{display:list-item!important;cursor:pointer;font-weight:600;line-height:1.7;padding:.35rem 0}.lds097-motion-product-grid{padding-top:1.5rem}
+.lds097-motion-web-files{padding-top:1.25rem}.lds097-motion-web-files ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.lds097-motion-web-files li{display:grid;gap:.3rem;min-width:0}.lds097-motion-web-files li span{font-size:.9em;line-height:1.7}.lds097-motion-web-files code{overflow-wrap:anywhere}.lds097-motion-web-files pre{max-width:100%;overflow:auto;white-space:pre;padding:1rem;background:var(--surface-card);border:1px solid var(--border-default);border-radius:12px;line-height:1.7;font-size:.8rem}.lds097-motion-web-files pre code{overflow-wrap:normal}
+@media(max-width:760px){.lds097-motion-beats,.lds097-motion-lab,.lds097-motion-catalogue,.lds097-motion-handoff,.lds097-motion-product-grid{grid-template-columns:1fr}.lds097-motion-beats{gap:.75rem}.lds097-motion-beats li{padding-bottom:.5rem}.lds097-motion-lab{gap:1rem}.lds097-motion-stage{padding:1rem}.lds097-motion-catalogue{gap:1rem}.lds097-motion-pair{gap:.5rem}}
+@media(max-width:540px){.lds097-motion-web-files ul{grid-template-columns:1fr}}
+@media print{.lds097-motion-controls,.lds097-motion-preview-link,#motif-runtime-slot{display:none!important}.lds097-motion-stage-still{display:grid!important}.lds097-motion-catalogue{grid-template-columns:repeat(2,minmax(0,1fr))}.lds097-motion-card{break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){.lds097-motion-stage lm-motif *{animation:none!important}}
